@@ -9,18 +9,12 @@ import UIKit
 
 class SplashVC: MainViewController {
 
+    @IBAction func continueBtnPressed(_ sender: Any) {
+        self.navigateVC(id: "SignupVC") { (vc:SignupVC) in }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        UIView.transition(with: logoIV, duration: 1.3,
-//                          options: .transitionFlipFromRight,
-//                          animations: {
-//            self.logoIV.isHidden = false
-//            self.hideLogoIV.isHidden = true
-//        })
-//        logoIV.slideInFromLeft()
-//    }
-        // Do any additional setup after loading the view.
+
     }
   
 

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="155" id="KGk-i7-Jjw" customClass="ProfileHeaderTVCell" customModule="Kismat_App" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="155"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDo-WP-Eux">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="154"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WELCOME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWm-hV-jnf" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                <rect key="frame" x="90" y="10" width="195" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="195" id="Bvy-QG-a6c"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                        <color key="value" name="Secondary Grey"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                        <real key="value" value="28"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="sb"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please setup your profile " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmD-Ff-vUG" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                <rect key="frame" x="133" y="44" width="110" height="9.6666666666666643"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="IG7-0W-BmL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                        <color key="value" name="Secondary Grey"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="l"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_icon" translatesAutoresizingMaskIntoConstraints="NO" id="r6s-s1-rdI" customClass="RoundedImageView" customModule="Kismat_App" customModuleProvider="target">
+                                <rect key="frame" x="147" y="69.666666666666671" width="80" height="80.000000000000014"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="YaQ-3S-dCr"/>
+                                    <constraint firstAttribute="width" constant="80" id="hN1-1n-j60"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.pencil" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6PO-U7-v21">
+                                <rect key="frame" x="216" y="128.66666666666669" width="20" height="20"/>
+                                <color key="tintColor" name="Secondary Grey"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="BVv-sb-rOX"/>
+                                    <constraint firstAttribute="height" constant="14" id="JV3-i5-u5b"/>
+                                </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="154" id="6YE-5E-vyS"/>
+                            <constraint firstItem="zmD-Ff-vUG" firstAttribute="top" secondItem="mWm-hV-jnf" secondAttribute="bottom" constant="1" id="Apf-39-8IG"/>
+                            <constraint firstAttribute="bottom" secondItem="6PO-U7-v21" secondAttribute="bottom" constant="8" id="LLZ-MQ-fSw"/>
+                            <constraint firstItem="6PO-U7-v21" firstAttribute="leading" secondItem="r6s-s1-rdI" secondAttribute="trailing" constant="-11" id="QVF-YI-Yax"/>
+                            <constraint firstItem="mWm-hV-jnf" firstAttribute="top" secondItem="gDo-WP-Eux" secondAttribute="top" constant="10" id="aEM-xh-MZu"/>
+                            <constraint firstItem="r6s-s1-rdI" firstAttribute="leading" secondItem="gDo-WP-Eux" secondAttribute="leading" constant="147" id="aLh-Er-QDX"/>
+                            <constraint firstItem="zmD-Ff-vUG" firstAttribute="leading" secondItem="gDo-WP-Eux" secondAttribute="leading" constant="133" id="ba9-DK-1cG"/>
+                            <constraint firstItem="mWm-hV-jnf" firstAttribute="leading" secondItem="gDo-WP-Eux" secondAttribute="leading" constant="90" id="cZJ-ny-RnV"/>
+                            <constraint firstItem="r6s-s1-rdI" firstAttribute="top" secondItem="zmD-Ff-vUG" secondAttribute="bottom" constant="16" id="egO-u2-mru"/>
+                            <constraint firstAttribute="trailing" secondItem="r6s-s1-rdI" secondAttribute="trailing" constant="148" id="fcz-4w-Bin"/>
+                            <constraint firstAttribute="trailing" secondItem="mWm-hV-jnf" secondAttribute="trailing" constant="90" id="qm4-gn-Opq"/>
+                            <constraint firstAttribute="trailing" secondItem="zmD-Ff-vUG" secondAttribute="trailing" constant="132" id="xWB-An-dJV"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="gDo-WP-Eux" secondAttribute="trailing" id="935-oL-XWE"/>
+                    <constraint firstItem="gDo-WP-Eux" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="GOz-7C-AXO"/>
+                    <constraint firstItem="gDo-WP-Eux" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="J1S-kG-BA9"/>
+                    <constraint firstAttribute="bottom" secondItem="gDo-WP-Eux" secondAttribute="bottom" constant="16" id="zBW-ZN-ipQ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="52.671755725190835" y="58.802816901408455"/>
+        </tableViewCell>
+    </objects>
+    <designables>
+        <designable name="mWm-hV-jnf">
+            <size key="intrinsicContentSize" width="145.66666666666666" height="33"/>
+        </designable>
+        <designable name="r6s-s1-rdI">
+            <size key="intrinsicContentSize" width="512" height="512"/>
+        </designable>
+        <designable name="zmD-Ff-vUG">
+            <size key="intrinsicContentSize" width="103" height="9.6666666666666661"/>
+        </designable>
+    </designables>
+    <resources>
+        <image name="placeholder_icon" width="512" height="512"/>
+        <image name="square.and.pencil" catalog="system" width="128" height="113"/>
+        <namedColor name="Secondary Grey">
+            <color red="0.3059999942779541" green="0.4309999942779541" blue="0.50599998235702515" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

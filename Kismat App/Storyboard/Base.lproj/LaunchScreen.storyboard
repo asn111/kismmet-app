@@ -58,9 +58,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo name" width="212" height="33"/>
-        <image name="sub logo text" width="198" height="31"/>
-        <image name="wifi man" width="320" height="494"/>
+        <image name="logo name" width="3289" height="512"/>
+        <image name="sub logo text" width="3270" height="512"/>
+        <image name="wifi man" width="332" height="512"/>
         <namedColor name="Primary Yellow">
             <color red="1" green="0.72156862745098038" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

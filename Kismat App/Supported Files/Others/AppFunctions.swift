@@ -32,9 +32,6 @@ let ApiService = APIService.singelton
 let DBService = Database.singleton
 //let SignalRService = SignalRManager.singelton
 
-var googleApiKey = "732859568694-e3kmjgf6m5ig4j7eh33qb6aa6o42ht90.apps.googleusercontent.com"
-let googleMapAPIKey = "AIzaSyDgl-z1zgAvHu85kVsXQfj8xeIgxmpydws"
-let googleMapAPIKeyD = "AIzaSyAmqIYBYylUps1IRZwGjx9F7W62HD-GXP8"
 
 //MARK: rx Publishers
 
@@ -320,8 +317,9 @@ class AppFunctions {
     
     open class func colorPlaceholder(tf: UITextField, s: String) {
         tf.attributedPlaceholder =
-            NSAttributedString(string: s, attributes: [NSAttributedString.Key.foregroundColor: UIColor(hexFromString: "E8E8E8"), .font: UIFont(name: "Poppins", size: 18)?.regular as Any])
+        NSAttributedString(string: s, attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Text grey") as Any, .font: UIFont(name: "Roboto", size: 14)?.regular as Any])
     }
+
     
     open class func calculateElapsedTime(startingPoint : Date, s:String, functionName: String) {
         //startingPointA = startingPoint

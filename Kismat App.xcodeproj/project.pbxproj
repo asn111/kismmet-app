@@ -32,6 +32,24 @@
 		299FDD7F29967DC90049741B /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299FDD7929967DC90049741B /* APIService.swift */; };
 		299FDD862996852D0049741B /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299FDD852996852D0049741B /* SplashVC.swift */; };
 		299FDD89299692C20049741B /* GeneralResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299FDD88299692C20049741B /* GeneralResponse.swift */; };
+		299FDD8C2996B20A0049741B /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299FDD8B2996B20A0049741B /* SignupVC.swift */; };
+		299FDD8F2996C0F20049741B /* Work Sans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 299FDD8E2996C0F20049741B /* Work Sans.ttf */; };
+		299FDD912996C2630049741B /* Work Sans Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 299FDD902996C2630049741B /* Work Sans Bold.ttf */; };
+		299FDD972996C8ED0049741B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 299FDD922996C8ED0049741B /* Roboto-Regular.ttf */; };
+		299FDD982996C8ED0049741B /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 299FDD932996C8ED0049741B /* Roboto-Black.ttf */; };
+		299FDD992996C8ED0049741B /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 299FDD942996C8ED0049741B /* Roboto-Light.ttf */; };
+		299FDD9A2996C8ED0049741B /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 299FDD952996C8ED0049741B /* Roboto-Bold.ttf */; };
+		299FDD9B2996C8ED0049741B /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 299FDD962996C8ED0049741B /* Roboto-Medium.ttf */; };
+		299FDD9E2996D0250049741B /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299FDD9D2996D0250049741B /* SignInVC.swift */; };
+		299FDDA12996E1F80049741B /* ProfileSetupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299FDDA02996E1F80049741B /* ProfileSetupVC.swift */; };
+		299FDDA52996E2B00049741B /* ProfileHeaderTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299FDDA32996E2B00049741B /* ProfileHeaderTVCell.swift */; };
+		299FDDA62996E2B00049741B /* ProfileHeaderTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299FDDA42996E2B00049741B /* ProfileHeaderTVCell.xib */; };
+		299FDDA92996E85C0049741B /* ProfileTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299FDDA72996E85C0049741B /* ProfileTVCell.swift */; };
+		299FDDAA2996E85C0049741B /* ProfileTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299FDDA82996E85C0049741B /* ProfileTVCell.xib */; };
+		299FDDAE2996EB7E0049741B /* GeneralButtonTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299FDDAC2996EB7E0049741B /* GeneralButtonTVCell.swift */; };
+		299FDDAF2996EB7E0049741B /* GeneralButtonTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299FDDAD2996EB7E0049741B /* GeneralButtonTVCell.xib */; };
+		29F5290329970DA500FE2EBA /* GeneralTextviewTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F5290129970DA500FE2EBA /* GeneralTextviewTVCell.swift */; };
+		29F5290429970DA500FE2EBA /* GeneralTextviewTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29F5290229970DA500FE2EBA /* GeneralTextviewTVCell.xib */; };
 		57389EE98C5399895034D03F /* Pods_Kismat_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94193A959EB0E87687CB2C2 /* Pods_Kismat_AppTests.framework */; };
 		7BF40A9B784EB3B0D0962A19 /* Pods_Kismat_App_Kismat_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4384F2D73DD8CBAD4838954 /* Pods_Kismat_App_Kismat_AppUITests.framework */; };
 		E74AD276A6F917BF115F88D4 /* Pods_Kismat_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C1152AF2889D0BB805CB22 /* Pods_Kismat_App.framework */; };
@@ -87,6 +105,24 @@
 		299FDD7929967DC90049741B /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		299FDD852996852D0049741B /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		299FDD88299692C20049741B /* GeneralResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralResponse.swift; sourceTree = "<group>"; };
+		299FDD8B2996B20A0049741B /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
+		299FDD8E2996C0F20049741B /* Work Sans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Work Sans.ttf"; sourceTree = "<group>"; };
+		299FDD902996C2630049741B /* Work Sans Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Work Sans Bold.ttf"; sourceTree = "<group>"; };
+		299FDD922996C8ED0049741B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		299FDD932996C8ED0049741B /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		299FDD942996C8ED0049741B /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		299FDD952996C8ED0049741B /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		299FDD962996C8ED0049741B /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		299FDD9D2996D0250049741B /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		299FDDA02996E1F80049741B /* ProfileSetupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupVC.swift; sourceTree = "<group>"; };
+		299FDDA32996E2B00049741B /* ProfileHeaderTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderTVCell.swift; sourceTree = "<group>"; };
+		299FDDA42996E2B00049741B /* ProfileHeaderTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeaderTVCell.xib; sourceTree = "<group>"; };
+		299FDDA72996E85C0049741B /* ProfileTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTVCell.swift; sourceTree = "<group>"; };
+		299FDDA82996E85C0049741B /* ProfileTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTVCell.xib; sourceTree = "<group>"; };
+		299FDDAC2996EB7E0049741B /* GeneralButtonTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralButtonTVCell.swift; sourceTree = "<group>"; };
+		299FDDAD2996EB7E0049741B /* GeneralButtonTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralButtonTVCell.xib; sourceTree = "<group>"; };
+		29F5290129970DA500FE2EBA /* GeneralTextviewTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTextviewTVCell.swift; sourceTree = "<group>"; };
+		29F5290229970DA500FE2EBA /* GeneralTextviewTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralTextviewTVCell.xib; sourceTree = "<group>"; };
 		305465A42FE8AC505100BED8 /* Pods-Kismat AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat AppTests.debug.xcconfig"; path = "Target Support Files/Pods-Kismat AppTests/Pods-Kismat AppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3EEEA3F5A221737FCAACDCC0 /* Pods-Kismat App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat App.debug.xcconfig"; path = "Target Support Files/Pods-Kismat App/Pods-Kismat App.debug.xcconfig"; sourceTree = "<group>"; };
 		42C1152AF2889D0BB805CB22 /* Pods_Kismat_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kismat_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,6 +229,7 @@
 		299FDD3C29967D1D0049741B /* Supported Files */ = {
 			isa = PBXGroup;
 			children = (
+				299FDD8D2996C0800049741B /* Fonts */,
 				299FDD3D29967D1D0049741B /* LoadingView */,
 				299FDD4329967D1D0049741B /* Others */,
 			);
@@ -229,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				299FDD6A29967D670049741B /* MainViewController.swift */,
+				299FDDAB2996EB640049741B /* Xibs */,
 			);
 			path = MainViewController;
 			sourceTree = "<group>";
@@ -305,6 +343,9 @@
 		299FDD82299684E50049741B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				299FDD9F2996E1480049741B /* ProfileSetup */,
+				299FDD9C2996D0030049741B /* SignIn */,
+				299FDD8A2996B1F10049741B /* SignUp */,
 				299FDD84299685010049741B /* SplashVC */,
 			);
 			path = ViewControllers;
@@ -331,6 +372,67 @@
 				299FDD88299692C20049741B /* GeneralResponse.swift */,
 			);
 			path = "API Models";
+			sourceTree = "<group>";
+		};
+		299FDD8A2996B1F10049741B /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				299FDD8B2996B20A0049741B /* SignupVC.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		299FDD8D2996C0800049741B /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				299FDD8E2996C0F20049741B /* Work Sans.ttf */,
+				299FDD902996C2630049741B /* Work Sans Bold.ttf */,
+				299FDD932996C8ED0049741B /* Roboto-Black.ttf */,
+				299FDD952996C8ED0049741B /* Roboto-Bold.ttf */,
+				299FDD942996C8ED0049741B /* Roboto-Light.ttf */,
+				299FDD962996C8ED0049741B /* Roboto-Medium.ttf */,
+				299FDD922996C8ED0049741B /* Roboto-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		299FDD9C2996D0030049741B /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				299FDD9D2996D0250049741B /* SignInVC.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		299FDD9F2996E1480049741B /* ProfileSetup */ = {
+			isa = PBXGroup;
+			children = (
+				299FDDA02996E1F80049741B /* ProfileSetupVC.swift */,
+				299FDDA22996E25A0049741B /* Xibs */,
+			);
+			path = ProfileSetup;
+			sourceTree = "<group>";
+		};
+		299FDDA22996E25A0049741B /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				299FDDA32996E2B00049741B /* ProfileHeaderTVCell.swift */,
+				299FDDA42996E2B00049741B /* ProfileHeaderTVCell.xib */,
+				299FDDA72996E85C0049741B /* ProfileTVCell.swift */,
+				299FDDA82996E85C0049741B /* ProfileTVCell.xib */,
+			);
+			path = Xibs;
+			sourceTree = "<group>";
+		};
+		299FDDAB2996EB640049741B /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				299FDDAC2996EB7E0049741B /* GeneralButtonTVCell.swift */,
+				299FDDAD2996EB7E0049741B /* GeneralButtonTVCell.xib */,
+				29F5290129970DA500FE2EBA /* GeneralTextviewTVCell.swift */,
+				29F5290229970DA500FE2EBA /* GeneralTextviewTVCell.xib */,
+			);
+			path = Xibs;
 			sourceTree = "<group>";
 		};
 		7C9D82B898743ED39B4B49E7 /* Frameworks */ = {
@@ -453,9 +555,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				299FDD192996796A0049741B /* LaunchScreen.storyboard in Resources */,
+				299FDD972996C8ED0049741B /* Roboto-Regular.ttf in Resources */,
+				299FDD9A2996C8ED0049741B /* Roboto-Bold.ttf in Resources */,
+				299FDDAA2996E85C0049741B /* ProfileTVCell.xib in Resources */,
 				299FDD5729967D1D0049741B /* LoadingView.xib in Resources */,
+				299FDDA62996E2B00049741B /* ProfileHeaderTVCell.xib in Resources */,
+				299FDDAF2996EB7E0049741B /* GeneralButtonTVCell.xib in Resources */,
+				299FDD982996C8ED0049741B /* Roboto-Black.ttf in Resources */,
 				299FDD162996796A0049741B /* Assets.xcassets in Resources */,
+				29F5290429970DA500FE2EBA /* GeneralTextviewTVCell.xib in Resources */,
 				299FDD11299679690049741B /* Main.storyboard in Resources */,
+				299FDD8F2996C0F20049741B /* Work Sans.ttf in Resources */,
+				299FDD9B2996C8ED0049741B /* Roboto-Medium.ttf in Resources */,
+				299FDD912996C2630049741B /* Work Sans Bold.ttf in Resources */,
+				299FDD992996C8ED0049741B /* Roboto-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,11 +696,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				299FDDAE2996EB7E0049741B /* GeneralButtonTVCell.swift in Sources */,
+				299FDDA52996E2B00049741B /* ProfileHeaderTVCell.swift in Sources */,
 				299FDD6B29967D670049741B /* MainViewController.swift in Sources */,
 				299FDD89299692C20049741B /* GeneralResponse.swift in Sources */,
 				299FDD5B29967D1D0049741B /* Styling.swift in Sources */,
 				299FDD5929967D1D0049741B /* loadingView.swift in Sources */,
 				299FDD5529967D1D0049741B /* ReactiveExtensiones.swift in Sources */,
+				299FDDA92996E85C0049741B /* ProfileTVCell.swift in Sources */,
 				299FDD5F29967D1D0049741B /* Floater Styling.swift in Sources */,
 				299FDD5E29967D1D0049741B /* AppFunctions.swift in Sources */,
 				299FDD5829967D1D0049741B /* LoadingViewable.swift in Sources */,
@@ -597,10 +713,14 @@
 				299FDD5D29967D1D0049741B /* ImagePicker.swift in Sources */,
 				299FDD7F29967DC90049741B /* APIService.swift in Sources */,
 				299FDD862996852D0049741B /* SplashVC.swift in Sources */,
+				299FDD9E2996D0250049741B /* SignInVC.swift in Sources */,
+				29F5290329970DA500FE2EBA /* GeneralTextviewTVCell.swift in Sources */,
 				299FDD5629967D1D0049741B /* AnimateloadingView.swift in Sources */,
+				299FDD8C2996B20A0049741B /* SignupVC.swift in Sources */,
 				299FDD7D29967DC90049741B /* Database.swift in Sources */,
 				299FDD0A299679690049741B /* AppDelegate.swift in Sources */,
 				299FDD7E29967DC90049741B /* LocationManager.swift in Sources */,
+				299FDDA12996E1F80049741B /* ProfileSetupVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

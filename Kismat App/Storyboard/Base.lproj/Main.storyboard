@@ -10,23 +10,23 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--SplashVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SplashVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="SplashVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo name" translatesAutoresizingMaskIntoConstraints="NO" id="DzN-e8-nmj">
-                                <rect key="frame" x="40" y="104" width="150" height="30"/>
+                                <rect key="frame" x="40" y="143" width="150" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="0E6-DJ-OKa"/>
                                     <constraint firstAttribute="height" constant="30" id="I7f-0v-AKf"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sub logo text" translatesAutoresizingMaskIntoConstraints="NO" id="W8o-dQ-5UA">
-                                <rect key="frame" x="40" y="145" width="150" height="30"/>
+                                <rect key="frame" x="40" y="184" width="150" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="CBw-ba-s4w"/>
                                     <constraint firstAttribute="width" constant="150" id="tVB-Br-N6A"/>
@@ -57,7 +57,11 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="YES"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="continueBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ITM-G7-1hL"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9kR-bt-Uil" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="298" y="12" width="20" height="20"/>
@@ -101,6 +105,21 @@
                                     <constraint firstItem="9kR-bt-Uil" firstAttribute="top" secondItem="Vtk-vg-2KG" secondAttribute="top" constant="12" id="x3w-KB-Wpn"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2023 - All rights reserved" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhD-Tf-j08" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                <rect key="frame" x="36" y="778" width="320" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="XIm-v4-RUb"/>
+                                    <constraint firstAttribute="height" constant="40" id="xAh-cD-DDZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                        <color key="value" name="Base White"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="Primary Yellow"/>
@@ -110,9 +129,12 @@
                             <constraint firstItem="DzN-e8-nmj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="HQY-gC-Daz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Vtk-vg-2KG" secondAttribute="bottom" constant="80" id="Mo2-NK-XYf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Vtk-vg-2KG" secondAttribute="trailing" constant="73" id="PVn-Ys-axz"/>
-                            <constraint firstItem="DzN-e8-nmj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="1" id="i2r-c0-ZcR"/>
+                            <constraint firstItem="lhD-Tf-j08" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="36" id="aVA-gG-5s8"/>
+                            <constraint firstItem="DzN-e8-nmj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="i2r-c0-ZcR"/>
                             <constraint firstItem="W8o-dQ-5UA" firstAttribute="top" secondItem="DzN-e8-nmj" secondAttribute="bottom" constant="11" id="o44-fj-IE3"/>
                             <constraint firstItem="Vtk-vg-2KG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="-13" id="pZ3-wL-Gd1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lhD-Tf-j08" secondAttribute="trailing" constant="37" id="uO3-Ae-GS3"/>
+                            <constraint firstItem="lhD-Tf-j08" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="xBI-KQ-eUt"/>
                             <constraint firstAttribute="bottom" secondItem="K1O-UJ-zQ9" secondAttribute="bottom" id="y9l-T3-nnK"/>
                         </constraints>
                     </view>
@@ -121,6 +143,312 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="936.64122137404581" y="3.5211267605633805"/>
+        </scene>
+        <!--SignupVC-->
+        <scene sceneID="O7U-W7-C20">
+            <objects>
+                <viewController storyboardIdentifier="SignupVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jhI-XY-3vr" customClass="SignupVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0Ww-G2-Ucr">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XWw-wn-ngB">
+                                <rect key="frame" x="16" y="59" width="361" height="179"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uDf-ut-fLn">
+                                        <rect key="frame" x="37" y="60" width="286" height="64"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi man grey" translatesAutoresizingMaskIntoConstraints="NO" id="cEW-1y-Z8M">
+                                                <rect key="frame" x="8" y="0.0" width="50" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="WPM-nF-3Fe"/>
+                                                    <constraint firstAttribute="height" constant="60" id="rFg-Py-AzF"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo name" translatesAutoresizingMaskIntoConstraints="NO" id="df2-py-ld6">
+                                                <rect key="frame" x="66" y="8" width="190" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="190" id="ULd-6y-2pd"/>
+                                                    <constraint firstAttribute="height" constant="48" id="xMG-wA-4yn"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="64" id="6q2-8N-yBK"/>
+                                            <constraint firstItem="df2-py-ld6" firstAttribute="top" secondItem="uDf-ut-fLn" secondAttribute="top" constant="8" id="95s-ak-fbL"/>
+                                            <constraint firstAttribute="width" constant="286" id="JFt-GV-yFH"/>
+                                            <constraint firstItem="cEW-1y-Z8M" firstAttribute="leading" secondItem="uDf-ut-fLn" secondAttribute="leading" constant="8" id="Khg-e5-NpP"/>
+                                            <constraint firstItem="df2-py-ld6" firstAttribute="leading" secondItem="cEW-1y-Z8M" secondAttribute="trailing" constant="8" id="RYT-uf-Jy9"/>
+                                            <constraint firstAttribute="trailing" secondItem="df2-py-ld6" secondAttribute="trailing" constant="30" id="SaS-0r-Ypf"/>
+                                            <constraint firstItem="cEW-1y-Z8M" firstAttribute="top" secondItem="uDf-ut-fLn" secondAttribute="top" id="pV1-mx-v79"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0t0-UR-Tat" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="98" y="114" width="180" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="I4g-Jn-DVz"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                <real key="value" value="30"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="bl"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="txtSpacing">
+                                                <real key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                                <color key="value" name="Base White"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="uDf-ut-fLn" secondAttribute="trailing" constant="38" id="3cK-dO-O3O"/>
+                                    <constraint firstItem="uDf-ut-fLn" firstAttribute="top" secondItem="XWw-wn-ngB" secondAttribute="top" constant="60" id="I2e-1l-01n"/>
+                                    <constraint firstAttribute="height" constant="179" id="OYz-lc-LBd"/>
+                                    <constraint firstItem="0t0-UR-Tat" firstAttribute="leading" secondItem="XWw-wn-ngB" secondAttribute="leading" constant="98" id="cOo-8z-cSt"/>
+                                    <constraint firstItem="uDf-ut-fLn" firstAttribute="leading" secondItem="XWw-wn-ngB" secondAttribute="leading" constant="37" id="dVY-dD-F2T"/>
+                                    <constraint firstItem="0t0-UR-Tat" firstAttribute="top" secondItem="uDf-ut-fLn" secondAttribute="bottom" constant="-10" id="f9P-bg-TIq"/>
+                                    <constraint firstAttribute="trailing" secondItem="0t0-UR-Tat" secondAttribute="trailing" constant="83" id="mFs-DS-G1z"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v3O-g4-4It">
+                                <rect key="frame" x="16" y="778" width="361" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdO-D0-c2r" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="21" y="0.0" width="320" height="40"/>
+                                        <string key="text">By signing up, you agree to our  Terms &amp; Conditions 
+and Privacy Policy</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                                <color key="value" name="Base White"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="vdO-D0-c2r" secondAttribute="trailing" constant="20" id="28R-nq-C2g"/>
+                                    <constraint firstAttribute="bottom" secondItem="vdO-D0-c2r" secondAttribute="bottom" id="ATO-bz-bdq"/>
+                                    <constraint firstItem="vdO-D0-c2r" firstAttribute="top" secondItem="v3O-g4-4It" secondAttribute="top" id="pIq-Wk-bpK"/>
+                                    <constraint firstItem="vdO-D0-c2r" firstAttribute="leading" secondItem="v3O-g4-4It" secondAttribute="leading" constant="21" id="qGy-3c-O4w"/>
+                                    <constraint firstAttribute="height" constant="40" id="yPA-RJ-jiC"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="agt-VE-8v4">
+                                <rect key="frame" x="16" y="245" width="361" height="200"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V5l-cX-AhP" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="4" y="1" width="353" height="60"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="JBx-SY-DoZ" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="Tr0-9i-2dq"/>
+                                                    <constraint firstAttribute="width" constant="353" id="Tu9-El-w7Z"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="name"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderRadious">
+                                                        <real key="value" value="6"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.66666666669999997" green="0.078431372550000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                        <real key="value" value="13"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="8hK-hQ-nha"/>
+                                            <constraint firstAttribute="width" constant="353" id="99x-8x-4MI"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="353" id="C5J-Ju-PyS"/>
+                                            <constraint firstItem="JBx-SY-DoZ" firstAttribute="centerY" secondItem="V5l-cX-AhP" secondAttribute="centerY" id="HAq-tt-zLF"/>
+                                            <constraint firstItem="JBx-SY-DoZ" firstAttribute="centerX" secondItem="V5l-cX-AhP" secondAttribute="centerX" id="S2i-UH-lt5"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="V7a-c7-RTo"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OQj-Oc-MZD" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="4" y="69" width="353" height="60"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="D0O-Hf-zFJ" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="WiK-dv-Mrq"/>
+                                                    <constraint firstAttribute="width" constant="353" id="iFI-lz-rI6"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="name"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderRadious">
+                                                        <real key="value" value="6"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.66666666669999997" green="0.078431372550000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                        <real key="value" value="13"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="D0O-Hf-zFJ" firstAttribute="centerX" secondItem="OQj-Oc-MZD" secondAttribute="centerX" id="5j5-gk-dJh"/>
+                                            <constraint firstAttribute="width" constant="353" id="Fpc-8b-6rY"/>
+                                            <constraint firstAttribute="height" constant="60" id="s0d-ch-IdD"/>
+                                            <constraint firstItem="D0O-Hf-zFJ" firstAttribute="centerY" secondItem="OQj-Oc-MZD" secondAttribute="centerY" id="tiM-RV-vhn"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Sx-b8-OcN" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="4" y="138" width="353" height="60"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aRI-Xg-5o1" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="353" id="8s7-O6-PK3"/>
+                                                    <constraint firstAttribute="height" constant="60" id="kC0-qE-LZh"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="name"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderRadious">
+                                                        <real key="value" value="6"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.66666666669999997" green="0.078431372550000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                        <real key="value" value="13"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="Qnp-dg-ztB"/>
+                                            <constraint firstAttribute="width" constant="353" id="nWq-es-s1D"/>
+                                            <constraint firstItem="aRI-Xg-5o1" firstAttribute="centerX" secondItem="8Sx-b8-OcN" secondAttribute="centerX" id="qZY-ZX-3mU"/>
+                                            <constraint firstItem="aRI-Xg-5o1" firstAttribute="centerY" secondItem="8Sx-b8-OcN" secondAttribute="centerY" id="svd-BQ-yre"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="8Sx-b8-OcN" firstAttribute="leading" secondItem="agt-VE-8v4" secondAttribute="leading" constant="4" id="0sd-qz-7eR"/>
+                                    <constraint firstAttribute="trailing" secondItem="V5l-cX-AhP" secondAttribute="trailing" constant="4" id="2H6-aw-0DK"/>
+                                    <constraint firstItem="V5l-cX-AhP" firstAttribute="leading" secondItem="agt-VE-8v4" secondAttribute="leading" constant="4" id="5Mh-KO-Fok"/>
+                                    <constraint firstAttribute="bottom" secondItem="8Sx-b8-OcN" secondAttribute="bottom" constant="2" id="9r6-pX-EZX"/>
+                                    <constraint firstItem="OQj-Oc-MZD" firstAttribute="leading" secondItem="agt-VE-8v4" secondAttribute="leading" constant="4" id="DFy-Nq-kXx"/>
+                                    <constraint firstItem="8Sx-b8-OcN" firstAttribute="top" secondItem="OQj-Oc-MZD" secondAttribute="bottom" constant="9" id="Dwg-en-ExZ"/>
+                                    <constraint firstAttribute="width" constant="361" id="LFK-3e-weg"/>
+                                    <constraint firstAttribute="trailing" secondItem="8Sx-b8-OcN" secondAttribute="trailing" constant="4" id="NCe-OQ-zCC"/>
+                                    <constraint firstItem="V5l-cX-AhP" firstAttribute="top" secondItem="agt-VE-8v4" secondAttribute="top" constant="1" id="SM3-GB-koG"/>
+                                    <constraint firstItem="OQj-Oc-MZD" firstAttribute="top" secondItem="V5l-cX-AhP" secondAttribute="bottom" constant="8" id="r9U-YJ-zXC"/>
+                                    <constraint firstAttribute="trailing" secondItem="OQj-Oc-MZD" secondAttribute="trailing" constant="4" id="y0U-1S-lTJ"/>
+                                    <constraint firstAttribute="height" constant="200" id="yx3-1H-TyI"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZlU-Hb-i3S" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                <rect key="frame" x="59" y="473" width="275" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="59V-B8-6Dt"/>
+                                    <constraint firstAttribute="width" constant="275" id="pm4-Y7-giV"/>
+                                </constraints>
+                                <string key="text">The email you use to sign up will be
+permanent email and it can’t be changed.
+You will be receiving app related emails to
+this email.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                        <color key="value" name="Danger"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="m"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6e-P2-qtG" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                <rect key="frame" x="44" y="571" width="305" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="BU9-dc-TgB"/>
+                                    <constraint firstAttribute="width" constant="305" id="Vw3-4Z-1HF"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Sign Up"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                        <color key="value" name="Secondary Grey"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="signUpBtnPressed:" destination="jhI-XY-3vr" eventType="touchUpInside" id="l1q-dv-8xj"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have account? Login" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3O-xc-bXC" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                <rect key="frame" x="37" y="629" width="320" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="F6J-4r-1Es"/>
+                                    <constraint firstAttribute="width" constant="320" id="obi-Aa-CHP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                        <color key="value" name="Base White"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="T9W-sO-sz1"/>
+                        <color key="backgroundColor" name="Primary Yellow"/>
+                        <constraints>
+                            <constraint firstItem="XWw-wn-ngB" firstAttribute="top" secondItem="T9W-sO-sz1" secondAttribute="top" id="3Nl-jg-tV6"/>
+                            <constraint firstItem="v3O-g4-4It" firstAttribute="leading" secondItem="T9W-sO-sz1" secondAttribute="leading" constant="16" id="43z-bB-Qs3"/>
+                            <constraint firstItem="XWw-wn-ngB" firstAttribute="leading" secondItem="T9W-sO-sz1" secondAttribute="leading" constant="16" id="44U-G8-h63"/>
+                            <constraint firstItem="b3O-xc-bXC" firstAttribute="leading" secondItem="T9W-sO-sz1" secondAttribute="leading" constant="37" id="5ej-aN-5Ur"/>
+                            <constraint firstItem="ZlU-Hb-i3S" firstAttribute="top" secondItem="agt-VE-8v4" secondAttribute="bottom" constant="28" id="88R-W4-iuL"/>
+                            <constraint firstItem="T9W-sO-sz1" firstAttribute="trailing" secondItem="XWw-wn-ngB" secondAttribute="trailing" constant="16" id="Bkm-n1-5Bx"/>
+                            <constraint firstItem="T9W-sO-sz1" firstAttribute="trailing" secondItem="v3O-g4-4It" secondAttribute="trailing" constant="16" id="CDL-oJ-sK6"/>
+                            <constraint firstItem="v3O-g4-4It" firstAttribute="bottom" secondItem="T9W-sO-sz1" secondAttribute="bottom" id="DGE-zH-f8c"/>
+                            <constraint firstItem="agt-VE-8v4" firstAttribute="top" secondItem="XWw-wn-ngB" secondAttribute="bottom" constant="7" id="K6J-2y-OFo"/>
+                            <constraint firstItem="T9W-sO-sz1" firstAttribute="trailing" secondItem="b3O-xc-bXC" secondAttribute="trailing" constant="36" id="MPG-5W-x2O"/>
+                            <constraint firstItem="T9W-sO-sz1" firstAttribute="trailing" secondItem="a6e-P2-qtG" secondAttribute="trailing" constant="44" id="NLa-3y-0g6"/>
+                            <constraint firstItem="b3O-xc-bXC" firstAttribute="top" secondItem="a6e-P2-qtG" secondAttribute="bottom" constant="8" id="gfU-2f-CK0"/>
+                            <constraint firstItem="T9W-sO-sz1" firstAttribute="trailing" secondItem="agt-VE-8v4" secondAttribute="trailing" constant="16" id="ghx-Cn-OyW"/>
+                            <constraint firstItem="a6e-P2-qtG" firstAttribute="leading" secondItem="T9W-sO-sz1" secondAttribute="leading" constant="44" id="k5E-bU-7Dm"/>
+                            <constraint firstItem="T9W-sO-sz1" firstAttribute="trailing" secondItem="ZlU-Hb-i3S" secondAttribute="trailing" constant="59" id="lg4-vo-hQl"/>
+                            <constraint firstItem="ZlU-Hb-i3S" firstAttribute="leading" secondItem="T9W-sO-sz1" secondAttribute="leading" constant="59" id="sbp-lB-f3R"/>
+                            <constraint firstItem="agt-VE-8v4" firstAttribute="leading" secondItem="T9W-sO-sz1" secondAttribute="leading" constant="16" id="tps-wy-tyP"/>
+                            <constraint firstItem="a6e-P2-qtG" firstAttribute="top" secondItem="ZlU-Hb-i3S" secondAttribute="bottom" constant="8" symbolic="YES" id="wGo-e6-fPT"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="shj-9N-b5w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1655.7251908396945" y="3.5211267605633805"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="O6a-Eb-U33">
@@ -140,17 +468,364 @@
             </objects>
             <point key="canvasLocation" x="9.9236641221374047" y="3.5211267605633805"/>
         </scene>
+        <!--Sign InVC-->
+        <scene sceneID="C5U-2H-Hf3">
+            <objects>
+                <viewController storyboardIdentifier="SignInVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WWv-Bs-My6" customClass="SignInVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vh2-lE-2nX">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XI9-pw-cLE">
+                                <rect key="frame" x="16" y="59" width="361" height="179"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bkZ-Kl-yFt">
+                                        <rect key="frame" x="37" y="60" width="286" height="64"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi man grey" translatesAutoresizingMaskIntoConstraints="NO" id="1gh-S1-8jc">
+                                                <rect key="frame" x="8" y="0.0" width="50" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="8wj-4a-zd1"/>
+                                                    <constraint firstAttribute="width" constant="50" id="sbx-ev-7fF"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo name" translatesAutoresizingMaskIntoConstraints="NO" id="DuB-Rz-Y8v">
+                                                <rect key="frame" x="66" y="8" width="190" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="2Or-d5-QN5"/>
+                                                    <constraint firstAttribute="width" constant="190" id="K4p-DS-PK3"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="1gh-S1-8jc" firstAttribute="leading" secondItem="bkZ-Kl-yFt" secondAttribute="leading" constant="8" id="3jt-8t-S2x"/>
+                                            <constraint firstAttribute="trailing" secondItem="DuB-Rz-Y8v" secondAttribute="trailing" constant="30" id="Iuh-yb-6WC"/>
+                                            <constraint firstItem="DuB-Rz-Y8v" firstAttribute="leading" secondItem="1gh-S1-8jc" secondAttribute="trailing" constant="8" id="btu-Kr-p6s"/>
+                                            <constraint firstItem="1gh-S1-8jc" firstAttribute="top" secondItem="bkZ-Kl-yFt" secondAttribute="top" id="h0y-kn-aMr"/>
+                                            <constraint firstAttribute="width" constant="286" id="vL5-3J-vXN"/>
+                                            <constraint firstAttribute="height" constant="64" id="xCK-Wi-u1O"/>
+                                            <constraint firstItem="DuB-Rz-Y8v" firstAttribute="top" secondItem="bkZ-Kl-yFt" secondAttribute="top" constant="8" id="yqQ-WL-oEf"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHQ-gX-34N" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="98" y="114" width="180" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="LNy-OP-E0e"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                <real key="value" value="30"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="bl"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="txtSpacing">
+                                                <real key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                                <color key="value" name="Base White"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="LHQ-gX-34N" firstAttribute="leading" secondItem="XI9-pw-cLE" secondAttribute="leading" constant="98" id="1S4-ut-KLh"/>
+                                    <constraint firstItem="LHQ-gX-34N" firstAttribute="top" secondItem="bkZ-Kl-yFt" secondAttribute="bottom" constant="-10" id="5TS-r1-5FA"/>
+                                    <constraint firstAttribute="trailing" secondItem="bkZ-Kl-yFt" secondAttribute="trailing" constant="38" id="EqJ-xp-NCY"/>
+                                    <constraint firstAttribute="height" constant="179" id="HY1-i3-fgL"/>
+                                    <constraint firstItem="bkZ-Kl-yFt" firstAttribute="top" secondItem="XI9-pw-cLE" secondAttribute="top" constant="60" id="Vyg-xC-REJ"/>
+                                    <constraint firstItem="bkZ-Kl-yFt" firstAttribute="leading" secondItem="XI9-pw-cLE" secondAttribute="leading" constant="37" id="l9c-6S-wWb"/>
+                                    <constraint firstAttribute="trailing" secondItem="LHQ-gX-34N" secondAttribute="trailing" constant="83" id="x1W-tS-4zT"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iqf-KA-I2Z">
+                                <rect key="frame" x="16" y="778" width="361" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2023 - All rights reserved" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sux-1S-tdw" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="21" y="0.0" width="320" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                                <color key="value" name="Base White"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Sux-1S-tdw" secondAttribute="trailing" constant="20" id="ce2-zc-afS"/>
+                                    <constraint firstAttribute="bottom" secondItem="Sux-1S-tdw" secondAttribute="bottom" id="dD3-4i-spa"/>
+                                    <constraint firstAttribute="height" constant="40" id="iO5-Fh-znX"/>
+                                    <constraint firstItem="Sux-1S-tdw" firstAttribute="leading" secondItem="Iqf-KA-I2Z" secondAttribute="leading" constant="21" id="n44-7P-IYo"/>
+                                    <constraint firstItem="Sux-1S-tdw" firstAttribute="top" secondItem="Iqf-KA-I2Z" secondAttribute="top" id="tsb-nq-cNa"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z2H-xn-w0Y">
+                                <rect key="frame" x="16" y="245" width="361" height="200"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BKh-LJ-DQk" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="4" y="8" width="353" height="60"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8b6-LU-FPq" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="784-Wh-fTc"/>
+                                                    <constraint firstAttribute="width" constant="353" id="fnp-E9-MJs"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="name"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderRadious">
+                                                        <real key="value" value="6"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.66666666669999997" green="0.078431372550000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                        <real key="value" value="13"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="UhV-vf-LB6"/>
+                                            <constraint firstItem="8b6-LU-FPq" firstAttribute="centerX" secondItem="BKh-LJ-DQk" secondAttribute="centerX" id="g6u-aa-NLV"/>
+                                            <constraint firstAttribute="height" constant="60" id="nIu-9C-8jb"/>
+                                            <constraint firstItem="8b6-LU-FPq" firstAttribute="centerY" secondItem="BKh-LJ-DQk" secondAttribute="centerY" id="nml-hF-eOE"/>
+                                            <constraint firstAttribute="width" constant="353" id="vm7-eI-E2x"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="353" id="xIM-vK-knD"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hB0-Vj-Zst" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="4" y="76" width="353" height="60"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xnB-yp-Wkb" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="F1M-dm-Ejm"/>
+                                                    <constraint firstAttribute="width" constant="353" id="FL6-el-3Xc"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="name"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderRadious">
+                                                        <real key="value" value="6"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.66666666669999997" green="0.078431372550000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                        <real key="value" value="13"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="xnB-yp-Wkb" firstAttribute="centerX" secondItem="hB0-Vj-Zst" secondAttribute="centerX" id="2Lb-0z-kV9"/>
+                                            <constraint firstItem="xnB-yp-Wkb" firstAttribute="centerY" secondItem="hB0-Vj-Zst" secondAttribute="centerY" id="BIo-f6-707"/>
+                                            <constraint firstAttribute="width" constant="353" id="pCT-9J-gWv"/>
+                                            <constraint firstAttribute="height" constant="60" id="zLr-yB-4EM"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FdF-zO-SsO" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="219" y="150" width="134" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="134" id="Qxa-qH-823"/>
+                                            <constraint firstAttribute="height" constant="35" id="mwX-mU-Gzk"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Forgot Password?"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="BKh-LJ-DQk" secondAttribute="trailing" constant="4" id="6Hx-pJ-UV7"/>
+                                    <constraint firstItem="hB0-Vj-Zst" firstAttribute="top" secondItem="BKh-LJ-DQk" secondAttribute="bottom" constant="8" id="RVj-w8-fHw"/>
+                                    <constraint firstAttribute="width" constant="361" id="UOZ-6H-AWy"/>
+                                    <constraint firstItem="hB0-Vj-Zst" firstAttribute="leading" secondItem="z2H-xn-w0Y" secondAttribute="leading" constant="4" id="V1G-9o-dyL"/>
+                                    <constraint firstAttribute="trailing" secondItem="FdF-zO-SsO" secondAttribute="trailing" constant="8" id="W2v-vE-hTd"/>
+                                    <constraint firstAttribute="trailing" secondItem="hB0-Vj-Zst" secondAttribute="trailing" constant="4" id="ZbA-z4-NQe"/>
+                                    <constraint firstAttribute="bottom" secondItem="FdF-zO-SsO" secondAttribute="bottom" constant="15" id="l1N-Pj-Q65"/>
+                                    <constraint firstItem="FdF-zO-SsO" firstAttribute="top" secondItem="hB0-Vj-Zst" secondAttribute="bottom" constant="14" id="nwv-Pu-Uoc"/>
+                                    <constraint firstAttribute="height" constant="200" id="uhZ-NP-Oy1"/>
+                                    <constraint firstItem="BKh-LJ-DQk" firstAttribute="leading" secondItem="z2H-xn-w0Y" secondAttribute="leading" constant="4" id="yxq-br-NIJ"/>
+                                    <constraint firstItem="BKh-LJ-DQk" firstAttribute="top" secondItem="z2H-xn-w0Y" secondAttribute="top" constant="8" id="zQM-CB-Soe"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixr-0u-dTD" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                <rect key="frame" x="44" y="495" width="305" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Hlt-36-xtu"/>
+                                    <constraint firstAttribute="width" constant="305" id="l6n-fH-ZDk"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Sign In"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                        <color key="value" name="Secondary Grey"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="SignInBtnPressed:" destination="WWv-Bs-My6" eventType="touchUpInside" id="mcu-SB-HKd"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have account? Login" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5w6-ZN-cHD" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                <rect key="frame" x="37" y="553" width="320" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="WtI-8c-j3a"/>
+                                    <constraint firstAttribute="width" constant="320" id="vmC-Es-4bS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                        <color key="value" name="Base White"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Prc-79-E4K"/>
+                        <color key="backgroundColor" name="Primary Yellow"/>
+                        <constraints>
+                            <constraint firstItem="z2H-xn-w0Y" firstAttribute="top" secondItem="XI9-pw-cLE" secondAttribute="bottom" constant="7" id="FU8-p6-T67"/>
+                            <constraint firstItem="5w6-ZN-cHD" firstAttribute="leading" secondItem="Prc-79-E4K" secondAttribute="leading" constant="37" id="Gfa-Gh-7GZ"/>
+                            <constraint firstItem="Prc-79-E4K" firstAttribute="trailing" secondItem="ixr-0u-dTD" secondAttribute="trailing" constant="44" id="JD9-nT-ccH"/>
+                            <constraint firstItem="Prc-79-E4K" firstAttribute="trailing" secondItem="Iqf-KA-I2Z" secondAttribute="trailing" constant="16" id="L8V-ah-Vve"/>
+                            <constraint firstItem="5w6-ZN-cHD" firstAttribute="top" secondItem="ixr-0u-dTD" secondAttribute="bottom" constant="8" id="Nob-bm-UqA"/>
+                            <constraint firstItem="Iqf-KA-I2Z" firstAttribute="leading" secondItem="Prc-79-E4K" secondAttribute="leading" constant="16" id="aim-Ch-6PW"/>
+                            <constraint firstItem="ixr-0u-dTD" firstAttribute="leading" secondItem="Prc-79-E4K" secondAttribute="leading" constant="44" id="bkS-zi-Yv8"/>
+                            <constraint firstItem="XI9-pw-cLE" firstAttribute="leading" secondItem="Prc-79-E4K" secondAttribute="leading" constant="16" id="fhj-UY-ww7"/>
+                            <constraint firstItem="z2H-xn-w0Y" firstAttribute="leading" secondItem="Prc-79-E4K" secondAttribute="leading" constant="16" id="grs-S0-DdO"/>
+                            <constraint firstItem="Prc-79-E4K" firstAttribute="trailing" secondItem="XI9-pw-cLE" secondAttribute="trailing" constant="16" id="hBu-qD-Tr3"/>
+                            <constraint firstItem="XI9-pw-cLE" firstAttribute="top" secondItem="Prc-79-E4K" secondAttribute="top" id="qel-dz-uaV"/>
+                            <constraint firstItem="Iqf-KA-I2Z" firstAttribute="bottom" secondItem="Prc-79-E4K" secondAttribute="bottom" id="sbz-ou-5c8"/>
+                            <constraint firstItem="Prc-79-E4K" firstAttribute="trailing" secondItem="5w6-ZN-cHD" secondAttribute="trailing" constant="36" id="vMe-5s-N80"/>
+                            <constraint firstItem="ixr-0u-dTD" firstAttribute="top" secondItem="z2H-xn-w0Y" secondAttribute="bottom" constant="50" id="wUY-Yk-e2e"/>
+                            <constraint firstItem="Prc-79-E4K" firstAttribute="trailing" secondItem="z2H-xn-w0Y" secondAttribute="trailing" constant="16" id="xjv-Fb-tSW"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ket-9J-bq0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2380.9160305343512" y="3.5211267605633805"/>
+        </scene>
+        <!--Profile SetupVC-->
+        <scene sceneID="UbW-zT-MXO">
+            <objects>
+                <viewController storyboardIdentifier="ProfileSetupVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8nj-NC-2NV" customClass="ProfileSetupVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="a73-lC-Mso">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="YTH-cc-MoN">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="swv-gf-a9x"/>
+                        <color key="backgroundColor" name="BG Base White"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="YTH-cc-MoN" secondAttribute="bottom" id="6vk-sB-aiB"/>
+                            <constraint firstItem="YTH-cc-MoN" firstAttribute="top" secondItem="a73-lC-Mso" secondAttribute="top" id="JVe-bp-6lK"/>
+                            <constraint firstItem="YTH-cc-MoN" firstAttribute="trailing" secondItem="swv-gf-a9x" secondAttribute="trailing" id="S8K-Dy-774"/>
+                            <constraint firstItem="YTH-cc-MoN" firstAttribute="leading" secondItem="swv-gf-a9x" secondAttribute="leading" id="eUq-nI-aF0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="profileTV" destination="YTH-cc-MoN" id="COa-Uw-KYU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8jG-VX-6Ea" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3104.5801526717555" y="3.5211267605633805"/>
+        </scene>
     </scenes>
     <designables>
+        <designable name="0t0-UR-Tat">
+            <size key="intrinsicContentSize" width="133.33333333333334" height="35.333333333333336"/>
+        </designable>
+        <designable name="5w6-ZN-cHD">
+            <size key="intrinsicContentSize" width="168" height="15.333333333333334"/>
+        </designable>
+        <designable name="8b6-LU-FPq">
+            <size key="intrinsicContentSize" width="52.333333333333336" height="17"/>
+        </designable>
         <designable name="CcO-Ru-ZFl">
-            <size key="intrinsicContentSize" width="69" height="33"/>
+            <size key="intrinsicContentSize" width="71" height="31"/>
+        </designable>
+        <designable name="D0O-Hf-zFJ">
+            <size key="intrinsicContentSize" width="77.666666666666671" height="17"/>
+        </designable>
+        <designable name="JBx-SY-DoZ">
+            <size key="intrinsicContentSize" width="52.333333333333336" height="17"/>
+        </designable>
+        <designable name="LHQ-gX-34N">
+            <size key="intrinsicContentSize" width="121.33333333333333" height="35.333333333333336"/>
+        </designable>
+        <designable name="Sux-1S-tdw">
+            <size key="intrinsicContentSize" width="146" height="15.333333333333334"/>
+        </designable>
+        <designable name="ZlU-Hb-i3S">
+            <size key="intrinsicContentSize" width="248.33333333333334" height="61"/>
+        </designable>
+        <designable name="a6e-P2-qtG">
+            <size key="intrinsicContentSize" width="55" height="31"/>
+        </designable>
+        <designable name="aRI-Xg-5o1">
+            <size key="intrinsicContentSize" width="126.66666666666667" height="17"/>
+        </designable>
+        <designable name="b3O-xc-bXC">
+            <size key="intrinsicContentSize" width="168" height="15.333333333333334"/>
+        </designable>
+        <designable name="ixr-0u-dTD">
+            <size key="intrinsicContentSize" width="49" height="31"/>
+        </designable>
+        <designable name="lhD-Tf-j08">
+            <size key="intrinsicContentSize" width="146" height="15.333333333333334"/>
+        </designable>
+        <designable name="vdO-D0-c2r">
+            <size key="intrinsicContentSize" width="304" height="30.666666666666668"/>
+        </designable>
+        <designable name="xnB-yp-Wkb">
+            <size key="intrinsicContentSize" width="77.666666666666671" height="17"/>
         </designable>
     </designables>
     <resources>
         <image name="arrow.right" catalog="system" width="128" height="95"/>
-        <image name="logo name" width="212" height="33"/>
-        <image name="sub logo text" width="198" height="31"/>
-        <image name="wifi man" width="320" height="494"/>
+        <image name="logo name" width="3289" height="512"/>
+        <image name="sub logo text" width="3270" height="512"/>
+        <image name="wifi man" width="332" height="512"/>
+        <image name="wifi man grey" width="416" height="512"/>
+        <namedColor name="BG Base White">
+            <color red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Base White">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Danger">
+            <color red="0.92549019607843142" green="0.30196078431372547" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Primary Yellow">
             <color red="1" green="0.72156862745098038" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -344,15 +344,15 @@ extension UITextView : UITextViewDelegate
     }
     
     /// Adds a placeholder UILabel to this UITextView
-    private func addPlaceholder(_ placeholderText: String) {
+    func addPlaceholder(_ placeholderText: String) {
         let placeholderLabel = UILabel()
         
         placeholderLabel.text = placeholderText
         placeholderLabel.sizeToFit()
         
-        placeholderLabel.font = self.font
-        placeholderLabel.textColor = UIColor.lightGray
-        placeholderLabel.tag = 100
+        placeholderLabel.font = UIFont(name: "Roboto", size: 14)
+        placeholderLabel.textColor = UIColor(named: "Text grey")
+        //placeholderLabel.tag = 100
         
         placeholderLabel.isHidden = self.text.count > 0
         

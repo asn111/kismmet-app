@@ -290,6 +290,7 @@ class VerticalButton: UIButton {
 class RoundCornerButton : UIButton {
    
     let rippleTouchController = MDCRippleTouchController()
+    var isWork = true
     
     @IBInspectable var dashWidth: CGFloat = 0
     @IBInspectable var dashColor: UIColor = .clear
@@ -297,6 +298,8 @@ class RoundCornerButton : UIButton {
     @IBInspectable var betweenDashesSpace: CGFloat = 0
 
     var dashBorder: CAShapeLayer?
+    
+    @IBInspectable var isFontWork: Bool = true { didSet { isWork = isFontWork }}
     
     @IBInspectable var bgColor: UIColor = UIColor(hexFromString: "2B2A29") {
         didSet {
@@ -410,9 +413,14 @@ class RoundCornerButton : UIButton {
         self.backgroundColor = bgColor
         self.adjustsImageWhenHighlighted = false
         self.layer.cornerRadius = cornerRadius
-        self.titleLabel?.font = UIFont(name: "Work Sans", size: 16)?.semibold
+
+        if isWork {
+            self.titleLabel?.font = UIFont(name: "Work Sans", size: 16)?.regular
+        } else {
+            self.titleLabel?.font = UIFont(name: "Roboto", size: 16)?.regular
+        }
         self.titleLabel?.adjustsFontSizeToFitWidth = true
-        self.titleLabel?.addCharacterSpacing(kernValue: 2)
+        self.titleLabel?.addCharacterSpacing(kernValue: isWork ? 2 : 0.8)
     }
     @IBInspectable
     public var cornerRadius: CGFloat = 0.0 {
@@ -632,7 +640,7 @@ class FormTextField: UITextField {
         let baseFont = UIFont(name: "Roboto", size: txtSize)
 
         self.font = baseFont?.regular
-        
+
         switch txtStroke {
             case "r":
                 self.font = baseFont?.regular
@@ -776,6 +784,8 @@ class CustomeTableView : UITableView {
 @IBDesignable
 class fullyCustomLbl : UILabel {
     
+    var isWork : Bool = false
+    
     @IBInspectable var txtColor: UIColor = UIColor(hexFromString: "A5A4A2") {
         didSet {
             self.textColor = txtColor
@@ -786,6 +796,9 @@ class fullyCustomLbl : UILabel {
             self.font.withSize(txtSize)
         }
     }
+    
+    @IBInspectable var isFontWork: Bool = false { didSet { isWork = isFontWork }}
+    
     @IBInspectable var txtStroke: String = "r"
     
     @IBInspectable var txtSpacing: Double = 0.1
@@ -800,28 +813,34 @@ class fullyCustomLbl : UILabel {
     }
     
     func setupView() {
-        let baseFont = UIFont(name: "Roboto", size: txtSize)
+                
+        var baseFont = UIFont()
+        if isWork {
+            baseFont = UIFont(name: "Work Sans Bold", size: txtSize)!
+        } else {
+            baseFont = UIFont(name: "Roboto", size: txtSize)!
+        }
         self.textColor = txtColor
         self.adjustsFontSizeToFitWidth = false
         self.addCharacterSpacing(kernValue: txtSpacing)
         
         switch txtStroke {
         case "r":
-            self.font = baseFont?.regular
+            self.font = baseFont.regular
         case "bl":
-            self.font = baseFont?.black
+            self.font = baseFont.black
         case "b":
-            self.font = baseFont?.bold
+            self.font = baseFont.bold
         case "sb":
-            self.font = baseFont?.semibold
+            self.font = baseFont.semibold
         case "h":
-            self.font = baseFont?.heavy
+            self.font = baseFont.heavy
         case "m":
-            self.font = baseFont?.medium
+            self.font = baseFont.medium
         case "l":
-            self.font = baseFont?.light
+            self.font = baseFont.light
         default:
-            self.font = baseFont?.regular
+            self.font = baseFont.regular
         }
     }
 }
