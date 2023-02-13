@@ -299,6 +299,15 @@ class RoundCornerButton : UIButton {
 
     var dashBorder: CAShapeLayer?
     
+    @IBInspectable
+    public var cornerRadius: CGFloat = 0.0 {
+        didSet {
+            self.layer.cornerRadius = self.cornerRadius
+            self.imageView?.layer.cornerRadius = self.cornerRadius
+        }
+    }
+
+    
     @IBInspectable var isFontWork: Bool = true { didSet { isWork = isFontWork }}
     
     @IBInspectable var bgColor: UIColor = UIColor(hexFromString: "2B2A29") {
@@ -413,6 +422,8 @@ class RoundCornerButton : UIButton {
         self.backgroundColor = bgColor
         self.adjustsImageWhenHighlighted = false
         self.layer.cornerRadius = cornerRadius
+        self.imageView?.layer.cornerRadius = cornerRadius
+        self.imageView?.contentMode = .scaleAspectFill
 
         if isWork {
             self.titleLabel?.font = UIFont(name: "Work Sans", size: 16)?.regular
@@ -422,12 +433,6 @@ class RoundCornerButton : UIButton {
         self.titleLabel?.adjustsFontSizeToFitWidth = true
         self.titleLabel?.addCharacterSpacing(kernValue: isWork ? 2 : 0.8)
     }
-    @IBInspectable
-    public var cornerRadius: CGFloat = 0.0 {
-        didSet {
-            self.layer.cornerRadius = self.cornerRadius
-        }
-    }
 }
 
 
@@ -436,12 +441,15 @@ class RoundCornerButton : UIButton {
 @IBDesignable
 class FormTextView: UITextView {
 
-    override open func prepareForInterfaceBuilder() {
-          super.prepareForInterfaceBuilder()
-      }
-      
+   
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupView()
+    }
+    
+    override open func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        setupView()
     }
     
     @IBInspectable var borderColor: UIColor? {
@@ -453,6 +461,12 @@ class FormTextView: UITextView {
     @IBInspectable var borderWidth: CGFloat = 0 {
         didSet {
             layer.borderWidth = borderWidth
+        }
+    }
+    
+    @IBInspectable var txtColor: UIColor = UIColor(hexFromString: "A5A4A2") {
+        didSet {
+            self.textColor = txtColor
         }
     }
     
@@ -506,6 +520,12 @@ class FormTextView: UITextView {
         }
     }
 
+    @IBInspectable var txtSize: CGFloat = 13.0 {
+        didSet {
+            self.font!.withSize(txtSize)
+        }
+    }
+    @IBInspectable var txtStroke: String = "r"
     
     
     @IBInspectable var topInset: CGFloat = 0 {
@@ -531,6 +551,38 @@ class FormTextView: UITextView {
             self.contentInset = UIEdgeInsets(top: self.contentInset.top, left: self.contentInset.left, bottom: self.contentInset.bottom, right: rightInset)
         }
     }
+    
+
+    func setupView() {
+        let baseFont = UIFont(name: "Roboto", size: txtSize)
+        
+        self.font = baseFont?.regular
+        self.textColor = txtColor
+        
+        switch txtStroke {
+            case "r":
+                self.font = baseFont?.regular
+            case "bl":
+                self.font = baseFont?.black
+            case "b":
+                self.font = baseFont?.bold
+            case "sb":
+                self.font = baseFont?.semibold
+            case "h":
+                self.font = baseFont?.heavy
+            case "m":
+                self.font = baseFont?.medium
+            case "l":
+                self.font = baseFont?.light
+            case "i":
+                self.font = baseFont?.italics()
+            case "bi":
+                self.font = baseFont?.boldItalics()
+            default:
+                self.font = baseFont?.regular
+        }
+    }
+    
 }
 
 //MARK: Textfeild
@@ -637,7 +689,7 @@ class FormTextField: UITextField {
         setupView()
     }
     func setupView() {
-        let baseFont = UIFont(name: "Roboto", size: txtSize)
+        let baseFont = UIFont(name: "Work Sans", size: txtSize)
 
         self.font = baseFont?.regular
 

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="97e-GY-yLB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tPn-Iw-XGJ">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -760,6 +761,193 @@ this email.</string>
             </objects>
             <point key="canvasLocation" x="3104.5801526717555" y="3.5211267605633805"/>
         </scene>
+        <!--ProfileVC-->
+        <scene sceneID="oLe-vP-ekg">
+            <objects>
+                <viewController storyboardIdentifier="ProfileVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="x4y-mx-1nw" customClass="ProfileVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RzE-af-ofZ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Iuc-9O-3h7">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="FUa-oh-Vps"/>
+                        <color key="backgroundColor" name="BG Base White"/>
+                        <constraints>
+                            <constraint firstItem="Iuc-9O-3h7" firstAttribute="trailing" secondItem="FUa-oh-Vps" secondAttribute="trailing" id="9Cv-6P-Pqk"/>
+                            <constraint firstItem="Iuc-9O-3h7" firstAttribute="top" secondItem="RzE-af-ofZ" secondAttribute="top" id="Xtp-SR-CcW"/>
+                            <constraint firstAttribute="bottom" secondItem="Iuc-9O-3h7" secondAttribute="bottom" id="rgf-xy-eEq"/>
+                            <constraint firstItem="Iuc-9O-3h7" firstAttribute="leading" secondItem="FUa-oh-Vps" secondAttribute="leading" id="xg1-Dl-YT7"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" id="0Rv-9r-Ton">
+                        <imageReference key="image" image="person.circle.fill" catalog="system" symbolScale="medium"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="profileTV" destination="Iuc-9O-3h7" id="thd-vd-t18"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hBM-Nt-DFH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4646.5648854961828" y="3.5211267605633805"/>
+        </scene>
+        <!--Rounded Tab Bar Controller-->
+        <scene sceneID="vEi-qw-klh">
+            <objects>
+                <tabBarController storyboardIdentifier="RoundedTabBarController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tPn-Iw-XGJ" customClass="RoundedTabBarController" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="o3B-2B-9GQ">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" name="Primary Yellow"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="x4y-mx-1nw" kind="relationship" relationship="viewControllers" id="yNH-F2-bK3"/>
+                        <segue destination="wZg-tK-RbI" kind="relationship" relationship="viewControllers" id="K1s-T4-zc9"/>
+                        <segue destination="T9z-m0-FYh" kind="relationship" relationship="viewControllers" id="bek-df-YEY"/>
+                        <segue destination="Uln-CW-fsy" kind="relationship" relationship="viewControllers" id="iWQ-KK-9mu"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CKN-ox-Ifn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3867.9389312977096" y="3.5211267605633805"/>
+        </scene>
+        <!--StarredVC-->
+        <scene sceneID="Yh6-qO-dXV">
+            <objects>
+                <viewController storyboardIdentifier="StarredVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="T9z-m0-FYh" customClass="StarredVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZhT-Qr-AsB">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JP3-aR-bf2">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="xst-58-PMO"/>
+                        <color key="backgroundColor" name="BG Base White"/>
+                        <constraints>
+                            <constraint firstItem="JP3-aR-bf2" firstAttribute="top" secondItem="ZhT-Qr-AsB" secondAttribute="top" id="RuA-Eq-Yim"/>
+                            <constraint firstItem="JP3-aR-bf2" firstAttribute="leading" secondItem="xst-58-PMO" secondAttribute="leading" id="aiI-VX-Di9"/>
+                            <constraint firstAttribute="bottom" secondItem="JP3-aR-bf2" secondAttribute="bottom" id="b0q-6N-ND3"/>
+                            <constraint firstItem="JP3-aR-bf2" firstAttribute="trailing" secondItem="xst-58-PMO" secondAttribute="trailing" id="zri-66-xvM"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" id="h8Z-DJ-092">
+                        <imageReference key="image" image="star.fill" catalog="system" symbolScale="medium"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="starredTV" destination="JP3-aR-bf2" id="TCC-aT-wp5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MLu-P8-sdz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5458.7786259541981" y="3.5211267605633805"/>
+        </scene>
+        <!--FeedVC-->
+        <scene sceneID="ocX-NC-iyf">
+            <objects>
+                <viewController storyboardIdentifier="FeedVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wZg-tK-RbI" customClass="FeedVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TvD-rR-PrF">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="kiX-Wa-bbG">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="YQu-r4-Zma"/>
+                        <color key="backgroundColor" name="BG Base White"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="kiX-Wa-bbG" secondAttribute="bottom" id="9Eb-x4-02S"/>
+                            <constraint firstItem="kiX-Wa-bbG" firstAttribute="top" secondItem="TvD-rR-PrF" secondAttribute="top" id="Izg-dO-0Ru"/>
+                            <constraint firstItem="kiX-Wa-bbG" firstAttribute="trailing" secondItem="YQu-r4-Zma" secondAttribute="trailing" id="mJk-HC-7FV"/>
+                            <constraint firstItem="kiX-Wa-bbG" firstAttribute="leading" secondItem="YQu-r4-Zma" secondAttribute="leading" id="rTM-Kx-uWz"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" id="XEA-XE-p15">
+                        <imageReference key="image" image="figure.wave" catalog="system" symbolScale="medium"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="feedTV" destination="kiX-Wa-bbG" id="An5-R1-aUX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7xs-3O-dhs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4646.5648854961828" y="-696.47887323943667"/>
+        </scene>
+        <!--Viewed ProfilesVC-->
+        <scene sceneID="0By-vn-vwR">
+            <objects>
+                <viewController storyboardIdentifier="ViewedProfilesVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Uln-CW-fsy" customClass="ViewedProfilesVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4iw-jX-MYI">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="pGh-D9-OzT">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9ib-e9-wGm"/>
+                        <color key="backgroundColor" name="BG Base White"/>
+                        <constraints>
+                            <constraint firstItem="pGh-D9-OzT" firstAttribute="trailing" secondItem="9ib-e9-wGm" secondAttribute="trailing" id="H20-Ae-4gC"/>
+                            <constraint firstItem="pGh-D9-OzT" firstAttribute="leading" secondItem="9ib-e9-wGm" secondAttribute="leading" id="LfD-TY-Pyl"/>
+                            <constraint firstAttribute="bottom" secondItem="pGh-D9-OzT" secondAttribute="bottom" id="TDU-jp-2Xv"/>
+                            <constraint firstItem="pGh-D9-OzT" firstAttribute="top" secondItem="4iw-jX-MYI" secondAttribute="top" id="pVG-aR-Z7e"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" id="WdN-dA-Pea">
+                        <imageReference key="image" image="eye.circle.fill" catalog="system" symbolScale="medium"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="viewedListTV" destination="pGh-D9-OzT" id="wBT-d6-2FT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BXd-Li-fJj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4646.5648854961828" y="713.38028169014092"/>
+        </scene>
+        <!--SettingVC-->
+        <scene sceneID="WYQ-5R-l01">
+            <objects>
+                <viewController storyboardIdentifier="SettingVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QSV-IC-db0" customClass="SettingVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Udz-as-naP">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lKF-49-Y4k">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Hka-Id-Ack"/>
+                        <color key="backgroundColor" name="BG Base White"/>
+                        <constraints>
+                            <constraint firstItem="lKF-49-Y4k" firstAttribute="top" secondItem="Udz-as-naP" secondAttribute="top" id="PI9-61-YAG"/>
+                            <constraint firstAttribute="bottom" secondItem="lKF-49-Y4k" secondAttribute="bottom" id="Skt-Io-d1h"/>
+                            <constraint firstItem="lKF-49-Y4k" firstAttribute="trailing" secondItem="Hka-Id-Ack" secondAttribute="trailing" id="Zlt-sz-HkC"/>
+                            <constraint firstItem="lKF-49-Y4k" firstAttribute="leading" secondItem="Hka-Id-Ack" secondAttribute="leading" id="ybc-cr-ccV"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" id="kNm-uy-qSU">
+                        <imageReference key="image" image="eye.circle.fill" catalog="system" symbolScale="medium"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="settingTV" destination="lKF-49-Y4k" id="Xqw-1O-Arh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="imB-eK-my0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5439" y="713"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="0t0-UR-Tat">
@@ -776,6 +964,9 @@ this email.</string>
         </designable>
         <designable name="D0O-Hf-zFJ">
             <size key="intrinsicContentSize" width="77.666666666666671" height="17"/>
+        </designable>
+        <designable name="FdF-zO-SsO">
+            <size key="intrinsicContentSize" width="129" height="31"/>
         </designable>
         <designable name="JBx-SY-DoZ">
             <size key="intrinsicContentSize" width="52.333333333333336" height="17"/>
@@ -813,24 +1004,28 @@ this email.</string>
     </designables>
     <resources>
         <image name="arrow.right" catalog="system" width="128" height="95"/>
+        <image name="eye.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="figure.wave" catalog="system" width="80" height="128"/>
         <image name="logo name" width="3289" height="512"/>
+        <image name="person.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="sub logo text" width="3270" height="512"/>
         <image name="wifi man" width="332" height="512"/>
         <image name="wifi man grey" width="416" height="512"/>
         <namedColor name="BG Base White">
-            <color red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.9570000171661377" green="0.9570000171661377" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Base White">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Danger">
-            <color red="0.92549019607843142" green="0.30196078431372547" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.92500001192092896" green="0.30199998617172241" blue="0.30199998617172241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary Yellow">
-            <color red="1" green="0.72156862745098038" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.72200000286102295" blue="0.27799999713897705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Secondary Grey">
-            <color red="0.30588235294117649" green="0.43137254901960786" blue="0.50588235294117645" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.3059999942779541" green="0.4309999942779541" blue="0.50599998235702515" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

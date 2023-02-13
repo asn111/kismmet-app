@@ -40,7 +40,7 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tb9-pa-d2q" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
@@ -104,18 +104,21 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="genBtn" destination="o7Z-ym-0jR" id="Mqs-p4-5cg"/>
+            </connections>
             <point key="canvasLocation" x="52.671755725190835" y="28.87323943661972"/>
         </tableViewCell>
     </objects>
     <designables>
         <designable name="o7Z-ym-0jR">
-            <size key="intrinsicContentSize" width="62" height="30"/>
+            <size key="intrinsicContentSize" width="64" height="31"/>
         </designable>
     </designables>
     <resources>
         <image name="arrow.right" catalog="system" width="128" height="95"/>
         <namedColor name="Secondary Grey">
-            <color red="0.30588235294117649" green="0.43137254901960786" blue="0.50588235294117645" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.3059999942779541" green="0.4309999942779541" blue="0.50599998235702515" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

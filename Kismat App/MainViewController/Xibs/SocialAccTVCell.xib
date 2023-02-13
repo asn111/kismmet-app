@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="40" id="KGk-i7-Jjw" customClass="SocialAccTVCell" customModule="Kismat_App" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Etf-qw-z7o">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JBx-0C-JSa">
+                                <rect key="frame" x="22.666666666666657" y="4" width="330" height="32"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tamara Pensiero" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAq-Op-8kN" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="50" y="6" width="206" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="206" id="SbH-s5-dJq"/>
+                                            <constraint firstAttribute="height" constant="21" id="n4q-eS-gMX"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                                <color key="value" name="Text grey"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                <real key="value" value="12"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LinkedIn" translatesAutoresizingMaskIntoConstraints="NO" id="DRK-EB-vxd">
+                                        <rect key="frame" x="8" y="4" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="COw-17-e0K"/>
+                                            <constraint firstAttribute="width" constant="25" id="xfN-hi-oLT"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="DRK-EB-vxd" firstAttribute="leading" secondItem="JBx-0C-JSa" secondAttribute="leading" constant="8" id="4yP-ph-t6U"/>
+                                    <constraint firstItem="vAq-Op-8kN" firstAttribute="leading" secondItem="DRK-EB-vxd" secondAttribute="trailing" constant="17" id="7V2-hf-cwP"/>
+                                    <constraint firstAttribute="height" constant="32" id="F9k-CA-2iA"/>
+                                    <constraint firstAttribute="bottom" secondItem="DRK-EB-vxd" secondAttribute="bottom" constant="3" id="LR4-Oj-0vX"/>
+                                    <constraint firstItem="DRK-EB-vxd" firstAttribute="top" secondItem="JBx-0C-JSa" secondAttribute="top" constant="4" id="Pdg-F6-E0m"/>
+                                    <constraint firstAttribute="width" constant="330" id="Py5-Hb-Jfs"/>
+                                    <constraint firstAttribute="bottom" secondItem="vAq-Op-8kN" secondAttribute="bottom" constant="5" id="c7R-QN-One"/>
+                                    <constraint firstItem="vAq-Op-8kN" firstAttribute="top" secondItem="JBx-0C-JSa" secondAttribute="top" constant="6" id="gXk-u5-U5P"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JBx-0C-JSa" firstAttribute="centerY" secondItem="Etf-qw-z7o" secondAttribute="centerY" id="Lj0-Hc-zNc"/>
+                            <constraint firstAttribute="height" constant="40" id="MO6-g0-X9r"/>
+                            <constraint firstItem="JBx-0C-JSa" firstAttribute="centerX" secondItem="Etf-qw-z7o" secondAttribute="centerX" id="xkm-7p-hNg"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Etf-qw-z7o" secondAttribute="trailing" id="AFf-Zh-VG5"/>
+                    <constraint firstItem="Etf-qw-z7o" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="bVx-mY-qlX"/>
+                    <constraint firstAttribute="bottom" secondItem="Etf-qw-z7o" secondAttribute="bottom" id="kd2-VO-1e6"/>
+                    <constraint firstItem="Etf-qw-z7o" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="o7c-5N-saY"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="socialImgView" destination="DRK-EB-vxd" id="MSx-He-xYx"/>
+                <outlet property="socialLbl" destination="vAq-Op-8kN" id="b3j-JO-tCI"/>
+            </connections>
+            <point key="canvasLocation" x="54.198473282442748" y="13.380281690140846"/>
+        </tableViewCell>
+    </objects>
+    <designables>
+        <designable name="vAq-Op-8kN">
+            <size key="intrinsicContentSize" width="91.666666666666671" height="14.333333333333334"/>
+        </designable>
+    </designables>
+    <resources>
+        <image name="LinkedIn" width="72" height="72"/>
+        <namedColor name="Text grey">
+            <color red="0.20800000429153442" green="0.31000000238418579" blue="0.35699999332427979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

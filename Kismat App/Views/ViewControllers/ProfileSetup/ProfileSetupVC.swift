@@ -33,6 +33,10 @@ class ProfileSetupVC: MainViewController {
         profileTV.register(UINib(nibName: "GeneralButtonTVCell", bundle: nil), forCellReuseIdentifier: "GeneralButtonTVCell")
     }
     
+    @objc func genBtnPressed(sender:UIButton) {
+        self.pushVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in }
+    }
+    
 }
 //MARK: TableView Extention
 extension ProfileSetupVC : UITableViewDelegate, UITableViewDataSource {
@@ -51,7 +55,7 @@ extension ProfileSetupVC : UITableViewDelegate, UITableViewDataSource {
             case placeholderArray.count - 1 :
                 
                 let cell : GeneralButtonTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralButtonTVCell", for: indexPath) as! GeneralButtonTVCell
-                
+                cell.genBtn.addTarget(self, action: #selector(genBtnPressed(sender:)), for: .touchUpInside)
                 return cell
             case placeholderArray.count - 2 :
                 

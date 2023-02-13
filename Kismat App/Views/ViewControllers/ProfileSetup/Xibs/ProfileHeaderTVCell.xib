@@ -23,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="154"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WELCOME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWm-hV-jnf" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                <rect key="frame" x="90" y="10" width="195" height="33"/>
+                                <rect key="frame" x="90" y="9.9999999999999982" width="195" height="20.333333333333329"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="195" id="Bvy-QG-a6c"/>
                                 </constraints>
@@ -42,7 +42,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please setup your profile " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmD-Ff-vUG" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                <rect key="frame" x="133" y="44" width="110" height="9.6666666666666643"/>
+                                <rect key="frame" x="133" y="31.333333333333336" width="110" height="20.333333333333336"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="110" id="IG7-0W-BmL"/>
                                 </constraints>
@@ -54,14 +54,14 @@
                                         <color key="value" name="Secondary Grey"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                        <real key="value" value="8"/>
+                                        <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="YES"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="l"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_icon" translatesAutoresizingMaskIntoConstraints="NO" id="r6s-s1-rdI" customClass="RoundedImageView" customModule="Kismat_App" customModuleProvider="target">
-                                <rect key="frame" x="147" y="69.666666666666671" width="80" height="80.000000000000014"/>
+                                <rect key="frame" x="147" y="67.666666666666671" width="80" height="80.000000000000014"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="YaQ-3S-dCr"/>
                                     <constraint firstAttribute="width" constant="80" id="hN1-1n-j60"/>
@@ -112,13 +112,13 @@
     </objects>
     <designables>
         <designable name="mWm-hV-jnf">
-            <size key="intrinsicContentSize" width="145.66666666666666" height="33"/>
+            <size key="intrinsicContentSize" width="83" height="20.333333333333332"/>
         </designable>
         <designable name="r6s-s1-rdI">
             <size key="intrinsicContentSize" width="512" height="512"/>
         </designable>
         <designable name="zmD-Ff-vUG">
-            <size key="intrinsicContentSize" width="103" height="9.6666666666666661"/>
+            <size key="intrinsicContentSize" width="192.33333333333334" height="20.333333333333332"/>
         </designable>
     </designables>
     <resources>

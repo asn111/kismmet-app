@@ -1,15 +1,15 @@
 //
-//  GeneralButtonTVCell.swift
+//  SettingTVCell.swift
 //  Kismat App
 //
-//  Created by Ahsan Iqbal on 11/02/2023.
+//  Created by Ahsan Iqbal on 14/02/2023.
 //
 
 import UIKit
 
-class GeneralButtonTVCell: UITableViewCell {
+class SettingTVCell: UITableViewCell {
 
-    @IBOutlet weak var genBtn: RoundCornerButton!
+    @IBOutlet weak var txtLbl: fullyCustomLbl!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

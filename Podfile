@@ -33,6 +33,7 @@ target 'Kismat App' do
   pod 'UIMultiPicker'
   
   pod 'DropDown'
+  pod 'TransitionableTab', '~> 0.2.0'
   
   pod 'MessageKit', '~> 3.0.0'
   pod 'Cosmos', '~> 23.0'
