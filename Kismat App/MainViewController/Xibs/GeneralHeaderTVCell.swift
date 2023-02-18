@@ -9,12 +9,16 @@ import UIKit
 
 class GeneralHeaderTVCell: UITableViewCell {
 
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var welcomeView: UIView!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var educationLbl: fullyCustomLbl!
     @IBOutlet weak var professionLbl: fullyCustomLbl!
     @IBOutlet weak var nameLbl: fullyCustomLbl!
     @IBOutlet weak var ratingView: RoundCornerView!
     @IBOutlet weak var profilePicBtn: RoundCornerButton!
+    @IBOutlet weak var welcomePicBtn: RoundCornerButton!
+    @IBOutlet weak var welcomeHeaderLbl: fullyCustomLbl!
     
     @IBOutlet weak var headerLbl: fullyCustomLbl!
     @IBOutlet weak var headerLogo: UIImageView!

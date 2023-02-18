@@ -9,6 +9,7 @@ import UIKit
 
 class GeneralButtonTVCell: UITableViewCell {
 
+    @IBOutlet weak var arrowView: RoundCornerView!
     @IBOutlet weak var genBtn: RoundCornerButton!
     override func awakeFromNib() {
         super.awakeFromNib()

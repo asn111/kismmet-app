@@ -12,7 +12,9 @@ class ProfileSetupVC: MainViewController {
     @IBOutlet weak var profileTV: UITableView!
         
     var placeholderArray = ["","Full Name","Public Email","Phone","Date of Birth","Where do you work / study?","Title","Tell us about your self..",""]
+    var dataArray = ["","Tamara Pensiero ","tamara@gmail.com","23456789","Feb 25, 1993","Rice University, Houston TX","Professor","Chemistry professor, having a decade of experience in teaching chemistry. Completed PHD from Rich University, Houston TX. Nobel prize winner in....",""]
     
+    var isfromExtProf = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +36,15 @@ class ProfileSetupVC: MainViewController {
     }
     
     @objc func genBtnPressed(sender:UIButton) {
-        self.pushVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in }
+        if isfromExtProf {
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            self.pushVC(id: "ProfileSetupExtend") { (vc:ProfileSetupExtend) in }
+        }
+        
+    }
+    @objc func backBtnPressed(sender:UIButton) {
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
@@ -50,18 +60,33 @@ extension ProfileSetupVC : UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
             case 0:
                 let cell : ProfileHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "ProfileHeaderTVCell", for: indexPath) as! ProfileHeaderTVCell
-                
+                if isfromExtProf {
+                    cell.backBtn.isHidden = false
+                    cell.backBtn.addTarget(self, action: #selector(backBtnPressed(sender:)), for: .touchUpInside)
+                }
                 return cell
             case placeholderArray.count - 1 :
                 
                 let cell : GeneralButtonTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralButtonTVCell", for: indexPath) as! GeneralButtonTVCell
+                if isfromExtProf {
+                    cell.genBtn.setTitle("Done", for: .normal)
+                    cell.arrowView.isHidden = true
+                } else {
+                    cell.genBtn.setTitle("Continue", for: .normal)
+                }
+                
                 cell.genBtn.addTarget(self, action: #selector(genBtnPressed(sender:)), for: .touchUpInside)
                 return cell
             case placeholderArray.count - 2 :
                 
                 let cell : GeneralTextviewTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralTextviewTVCell", for: indexPath) as! GeneralTextviewTVCell
-                //cell.generalTV.newPlaceholder =
-                cell.generalTV.addPlaceholder(" Tell us about your self..")
+                
+                if isfromExtProf {
+                    cell.generalTV.text = dataArray[indexPath.row]
+                    cell.generalTV.textColor = UIColor(named: "Text grey")
+                } else {
+                    cell.generalTV.newPlaceholder = " Tell us about your self.."
+                }
                 return cell
                 
             default:
@@ -72,12 +97,18 @@ extension ProfileSetupVC : UITableViewDelegate, UITableViewDataSource {
                     cell.setupCountryCode()
                     cell.numberTF.placeholder = placeholderArray[indexPath.row]
                     AppFunctions.colorPlaceholder(tf: cell.numberTF, s: placeholderArray[indexPath.row])
+                    if isfromExtProf {
+                        cell.numberTF.text = dataArray[indexPath.row]
+                    }
 
                 } else {
                     cell.numberView.isHidden = true
                     cell.generalTFView.isHidden = false
                     cell.generalTF.placeholder = placeholderArray[indexPath.row]
                     AppFunctions.colorPlaceholder(tf: cell.generalTF, s: placeholderArray[indexPath.row])
+                    if isfromExtProf {
+                        cell.generalTF.text = dataArray[indexPath.row]
+                    }
 
                 }
                 if placeholderArray[indexPath.row] == "Public Email" {
@@ -87,6 +118,7 @@ extension ProfileSetupVC : UITableViewDelegate, UITableViewDataSource {
                 } else {
                     cell.imageIconIV.isHidden = true
                 }
+                
                 return cell
         }
     }

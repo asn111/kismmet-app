@@ -11,6 +11,10 @@ class ViewedProfilesVC: MainViewController {
 
     @IBOutlet weak var viewedListTV: UITableView!
     
+    var nameArray = ["James Nio","Kris Burner","Mark Denial"]
+    var profArray = ["Bachelor, Student","Entrepreneur","Professor"]
+    var imageArray = [UIImage(named: "guy"),UIImage(named: "office"),UIImage(named: "professor")]
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,10 +48,15 @@ extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
                 cell.viewedprofLbl.text = "WHO VIEWED MY PROFILE"
                 cell.toolTipBtn.isHidden = true
                 cell.searchTFView.isHidden = true
+                cell.headerView.isHidden = false
+                
                 return cell
                 
             default:
                 let cell : FeedItemsTVCell = tableView.dequeueReusableCell(withIdentifier: "FeedItemsTVCell", for: indexPath) as! FeedItemsTVCell
+                cell.nameLbl.text = nameArray[indexPath.row - 1]
+                cell.professionLbl.text = profArray[indexPath.row - 1]
+                cell.profilePicIV.image = imageArray[indexPath.row - 1]
                 if indexPath.row / 3 == 0 {
                     cell.starLbl.image = UIImage(systemName: "star")
                 } else {
@@ -58,6 +67,12 @@ extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.pushVC(id: "ProfileVC") { (vc:ProfileVC) in
+            vc.isOtherProfile = true
+            vc.img = imageArray[indexPath.row - 1]
+            vc.titleName = nameArray[indexPath.row - 1]
+            vc.prof = profArray[indexPath.row - 1]
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -81,12 +82,41 @@
                                 </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
                             </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Er-cy-xq2" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                <rect key="frame" x="17" y="8" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="KFI-Kl-ESw"/>
+                                    <constraint firstAttribute="width" constant="25" id="qzE-6Y-BRD"/>
+                                </constraints>
+                                <color key="tintColor" name="Secondary Grey"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="arrow.left" catalog="system" symbolScale="medium"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="light"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="Text grey"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="mWm-hV-jnf" firstAttribute="leading" secondItem="4Er-cy-xq2" secondAttribute="trailing" constant="48" id="4ok-Di-ohK"/>
                             <constraint firstAttribute="height" constant="154" id="6YE-5E-vyS"/>
                             <constraint firstItem="zmD-Ff-vUG" firstAttribute="top" secondItem="mWm-hV-jnf" secondAttribute="bottom" constant="1" id="Apf-39-8IG"/>
                             <constraint firstAttribute="bottom" secondItem="6PO-U7-v21" secondAttribute="bottom" constant="8" id="LLZ-MQ-fSw"/>
+                            <constraint firstItem="4Er-cy-xq2" firstAttribute="top" secondItem="gDo-WP-Eux" secondAttribute="top" constant="8" id="Nb7-9p-wtI"/>
                             <constraint firstItem="6PO-U7-v21" firstAttribute="leading" secondItem="r6s-s1-rdI" secondAttribute="trailing" constant="-11" id="QVF-YI-Yax"/>
                             <constraint firstItem="mWm-hV-jnf" firstAttribute="top" secondItem="gDo-WP-Eux" secondAttribute="top" constant="10" id="aEM-xh-MZu"/>
                             <constraint firstItem="r6s-s1-rdI" firstAttribute="leading" secondItem="gDo-WP-Eux" secondAttribute="leading" constant="147" id="aLh-Er-QDX"/>
@@ -95,6 +125,7 @@
                             <constraint firstItem="r6s-s1-rdI" firstAttribute="top" secondItem="zmD-Ff-vUG" secondAttribute="bottom" constant="16" id="egO-u2-mru"/>
                             <constraint firstAttribute="trailing" secondItem="r6s-s1-rdI" secondAttribute="trailing" constant="148" id="fcz-4w-Bin"/>
                             <constraint firstAttribute="trailing" secondItem="mWm-hV-jnf" secondAttribute="trailing" constant="90" id="qm4-gn-Opq"/>
+                            <constraint firstItem="4Er-cy-xq2" firstAttribute="leading" secondItem="gDo-WP-Eux" secondAttribute="leading" constant="17" id="xSX-ak-LU4"/>
                             <constraint firstAttribute="trailing" secondItem="zmD-Ff-vUG" secondAttribute="trailing" constant="132" id="xWB-An-dJV"/>
                         </constraints>
                     </view>
@@ -107,10 +138,16 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="backBtn" destination="4Er-cy-xq2" id="s3l-Lk-aXV"/>
+            </connections>
             <point key="canvasLocation" x="52.671755725190835" y="58.802816901408455"/>
         </tableViewCell>
     </objects>
     <designables>
+        <designable name="4Er-cy-xq2">
+            <size key="intrinsicContentSize" width="19.666666666666668" height="22"/>
+        </designable>
         <designable name="mWm-hV-jnf">
             <size key="intrinsicContentSize" width="83" height="20.333333333333332"/>
         </designable>
@@ -122,10 +159,14 @@
         </designable>
     </designables>
     <resources>
+        <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="placeholder_icon" width="512" height="512"/>
         <image name="square.and.pencil" catalog="system" width="128" height="113"/>
         <namedColor name="Secondary Grey">
             <color red="0.3059999942779541" green="0.4309999942779541" blue="0.50599998235702515" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text grey">
+            <color red="0.20800000429153442" green="0.31000000238418579" blue="0.35699999332427979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

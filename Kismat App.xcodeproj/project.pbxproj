@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2940B8FF299D634300D3F863 /* ImageViewTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2940B8FD299D634300D3F863 /* ImageViewTVCell.swift */; };
+		2940B900299D634300D3F863 /* ImageViewTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2940B8FE299D634300D3F863 /* ImageViewTVCell.xib */; };
+		29473E51299C634A00859D8A /* TagsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29473E4F299C634A00859D8A /* TagsTVCell.swift */; };
+		29473E52299C634A00859D8A /* TagsTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29473E50299C634A00859D8A /* TagsTVCell.xib */; };
+		29473E55299C664F00859D8A /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29473E54299C664F00859D8A /* NotificationVC.swift */; };
+		29473E59299C694A00859D8A /* NotifTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29473E57299C694A00859D8A /* NotifTVCell.swift */; };
+		29473E5A299C694A00859D8A /* NotifTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29473E58299C694A00859D8A /* NotifTVCell.xib */; };
+		29473E5D299CBFA400859D8A /* ProfileSetupExtend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29473E5C299CBFA400859D8A /* ProfileSetupExtend.swift */; };
 		294A79A4299ADCAE00089161 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294A79A3299ADCAE00089161 /* SettingVC.swift */; };
 		294A79A8299ADD4200089161 /* SettingTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294A79A6299ADD4200089161 /* SettingTVCell.swift */; };
 		294A79A9299ADD4200089161 /* SettingTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 294A79A7299ADD4200089161 /* SettingTVCell.xib */; };
@@ -15,6 +23,11 @@
 		294A79B1299AEB2E00089161 /* AboutTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 294A79AF299AEB2E00089161 /* AboutTVCell.xib */; };
 		294A79B4299AEB5100089161 /* SocialAccTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294A79B2299AEB5100089161 /* SocialAccTVCell.swift */; };
 		294A79B5299AEB5100089161 /* SocialAccTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 294A79B3299AEB5100089161 /* SocialAccTVCell.xib */; };
+		2977B7F7299B81D600A0670C /* MixHeaderTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2977B7F5299B81D600A0670C /* MixHeaderTVCell.swift */; };
+		2977B7F8299B81D600A0670C /* MixHeaderTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2977B7F6299B81D600A0670C /* MixHeaderTVCell.xib */; };
+		29846D3E29A154FF00393EB3 /* ChangePassVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29846D3D29A154FF00393EB3 /* ChangePassVC.swift */; };
+		29846D4129A15B0F00393EB3 /* AccountStatusVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29846D4029A15B0F00393EB3 /* AccountStatusVC.swift */; };
+		29846D4329A1676000393EB3 /* ImportantDialogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29846D4229A1676000393EB3 /* ImportantDialogVC.swift */; };
 		29985F30299808FD001F769B /* RoundedTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29985F2F299808FD001F769B /* RoundedTabBarController.swift */; };
 		29985F33299819B6001F769B /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29985F32299819B6001F769B /* FeedVC.swift */; };
 		29985F3729981ADE001F769B /* GeneralHeaderTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29985F3529981ADE001F769B /* GeneralHeaderTVCell.swift */; };
@@ -23,6 +36,8 @@
 		29985F3C2998339E001F769B /* FeedItemsTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29985F3A2998339E001F769B /* FeedItemsTVCell.xib */; };
 		29985F40299937CE001F769B /* StarredVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29985F3F299937CE001F769B /* StarredVC.swift */; };
 		29985F42299937E6001F769B /* ViewedProfilesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29985F41299937E6001F769B /* ViewedProfilesVC.swift */; };
+		299E03CB29A135C60064A5E3 /* AddLinksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299E03CA29A135C60064A5E3 /* AddLinksVC.swift */; };
+		299E03CE29A141450064A5E3 /* MembershipVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299E03CD29A141450064A5E3 /* MembershipVC.swift */; };
 		299FDD0A299679690049741B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299FDD09299679690049741B /* AppDelegate.swift */; };
 		299FDD11299679690049741B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 299FDD0F299679690049741B /* Main.storyboard */; };
 		299FDD14299679690049741B /* Kismat_App.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 299FDD12299679690049741B /* Kismat_App.xcdatamodeld */; };
@@ -92,6 +107,14 @@
 		19574AD3E82A49613F152C89 /* Pods-Kismat App-Kismat AppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat App-Kismat AppUITests.debug.xcconfig"; path = "Target Support Files/Pods-Kismat App-Kismat AppUITests/Pods-Kismat App-Kismat AppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1DD10B6998FBF8F63EA8798C /* Pods-Kismat App-Kismat AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat App-Kismat AppUITests.release.xcconfig"; path = "Target Support Files/Pods-Kismat App-Kismat AppUITests/Pods-Kismat App-Kismat AppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2788D47DD7B231370D26CC44 /* Pods-Kismat App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat App.release.xcconfig"; path = "Target Support Files/Pods-Kismat App/Pods-Kismat App.release.xcconfig"; sourceTree = "<group>"; };
+		2940B8FD299D634300D3F863 /* ImageViewTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewTVCell.swift; sourceTree = "<group>"; };
+		2940B8FE299D634300D3F863 /* ImageViewTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewTVCell.xib; sourceTree = "<group>"; };
+		29473E4F299C634A00859D8A /* TagsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsTVCell.swift; sourceTree = "<group>"; };
+		29473E50299C634A00859D8A /* TagsTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagsTVCell.xib; sourceTree = "<group>"; };
+		29473E54299C664F00859D8A /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
+		29473E57299C694A00859D8A /* NotifTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifTVCell.swift; sourceTree = "<group>"; };
+		29473E58299C694A00859D8A /* NotifTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotifTVCell.xib; sourceTree = "<group>"; };
+		29473E5C299CBFA400859D8A /* ProfileSetupExtend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupExtend.swift; sourceTree = "<group>"; };
 		294A79A3299ADCAE00089161 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		294A79A6299ADD4200089161 /* SettingTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTVCell.swift; sourceTree = "<group>"; };
 		294A79A7299ADD4200089161 /* SettingTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTVCell.xib; sourceTree = "<group>"; };
@@ -100,6 +123,11 @@
 		294A79AF299AEB2E00089161 /* AboutTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutTVCell.xib; sourceTree = "<group>"; };
 		294A79B2299AEB5100089161 /* SocialAccTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAccTVCell.swift; sourceTree = "<group>"; };
 		294A79B3299AEB5100089161 /* SocialAccTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialAccTVCell.xib; sourceTree = "<group>"; };
+		2977B7F5299B81D600A0670C /* MixHeaderTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixHeaderTVCell.swift; sourceTree = "<group>"; };
+		2977B7F6299B81D600A0670C /* MixHeaderTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MixHeaderTVCell.xib; sourceTree = "<group>"; };
+		29846D3D29A154FF00393EB3 /* ChangePassVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassVC.swift; sourceTree = "<group>"; };
+		29846D4029A15B0F00393EB3 /* AccountStatusVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountStatusVC.swift; sourceTree = "<group>"; };
+		29846D4229A1676000393EB3 /* ImportantDialogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportantDialogVC.swift; sourceTree = "<group>"; };
 		29985F2F299808FD001F769B /* RoundedTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTabBarController.swift; sourceTree = "<group>"; };
 		29985F32299819B6001F769B /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		29985F3529981ADE001F769B /* GeneralHeaderTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralHeaderTVCell.swift; sourceTree = "<group>"; };
@@ -108,6 +136,8 @@
 		29985F3A2998339E001F769B /* FeedItemsTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedItemsTVCell.xib; sourceTree = "<group>"; };
 		29985F3F299937CE001F769B /* StarredVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarredVC.swift; sourceTree = "<group>"; };
 		29985F41299937E6001F769B /* ViewedProfilesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewedProfilesVC.swift; sourceTree = "<group>"; };
+		299E03CA29A135C60064A5E3 /* AddLinksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLinksVC.swift; sourceTree = "<group>"; };
+		299E03CD29A141450064A5E3 /* MembershipVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipVC.swift; sourceTree = "<group>"; };
 		299FDD06299679690049741B /* Kismat App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kismat App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		299FDD09299679690049741B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		299FDD10299679690049741B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -204,6 +234,24 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		29473E53299C663200859D8A /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				29473E54299C664F00859D8A /* NotificationVC.swift */,
+				29473E56299C690900859D8A /* Xibs */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		29473E56299C690900859D8A /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				29473E57299C694A00859D8A /* NotifTVCell.swift */,
+				29473E58299C694A00859D8A /* NotifTVCell.xib */,
+			);
+			path = Xibs;
+			sourceTree = "<group>";
+		};
 		294A79A2299ADC7D00089161 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +288,22 @@
 			path = Xibs;
 			sourceTree = "<group>";
 		};
+		29846D3C29A154DA00393EB3 /* ChangePass */ = {
+			isa = PBXGroup;
+			children = (
+				29846D3D29A154FF00393EB3 /* ChangePassVC.swift */,
+			);
+			path = ChangePass;
+			sourceTree = "<group>";
+		};
+		29846D3F29A15AF800393EB3 /* AccountStatus */ = {
+			isa = PBXGroup;
+			children = (
+				29846D4029A15B0F00393EB3 /* AccountStatusVC.swift */,
+			);
+			path = AccountStatus;
+			sourceTree = "<group>";
+		};
 		29985F31299819A1001F769B /* Feed */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +336,23 @@
 				29985F41299937E6001F769B /* ViewedProfilesVC.swift */,
 			);
 			path = Viewed;
+			sourceTree = "<group>";
+		};
+		299E03C929A135970064A5E3 /* AddLinks */ = {
+			isa = PBXGroup;
+			children = (
+				299E03CA29A135C60064A5E3 /* AddLinksVC.swift */,
+				29846D4229A1676000393EB3 /* ImportantDialogVC.swift */,
+			);
+			path = AddLinks;
+			sourceTree = "<group>";
+		};
+		299E03CC29A1412D0064A5E3 /* Membership */ = {
+			isa = PBXGroup;
+			children = (
+				299E03CD29A141450064A5E3 /* MembershipVC.swift */,
+			);
+			path = Membership;
 			sourceTree = "<group>";
 		};
 		299FDCFD299679690049741B = {
@@ -446,6 +527,11 @@
 		299FDD82299684E50049741B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				29846D3F29A15AF800393EB3 /* AccountStatus */,
+				29846D3C29A154DA00393EB3 /* ChangePass */,
+				299E03CC29A1412D0064A5E3 /* Membership */,
+				299E03C929A135970064A5E3 /* AddLinks */,
+				29473E53299C663200859D8A /* Notification */,
 				294A79AA299AE87900089161 /* Profile */,
 				294A79A2299ADC7D00089161 /* Setting */,
 				29985F3E2999371C001F769B /* Viewed */,
@@ -516,6 +602,7 @@
 			isa = PBXGroup;
 			children = (
 				299FDDA02996E1F80049741B /* ProfileSetupVC.swift */,
+				29473E5C299CBFA400859D8A /* ProfileSetupExtend.swift */,
 				299FDDA22996E25A0049741B /* Xibs */,
 			);
 			path = ProfileSetup;
@@ -543,6 +630,12 @@
 				29985F3629981ADE001F769B /* GeneralHeaderTVCell.xib */,
 				294A79B2299AEB5100089161 /* SocialAccTVCell.swift */,
 				294A79B3299AEB5100089161 /* SocialAccTVCell.xib */,
+				2977B7F5299B81D600A0670C /* MixHeaderTVCell.swift */,
+				2977B7F6299B81D600A0670C /* MixHeaderTVCell.xib */,
+				29473E4F299C634A00859D8A /* TagsTVCell.swift */,
+				29473E50299C634A00859D8A /* TagsTVCell.xib */,
+				2940B8FD299D634300D3F863 /* ImageViewTVCell.swift */,
+				2940B8FE299D634300D3F863 /* ImageViewTVCell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -666,6 +759,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29473E52299C634A00859D8A /* TagsTVCell.xib in Resources */,
 				299FDD192996796A0049741B /* LaunchScreen.storyboard in Resources */,
 				299FDD972996C8ED0049741B /* Roboto-Regular.ttf in Resources */,
 				299FDD9A2996C8ED0049741B /* Roboto-Bold.ttf in Resources */,
@@ -675,6 +769,7 @@
 				299FDD5729967D1D0049741B /* LoadingView.xib in Resources */,
 				299FDDA62996E2B00049741B /* ProfileHeaderTVCell.xib in Resources */,
 				294A79A9299ADD4200089161 /* SettingTVCell.xib in Resources */,
+				2977B7F8299B81D600A0670C /* MixHeaderTVCell.xib in Resources */,
 				299FDDAF2996EB7E0049741B /* GeneralButtonTVCell.xib in Resources */,
 				299FDD982996C8ED0049741B /* Roboto-Black.ttf in Resources */,
 				299FDD162996796A0049741B /* Assets.xcassets in Resources */,
@@ -684,8 +779,10 @@
 				299FDD8F2996C0F20049741B /* Work Sans.ttf in Resources */,
 				299FDD9B2996C8ED0049741B /* Roboto-Medium.ttf in Resources */,
 				299FDD912996C2630049741B /* Work Sans Bold.ttf in Resources */,
+				2940B900299D634300D3F863 /* ImageViewTVCell.xib in Resources */,
 				29985F3C2998339E001F769B /* FeedItemsTVCell.xib in Resources */,
 				299FDD992996C8ED0049741B /* Roboto-Light.ttf in Resources */,
+				29473E5A299C694A00859D8A /* NotifTVCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -813,22 +910,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29846D4329A1676000393EB3 /* ImportantDialogVC.swift in Sources */,
 				29985F40299937CE001F769B /* StarredVC.swift in Sources */,
 				294A79A4299ADCAE00089161 /* SettingVC.swift in Sources */,
 				29985F33299819B6001F769B /* FeedVC.swift in Sources */,
+				2977B7F7299B81D600A0670C /* MixHeaderTVCell.swift in Sources */,
+				29846D4129A15B0F00393EB3 /* AccountStatusVC.swift in Sources */,
+				29846D3E29A154FF00393EB3 /* ChangePassVC.swift in Sources */,
 				299FDDAE2996EB7E0049741B /* GeneralButtonTVCell.swift in Sources */,
 				299FDDA52996E2B00049741B /* ProfileHeaderTVCell.swift in Sources */,
 				29985F42299937E6001F769B /* ViewedProfilesVC.swift in Sources */,
 				299FDD6B29967D670049741B /* MainViewController.swift in Sources */,
+				29473E51299C634A00859D8A /* TagsTVCell.swift in Sources */,
+				299E03CB29A135C60064A5E3 /* AddLinksVC.swift in Sources */,
 				29985F30299808FD001F769B /* RoundedTabBarController.swift in Sources */,
 				299FDD89299692C20049741B /* GeneralResponse.swift in Sources */,
 				294A79B0299AEB2E00089161 /* AboutTVCell.swift in Sources */,
+				2940B8FF299D634300D3F863 /* ImageViewTVCell.swift in Sources */,
 				299FDD5B29967D1D0049741B /* Styling.swift in Sources */,
 				299FDD5929967D1D0049741B /* loadingView.swift in Sources */,
 				294A79B4299AEB5100089161 /* SocialAccTVCell.swift in Sources */,
 				299FDD5529967D1D0049741B /* ReactiveExtensiones.swift in Sources */,
 				299FDDA92996E85C0049741B /* ProfileTVCell.swift in Sources */,
 				299FDD5F29967D1D0049741B /* Floater Styling.swift in Sources */,
+				29473E5D299CBFA400859D8A /* ProfileSetupExtend.swift in Sources */,
 				299FDD5E29967D1D0049741B /* AppFunctions.swift in Sources */,
 				299FDD5829967D1D0049741B /* LoadingViewable.swift in Sources */,
 				294A79A8299ADD4200089161 /* SettingTVCell.swift in Sources */,
@@ -841,13 +946,16 @@
 				299FDD7F29967DC90049741B /* APIService.swift in Sources */,
 				299FDD862996852D0049741B /* SplashVC.swift in Sources */,
 				299FDD9E2996D0250049741B /* SignInVC.swift in Sources */,
+				29473E59299C694A00859D8A /* NotifTVCell.swift in Sources */,
 				29F5290329970DA500FE2EBA /* GeneralTextviewTVCell.swift in Sources */,
 				299FDD5629967D1D0049741B /* AnimateloadingView.swift in Sources */,
 				299FDD8C2996B20A0049741B /* SignupVC.swift in Sources */,
 				299FDD7D29967DC90049741B /* Database.swift in Sources */,
+				299E03CE29A141450064A5E3 /* MembershipVC.swift in Sources */,
 				294A79AC299AE89E00089161 /* ProfileVC.swift in Sources */,
 				299FDD0A299679690049741B /* AppDelegate.swift in Sources */,
 				299FDD7E29967DC90049741B /* LocationManager.swift in Sources */,
+				29473E55299C664F00859D8A /* NotificationVC.swift in Sources */,
 				299FDDA12996E1F80049741B /* ProfileSetupVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

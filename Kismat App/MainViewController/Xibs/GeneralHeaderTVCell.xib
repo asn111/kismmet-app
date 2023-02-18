@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yxB-RW-UxQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="176"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gT6-92-Go5">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gT6-92-Go5">
                                 <rect key="frame" x="8" y="18" width="359" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nax-I1-dp4" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
@@ -35,20 +35,20 @@
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal">
                                             <imageReference key="image" image="girl" symbolScale="medium"/>
-                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="light"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="medium"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                 <color key="value" name="Text grey"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="8"/>
+                                                <real key="value" value="6"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="2"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
-                                                <color key="value" name="Secondary Grey"/>
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
@@ -125,6 +125,68 @@
                                     <constraint firstItem="6BT-Eq-hcD" firstAttribute="centerX" secondItem="gT6-92-Go5" secondAttribute="centerX" id="pr0-CL-99N"/>
                                     <constraint firstItem="6BT-Eq-hcD" firstAttribute="centerY" secondItem="gT6-92-Go5" secondAttribute="centerY" id="zLJ-ht-2gF"/>
                                     <constraint firstItem="ooM-Y7-C6j" firstAttribute="centerY" secondItem="gT6-92-Go5" secondAttribute="centerY" id="zwL-i2-nfW"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FtL-JB-NbO">
+                                <rect key="frame" x="8" y="18" width="359" height="50"/>
+                                <subviews>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbH-SQ-PJg" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="321" y="10" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="35P-Tm-qtH"/>
+                                            <constraint firstAttribute="height" constant="30" id="4jd-gN-1ON"/>
+                                        </constraints>
+                                        <color key="tintColor" name="Secondary Grey"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal">
+                                            <imageReference key="image" image="girl" symbolScale="medium"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="light"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" name="Text grey"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                <color key="value" name="Secondary Grey"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi, Tamara" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cf5-Cq-dE3" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="21" y="9" width="276" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="PbH-YN-4pz"/>
+                                            <constraint firstAttribute="width" constant="276" id="uIK-yO-KKb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                                <color key="value" name="Text grey"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="bl"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                <real key="value" value="28"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="zbH-SQ-PJg" secondAttribute="trailing" constant="8" id="1w4-lM-rEP"/>
+                                    <constraint firstAttribute="height" constant="50" id="8mY-8T-MzH"/>
+                                    <constraint firstItem="Cf5-Cq-dE3" firstAttribute="centerY" secondItem="FtL-JB-NbO" secondAttribute="centerY" id="G05-q6-OI0"/>
+                                    <constraint firstItem="zbH-SQ-PJg" firstAttribute="leading" secondItem="Cf5-Cq-dE3" secondAttribute="trailing" constant="24" id="OlT-8j-Af9"/>
+                                    <constraint firstItem="zbH-SQ-PJg" firstAttribute="top" secondItem="FtL-JB-NbO" secondAttribute="top" constant="10" id="QLl-J7-aHX"/>
+                                    <constraint firstItem="Cf5-Cq-dE3" firstAttribute="centerX" secondItem="FtL-JB-NbO" secondAttribute="centerX" constant="-20.5" id="cIY-Tc-s5Z"/>
+                                    <constraint firstAttribute="bottom" secondItem="zbH-SQ-PJg" secondAttribute="bottom" constant="10" id="oSo-wD-S4F"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cn8-Nl-EBJ">
@@ -397,8 +459,11 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="TDA-ZG-dfd" firstAttribute="leading" secondItem="yxB-RW-UxQ" secondAttribute="leading" constant="8" id="30w-OJ-Se6"/>
+                            <constraint firstAttribute="trailing" secondItem="FtL-JB-NbO" secondAttribute="trailing" constant="8" id="6CC-Uw-cXm"/>
                             <constraint firstAttribute="bottom" secondItem="TDA-ZG-dfd" secondAttribute="bottom" constant="8" id="9SM-74-v1D"/>
                             <constraint firstAttribute="height" constant="176" id="BqW-LH-1ba"/>
+                            <constraint firstItem="FtL-JB-NbO" firstAttribute="leading" secondItem="yxB-RW-UxQ" secondAttribute="leading" constant="8" id="L4r-Dh-ihL"/>
+                            <constraint firstItem="FtL-JB-NbO" firstAttribute="top" secondItem="yxB-RW-UxQ" secondAttribute="top" constant="18" id="Mbj-T5-06I"/>
                             <constraint firstItem="gT6-92-Go5" firstAttribute="leading" secondItem="yxB-RW-UxQ" secondAttribute="leading" constant="8" id="Y98-ow-k5p"/>
                             <constraint firstItem="gT6-92-Go5" firstAttribute="top" secondItem="yxB-RW-UxQ" secondAttribute="top" constant="18" id="aFw-7X-OAM"/>
                             <constraint firstItem="cn8-Nl-EBJ" firstAttribute="top" secondItem="gT6-92-Go5" secondAttribute="bottom" constant="8" symbolic="YES" id="apS-tf-Bxs"/>
@@ -406,6 +471,7 @@
                             <constraint firstItem="cn8-Nl-EBJ" firstAttribute="leading" secondItem="yxB-RW-UxQ" secondAttribute="leading" constant="8" id="mRZ-h1-rQx"/>
                             <constraint firstAttribute="trailing" secondItem="cn8-Nl-EBJ" secondAttribute="trailing" constant="8" id="s9q-62-hn7"/>
                             <constraint firstAttribute="trailing" secondItem="gT6-92-Go5" secondAttribute="trailing" constant="8" id="vZr-b9-IFH"/>
+                            <constraint firstItem="cn8-Nl-EBJ" firstAttribute="top" secondItem="FtL-JB-NbO" secondAttribute="bottom" constant="8" symbolic="YES" id="wSm-Kt-9iC"/>
                             <constraint firstItem="TDA-ZG-dfd" firstAttribute="top" secondItem="gT6-92-Go5" secondAttribute="bottom" constant="8" symbolic="YES" id="wel-0G-rdY"/>
                             <constraint firstAttribute="trailing" secondItem="TDA-ZG-dfd" secondAttribute="trailing" constant="8" id="yOZ-po-z0X"/>
                         </constraints>
@@ -423,11 +489,12 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="educationLbl" destination="nzF-aI-iJF" id="GLZ-BE-kuq"/>
-                <outlet property="headerLbl" destination="6BT-Eq-hcD" id="fB7-ZF-lep"/>
+                <outlet property="headerLbl" destination="6BT-Eq-hcD" id="fZ0-Yd-K16"/>
                 <outlet property="headerLogo" destination="ooM-Y7-C6j" id="kNX-XF-afw"/>
+                <outlet property="headerView" destination="gT6-92-Go5" id="Gxk-ft-xVE"/>
                 <outlet property="nameLbl" destination="dpP-cf-H6r" id="QcV-9B-n9h"/>
                 <outlet property="notifBtn" destination="RN4-MZ-r6J" id="VDI-gh-j2c"/>
-                <outlet property="picBtn" destination="nax-I1-dp4" id="SMT-7g-alG"/>
+                <outlet property="picBtn" destination="nax-I1-dp4" id="C9E-GK-ucq"/>
                 <outlet property="professionLbl" destination="HOG-bk-97u" id="r9f-EM-y21"/>
                 <outlet property="profilePicBtn" destination="bc3-O3-AQ1" id="JkI-ZV-GN9"/>
                 <outlet property="profileView" destination="cn8-Nl-EBJ" id="Z9o-6i-PeL"/>
@@ -440,19 +507,25 @@
                 <outlet property="toolTipBtn" destination="dX8-SZ-fyC" id="alY-DK-CNl"/>
                 <outlet property="viewCountsLbl" destination="pXu-df-J1k" id="YjA-1D-4FB"/>
                 <outlet property="viewedprofLbl" destination="v2n-8t-cBj" id="nRw-u1-PXa"/>
+                <outlet property="welcomeHeaderLbl" destination="Cf5-Cq-dE3" id="f8c-8d-sIy"/>
+                <outlet property="welcomePicBtn" destination="zbH-SQ-PJg" id="a7E-3m-sUe"/>
+                <outlet property="welcomeView" destination="FtL-JB-NbO" id="gtR-56-xqB"/>
             </connections>
             <point key="canvasLocation" x="52.671755725190835" y="66.197183098591552"/>
         </tableViewCell>
     </objects>
     <designables>
         <designable name="6BT-Eq-hcD">
-            <size key="intrinsicContentSize" width="130" height="33"/>
+            <size key="intrinsicContentSize" width="73.333333333333329" height="20.333333333333332"/>
         </designable>
         <designable name="A8B-bt-df2">
-            <size key="intrinsicContentSize" width="271.66666666666669" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="337.33333333333331" height="20.333333333333332"/>
+        </designable>
+        <designable name="Cf5-Cq-dE3">
+            <size key="intrinsicContentSize" width="81" height="20.333333333333332"/>
         </designable>
         <designable name="HOG-bk-97u">
-            <size key="intrinsicContentSize" width="53" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="73" height="20.333333333333332"/>
         </designable>
         <designable name="bc3-O3-AQ1">
             <size key="intrinsicContentSize" width="407" height="612"/>
@@ -461,19 +534,22 @@
             <size key="intrinsicContentSize" width="48" height="48"/>
         </designable>
         <designable name="dpP-cf-H6r">
-            <size key="intrinsicContentSize" width="173" height="21.333333333333332"/>
+            <size key="intrinsicContentSize" width="151.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="nax-I1-dp4">
             <size key="intrinsicContentSize" width="407" height="612"/>
         </designable>
         <designable name="nzF-aI-iJF">
-            <size key="intrinsicContentSize" width="163.33333333333334" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="211" height="20.333333333333332"/>
         </designable>
         <designable name="pXu-df-J1k">
-            <size key="intrinsicContentSize" width="164" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="207.66666666666666" height="20.333333333333332"/>
         </designable>
         <designable name="v2n-8t-cBj">
-            <size key="intrinsicContentSize" width="237.66666666666666" height="21.333333333333332"/>
+            <size key="intrinsicContentSize" width="207.66666666666666" height="20.333333333333332"/>
+        </designable>
+        <designable name="zbH-SQ-PJg">
+            <size key="intrinsicContentSize" width="407" height="612"/>
         </designable>
     </designables>
     <resources>

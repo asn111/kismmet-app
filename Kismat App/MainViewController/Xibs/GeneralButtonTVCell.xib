@@ -31,8 +31,8 @@
                                             <constraint firstAttribute="width" constant="333" id="gCy-t3-QlK"/>
                                             <constraint firstAttribute="height" constant="56" id="xnY-Ts-VQj"/>
                                         </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Continue"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
                                                 <color key="value" name="Secondary Grey"/>
@@ -105,6 +105,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
+                <outlet property="arrowView" destination="Tb9-pa-d2q" id="XYD-UH-hMF"/>
                 <outlet property="genBtn" destination="o7Z-ym-0jR" id="Mqs-p4-5cg"/>
             </connections>
             <point key="canvasLocation" x="52.671755725190835" y="28.87323943661972"/>
@@ -112,7 +113,7 @@
     </objects>
     <designables>
         <designable name="o7Z-ym-0jR">
-            <size key="intrinsicContentSize" width="64" height="31"/>
+            <size key="intrinsicContentSize" width="30" height="31"/>
         </designable>
     </designables>
     <resources>

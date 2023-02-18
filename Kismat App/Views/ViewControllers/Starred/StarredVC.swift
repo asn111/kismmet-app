@@ -11,6 +11,11 @@ class StarredVC: MainViewController {
 
     @IBOutlet weak var starredTV: UITableView!
     
+    var nameArray = ["James Nio","Nesa Node"]
+    var profArray = ["Bachelor, Student","Chemist"]
+    var imageArray = [UIImage(named: "guy"),UIImage(named: "teacher")]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,12 +49,26 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
                 cell.headerLbl.text = "STARRED"
                 cell.searchView.isHidden = false
                 cell.swipeTxtLbl.isHidden = false
+                cell.headerView.isHidden = false
+                
                 return cell
                 
             default:
                 let cell : FeedItemsTVCell = tableView.dequeueReusableCell(withIdentifier: "FeedItemsTVCell", for: indexPath) as! FeedItemsTVCell
+                cell.nameLbl.text = nameArray[indexPath.row - 1]
+                cell.professionLbl.text = profArray[indexPath.row - 1]
+                cell.profilePicIV.image = imageArray[indexPath.row - 1]
                 
                 return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.pushVC(id: "ProfileVC") { (vc:ProfileVC) in
+            vc.isOtherProfile = true
+            vc.img = imageArray[indexPath.row - 1]
+            vc.titleName = nameArray[indexPath.row - 1]
+            vc.prof = profArray[indexPath.row - 1]
         }
     }
     

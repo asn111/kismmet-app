@@ -1,15 +1,14 @@
 //
-//  ProfileHeaderTVCell.swift
+//  ImageViewTVCell.swift
 //  Kismat App
 //
-//  Created by Ahsan Iqbal on 11/02/2023.
+//  Created by Ahsan Iqbal on 16/02/2023.
 //
 
 import UIKit
 
-class ProfileHeaderTVCell: UITableViewCell {
+class ImageViewTVCell: UITableViewCell {
 
-    @IBOutlet weak var backBtn: RoundCornerButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

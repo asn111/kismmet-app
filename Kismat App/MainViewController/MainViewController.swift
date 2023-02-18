@@ -51,7 +51,7 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
     
     // --StatusBarMode--(Dark Or Light)
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .darkContent
     }
     
     deinit {

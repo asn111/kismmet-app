@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="134" id="KGk-i7-Jjw" customClass="ImageViewTVCell" customModule="Kismat_App" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="134"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="134"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lso-kf-M2p">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="134"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imggg" translatesAutoresizingMaskIntoConstraints="NO" id="hJ1-nU-Ytu">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="134"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="AsC-7V-M6L"/>
+                                    <constraint firstAttribute="height" constant="134" id="W3E-7V-wPu"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="hJ1-nU-Ytu" secondAttribute="trailing" id="AIH-1P-vAo"/>
+                            <constraint firstAttribute="height" constant="134" id="LSc-O0-sQk"/>
+                            <constraint firstItem="hJ1-nU-Ytu" firstAttribute="leading" secondItem="lso-kf-M2p" secondAttribute="leading" id="Utw-UW-37i"/>
+                            <constraint firstAttribute="bottom" secondItem="hJ1-nU-Ytu" secondAttribute="bottom" id="eg7-XG-bpB"/>
+                            <constraint firstItem="hJ1-nU-Ytu" firstAttribute="top" secondItem="lso-kf-M2p" secondAttribute="top" id="uFf-dT-Fhk"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="lso-kf-M2p" secondAttribute="bottom" id="Zi4-cS-yv6"/>
+                    <constraint firstAttribute="trailing" secondItem="lso-kf-M2p" secondAttribute="trailing" id="hpo-TD-3h1"/>
+                    <constraint firstItem="lso-kf-M2p" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="pVQ-Mb-tik"/>
+                    <constraint firstItem="lso-kf-M2p" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="xJ0-eZ-bDW"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="52.671755725190835" y="51.408450704225352"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="imggg" width="783" height="389"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

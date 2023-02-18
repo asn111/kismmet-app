@@ -284,6 +284,45 @@ class VerticalButton: UIButton {
     
 }
 
+//MARK: Custom UISwitch (Toggle)
+
+@IBDesignable
+class CustomToggleButton: UISwitch {
+    
+    @IBInspectable var scale : CGFloat = 1{
+        didSet{
+            setupView()
+        }
+    }
+    @IBInspectable var OffTint: UIColor? {
+        didSet {
+            self.tintColor = OffTint
+            self.layer.cornerRadius = 16
+            self.backgroundColor = OffTint
+        }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupView()
+    }
+    override open func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        setupView()
+        
+    }
+    
+    override func layoutSubviews() {
+        setupView()
+        super.layoutSubviews()
+    }
+    
+    func setupView () {
+        self.transform = CGAffineTransform(scaleX: scale, y: scale)
+    }
+}
+
+
 //MARK: Round Corner Button
 
 @IBDesignable
@@ -414,7 +453,7 @@ class RoundCornerButton : UIButton {
         }
         layer.addSublayer(dashBorder)
         self.dashBorder = dashBorder
-        self.tintColor = .white
+        //self.tintColor = .white
     }
     
     func setupView () {

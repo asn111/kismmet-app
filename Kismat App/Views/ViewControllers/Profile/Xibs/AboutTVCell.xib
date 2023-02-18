@@ -26,9 +26,9 @@
                                 <rect key="frame" x="18.666666666666657" y="10" width="338" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEd-wu-Vd8" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="8" width="60" height="20"/>
+                                        <rect key="frame" x="15" y="8" width="65" height="20"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="12E-na-WRJ"/>
+                                            <constraint firstAttribute="width" constant="65" id="12E-na-WRJ"/>
                                             <constraint firstAttribute="height" constant="20" id="6SP-gp-Hn4"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -46,14 +46,14 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="F68-w9-xdi" customClass="FormTextView" customModule="Kismat_App" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="28" width="299" height="72"/>
+                                        <rect key="frame" x="15" y="28" width="304" height="72"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="72" id="CSJ-iX-D1B"/>
-                                            <constraint firstAttribute="width" constant="299" id="n5q-Sh-bef"/>
+                                            <constraint firstAttribute="width" constant="304" id="n5q-Sh-bef"/>
                                         </constraints>
                                         <string key="text">Chemistry professor, having a decade of experience in teaching chemistry. Completed PHD from Rich University, Houston TX. Nobel prize winner in “biorthogonal chemistry”</string>
-                                        <color key="textColor" systemColor="labelColor"/>
+                                        <color key="textColor" name="Secondary Grey"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <userDefinedRuntimeAttributes>
@@ -61,12 +61,11 @@
                                                 <color key="value" name="Text grey"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                <real key="value" value="12"/>
+                                                <real key="value" value="11"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="bottmInset">
                                                 <real key="value" value="15"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="l"/>
                                         </userDefinedRuntimeAttributes>
                                     </textView>
                                 </subviews>
@@ -77,9 +76,9 @@
                                     <constraint firstAttribute="bottom" secondItem="F68-w9-xdi" secondAttribute="bottom" id="7L8-gW-3YF"/>
                                     <constraint firstAttribute="height" constant="100" id="Qbe-nW-Tq3"/>
                                     <constraint firstItem="gEd-wu-Vd8" firstAttribute="top" secondItem="gP4-G8-zrb" secondAttribute="top" constant="8" id="dHX-ab-IgD"/>
-                                    <constraint firstItem="gEd-wu-Vd8" firstAttribute="leading" secondItem="gP4-G8-zrb" secondAttribute="leading" constant="20" id="giL-Tk-99f"/>
+                                    <constraint firstItem="gEd-wu-Vd8" firstAttribute="leading" secondItem="gP4-G8-zrb" secondAttribute="leading" constant="15" id="giL-Tk-99f"/>
                                     <constraint firstItem="F68-w9-xdi" firstAttribute="top" secondItem="gEd-wu-Vd8" secondAttribute="bottom" id="wBZ-2C-1wg"/>
-                                    <constraint firstItem="F68-w9-xdi" firstAttribute="leading" secondItem="gP4-G8-zrb" secondAttribute="leading" constant="20" id="ygg-ZV-NAI"/>
+                                    <constraint firstItem="F68-w9-xdi" firstAttribute="leading" secondItem="gP4-G8-zrb" secondAttribute="leading" constant="15" id="ygg-ZV-NAI"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -121,16 +120,16 @@
     </objects>
     <designables>
         <designable name="gEd-wu-Vd8">
-            <size key="intrinsicContentSize" width="49" height="21.333333333333332"/>
+            <size key="intrinsicContentSize" width="46" height="20.333333333333332"/>
         </designable>
     </designables>
     <resources>
+        <namedColor name="Secondary Grey">
+            <color red="0.3059999942779541" green="0.4309999942779541" blue="0.50599998235702515" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Text grey">
             <color red="0.20800000429153442" green="0.31000000238418579" blue="0.35699999332427979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

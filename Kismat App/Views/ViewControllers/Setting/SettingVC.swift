@@ -31,7 +31,7 @@ class SettingVC: MainViewController {
     }
     
     @objc func picBtnPressed(sender: UIButton) {
-        self.dismiss(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
 }
 //MARK: TableView Extention
@@ -48,10 +48,12 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
                 let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
                 cell.headerLbl.isHidden = false
                 cell.headerLbl.text = "SETTINGS"
+                cell.notifBtn.isHidden = true
                 cell.toolTipBtn.isHidden = true
                 cell.searchTFView.isHidden = true
                 cell.profileView.isHidden = false
                 cell.ratingView.isHidden = true
+                cell.headerView.isHidden = false
                 
                 cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
                 
@@ -67,6 +69,27 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
                 let cell : SettingTVCell = tableView.dequeueReusableCell(withIdentifier: "SettingTVCell", for: indexPath) as! SettingTVCell
                 cell.txtLbl.text = lblTxt[indexPath.row]
                 return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+            case 2:
+                self.pushVC(id: "ProfileSetupExtend") { (vc:ProfileSetupExtend) in
+                    vc.isFromSetting = true
+                }
+            case 3:
+                self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
+            case 4:
+                self.pushVC(id: "ChangePassVC") { (vc:ChangePassVC) in }
+            case 5:
+                self.pushVC(id: "MembershipVC") { (vc:MembershipVC) in }
+            case 8:
+                self.pushVC(id: "AccountStatusVC") { (vc:AccountStatusVC) in }
+            case 9:
+                self.navigateVC(id: "SplashVC") { (vc:SplashVC) in }
+            default:
+                print("")
         }
     }
     

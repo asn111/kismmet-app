@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JBx-0C-JSa">
-                                <rect key="frame" x="22.666666666666657" y="4" width="330" height="32"/>
+                                <rect key="frame" x="23" y="4" width="290" height="32"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tamara Pensiero" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAq-Op-8kN" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="50" y="6" width="206" height="21"/>
@@ -58,17 +59,42 @@
                                     <constraint firstAttribute="height" constant="32" id="F9k-CA-2iA"/>
                                     <constraint firstAttribute="bottom" secondItem="DRK-EB-vxd" secondAttribute="bottom" constant="3" id="LR4-Oj-0vX"/>
                                     <constraint firstItem="DRK-EB-vxd" firstAttribute="top" secondItem="JBx-0C-JSa" secondAttribute="top" constant="4" id="Pdg-F6-E0m"/>
-                                    <constraint firstAttribute="width" constant="330" id="Py5-Hb-Jfs"/>
+                                    <constraint firstAttribute="width" constant="290" id="Py5-Hb-Jfs"/>
                                     <constraint firstAttribute="bottom" secondItem="vAq-Op-8kN" secondAttribute="bottom" constant="5" id="c7R-QN-One"/>
                                     <constraint firstItem="vAq-Op-8kN" firstAttribute="top" secondItem="JBx-0C-JSa" secondAttribute="top" constant="6" id="gXk-u5-U5P"/>
                                 </constraints>
                             </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sj1-7I-mkD" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                <rect key="frame" x="321" y="10" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="Ejb-hp-YJN"/>
+                                    <constraint firstAttribute="height" constant="20" id="pay-Fj-Ots"/>
+                                </constraints>
+                                <color key="tintColor" name="Base White"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="light"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                        <color key="value" name="Secondary Grey"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="JBx-0C-JSa" firstAttribute="centerY" secondItem="Etf-qw-z7o" secondAttribute="centerY" id="Lj0-Hc-zNc"/>
                             <constraint firstAttribute="height" constant="40" id="MO6-g0-X9r"/>
-                            <constraint firstItem="JBx-0C-JSa" firstAttribute="centerX" secondItem="Etf-qw-z7o" secondAttribute="centerX" id="xkm-7p-hNg"/>
+                            <constraint firstAttribute="bottom" secondItem="sj1-7I-mkD" secondAttribute="bottom" constant="10" id="Wbo-dK-EIV"/>
+                            <constraint firstItem="sj1-7I-mkD" firstAttribute="top" secondItem="Etf-qw-z7o" secondAttribute="top" constant="10" id="WnX-Gt-zaB"/>
+                            <constraint firstAttribute="trailing" secondItem="sj1-7I-mkD" secondAttribute="trailing" constant="34" id="jdz-Qm-5xw"/>
+                            <constraint firstItem="sj1-7I-mkD" firstAttribute="leading" secondItem="JBx-0C-JSa" secondAttribute="trailing" constant="8" id="srb-gR-UzQ"/>
+                            <constraint firstItem="JBx-0C-JSa" firstAttribute="centerX" secondItem="Etf-qw-z7o" secondAttribute="centerX" constant="-19.5" id="xkm-7p-hNg"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -83,6 +109,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
+                <outlet property="removeBtn" destination="sj1-7I-mkD" id="okx-NP-kmR"/>
                 <outlet property="socialImgView" destination="DRK-EB-vxd" id="MSx-He-xYx"/>
                 <outlet property="socialLbl" destination="vAq-Op-8kN" id="b3j-JO-tCI"/>
             </connections>
@@ -90,12 +117,22 @@
         </tableViewCell>
     </objects>
     <designables>
+        <designable name="sj1-7I-mkD">
+            <size key="intrinsicContentSize" width="13.666666666666666" height="22"/>
+        </designable>
         <designable name="vAq-Op-8kN">
-            <size key="intrinsicContentSize" width="91.666666666666671" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="126.33333333333333" height="20.333333333333332"/>
         </designable>
     </designables>
     <resources>
         <image name="LinkedIn" width="72" height="72"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="Base White">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Secondary Grey">
+            <color red="0.3059999942779541" green="0.4309999942779541" blue="0.50599998235702515" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Text grey">
             <color red="0.20800000429153442" green="0.31000000238418579" blue="0.35699999332427979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
