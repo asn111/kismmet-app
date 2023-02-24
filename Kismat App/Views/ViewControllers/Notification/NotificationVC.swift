@@ -50,6 +50,7 @@ extension NotificationVC : UITableViewDelegate, UITableViewDataSource {
                 cell.toolTipBtn.isHidden = true
                 cell.searchTFView.isHidden = true
                 cell.headerView.isHidden = false
+                cell.notifBtn.isHidden = true
                 
                 cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)

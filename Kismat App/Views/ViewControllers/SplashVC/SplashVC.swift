@@ -10,7 +10,7 @@ import UIKit
 class SplashVC: MainViewController {
 
     @IBAction func continueBtnPressed(_ sender: Any) {
-        self.navigateVC(id: "SignupVC") { (vc:SignupVC) in }
+        self.navigateVC(id: "SignInVC") { (vc:SignInVC) in }
     }
     override func viewDidLoad() {
         super.viewDidLoad()

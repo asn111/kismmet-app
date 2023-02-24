@@ -33,6 +33,11 @@ class FeedVC: MainViewController {
         feedTV.register(UINib(nibName: "FeedItemsTVCell", bundle: nil), forCellReuseIdentifier: "FeedItemsTVCell")
     }
 
+
+    @objc func notifBtnPressed(sender: UIButton) {
+        self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
+    }
+    
 }
 //MARK: TableView Extention
 extension FeedVC : UITableViewDelegate, UITableViewDataSource {
@@ -50,6 +55,8 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                 cell.viewCountsLbl.isHidden = false
                 cell.searchView.isHidden = false
                 cell.headerView.isHidden = false
+                
+                cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
                 
                 cell.viewCountsLbl.attributedText = NSAttributedString(string: "14 out of 15 profiles viewed", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
                 return cell
@@ -69,11 +76,13 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.pushVC(id: "ProfileVC") { (vc:ProfileVC) in
-            vc.isOtherProfile = true
-            vc.img = imageArray[indexPath.row - 1]
-            vc.titleName = nameArray[indexPath.row - 1]
-            vc.prof = profArray[indexPath.row - 1]
+        if indexPath.row != 0 {
+            self.pushVC(id: "ProfileVC") { (vc:ProfileVC) in
+                vc.isOtherProfile = true
+                vc.img = imageArray[indexPath.row - 1]
+                vc.titleName = nameArray[indexPath.row - 1]
+                vc.prof = profArray[indexPath.row - 1]
+            }
         }
     }
     

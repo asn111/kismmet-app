@@ -10,7 +10,8 @@ import UIKit
 class SocialAccTVCell: UITableViewCell {
 
     @IBOutlet weak var removeBtn: RoundCornerButton!
-    @IBOutlet weak var socialLbl: fullyCustomLbl!
+    
+    @IBOutlet weak var socialLbl: FormTextField!
     @IBOutlet weak var socialImgView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()

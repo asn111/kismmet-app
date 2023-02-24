@@ -10,6 +10,11 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--SplashVC-->
         <scene sceneID="tne-QT-ifu">
@@ -448,6 +453,12 @@ this email.</string>
                             <constraint firstItem="a6e-P2-qtG" firstAttribute="top" secondItem="ZlU-Hb-i3S" secondAttribute="bottom" constant="8" symbolic="YES" id="wGo-e6-fPT"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="confirmPassword" destination="aRI-Xg-5o1" id="g4v-Re-KCa"/>
+                        <outlet property="emailTF" destination="JBx-SY-DoZ" id="Ak8-86-n8I"/>
+                        <outlet property="loginLbl" destination="b3O-xc-bXC" id="abB-4g-PEg"/>
+                        <outlet property="passwordTF" destination="D0O-Hf-zFJ" id="Rgv-gI-7Hm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="shj-9N-b5w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -729,10 +740,15 @@ this email.</string>
                             <constraint firstItem="Prc-79-E4K" firstAttribute="trailing" secondItem="z2H-xn-w0Y" secondAttribute="trailing" constant="16" id="xjv-Fb-tSW"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailTF" destination="8b6-LU-FPq" id="20j-lt-VN5"/>
+                        <outlet property="passwordTF" destination="xnB-yp-Wkb" id="qOe-Li-4hh"/>
+                        <outlet property="signUpLbl" destination="5w6-ZN-cHD" id="dMG-A3-Ceu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ket-9J-bq0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1601" y="4"/>
+            <point key="canvasLocation" x="1600.7633587786258" y="3.5211267605633805"/>
         </scene>
         <!--Add LinksVC-->
         <scene sceneID="Mpe-6H-8a8">
@@ -909,7 +925,7 @@ this email.</string>
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="YTH-cc-MoN">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="YTH-cc-MoN">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -1742,7 +1758,7 @@ this email.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Hd-te-DLh" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                                 <rect key="frame" x="7" y="11" width="353" height="60"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add link" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3gP-Q6-AXE" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Old password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3gP-Q6-AXE" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -1961,6 +1977,11 @@ this email.</string>
                     <tabBarItem key="tabBarItem" title="" id="8vd-0I-4gD">
                         <imageReference key="image" image="eye.circle.fill" catalog="system" symbolScale="medium"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="confirmNewPassTF" destination="sDr-88-Fbj" id="4it-fh-l99"/>
+                        <outlet property="newPassTF" destination="0ZP-IY-8wV" id="QUx-Ir-KgU"/>
+                        <outlet property="oldPasTF" destination="3gP-Q6-AXE" id="s5D-aO-WkG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r5t-aG-oFP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2081,7 +2102,7 @@ this email.</string>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Try KISMMET Premium" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Lg-cq-Nv0" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deactivate Account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Lg-cq-Nv0" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="11" width="230" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="T5x-uf-Pwi"/>
@@ -2128,7 +2149,7 @@ this email.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XZB-Uw-dza" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                                 <rect key="frame" x="13" y="128" width="341" height="110"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your account will be deactivated for 30 day. If you didn’t login with 30 days your account will be permanently deleted." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X59-RV-k6Q" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your account will be permanently deleted with all data. You will not be able to use account in future." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X59-RV-k6Q" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
                                                         <rect key="frame" x="9" y="41" width="323" height="56"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="323" id="Cbx-UI-ELo"/>
@@ -2147,7 +2168,7 @@ this email.</string>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Try KISMMET Premium" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w12-80-ph3" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete Account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w12-80-ph3" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="13" width="230" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="LEX-Qu-Isy"/>
@@ -2517,6 +2538,69 @@ this email.</string>
             </objects>
             <point key="canvasLocation" x="1600.7633587786258" y="2035.9154929577467"/>
         </scene>
+        <!--Edit Profile Setup-->
+        <scene sceneID="BuI-1s-EQi">
+            <objects>
+                <viewController storyboardIdentifier="EditProfileSetup" useStoryboardIdentifierAsRestorationIdentifier="YES" id="leM-kh-FPI" customClass="EditProfileSetup" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Aw3-k0-4wG">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lUm-98-4ty">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Q9Z-0x-CUB"/>
+                        <color key="backgroundColor" name="BG Base White"/>
+                        <constraints>
+                            <constraint firstItem="lUm-98-4ty" firstAttribute="top" secondItem="Aw3-k0-4wG" secondAttribute="top" id="7dN-yz-nkh"/>
+                            <constraint firstAttribute="bottom" secondItem="lUm-98-4ty" secondAttribute="bottom" id="f3W-u2-ctT"/>
+                            <constraint firstItem="lUm-98-4ty" firstAttribute="leading" secondItem="Q9Z-0x-CUB" secondAttribute="leading" id="xPg-PI-0wN"/>
+                            <constraint firstItem="lUm-98-4ty" firstAttribute="trailing" secondItem="Q9Z-0x-CUB" secondAttribute="trailing" id="yYa-x4-1Ag"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="profileTV" destination="lUm-98-4ty" id="cH0-ck-g6Q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GhJ-my-jDK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2355" y="-696"/>
+        </scene>
+        <!--Edit Profile Setup Ext-->
+        <scene sceneID="MvJ-i7-Pjs">
+            <objects>
+                <viewController storyboardIdentifier="EditProfileSetupExt" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sj9-iB-ILG" customClass="EditProfileSetupExt" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BD7-xG-Nfe">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JcR-Z4-fLL">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="svd-qg-AzK"/>
+                        <color key="backgroundColor" name="BG Base White"/>
+                        <constraints>
+                            <constraint firstItem="JcR-Z4-fLL" firstAttribute="top" secondItem="BD7-xG-Nfe" secondAttribute="top" id="OAH-fS-QRq"/>
+                            <constraint firstAttribute="bottom" secondItem="JcR-Z4-fLL" secondAttribute="bottom" id="sGc-EW-dGf"/>
+                            <constraint firstItem="JcR-Z4-fLL" firstAttribute="leading" secondItem="svd-qg-AzK" secondAttribute="leading" id="tUe-ll-TW3"/>
+                            <constraint firstItem="JcR-Z4-fLL" firstAttribute="trailing" secondItem="svd-qg-AzK" secondAttribute="trailing" id="wN3-2y-qH5"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" id="xqu-Nr-RjF">
+                        <imageReference key="image" image="person.circle.fill" catalog="system" symbolScale="medium"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="profileExtTV" destination="JcR-Z4-fLL" id="ETe-Tk-abV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="roC-h0-I4A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3117" y="-706"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="0ZP-IY-8wV">
@@ -2532,7 +2616,7 @@ this email.</string>
             <size key="intrinsicContentSize" width="889.66666666666663" height="20.333333333333332"/>
         </designable>
         <designable name="3gP-Q6-AXE">
-            <size key="intrinsicContentSize" width="39" height="13.666666666666666"/>
+            <size key="intrinsicContentSize" width="66" height="13.666666666666666"/>
         </designable>
         <designable name="43Y-pb-wtz">
             <size key="intrinsicContentSize" width="146.66666666666666" height="20.333333333333332"/>
@@ -2553,7 +2637,7 @@ this email.</string>
             <size key="intrinsicContentSize" width="39" height="13.666666666666666"/>
         </designable>
         <designable name="9Lg-cq-Nv0">
-            <size key="intrinsicContentSize" width="174.33333333333334" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="148.66666666666666" height="20.333333333333332"/>
         </designable>
         <designable name="CcO-Ru-ZFl">
             <size key="intrinsicContentSize" width="62" height="30"/>
@@ -2607,7 +2691,7 @@ this email.</string>
             <size key="intrinsicContentSize" width="194" height="20.333333333333332"/>
         </designable>
         <designable name="X59-RV-k6Q">
-            <size key="intrinsicContentSize" width="889.66666666666663" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="753.66666666666663" height="20.333333333333332"/>
         </designable>
         <designable name="ZlU-Hb-i3S">
             <size key="intrinsicContentSize" width="317.33333333333331" height="81.333333333333329"/>
@@ -2676,7 +2760,7 @@ this email.</string>
             <size key="intrinsicContentSize" width="397.66666666666669" height="40.666666666666664"/>
         </designable>
         <designable name="w12-80-ph3">
-            <size key="intrinsicContentSize" width="174.33333333333334" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="116.66666666666667" height="20.333333333333332"/>
         </designable>
         <designable name="whs-bR-EUC">
             <size key="intrinsicContentSize" width="15.666666666666666" height="22"/>

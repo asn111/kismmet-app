@@ -85,7 +85,7 @@ class ProfileSetupExtend: MainViewController {
             //maxValue = Int(round(slider.value[1]))
             //sliderEndLbl.text = "$\(Int(round(slider.value[1])))"
             let cell : MixHeaderTVCell = profileExtTV.cellForRow(at: IndexPath(row: 1, section: 0)) as! MixHeaderTVCell
-            cell.proximeterLbl.text = "\(Int(round(slider.value[1])))"
+            cell.proximeterLbl.text = "\(Int(round(slider.value[1]))) m"
             profileExtTV.rectForRow(at: IndexPath(row: 1, section: 0))
         }
     }
@@ -117,7 +117,7 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
                 cell.headerLblView.isHidden = false
                 cell.proximeterLbl.isHidden = false
                 cell.headerLbl.text = "Set Proximity"
-                cell.proximeterLbl.text = "\(cell.maxValue/2)"
+                cell.proximeterLbl.text = "\(cell.maxValue/2) m"
                 
                 return cell
             case 2: // Slider

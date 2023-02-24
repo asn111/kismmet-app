@@ -47,6 +47,7 @@ class AccountStatusVC: MainViewController {
         deactivateView.borderColor = UIColor(named: "Primary Yellow")
         deleteView.borderColor = UIColor(named: "Secondary Grey")
         genBtn.backgroundColor = UIColor(named: "Primary Yellow")
+        genBtn.setTitle("Deactivate", for: .normal)
     }
     
     @objc
@@ -54,5 +55,6 @@ class AccountStatusVC: MainViewController {
         deleteView.borderColor = UIColor(named: "Danger")
         deactivateView.borderColor = UIColor(named: "Secondary Grey")
         genBtn.backgroundColor = UIColor(named: "Danger")
+        genBtn.setTitle("Delete", for: .normal)
     }
 }

@@ -72,6 +72,7 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 
                 if isOtherProfile {
                     cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
+                    cell.notifBtn.isHidden = true
                 } else {
                     cell.picBtn.setImage(UIImage(systemName: "gearshape.fill"), for: .normal)
                 }
@@ -101,6 +102,7 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
                 cell.socialImgView.image = socialAccImgArray[indexPath.row - 5]
                 cell.socialLbl.text = socialAccArray[indexPath.row - 5]
+                cell.socialLbl.isUserInteractionEnabled = false
                 return cell
         }
     }

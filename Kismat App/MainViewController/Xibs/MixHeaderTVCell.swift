@@ -25,7 +25,7 @@ class MixHeaderTVCell: UITableViewCell {
     @IBOutlet weak var addBtn: RoundCornerButton!
     
     var minValue = 1
-    var maxValue = 500
+    var maxValue = 300
     let slider = MultiSlider()
     
     override func awakeFromNib() {
@@ -43,7 +43,7 @@ class MixHeaderTVCell: UITableViewCell {
     func setupSlider() {
         
         slider.orientation = .horizontal
-        slider.snapStepSize = 50
+        slider.snapStepSize = 10
         slider.isHapticSnap = true
         slider.trackWidth = 8
         slider.disabledThumbIndices = [0]

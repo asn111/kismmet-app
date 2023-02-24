@@ -32,6 +32,10 @@ class StarredVC: MainViewController {
         starredTV.register(UINib(nibName: "FeedItemsTVCell", bundle: nil), forCellReuseIdentifier: "FeedItemsTVCell")
     }
     
+    @objc func notifBtnPressed(sender: UIButton) {
+        self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
+    }
+    
 }
 //MARK: TableView Extention
 extension StarredVC : UITableViewDelegate, UITableViewDataSource {
@@ -51,6 +55,9 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
                 cell.swipeTxtLbl.isHidden = false
                 cell.headerView.isHidden = false
                 
+                cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
+                
+                
                 return cell
                 
             default:
@@ -64,11 +71,13 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.pushVC(id: "ProfileVC") { (vc:ProfileVC) in
-            vc.isOtherProfile = true
-            vc.img = imageArray[indexPath.row - 1]
-            vc.titleName = nameArray[indexPath.row - 1]
-            vc.prof = profArray[indexPath.row - 1]
+        if indexPath.row != 0 {
+            self.pushVC(id: "ProfileVC") { (vc:ProfileVC) in
+                vc.isOtherProfile = true
+                vc.img = imageArray[indexPath.row - 1]
+                vc.titleName = nameArray[indexPath.row - 1]
+                vc.prof = profArray[indexPath.row - 1]
+            }
         }
     }
     

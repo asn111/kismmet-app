@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import CDAlertView
 
 class SettingVC: MainViewController {
 
     
     @IBOutlet weak var settingTV: UITableView!
     
-    var lblTxt = ["","","Edit Profile","Notifications","Change Password","Membership","Privacy Policy","About Kismmet","Account Status","Logout"]
+    var lblTxt = ["","","Edit Profile","Edit Privacy Options","Notifications","Change Password","Membership","Privacy Policy","About Kismmet","Account Status","Logout"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,31 @@ class SettingVC: MainViewController {
         settingTV.dataSource = self
         settingTV.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
         settingTV.register(UINib(nibName: "SettingTVCell", bundle: nil), forCellReuseIdentifier: "SettingTVCell")
+    }
+    
+    func showAlert(){
+        let message = "Alert!"
+        let alert = CDAlertView(title: message, message: "Are you sure you want to Logout?", type: .warning)
+        let action = CDAlertViewAction(title: "Logout",
+                                       handler: {[weak self] action in
+            self?.navigateVC(id: "SplashVC") { (vc:SplashVC) in }
+            return true
+        })
+        let cancel = CDAlertViewAction(title: "Cancel",
+                                       handler: { action in
+            print("CANCEL PRESSED")
+            return true
+        })
+        alert.isTextFieldHidden = true
+        alert.add(action: action)
+        alert.add(action: cancel)
+        alert.hideAnimations = { (center, transform, alpha) in
+            transform = .identity
+            alpha = 0
+        }
+        alert.show() { (alert) in
+            print("completed")
+        }
     }
     
     @objc func picBtnPressed(sender: UIButton) {
@@ -75,19 +101,21 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
             case 2:
-                self.pushVC(id: "ProfileSetupExtend") { (vc:ProfileSetupExtend) in
+                self.pushVC(id: "EditProfileSetup") { (vc:EditProfileSetup) in }
+            case 3:
+                self.pushVC(id: "EditProfileSetupExt") { (vc:EditProfileSetupExt) in
                     vc.isFromSetting = true
                 }
-            case 3:
-                self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
             case 4:
-                self.pushVC(id: "ChangePassVC") { (vc:ChangePassVC) in }
+                self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
             case 5:
+                self.pushVC(id: "ChangePassVC") { (vc:ChangePassVC) in }
+            case 6:
                 self.pushVC(id: "MembershipVC") { (vc:MembershipVC) in }
-            case 8:
-                self.pushVC(id: "AccountStatusVC") { (vc:AccountStatusVC) in }
             case 9:
-                self.navigateVC(id: "SplashVC") { (vc:SplashVC) in }
+                self.pushVC(id: "AccountStatusVC") { (vc:AccountStatusVC) in }
+            case 10:
+                showAlert()
             default:
                 print("")
         }
