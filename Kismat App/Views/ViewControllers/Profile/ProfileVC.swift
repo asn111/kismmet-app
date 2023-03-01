@@ -41,7 +41,7 @@ class ProfileVC: MainViewController {
         if isOtherProfile {
             self.navigationController?.popViewController(animated: true)
         } else {
-            self.pushVC(id: "SettingVC") { (vc:SettingVC) in }
+            self.tabBarController?.selectedIndex = 2
         }
     }
     @objc func notifBtnPressed(sender: UIButton) {
@@ -60,11 +60,13 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
             case 0:
                 let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
-                cell.headerLogo.isHidden = false
+                cell.headerLogo.isHidden = true
                 cell.toolTipBtn.isHidden = true
                 cell.searchTFView.isHidden = true
                 cell.profileView.isHidden = false
                 cell.headerView.isHidden = false
+                cell.headerLbl.isHidden = false
+                cell.headerLbl.text = "MY PROFILE"
                 
                 cell.profilePicBtn.setImage(img, for: .normal)
                 cell.nameLbl.text = titleName
@@ -74,7 +76,7 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                     cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
                     cell.notifBtn.isHidden = true
                 } else {
-                    cell.picBtn.setImage(UIImage(systemName: "gearshape.fill"), for: .normal)
+                    cell.picBtn.borderWidth = 0
                 }
                 
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)

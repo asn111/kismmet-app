@@ -64,7 +64,9 @@ class ProfileSetupExtend: MainViewController {
             if isFromSetting {
                 self.navigationController?.popViewController(animated: true)
             } else {
-                self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in }
+                self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
+                    vc.selectedIndex = 2
+                }
             }
             
         } else {

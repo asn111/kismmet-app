@@ -10,7 +10,9 @@ import UIKit
 class SignInVC: MainViewController {
 
     @IBAction func SignInBtnPressed(_ sender: Any) {
-        self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in }
+        self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
+            vc.selectedIndex = 2
+        }
     }
     
     @IBOutlet weak var emailTF: FormTextField!

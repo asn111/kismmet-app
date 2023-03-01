@@ -992,10 +992,11 @@ this email.</string>
                         <color key="selectedImageTintColor" name="Primary Yellow"/>
                     </tabBar>
                     <connections>
-                        <segue destination="x4y-mx-1nw" kind="relationship" relationship="viewControllers" id="yNH-F2-bK3"/>
-                        <segue destination="wZg-tK-RbI" kind="relationship" relationship="viewControllers" id="K1s-T4-zc9"/>
-                        <segue destination="T9z-m0-FYh" kind="relationship" relationship="viewControllers" id="bek-df-YEY"/>
-                        <segue destination="Uln-CW-fsy" kind="relationship" relationship="viewControllers" id="iWQ-KK-9mu"/>
+                        <segue destination="x4y-mx-1nw" kind="relationship" relationship="viewControllers" id="t2e-pY-Vox"/>
+                        <segue destination="T9z-m0-FYh" kind="relationship" relationship="viewControllers" id="Nqc-zb-OKK"/>
+                        <segue destination="wZg-tK-RbI" kind="relationship" relationship="viewControllers" id="i2w-Fj-ahU"/>
+                        <segue destination="Uln-CW-fsy" kind="relationship" relationship="viewControllers" id="ywL-U1-c9k"/>
+                        <segue destination="QSV-IC-db0" kind="relationship" relationship="viewControllers" id="tkL-Rj-pNf"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CKN-ox-Ifn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1058,7 +1059,7 @@ this email.</string>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" id="XEA-XE-p15">
-                        <imageReference key="image" image="figure.wave" catalog="system" symbolScale="medium"/>
+                        <imageReference key="image" image="wifi man grey smaller" symbolScale="medium"/>
                     </tabBarItem>
                     <connections>
                         <outlet property="feedTV" destination="kiX-Wa-bbG" id="An5-R1-aUX"/>
@@ -1124,7 +1125,7 @@ this email.</string>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" id="kNm-uy-qSU">
-                        <imageReference key="image" image="eye.circle.fill" catalog="system" symbolScale="medium"/>
+                        <imageReference key="image" image="gearshape.fill" catalog="system" symbolScale="medium"/>
                     </tabBarItem>
                     <connections>
                         <outlet property="settingTV" destination="lKF-49-Y4k" id="Xqw-1O-Arh"/>
@@ -1132,7 +1133,7 @@ this email.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="imB-eK-my0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4250" y="718"/>
+            <point key="canvasLocation" x="3868" y="718"/>
         </scene>
         <!--NotificationVC-->
         <scene sceneID="e7Y-Ut-z6s">
@@ -1272,9 +1273,12 @@ this email.</string>
                                                 </constraints>
                                                 <color key="tintColor" name="Secondary Grey"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="figure.wave" catalog="system">
+                                                <state key="normal" image="wifi man grey">
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="feedBtnPressed:" destination="ewU-MZ-Hda" eventType="touchUpInside" id="ec8-GH-STf"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1734,9 +1738,12 @@ this email.</string>
                                                 </constraints>
                                                 <color key="tintColor" name="Secondary Grey"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="figure.wave" catalog="system">
+                                                <state key="normal" image="wifi man grey">
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="feedBtnPressed:" destination="Zdl-a2-s54" eventType="touchUpInside" id="hDU-V8-ZrB"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2059,9 +2066,12 @@ this email.</string>
                                                 </constraints>
                                                 <color key="tintColor" name="Secondary Grey"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="figure.wave" catalog="system">
+                                                <state key="normal" image="wifi man grey">
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="feedBtnPressed:" destination="CM1-oY-xUi" eventType="touchUpInside" id="bGt-ur-PKP"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2781,14 +2791,15 @@ this email.</string>
         <image name="bell.fill" catalog="system" width="123" height="128"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
         <image name="eye.circle.fill" catalog="system" width="128" height="123"/>
-        <image name="figure.wave" catalog="system" width="80" height="128"/>
+        <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="girl" width="407" height="612"/>
         <image name="logo name" width="3289" height="512"/>
         <image name="person.circle.fill" catalog="system" width="128" height="123"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="sub logo text" width="3270" height="512"/>
         <image name="wifi man" width="332" height="512"/>
-        <image name="wifi man grey" width="416" height="512"/>
+        <image name="wifi man grey" width="162" height="152"/>
+        <image name="wifi man grey smaller" width="35" height="43"/>
         <namedColor name="BG Base White">
             <color red="0.9570000171661377" green="0.9570000171661377" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

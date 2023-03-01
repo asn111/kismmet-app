@@ -32,6 +32,10 @@ class StarredVC: MainViewController {
         starredTV.register(UINib(nibName: "FeedItemsTVCell", bundle: nil), forCellReuseIdentifier: "FeedItemsTVCell")
     }
     
+    @objc func picBtnPressed(sender: UIButton) {
+        self.tabBarController?.selectedIndex = 2
+    }
+    
     @objc func notifBtnPressed(sender: UIButton) {
         self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
     }
@@ -55,8 +59,12 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
                 cell.swipeTxtLbl.isHidden = false
                 cell.headerView.isHidden = false
                 
-                cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
                 
+                cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
+                cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
+
+                cell.picBtn.borderWidth = 0
+
                 
                 return cell
                 

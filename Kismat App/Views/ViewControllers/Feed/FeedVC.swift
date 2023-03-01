@@ -58,6 +58,9 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                 
                 cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
                 
+                cell.picBtn.setImage(UIImage(named: "girl"), for: .normal)
+                cell.picBtn.isUserInteractionEnabled = false
+                
                 cell.viewCountsLbl.attributedText = NSAttributedString(string: "14 out of 15 profiles viewed", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
                 return cell
                 

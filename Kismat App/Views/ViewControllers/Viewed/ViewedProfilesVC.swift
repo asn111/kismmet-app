@@ -31,6 +31,9 @@ class ViewedProfilesVC: MainViewController {
         viewedListTV.register(UINib(nibName: "FeedItemsTVCell", bundle: nil), forCellReuseIdentifier: "FeedItemsTVCell")
     }
     
+    @objc func picBtnPressed(sender: UIButton) {
+        self.tabBarController?.selectedIndex = 2
+    }
     @objc func notifBtnPressed(sender: UIButton) {
         self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
     }
@@ -48,14 +51,18 @@ extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
             case 0:
                 let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
-                cell.viewedprofLbl.isHidden = false
-                cell.viewedprofLbl.text = "WHO VIEWED MY PROFILE"
+                cell.headerLbl.isHidden = false
+                cell.headerLbl.text = "VIEWED BY"
                 cell.toolTipBtn.isHidden = true
                 cell.searchTFView.isHidden = true
                 cell.headerView.isHidden = false
                 
-                cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
                 
+                cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
+
+                cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
+                cell.picBtn.borderWidth = 0
+
                 
                 return cell
                 

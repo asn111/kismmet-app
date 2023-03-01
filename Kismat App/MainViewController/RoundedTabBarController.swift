@@ -38,7 +38,7 @@ class RoundedTabBarController: UITabBarController {
         if let items = tabBar.items {
             items.forEach { item in
 
-                item.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: -15, right: 0)
+                item.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 15, right: 0)
             }
         }
         

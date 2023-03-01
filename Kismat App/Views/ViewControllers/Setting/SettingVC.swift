@@ -57,7 +57,10 @@ class SettingVC: MainViewController {
     }
     
     @objc func picBtnPressed(sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        self.tabBarController?.selectedIndex = 2
+    }
+    @objc func notifBtnPressed(sender: UIButton) {
+        self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
     }
 }
 //MARK: TableView Extention
@@ -72,23 +75,24 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
             case 0:
                 let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
+                
                 cell.headerLbl.isHidden = false
                 cell.headerLbl.text = "SETTINGS"
-                cell.notifBtn.isHidden = true
                 cell.toolTipBtn.isHidden = true
                 cell.searchTFView.isHidden = true
                 cell.profileView.isHidden = false
                 cell.ratingView.isHidden = true
                 cell.headerView.isHidden = false
                 
-                cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
+                cell.picBtn.borderWidth = 0
                 
-                cell.nameLbl.text = "Tamara"
+                cell.nameLbl.text = "Tamara Pensiero"
                 cell.educationLbl.text = "tamara@gmail.com"
                 cell.professionLbl.text = "+123456789"
                 
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
-                
+                cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
+
                 return cell
                 
             default:

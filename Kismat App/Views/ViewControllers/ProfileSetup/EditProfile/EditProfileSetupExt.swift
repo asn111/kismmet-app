@@ -76,14 +76,17 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
             case 0: // Header
                 let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
-                cell.headerLogo.isHidden = false
-                cell.toolTipBtn.isHidden = true
-                cell.searchTFView.isHidden = true
-                cell.profileView.isHidden = false
-                cell.welcomeView.isHidden = false
-                
-                cell.welcomeHeaderLbl.text = "Hi, Tamara"
-                
+                cell.headerLbl.isHidden = false
+                cell.headerLbl.text = "Hi, Tamara"
+                cell.headerLbl.textAlignment = .left
+                cell.searchView.isHidden = false
+                cell.swipeTxtLbl.isHidden = true
+                cell.headerView.isHidden = false
+                cell.notifBtn.isHidden = true
+                cell.picBtn.addTarget(self, action: #selector(genBtnPressed(sender:)), for: .touchUpInside)
+                cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
+
+
                 
                 return cell
             case 1: // Proximity Lbl View

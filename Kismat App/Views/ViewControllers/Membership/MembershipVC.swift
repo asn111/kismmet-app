@@ -13,6 +13,11 @@ class MembershipVC: MainViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func feedBtnPressed(_ sender: Any) {
+        self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
+            vc.selectedIndex = 2
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
