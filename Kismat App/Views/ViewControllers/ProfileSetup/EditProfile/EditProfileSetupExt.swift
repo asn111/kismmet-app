@@ -49,6 +49,10 @@ class EditProfileSetupExt: MainViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @objc func toolTipBtnPressed(sender:UIButton) {
+        AppFunctions.showToolTip(str: "This is your personal email address, not visible to app users.", btn: sender)
+    }
+    
     @objc func sliderChanged(slider: MultiSlider) {
         print("thumb \(slider.draggedThumbIndex) moved")
         print("now thumbs are at \(slider.value)")
@@ -142,9 +146,11 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 } else {
                     cell.numberView.isHidden = true
                     cell.generalTFView.isHidden = false
+                    cell.toolTipBtn.isHidden = false
                     cell.generalTF.text = dataArray[indexPath.row]
                     cell.generalTF.placeholder = placeholderArray[indexPath.row]
                     AppFunctions.colorPlaceholder(tf: cell.generalTF, s: placeholderArray[indexPath.row])
+                    cell.toolTipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
                     
                 }
                 return cell

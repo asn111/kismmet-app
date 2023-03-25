@@ -10,6 +10,7 @@ import Foundation
 import MaterialComponents.MaterialSnackbar
 import RxSwift
 import CoreLocation
+import MKToolTip
 
 //MARK: Globel Variables
 
@@ -305,6 +306,23 @@ class AppFunctions {
         message.text = str
         MDCSnackbarManager.default.show(message)
     }
+    
+    //MARK: Show ToolTip
+    open class func showToolTip(str: String, btn: UIButton) {
+        
+        let preference = ToolTipPreferences()
+        preference.drawing.bubble.color = UIColor(red: 0.937, green: 0.964, blue: 1.000, alpha: 1.000)
+        preference.drawing.bubble.spacing = 10
+        preference.drawing.bubble.cornerRadius = 5
+        preference.drawing.bubble.inset = 15
+        preference.drawing.bubble.border.color = UIColor(named: "Secondary Grey")
+        preference.drawing.bubble.border.width = 1
+        preference.drawing.arrow.tipCornerRadius = 5
+        preference.drawing.message.color = UIColor(named: "Text grey") ?? UIColor.lightGray
+        preference.drawing.message.font = UIFont(name: "Roboto", size: 12)!.bold
+        btn.showToolTip(identifier: "", message: str, arrowPosition: .top, preferences: preference, delegate: nil)
+    }
+    
     
     //MARK: iPad Check
     open class func isIpad() -> Bool {

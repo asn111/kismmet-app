@@ -91,11 +91,11 @@ extension ProfileSetupVC : UITableViewDelegate, UITableViewDataSource {
 
                 }
                 if placeholderArray[indexPath.row] == "Public Email" {
-                    cell.imageIconIV.isHidden = false
+                    cell.toolTipBtn.isHidden = false
                 } else if placeholderArray[indexPath.row] == "Date of Birth" {
-                    cell.imageIconIV.isHidden = false
+                    cell.toolTipBtn.isHidden = false
                 } else {
-                    cell.imageIconIV.isHidden = true
+                    cell.toolTipBtn.isHidden = true
                 }
                 
                 return cell

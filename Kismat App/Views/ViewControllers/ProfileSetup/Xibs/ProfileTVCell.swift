@@ -10,7 +10,8 @@ import CountryPickerView
 
 class ProfileTVCell: UITableViewCell {
 
-    @IBOutlet weak var imageIconIV: UIImageView!
+    
+    @IBOutlet weak var toolTipBtn: UIButton!
     @IBOutlet weak var numberView: RoundCornerView!
     @IBOutlet weak var numberTF: FormTextField!
     @IBOutlet weak var countryPickerView: CountryPickerView!

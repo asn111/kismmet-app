@@ -12,8 +12,9 @@ class EditProfileSetup: MainViewController {
     
     @IBOutlet weak var profileTV: UITableView!
     
-    var placeholderArray = ["","Full Name","Date of Birth","Where do you work / study?","Title","Tell us about your self..",""]
-    var dataArray = ["","Tamara Pensiero ","Feb 25, 1993","Rice University, Houston TX","Professor","Chemistry professor, having a decade of experience in teaching chemistry. Completed PHD from Rich University, Houston TX. Nobel prize winner in....",""]
+    var placeholderArray = ["","Full Name","Date of Birth"
+                            ,"Work Email","Where do you work / study?","Title","Tell us about your self..",""]
+    var dataArray = ["","Tamara Pensiero ","Feb 25, 1993","tamar@kismet.org.com","Rice University, Houston TX","Professor","Chemistry professor, having a decade of experience in teaching chemistry. Completed PHD from Rich University, Houston TX. Nobel prize winner in....",""]
     
     var socialAccArray = ["","Tamara Pensiero","@tamaraapp","@tamara","@tamarasnap","My Website"]
     var socialAccImgArray = [UIImage(named: ""),UIImage(named: "LinkedIn"),UIImage(named: "Twitter"),UIImage(named: "Insta"),UIImage(named: "snapchat"),UIImage(named: "website")]
@@ -192,12 +193,12 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                             cell.generalTF.text = dataArray[indexPath.row]
                         }
                     }
-                    if placeholderArray[indexPath.row] == "Public Email" {
-                        cell.imageIconIV.isHidden = false
+                    if placeholderArray[indexPath.row] == "Work Email" {
+                        cell.toolTipBtn.isHidden = false
                     } else if placeholderArray[indexPath.row] == "Date of Birth" {
-                        cell.imageIconIV.isHidden = false
+                        cell.toolTipBtn.isHidden = false
                     } else {
-                        cell.imageIconIV.isHidden = true
+                        cell.toolTipBtn.isHidden = true
                     }
                     return cell
                     

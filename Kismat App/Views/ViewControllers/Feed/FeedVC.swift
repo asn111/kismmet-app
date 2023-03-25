@@ -6,12 +6,18 @@
 //
 
 import UIKit
+import Combine
+import CoreLocation
 
 class FeedVC: MainViewController {
 
     
     @IBOutlet weak var feedTV: UITableView!
     
+    //MARK: PROPERTIES
+    var locationManager = LocationManager()
+    var cancellable: AnyCancellable? = nil
+    var location = CLLocation()
     
     var nameArray = ["Zoya Grey","James Nio","Kris Burner","Nesa Node","Mark Denial"]
     var profArray = ["Professor","Bachelor, Student","Entrepreneur","Chemist","Professor"]
@@ -21,6 +27,18 @@ class FeedVC: MainViewController {
         super.viewDidLoad()
 
         registerCells()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.cancellable = self.locationManager.$currentLocation.sink(receiveValue: {[weak self] (CLLocation) in
+            Logs.show(message: "LOC C: \(String(describing: CLLocation))")
+            if let loc = CLLocation {
+                self?.location = loc
+                Logs.show(message: "LOC: \(String(describing: self?.location))")
+            }
+        })
     }
     
     func registerCells() {

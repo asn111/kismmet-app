@@ -13,7 +13,7 @@ class SettingVC: MainViewController {
     
     @IBOutlet weak var settingTV: UITableView!
     
-    var lblTxt = ["","","Edit Profile","Edit Privacy Options","Notifications","Change Password","Membership","Privacy Policy","About Kismmet","Account Status","Logout"]
+    var lblTxt = ["","","Edit Profile","Preferences","Notifications","Change Password","Membership","Privacy Policy","About Kismmet","Account Status","Logout"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

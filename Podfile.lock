@@ -169,6 +169,7 @@ PODS:
   - MDFTextAccessibility (2.0.1)
   - MessageKit (3.0.0):
     - InputBarAccessoryView (~> 4.2.2)
+  - MKToolTip (1.0.6)
   - MultiSlider (1.13.2):
     - AvailableHapticFeedback
     - SweeterSwift
@@ -231,6 +232,7 @@ DEPENDENCIES:
   - MaterialComponents/Ripple
   - MaterialComponents/Snackbar
   - MessageKit (~> 3.0.0)
+  - MKToolTip
   - MultiSlider
   - PKHUD
   - PopoverKit (~> 0.2.0)
@@ -272,6 +274,7 @@ SPEC REPOS:
     - MDFInternationalization
     - MDFTextAccessibility
     - MessageKit
+    - MKToolTip
     - MultiSlider
     - nanopb
     - PKHUD
@@ -317,6 +320,7 @@ SPEC CHECKSUMS:
   MDFInternationalization: d697c55307816222a55685c4ccb1044ffb030c12
   MDFTextAccessibility: f4bb4cc2194286651b59a215fdeaa0e05dc90ba5
   MessageKit: e892a9ca49ebe6d82684d3a93ad84021fa23e2c6
+  MKToolTip: 69509b1cada10f96bd9f4ab559a768e7c6557933
   MultiSlider: 66271d410330e63ded9e468d4ef420d5dbe31d2e
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
@@ -338,6 +342,6 @@ SPEC CHECKSUMS:
   TransitionableTab: 54a5d0af475033bdb83959fde4e5d6201af7e2ab
   UIMultiPicker: 29bf824c5251822ca4040b933f6204e617e6ba3f
 
-PODFILE CHECKSUM: bbaa0dbeb1ae5881859868cba57aed693f57702a
+PODFILE CHECKSUM: 83bec79bc39b14c3f489ec498b7c07c7805e4d3f
 
 COCOAPODS: 1.11.3
