@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+#platform :ios, '12.0'
 
 target 'Kismat App' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -15,6 +15,7 @@ target 'Kismat App' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
   
+  pod 'SwiftSignalRClient'
   pod 'Alamofire'
   pod 'SwiftDate'
   pod 'RealmSwift'
@@ -42,8 +43,6 @@ target 'Kismat App' do
   pod 'DateTimePicker' #always copy DateTimePicker.swift content before installing new one.
   
   pod 'Stripe', '~> 15.0.0'
-  
-
   
 
   target 'Kismat AppTests' do

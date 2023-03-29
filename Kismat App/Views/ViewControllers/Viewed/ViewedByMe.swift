@@ -1,59 +1,55 @@
 //
-//  StarredVC.swift
+//  ViewedByMe.swift
 //  Kismat App
 //
-//  Created by Ahsan Iqbal on 12/02/2023.
+//  Created by Ahsan Iqbal on 27/03/2023.
 //
 
 import UIKit
 
-class StarredVC: MainViewController {
-
-    @IBOutlet weak var starredTV: UITableView!
+class ViewedByMeVC: MainViewController {
     
-    var nameArray = ["James Nio","Nesa Node"]
-    var profArray = ["Bachelor, Student","Chemist"]
-    var imageArray = [UIImage(named: "guy"),UIImage(named: "teacher")]
+    
+    @IBOutlet weak var viewedListTV: UITableView!
+    
+    var nameArray = ["James Nio","Kris Burner","Mark Denial"]
+    var profArray = ["Bachelor, Student","Entrepreneur","Professor"]
+    var imageArray = [UIImage(named: "guy"),UIImage(named: "office"),UIImage(named: "professor")]
     
     var users = [UserModel]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         registerCells()
-        getStarUsers(load: true)
+        getViewedByMe(load: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getStarUsers(load: false)
-
+        
+        getViewedByMe(load: false)
     }
     
     func registerCells() {
         
-        starredTV.tableFooterView = UIView()
-        starredTV.separatorStyle = .none
-        starredTV.delegate = self
-        starredTV.dataSource = self
-        starredTV.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
-        starredTV.register(UINib(nibName: "FeedItemsTVCell", bundle: nil), forCellReuseIdentifier: "FeedItemsTVCell")
+        viewedListTV.tableFooterView = UIView()
+        viewedListTV.separatorStyle = .none
+        viewedListTV.delegate = self
+        viewedListTV.dataSource = self
+        viewedListTV.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
+        viewedListTV.register(UINib(nibName: "FeedItemsTVCell", bundle: nil), forCellReuseIdentifier: "FeedItemsTVCell")
     }
     
     @objc func picBtnPressed(sender: UIButton) {
-        self.tabBarController?.selectedIndex = 2
+        self.navigationController?.popViewController(animated: true)
     }
-    
     @objc func notifBtnPressed(sender: UIButton) {
         self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
     }
-    
-    @objc func toolBtnPressed(sender: UIButton) {
-        AppFunctions.showToolTip(str: "Search Users that you marked starred.", btn: sender)
-    }
     //MARK: API METHODS
     
-    func getStarUsers(load: Bool) {
+    func getViewedByMe(load: Bool) {
         
         if load {
             self.showPKHUD(WithMessage: "Fetching...")
@@ -64,14 +60,14 @@ class StarredVC: MainViewController {
         
         APIService
             .singelton
-            .getStarredUsers()
+            .getViewedByMe()
             .subscribe({[weak self] model in
                 guard let self = self else {return}
                 switch model {
                     case .next(let val):
                         if val.count > 0 {
                             self.users = val
-                            self.starredTV.reloadData()
+                            self.viewedListTV.reloadData()
                             self.hidePKHUD()
                         } else {
                             self.hidePKHUD()
@@ -90,7 +86,7 @@ class StarredVC: MainViewController {
     
 }
 //MARK: TableView Extention
-extension StarredVC : UITableViewDelegate, UITableViewDataSource {
+extension ViewedByMeVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count + 1
@@ -102,18 +98,17 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
             case 0:
                 let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
                 cell.headerLbl.isHidden = false
-                cell.headerLbl.text = "STARRED"
-                cell.searchView.isHidden = false
-                cell.swipeTxtLbl.isHidden = false
+                cell.headerLbl.text = "VIEWED BY ME"
+                cell.toolTipBtn.isHidden = true
+                cell.searchTFView.isHidden = true
                 cell.headerView.isHidden = false
                 
-
-                cell.toolTipBtn.addTarget(self, action: #selector(toolBtnPressed(sender:)), for: .touchUpInside)
-                cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
+                cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
+                cell.notifBtn.isHidden = true
+                
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
-
-                cell.picBtn.borderWidth = 0
-
+                
+                
                 
                 return cell
                 
@@ -124,7 +119,8 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
                 cell.professionLbl.text = user.workTitle
                 cell.educationLbl.text = user.workAddress
                 cell.profilePicIV.image = UIImage(named: "placeholder")
-                cell.starLbl.image = UIImage(systemName: "star.fill")
+                //cell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+                
                 
                 return cell
         }
@@ -136,10 +132,15 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
                 vc.userModel = users[indexPath.row - 1]
             }
         }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        if indexPath.row == 0 {
+            return 100.0
+        } else {
+            return UITableView.automaticDimension
+        }
     }
 }
 

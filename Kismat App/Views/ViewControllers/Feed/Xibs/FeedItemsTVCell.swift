@@ -10,6 +10,8 @@ import UIKit
 class FeedItemsTVCell: UITableViewCell {
 
     
+    @IBOutlet weak var blurView: RoundCornerView!
+    @IBOutlet weak var nonBlurView: RoundCornerView!
     @IBOutlet weak var profilePicIV: RoundedImageView!
     @IBOutlet weak var nameLbl: fullyCustomLbl!
     @IBOutlet weak var educationLbl: fullyCustomLbl!

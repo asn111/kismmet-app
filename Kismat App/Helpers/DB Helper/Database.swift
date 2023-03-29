@@ -21,7 +21,48 @@ class Database {
     
     //MARK: create
     
-   
+    func createUserDB(APIlist: UserModel) {
+        let realm = try! Realm()
+        let userDB = UserDBModel()
+        
+        try! realm.write {
+            if APIlist.userId != nil {userDB.userId = APIlist.userId}
+            if APIlist.userName != nil {userDB.userName = APIlist.userName}
+            if APIlist.email != nil {userDB.email = APIlist.email}
+            if APIlist.publicEmail != nil {userDB.publicEmail = APIlist.publicEmail}
+            if APIlist.countryCode != nil {userDB.countryCode = APIlist.countryCode}
+            if APIlist.phone != nil {userDB.phone = APIlist.phone}
+            if APIlist.dob != nil {userDB.dob = APIlist.dob}
+            if APIlist.workAddress != nil {userDB.workAddress = APIlist.workAddress}
+            if APIlist.workTitle != nil {userDB.workTitle = APIlist.workTitle}
+            if APIlist.about != nil {userDB.about = APIlist.about}
+            if APIlist.proximity != nil {userDB.proximity = APIlist.proximity}
+            if APIlist.isProfileVisible != nil {userDB.isProfileVisible = APIlist.isProfileVisible}
+            if APIlist.isProfileUpdated != nil {userDB.isProfileUpdated = APIlist.isProfileUpdated}
+            if APIlist.isStarred != nil {userDB.isStarred = APIlist.isStarred}
+            if APIlist.tags != nil {userDB.tags = APIlist.tags}
+            if APIlist.isActive != nil {userDB.isActive = APIlist.isActive}
+            
+            realm.create(UserDBModel.self, value: userDB, update: .all)
+        }
+    }
+    
+    func createSocialAccDB(APIlist: [SocialAccModel]) {
+        let realm = try! Realm()
+        let socialDB = SocialAccDBModel()
+        
+        try! realm.write {
+            for item in APIlist {
+                if item.linkTitle != nil {socialDB.linkTitle = item.linkTitle}
+                if item.linkUrl != nil {socialDB.linkUrl = item.linkUrl}
+                if item.linkTypeId != nil {socialDB.linkTypeId = item.linkTypeId}
+                if item.linkType != nil {socialDB.linkType = item.linkType}
+                if item.socialAccountId != nil {socialDB.socialAccountId = item.socialAccountId}
+                
+                realm.create(SocialAccDBModel.self, value: socialDB, update: .all)
+            }
+        }
+    }
     
     
     ///////////////////*********************////////////////////////********************////////////////////////*********************///////////////////////
@@ -30,6 +71,15 @@ class Database {
     
     // MARK: Fetch Records
     
+    func fetchloggedInUser() -> Results<UserDBModel> {
+        let realm = try! Realm()
+        return realm.objects(UserDBModel.self).filter(NSPredicate(format: "userId = %@", "\(AppFunctions.getUserId())"))
+    }
+    
+    func fetchSocialAccList() -> Results<SocialAccDBModel> {
+        let realm = try! Realm()
+        return realm.objects(SocialAccDBModel.self)
+    }
     
     ///////////////////*********************////////////////////////********************////////////////////////*********************///////////////////////
     ///////////////////*********************////////////////////////********************////////////////////////*********************///////////////////////

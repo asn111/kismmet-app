@@ -265,7 +265,7 @@ and Privacy Policy</string>
                                                     <constraint firstAttribute="width" constant="353" id="Tu9-El-w7Z"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="name"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="emailAddress" textContentType="email"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderRadious">
                                                         <real key="value" value="6"/>
@@ -300,7 +300,7 @@ and Privacy Policy</string>
                                                     <constraint firstAttribute="width" constant="353" id="iFI-lz-rI6"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="name"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" secureTextEntry="YES" textContentType="password"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderRadious">
                                                         <real key="value" value="6"/>
@@ -333,7 +333,7 @@ and Privacy Policy</string>
                                                     <constraint firstAttribute="height" constant="60" id="kC0-qE-LZh"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="name"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" secureTextEntry="YES" textContentType="password"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderRadious">
                                                         <real key="value" value="6"/>
@@ -594,7 +594,7 @@ this email.</string>
                                                     <constraint firstAttribute="width" constant="353" id="fnp-E9-MJs"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="name"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="emailAddress" textContentType="email"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderRadious">
                                                         <real key="value" value="6"/>
@@ -629,7 +629,7 @@ this email.</string>
                                                     <constraint firstAttribute="width" constant="353" id="FL6-el-3Xc"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="name"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" secureTextEntry="YES" textContentType="password"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderRadious">
                                                         <real key="value" value="6"/>
@@ -759,10 +759,10 @@ this email.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qG-Fq-dO6" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="552" width="393" height="300"/>
+                                <rect key="frame" x="0.0" y="492" width="393" height="360"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hzv-hu-A8p" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
-                                        <rect key="frame" x="203" y="192" width="170" height="56"/>
+                                        <rect key="frame" x="203" y="249" width="170" height="56"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="170" id="8bA-9W-UT6"/>
                                             <constraint firstAttribute="height" constant="56" id="CjC-GY-5Qg"/>
@@ -784,7 +784,7 @@ this email.</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KaR-Mc-BMB" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="192" width="170" height="56"/>
+                                        <rect key="frame" x="20" y="249" width="170" height="56"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="170" id="jRL-Ls-laA"/>
                                             <constraint firstAttribute="height" constant="56" id="mEi-Aq-eVl"/>
@@ -806,7 +806,7 @@ this email.</string>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cxs-Rj-zIi" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="89" width="353" height="60"/>
+                                        <rect key="frame" x="20" y="86" width="353" height="60"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add link" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8kg-pJ-3sY" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
@@ -858,11 +858,64 @@ this email.</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2d-eg-MkL" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="151" width="353" height="60"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Profile link" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Fkw-EZ-gfF" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="353" id="5XL-Dy-nyX"/>
+                                                    <constraint firstAttribute="height" constant="60" id="W65-xL-UMC"/>
+                                                </constraints>
+                                                <color key="textColor" name="Text grey"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="name"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderRadious">
+                                                        <real key="value" value="6"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.66666666669999997" green="0.078431372550000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                        <real key="value" value="13"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" name="Cell BG Base Grey"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Fkw-EZ-gfF" secondAttribute="bottom" id="SZP-Pz-Zam"/>
+                                            <constraint firstAttribute="width" constant="353" id="Ujm-bp-V4I"/>
+                                            <constraint firstAttribute="height" constant="60" id="VvK-wc-loT"/>
+                                            <constraint firstItem="Fkw-EZ-gfF" firstAttribute="top" secondItem="s2d-eg-MkL" secondAttribute="top" id="YNG-AG-dd5"/>
+                                            <constraint firstItem="Fkw-EZ-gfF" firstAttribute="leading" secondItem="s2d-eg-MkL" secondAttribute="leading" id="eGA-Sc-ZvZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="Fkw-EZ-gfF" secondAttribute="trailing" id="zHq-7U-Tp6"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                <color key="value" name="Cell BG Base Grey"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                <size key="value" width="0.29999999999999999" height="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="1.3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                <real key="value" value="1.3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Link your Linked In account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eku-i5-B1A" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                        <rect key="frame" x="30" y="30" width="264" height="21"/>
+                                        <rect key="frame" x="30" y="30" width="343" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="LlD-nI-hde"/>
-                                            <constraint firstAttribute="width" constant="264" id="eUR-Ha-Jzr"/>
+                                            <constraint firstAttribute="width" constant="343" id="eUR-Ha-Jzr"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -881,21 +934,24 @@ this email.</string>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="s2d-eg-MkL" firstAttribute="top" secondItem="Cxs-Rj-zIi" secondAttribute="bottom" constant="5" id="34N-XQ-eJy"/>
                                     <constraint firstItem="hzv-hu-A8p" firstAttribute="leading" secondItem="KaR-Mc-BMB" secondAttribute="trailing" priority="500" constant="13" id="3Qa-gA-CUi"/>
+                                    <constraint firstAttribute="trailing" secondItem="s2d-eg-MkL" secondAttribute="trailing" constant="20" symbolic="YES" id="780-lO-EAl"/>
                                     <constraint firstAttribute="trailing" secondItem="hzv-hu-A8p" secondAttribute="trailing" constant="20" symbolic="YES" id="8jD-pR-mrZ"/>
-                                    <constraint firstItem="hzv-hu-A8p" firstAttribute="top" secondItem="Cxs-Rj-zIi" secondAttribute="bottom" constant="43" id="C4v-fS-L7i"/>
+                                    <constraint firstItem="hzv-hu-A8p" firstAttribute="top" secondItem="Cxs-Rj-zIi" secondAttribute="bottom" constant="103" id="C4v-fS-L7i"/>
                                     <constraint firstItem="Cxs-Rj-zIi" firstAttribute="leading" secondItem="1qG-Fq-dO6" secondAttribute="leading" constant="20" symbolic="YES" id="CiW-32-da8"/>
                                     <constraint firstItem="KaR-Mc-BMB" firstAttribute="height" secondItem="hzv-hu-A8p" secondAttribute="height" id="FLF-3g-ZR4"/>
                                     <constraint firstAttribute="trailing" secondItem="Cxs-Rj-zIi" secondAttribute="trailing" constant="20" symbolic="YES" id="IDY-W4-KeH"/>
-                                    <constraint firstItem="KaR-Mc-BMB" firstAttribute="top" secondItem="Cxs-Rj-zIi" secondAttribute="bottom" constant="43" id="Ksb-8k-cZW"/>
+                                    <constraint firstItem="KaR-Mc-BMB" firstAttribute="top" secondItem="Cxs-Rj-zIi" secondAttribute="bottom" constant="103" id="Ksb-8k-cZW"/>
                                     <constraint firstItem="eku-i5-B1A" firstAttribute="top" secondItem="1qG-Fq-dO6" secondAttribute="top" constant="30" id="Lhz-he-DJk"/>
-                                    <constraint firstAttribute="bottom" secondItem="KaR-Mc-BMB" secondAttribute="bottom" constant="52" id="Xcm-qQ-nEm"/>
+                                    <constraint firstAttribute="bottom" secondItem="KaR-Mc-BMB" secondAttribute="bottom" constant="55" id="Xcm-qQ-nEm"/>
                                     <constraint firstItem="KaR-Mc-BMB" firstAttribute="width" secondItem="hzv-hu-A8p" secondAttribute="width" id="Xpr-z6-rPB"/>
-                                    <constraint firstAttribute="bottom" secondItem="hzv-hu-A8p" secondAttribute="bottom" constant="52" id="ZQY-xb-CSk"/>
-                                    <constraint firstItem="Cxs-Rj-zIi" firstAttribute="top" secondItem="eku-i5-B1A" secondAttribute="bottom" constant="38" id="muT-KG-q0B"/>
+                                    <constraint firstItem="s2d-eg-MkL" firstAttribute="leading" secondItem="1qG-Fq-dO6" secondAttribute="leading" constant="20" symbolic="YES" id="YLO-6Q-bPf"/>
+                                    <constraint firstAttribute="bottom" secondItem="hzv-hu-A8p" secondAttribute="bottom" constant="55" id="ZQY-xb-CSk"/>
+                                    <constraint firstItem="hzv-hu-A8p" firstAttribute="top" secondItem="s2d-eg-MkL" secondAttribute="bottom" constant="38" id="fLP-nH-9vk"/>
                                     <constraint firstItem="eku-i5-B1A" firstAttribute="leading" secondItem="1qG-Fq-dO6" secondAttribute="leading" constant="30" id="naY-nX-HEN"/>
                                     <constraint firstItem="KaR-Mc-BMB" firstAttribute="leading" secondItem="1qG-Fq-dO6" secondAttribute="leading" constant="20" symbolic="YES" id="pYB-aM-VaP"/>
-                                    <constraint firstAttribute="height" constant="300" id="x2L-sE-RA1"/>
+                                    <constraint firstAttribute="height" constant="360" id="x2L-sE-RA1"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="topLimitedCornerRadius">
@@ -912,6 +968,15 @@ this email.</string>
                             <constraint firstAttribute="bottom" secondItem="1qG-Fq-dO6" secondAttribute="bottom" id="nKN-V4-dMs"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="adAccLink" destination="s2d-eg-MkL" id="tho-Zz-JJh"/>
+                        <outlet property="addAccLink" destination="Fkw-EZ-gfF" id="hIG-MY-G5f"/>
+                        <outlet property="addAccName" destination="8kg-pJ-3sY" id="Mvj-Js-nLn"/>
+                        <outlet property="addAccView" destination="Cxs-Rj-zIi" id="cqC-XI-vdz"/>
+                        <outlet property="cancelBtnTopConst" destination="C4v-fS-L7i" id="DdE-ON-J24"/>
+                        <outlet property="headingLbl" destination="eku-i5-B1A" id="Iga-fX-mSj"/>
+                        <outlet property="saveBtnTopConst" destination="Ksb-8k-cZW" id="wX7-DG-KUE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kS0-3V-rXR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2611,6 +2676,72 @@ this email.</string>
             </objects>
             <point key="canvasLocation" x="3117" y="-706"/>
         </scene>
+        <!--Other User Profile-->
+        <scene sceneID="p8B-47-d3p">
+            <objects>
+                <viewController storyboardIdentifier="OtherUserProfile" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Foi-6F-gM5" customClass="OtherUserProfile" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pwa-IS-juP">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qh6-pu-kMf">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qku-R8-Thz"/>
+                        <color key="backgroundColor" name="BG Base White"/>
+                        <constraints>
+                            <constraint firstItem="qh6-pu-kMf" firstAttribute="top" secondItem="Pwa-IS-juP" secondAttribute="top" id="0Dl-US-JoX"/>
+                            <constraint firstAttribute="bottom" secondItem="qh6-pu-kMf" secondAttribute="bottom" id="HwD-t6-3MO"/>
+                            <constraint firstItem="qh6-pu-kMf" firstAttribute="leading" secondItem="qku-R8-Thz" secondAttribute="leading" id="NQ1-3u-PUz"/>
+                            <constraint firstItem="qh6-pu-kMf" firstAttribute="trailing" secondItem="qku-R8-Thz" secondAttribute="trailing" id="UkA-ar-xA1"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" id="p3h-5X-Lzi">
+                        <imageReference key="image" image="person.circle.fill" catalog="system" symbolScale="medium"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="otherProfileTV" destination="qh6-pu-kMf" id="ceL-wn-T7x"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DAR-n1-br4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5379" y="4"/>
+        </scene>
+        <!--Viewed By MeVC-->
+        <scene sceneID="3al-Rs-toc">
+            <objects>
+                <viewController storyboardIdentifier="ViewedByMeVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WKn-jx-4Wu" customClass="ViewedByMeVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ogj-FP-lZp">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="UQD-Yj-CMa">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Aym-hK-KT2"/>
+                        <color key="backgroundColor" name="BG Base White"/>
+                        <constraints>
+                            <constraint firstItem="UQD-Yj-CMa" firstAttribute="trailing" secondItem="Aym-hK-KT2" secondAttribute="trailing" id="C4s-ao-FVb"/>
+                            <constraint firstItem="UQD-Yj-CMa" firstAttribute="leading" secondItem="Aym-hK-KT2" secondAttribute="leading" id="hRm-WJ-oaC"/>
+                            <constraint firstAttribute="bottom" secondItem="UQD-Yj-CMa" secondAttribute="bottom" id="u1C-wJ-0cp"/>
+                            <constraint firstItem="UQD-Yj-CMa" firstAttribute="top" secondItem="Ogj-FP-lZp" secondAttribute="top" id="whI-mU-NNV"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" id="1vF-JY-f5m">
+                        <imageReference key="image" image="eye.circle.fill" catalog="system" symbolScale="medium"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="viewedListTV" destination="UQD-Yj-CMa" id="2bF-DN-Qbm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xwT-h6-ssc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3868" y="-1393"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="0ZP-IY-8wV">
@@ -2656,13 +2787,16 @@ this email.</string>
             <size key="intrinsicContentSize" width="34" height="30"/>
         </designable>
         <designable name="D0O-Hf-zFJ">
-            <size key="intrinsicContentSize" width="46.333333333333336" height="13.666666666666666"/>
+            <size key="intrinsicContentSize" width="46.333333333333336" height="12"/>
         </designable>
         <designable name="FdF-zO-SsO">
             <size key="intrinsicContentSize" width="123" height="30"/>
         </designable>
         <designable name="Fde-X5-2WN">
             <size key="intrinsicContentSize" width="174.33333333333334" height="20.333333333333332"/>
+        </designable>
+        <designable name="Fkw-EZ-gfF">
+            <size key="intrinsicContentSize" width="79.333333333333329" height="13.666666666666666"/>
         </designable>
         <designable name="Hvi-f8-508">
             <size key="intrinsicContentSize" width="45" height="20.333333333333332"/>
@@ -2710,7 +2844,7 @@ this email.</string>
             <size key="intrinsicContentSize" width="54" height="30"/>
         </designable>
         <designable name="aRI-Xg-5o1">
-            <size key="intrinsicContentSize" width="87.666666666666671" height="13.666666666666666"/>
+            <size key="intrinsicContentSize" width="87.666666666666671" height="12"/>
         </designable>
         <designable name="af5-1i-EA4">
             <size key="intrinsicContentSize" width="20" height="22"/>
@@ -2779,7 +2913,7 @@ this email.</string>
             <size key="intrinsicContentSize" width="25.666666666666668" height="25.666666666666668"/>
         </designable>
         <designable name="xnB-yp-Wkb">
-            <size key="intrinsicContentSize" width="46.333333333333336" height="13.666666666666666"/>
+            <size key="intrinsicContentSize" width="46.333333333333336" height="12"/>
         </designable>
         <designable name="y1c-ai-HyS">
             <size key="intrinsicContentSize" width="30" height="30"/>

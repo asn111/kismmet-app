@@ -55,6 +55,16 @@ extension CALayer {
 //MARK: UIView
 
 extension UIView {
+    
+    func blurImage() {
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemUltraThinMaterial)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.bounds
+        
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight] // for supporting device rotation
+        self.addSubview(blurEffectView)
+    }
+    
     func roundCorners(corners:UIRectCorner, radius: CGFloat) {
         let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         let mask = CAShapeLayer()
@@ -308,35 +318,6 @@ extension UITextView : UITextViewDelegate
         }
     }
     
-    /// The UITextView placeholder text
-    public var newPlaceholder: String? {
-        get {
-            var placeholderText: String?
-            
-            if let placeholderLabel = self.viewWithTag(100) as? UILabel {
-                placeholderText = placeholderLabel.text
-            }
-            
-            return placeholderText
-        }
-        set {
-            if let placeholderLabel = self.viewWithTag(100) as! UILabel? {
-                placeholderLabel.text = newValue
-                placeholderLabel.sizeToFit()
-            } else {
-                self.addPlaceholder(newValue!)
-            }
-        }
-    }
-    
-    /// When the UITextView did change, show or hide the label based on if the UITextView is empty or not
-    ///
-    /// - Parameter textView: The UITextView that got updated
-    public func textViewDidChange(_ textView: UITextView) {
-        if let placeholderLabel = self.viewWithTag(100) as? UILabel {
-            placeholderLabel.isHidden = self.text.count > 0
-        }
-    }
     
     /// Resize the placeholder UILabel to make sure it's in the same position as the UITextView text
     private func resizePlaceholder() {
@@ -707,14 +688,7 @@ extension UIImage {
 //MARK: UIImageView
 
 extension UIImageView {
-    func blurImage() {
-        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemUltraThinMaterialDark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = self.bounds
-        
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight] // for supporting device rotation
-        self.addSubview(blurEffectView)
-    }
+    
 }
 
 //MARK: UITableView

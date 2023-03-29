@@ -22,6 +22,13 @@ class TagsTVCell: UITableViewCell {
     @IBOutlet weak var tagLbl4: fullyCustomLbl!
     @IBOutlet weak var tagLbl5: fullyCustomLbl!
     
+    @IBOutlet weak var tagView1: RoundCornerView!
+    @IBOutlet weak var tagView2: RoundCornerView!
+    @IBOutlet weak var tagView3: RoundCornerView!
+    @IBOutlet weak var tagView4: RoundCornerView!
+    @IBOutlet weak var tagView5: RoundCornerView!
+    
+    
     var isForEditing: Bool = false {
         didSet {
             bindViewModel()

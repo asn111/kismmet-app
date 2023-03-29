@@ -115,6 +115,9 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="aboutTxtView" destination="F68-w9-xdi" id="qvt-M1-QB9"/>
+            </connections>
             <point key="canvasLocation" x="52.671755725190835" y="46.478873239436624"/>
         </tableViewCell>
     </objects>

@@ -12,15 +12,22 @@ class ProfileSetupExtend: MainViewController {
     
     @IBOutlet weak var profileExtTV: UITableView!
     
-    var socialAccArray = ["Tamara Pensiero","@tamaraapp","@tamara","@tamarasnap","My Website"]
-    var socialAccImgArray = [UIImage(named: "LinkedIn"),UIImage(named: "Twitter"),UIImage(named: "Insta"),UIImage(named: "snapchat"),UIImage(named: "website")]
+    var socialAccArray = ["Network via LinkedIn","Your Twitter account","Your Instagram handle","Snapchat","Link your Website"]
+    var socialAccImgArray = [UIImage(named: "LinkedIn"),UIImage(named: "Twitter"),UIImage(named: "Instagram"),UIImage(named: "Snapchat"),UIImage(named: "Website")]
     
     var isFromSetting = false
+    var proximity = 0
+    var tags = [String]()
+    var isProfileVisible = false
     
+    var profileDict = [String: String]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         registerCells()
+        
+        Logs.show(message: "Profile: \(profileDict)")
     }
     
     func registerCells() {
@@ -37,30 +44,45 @@ class ProfileSetupExtend: MainViewController {
         profileExtTV.register(UINib(nibName: "GeneralButtonTVCell", bundle: nil), forCellReuseIdentifier: "GeneralButtonTVCell")
     }
     
-    @objc func removeBtnPressed(sender:UIButton) {
+    @objc func addBtnPressed(sender:UIButton) {
         switch sender.tag {
             case 6:
-                print("")
+                self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
+                    vc.accountType = "linkedIn"
+                }
             case 7:
-                print("")
+                self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
+                    vc.accountType = "twitter"
+                }
             case 8:
-                print("")
+                self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
+                    vc.accountType = "instagram"
+                }
             case 9:
-                print("")
+                self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
+                    vc.accountType = "snapchat"
+                }
             case 10:
-                self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in }
+                self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
+                    vc.accountType = "website"
+                }
             default:
-                print("")
+                self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
+                    vc.accountType = "tags"
+                }
         }
         
     }
     
-    @objc func addBtnPressed(sender:UIButton) {
+    /*@objc func addBtnPressed(sender:UIButton) {
         self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in }
-    }
+    }*/
     
     @objc func genBtnPressed(sender:UIButton) {
-        if sender.tag == socialAccImgArray.count + 11 {
+        
+        Logs.show(message: "\(isProfileVisible), \(AppFunctions.isShadowModeOn()), \(proximity), \(tags)")
+        
+        /*if sender.tag == socialAccImgArray.count + 11 {
             if isFromSetting {
                 self.navigationController?.popViewController(animated: true)
             } else {
@@ -70,25 +92,32 @@ class ProfileSetupExtend: MainViewController {
             }
             
         } else {
-            self.pushVC(id: "ProfileSetupVC") { (vc:ProfileSetupVC) in
-                vc.isfromExtProf = true
-            }
-        }
+            self.pushVC(id: "ProfileSetupVC") { (vc:ProfileSetupVC) in }
+        }*/
         
     }
     
     @objc func sliderChanged(slider: MultiSlider) {
         print("thumb \(slider.draggedThumbIndex) moved")
         print("now thumbs are at \(slider.value)")
-        if slider.draggedThumbIndex == 0 {
-            //minValue = Int(round(slider.value[0]))
-            //sliderStartLbl.text = "$\(Int(round(slider.value[0])))"
-        } else if slider.draggedThumbIndex == 1 {
-            //maxValue = Int(round(slider.value[1]))
-            //sliderEndLbl.text = "$\(Int(round(slider.value[1])))"
+        
+        if slider.draggedThumbIndex == 1 {
             let cell : MixHeaderTVCell = profileExtTV.cellForRow(at: IndexPath(row: 1, section: 0)) as! MixHeaderTVCell
             cell.proximeterLbl.text = "\(Int(round(slider.value[1]))) m"
             profileExtTV.rectForRow(at: IndexPath(row: 1, section: 0))
+            proximity = Int(round(slider.value[1]))
+        }
+    }
+    
+    @objc func toggleButtonPressed(_ sender: UISwitch) {
+        let indexPath = IndexPath(row: sender.tag, section: 0)
+        if let cell = profileExtTV.cellForRow(at: indexPath) as? MixHeaderTVCell {
+            
+            if cell.toggleBtn.tag == 3 {
+                isProfileVisible = cell.toggleBtn.isOn
+            } else {
+                AppFunctions.setIsShadowMode(value: cell.toggleBtn.isOn)
+            }
         }
     }
 }
@@ -110,7 +139,7 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
                 cell.profileView.isHidden = false
                 cell.welcomeView.isHidden = false
                 
-                cell.welcomeHeaderLbl.text = "Hi, Tamara"
+                cell.welcomeHeaderLbl.text = "Hi, \(profileDict["fullName"] ?? "")"
                 
                 
                 return cell
@@ -131,22 +160,26 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.toggleBtnView.isHidden = false
                 cell.toggleLbl.text = "Profile Visibility"
+                cell.toggleBtn.isOn = true
+                cell.toggleBtn.tag = indexPath.row
+                isProfileVisible = cell.toggleBtn.isOn
+                cell.toggleBtn.addTarget(self, action: #selector(toggleButtonPressed(_:)), for: .valueChanged)
+
                 return cell
             case 4: // Visibility 2
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.toggleBtnView.isHidden = false
                 cell.toggleLbl.text = "Shadow Mode"
+                cell.toggleBtn.isOn = false
+                cell.toggleBtn.tag = indexPath.row
+                AppFunctions.setIsShadowMode(value: cell.toggleBtn.isOn)
+                cell.toggleBtn.addTarget(self, action: #selector(toggleButtonPressed(_:)), for: .valueChanged)
+
                 return cell
             case 5: // Social Accounts Heading
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
-                cell.headerLbl.text = "Social accounts"
-                if isFromSetting {
-                    cell.headerLbl.text = "Link your social accounts"
-                } else {
-                    cell.addBtn.isHidden = false
-                    cell.addBtn.addTarget(self, action: #selector(addBtnPressed(sender:)), for: .touchUpInside)
-                }
+                cell.headerLbl.text = "Link your social accounts"
                 
                 return cell
                 
@@ -160,13 +193,44 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
                 cell.headerLblView.isHidden = false
                 cell.headerLbl.text = "Tags"
                 cell.addBtn.isHidden = false
+                cell.addBtn.tag = indexPath.row
+                if tags.count == 5 {
+                    cell.addBtn.isHidden = true
+                } else {
+                    cell.addBtn.isHidden = false
+                }
+                
                 cell.addBtn.addTarget(self, action: #selector(addBtnPressed(sender:)), for: .touchUpInside)
                 return cell
                 
             case socialAccImgArray.count + 8: // Tags view
                 let cell : TagsTVCell = tableView.dequeueReusableCell(withIdentifier: "TagsTVCell", for: indexPath) as! TagsTVCell
                 cell.isForEditing = true
-
+                
+                if tags.count > 0 {
+                    for i in 0...tags.count - 1 {
+                        switch i {
+                            case 0:
+                                cell.tagLbl1.text = "\(tags[i])"
+                                cell.tagView1.isHidden = false
+                            case 1:
+                                cell.tagLbl2.text = "\(tags[i])"
+                                cell.tagView2.isHidden = false
+                            case 2:
+                                cell.tagLbl3.text = "\(tags[i])"
+                                cell.tagView3.isHidden = false
+                            case 3:
+                                cell.tagLbl4.text = "\(tags[i])"
+                                cell.tagView4.isHidden = false
+                            case 4:
+                                cell.tagLbl5.text = "\(tags[i])"
+                                cell.tagView5.isHidden = false
+                            default:
+                                print("default")
+                        }
+                    }
+                }
+                
                 return cell
                 
             case socialAccImgArray.count + 9: // Tags count
@@ -209,17 +273,17 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
                  
             default: // Social Links
                 let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
-                if isFromSetting {
-                    cell.removeBtn.isHidden = false
-                }
+                
+                cell.removeBtn.isHidden = false
+                cell.removeBtn.setImage(UIImage(systemName: "plus"), for: .normal)
+                cell.removeBtn.cornerRadius = 4
+                cell.removeBtn.tag = indexPath.row
+                
                 cell.socialImgView.image = socialAccImgArray[indexPath.row - 6]
                 cell.socialLbl.text = socialAccArray[indexPath.row - 6]
-                if socialAccArray[indexPath.row - 6] == "My Website" {
-                    cell.removeBtn.setImage(UIImage(systemName: "plus"), for: .normal)
-                    cell.removeBtn.cornerRadius = 4
-                    cell.removeBtn.addTarget(self, action: #selector(removeBtnPressed(sender:)), for: .touchUpInside)
-                    cell.removeBtn.tag = indexPath.row
-                }
+                
+                cell.removeBtn.addTarget(self, action: #selector(addBtnPressed(sender:)), for: .touchUpInside)
+                
                 return cell
         }
     }

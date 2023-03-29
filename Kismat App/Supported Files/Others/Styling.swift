@@ -559,7 +559,7 @@ class FormTextView: UITextView {
         }
     }
 
-    @IBInspectable var txtSize: CGFloat = 13.0 {
+    @IBInspectable var txtSize: CGFloat = 14.0 {
         didSet {
             self.font!.withSize(txtSize)
         }

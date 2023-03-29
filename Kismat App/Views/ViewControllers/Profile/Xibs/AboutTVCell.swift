@@ -9,6 +9,8 @@ import UIKit
 
 class AboutTVCell: UITableViewCell {
 
+    @IBOutlet weak var aboutTxtView: FormTextView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

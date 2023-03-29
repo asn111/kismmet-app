@@ -7,6 +7,7 @@
 
 import UIKit
 import CDAlertView
+import RealmSwift
 
 class SettingVC: MainViewController {
 
@@ -15,10 +16,17 @@ class SettingVC: MainViewController {
     
     var lblTxt = ["","","Edit Profile","Preferences","Notifications","Change Password","Membership","Privacy Policy","About Kismmet","Account Status","Logout"]
     
+    var userdbModel : Results<UserDBModel>!
+    var img = UIImage(named: "placeholder")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if DBService.fetchloggedInUser().count > 0 {
+            self.userdbModel = DBService.fetchloggedInUser()
+        }
         registerCells()
+        userProfile()
     }
     
     func registerCells() {
@@ -36,6 +44,8 @@ class SettingVC: MainViewController {
         let alert = CDAlertView(title: message, message: "Are you sure you want to Logout?", type: .warning)
         let action = CDAlertViewAction(title: "Logout",
                                        handler: {[weak self] action in
+            AppFunctions.resetDefaults2()
+            DBService.removeCompletedDB()
             self?.navigateVC(id: "SplashVC") { (vc:SplashVC) in }
             return true
         })
@@ -62,6 +72,37 @@ class SettingVC: MainViewController {
     @objc func notifBtnPressed(sender: UIButton) {
         self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
     }
+    
+    //MARK: API METHODS
+    
+    func userProfile() {
+        
+        APIService
+            .singelton
+            .getUserById(userId: "")
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        if val {
+                            Logs.show(message: "PROFILE: 👉🏻 \(String(describing: self.userdbModel))")
+                            if DBService.fetchloggedInUser().count > 0 {
+                                self.userdbModel = DBService.fetchloggedInUser()
+                            }
+                            self.settingTV.reloadData()
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
 }
 //MARK: TableView Extention
 extension SettingVC : UITableViewDelegate, UITableViewDataSource {
@@ -85,10 +126,15 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
                 cell.headerView.isHidden = false
                 
                 cell.picBtn.borderWidth = 0
-                
-                cell.nameLbl.text = "Tamara Pensiero"
-                cell.educationLbl.text = "tamara@gmail.com"
-                cell.professionLbl.text = "+123456789"
+                if let userDb = userdbModel {
+                    if let user = userDb.first {
+                        cell.nameLbl.text = user.userName
+                        cell.educationLbl.text = user.publicEmail
+                        cell.professionLbl.text = "\(user.countryCode)\(user.phone)"
+                        cell.profilePicBtn.setImage(img, for: .normal)
+                    }
+                    
+                }
                 
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
                 cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)

@@ -45,6 +45,10 @@ class RoundedTabBarController: UITabBarController {
         tabBar.itemWidth = 30.0
         tabBar.unselectedItemTintColor = .white
         tabBar.itemPositioning = .centered
+        
+        tabBar.shadowImage = UIImage()
+        tabBar.backgroundImage = UIImage()
+        tabBar.backgroundColor = UIColor.clear
     }
 
 }

@@ -8,10 +8,15 @@
 import UIKit
 
 class SignupVC: MainViewController {
-
-    
     
     @IBAction func signUpBtnPressed(_ sender: Any) {
+        /*if email != "" && password != "" {
+            isKeyBoardShown = false
+            view.endEditing(true)
+            userSignup()
+        } else {
+            AppFunctions.showSnackBar(str: "Invalid or Empty Feilds")
+        }*/
         self.navigateVC(id: "ProfileSetupVC") { (vc:ProfileSetupVC) in }
     }
     
@@ -23,14 +28,26 @@ class SignupVC: MainViewController {
     
     @IBOutlet weak var loginLbl: fullyCustomLbl!
     
+    
+    var isKeyBoardShown = false
+    var email = ""
+    var tempPass = ""
+    var password = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        emailTF.delegate = self
+        passwordTF.delegate = self
+        confirmPassword.delegate = self
         emailTF.addDoneButtonOnKeyboard()
         passwordTF.addDoneButtonOnKeyboard()
         confirmPassword.addDoneButtonOnKeyboard()
         
         setupLbl()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         // Do any additional setup after loading the view.
     }
@@ -48,8 +65,73 @@ class SignupVC: MainViewController {
         loginLbl.addGestureRecognizer(tapGesture)
         loginLbl.isUserInteractionEnabled = true
     }
+    
+    //MARK: objc Functions
 
     @objc func handleTap() {
         self.presentVC(id: "SignInVC") { (vc:SignInVC) in }
     }
+    
+    @objc func textFieldDidChangeSelection(_ textField: UITextField) {
+        Logs.show(message: "\(textField.text ?? "nil")")
+        if textField == emailTF {
+            email = textField.text!.isValidEmail ? textField.text! : ""
+        } else if textField == passwordTF {
+            tempPass = !textField.text!.isTFBlank ? textField.text! : ""
+        } else if textField == confirmPassword {
+            password = textField.text!.caseInsensitiveCompare(tempPass) == .orderedSame ? textField.text! : ""
+        }
+    }
+    
+    @objc func action() {
+        isKeyBoardShown = false
+        view.endEditing(true)
+    }
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if !isKeyBoardShown {
+                isKeyBoardShown = true
+                self.view.frame.origin.y -= keyboardSize.height - 250
+            }
+        }
+    }
+    @objc func keyboardWillHide(notification: NSNotification) {
+        isKeyBoardShown = false
+        self.view.frame.origin.y = 0
+    }
+    
+    //MARK: API Functions
+    
+    func userSignup() {
+        self.showPKHUD(WithMessage: "Signing up")
+        
+        let pram : [String : Any] = [ "email": email,
+                                     "password": password,
+                                     "roleId": 1 ]
+        Logs.show(message: "SKILLS PRAM: \(pram)")
+        
+        APIService
+            .singelton
+            .userSignUp(pram: pram)
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        Logs.show(message: "MARKED: 👉🏻 \(val)")
+                        if val {
+                            self.navigateVC(id: "ProfileSetupVC") { (vc:ProfileSetupVC) in }
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
+    
 }

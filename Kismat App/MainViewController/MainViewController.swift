@@ -8,8 +8,10 @@
 import UIKit
 import RxSwift
 import Alamofire
+import SwiftSignalRClient
 
-class MainViewController: UIViewController, UIViewControllerTransitioningDelegate, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate, UIPopoverPresentationControllerDelegate {
+
+class MainViewController: UIViewController, UIViewControllerTransitioningDelegate, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate, HubConnectionDelegate, UIPopoverPresentationControllerDelegate {
 
     //MARK: LifeCycle Methods
 
@@ -35,6 +37,13 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
                 self?.internetView.isHidden = false
             }
         }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
+        
+        // --Signal R Init--
+        
+        if AppFunctions.getToken() != "" && !connectionStarted {
+            //SignalRService.chatHubConnectionDelegate = self
+            //SignalRService.initializeSignalR()
+        }
         
         
         // --Navigation--
@@ -73,6 +82,31 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
         
         internetView.addSubview(internetLbl)
         internetView.bringSubviewToFront(internetLbl)
+    }
+    
+    //MARK: SignalR Delegate Methods
+    func connectionDidOpen(hubConnection: HubConnection) {
+        Logs.show(message: "Con ID: \(String(describing: hubConnection.connectionId))")
+        
+    }
+    
+    func connectionDidFailToOpen(error: Error) {
+        Logs.show(message: "\(String(describing: error))")
+        
+    }
+    
+    func connectionDidClose(error: Error?) {
+        Logs.show(message: "\(String(describing: error))")
+        _ = SignalRManager.init()
+        
+    }
+    
+    func connectionWillReconnect(error: Error) {
+        Logs.show(message: "\(String(describing: error))")
+    }
+    
+    func connectionDidReconnect() {
+        Logs.show(message: "Reconnecting.../.")
     }
     
 }

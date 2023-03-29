@@ -25,18 +25,26 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BGx-be-Ie7" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                 <rect key="frame" x="11" y="10" width="353" height="102"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HDl-UB-qHf">
-                                        <rect key="frame" x="4" y="4" width="345" height="72"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HDl-UB-qHf" customClass="FormTextView" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="4" y="9" width="345" height="85"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                                <color key="value" name="Text grey"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </textView>
                                 </subviews>
                                 <color key="backgroundColor" name="Cell BG Base Grey"/>
                                 <constraints>
+                                    <constraint firstItem="HDl-UB-qHf" firstAttribute="leading" secondItem="BGx-be-Ie7" secondAttribute="leading" constant="4" id="4J0-BE-8HE"/>
                                     <constraint firstAttribute="height" constant="102" id="81R-lN-A0g"/>
+                                    <constraint firstAttribute="trailing" secondItem="HDl-UB-qHf" secondAttribute="trailing" constant="4" id="n5s-ZV-ocd"/>
+                                    <constraint firstAttribute="bottom" secondItem="HDl-UB-qHf" secondAttribute="bottom" constant="8" id="s9Y-Qi-PMa"/>
+                                    <constraint firstItem="HDl-UB-qHf" firstAttribute="top" secondItem="BGx-be-Ie7" secondAttribute="top" constant="9" id="usu-ts-uW9"/>
                                     <constraint firstAttribute="width" constant="353" id="yn9-Zk-YgG"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -75,7 +83,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="generalTV" destination="HDl-UB-qHf" id="HPS-Jh-ocE"/>
+                <outlet property="generalTV" destination="HDl-UB-qHf" id="Zbi-H9-ugD"/>
             </connections>
             <point key="canvasLocation" x="52.671755725190835" y="105.63380281690141"/>
         </tableViewCell>
@@ -86,6 +94,9 @@
         </namedColor>
         <namedColor name="Cell BG Base Grey">
             <color red="0.20800000429153442" green="0.31000000238418579" blue="0.35699999332427979" alpha="0.10499999672174454" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text grey">
+            <color red="0.20800000429153442" green="0.31000000238418579" blue="0.35699999332427979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

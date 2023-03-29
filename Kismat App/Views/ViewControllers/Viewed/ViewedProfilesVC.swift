@@ -15,10 +15,19 @@ class ViewedProfilesVC: MainViewController {
     var profArray = ["Bachelor, Student","Entrepreneur","Professor"]
     var imageArray = [UIImage(named: "guy"),UIImage(named: "office"),UIImage(named: "professor")]
         
+    var users = [UserModel]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         registerCells()
+        getViewedByUsers(load: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        getViewedByUsers(load: false)
     }
     
     func registerCells() {
@@ -37,13 +46,49 @@ class ViewedProfilesVC: MainViewController {
     @objc func notifBtnPressed(sender: UIButton) {
         self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
     }
+    //MARK: API METHODS
+    
+    func getViewedByUsers(load: Bool) {
+        
+        if load {
+            self.showPKHUD(WithMessage: "Fetching...")
+        }
+        
+        let pram : [String : Any] = ["searchString": ""]
+        Logs.show(message: "SKILLS PRAM: \(pram)")
+        
+        APIService
+            .singelton
+            .getViewedByUsers()
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        if val.count > 0 {
+                            self.users = val
+                            self.viewedListTV.reloadData()
+                            self.hidePKHUD()
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
+    
     
 }
 //MARK: TableView Extention
 extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return users.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -68,25 +113,25 @@ extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
                 
             default:
                 let cell : FeedItemsTVCell = tableView.dequeueReusableCell(withIdentifier: "FeedItemsTVCell", for: indexPath) as! FeedItemsTVCell
-                cell.nameLbl.text = nameArray[indexPath.row - 1]
-                cell.professionLbl.text = profArray[indexPath.row - 1]
-                cell.profilePicIV.image = imageArray[indexPath.row - 1]
-                if indexPath.row / 3 == 0 {
-                    cell.starLbl.image = UIImage(systemName: "star")
-                } else {
-                    cell.starLbl.image = UIImage(systemName: "star.fill")
-                }
+                let user = users[indexPath.row - 1]
+                cell.nameLbl.text = user.userName
+                cell.professionLbl.text = user.workTitle
+                cell.educationLbl.text = user.workAddress
+                cell.profilePicIV.image = UIImage(named: "placeholder")
+                cell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+                
+                cell.blurView.isHidden = false
+                cell.blurView.blurImage()
+                
+
                 return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row != 0 {
-            self.pushVC(id: "ProfileVC") { (vc:ProfileVC) in
-                vc.isOtherProfile = true
-                vc.img = imageArray[indexPath.row - 1]
-                vc.titleName = nameArray[indexPath.row - 1]
-                vc.prof = profArray[indexPath.row - 1]
+            self.pushVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
+                vc.userModel = users[indexPath.row - 1]
             }
         }
         

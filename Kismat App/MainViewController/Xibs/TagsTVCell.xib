@@ -26,7 +26,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQf-w8-mcb">
                                 <rect key="frame" x="25" y="8" width="325" height="61"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OrF-Lz-C5N" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OrF-Lz-C5N" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="90" height="28"/>
                                         <subviews>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cre-uA-K6R" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
@@ -64,7 +64,7 @@
                                                         <color key="value" name="Text grey"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                        <real key="value" value="10"/>
+                                                        <real key="value" value="12"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                                 </userDefinedRuntimeAttributes>
@@ -86,7 +86,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ka-tI-lp8" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ka-tI-lp8" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="102" y="0.0" width="90" height="28"/>
                                         <subviews>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qjk-Gm-fBb" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
@@ -124,7 +124,7 @@
                                                         <color key="value" name="Text grey"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                        <real key="value" value="10"/>
+                                                        <real key="value" value="12"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                                 </userDefinedRuntimeAttributes>
@@ -146,7 +146,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qfV-cB-PBj" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qfV-cB-PBj" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="204" y="0.0" width="80" height="28"/>
                                         <subviews>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZIc-mR-nvd" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
@@ -186,7 +186,7 @@
                                                         <color key="value" name="Text grey"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                        <real key="value" value="10"/>
+                                                        <real key="value" value="12"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                                 </userDefinedRuntimeAttributes>
@@ -245,7 +245,7 @@
                                                         <color key="value" name="Text grey"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                        <real key="value" value="10"/>
+                                                        <real key="value" value="12"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                                 </userDefinedRuntimeAttributes>
@@ -307,7 +307,7 @@
                                                         <color key="value" name="Text grey"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                        <real key="value" value="10"/>
+                                                        <real key="value" value="12"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                                 </userDefinedRuntimeAttributes>
@@ -378,19 +378,24 @@
                 <outlet property="tagLbl3" destination="xFn-pr-x5z" id="Fq1-fQ-kbA"/>
                 <outlet property="tagLbl4" destination="0Sd-rE-NEW" id="145-Ns-0a4"/>
                 <outlet property="tagLbl5" destination="muH-6z-pUN" id="tnC-jn-ufS"/>
+                <outlet property="tagView1" destination="OrF-Lz-C5N" id="8Kc-TA-OvM"/>
+                <outlet property="tagView2" destination="9Ka-tI-lp8" id="pIm-28-MYQ"/>
+                <outlet property="tagView3" destination="qfV-cB-PBj" id="cnD-h9-t9J"/>
+                <outlet property="tagView4" destination="CqF-qp-Wag" id="BsV-Mj-D0K"/>
+                <outlet property="tagView5" destination="CId-gD-vV5" id="9Tb-KI-KjH"/>
             </connections>
             <point key="canvasLocation" x="151.90839694656489" y="34.154929577464792"/>
         </tableViewCell>
     </objects>
     <designables>
         <designable name="0Sd-rE-NEW">
-            <size key="intrinsicContentSize" width="59" height="12"/>
+            <size key="intrinsicContentSize" width="70.666666666666671" height="14.333333333333334"/>
         </designable>
         <designable name="9xd-B0-2lT">
             <size key="intrinsicContentSize" width="14.333333333333334" height="19"/>
         </designable>
         <designable name="KRO-RN-hKA">
-            <size key="intrinsicContentSize" width="59" height="12"/>
+            <size key="intrinsicContentSize" width="70.666666666666671" height="14.333333333333334"/>
         </designable>
         <designable name="Qjk-Gm-fBb">
             <size key="intrinsicContentSize" width="14.333333333333334" height="19"/>
@@ -405,13 +410,13 @@
             <size key="intrinsicContentSize" width="14.333333333333334" height="19"/>
         </designable>
         <designable name="gtx-C5-zbC">
-            <size key="intrinsicContentSize" width="63.333333333333336" height="12"/>
+            <size key="intrinsicContentSize" width="75.666666666666671" height="14.333333333333334"/>
         </designable>
         <designable name="muH-6z-pUN">
-            <size key="intrinsicContentSize" width="25" height="12"/>
+            <size key="intrinsicContentSize" width="30" height="14.333333333333334"/>
         </designable>
         <designable name="xFn-pr-x5z">
-            <size key="intrinsicContentSize" width="25" height="12"/>
+            <size key="intrinsicContentSize" width="30" height="14.333333333333334"/>
         </designable>
     </designables>
     <resources>

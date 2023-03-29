@@ -10,8 +10,12 @@ import UIKit
 class SignInVC: MainViewController {
 
     @IBAction func SignInBtnPressed(_ sender: Any) {
-        self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
-            vc.selectedIndex = 2
+        if email != "" && password != "" {
+            isKeyBoardShown = false
+            view.endEditing(true)
+            userLogin()
+        } else {
+            AppFunctions.showSnackBar(str: "Invalid or Empty Feilds")
         }
     }
     
@@ -20,13 +24,23 @@ class SignInVC: MainViewController {
     
     @IBOutlet weak var signUpLbl: fullyCustomLbl!
     
+    var isKeyBoardShown = false
+    var email = ""
+    var password = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        emailTF.delegate = self
+        passwordTF.delegate = self
         emailTF.addDoneButtonOnKeyboard()
         passwordTF.addDoneButtonOnKeyboard()
         
         setupLbl()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         
         // Do any additional setup after loading the view.
     }
@@ -45,8 +59,75 @@ class SignInVC: MainViewController {
         signUpLbl.isUserInteractionEnabled = true
     }
     
+    //MARK: objc Functions
+
     @objc func handleTap() {
         self.presentVC(id: "SignupVC") { (vc:SignupVC) in }
     }
-
+    
+    @objc func textFieldDidChangeSelection(_ textField: UITextField) {
+        Logs.show(message: "\(textField.text ?? "nil")")
+        if textField == emailTF {
+            email = textField.text!.isValidEmail ? textField.text! : ""
+        } else if textField == passwordTF {
+            password = !textField.text!.isTFBlank ? textField.text! : ""
+        }
+    }
+    
+    @objc func action() {
+        isKeyBoardShown = false
+        view.endEditing(true)
+    }
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if !isKeyBoardShown {
+                isKeyBoardShown = true
+                self.view.frame.origin.y -= keyboardSize.height - 250
+            }
+        }
+    }
+    @objc func keyboardWillHide(notification: NSNotification) {
+        isKeyBoardShown = false
+        self.view.frame.origin.y = 0
+    }
+    
+    //MARK: API Functions
+    
+    func userLogin() {
+        self.showPKHUD(WithMessage: "Logging In")
+        
+        let pram : [String : Any] = ["email": email,
+                                     "password": password,
+                                     "deviceId":UIDevice.current.identifierForVendor!.uuidString,
+                                     "deviceName":UIDevice.modelName,
+                                     "devicePlatform":"iOS"]
+        Logs.show(message: "SKILLS PRAM: \(pram)")
+        
+        APIService
+            .singelton
+            .userLogin(pram: pram)
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        Logs.show(message: "MARKED: 👉🏻 \(val)")
+                        if val {
+                            Logs.show(message: "Profile UPDATED: \(AppFunctions.IsProfileUpdated())")
+                            self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
+                                vc.selectedIndex = 2
+                            }
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
+    
 }

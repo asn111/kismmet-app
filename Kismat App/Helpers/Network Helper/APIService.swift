@@ -25,7 +25,7 @@ class APIService: NSObject {
     private override init() {
         super.init()
         
-        baseUrl = "https://dev-api-motiveapp.azurewebsites.net"
+        baseUrl = "https://eoex0jhjk0.execute-api.us-east-1.amazonaws.com"
         Logs.show(message: "SERVER: \(baseUrl)")
         
         self.startMonitoring()
@@ -250,110 +250,6 @@ class APIService: NSObject {
         }
     }
     
-    
-    //MARK: Get Cities
-    func getCities() -> Observable<Bool> {
-        
-        return Observable.create{[weak self] observer -> Disposable in
-            if (self?.isCheckReachable())! {
-                
-                AF.request("\(self?.baseUrl ?? "")/api/Configuration/GetCities", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
-                    .validate()
-                    .responseData{ response in
-                        Logs.show(message: "URL: \(response.debugDescription)")
-                        guard let data = response.data else {
-                            observer.onError(response.error!)
-                            AppFunctions.showSnackBar(str: "Server Request Error")
-                            Logs.show(message: "Error on Response.data\(response.error!)")
-                            return
-                        }
-                        switch response.result {
-                            case .success:
-                                do {
-                                    let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
-                                    Logs.show(message: "SUCCESS IN \(#function)")
-                                    observer.onNext(true)
-                                    observer.onCompleted()
-                                } catch {
-                                    observer.onError(error)
-                                    AppFunctions.showSnackBar(str: "Server Parsing Error")
-                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
-                                }
-                            case .failure(let error):
-                                do {
-                                    let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
-                                    observer.onError(error)
-                                    Logs.show(message: "S:: \(responce.errorMessage ?? "")")
-                                    AppFunctions.showSnackBar(str: responce.message)
-                                }catch {
-                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
-                                    AppFunctions.showSnackBar(str: "Server Request Error")
-                                    observer.onError(error)
-                                }
-                        }
-                    }
-            } else {
-                observer.onNext(false)
-                observer.onCompleted()
-                AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
-            }
-            return Disposables.create()
-        }
-    }
-    
-    
-    //MARK: Get Provinces
-    func getProvinces() -> Observable<Bool> {
-        
-        return Observable.create{[weak self] observer -> Disposable in
-            if (self?.isCheckReachable())! {
-                
-                AF.request("\(self?.baseUrl ?? "")/api/Configuration/GetProvinces", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
-                    .validate()
-                    .responseData{ response in
-                        Logs.show(message: "URL: \(response.debugDescription)")
-                        guard let data = response.data else {
-                            observer.onError(response.error!)
-                            AppFunctions.showSnackBar(str: "Server Request Error")
-                            Logs.show(message: "Error on Response.data\(response.error!)")
-                            return
-                        }
-                        switch response.result {
-                            case .success:
-                                do {
-                                    let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
-                                    Logs.show(message: "SUCCESS IN \(#function)")
-                                    observer.onNext(true)
-                                    observer.onCompleted()
-                                } catch {
-                                    observer.onError(error)
-                                    AppFunctions.showSnackBar(str: "Server Parsing Error")
-                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
-                                }
-                            case .failure(let error):
-                                do {
-                                    let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
-                                    observer.onError(error)
-                                    Logs.show(message: "S:: \(responce.errorMessage ?? "")")
-                                    AppFunctions.showSnackBar(str: responce.message)
-                                }catch {
-                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
-                                    AppFunctions.showSnackBar(str: "Server Request Error")
-                                    observer.onError(error)
-                                }
-                        }
-                    }
-            } else {
-                observer.onNext(false)
-                observer.onCompleted()
-                AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
-            }
-            return Disposables.create()
-        }
-    }
-    
-
-    
     ///////////////////*********************////////////////////////********************////////////////////////*********************///////////////////////
     
     ///////////////////*********************////////////////////////********************////////////////////////*********************///////////////////////
@@ -391,30 +287,18 @@ class APIService: NSObject {
                                     
                                     let isProfileUpdated : String = jwtValue["IsProfileUpdated"] as! String
                                     let isUserAgreement : String = jwtValue["IsUserAgreement"] as! String
-                                    let isPhoneVerifyed : String = jwtValue["IsPhoneVerified"] as! String
-                                    let isEmailVerifyed : String = jwtValue["IsEmailVerified"] as! String
                                     
                                     AppFunctions.saveToken(name: genResponse.body.token ?? "")
                                     AppFunctions.saveUserId(name: userId as! String)
                                     AppFunctions.saveRole(name: role as! String)
                                     AppFunctions.setIsLoggedIn(value: true)
                                     
-//                                    if paymentInfo.contains("True") {
-//                                        AppFunctions.setIsPaymentInfoSaved(value: true)
-//                                    }
                                     if isProfileUpdated.contains("True") {
                                         AppFunctions.setIsProfileUpdated(value: true)
                                     }
                                     if isUserAgreement.contains("True") {
                                         AppFunctions.setIsTermsNCndCheck(value: true)
                                     }
-                                    if isPhoneVerifyed.contains("True") {
-                                        AppFunctions.setIsNumberVerified(value: true)
-                                    }
-                                    if isEmailVerifyed.contains("True") {
-                                        AppFunctions.setIsEmailVerified(value: true)
-                                    }
-                                    
                                     
                                     Logs.show(message: "SUCCESS IN \(#function)")
                                     observer.onNext(true)
@@ -507,7 +391,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(self?.baseUrl ?? "")/api/MotiveUser/UpdateMotiveUserProfile", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/UpdateUserProfile", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -553,19 +437,58 @@ class APIService: NSObject {
         }
     }
     
+    func markStarUser(val: String){
+        
+        if (self.isCheckReachable()) {
+            let pram: Parameters = ["userId": val]
+
+            AF.request("\(self.baseUrl)/api/Users/StarUser", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
+                .validate()
+                .responseData{ response in
+                    Logs.show(message: "URL: \(response.debugDescription)")
+                    guard let data = response.data else {
+                        AppFunctions.showSnackBar(str: "Server Request Error")
+                        Logs.show(message: "Error on Response.data\(response.error!)")
+                        return
+                    }
+                    switch response.result {
+                        case .success:
+                            do {
+                                let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                AppFunctions.showSnackBar(str: genResponse.message)
+                                Logs.show(message: "SUCCESS IN \(#function)")
+                            } catch {
+                                AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                            }
+                        case .failure( _):
+                            do {
+                                let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                AppFunctions.showSnackBar(str: responce.message)
+                            } catch {
+                                Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                AppFunctions.showSnackBar(str: "Server Request Error")
+                            }
+                    }
+                }
+        } else {
+            AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
+        }
+    }
+    
     
     
        //MARK: GET CALLS
     ///////////////////*********************////////////////////////********************////////////////////////*********************///////////////////////
 
-
-    //MARK: Get User By ID
-    func getUserById(userId: String) -> Observable<Bool> {
+    //MARK: Get Proximity Users
+    func getproximityUsers(pram: Parameters) -> Observable<[UserModel]> {
         
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
-                //?userId=\(userId)
-                AF.request("\(self?.baseUrl ?? "")/api/MotiveUser/GetMotiveUserById", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                
+                AF.request("\(self?.baseUrl ?? "")/api/Users/GetProximityUsers", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -579,7 +502,209 @@ class APIService: NSObject {
                             case .success:
                                 do {
                                     let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
-                                    //DBService.createUserDB(APIlist: genResponse.body.motiveUser)
+                                    Logs.show(message: "SUCCESS IN \(#function)")
+                                    observer.onNext(genResponse.body.users)
+                                    observer.onCompleted()
+                                } catch {
+                                    observer.onError(error)
+                                    AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                }
+                            case .failure(let error):
+                                do {
+                                    let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    observer.onError(error)
+                                    Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                    AppFunctions.showSnackBar(str: responce.message)
+                                }catch {
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                    AppFunctions.showSnackBar(str: "Server Request Error")
+                                    observer.onError(error)
+                                }
+                        }
+                    }
+            } else {
+                observer.onNext([UserModel]())
+                observer.onCompleted()
+                AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
+            }
+            return Disposables.create()
+        }
+    }
+    
+    //MARK: Get Starred Users
+    func getStarredUsers() -> Observable<[UserModel]> {
+        
+        return Observable.create{[weak self] observer -> Disposable in
+            if (self?.isCheckReachable())! {
+                
+                AF.request("\(self?.baseUrl ?? "")/api/Users/GetStarredUsers", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                    .validate()
+                    .responseData{ response in
+                        Logs.show(message: "URL: \(response.debugDescription)")
+                        guard let data = response.data else {
+                            observer.onError(response.error!)
+                            AppFunctions.showSnackBar(str: "Server Request Error")
+                            Logs.show(message: "Error on Response.data\(response.error!)")
+                            return
+                        }
+                        switch response.result {
+                            case .success:
+                                do {
+                                    let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    Logs.show(message: "SUCCESS IN \(#function)")
+                                    observer.onNext(genResponse.body.users)
+                                    observer.onCompleted()
+                                } catch {
+                                    observer.onError(error)
+                                    AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                }
+                            case .failure(let error):
+                                do {
+                                    let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    observer.onError(error)
+                                    Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                    AppFunctions.showSnackBar(str: responce.message)
+                                }catch {
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                    AppFunctions.showSnackBar(str: "Server Request Error")
+                                    observer.onError(error)
+                                }
+                        }
+                    }
+            } else {
+                observer.onNext([UserModel]())
+                observer.onCompleted()
+                AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
+            }
+            return Disposables.create()
+        }
+    }
+    
+    //MARK: Get Viewed By Users
+    func getViewedByUsers() -> Observable<[UserModel]> {
+        
+        return Observable.create{[weak self] observer -> Disposable in
+            if (self?.isCheckReachable())! {
+                
+                AF.request("\(self?.baseUrl ?? "")/api/Users/WhoViewedMyProfile", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                    .validate()
+                    .responseData{ response in
+                        Logs.show(message: "URL: \(response.debugDescription)")
+                        guard let data = response.data else {
+                            observer.onError(response.error!)
+                            AppFunctions.showSnackBar(str: "Server Request Error")
+                            Logs.show(message: "Error on Response.data\(response.error!)")
+                            return
+                        }
+                        switch response.result {
+                            case .success:
+                                do {
+                                    let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    Logs.show(message: "SUCCESS IN \(#function)")
+                                    observer.onNext(genResponse.body.profileViewer)
+                                    observer.onCompleted()
+                                } catch {
+                                    observer.onError(error)
+                                    AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                }
+                            case .failure(let error):
+                                do {
+                                    let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    observer.onError(error)
+                                    Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                    AppFunctions.showSnackBar(str: responce.message)
+                                }catch {
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                    AppFunctions.showSnackBar(str: "Server Request Error")
+                                    observer.onError(error)
+                                }
+                        }
+                    }
+            } else {
+                observer.onNext([UserModel]())
+                observer.onCompleted()
+                AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
+            }
+            return Disposables.create()
+        }
+    }
+    
+    
+    //MARK: Get Viewed By Me
+    func getViewedByMe() -> Observable<[UserModel]> {
+        
+        return Observable.create{[weak self] observer -> Disposable in
+            if (self?.isCheckReachable())! {
+                
+                AF.request("\(self?.baseUrl ?? "")/api/Users/ProfilesViewed", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                    .validate()
+                    .responseData{ response in
+                        Logs.show(message: "URL: \(response.debugDescription)")
+                        guard let data = response.data else {
+                            observer.onError(response.error!)
+                            AppFunctions.showSnackBar(str: "Server Request Error")
+                            Logs.show(message: "Error on Response.data\(response.error!)")
+                            return
+                        }
+                        switch response.result {
+                            case .success:
+                                do {
+                                    let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    Logs.show(message: "SUCCESS IN \(#function)")
+                                    observer.onNext(genResponse.body.profileViewer)
+                                    observer.onCompleted()
+                                } catch {
+                                    observer.onError(error)
+                                    AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                }
+                            case .failure(let error):
+                                do {
+                                    let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    observer.onError(error)
+                                    Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                    AppFunctions.showSnackBar(str: responce.message)
+                                }catch {
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                    AppFunctions.showSnackBar(str: "Server Request Error")
+                                    observer.onError(error)
+                                }
+                        }
+                    }
+            } else {
+                observer.onNext([UserModel]())
+                observer.onCompleted()
+                AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
+            }
+            return Disposables.create()
+        }
+    }
+    
+    
+    
+    //MARK: Get User By ID
+    func getUserById(userId: String) -> Observable<Bool> {
+        
+        return Observable.create{[weak self] observer -> Disposable in
+            if (self?.isCheckReachable())! {
+                AF.request("\(self?.baseUrl ?? "")/api/Users/GetUserProfile", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                    .validate()
+                    .responseData{ response in
+                        Logs.show(message: "URL: \(response.debugDescription)")
+                        guard let data = response.data else {
+                            observer.onError(response.error!)
+                            AppFunctions.showSnackBar(str: "Server Request Error")
+                            Logs.show(message: "Error on Response.data\(response.error!)")
+                            return
+                        }
+                        switch response.result {
+                            case .success:
+                                do {
+                                    let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    DBService.createUserDB(APIlist: genResponse.body.user)
                                     Logs.show(message: "SUCCESS IN \(#function)")
                                     observer.onNext(true)
                                     observer.onCompleted()
@@ -612,12 +737,12 @@ class APIService: NSObject {
     
     
     //MARK: Get Locations
-    func getLocations() -> Observable<Bool> {
+    func getUserSocialAccounts() -> Observable<Bool> {
         
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(self?.baseUrl ?? "")/api/MotiveBusiness/GetLocations", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/GetUserSocialAccounts", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -632,7 +757,7 @@ class APIService: NSObject {
                                 do {
                                     let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
                                     Logs.show(message: "SUCCESS IN \(#function)")
-                                    //DBService.createMotiveLocationDB(APIlist: genResponse.body.locations, userId: AppFunctions.getUserId())
+                                    DBService.createSocialAccDB(APIlist: genResponse.body.socialAccounts)
                                     observer.onNext(true)
                                     observer.onCompleted()
                                 } catch {

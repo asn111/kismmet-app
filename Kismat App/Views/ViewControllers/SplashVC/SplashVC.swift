@@ -14,7 +14,12 @@ class SplashVC: MainViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        if AppFunctions.isLoggedIn() {
+            self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
+                vc.selectedIndex = 2
+            }
+        }
     }
   
 

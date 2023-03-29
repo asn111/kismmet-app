@@ -7,6 +7,9 @@
 
 import UIKit
 import CoreData
+import RxSwift
+import RealmSwift
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +18,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        initializations()
         return true
+    }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        _ = SignalRManager.init()
+        application.applicationIconBadgeNumber = 0
+    }
+    
+    // MARK: - Random Functions
+    
+    private func initializations() {
+        //FirebaseApp.configure() //no GoogleService-Info.plist
+        //registerNotification()
+        
+        if AppFunctions.isLoggedIn() {
+            //APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
+        }        
+        
+        ///Migration
+        let config = Realm.Configuration(
+            schemaVersion: 1,
+            migrationBlock: { migration, oldSchemaVersion in
+                
+            }, deleteRealmIfMigrationNeeded: true)
+        Realm.Configuration.defaultConfiguration = config
+        Logs.show(message: "MIGRATION: \(config)")
+        ///Migration
     }
 
     // MARK: - Core Data stack
@@ -42,6 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                  Check the error message to determine what the actual problem was.
                  */
                 fatalError("Unresolved error \(error), \(error.userInfo)")
+                
             }
         })
         return container

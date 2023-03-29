@@ -31,7 +31,7 @@ var selectedEndDate = ""
 
 let ApiService = APIService.singelton
 let DBService = Database.singleton
-//let SignalRService = SignalRManager.singelton
+let SignalRService = SignalRManager.singelton
 
 
 //MARK: rx Publishers
@@ -51,6 +51,7 @@ let isLogin = "isLogin"
 let isTermsNCond = "isTermsNCond"
 let isNumVerified = "isNumVerified"
 let isEmailVerifyed = "isEmailVerifyed"
+let isShadowMode = "isShadowMode"
 let userId = "userId"
 let role = "role"
 let devTokenString = "devTokenString"
@@ -234,6 +235,22 @@ class AppFunctions {
         }
         return value
     }
+    
+    open class func setIsShadowMode(value: Bool){
+        preferences.set(value, forKey: isShadowMode)
+        preferences.synchronize()
+    }
+    open class func isShadowModeOn() -> Bool{
+        var value = false
+        if preferences.object(forKey: isShadowMode) == nil {
+            Logs.show(message: "NIL isShadowMode")
+        } else {
+            value = preferences.bool(forKey: isShadowMode)
+        }
+        return value
+    }
+    
+    
     
     //MARK: Remove all data
     

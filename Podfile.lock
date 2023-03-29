@@ -216,6 +216,7 @@ PODS:
   - Stripe (15.0.3)
   - SweeterSwift (1.2.1)
   - SwiftDate (7.0.0)
+  - SwiftSignalRClient (0.9.1)
   - TransitionableTab (0.2.0)
   - UIMultiPicker (0.6.2)
 
@@ -246,6 +247,7 @@ DEPENDENCIES:
   - Siren
   - Stripe (~> 15.0.0)
   - SwiftDate
+  - SwiftSignalRClient
   - TransitionableTab (~> 0.2.0)
   - UIMultiPicker
 
@@ -293,6 +295,7 @@ SPEC REPOS:
     - Stripe
     - SweeterSwift
     - SwiftDate
+    - SwiftSignalRClient
     - TransitionableTab
     - UIMultiPicker
 
@@ -339,9 +342,10 @@ SPEC CHECKSUMS:
   Stripe: db667d8dcf6cfa216ee9ad9b937c7126ca9f8c35
   SweeterSwift: 61baeda1c0c27d1dc57c8112c3d6a82e5aff3139
   SwiftDate: bbc26e26fc8c0c33fbee8c140c5e8a68293a148a
+  SwiftSignalRClient: df3a307ef99d4c63392e96786e65035da50652bb
   TransitionableTab: 54a5d0af475033bdb83959fde4e5d6201af7e2ab
   UIMultiPicker: 29bf824c5251822ca4040b933f6204e617e6ba3f
 
-PODFILE CHECKSUM: 83bec79bc39b14c3f489ec498b7c07c7805e4d3f
+PODFILE CHECKSUM: 5816b56f0e53fec53665ab872172dc47e5a4e2ca
 
 COCOAPODS: 1.11.3

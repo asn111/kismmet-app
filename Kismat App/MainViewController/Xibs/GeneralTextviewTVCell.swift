@@ -9,7 +9,8 @@ import UIKit
 
 class GeneralTextviewTVCell: UITableViewCell {
 
-    @IBOutlet weak var generalTV: UITextView!
+    @IBOutlet weak var generalTV: FormTextView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

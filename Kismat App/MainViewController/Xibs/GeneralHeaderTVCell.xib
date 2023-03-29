@@ -238,9 +238,9 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Professor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOG-bk-97u" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                        <rect key="frame" x="98" y="73" width="120" height="10"/>
+                                        <rect key="frame" x="98" y="71" width="120" height="13"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="10" id="17N-gi-7FE"/>
+                                            <constraint firstAttribute="height" constant="13" id="17N-gi-7FE"/>
                                             <constraint firstAttribute="width" constant="120" id="niB-xs-mxA"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -308,7 +308,7 @@
                                     <constraint firstItem="nzF-aI-iJF" firstAttribute="top" secondItem="cn8-Nl-EBJ" secondAttribute="top" constant="56" id="4gZ-Ck-C2G"/>
                                     <constraint firstItem="dpP-cf-H6r" firstAttribute="leading" secondItem="bc3-O3-AQ1" secondAttribute="trailing" constant="15" id="4wQ-cl-FVk"/>
                                     <constraint firstItem="dpP-cf-H6r" firstAttribute="top" secondItem="cn8-Nl-EBJ" secondAttribute="top" constant="30" id="Gka-ED-7Xx"/>
-                                    <constraint firstItem="HOG-bk-97u" firstAttribute="top" secondItem="nzF-aI-iJF" secondAttribute="bottom" constant="3" id="HAY-KS-sQB"/>
+                                    <constraint firstItem="HOG-bk-97u" firstAttribute="top" secondItem="nzF-aI-iJF" secondAttribute="bottom" constant="1" id="HAY-KS-sQB"/>
                                     <constraint firstAttribute="bottom" secondItem="Ba0-Xg-o6E" secondAttribute="bottom" constant="44" id="JsG-hh-Kc8"/>
                                     <constraint firstItem="Ba0-Xg-o6E" firstAttribute="top" secondItem="cn8-Nl-EBJ" secondAttribute="top" constant="36" id="JuP-UL-yJk"/>
                                     <constraint firstItem="HOG-bk-97u" firstAttribute="leading" secondItem="bc3-O3-AQ1" secondAttribute="trailing" constant="15" id="Mh7-qV-rLn"/>
