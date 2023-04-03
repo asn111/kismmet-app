@@ -41,6 +41,7 @@ class GeneralResponse : NSObject, Codable {
 class Body : NSObject, Codable {
     var token : String!
     var user : UserModel!
+    var proximityUsers : [UserModel]!
     var users : [UserModel]!
     var profileViewer : [UserModel]!
     var socialLinkTypes : [SocialAccTypeModel]!
@@ -49,6 +50,7 @@ class Body : NSObject, Codable {
     override init() {
         token = ""
         user = UserModel()
+        proximityUsers = [UserModel]()
         users = [UserModel]()
         profileViewer = [UserModel]()
         socialLinkTypes = [SocialAccTypeModel]()
@@ -58,6 +60,7 @@ class Body : NSObject, Codable {
     private enum CodingKeys: String, CodingKey {
         case token = "token"
         case user = "user"
+        case proximityUsers = "proximityUsers"
         case users = "users"
         case profileViewer = "profileViewer"
         case socialLinkTypes = "socialLinkTypes"
@@ -70,6 +73,7 @@ class Body : NSObject, Codable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         token  = try values.decodeIfPresent(String.self, forKey: .token)
         user  = try values.decodeIfPresent(UserModel.self, forKey: .user)
+        proximityUsers  = try values.decodeIfPresent([UserModel].self, forKey: .proximityUsers)
         users  = try values.decodeIfPresent([UserModel].self, forKey: .users)
         profileViewer  = try values.decodeIfPresent([UserModel].self, forKey: .profileViewer)
         socialLinkTypes  = try values.decodeIfPresent([SocialAccTypeModel].self, forKey: .socialLinkTypes)

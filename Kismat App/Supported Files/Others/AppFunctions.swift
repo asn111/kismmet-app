@@ -58,6 +58,8 @@ let devTokenString = "devTokenString"
 let isPaymentSaved = "isPaymentSaved"
 let isProfileUpdated = "isProfileUpdated"
 let stripeKey = "stripeKey"
+let tagsArray = "tagsArray"
+let socialArray = "socialArray"
 
 class Logs {
     
@@ -246,6 +248,34 @@ class AppFunctions {
             Logs.show(message: "NIL isShadowMode")
         } else {
             value = preferences.bool(forKey: isShadowMode)
+        }
+        return value
+    }
+    
+    open class func setTagsArray(value: [String]){
+        preferences.set(value, forKey: tagsArray)
+        preferences.synchronize()
+    }
+    open class func getTagsArray() -> [String]{
+        var value = [String]()
+        if preferences.object(forKey: tagsArray) == nil {
+            Logs.show(message: "NIL getTagsArray")
+        } else {
+            value = (preferences.array(forKey: tagsArray) as? [String])!
+        }
+        return value
+    }
+    
+    open class func setSocialArray(value: [String]){
+        preferences.set(value, forKey: socialArray)
+        preferences.synchronize()
+    }
+    open class func getSocialArray() -> [String]{
+        var value = [String]()
+        if preferences.object(forKey: socialArray) == nil {
+            Logs.show(message: "NIL getSocialArray")
+        } else {
+            value = (preferences.array(forKey: socialArray) as? [String])!
         }
         return value
     }

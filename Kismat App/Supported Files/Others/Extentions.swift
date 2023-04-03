@@ -56,13 +56,19 @@ extension CALayer {
 
 extension UIView {
     
-    func blurImage() {
-        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.systemUltraThinMaterial)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = self.bounds
+    func addBlurEffect(style: UIBlurEffect.Style, cornerRadius: CGFloat, alpha: CGFloat = 0.9) {
+        let blurEffect = UIBlurEffect(style: style)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.frame = self.bounds
+        self.addSubview(blurView)
         
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight] // for supporting device rotation
-        self.addSubview(blurEffectView)
+        let maskView = UIView(frame: blurView.bounds)
+        maskView.backgroundColor = .white
+        maskView.layer.cornerRadius = cornerRadius
+        maskView.layer.masksToBounds = true
+        blurView.mask = maskView
+        
+        blurView.alpha = alpha
     }
     
     func roundCorners(corners:UIRectCorner, radius: CGFloat) {

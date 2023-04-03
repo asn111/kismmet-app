@@ -13,11 +13,13 @@ class ProfileSetupExtend: MainViewController {
     @IBOutlet weak var profileExtTV: UITableView!
     
     var socialAccArray = ["Network via LinkedIn","Your Twitter account","Your Instagram handle","Snapchat","Link your Website"]
+    var tempSocialAccArray = ["Network via LinkedIn","Your Twitter account","Your Instagram handle","Snapchat","Link your Website"]
     var socialAccImgArray = [UIImage(named: "LinkedIn"),UIImage(named: "Twitter"),UIImage(named: "Instagram"),UIImage(named: "Snapchat"),UIImage(named: "Website")]
     
     var isFromSetting = false
     var proximity = 0
     var tags = [String]()
+    var addedSocialArray = [String]()
     var isProfileVisible = false
     
     var profileDict = [String: String]()
@@ -28,6 +30,50 @@ class ProfileSetupExtend: MainViewController {
         registerCells()
         
         Logs.show(message: "Profile: \(profileDict)")
+        
+        _ = generalPublisher.subscribe(onNext: {[weak self] val in
+            
+            if val == "tagsAdded" {
+                Logs.show(message: val)
+                if AppFunctions.getTagsArray().count > 0 {
+                    self?.tags = AppFunctions.getTagsArray()
+                    self?.profileExtTV.reloadRows(at: [IndexPath(row: (self?.socialAccImgArray.count)! + 8, section: 0)], with: .none)
+                }
+                
+            } else if val.contains("socialAdded") {
+                Logs.show(message: val)
+                
+                if AppFunctions.getSocialArray().count > 0 {
+                    switch AppFunctions.getSocialArray().count {
+                        case 1:
+                            self?.socialAccArray = AppFunctions.getSocialArray() + ["Your Twitter account","Your Instagram handle","Snapchat","Link your Website"]
+                        case 2:
+                            self?.socialAccArray = AppFunctions.getSocialArray() + ["Your Instagram handle","Snapchat","Link your Website"]
+                        case 3:
+                            self?.socialAccArray = AppFunctions.getSocialArray() + ["Snapchat","Link your Website"]
+                        case 4:
+                            self?.socialAccArray = AppFunctions.getSocialArray() + ["Link your Website"]
+                        case 5:
+                            self?.socialAccArray = AppFunctions.getSocialArray()
+                        default:
+                            print("default")
+                    }
+                    var indexPaths: [IndexPath] = []
+                    
+                    for i in 6...10 {
+                        let indexPath = IndexPath(item: i, section: 0)
+                        indexPaths.append(indexPath)
+                    }
+                    self?.profileExtTV.reloadRows(at: indexPaths, with: .none)
+                }
+            }
+        }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        AppFunctions.removeFromDefaults(key: tagsArray)
+        AppFunctions.removeFromDefaults(key: socialArray)
     }
     
     func registerCells() {
@@ -42,6 +88,15 @@ class ProfileSetupExtend: MainViewController {
         profileExtTV.register(UINib(nibName: "TagsTVCell", bundle: nil), forCellReuseIdentifier: "TagsTVCell")
         profileExtTV.register(UINib(nibName: "SocialAccTVCell", bundle: nil), forCellReuseIdentifier: "SocialAccTVCell")
         profileExtTV.register(UINib(nibName: "GeneralButtonTVCell", bundle: nil), forCellReuseIdentifier: "GeneralButtonTVCell")
+    }
+    
+    func removeFromTagArray(index: Int) {
+        var arr = AppFunctions.getTagsArray()
+        arr.remove(at: (index/100 - 1))
+        AppFunctions.setTagsArray(value: arr)
+        self.tags.removeAll()
+        self.tags = AppFunctions.getTagsArray()
+        profileExtTV.reloadRows(at: [IndexPath(row: socialAccImgArray.count + 8, section: 0)], with: .fade)
     }
     
     @objc func addBtnPressed(sender:UIButton) {
@@ -67,6 +122,11 @@ class ProfileSetupExtend: MainViewController {
                     vc.accountType = "website"
                 }
             default:
+                let arr = AppFunctions.getTagsArray()
+                if arr.count >= 5 {
+                    AppFunctions.showSnackBar(str: "Maximum tags added, remove to add new")
+                    return
+                }
                 self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
                     vc.accountType = "tags"
                 }
@@ -74,9 +134,37 @@ class ProfileSetupExtend: MainViewController {
         
     }
     
-    /*@objc func addBtnPressed(sender:UIButton) {
-        self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in }
-    }*/
+    @objc func removeBtnPressed(sender:UIButton) {
+        switch sender.tag {
+            case 6:
+                socialAccArray[0] = tempSocialAccArray[0]
+                profileExtTV.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .right)
+            case 7:
+                socialAccArray[1] = tempSocialAccArray[1]
+                profileExtTV.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .right)
+            case 8:
+                socialAccArray[2] = tempSocialAccArray[2]
+                profileExtTV.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .right)
+            case 9:
+                socialAccArray[3] = tempSocialAccArray[3]
+                profileExtTV.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .right)
+            case 10:
+                socialAccArray[4] = tempSocialAccArray[4]
+                profileExtTV.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .right)
+            case 100:
+                removeFromTagArray(index: sender.tag)
+            case 200:
+                removeFromTagArray(index: sender.tag)
+            case 300:
+                removeFromTagArray(index: sender.tag)
+            case 400:
+                removeFromTagArray(index: sender.tag)
+            case 500:
+                removeFromTagArray(index: sender.tag)
+            default:
+                print("default")
+        }
+    }
     
     @objc func genBtnPressed(sender:UIButton) {
         
@@ -206,6 +294,24 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
             case socialAccImgArray.count + 8: // Tags view
                 let cell : TagsTVCell = tableView.dequeueReusableCell(withIdentifier: "TagsTVCell", for: indexPath) as! TagsTVCell
                 cell.isForEditing = true
+                                
+                cell.removeBtn1.tag = 100
+                cell.removeBtn2.tag = 200
+                cell.removeBtn3.tag = 300
+                cell.removeBtn4.tag = 400
+                cell.removeBtn5.tag = 500
+                
+                cell.removeBtn1.addTarget(self, action: #selector(removeBtnPressed(sender:)), for: .touchUpInside)
+                cell.removeBtn2.addTarget(self, action: #selector(removeBtnPressed(sender:)), for: .touchUpInside)
+                cell.removeBtn3.addTarget(self, action: #selector(removeBtnPressed(sender:)), for: .touchUpInside)
+                cell.removeBtn4.addTarget(self, action: #selector(removeBtnPressed(sender:)), for: .touchUpInside)
+                cell.removeBtn5.addTarget(self, action: #selector(removeBtnPressed(sender:)), for: .touchUpInside)
+
+                cell.tagView1.isHidden = true
+                cell.tagView2.isHidden = true
+                cell.tagView3.isHidden = true
+                cell.tagView4.isHidden = true
+                cell.tagView5.isHidden = true
                 
                 if tags.count > 0 {
                     for i in 0...tags.count - 1 {
@@ -275,15 +381,26 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
                 let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
                 
                 cell.removeBtn.isHidden = false
-                cell.removeBtn.setImage(UIImage(systemName: "plus"), for: .normal)
-                cell.removeBtn.cornerRadius = 4
-                cell.removeBtn.tag = indexPath.row
+                
                 
                 cell.socialImgView.image = socialAccImgArray[indexPath.row - 6]
                 cell.socialLbl.text = socialAccArray[indexPath.row - 6]
                 
-                cell.removeBtn.addTarget(self, action: #selector(addBtnPressed(sender:)), for: .touchUpInside)
+                if socialAccArray[indexPath.row - 6].isEqual(tempSocialAccArray[indexPath.row - 6]) {
+                    cell.removeBtn.removeTarget(self, action: #selector(removeBtnPressed(sender:)), for: .touchUpInside)
+                    cell.removeBtn.addTarget(self, action: #selector(addBtnPressed(sender:)), for: .touchUpInside)
+                    cell.removeBtn.setImage(UIImage(systemName: "plus"), for: .normal)
+                    cell.removeBtn.cornerRadius = 4
+                    
+                } else {
+                    cell.removeBtn.removeTarget(self, action: #selector(addBtnPressed(sender:)), for: .touchUpInside)
+                    cell.removeBtn.addTarget(self, action: #selector(removeBtnPressed(sender:)), for: .touchUpInside)
+                    cell.removeBtn.setImage(UIImage(systemName: "xmark"), for: .normal)
+                    cell.removeBtn.cornerRadius = 10
+                }
                 
+                cell.removeBtn.tag = indexPath.row
+
                 return cell
         }
     }

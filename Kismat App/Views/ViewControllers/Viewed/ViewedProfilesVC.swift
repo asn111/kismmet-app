@@ -21,13 +21,13 @@ class ViewedProfilesVC: MainViewController {
         super.viewDidLoad()
         
         registerCells()
-        getViewedByUsers(load: true)
+        //getViewedByUsers(load: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        getViewedByUsers(load: false)
+        //getViewedByUsers(load: false)
     }
     
     func registerCells() {
@@ -88,7 +88,7 @@ class ViewedProfilesVC: MainViewController {
 extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count + 1
+        return 4 //users.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -113,16 +113,15 @@ extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
                 
             default:
                 let cell : FeedItemsTVCell = tableView.dequeueReusableCell(withIdentifier: "FeedItemsTVCell", for: indexPath) as! FeedItemsTVCell
-                let user = users[indexPath.row - 1]
+                /*let user = users[indexPath.row - 1]
                 cell.nameLbl.text = user.userName
                 cell.professionLbl.text = user.workTitle
                 cell.educationLbl.text = user.workAddress
                 cell.profilePicIV.image = UIImage(named: "placeholder")
-                cell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+                cell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")*/
                 
                 cell.blurView.isHidden = false
-                cell.blurView.blurImage()
-                
+                cell.blurView.addBlurEffect(style: .extraLight, cornerRadius: 4)
 
                 return cell
         }

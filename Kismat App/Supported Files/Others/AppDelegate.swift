@@ -27,6 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.applicationIconBadgeNumber = 0
     }
     
+    func applicationWillTerminate(_ application: UIApplication) {
+        
+    }
+    
     // MARK: - Random Functions
     
     private func initializations() {
@@ -36,6 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if AppFunctions.isLoggedIn() {
             //APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
         }        
+        
+        AppFunctions.removeFromDefaults(key: tagsArray)
+        AppFunctions.removeFromDefaults(key: socialArray)
         
         ///Migration
         let config = Realm.Configuration(

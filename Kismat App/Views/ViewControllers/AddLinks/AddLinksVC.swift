@@ -14,10 +14,11 @@ class AddLinksVC: MainViewController {
         self.dismiss(animated: true)
     }
     @IBAction func saveBtnPressed(_ sender: Any) {
-        AppFunctions.showSnackBar(str: "Link Added")
+        isUpdatedOnServer = true
         self.dismiss(animated: true)
     }
     
+    @IBOutlet weak var mainView: RoundCornerView!
     @IBOutlet weak var saveBtnTopConst: NSLayoutConstraint!
     @IBOutlet weak var cancelBtnTopConst: NSLayoutConstraint!
     @IBOutlet weak var headingLbl: fullyCustomLbl!
@@ -27,12 +28,17 @@ class AddLinksVC: MainViewController {
     @IBOutlet weak var addAccLink: FormTextField!
     
     var isKeyBoardShown = false
+    var isUpdatedOnServer = false
     var accountType = ""
     var accountName = ""
     var accountLink = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.view.addBlurEffect(style: .extraLight, cornerRadius: 0, alpha: 0.5)
+        
+        self.view.bringSubviewToFront(mainView)
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         self.view.addGestureRecognizer(tap)
@@ -78,6 +84,56 @@ class AddLinksVC: MainViewController {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if accountName == "" { return }
+        
+        switch accountType {
+            case "linkedIn":
+                addToArrays(index: 0)
+            case "twitter":
+                addToArrays(index: 1)
+            case "instagram":
+                addToArrays(index: 2)
+            case "snapchat":
+                addToArrays(index: 3)
+            case "website":
+                addToArrays(index: 4)
+            case "tags":
+                if !isUpdatedOnServer { return }
+                var arr = AppFunctions.getTagsArray()
+                if arr.count >= 5 { return }
+                arr.append(accountName)
+                AppFunctions.setTagsArray(value: arr)
+                generalPublisher.onNext("tagsAdded")
+            default :
+                print("default")
+        }
+    }
+    
+    func addToArrays(index: Int) {
+        
+        if !isUpdatedOnServer { return }
+        var arr = AppFunctions.getSocialArray()
+        
+        let placeholderValues = ["Network via LinkedIn","Your Twitter account","Your Instagram handle","Snapchat","Link your Website"]
+        // Initialize the array with placeholder values if it's empty
+        if arr.isEmpty {
+            arr = placeholderValues
+        }
+        // If the index is out of bounds, pad the array with empty strings
+        while index >= arr.count {
+            arr.append("")
+        }
+        // Update the value at the specified index
+        arr[index] = accountName
+        
+        AppFunctions.setSocialArray(value: arr)
+        generalPublisher.onNext("socialAdded")
+        
+    }
+    
     @objc
     func tapFunction(sender:UITapGestureRecognizer) {
         self.dismiss(animated: true)
@@ -100,7 +156,7 @@ class AddLinksVC: MainViewController {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if !isKeyBoardShown {
                 isKeyBoardShown = true
-                self.view.frame.origin.y -= keyboardSize.height - 150
+                self.view.frame.origin.y -= keyboardSize.height - 50
             }
         }
     }
