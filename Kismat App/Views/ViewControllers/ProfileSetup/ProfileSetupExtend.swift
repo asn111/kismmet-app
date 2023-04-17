@@ -17,12 +17,12 @@ class ProfileSetupExtend: MainViewController {
     var socialAccImgArray = [UIImage(named: "LinkedIn"),UIImage(named: "Twitter"),UIImage(named: "Instagram"),UIImage(named: "Snapchat"),UIImage(named: "Website")]
     
     var isFromSetting = false
-    var proximity = 0
+    var proximity = 150
     var tags = [String]()
     var addedSocialArray = [String]()
     var isProfileVisible = false
     
-    var profileDict = [String: String]()
+    var profileDict = [String: Any]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -166,9 +166,30 @@ class ProfileSetupExtend: MainViewController {
         }
     }
     
+    @objc func toolTipBtnPressed(sender:UIButton) {
+        var msg = ""
+        
+        if sender.tag == 001 {
+            msg = "Turning off your profile visibility will make your account private, which means you won't appear in other people's feeds. However, please note that you also won't be able to search for other people on the app when your profile visibility is off."
+        } else if sender.tag == 002 {
+            msg = "Shadow mode lets you view profiles privately without appearing on the 'viewed by' page. This feature is only available for premium users."
+        }
+        
+        AppFunctions.showToolTip(str: msg, btn: sender)
+    }
+    
     @objc func genBtnPressed(sender:UIButton) {
         
         Logs.show(message: "\(isProfileVisible), \(AppFunctions.isShadowModeOn()), \(proximity), \(tags)")
+        
+        if !tags.isEmpty {
+            profileDict["tags"] = tags.joined(separator: ",")
+            profileDict["proximity"] = proximity
+            profileDict["isProfileVisible"] = isProfileVisible
+            userProfileUpdate()
+        } else {
+            AppFunctions.showSnackBar(str: "Tags are important part of profile, please add at least one.")
+        }
         
         /*if sender.tag == socialAccImgArray.count + 11 {
             if isFromSetting {
@@ -203,11 +224,47 @@ class ProfileSetupExtend: MainViewController {
             
             if cell.toggleBtn.tag == 3 {
                 isProfileVisible = cell.toggleBtn.isOn
+                AppFunctions.setIsProfileVisble(value: cell.toggleBtn.isOn)
             } else {
                 AppFunctions.setIsShadowMode(value: cell.toggleBtn.isOn)
             }
         }
     }
+    
+    //MARK: API Functions
+    
+    func userProfileUpdate() {
+        self.showPKHUD(WithMessage: "Signing up")
+        
+        Logs.show(message: "SKILLS PRAM: \(profileDict)")
+        
+        APIService
+            .singelton
+            .userProfileUpdate(pram: profileDict)
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        Logs.show(message: "MARKED: 👉🏻 \(val)")
+                        if val {
+                            self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
+                                vc.selectedIndex = 2
+                            }
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
+    
+    
 }
 //MARK: TableView Extention
 extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
@@ -251,16 +308,23 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
                 cell.toggleBtn.isOn = true
                 cell.toggleBtn.tag = indexPath.row
                 isProfileVisible = cell.toggleBtn.isOn
+                cell.toggleTooltipBtn.tag = 001
+                
+                cell.toggleTooltipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
                 cell.toggleBtn.addTarget(self, action: #selector(toggleButtonPressed(_:)), for: .valueChanged)
 
                 return cell
-            case 4: // Visibility 2
+            case 4: // Shadow mode 2
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.toggleBtnView.isHidden = false
                 cell.toggleLbl.text = "Shadow Mode"
                 cell.toggleBtn.isOn = false
+                cell.toggleBtn.isEnabled = false
                 cell.toggleBtn.tag = indexPath.row
                 AppFunctions.setIsShadowMode(value: cell.toggleBtn.isOn)
+                cell.toggleTooltipBtn.tag = 002
+                
+                cell.toggleTooltipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
                 cell.toggleBtn.addTarget(self, action: #selector(toggleButtonPressed(_:)), for: .valueChanged)
 
                 return cell
@@ -385,6 +449,7 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
                 
                 cell.socialImgView.image = socialAccImgArray[indexPath.row - 6]
                 cell.socialLbl.text = socialAccArray[indexPath.row - 6]
+                cell.socialLbl.isUserInteractionEnabled = false
                 
                 if socialAccArray[indexPath.row - 6].isEqual(tempSocialAccArray[indexPath.row - 6]) {
                     cell.removeBtn.removeTarget(self, action: #selector(removeBtnPressed(sender:)), for: .touchUpInside)

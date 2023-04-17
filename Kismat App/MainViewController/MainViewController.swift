@@ -7,8 +7,10 @@
 
 import UIKit
 import RxSwift
+import Combine
 import Alamofire
 import SwiftSignalRClient
+import CoreLocation
 
 
 class MainViewController: UIViewController, UIViewControllerTransitioningDelegate, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate, HubConnectionDelegate, UIPopoverPresentationControllerDelegate {
@@ -17,6 +19,7 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
 
     let internetView = UIView()
     let internetLbl = fullyCustomLbl()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,10 +44,10 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
         // --Signal R Init--
         
         if AppFunctions.getToken() != "" && !connectionStarted {
-            //SignalRService.chatHubConnectionDelegate = self
-            //SignalRService.initializeSignalR()
+            SignalRService.chatHubConnectionDelegate = self
+            SignalRService.initializeSignalR()
         }
-        
+
         
         // --Navigation--
         self.navigationController?.isNavigationBarHidden = true

@@ -25,7 +25,7 @@ class APIService: NSObject {
     private override init() {
         super.init()
         
-        baseUrl = "https://eoex0jhjk0.execute-api.us-east-1.amazonaws.com"
+        baseUrl = "http://35.171.225.88"
         Logs.show(message: "SERVER: \(baseUrl)")
         
         self.startMonitoring()
@@ -338,7 +338,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(self?.baseUrl ?? "")/api/User/CreateUser", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: nil)
+                AF.request("\(self?.baseUrl ?? "")/api/Users/CreateUser", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: nil)
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -352,7 +352,27 @@ class APIService: NSObject {
                             case .success:
                                 do {
                                     let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
-                                    AppFunctions.showSnackBar(str: genResponse.message)
+                                    let jwtValue = try! AppFunctions.decode(jwtToken: genResponse.body.token)
+                                    Logs.show(message: "TOKEN: \(genResponse.body.token ?? "")")
+                                    Logs.show(message: "jwtValue: \(jwtValue)")
+                                    let role = jwtValue["Role"]
+                                    let userId = jwtValue["Id"]
+                                    //let paymentInfo : String = jwtValue["IsPaymentInfoSaved"] as! String
+                                    
+                                    let isProfileUpdated : String = jwtValue["IsProfileUpdated"] as! String
+                                    let isUserAgreement : String = jwtValue["IsUserAgreement"] as! String
+                                    
+                                    AppFunctions.saveToken(name: genResponse.body.token ?? "")
+                                    AppFunctions.saveUserId(name: userId as! String)
+                                    AppFunctions.saveRole(name: role as! String)
+                                    
+                                    if isProfileUpdated.contains("True") {
+                                        AppFunctions.setIsProfileUpdated(value: true)
+                                    }
+                                    if isUserAgreement.contains("True") {
+                                        AppFunctions.setIsTermsNCndCheck(value: true)
+                                    }
+                                    
                                     Logs.show(message: "SUCCESS IN \(#function)")
                                     observer.onNext(true)
                                     observer.onCompleted()
@@ -437,6 +457,59 @@ class APIService: NSObject {
         }
     }
     
+    //MARK: USER Social Add
+    func userSocialAdd(pram: Parameters) -> Observable<Bool> {
+        
+        return Observable.create{[weak self] observer -> Disposable in
+            if (self?.isCheckReachable())! {
+                
+                AF.request("\(self?.baseUrl ?? "")/api/Users/AddUserSocialAccount", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                    .validate()
+                    .responseData{ response in
+                        Logs.show(message: "URL: \(response.debugDescription)")
+                        guard let data = response.data else {
+                            observer.onError(response.error!)
+                            AppFunctions.showSnackBar(str: "Server Request Error")
+                            Logs.show(message: "Error on Response.data\(response.error!)")
+                            return
+                        }
+                        switch response.result {
+                            case .success:
+                                do {
+                                    let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    AppFunctions.showSnackBar(str: genResponse.message)
+                                    Logs.show(message: "SUCCESS IN \(#function)")
+                                    observer.onNext(true)
+                                    observer.onCompleted()
+                                } catch {
+                                    observer.onError(error)
+                                    AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                }
+                            case .failure( _):
+                                do {
+                                    let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    observer.onNext(false)
+                                    Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                    AppFunctions.showSnackBar(str: responce.message)
+                                } catch {
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                    AppFunctions.showSnackBar(str: "Server Request Error")
+                                    observer.onError(error)
+                                    
+                                }
+                        }
+                    }
+            } else {
+                observer.onNext(false)
+                observer.onCompleted()
+                AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
+            }
+            return Disposables.create()
+        }
+    }
+    
+    
     func markStarUser(val: String){
         
         if (self.isCheckReachable()) {
@@ -455,7 +528,7 @@ class APIService: NSObject {
                         case .success:
                             do {
                                 let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
-                                AppFunctions.showSnackBar(str: genResponse.message)
+                                //AppFunctions.showSnackBar(str: genResponse.message)
                                 Logs.show(message: "SUCCESS IN \(#function)")
                             } catch {
                                 AppFunctions.showSnackBar(str: "Server Parsing Error")
@@ -483,7 +556,7 @@ class APIService: NSObject {
     ///////////////////*********************////////////////////////********************////////////////////////*********************///////////////////////
 
     //MARK: Get Proximity Users
-    func getproximityUsers(pram: Parameters) -> Observable<[UserModel]> {
+    func getproximityUsers(pram: Parameters) -> Observable<ProximityUsersModel> {
         
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
@@ -503,7 +576,7 @@ class APIService: NSObject {
                                 do {
                                     let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
                                     Logs.show(message: "SUCCESS IN \(#function)")
-                                    observer.onNext(genResponse.body.users)
+                                    observer.onNext(genResponse.body.proximityUsers)
                                     observer.onCompleted()
                                 } catch {
                                     observer.onError(error)
@@ -524,7 +597,7 @@ class APIService: NSObject {
                         }
                     }
             } else {
-                observer.onNext([UserModel]())
+                observer.onNext(ProximityUsersModel())
                 observer.onCompleted()
                 AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
             }
@@ -686,7 +759,7 @@ class APIService: NSObject {
     
     
     //MARK: Get User By ID
-    func getUserById(userId: String) -> Observable<Bool> {
+    func getUserById(userId: String) -> Observable<UserModel> {
         
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
@@ -706,7 +779,7 @@ class APIService: NSObject {
                                     let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
                                     DBService.createUserDB(APIlist: genResponse.body.user)
                                     Logs.show(message: "SUCCESS IN \(#function)")
-                                    observer.onNext(true)
+                                    observer.onNext(genResponse.body.user)
                                     observer.onCompleted()
                                 } catch {
                                     observer.onError(error)
@@ -727,7 +800,7 @@ class APIService: NSObject {
                         }
                     }
             } else {
-                observer.onNext(false)
+                observer.onNext(UserModel())
                 observer.onCompleted()
                 AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
             }

@@ -84,7 +84,7 @@ class SettingVC: MainViewController {
                 guard let self = self else {return}
                 switch model {
                     case .next(let val):
-                        if val {
+                        if val.userId != "" {
                             Logs.show(message: "PROFILE: 👉🏻 \(String(describing: self.userdbModel))")
                             if DBService.fetchloggedInUser().count > 0 {
                                 self.userdbModel = DBService.fetchloggedInUser()

@@ -17,6 +17,7 @@ class ProfileTVCell: UITableViewCell {
     @IBOutlet weak var countryPickerView: CountryPickerView!
     @IBOutlet weak var generalTFView: RoundCornerView!
     @IBOutlet weak var generalTF: FormTextField!
+    @IBOutlet weak var lockTipBtn: UIButton!
     
     var phoneCode = ""
     

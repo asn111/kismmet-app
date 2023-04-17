@@ -34,54 +34,27 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
     
-    /*var statusString: String {
-     guard let status = locationStatus else {
-     return "unknown"
-     }
-     
-     switch status {
-     case .notDetermined: return "notDetermined"
-     case .authorizedWhenInUse: return "authorizedWhenInUse"
-     case .authorizedAlways: return "authorizedAlways"
-     case .restricted: return "restricted"
-     case .denied: return "denied"
-     default: return "unknown"
-     }
-     }
-     
-     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-     //locationStatus = status
-        Logs.show(message: "\(status)")
-     }*/
+    func sendLocation() {
+        let pram = ["lat": "\(self.lastLocation?.coordinate.latitude ?? 0.0)",
+                    "long":"\(self.lastLocation?.coordinate.latitude ?? 0.0)"
+        ]
+        SignalRService.connection.invoke(method: "UpdateUserLocation", pram) {  error in            Logs.show(message: "\(pram)")
+            if let e = error {
+                Logs.show(message: "Error: \(e)")
+                return
+            }
+        }
+    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         self.lastLocation = location
         
-        /*//Measuring my distance to user's (in km)
-         var calculatedDistance = 0.0
-        calculatedDistance = AppFunctions.getLastSavedLocation().distance(from: location) / 1000
-        
-        //Display the result in km
-        
-        var timeInterval = 0.0
-        
-        switch calculatedDistance {
-            case 1.0..<2.0:
-                timeInterval = 0.030
-            default:
-                timeInterval = 3000
-        }
-        
-        Logs.show(message: "Calculated Distance: \(calculatedDistance) TimeInterval: \(timeInterval)")
-        
-        timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true) { _ in
-            
-        }*/
-        
         let pram = ["lat" : "\(location.coordinate.latitude)",
                     "long" : "\(location.coordinate.longitude)" ]
-        
+        if SignalRService.connection != nil && connectionStarted {
+            sendLocation()
+        }
         Logs.show(message: " --------- \(location) --------- ")
     }
 }

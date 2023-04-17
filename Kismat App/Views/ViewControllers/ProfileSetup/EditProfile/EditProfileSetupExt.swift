@@ -17,6 +17,7 @@ class EditProfileSetupExt: MainViewController {
     var dataArray = ["","","","","","","tamara@gmail.com","23456789",""]
     
     var isFromSetting = true
+    var isProfileVisible = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,23 +51,46 @@ class EditProfileSetupExt: MainViewController {
     }
     
     @objc func toolTipBtnPressed(sender:UIButton) {
-        AppFunctions.showToolTip(str: "This is your personal email address, not visible to app users.", btn: sender)
+        var msg = ""
+        
+        if sender.tag == 001 {
+            msg = "Turning off your profile visibility will make your account private, which means you won't appear in other people's feeds. However, please note that you also won't be able to search for other people on the app when your profile visibility is off."
+        } else if sender.tag == 002 {
+            msg = "Shadow mode lets you view profiles privately without appearing on the 'viewed by' page. This feature is only available for premium users."
+        } else if sender.tag == 004 {
+            msg = "Please note that the email and phone number fields on this page are private and will not be visible to other users. These fields are for account verification purposes only and will not be shared on your profile page, where you can add a separate email for networking."
+        } else if sender.tag == 003 {
+            msg = "The lock icon next to your phone number indicates that this number cannot be changed. Please ensure that you have entered the correct phone number during the registration process."
+        }
+        
+        AppFunctions.showToolTip(str: msg, btn: sender)
     }
     
     @objc func sliderChanged(slider: MultiSlider) {
         print("thumb \(slider.draggedThumbIndex) moved")
         print("now thumbs are at \(slider.value)")
-        if slider.draggedThumbIndex == 0 {
-            //minValue = Int(round(slider.value[0]))
-            //sliderStartLbl.text = "$\(Int(round(slider.value[0])))"
-        } else if slider.draggedThumbIndex == 1 {
-            //maxValue = Int(round(slider.value[1]))
-            //sliderEndLbl.text = "$\(Int(round(slider.value[1])))"
+        
+        if slider.draggedThumbIndex == 1 {
             let cell : MixHeaderTVCell = profileExtTV.cellForRow(at: IndexPath(row: 1, section: 0)) as! MixHeaderTVCell
             cell.proximeterLbl.text = "\(Int(round(slider.value[1]))) m"
             profileExtTV.rectForRow(at: IndexPath(row: 1, section: 0))
+            //proximity = Int(round(slider.value[1]))
         }
     }
+    
+    @objc func toggleButtonPressed(_ sender: UISwitch) {
+        let indexPath = IndexPath(row: sender.tag, section: 0)
+        if let cell = profileExtTV.cellForRow(at: indexPath) as? MixHeaderTVCell {
+            
+            if cell.toggleBtn.tag == 3 {
+                isProfileVisible = cell.toggleBtn.isOn
+                AppFunctions.setIsProfileVisble(value: cell.toggleBtn.isOn)
+            } else {
+                AppFunctions.setIsShadowMode(value: cell.toggleBtn.isOn)
+            }
+        }
+    }
+    
 }
 //MARK: TableView Extention
 extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
@@ -110,11 +134,28 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.toggleBtnView.isHidden = false
                 cell.toggleLbl.text = "Profile Visibility"
+                cell.toggleBtn.isOn = true
+                cell.toggleBtn.tag = indexPath.row
+                isProfileVisible = cell.toggleBtn.isOn
+                cell.toggleTooltipBtn.tag = 001
+                
+                cell.toggleTooltipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
+                cell.toggleBtn.addTarget(self, action: #selector(toggleButtonPressed(_:)), for: .valueChanged)
+                
+                
                 return cell
             case 4: // Visibility 2
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.toggleBtnView.isHidden = false
                 cell.toggleLbl.text = "Shadow Mode"
+                cell.toggleBtn.isOn = false
+                cell.toggleBtn.isEnabled = false
+                cell.toggleBtn.tag = indexPath.row
+                AppFunctions.setIsShadowMode(value: cell.toggleBtn.isOn)
+                cell.toggleTooltipBtn.tag = 002
+                
+                cell.toggleTooltipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
+                cell.toggleBtn.addTarget(self, action: #selector(toggleButtonPressed(_:)), for: .valueChanged)
                 return cell
             case placeholderArray.count - 4: // Empty View
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
@@ -142,7 +183,9 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                     cell.numberTF.text = dataArray[indexPath.row]
                     cell.numberTF.placeholder = placeholderArray[indexPath.row]
                     AppFunctions.colorPlaceholder(tf: cell.numberTF, s: placeholderArray[indexPath.row])
+                    cell.lockTipBtn.tag = 003
                     
+                    cell.lockTipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
                 } else {
                     cell.numberView.isHidden = true
                     cell.generalTFView.isHidden = false
@@ -150,6 +193,9 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                     cell.generalTF.text = dataArray[indexPath.row]
                     cell.generalTF.placeholder = placeholderArray[indexPath.row]
                     AppFunctions.colorPlaceholder(tf: cell.generalTF, s: placeholderArray[indexPath.row])
+                    
+                    cell.toolTipBtn.tag = 004
+                    
                     cell.toolTipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
                     
                 }

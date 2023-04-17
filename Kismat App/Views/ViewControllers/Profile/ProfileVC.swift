@@ -24,8 +24,9 @@ class ProfileVC: MainViewController {
     var isOtherProfile = false
     
     var userdbModel : Results<UserDBModel>!
-    var socialAccdbModel : Results<SocialAccDBModel>!
-
+    var socialAccModel = [SocialAccModel]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCells()
@@ -33,17 +34,12 @@ class ProfileVC: MainViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if !isOtherProfile{
-            userProfile()
-            userSocialAcc()
-            if DBService.fetchloggedInUser().count > 0 {
-                userdbModel = DBService.fetchloggedInUser()
-                DBUpdateUserdb()
-            }
-            if DBService.fetchSocialAccList().count > 0 {
-                socialAccdbModel = DBService.fetchSocialAccList()
-                DBUpdateSocialAcc()
-            }
+        
+        userProfile()
+        //userSocialAcc()
+        if DBService.fetchloggedInUser().count > 0 {
+            userdbModel = DBService.fetchloggedInUser()
+            DBUpdateUserdb()
         }
     }
     
@@ -60,6 +56,29 @@ class ProfileVC: MainViewController {
         profileTV.register(UINib(nibName: "SocialAccTVCell", bundle: nil), forCellReuseIdentifier: "SocialAccTVCell")
     }
     
+    /*func setupSocialArray() {
+        
+        let socialAccTypes = ["LinkedIn", "Twitter", "Instagram", "Snapchat", "Website"]
+        let placeholderValues = ["LinkedIn not connected", "Twitter not linked", "No Instagram handle", "No Snapchat shared", "No website link"]
+
+        if let socialAccdbModel = socialAccdbModel, !socialAccdbModel.isEmpty {
+            let socialAccTitles = socialAccdbModel.compactMap{ $0.linkTitle }
+            let socialAccTypesSet = Set(socialAccdbModel.compactMap{ $0.linkType })
+            let missingTypes = Set(socialAccTypes).subtracting(socialAccTypesSet)
+            socialAccArray = zip(socialAccTypes, placeholderValues).map { type, placeholder in
+                if missingTypes.contains(type) {
+                    return placeholder
+                } else if let index = socialAccdbModel.firstIndex(where: { $0.linkType == type }) {
+                    return socialAccTitles[index]
+                } else {
+                    return ""
+                }
+            }
+        } else {
+            socialAccArray = placeholderValues
+        }
+    }*/
+    
     func DBUpdateUserdb() {
         
         Observable.changeset(from: userdbModel)
@@ -74,13 +93,14 @@ class ProfileVC: MainViewController {
             })
             .disposed(by: dispose_Bag)
     }
-    func DBUpdateSocialAcc() {
+    
+    /*func DBUpdateSocialAcc() {
         
         Observable.changeset(from: socialAccdbModel)
             .subscribe(onNext: { [weak self] _, changes in
                 if let changes = changes {
                     Logs.show(message: "CHANGES: \(changes)")
-                    if DBService.fetchSocialAccList().count > 0 {
+                    /*if DBService.fetchSocialAccList().count > 0 {
                         self?.socialAccdbModel = DBService.fetchSocialAccList()
                         self?.socialAccArray = self!.socialAccdbModel.compactMap { $0.linkTitle }
                         if self?.socialAccArray.count != self?.socialAccImgArray.count {
@@ -99,12 +119,13 @@ class ProfileVC: MainViewController {
                                     print("default")
                             }
                         }
-                    }
+                    }*/
+                    self?.setupSocialArray()
                     self?.profileTV.reloadData()
                 }
             })
             .disposed(by: dispose_Bag)
-    }
+    }*/
     
     @objc func picBtnPressed(sender: UIButton) {
         if isOtherProfile {
@@ -128,8 +149,8 @@ class ProfileVC: MainViewController {
                 guard let self = self else {return}
                 switch model {
                     case .next(let val):
-                        if val {
-                            Logs.show(message: "PROFILE: 👉🏻 \(String(describing: self.userdbModel))")
+                        if val.userId != "" {
+                            self.socialAccModel = val.socialAccounts
                         } else {
                             self.hidePKHUD()
                         }
@@ -154,7 +175,8 @@ class ProfileVC: MainViewController {
                 switch model {
                     case .next(let val):
                         if val {
-                            Logs.show(message: "SOCIAL ACC: 👉🏻 \(String(describing: self.socialAccdbModel))")
+                            
+                            //Logs.show(message: "SOCIAL ACC: 👉🏻 \(String(describing: self.socialAccdbModel))")
                         } else {
                             self.hidePKHUD()
                         }
@@ -176,7 +198,7 @@ class ProfileVC: MainViewController {
 extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return socialAccArray.count + 5
+        return socialAccModel.count + 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -280,13 +302,31 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
                 cell.socialImgView.image = socialAccImgArray[indexPath.row - 5]
 
-                cell.socialLbl.text = socialAccArray[indexPath.row - 5].capitalized
+                cell.socialLbl.text = socialAccModel[indexPath.row - 5].linkTitle.capitalized
                 cell.socialLbl.isUserInteractionEnabled = false
                 return cell
         }
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row > 4 {
+            //AppFunctions.showSnackBar(str: "\(indexPath.row)")
+            switch socialAccModel[indexPath.row - 5].linkType {
+                case "LinkedIn":
+                    AppFunctions.openLinkedIn(userName: socialAccModel[indexPath.row - 5].linkUrl)
+                case "Twitter":
+                    AppFunctions.openTwitter(userName: socialAccModel[indexPath.row - 5].linkUrl)
+                case "Instagram":
+                    AppFunctions.openInstagram(userName: socialAccModel[indexPath.row - 5].linkUrl)
+                case "Snapchat":
+                    AppFunctions.openSnapchat(userName: socialAccModel[indexPath.row - 5].linkUrl)
+                case "Website":
+                    AppFunctions.openWebLink(link: socialAccModel[indexPath.row - 5].linkUrl)
+                default:
+                    print("default")
+            }
+        }
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension

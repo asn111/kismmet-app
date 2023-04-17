@@ -862,7 +862,7 @@ this email.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2d-eg-MkL" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="20" y="151" width="353" height="60"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Profile link" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Fkw-EZ-gfF" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your Username" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Fkw-EZ-gfF" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -1688,6 +1688,9 @@ this email.</string>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="upgradeBtnPressed:" destination="ewU-MZ-Hda" eventType="touchUpInside" id="K2M-aa-AJl"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Try KISMMET Premium" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fde-X5-2WN" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
                                 <rect key="frame" x="56" y="322" width="280" height="30"/>
@@ -2798,7 +2801,7 @@ this email.</string>
             <size key="intrinsicContentSize" width="170.33333333333334" height="19"/>
         </designable>
         <designable name="Fkw-EZ-gfF">
-            <size key="intrinsicContentSize" width="127" height="17"/>
+            <size key="intrinsicContentSize" width="154.33333333333334" height="17"/>
         </designable>
         <designable name="Hvi-f8-508">
             <size key="intrinsicContentSize" width="47.333333333333336" height="21.333333333333332"/>

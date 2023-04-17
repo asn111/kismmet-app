@@ -51,6 +51,25 @@ class StarredVC: MainViewController {
     @objc func toolBtnPressed(sender: UIButton) {
         AppFunctions.showToolTip(str: "Search Users that you marked starred.", btn: sender)
     }
+    
+    @objc
+    func starTapFunction(sender:UITapGestureRecognizer) {
+        if let image = sender.view {
+            if let cell = image.superview?.superview?.superview?.superview  as? FeedItemsTVCell {
+                guard let indexPath = self.starredTV.indexPath(for: cell) else {return}
+                users.remove(at: indexPath.row - 1)
+                starredTV.reloadData()
+                /*print("index path =\(indexPath)")
+                if cell.starLbl.image == UIImage(systemName: "star.fill") {
+                    cell.starLbl.image = UIImage(systemName: "star")
+                } else {
+                    cell.starLbl.image = UIImage(systemName: "star.fill")
+                    ApiService.markStarUser(val: users[indexPath.row].userId)
+                }*/
+            }
+        }
+    }
+    
     //MARK: API METHODS
     
     func getStarUsers(load: Bool) {
@@ -137,6 +156,23 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            starredTV.beginUpdates()
+            ApiService.markStarUser(val: users[indexPath.row - 1].userId)
+            users.remove(at: indexPath.row - 1)
+            starredTV.deleteRows(at: [indexPath], with: .automatic)
+            starredTV.endUpdates()
+            
+        }
+    }
+    
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension

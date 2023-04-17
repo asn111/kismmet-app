@@ -15,7 +15,8 @@ class OtherUserProfile: MainViewController {
 
     @IBOutlet weak var otherProfileTV: UITableView!
     
-    var socialAccArray = ["Tamara Pensiero","@tamaraapp","@tamara","@tamarasnap","My Website"]
+    var socialAccArray = [String]()
+    //var socialAccArray = ["Tamara Pensiero","@tamaraapp","@tamara","@tamarasnap","My Website"]
     var socialAccImgArray = [UIImage(named: "LinkedIn"),UIImage(named: "Twitter"),UIImage(named: "Instagram"),UIImage(named: "Snapchat"),UIImage(named: "Website")]
     var img = UIImage(named: "placeholder")
 
@@ -24,9 +25,48 @@ class OtherUserProfile: MainViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //setupSocialArray()
         registerCells()
     }
     
+    func setupSocialArray() {
+        
+        let socialAccTypes = ["LinkedIn", "Twitter", "Instagram", "Snapchat", "Website"]
+        let placeholderValues = ["LinkedIn not connected", "Twitter not linked", "No Instagram handle", "No Snapchat shared", "No website link"]
+        
+        if let socialAccdbModel = userModel.socialAccounts, !userModel.socialAccounts.isEmpty {
+            let socialAccTitles = socialAccdbModel.compactMap{ $0.linkTitle }
+            let socialAccTypesSet = Set(socialAccdbModel.compactMap{ $0.linkType })
+            let missingTypes = Set(socialAccTypes).subtracting(socialAccTypesSet)
+            socialAccArray = zip(socialAccTypes, placeholderValues).map { type, placeholder in
+                if missingTypes.contains(type) {
+                    return placeholder
+                } else if let index = socialAccdbModel.firstIndex(where: { $0.linkType == type }) {
+                    return socialAccTitles[index]
+                } else {
+                    return ""
+                }
+            }
+        } else {
+            socialAccArray = placeholderValues
+        }
+    }
+    
+    func setupSocialArrayd() {
+        
+        if userModel.socialAccounts != nil && userModel.socialAccounts.count > 0 {
+            socialAccArray = userModel.socialAccounts.compactMap{ $0.linkTitle }
+            for i in 0...socialAccArray.count {
+                let placeholderValues = ["LinkedIn not connected","Twitter not linked","No Instagram handle","No Snapchat Shared","No Website Link"]
+            
+                socialAccArray[i] = placeholderValues[i]
+            }
+            
+        } else {
+            socialAccArray = ["LinkedIn not connected","Twitter not linked","No Instagram handle","No Snapchat Shared","No Website Link"]
+        }
+    }
     
     func registerCells() {
         
@@ -58,7 +98,7 @@ class OtherUserProfile: MainViewController {
 extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return socialAccArray.count + 6
+        return userModel.socialAccounts.count + 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,7 +107,7 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
             case 0:
                 let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
                 cell.toolTipBtn.isHidden = true
-                cell.ratingView.isHidden = true
+                cell.ratingView.isHidden = false
                 cell.searchTFView.isHidden = true
                 cell.profileView.isHidden = false
                 cell.headerLogo.isHidden = false
@@ -152,15 +192,33 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 
             default:
                 let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
-                cell.socialImgView.image = socialAccImgArray[indexPath.row - 6]
-                cell.socialLbl.text = socialAccArray[indexPath.row - 6]
+                //cell.socialImgView.image = socialAccImgArray[indexPath.row - 6]
+                cell.socialLbl.text = userModel.socialAccounts[indexPath.row - 6].linkTitle.capitalized
                 cell.socialLbl.isUserInteractionEnabled = false
                 return cell
 
         }
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row > 5 {
+            //AppFunctions.showSnackBar(str: "\(indexPath.row)")
+            switch userModel.socialAccounts[indexPath.row - 6].linkType {
+                case "LinkedIn":
+                    AppFunctions.openLinkedIn(userName: userModel.socialAccounts[indexPath.row - 6].linkUrl)
+                case "Twitter":
+                    AppFunctions.openTwitter(userName: userModel.socialAccounts[indexPath.row - 6].linkUrl)
+                case "Instagram":
+                    AppFunctions.openInstagram(userName: userModel.socialAccounts[indexPath.row - 6].linkUrl)
+                case "Snapchat":
+                    AppFunctions.openSnapchat(userName: userModel.socialAccounts[indexPath.row - 6].linkUrl)
+                case "Website":
+                    AppFunctions.openWebLink(link: userModel.socialAccounts[indexPath.row - 6].linkUrl)
+                default:
+                    print("default")
+            }
+        }
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension

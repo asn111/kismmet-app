@@ -10,14 +10,14 @@ import UIKit
 class SignupVC: MainViewController {
     
     @IBAction func signUpBtnPressed(_ sender: Any) {
-        /*if email != "" && password != "" {
+        if email != "" && password != "" {
             isKeyBoardShown = false
             view.endEditing(true)
             userSignup()
         } else {
             AppFunctions.showSnackBar(str: "Invalid or Empty Feilds")
-        }*/
-        self.navigateVC(id: "ProfileSetupVC") { (vc:ProfileSetupVC) in }
+        }
+        //self.navigateVC(id: "ProfileSetupVC") { (vc:ProfileSetupVC) in }
     }
     
     
@@ -107,7 +107,11 @@ class SignupVC: MainViewController {
         
         let pram : [String : Any] = [ "email": email,
                                      "password": password,
-                                     "roleId": 1 ]
+                                     "roleId": 1,
+                                      "deviceId":UIDevice.current.identifierForVendor!.uuidString,
+                                      "deviceName":UIDevice.modelName,
+                                      "devicePlatform":"iOS"
+        ]
         Logs.show(message: "SKILLS PRAM: \(pram)")
         
         APIService

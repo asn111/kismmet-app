@@ -13,6 +13,10 @@ class MembershipVC: MainViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func upgradeBtnPressed(_ sender: Any) {
+        IAPManager.shared.fetchProducts()
+    }
+    
     @IBAction func feedBtnPressed(_ sender: Any) {
         self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
             vc.selectedIndex = 2
@@ -21,6 +25,14 @@ class MembershipVC: MainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        _ = productPublisher.subscribe(onNext: {[weak self] val in
+            
+            if !val.isEmpty {
+                Logs.show(message: "Products \(val)")
+                IAPManager.shared.purchase(productID: val.keys.first!)
+            }
+        }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
+        
         // Do any additional setup after loading the view.
     }
 }

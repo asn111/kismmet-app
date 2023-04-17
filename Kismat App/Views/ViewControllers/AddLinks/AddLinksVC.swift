@@ -14,8 +14,22 @@ class AddLinksVC: MainViewController {
         self.dismiss(animated: true)
     }
     @IBAction func saveBtnPressed(_ sender: Any) {
-        isUpdatedOnServer = true
-        self.dismiss(animated: true)
+        if accountType == "tags" {
+            if accountName != "" {
+                isUpdatedOnServer = true
+                self.dismiss(animated: true)
+                return
+            } else {
+                AppFunctions.showSnackBar(str: "All fields are required")
+            }
+        } else {
+            if accountName != "" && accountLink != "" {
+                userSocialAdd()
+            } else {
+                AppFunctions.showSnackBar(str: "All fields are required")
+            }
+        }
+        
     }
     
     @IBOutlet weak var mainView: RoundCornerView!
@@ -54,23 +68,20 @@ class AddLinksVC: MainViewController {
         switch accountType {
             case "linkedIn":
                 headingLbl.text = "Increase your connection through LinkedIn"
-                addAccName.placeholder = "Enter LinkedIn Username"
+                addAccName.placeholder = "Name your LinkedIn Username"
             case "twitter":
                 headingLbl.text = "Share your Twitter account"
-                addAccName.placeholder = "Enter Twitter Username"
+                addAccName.placeholder = "Name your Twitter Username"
             case "instagram":
                 headingLbl.text = "Get followers through your Instagram handle"
-                addAccName.placeholder = "Enter Instagram Username"
+                addAccName.placeholder = "Name your Instagram handle"
             case "snapchat":
                 headingLbl.text = "Your Snapchat account"
-                addAccName.placeholder = "Enter Snapchat Username"
+                addAccName.placeholder = "Name your Snapchat account"
             case "website":
-                adAccLink.isHidden = true
                 headingLbl.text = "Get reach on your Website"
-                addAccName.placeholder = "Enter your Website link"
-                saveBtnTopConst.constant = 80
-                cancelBtnTopConst.constant = 80
-                view.setNeedsLayout()
+                addAccName.placeholder = "Name your Website link"
+                addAccLink.placeholder = "Enter your website link"
             case "tags":
                 adAccLink.isHidden = true
                 headingLbl.text = "Tags are what describe you in here"
@@ -165,4 +176,56 @@ class AddLinksVC: MainViewController {
         isKeyBoardShown = false
         self.view.frame.origin.y = 0
     }
+    
+    func userSocialAdd() {
+        self.showPKHUD(WithMessage: "Signing up")
+        
+        var linkId = 0
+        switch accountType {
+            case "linkedIn":
+                linkId = 1
+            case "twitter":
+                linkId = 2
+            case "instagram":
+                linkId = 3
+            case "snapchat":
+                linkId = 4
+            case "website":
+                linkId = 5
+            default :
+                print("default")
+        }
+        
+        let pram : [String : Any] = [ "linkTitle": accountName,
+                                      "linkURL": accountLink,
+                                      "linkTypeId": linkId
+        ]
+        
+        Logs.show(message: "SKILLS PRAM: \(pram)")
+        
+        APIService
+            .singelton
+            .userSocialAdd(pram: pram)
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        Logs.show(message: "MARKED: 👉🏻 \(val)")
+                        if val {
+                            self.isUpdatedOnServer = true
+                            self.dismiss(animated: true)
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
+    
 }

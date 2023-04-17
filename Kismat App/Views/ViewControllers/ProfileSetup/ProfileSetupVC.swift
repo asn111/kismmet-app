@@ -14,7 +14,7 @@ class ProfileSetupVC: MainViewController  {
     var placeholderArray = ["","Full Name","Public Email","Phone","Date of Birth","Where do you work / study?","Work Title","Tell us about your self..",""]
     
     var updatedImagePicked : UIImage!
-    var profileDict = [String: String]()
+    var profileDict = [String: Any]()
     var fullName = "", publicEmail = "", placeOfWork = "", workTitle = "" , dateOfBirth = "", countryCode = "", phoneNum = "" , about = ""
     
     override func viewDidLoad() {
@@ -82,14 +82,12 @@ class ProfileSetupVC: MainViewController  {
     @objc func genBtnPressed(sender:UIButton) {
         self.view.endEditing(true)
         
-        self.pushVC(id: "ProfileSetupExtend") { (vc:ProfileSetupExtend) in
-            vc.profileDict = self.profileDict
-        }
-        /*Logs.show(message: "\(fullName), \(publicEmail), \(countryCode), \(dateOfBirth), \(phoneNum), \(placeOfWork), \(workTitle), \(about)")
+
+        Logs.show(message: "\(fullName), \(publicEmail), \(countryCode), \(dateOfBirth), \(phoneNum), \(placeOfWork), \(workTitle), \(about)")
         if fullName != "" && publicEmail != "" && countryCode != "" && phoneNum != "" && dateOfBirth != "" && placeOfWork != "" && workTitle != "" {
             
             profileDict["fullName"] = fullName
-            profileDict["profilePicture"] = ""
+            profileDict["profilePicture"] = "https://ibb.co/SNydr1f"
             profileDict["publicEmail"] = publicEmail
             profileDict["countryCode"] = countryCode
             profileDict["phoneNumber"] = phoneNum
@@ -104,7 +102,7 @@ class ProfileSetupVC: MainViewController  {
 
         } else {
             AppFunctions.showSnackBar(str: "Please add all fields.")
-        }*/
+        }
     }
     
     @objc func backBtnPressed(sender:UIButton) {
@@ -121,6 +119,21 @@ class ProfileSetupVC: MainViewController  {
             textView.text = ""
         }
     }
+    
+    @objc func toolTipBtnPressed(sender:UIButton) {
+        var msg = ""
+        
+        if sender.tag == 001 {
+            msg = "Please note that this email is visible to other users on the app"
+        } else if sender.tag == 002 {
+            msg = "Shadow mode lets you view profiles privately without appearing on the 'viewed by' page. This feature is only available for premium users."
+        } else if sender.tag == 003 {
+            msg = "Please note that your date of birth is private and will not be visible to other users on the app"
+        }
+        
+        AppFunctions.showToolTip(str: msg, btn: sender)
+    }
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         about = !textView.text!.isTFBlank ? textView.text! : ""
     }
@@ -272,6 +285,9 @@ extension ProfileSetupVC : UITableViewDelegate, UITableViewDataSource {
                     cell.numberTF.keyboardType = .phonePad
                     cell.numberTF.placeholder = placeholderArray[indexPath.row]
                     AppFunctions.colorPlaceholder(tf: cell.numberTF, s: placeholderArray[indexPath.row])
+                    cell.toolTipBtn.tag = 002
+                    
+                    cell.toolTipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
 
                 } else {
                     cell.numberView.isHidden = true
@@ -284,9 +300,15 @@ extension ProfileSetupVC : UITableViewDelegate, UITableViewDataSource {
                 }
                 if placeholderArray[indexPath.row] == "Public Email" {
                     cell.toolTipBtn.isHidden = false
+                    cell.toolTipBtn.tag = 001
+                    
+                    cell.toolTipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
                     cell.generalTF.keyboardType = .emailAddress
                 } else if placeholderArray[indexPath.row] == "Date of Birth" {
                     cell.toolTipBtn.isHidden = false
+                    cell.toolTipBtn.tag = 003
+                    
+                    cell.toolTipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
                 } else {
                     cell.toolTipBtn.isHidden = true
                 }

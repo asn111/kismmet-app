@@ -139,6 +139,18 @@ class EditProfileSetup: MainViewController {
         
     }
     
+    @objc func toolBtnPressed(sender: UIButton) {
+        var msg = ""
+        
+        if sender.tag == 001 {
+            msg = "Please note that this email is visible to other users on the app"
+        } else if sender.tag == 002 {
+            msg = "Please note that your date of birth is private and will not be visible to other users on the app"
+        }
+        
+        AppFunctions.showToolTip(str: msg, btn: sender)
+    }
+    
     @objc func genBtnPressedForDone(sender:UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -162,7 +174,7 @@ class EditProfileSetup: MainViewController {
                 guard let self = self else {return}
                 switch model {
                     case .next(let val):
-                        if val {
+                        if val.userId != "" {
                             Logs.show(message: "PROFILE: 👉🏻 \(String(describing: self.userdbModel))")
                         } else {
                             self.hidePKHUD()
@@ -345,11 +357,16 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                     }
                     if placeholderArray[indexPath.row] == "Public Email" {
                         cell.toolTipBtn.isHidden = false
+                        cell.toolTipBtn.tag = 001
                     } else if placeholderArray[indexPath.row] == "Date of Birth" {
                         cell.toolTipBtn.isHidden = false
+                        cell.toolTipBtn.tag = 002
                     } else {
                         cell.toolTipBtn.isHidden = true
                     }
+                    
+                    cell.toolTipBtn.addTarget(self, action: #selector(toolBtnPressed(sender:)), for: .touchUpInside)
+                    
                     
                     return cell
                     

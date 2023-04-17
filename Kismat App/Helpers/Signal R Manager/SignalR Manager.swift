@@ -23,14 +23,14 @@ class SignalRManager: NSObject {
     
     func initializeSignalR() {
         
-        let baseUrl = "https://eoex0jhjk0.execute-api.us-east-1.amazonaws.com"
+        let baseUrl = "http://35.171.225.88"
         
         connection = HubConnectionBuilder(url: URL(string: baseUrl + "/kismmetHub")!)
             .withLogging(minLogLevel: .debug)
             .withAutoReconnect()
             .withHubConnectionDelegate(delegate: chatHubConnectionDelegate!)
             .withHttpConnectionOptions(configureHttpOptions: { httpConOpt in
-                httpConOpt.skipNegotiation = true
+                //httpConOpt.skipNegotiation = true
                 httpConOpt.headers = headers
             })
             .build()
@@ -43,12 +43,12 @@ class SignalRManager: NSObject {
         connection.on(method: "HelloSignalR", callback: { argumentExtractor in
             
             let value = try argumentExtractor.getArgument(type: String.self)
-            Logs.show(message: ">>>: \(value) |...|")
+            Logs.show(message: ">>> HelloSignalR : \(value) |...|")
         })
         connection.on(method: "SignalRException", callback: { argumentExtractor in
             
             let value = try argumentExtractor.getArgument(type: String.self)
-            Logs.show(message: ">>>: \(value) |...|")
+            Logs.show(message: ">>> SignalRException : \(value) |...|")
         })
     }
     

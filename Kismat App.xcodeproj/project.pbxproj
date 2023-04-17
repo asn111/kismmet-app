@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29219B7129ED952000B47D40 /* VisibilityOffTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29219B6F29ED952000B47D40 /* VisibilityOffTVCell.swift */; };
+		29219B7229ED952000B47D40 /* VisibilityOffTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29219B7029ED952000B47D40 /* VisibilityOffTVCell.xib */; };
 		29350A1729CF489300F19BD5 /* SignalR Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29350A1629CF489300F19BD5 /* SignalR Manager.swift */; };
 		29350A1A29D0C43B00F19BD5 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29350A1929D0C43B00F19BD5 /* UserModel.swift */; };
 		29350A1C29D0C6A900F19BD5 /* SocialAccType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29350A1B29D0C6A900F19BD5 /* SocialAccType.swift */; };
@@ -32,6 +34,8 @@
 		294A79B1299AEB2E00089161 /* AboutTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 294A79AF299AEB2E00089161 /* AboutTVCell.xib */; };
 		294A79B4299AEB5100089161 /* SocialAccTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294A79B2299AEB5100089161 /* SocialAccTVCell.swift */; };
 		294A79B5299AEB5100089161 /* SocialAccTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 294A79B3299AEB5100089161 /* SocialAccTVCell.xib */; };
+		2976102C29DDB85300B74050 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2976102B29DDB85300B74050 /* StoreKit.framework */; };
+		2976102F29DDBF0700B74050 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2976102E29DDBF0700B74050 /* IAPManager.swift */; };
 		2977B7F7299B81D600A0670C /* MixHeaderTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2977B7F5299B81D600A0670C /* MixHeaderTVCell.swift */; };
 		2977B7F8299B81D600A0670C /* MixHeaderTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2977B7F6299B81D600A0670C /* MixHeaderTVCell.xib */; };
 		29846D3E29A154FF00393EB3 /* ChangePassVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29846D3D29A154FF00393EB3 /* ChangePassVC.swift */; };
@@ -118,6 +122,8 @@
 		19574AD3E82A49613F152C89 /* Pods-Kismat App-Kismat AppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat App-Kismat AppUITests.debug.xcconfig"; path = "Target Support Files/Pods-Kismat App-Kismat AppUITests/Pods-Kismat App-Kismat AppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1DD10B6998FBF8F63EA8798C /* Pods-Kismat App-Kismat AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat App-Kismat AppUITests.release.xcconfig"; path = "Target Support Files/Pods-Kismat App-Kismat AppUITests/Pods-Kismat App-Kismat AppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2788D47DD7B231370D26CC44 /* Pods-Kismat App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat App.release.xcconfig"; path = "Target Support Files/Pods-Kismat App/Pods-Kismat App.release.xcconfig"; sourceTree = "<group>"; };
+		29219B6F29ED952000B47D40 /* VisibilityOffTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisibilityOffTVCell.swift; sourceTree = "<group>"; };
+		29219B7029ED952000B47D40 /* VisibilityOffTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VisibilityOffTVCell.xib; sourceTree = "<group>"; };
 		29350A1629CF489300F19BD5 /* SignalR Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SignalR Manager.swift"; sourceTree = "<group>"; };
 		29350A1929D0C43B00F19BD5 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		29350A1B29D0C6A900F19BD5 /* SocialAccType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAccType.swift; sourceTree = "<group>"; };
@@ -143,6 +149,8 @@
 		294A79AF299AEB2E00089161 /* AboutTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutTVCell.xib; sourceTree = "<group>"; };
 		294A79B2299AEB5100089161 /* SocialAccTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAccTVCell.swift; sourceTree = "<group>"; };
 		294A79B3299AEB5100089161 /* SocialAccTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialAccTVCell.xib; sourceTree = "<group>"; };
+		2976102B29DDB85300B74050 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		2976102E29DDBF0700B74050 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		2977B7F5299B81D600A0670C /* MixHeaderTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixHeaderTVCell.swift; sourceTree = "<group>"; };
 		2977B7F6299B81D600A0670C /* MixHeaderTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MixHeaderTVCell.xib; sourceTree = "<group>"; };
 		29846D3D29A154FF00393EB3 /* ChangePassVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassVC.swift; sourceTree = "<group>"; };
@@ -221,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E74AD276A6F917BF115F88D4 /* Pods_Kismat_App.framework in Frameworks */,
+				2976102C29DDB85300B74050 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +329,14 @@
 			path = Xibs;
 			sourceTree = "<group>";
 		};
+		2976102D29DDBEF400B74050 /* InAppPurchases */ = {
+			isa = PBXGroup;
+			children = (
+				2976102E29DDBF0700B74050 /* IAPManager.swift */,
+			);
+			path = InAppPurchases;
+			sourceTree = "<group>";
+		};
 		29846D3C29A154DA00393EB3 /* ChangePass */ = {
 			isa = PBXGroup;
 			children = (
@@ -350,6 +367,8 @@
 			children = (
 				29985F392998339E001F769B /* FeedItemsTVCell.swift */,
 				29985F3A2998339E001F769B /* FeedItemsTVCell.xib */,
+				29219B6F29ED952000B47D40 /* VisibilityOffTVCell.swift */,
+				29219B7029ED952000B47D40 /* VisibilityOffTVCell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -500,6 +519,7 @@
 		299FDD6D29967DC80049741B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				2976102D29DDBEF400B74050 /* InAppPurchases */,
 				299FDD6E29967DC80049741B /* Signal R Manager */,
 				299FDD7029967DC90049741B /* DB Helper */,
 				299FDD7629967DC90049741B /* Location Manager */,
@@ -692,6 +712,7 @@
 		7C9D82B898743ED39B4B49E7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2976102B29DDB85300B74050 /* StoreKit.framework */,
 				42C1152AF2889D0BB805CB22 /* Pods_Kismat_App.framework */,
 				E4384F2D73DD8CBAD4838954 /* Pods_Kismat_App_Kismat_AppUITests.framework */,
 				A94193A959EB0E87687CB2C2 /* Pods_Kismat_AppTests.framework */,
@@ -826,6 +847,7 @@
 				29F5290429970DA500FE2EBA /* GeneralTextviewTVCell.xib in Resources */,
 				299FDD11299679690049741B /* Main.storyboard in Resources */,
 				299FDD8F2996C0F20049741B /* Work Sans.ttf in Resources */,
+				29219B7229ED952000B47D40 /* VisibilityOffTVCell.xib in Resources */,
 				299FDD9B2996C8ED0049741B /* Roboto-Medium.ttf in Resources */,
 				299FDD912996C2630049741B /* Work Sans Bold.ttf in Resources */,
 				2940B900299D634300D3F863 /* ImageViewTVCell.xib in Resources */,
@@ -1012,9 +1034,11 @@
 				29350A2329D1A08800F19BD5 /* SocialAccDBModel.swift in Sources */,
 				299FDD7D29967DC90049741B /* Database.swift in Sources */,
 				299E03CE29A141450064A5E3 /* MembershipVC.swift in Sources */,
+				29219B7129ED952000B47D40 /* VisibilityOffTVCell.swift in Sources */,
 				294A79AC299AE89E00089161 /* ProfileVC.swift in Sources */,
 				299FDD0A299679690049741B /* AppDelegate.swift in Sources */,
 				299FDD7E29967DC90049741B /* LocationManager.swift in Sources */,
+				2976102F29DDBF0700B74050 /* IAPManager.swift in Sources */,
 				29473E55299C664F00859D8A /* NotificationVC.swift in Sources */,
 				299FDDA12996E1F80049741B /* ProfileSetupVC.swift in Sources */,
 			);

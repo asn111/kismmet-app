@@ -11,6 +11,7 @@ import MaterialComponents.MaterialSnackbar
 import RxSwift
 import CoreLocation
 import MKToolTip
+import StoreKit
 
 //MARK: Globel Variables
 
@@ -38,6 +39,7 @@ let SignalRService = SignalRManager.singelton
 
 public let loading: PublishSubject<Bool> = PublishSubject()
 let generalPublisher: PublishSubject<String> = PublishSubject()
+let productPublisher: PublishSubject<[String: SKProduct]> = PublishSubject()
 
 
 ///stripeTestKeys
@@ -52,6 +54,7 @@ let isTermsNCond = "isTermsNCond"
 let isNumVerified = "isNumVerified"
 let isEmailVerifyed = "isEmailVerifyed"
 let isShadowMode = "isShadowMode"
+let profileVisble = "profileVisble"
 let userId = "userId"
 let role = "role"
 let devTokenString = "devTokenString"
@@ -252,6 +255,20 @@ class AppFunctions {
         return value
     }
     
+    open class func setIsProfileVisble(value: Bool){
+        preferences.set(value, forKey: profileVisble)
+        preferences.synchronize()
+    }
+    open class func isProfileVisble() -> Bool{
+        var value = false
+        if preferences.object(forKey: profileVisble) == nil {
+            Logs.show(message: "NIL isProfileVisble")
+        } else {
+            value = preferences.bool(forKey: profileVisble)
+        }
+        return value
+    }
+    
     open class func setTagsArray(value: [String]){
         preferences.set(value, forKey: tagsArray)
         preferences.synchronize()
@@ -352,6 +369,89 @@ class AppFunctions {
         let message = MDCSnackbarMessage()
         message.text = str
         MDCSnackbarManager.default.show(message)
+    }
+    
+    //MARK: Open app functions
+    open class func openSnapchat(userName: String) {
+        
+        let application = UIApplication.shared
+        
+        if let appURL = NSURL(string: "snapchat://add/\(userName)") {
+            if application.canOpenURL(appURL as URL) {
+                application.open(appURL as URL)
+            } else {
+                if let webURL =  NSURL(string: "https://www.snapchat.com/add/\(userName)") {
+                    application.open(webURL as URL)
+                } else { showSnackBar(str: "Invalid link provided") }
+            }
+        } else { showSnackBar(str: "Invalid link provided") }
+        
+        
+    }
+    
+    open class func openTwitter(userName: String) {
+        
+        let application = UIApplication.shared
+        
+        if let appURL = NSURL(string: "twitter://user?screen_name=\(userName)") {
+            if application.canOpenURL(appURL as URL) {
+                application.open(appURL as URL)
+            } else {
+                if let webURL =  NSURL(string: "https://twitter.com/\(userName)") {
+                    application.open(webURL as URL)
+                } else {
+                    showSnackBar(str: "Invalid link provided")
+                }
+            }
+        } else { showSnackBar(str: "Invalid link provided") }
+        
+        
+
+    }
+    
+    open class func openLinkedIn(userName: String) {
+        
+        let application = UIApplication.shared
+        
+        if let appURL = NSURL(string: "linkedin://profile/\(userName)") {
+            if application.canOpenURL(appURL as URL) {
+                application.open(appURL as URL)
+            } else {
+                if let webURL =  NSURL(string: "https://www.linkedin.com/in/\(userName)") {
+                    application.open(webURL as URL)
+                } else { showSnackBar(str: "Invalid link provided") }
+            }
+        } else { showSnackBar(str: "Invalid link provided") }
+        
+    }
+    
+    open class func openInstagram(userName: String) {
+
+        let application = UIApplication.shared
+        
+        if let appURL = NSURL(string: "instagram://user?username=\(userName)") {
+            if application.canOpenURL(appURL as URL) {
+                application.open(appURL as URL)
+            } else {
+                if let webURL =  NSURL(string: "https://instagram.com/\(userName)") {
+                    application.open(webURL as URL)
+                } else { showSnackBar(str: "Invalid link provided") }
+            }
+        } else { showSnackBar(str: "Invalid link provided") }
+        
+       
+    }
+    
+    open class func openWebLink(link: String) {
+        let application = UIApplication.shared
+
+        guard let url = URL(string: link) else {
+            showSnackBar(str: "Invalid link provided")
+            return //be safe
+        }
+        
+        application.open(url)
+
     }
     
     //MARK: Show ToolTip

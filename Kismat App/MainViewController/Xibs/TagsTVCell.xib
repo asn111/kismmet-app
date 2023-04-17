@@ -51,10 +51,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ChemistryBA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRO-RN-hKA" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="9" width="60" height="10"/>
+                                                <rect key="frame" x="15" y="8" width="60" height="12"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="T5d-td-cYk"/>
-                                                    <constraint firstAttribute="height" constant="10" id="y52-6m-prq"/>
+                                                    <constraint firstAttribute="height" constant="12" id="y52-6m-prq"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -111,10 +111,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chemistry101" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtx-C5-zbC" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="9" width="74" height="10"/>
+                                                <rect key="frame" x="8" y="8" width="74" height="12"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="74" id="ZaL-2P-LDE"/>
-                                                    <constraint firstAttribute="height" constant="10" id="yBS-cu-7MW"/>
+                                                    <constraint firstAttribute="height" constant="12" id="yBS-cu-7MW"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -173,10 +173,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFn-pr-x5z" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="9" width="62" height="10"/>
+                                                <rect key="frame" x="10" y="8" width="62" height="12"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="62" id="Ky0-IT-aDI"/>
-                                                    <constraint firstAttribute="height" constant="10" id="xC6-Eu-6Rl"/>
+                                                    <constraint firstAttribute="height" constant="12" id="xC6-Eu-6Rl"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -232,9 +232,9 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ChemistryBA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Sd-rE-NEW" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="9" width="60" height="10"/>
+                                                <rect key="frame" x="15" y="8" width="60" height="12"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="10" id="D7g-Jy-5PS"/>
+                                                    <constraint firstAttribute="height" constant="12" id="D7g-Jy-5PS"/>
                                                     <constraint firstAttribute="width" constant="60" id="xtH-IT-37d"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -294,9 +294,9 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muH-6z-pUN" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="9" width="62" height="10"/>
+                                                <rect key="frame" x="10" y="8" width="62" height="12"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="10" id="vEb-vG-ASU"/>
+                                                    <constraint firstAttribute="height" constant="12" id="vEb-vG-ASU"/>
                                                     <constraint firstAttribute="width" constant="62" id="wmy-Pv-4Th"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>

@@ -89,13 +89,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ob9-8x-pD3" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                 <rect key="frame" x="11" y="7.6666666666666643" width="353" height="59.999999999999993"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Q1R-JI-kC4">
-                                        <rect key="frame" x="314" y="22" width="15" height="15"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QjH-I5-Fc9">
+                                        <rect key="frame" x="314" y="22" width="15" height="17"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="14.999999999999943" id="2vN-gZ-h08"/>
-                                            <constraint firstAttribute="width" constant="15" id="ole-pP-esE"/>
+                                            <constraint firstAttribute="height" constant="17" id="Ayg-yI-aZg"/>
+                                            <constraint firstAttribute="width" constant="15" id="W39-b8-WSV"/>
                                         </constraints>
-                                    </imageView>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="lock_icon"/>
+                                    </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3BS-oW-ABa" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="3" y="4" width="84" height="52"/>
                                         <subviews>
@@ -162,17 +165,18 @@
                                 </subviews>
                                 <color key="backgroundColor" name="BG Base White"/>
                                 <constraints>
-                                    <constraint firstItem="Q1R-JI-kC4" firstAttribute="leading" secondItem="lEa-z3-zuD" secondAttribute="trailing" constant="13" id="1qE-G5-vze"/>
                                     <constraint firstItem="lEa-z3-zuD" firstAttribute="leading" secondItem="3BS-oW-ABa" secondAttribute="trailing" constant="5" id="40T-le-B97"/>
                                     <constraint firstAttribute="width" constant="353" id="6gs-OI-d5M"/>
                                     <constraint firstAttribute="bottom" secondItem="3BS-oW-ABa" secondAttribute="bottom" constant="4" id="7IF-et-T7h"/>
                                     <constraint firstItem="lEa-z3-zuD" firstAttribute="centerY" secondItem="ob9-8x-pD3" secondAttribute="centerY" id="JMP-vJ-A0n"/>
                                     <constraint firstItem="lEa-z3-zuD" firstAttribute="centerX" secondItem="ob9-8x-pD3" secondAttribute="centerX" constant="20" id="JTU-Cw-9GO"/>
                                     <constraint firstAttribute="height" constant="60" id="JZs-D3-WiD"/>
-                                    <constraint firstAttribute="bottom" secondItem="Q1R-JI-kC4" secondAttribute="bottom" constant="22.999999999999993" id="jDg-TA-IfF"/>
+                                    <constraint firstAttribute="trailing" secondItem="QjH-I5-Fc9" secondAttribute="trailing" constant="24" id="Tee-Ap-DYG"/>
+                                    <constraint firstAttribute="bottom" secondItem="QjH-I5-Fc9" secondAttribute="bottom" constant="20.999999999999993" id="cKc-52-OOq"/>
+                                    <constraint firstItem="QjH-I5-Fc9" firstAttribute="leading" secondItem="lEa-z3-zuD" secondAttribute="trailing" constant="13" id="djd-Nq-BPk"/>
                                     <constraint firstItem="3BS-oW-ABa" firstAttribute="top" secondItem="ob9-8x-pD3" secondAttribute="top" constant="4" id="jN0-iW-F8H"/>
-                                    <constraint firstItem="Q1R-JI-kC4" firstAttribute="top" secondItem="ob9-8x-pD3" secondAttribute="top" constant="22.000000000000057" id="mys-b3-G6X"/>
                                     <constraint firstItem="3BS-oW-ABa" firstAttribute="leading" secondItem="ob9-8x-pD3" secondAttribute="leading" constant="3" id="olk-K5-7JC"/>
+                                    <constraint firstItem="QjH-I5-Fc9" firstAttribute="top" secondItem="ob9-8x-pD3" secondAttribute="top" constant="22" id="yb3-4D-1wO"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -217,6 +221,7 @@
                 <outlet property="countryPickerView" destination="4Is-bo-0PU" id="Dpu-Mg-y8O"/>
                 <outlet property="generalTF" destination="oPc-B4-0kB" id="Qcc-AV-qvd"/>
                 <outlet property="generalTFView" destination="4ET-CA-03u" id="hpo-7q-nSl"/>
+                <outlet property="lockTipBtn" destination="QjH-I5-Fc9" id="u2D-iy-vnb"/>
                 <outlet property="numberTF" destination="lEa-z3-zuD" id="PMz-kn-qva"/>
                 <outlet property="numberView" destination="ob9-8x-pD3" id="dKN-3N-VdS"/>
                 <outlet property="toolTipBtn" destination="1Q9-Dv-z8W" id="cHf-gL-fNp"/>

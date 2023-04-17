@@ -7,6 +7,33 @@
 
 import Foundation
 
+
+class ProximityUsersModel: NSObject, Codable {
+    
+    var profilesViewed : Int!
+    var users : [UserModel]!
+    
+    
+    override init() {
+        
+        profilesViewed = 0
+        users = [UserModel]()
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case profilesViewed = "profilesViewed"
+        case users = "users"
+    }
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        profilesViewed  = try values.decodeIfPresent(Int.self, forKey: .profilesViewed)
+        users  = try values.decodeIfPresent([UserModel].self, forKey: .users)
+    }
+}
+
+
 class UserModel: NSObject, Codable {
     
     var userId : String!
@@ -25,6 +52,7 @@ class UserModel: NSObject, Codable {
     var isStarred : Bool!
     var tags : String!
     var isActive : Bool!
+    var socialAccounts : [SocialAccModel]!
 
 
     override init() {
@@ -45,6 +73,8 @@ class UserModel: NSObject, Codable {
         isStarred = false
         tags = ""
         isActive = false
+        socialAccounts = [SocialAccModel]()
+        
     }
     
     private enum CodingKeys: String, CodingKey {
@@ -65,6 +95,7 @@ class UserModel: NSObject, Codable {
         case isStarred = "isStarred"
         case tags = "tags"
         case isActive = "isActive"
+        case socialAccounts = "socialAccounts"
     }
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -85,5 +116,6 @@ class UserModel: NSObject, Codable {
         isStarred  = try values.decodeIfPresent(Bool.self, forKey: .isStarred)
         tags  = try values.decodeIfPresent(String.self, forKey: .tags)
         isActive  = try values.decodeIfPresent(Bool.self, forKey: .isActive)
+        socialAccounts  = try values.decodeIfPresent([SocialAccModel].self, forKey: .socialAccounts)
     }
 }
