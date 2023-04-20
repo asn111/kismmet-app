@@ -11,13 +11,15 @@ import StoreKit
 
 
 class IAPManager: NSObject {
-
+    
     static let shared = IAPManager()
     let monthlySubID = "kissmet_premium_sub_1"
     var products: [String: SKProduct] = [:]
     
+    
     private override init() {
         super.init()
+        SKPaymentQueue.default().add(self)
     }
     
     func fetchProducts() {
@@ -38,34 +40,14 @@ class IAPManager: NSObject {
         SKPaymentQueue.default().restoreCompletedTransactions()
     }
     
-    func getAllActiveSubscriptions() {
-        let paymentQueue = SKPaymentQueue.default()
-        paymentQueue.restoreCompletedTransactions()
-        
-        for transaction in paymentQueue.transactions {
-            if transaction.transactionState == .purchased || transaction.transactionState == .restored {
-                let productID = transaction.payment.productIdentifier
-                if SKPaymentQueue.canMakePayments() {
-                    let productRequest: SKProductsRequest = SKProductsRequest(productIdentifiers: Set([productID]))
-                    Logs.show(message: "productRequest: \(productRequest)")
-
-                    /*productRequest.start { (response, error) in
-                        if error != nil {
-                            print("Error fetching product info: \(error?.localizedDescription ?? "")")
-                        } else if let product = response?.products.first {
-                            // Here, you can access the subscription information such as the product ID, price, and other details.
-                            print("Active subscription found: \(product.productIdentifier)")
-                        }
-                    }*/
-                } else {
-                    Logs.show(message: " Not canMakePayments:")
-                }
-            }
+    func showManageSubscriptions() {
+        if let url = URL(string: "itms-apps://apps.apple.com/account/subscriptions") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
 }
 
-extension IAPManager: SKProductsRequestDelegate {
+extension IAPManager: SKProductsRequestDelegate, SKPaymentTransactionObserver {
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         response.invalidProductIdentifiers.forEach { product in
@@ -87,6 +69,7 @@ extension IAPManager: SKProductsRequestDelegate {
     func requestDidFinish(_ request: SKRequest) {
         // Implement this method OPTIONALLY and add any custom logic
         // you want to apply when a product request is finished.
+        
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
@@ -94,7 +77,8 @@ extension IAPManager: SKProductsRequestDelegate {
             switch transaction.transactionState {
                 case .purchased:
                     Logs.show(message: "onBuyProductHandler TRUE: \(transaction)")
-                    SKPaymentQueue.default().finishTransaction(transaction)
+                    handleSuccessfulPurchase(transaction)
+
                     
                 case .restored:
                     Logs.show(message: "restored: \(transaction)")
@@ -121,6 +105,7 @@ extension IAPManager: SKProductsRequestDelegate {
         Logs.show(message: "IAP: purchases to restore: \(queue.transactions)")
     }
     
+    
     func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
         if let error = error as? SKError {
             if error.code != .paymentCancelled {
@@ -130,6 +115,24 @@ extension IAPManager: SKProductsRequestDelegate {
                 Logs.show(message: "IAP Error Restore paymentCancelled: \(error)")
             }
         }
+    }
+    
+    func handleSuccessfulPurchase(_ transaction: SKPaymentTransaction) {
+        // Process the successful purchase here
+        // You can get the transaction id and receipt data as follows:
+        if let url = Bundle.main.appStoreReceiptURL,
+           let data = try? Data(contentsOf: url) {
+            let receiptBase64 = data.base64EncodedString()
+            // Send the receipt data to your server for validation
+            Logs.show(message: "appStoreReceiptURL: \(url)")
+            generalPublisher.onNext("purchased")
+
+            ApiService.updateSubscription(val: premiumSubscriptionId)
+            AppFunctions.setIsPremiumUser(value: true)
+        }
+        Logs.show(message: "transaction Successful: \(transaction)")
+        // Finish the transaction
+        SKPaymentQueue.default().finishTransaction(transaction)
     }
     
 }

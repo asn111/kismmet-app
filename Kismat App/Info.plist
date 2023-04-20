@@ -11,6 +11,7 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SuezOne-Regular.ttf</string>
 		<string>Work Sans.ttf</string>
 		<string>Work Sans Bold.ttf</string>
 		<string>Roboto-Black.ttf</string>

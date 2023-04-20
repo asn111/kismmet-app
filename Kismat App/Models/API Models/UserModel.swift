@@ -52,6 +52,9 @@ class UserModel: NSObject, Codable {
     var isStarred : Bool!
     var tags : String!
     var isActive : Bool!
+    var shadowMode : Bool!
+    var accountStatus : String!
+    var subscription : String!
     var socialAccounts : [SocialAccModel]!
 
 
@@ -73,6 +76,9 @@ class UserModel: NSObject, Codable {
         isStarred = false
         tags = ""
         isActive = false
+        shadowMode = false
+        accountStatus = ""
+        subscription = ""
         socialAccounts = [SocialAccModel]()
         
     }
@@ -95,6 +101,9 @@ class UserModel: NSObject, Codable {
         case isStarred = "isStarred"
         case tags = "tags"
         case isActive = "isActive"
+        case shadowMode = "shadowMode"
+        case accountStatus = "accountStatus"
+        case subscription = "subscription"
         case socialAccounts = "socialAccounts"
     }
     required init(from decoder: Decoder) throws {
@@ -116,6 +125,9 @@ class UserModel: NSObject, Codable {
         isStarred  = try values.decodeIfPresent(Bool.self, forKey: .isStarred)
         tags  = try values.decodeIfPresent(String.self, forKey: .tags)
         isActive  = try values.decodeIfPresent(Bool.self, forKey: .isActive)
+        shadowMode  = try values.decodeIfPresent(Bool.self, forKey: .shadowMode)
+        accountStatus  = try values.decodeIfPresent(String.self, forKey: .accountStatus)
+        subscription  = try values.decodeIfPresent(String.self, forKey: .subscription)
         socialAccounts  = try values.decodeIfPresent([SocialAccModel].self, forKey: .socialAccounts)
     }
 }

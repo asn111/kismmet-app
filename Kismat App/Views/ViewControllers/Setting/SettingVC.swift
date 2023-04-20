@@ -8,13 +8,14 @@
 import UIKit
 import CDAlertView
 import RealmSwift
+import SafariServices
 
 class SettingVC: MainViewController {
 
     
     @IBOutlet weak var settingTV: UITableView!
     
-    var lblTxt = ["","","Edit Profile","Preferences","Notifications","Change Password","Membership","Privacy Policy","About Kismmet","Account Status","Logout"]
+    var lblTxt = ["","","Edit Profile","Preferences","Notifications","Change Password","Membership","Privacy Policy","About Kismmet","Account Status","Blocked Users","Logout"]
     
     var userdbModel : Results<UserDBModel>!
     var img = UIImage(named: "placeholder")
@@ -162,9 +163,21 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
                 self.pushVC(id: "ChangePassVC") { (vc:ChangePassVC) in }
             case 6:
                 self.pushVC(id: "MembershipVC") { (vc:MembershipVC) in }
+            case 7:
+                if let privacyPolicyURL = URL(string: "http://www.myqabilaapp.com/") {
+                    let safariVC = SFSafariViewController(url: privacyPolicyURL)
+                    present(safariVC, animated: true)
+                } ///pp
+            case 8:
+                if let privacyPolicyURL = URL(string: "https://www.kismmet.com/") {
+                    let safariVC = SFSafariViewController(url: privacyPolicyURL)
+                    present(safariVC, animated: true)
+                } ///about
             case 9:
                 self.pushVC(id: "AccountStatusVC") { (vc:AccountStatusVC) in }
             case 10:
+                self.pushVC(id: "BlockedVC") { (vc:BlockedVC) in }
+            case 11:
                 showAlert()
             default:
                 print("")

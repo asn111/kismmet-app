@@ -124,11 +124,11 @@ class ProfileSetupVC: MainViewController  {
         var msg = ""
         
         if sender.tag == 001 {
-            msg = "Please note that this email is visible to other users on the app"
+            msg = "Please note that this email is visible to other users on the app."
         } else if sender.tag == 002 {
-            msg = "Shadow mode lets you view profiles privately without appearing on the 'viewed by' page. This feature is only available for premium users."
+            msg = "The lock icon next to your phone number indicates that this number cannot be changed. Please ensure that you have entered the correct phone number during the registration process."
         } else if sender.tag == 003 {
-            msg = "Please note that your date of birth is private and will not be visible to other users on the app"
+            msg = "Please note that your date of birth is private and will not be visible to other users on the app."
         }
         
         AppFunctions.showToolTip(str: msg, btn: sender)
@@ -285,9 +285,9 @@ extension ProfileSetupVC : UITableViewDelegate, UITableViewDataSource {
                     cell.numberTF.keyboardType = .phonePad
                     cell.numberTF.placeholder = placeholderArray[indexPath.row]
                     AppFunctions.colorPlaceholder(tf: cell.numberTF, s: placeholderArray[indexPath.row])
-                    cell.toolTipBtn.tag = 002
+                    cell.lockTipBtn.tag = 002
                     
-                    cell.toolTipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
+                    cell.lockTipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
 
                 } else {
                     cell.numberView.isHidden = true

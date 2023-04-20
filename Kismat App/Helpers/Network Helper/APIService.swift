@@ -25,7 +25,7 @@ class APIService: NSObject {
     private override init() {
         super.init()
         
-        baseUrl = "http://35.171.225.88"
+        baseUrl = "http://35.170.190.98"
         Logs.show(message: "SERVER: \(baseUrl)")
         
         self.startMonitoring()
@@ -509,6 +509,86 @@ class APIService: NSObject {
         }
     }
     
+    func updateSubscription(val: Int){
+        
+        if (self.isCheckReachable()) {
+            let pram: Parameters = ["subscriptionId": val]
+            
+            AF.request("\(self.baseUrl)/api/Users/UpdateUserSubscription", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
+                .validate()
+                .responseData{ response in
+                    Logs.show(message: "URL: \(response.debugDescription)")
+                    guard let data = response.data else {
+                        AppFunctions.showSnackBar(str: "Server Request Error")
+                        Logs.show(message: "Error on Response.data\(response.error!)")
+                        return
+                    }
+                    switch response.result {
+                        case .success:
+                            do {
+                                let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                //AppFunctions.showSnackBar(str: genResponse.message)
+                                Logs.show(message: "SUCCESS IN \(#function)")
+                            } catch {
+                                AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                            }
+                        case .failure( _):
+                            do {
+                                let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                AppFunctions.showSnackBar(str: responce.message)
+                            } catch {
+                                Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                AppFunctions.showSnackBar(str: "Server Request Error")
+                            }
+                    }
+                }
+        } else {
+            AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
+        }
+    }
+    
+    func updateAccountStatus(val: Int){
+        
+        if (self.isCheckReachable()) {
+            let pram: Parameters = ["statusId": val]
+            
+            AF.request("\(self.baseUrl)/api/Users/UpdateUserAccountStatus", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
+                .validate()
+                .responseData{ response in
+                    Logs.show(message: "URL: \(response.debugDescription)")
+                    guard let data = response.data else {
+                        AppFunctions.showSnackBar(str: "Server Request Error")
+                        Logs.show(message: "Error on Response.data\(response.error!)")
+                        return
+                    }
+                    switch response.result {
+                        case .success:
+                            do {
+                                let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                //AppFunctions.showSnackBar(str: genResponse.message)
+                                Logs.show(message: "SUCCESS IN \(#function)")
+                            } catch {
+                                AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                            }
+                        case .failure( _):
+                            do {
+                                let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                AppFunctions.showSnackBar(str: responce.message)
+                            } catch {
+                                Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                AppFunctions.showSnackBar(str: "Server Request Error")
+                            }
+                    }
+                }
+        } else {
+            AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
+        }
+    }
+    
     
     func markStarUser(val: String){
         
@@ -516,6 +596,87 @@ class APIService: NSObject {
             let pram: Parameters = ["userId": val]
 
             AF.request("\(self.baseUrl)/api/Users/StarUser", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
+                .validate()
+                .responseData{ response in
+                    Logs.show(message: "URL: \(response.debugDescription)")
+                    guard let data = response.data else {
+                        AppFunctions.showSnackBar(str: "Server Request Error")
+                        Logs.show(message: "Error on Response.data\(response.error!)")
+                        return
+                    }
+                    switch response.result {
+                        case .success:
+                            do {
+                                let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                //AppFunctions.showSnackBar(str: genResponse.message)
+                                Logs.show(message: "SUCCESS IN \(#function)")
+                            } catch {
+                                AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                            }
+                        case .failure( _):
+                            do {
+                                let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                AppFunctions.showSnackBar(str: responce.message)
+                            } catch {
+                                Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                AppFunctions.showSnackBar(str: "Server Request Error")
+                            }
+                    }
+                }
+        } else {
+            AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
+        }
+    }
+    
+    
+    func markViewedUser(val: String){
+        
+        if (self.isCheckReachable()) {
+            let pram: Parameters = ["userId": val]
+
+            AF.request("\(self.baseUrl)/api/Users/UserProfileViewed", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
+                .validate()
+                .responseData{ response in
+                    Logs.show(message: "URL: \(response.debugDescription)")
+                    guard let data = response.data else {
+                        AppFunctions.showSnackBar(str: "Server Request Error")
+                        Logs.show(message: "Error on Response.data\(response.error!)")
+                        return
+                    }
+                    switch response.result {
+                        case .success:
+                            do {
+                                let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                //AppFunctions.showSnackBar(str: genResponse.message)
+                                Logs.show(message: "SUCCESS IN \(#function)")
+                            } catch {
+                                AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                            }
+                        case .failure( _):
+                            do {
+                                let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                AppFunctions.showSnackBar(str: responce.message)
+                            } catch {
+                                Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                AppFunctions.showSnackBar(str: "Server Request Error")
+                            }
+                    }
+                }
+        } else {
+            AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
+        }
+    }
+    
+    func markBlockUser(val: String){
+        
+        if (self.isCheckReachable()) {
+            let pram: Parameters = ["userId": val]
+
+            AF.request("\(self.baseUrl)/api/Users/BlockUser", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
                 .validate()
                 .responseData{ response in
                     Logs.show(message: "URL: \(response.debugDescription)")
@@ -606,12 +767,62 @@ class APIService: NSObject {
     }
     
     //MARK: Get Starred Users
-    func getStarredUsers() -> Observable<[UserModel]> {
+    func getStarredUsers(pram: Parameters) -> Observable<[UserModel]> {
         
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(self?.baseUrl ?? "")/api/Users/GetStarredUsers", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/GetStarredUsers", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                    .validate()
+                    .responseData{ response in
+                        Logs.show(message: "URL: \(response.debugDescription)")
+                        guard let data = response.data else {
+                            observer.onError(response.error!)
+                            AppFunctions.showSnackBar(str: "Server Request Error")
+                            Logs.show(message: "Error on Response.data\(response.error!)")
+                            return
+                        }
+                        switch response.result {
+                            case .success:
+                                do {
+                                    let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    Logs.show(message: "SUCCESS IN \(#function)")
+                                    observer.onNext(genResponse.body.users)
+                                    observer.onCompleted()
+                                } catch {
+                                    observer.onError(error)
+                                    AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                }
+                            case .failure(let error):
+                                do {
+                                    let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    observer.onError(error)
+                                    Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                    AppFunctions.showSnackBar(str: responce.message)
+                                }catch {
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                    AppFunctions.showSnackBar(str: "Server Request Error")
+                                    observer.onError(error)
+                                }
+                        }
+                    }
+            } else {
+                observer.onNext([UserModel]())
+                observer.onCompleted()
+                AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
+            }
+            return Disposables.create()
+        }
+    }
+    
+    //MARK: Get Blocked Users
+    func getBlockUsers(pram: Parameters) -> Observable<[UserModel]> {
+        
+        return Observable.create{[weak self] observer -> Disposable in
+            if (self?.isCheckReachable())! {
+                
+                AF.request("\(self?.baseUrl ?? "")/api/Users/GetBlockedUsers", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -656,12 +867,12 @@ class APIService: NSObject {
     }
     
     //MARK: Get Viewed By Users
-    func getViewedByUsers() -> Observable<[UserModel]> {
+    func getViewedByUsers(pram: Parameters) -> Observable<[UserModel]> {
         
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(self?.baseUrl ?? "")/api/Users/WhoViewedMyProfile", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/WhoViewedMyProfile", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -707,12 +918,12 @@ class APIService: NSObject {
     
     
     //MARK: Get Viewed By Me
-    func getViewedByMe() -> Observable<[UserModel]> {
+    func getViewedByMe(pram: Parameters) -> Observable<[UserModel]> {
         
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(self?.baseUrl ?? "")/api/Users/ProfilesViewed", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/ProfilesViewed", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")

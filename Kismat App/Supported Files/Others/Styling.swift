@@ -877,6 +877,8 @@ class fullyCustomLbl : UILabel {
     
     var isWork : Bool = false
     
+    var isSuezOne : Bool = false
+    
     @IBInspectable var txtColor: UIColor = UIColor(hexFromString: "A5A4A2") {
         didSet {
             self.textColor = txtColor
@@ -889,6 +891,7 @@ class fullyCustomLbl : UILabel {
     }
     
     @IBInspectable var isFontWork: Bool = false { didSet { isWork = isFontWork }}
+    @IBInspectable var isFontSuezOne: Bool = false { didSet { isSuezOne = isFontSuezOne }}
     
     @IBInspectable var txtStroke: String = "r"
     
@@ -908,6 +911,8 @@ class fullyCustomLbl : UILabel {
         var baseFont = UIFont()
         if isWork {
             baseFont = UIFont(name: "Work Sans Bold", size: txtSize)!
+        } else if isSuezOne {
+            baseFont = UIFont(name: "SuezOne-Regular", size: txtSize)!
         } else {
             baseFont = UIFont(name: "Roboto", size: txtSize)!
         }

@@ -143,9 +143,9 @@ class EditProfileSetup: MainViewController {
         var msg = ""
         
         if sender.tag == 001 {
-            msg = "Please note that this email is visible to other users on the app"
+            msg = "Please note that this email is visible to other users on the app."
         } else if sender.tag == 002 {
-            msg = "Please note that your date of birth is private and will not be visible to other users on the app"
+            msg = "Please note that your date of birth is private and will not be visible to other users on the app."
         }
         
         AppFunctions.showToolTip(str: msg, btn: sender)

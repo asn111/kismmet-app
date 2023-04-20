@@ -60,7 +60,9 @@
                                         </constraints>
                                         <color key="tintColor" name="Secondary Grey"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="bell.badge.fill" catalog="system"/>
+                                        <state key="normal" image="bell.badge.fill" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="semibold"/>
+                                        </state>
                                     </button>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STARRED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6BT-Eq-hcD" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="46" y="9" width="267" height="32"/>
@@ -75,11 +77,12 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
                                                 <color key="value" name="Secondary Grey"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="bl"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
                                                 <real key="value" value="28"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isFontSuezOne" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WHO VIEWED MY PROFILE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2n-8t-cBj" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
@@ -95,11 +98,12 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
                                                 <color key="value" name="Text grey"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="bl"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
                                                 <real key="value" value="18"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isFontSuezOne" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo name" translatesAutoresizingMaskIntoConstraints="NO" id="ooM-Y7-C6j">
@@ -193,21 +197,22 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cn8-Nl-EBJ">
                                 <rect key="frame" x="8" y="76" width="359" height="100"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ba0-Xg-o6E" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
-                                        <rect key="frame" x="306" y="36" width="35" height="20"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ba0-Xg-o6E" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="277" y="33" width="64" height="26"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Icb-FA-TAT" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="35" height="20"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Icb-FA-TAT" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="64" height="26"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="nhg-iS-BmZ"/>
-                                                    <constraint firstAttribute="width" constant="35" id="o8J-5o-h8J"/>
+                                                    <constraint firstAttribute="height" constant="26" id="nhg-iS-BmZ"/>
+                                                    <constraint firstAttribute="width" constant="64" id="o8J-5o-h8J"/>
                                                 </constraints>
+                                                <color key="tintColor" name="Danger"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title="Block"/>
+                                                <state key="normal" title="Block" image="circle.slash.fill" catalog="system"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="YES"/>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
-                                                        <color key="value" name="Danger"/>
+                                                        <color key="value" name="warning"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="4"/>
@@ -221,8 +226,8 @@
                                             <constraint firstItem="Icb-FA-TAT" firstAttribute="leading" secondItem="Ba0-Xg-o6E" secondAttribute="leading" id="SGY-hI-sLm"/>
                                             <constraint firstItem="Icb-FA-TAT" firstAttribute="top" secondItem="Ba0-Xg-o6E" secondAttribute="top" id="cdB-ry-Ddu"/>
                                             <constraint firstAttribute="trailing" secondItem="Icb-FA-TAT" secondAttribute="trailing" id="pji-2I-n6U"/>
-                                            <constraint firstAttribute="width" constant="35" id="sOr-Bh-vBM"/>
-                                            <constraint firstAttribute="height" constant="20" id="upN-aO-DoG"/>
+                                            <constraint firstAttribute="width" constant="64" id="sOr-Bh-vBM"/>
+                                            <constraint firstAttribute="height" constant="26" id="upN-aO-DoG"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -269,10 +274,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TAMARA PENSIERO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpP-cf-H6r" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                        <rect key="frame" x="98" y="30" width="200" height="32"/>
+                                        <rect key="frame" x="98" y="30" width="171" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="iAn-Le-kxi"/>
-                                            <constraint firstAttribute="width" constant="200" id="jWS-Ex-jt4"/>
+                                            <constraint firstAttribute="width" constant="171" id="jWS-Ex-jt4"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -288,7 +293,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bc3-O3-AQ1" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bc3-O3-AQ1" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="18" y="18" width="65" height="65"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="65" id="fXY-55-2Eu"/>
@@ -321,8 +326,8 @@
                                     <constraint firstItem="dpP-cf-H6r" firstAttribute="leading" secondItem="bc3-O3-AQ1" secondAttribute="trailing" constant="15" id="4wQ-cl-FVk"/>
                                     <constraint firstItem="dpP-cf-H6r" firstAttribute="top" secondItem="cn8-Nl-EBJ" secondAttribute="top" constant="30" id="Gka-ED-7Xx"/>
                                     <constraint firstItem="HOG-bk-97u" firstAttribute="top" secondItem="nzF-aI-iJF" secondAttribute="bottom" constant="1" id="HAY-KS-sQB"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ba0-Xg-o6E" secondAttribute="bottom" constant="44" id="JsG-hh-Kc8"/>
-                                    <constraint firstItem="Ba0-Xg-o6E" firstAttribute="top" secondItem="cn8-Nl-EBJ" secondAttribute="top" constant="36" id="JuP-UL-yJk"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ba0-Xg-o6E" secondAttribute="bottom" constant="41" id="JsG-hh-Kc8"/>
+                                    <constraint firstItem="Ba0-Xg-o6E" firstAttribute="top" secondItem="cn8-Nl-EBJ" secondAttribute="top" constant="33" id="JuP-UL-yJk"/>
                                     <constraint firstItem="HOG-bk-97u" firstAttribute="leading" secondItem="bc3-O3-AQ1" secondAttribute="trailing" constant="15" id="Mh7-qV-rLn"/>
                                     <constraint firstItem="bc3-O3-AQ1" firstAttribute="leading" secondItem="cn8-Nl-EBJ" secondAttribute="leading" constant="18" id="TMc-hz-qco"/>
                                     <constraint firstAttribute="bottom" secondItem="bc3-O3-AQ1" secondAttribute="bottom" constant="17" id="Wdl-1w-M5M"/>
@@ -550,7 +555,7 @@
     </objects>
     <designables>
         <designable name="6BT-Eq-hcD">
-            <size key="intrinsicContentSize" width="130" height="33"/>
+            <size key="intrinsicContentSize" width="128" height="36.666666666666664"/>
         </designable>
         <designable name="A8B-bt-df2">
             <size key="intrinsicContentSize" width="271.66666666666669" height="14.333333333333334"/>
@@ -563,6 +568,9 @@
         </designable>
         <designable name="HOG-bk-97u">
             <size key="intrinsicContentSize" width="53" height="14.333333333333334"/>
+        </designable>
+        <designable name="Icb-FA-TAT">
+            <size key="intrinsicContentSize" width="62.666666666666664" height="19.333333333333332"/>
         </designable>
         <designable name="bc3-O3-AQ1">
             <size key="intrinsicContentSize" width="407" height="612"/>
@@ -586,11 +594,12 @@
             <size key="intrinsicContentSize" width="164" height="14.333333333333334"/>
         </designable>
         <designable name="v2n-8t-cBj">
-            <size key="intrinsicContentSize" width="237.66666666666666" height="21.333333333333332"/>
+            <size key="intrinsicContentSize" width="237" height="23.666666666666668"/>
         </designable>
     </designables>
     <resources>
         <image name="bell.badge.fill" catalog="system" width="123" height="128"/>
+        <image name="circle.slash.fill" catalog="system" width="128" height="123"/>
         <image name="girl" width="407" height="612"/>
         <image name="logo name" width="3289" height="512"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
@@ -604,6 +613,9 @@
         </namedColor>
         <namedColor name="Text grey">
             <color red="0.20800000429153442" green="0.31000000238418579" blue="0.35699999332427979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="warning">
+            <color red="1" green="0.80800002813339233" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

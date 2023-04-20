@@ -25,7 +25,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cmn-D6-cVd" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                 <rect key="frame" x="19" y="9" width="337" height="78"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="girl" translatesAutoresizingMaskIntoConstraints="NO" id="rdD-aP-nm5" customClass="RoundedImageView" customModule="Kismat_App" customModuleProvider="target">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="girl" translatesAutoresizingMaskIntoConstraints="NO" id="rdD-aP-nm5" customClass="RoundedImageView" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="8" y="7" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="8tR-Hd-G39"/>
@@ -302,22 +302,22 @@
     </objects>
     <designables>
         <designable name="0FG-gI-S06">
-            <size key="intrinsicContentSize" width="122.66666666666667" height="12"/>
+            <size key="intrinsicContentSize" width="211" height="20.333333333333332"/>
         </designable>
         <designable name="TnH-JF-VfZ">
-            <size key="intrinsicContentSize" width="31.666666666666668" height="12"/>
+            <size key="intrinsicContentSize" width="53.666666666666664" height="20.333333333333332"/>
         </designable>
         <designable name="dQH-13-OzP">
-            <size key="intrinsicContentSize" width="58.333333333333336" height="12"/>
+            <size key="intrinsicContentSize" width="99.666666666666671" height="20.333333333333332"/>
         </designable>
         <designable name="gAw-H9-ySR">
-            <size key="intrinsicContentSize" width="63" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="77.666666666666671" height="20.333333333333332"/>
         </designable>
         <designable name="rdD-aP-nm5">
             <size key="intrinsicContentSize" width="407" height="612"/>
         </designable>
         <designable name="s8f-h1-ksg">
-            <size key="intrinsicContentSize" width="115" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="139.66666666666666" height="20.333333333333332"/>
         </designable>
     </designables>
     <resources>

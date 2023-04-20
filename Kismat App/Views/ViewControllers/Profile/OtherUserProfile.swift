@@ -20,6 +20,7 @@ class OtherUserProfile: MainViewController {
     var socialAccImgArray = [UIImage(named: "LinkedIn"),UIImage(named: "Twitter"),UIImage(named: "Instagram"),UIImage(named: "Snapchat"),UIImage(named: "Website")]
     var img = UIImage(named: "placeholder")
 
+    var markView = false
     var userModel = UserModel()
     var socialAccModel = [SocialAccModel]()
     
@@ -28,6 +29,9 @@ class OtherUserProfile: MainViewController {
         
         //setupSocialArray()
         registerCells()
+        if markView {
+            ApiService.markViewedUser(val: userModel.userId)
+        }
     }
     
     func setupSocialArray() {
@@ -87,8 +91,16 @@ class OtherUserProfile: MainViewController {
         
     }
     @objc func notifBtnPressed(sender: UIButton) {
-        self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
+        ApiService.markBlockUser(val: userModel.userId)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            AppFunctions.showSnackBar(str: "User Blocked")
+            
+            self.navigationController?.popViewController(animated: true)
+        }
+        
     }
+    
     
     //MARK: API METHODS
     
@@ -98,6 +110,9 @@ class OtherUserProfile: MainViewController {
 extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if userModel.socialAccounts.isEmpty {
+            return 5
+        }
         return userModel.socialAccounts.count + 6
     }
     
@@ -107,7 +122,6 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
             case 0:
                 let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
                 cell.toolTipBtn.isHidden = true
-                cell.ratingView.isHidden = false
                 cell.searchTFView.isHidden = true
                 cell.profileView.isHidden = false
                 cell.headerLogo.isHidden = false
@@ -115,7 +129,8 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
 
                 
                 cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
-                cell.notifBtn.isHidden = true
+                cell.notifBtn.setImage(UIImage(systemName: "hand.raised.brakesignal.slash"), for: .normal)
+                cell.notifBtn.tintColor = UIColor(named: "Danger")
                 
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
                 cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
@@ -192,7 +207,12 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 
             default:
                 let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
-                //cell.socialImgView.image = socialAccImgArray[indexPath.row - 6]
+                if userModel.socialAccounts[indexPath.row - 6].linkImage != "" && userModel.socialAccounts[indexPath.row - 6].linkImage != nil {
+                    let imageUrl = URL(string: userModel.socialAccounts[indexPath.row - 6].linkImage)
+                    cell.socialImgView.sd_setImage(with: imageUrl , placeholderImage: UIImage()) { (image, error, imageCacheType, url) in }
+                } else {
+                    //cell.profilePicBtn.setImage(img, for: .normal)
+                }
                 cell.socialLbl.text = userModel.socialAccounts[indexPath.row - 6].linkTitle.capitalized
                 cell.socialLbl.isUserInteractionEnabled = false
                 return cell

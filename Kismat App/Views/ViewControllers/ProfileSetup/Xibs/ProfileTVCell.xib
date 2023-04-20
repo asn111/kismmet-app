@@ -47,12 +47,13 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Q9-Dv-z8W">
-                                        <rect key="frame" x="314" y="22" width="15" height="15"/>
+                                        <rect key="frame" x="314" y="22" width="20" height="20"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="15" id="CCx-qj-V1c"/>
-                                            <constraint firstAttribute="height" constant="15" id="VXM-rn-67E"/>
+                                            <constraint firstAttribute="width" constant="20" id="CCx-qj-V1c"/>
+                                            <constraint firstAttribute="height" constant="20" id="VXM-rn-67E"/>
                                         </constraints>
+                                        <inset key="contentEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="tooltip_icon"/>
                                     </button>
@@ -61,8 +62,8 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="353" id="0ds-y9-RVH"/>
                                     <constraint firstItem="1Q9-Dv-z8W" firstAttribute="top" secondItem="4ET-CA-03u" secondAttribute="top" constant="22" id="I7f-VW-mk0"/>
-                                    <constraint firstAttribute="bottom" secondItem="1Q9-Dv-z8W" secondAttribute="bottom" constant="22.999999999999993" id="J4Z-oX-CWR"/>
-                                    <constraint firstAttribute="trailing" secondItem="1Q9-Dv-z8W" secondAttribute="trailing" constant="24" id="eYw-60-6hP"/>
+                                    <constraint firstAttribute="bottom" secondItem="1Q9-Dv-z8W" secondAttribute="bottom" constant="17.999999999999993" id="J4Z-oX-CWR"/>
+                                    <constraint firstAttribute="trailing" secondItem="1Q9-Dv-z8W" secondAttribute="trailing" constant="19" id="eYw-60-6hP"/>
                                     <constraint firstItem="oPc-B4-0kB" firstAttribute="centerX" secondItem="4ET-CA-03u" secondAttribute="centerX" constant="-26.5" id="enp-nK-Sp0"/>
                                     <constraint firstItem="1Q9-Dv-z8W" firstAttribute="leading" secondItem="oPc-B4-0kB" secondAttribute="trailing" constant="14" id="hgu-Vv-1dA"/>
                                     <constraint firstAttribute="height" constant="60" id="jrw-IQ-sZY"/>
@@ -90,12 +91,13 @@
                                 <rect key="frame" x="11" y="7.6666666666666643" width="353" height="59.999999999999993"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QjH-I5-Fc9">
-                                        <rect key="frame" x="314" y="22" width="15" height="17"/>
+                                        <rect key="frame" x="314" y="22" width="20" height="20"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="17" id="Ayg-yI-aZg"/>
-                                            <constraint firstAttribute="width" constant="15" id="W39-b8-WSV"/>
+                                            <constraint firstAttribute="height" constant="20" id="Ayg-yI-aZg"/>
+                                            <constraint firstAttribute="width" constant="20" id="W39-b8-WSV"/>
                                         </constraints>
+                                        <inset key="contentEdgeInsets" minX="3" minY="2" maxX="3" maxY="2"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="lock_icon"/>
                                     </button>
@@ -171,8 +173,8 @@
                                     <constraint firstItem="lEa-z3-zuD" firstAttribute="centerY" secondItem="ob9-8x-pD3" secondAttribute="centerY" id="JMP-vJ-A0n"/>
                                     <constraint firstItem="lEa-z3-zuD" firstAttribute="centerX" secondItem="ob9-8x-pD3" secondAttribute="centerX" constant="20" id="JTU-Cw-9GO"/>
                                     <constraint firstAttribute="height" constant="60" id="JZs-D3-WiD"/>
-                                    <constraint firstAttribute="trailing" secondItem="QjH-I5-Fc9" secondAttribute="trailing" constant="24" id="Tee-Ap-DYG"/>
-                                    <constraint firstAttribute="bottom" secondItem="QjH-I5-Fc9" secondAttribute="bottom" constant="20.999999999999993" id="cKc-52-OOq"/>
+                                    <constraint firstAttribute="trailing" secondItem="QjH-I5-Fc9" secondAttribute="trailing" constant="19" id="Tee-Ap-DYG"/>
+                                    <constraint firstAttribute="bottom" secondItem="QjH-I5-Fc9" secondAttribute="bottom" constant="17.999999999999993" id="cKc-52-OOq"/>
                                     <constraint firstItem="QjH-I5-Fc9" firstAttribute="leading" secondItem="lEa-z3-zuD" secondAttribute="trailing" constant="13" id="djd-Nq-BPk"/>
                                     <constraint firstItem="3BS-oW-ABa" firstAttribute="top" secondItem="ob9-8x-pD3" secondAttribute="top" constant="4" id="jN0-iW-F8H"/>
                                     <constraint firstItem="3BS-oW-ABa" firstAttribute="leading" secondItem="ob9-8x-pD3" secondAttribute="leading" constant="3" id="olk-K5-7JC"/>
@@ -231,10 +233,10 @@
     </objects>
     <designables>
         <designable name="lEa-z3-zuD">
-            <size key="intrinsicContentSize" width="55.666666666666664" height="17"/>
+            <size key="intrinsicContentSize" width="60.666666666666664" height="22"/>
         </designable>
         <designable name="oPc-B4-0kB">
-            <size key="intrinsicContentSize" width="55.666666666666664" height="17"/>
+            <size key="intrinsicContentSize" width="60.666666666666664" height="22"/>
         </designable>
     </designables>
     <resources>

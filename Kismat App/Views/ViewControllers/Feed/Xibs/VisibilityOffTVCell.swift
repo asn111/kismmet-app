@@ -13,8 +13,11 @@ class VisibilityOffTVCell: UITableViewCell {
     
     @IBOutlet weak var toggleBtn: CustomToggleButton!
     
+    @IBOutlet weak var textLbl: fullyCustomLbl!
+    
     @IBOutlet weak var updateBtn: RoundCornerButton!
     
+    @IBOutlet weak var visibiltyView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

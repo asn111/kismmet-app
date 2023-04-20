@@ -23,7 +23,9 @@ class AccountStatusVC: MainViewController {
     }
     
     @IBAction func genBtnPressed(_ sender: Any) {
-        self.presentVC(id: "ImportantDialogVC", presentFullType: "over" ) { (vc:ImportantDialogVC) in }
+        self.presentVC(id: "ImportantDialogVC", presentFullType: "over" ) { (vc:ImportantDialogVC) in
+            vc.dialogType = tappedType
+        }
     }
     
     @IBAction func feedBtnPressed(_ sender: Any) {
@@ -31,6 +33,8 @@ class AccountStatusVC: MainViewController {
             vc.selectedIndex = 2
         }
     }
+    
+    var tappedType = "Deactivate"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +57,7 @@ class AccountStatusVC: MainViewController {
         deleteView.borderColor = UIColor(named: "Secondary Grey")
         genBtn.backgroundColor = UIColor(named: "Primary Yellow")
         genBtn.setTitle("Deactivate", for: .normal)
+        tappedType = "Deactivate"
     }
     
     @objc
@@ -61,5 +66,6 @@ class AccountStatusVC: MainViewController {
         deactivateView.borderColor = UIColor(named: "Secondary Grey")
         genBtn.backgroundColor = UIColor(named: "Danger")
         genBtn.setTitle("Delete", for: .normal)
+        tappedType = "Delete"
     }
 }

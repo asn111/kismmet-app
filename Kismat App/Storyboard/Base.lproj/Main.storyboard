@@ -38,20 +38,58 @@
                                     <constraint firstAttribute="width" constant="150" id="tVB-Br-N6A"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi man" translatesAutoresizingMaskIntoConstraints="NO" id="K1O-UJ-zQ9">
-                                <rect key="frame" x="87" y="379" width="306" height="473"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2023 - All rights reserved" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhD-Tf-j08" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                <rect key="frame" x="36" y="778" width="320" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="473" id="QEV-Gh-XTc"/>
-                                    <constraint firstAttribute="width" constant="306" id="r0I-nm-HhW"/>
+                                    <constraint firstAttribute="width" constant="320" id="XIm-v4-RUb"/>
+                                    <constraint firstAttribute="height" constant="40" id="xAh-cD-DDZ"/>
                                 </constraints>
-                            </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vtk-vg-2KG">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                        <color key="value" name="Base White"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OaY-A8-Hb1">
+                                <rect key="frame" x="87" y="377" width="306" height="475"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi man" translatesAutoresizingMaskIntoConstraints="NO" id="K1O-UJ-zQ9">
+                                        <rect key="frame" x="0.0" y="1" width="306" height="473"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="473" id="QEV-Gh-XTc"/>
+                                            <constraint firstAttribute="width" constant="306" id="r0I-nm-HhW"/>
+                                        </constraints>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6QJ-aq-yJl">
+                                        <rect key="frame" x="0.0" y="1" width="165" height="85"/>
+                                        <color key="backgroundColor" name="Primary Yellow"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="85" id="IoW-hH-7Wb"/>
+                                            <constraint firstAttribute="width" constant="165" id="xKB-JK-HWR"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="6QJ-aq-yJl" firstAttribute="top" secondItem="OaY-A8-Hb1" secondAttribute="top" constant="1" id="75X-O2-1ZK"/>
+                                    <constraint firstAttribute="width" constant="306" id="EQj-6h-iiJ"/>
+                                    <constraint firstItem="K1O-UJ-zQ9" firstAttribute="leading" secondItem="OaY-A8-Hb1" secondAttribute="leading" id="H3I-R1-ec8"/>
+                                    <constraint firstItem="6QJ-aq-yJl" firstAttribute="leading" secondItem="OaY-A8-Hb1" secondAttribute="leading" id="Ppr-eg-aYq"/>
+                                    <constraint firstAttribute="height" constant="475" id="gka-fM-A5r"/>
+                                    <constraint firstAttribute="trailing" secondItem="K1O-UJ-zQ9" secondAttribute="trailing" id="hjT-Ka-1WI"/>
+                                    <constraint firstAttribute="bottom" secondItem="K1O-UJ-zQ9" secondAttribute="bottom" constant="1" id="lWj-Vb-PjN"/>
+                                    <constraint firstItem="K1O-UJ-zQ9" firstAttribute="top" secondItem="OaY-A8-Hb1" secondAttribute="top" constant="1" id="raX-GD-oHl"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vtk-vg-2KG">
                                 <rect key="frame" x="-13" y="693" width="333" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CcO-Ru-ZFl" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="333" height="45"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="333" id="EcU-0o-1fc"/>
                                             <constraint firstAttribute="height" constant="45" id="n6p-xU-3Rd"/>
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -112,44 +150,34 @@
                                     <constraint firstItem="9kR-bt-Uil" firstAttribute="top" secondItem="Vtk-vg-2KG" secondAttribute="top" constant="12" id="x3w-KB-Wpn"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2023 - All rights reserved" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhD-Tf-j08" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                <rect key="frame" x="36" y="778" width="320" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="XIm-v4-RUb"/>
-                                    <constraint firstAttribute="height" constant="40" id="xAh-cD-DDZ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
-                                        <color key="value" name="Base White"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="Primary Yellow"/>
                         <constraints>
-                            <constraint firstItem="K1O-UJ-zQ9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="DoG-Kw-pMK"/>
                             <constraint firstItem="W8o-dQ-5UA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="GWf-xN-7kA"/>
                             <constraint firstItem="DzN-e8-nmj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="HQY-gC-Daz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Vtk-vg-2KG" secondAttribute="bottom" constant="80" id="Mo2-NK-XYf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Vtk-vg-2KG" secondAttribute="trailing" constant="73" id="PVn-Ys-axz"/>
                             <constraint firstItem="lhD-Tf-j08" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="36" id="aVA-gG-5s8"/>
                             <constraint firstItem="DzN-e8-nmj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="i2r-c0-ZcR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OaY-A8-Hb1" secondAttribute="trailing" id="inA-qu-x2M"/>
+                            <constraint firstAttribute="bottom" secondItem="OaY-A8-Hb1" secondAttribute="bottom" id="nIE-2T-eV0"/>
                             <constraint firstItem="W8o-dQ-5UA" firstAttribute="top" secondItem="DzN-e8-nmj" secondAttribute="bottom" constant="11" id="o44-fj-IE3"/>
                             <constraint firstItem="Vtk-vg-2KG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="-13" id="pZ3-wL-Gd1"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lhD-Tf-j08" secondAttribute="trailing" constant="37" id="uO3-Ae-GS3"/>
                             <constraint firstItem="lhD-Tf-j08" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="xBI-KQ-eUt"/>
-                            <constraint firstAttribute="bottom" secondItem="K1O-UJ-zQ9" secondAttribute="bottom" id="y9l-T3-nnK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DHg-0m-4Rz"/>
+                    <connections>
+                        <outlet property="animateThisView" destination="6QJ-aq-yJl" id="OAB-OE-PZJ"/>
+                        <outlet property="btnView" destination="Vtk-vg-2KG" id="yLX-L3-N9x"/>
+                        <outlet property="heightConst" destination="IoW-hH-7Wb" id="FIz-Ms-lID"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="158" y="4"/>
+            <point key="canvasLocation" x="156.4885496183206" y="3.5211267605633805"/>
         </scene>
         <!--SignupVC-->
         <scene sceneID="O7U-W7-C20">
@@ -1325,11 +1353,12 @@ this email.</string>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
                                                         <color key="value" name="Text grey"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="bl"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
                                                         <real key="value" value="28"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontSuezOne" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EBy-eQ-zK8">
@@ -1381,7 +1410,7 @@ this email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Plan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIQ-VS-jss" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Free Plan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIQ-VS-jss" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
                                                 <rect key="frame" x="50" y="30" width="195" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="d88-93-ELC"/>
@@ -1402,10 +1431,30 @@ this email.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can view 15 profiles per month." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxZ-YY-3L0" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="50" y="48" width="195" height="21"/>
+                                                <rect key="frame" x="50" y="49" width="195" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="3qh-C5-2Sm"/>
                                                     <constraint firstAttribute="width" constant="195" id="d4u-9U-12u"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                                        <color key="value" name="Text grey"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="l"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                        <real key="value" value="12"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can view 15 profiles per month." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZM-Ne-b6O" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="50" y="67" width="195" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="195" id="12o-gk-QUk"/>
+                                                    <constraint firstAttribute="height" constant="21" id="u7V-jo-oIx"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -1426,13 +1475,15 @@ this email.</string>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="325" id="5r0-tR-lJ0"/>
                                             <constraint firstItem="nIQ-VS-jss" firstAttribute="leading" secondItem="xbv-4R-o9Y" secondAttribute="trailing" constant="12" id="6i7-A1-Vuv"/>
+                                            <constraint firstItem="OZM-Ne-b6O" firstAttribute="top" secondItem="JxZ-YY-3L0" secondAttribute="bottom" constant="-3" id="8aT-wi-2lE"/>
                                             <constraint firstItem="xbv-4R-o9Y" firstAttribute="leading" secondItem="Xj8-DJ-5BY" secondAttribute="leading" constant="8" id="DGr-fK-CpV"/>
                                             <constraint firstItem="xbv-4R-o9Y" firstAttribute="top" secondItem="Xj8-DJ-5BY" secondAttribute="top" constant="29" id="POb-DX-tHB"/>
-                                            <constraint firstAttribute="bottom" secondItem="JxZ-YY-3L0" secondAttribute="bottom" constant="18" id="Sav-CF-kyJ"/>
                                             <constraint firstItem="JxZ-YY-3L0" firstAttribute="leading" secondItem="xbv-4R-o9Y" secondAttribute="trailing" constant="12" id="XEF-eE-Rya"/>
                                             <constraint firstItem="nIQ-VS-jss" firstAttribute="top" secondItem="Xj8-DJ-5BY" secondAttribute="top" constant="30" id="ae8-2W-1BC"/>
+                                            <constraint firstAttribute="trailing" secondItem="OZM-Ne-b6O" secondAttribute="trailing" constant="80" id="mBZ-ON-5aM"/>
                                             <constraint firstAttribute="height" constant="87" id="rBW-lR-XrF"/>
-                                            <constraint firstItem="JxZ-YY-3L0" firstAttribute="top" secondItem="nIQ-VS-jss" secondAttribute="bottom" constant="-3" id="rdb-RA-onK"/>
+                                            <constraint firstItem="JxZ-YY-3L0" firstAttribute="top" secondItem="nIQ-VS-jss" secondAttribute="bottom" constant="-2" id="rdb-RA-onK"/>
+                                            <constraint firstItem="OZM-Ne-b6O" firstAttribute="leading" secondItem="Xj8-DJ-5BY" secondAttribute="leading" constant="50" id="sHA-Db-H34"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1604,7 +1655,7 @@ this email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$4.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hvi-f8-508" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$9.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hvi-f8-508" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
                                                 <rect key="frame" x="90" y="107" width="70" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="70" id="OyW-Ca-h2d"/>
@@ -1661,7 +1712,6 @@ this email.</string>
                                     <constraint firstItem="Xj8-DJ-5BY" firstAttribute="leading" secondItem="yeF-7t-xHF" secondAttribute="leading" constant="34" id="8am-xC-fR7"/>
                                     <constraint firstAttribute="trailing" secondItem="xxm-9G-y2P" secondAttribute="trailing" constant="34" id="BWj-31-imL"/>
                                     <constraint firstItem="s5i-97-5OF" firstAttribute="leading" secondItem="yeF-7t-xHF" secondAttribute="leading" constant="17" id="NTq-I7-tby"/>
-                                    <constraint firstItem="xxm-9G-y2P" firstAttribute="top" secondItem="Xj8-DJ-5BY" secondAttribute="bottom" constant="134" id="RG7-EA-u9V"/>
                                     <constraint firstItem="s5i-97-5OF" firstAttribute="top" secondItem="yeF-7t-xHF" secondAttribute="top" constant="65" id="TZH-IH-x5j"/>
                                     <constraint firstItem="ii4-nh-bG8" firstAttribute="leading" secondItem="yeF-7t-xHF" secondAttribute="leading" constant="132" id="Xf2-UY-y6n"/>
                                     <constraint firstItem="Xj8-DJ-5BY" firstAttribute="top" secondItem="s5i-97-5OF" secondAttribute="bottom" constant="69" id="Ycm-p0-46R"/>
@@ -1723,6 +1773,7 @@ this email.</string>
                             <constraint firstItem="yeF-7t-xHF" firstAttribute="leading" secondItem="ymk-4m-vOO" secondAttribute="leading" id="RCK-iu-vFr"/>
                             <constraint firstItem="Fde-X5-2WN" firstAttribute="leading" secondItem="ymk-4m-vOO" secondAttribute="leading" constant="56" id="SO1-Yz-xqU"/>
                             <constraint firstItem="Fde-X5-2WN" firstAttribute="top" secondItem="ymk-4m-vOO" secondAttribute="top" constant="263" id="W4m-Dr-YsA"/>
+                            <constraint firstItem="It5-3m-GYL" firstAttribute="top" secondItem="xxm-9G-y2P" secondAttribute="bottom" constant="121" id="Z9p-Ks-n3O"/>
                             <constraint firstItem="It5-3m-GYL" firstAttribute="leading" secondItem="ymk-4m-vOO" secondAttribute="leading" constant="29" id="ZBV-yO-2rW"/>
                             <constraint firstItem="ymk-4m-vOO" firstAttribute="bottom" secondItem="It5-3m-GYL" secondAttribute="bottom" constant="86" id="sen-5n-nqT"/>
                             <constraint firstItem="ymk-4m-vOO" firstAttribute="trailing" secondItem="It5-3m-GYL" secondAttribute="trailing" constant="31" id="wTx-J4-6qt"/>
@@ -1731,6 +1782,16 @@ this email.</string>
                     <tabBarItem key="tabBarItem" title="" id="WOi-7C-wWu">
                         <imageReference key="image" image="eye.circle.fill" catalog="system" symbolScale="medium"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="currentPlanHeightConst" destination="rBW-lR-XrF" id="JZe-TB-KMM"/>
+                        <outlet property="currentPlanView" destination="Xj8-DJ-5BY" id="8jB-7S-MJz"/>
+                        <outlet property="featureLbl1" destination="JxZ-YY-3L0" id="Obu-jc-nuU"/>
+                        <outlet property="featureLbl2" destination="OZM-Ne-b6O" id="cYw-GE-WdO"/>
+                        <outlet property="planNameLbl" destination="nIQ-VS-jss" id="bnR-TY-Wey"/>
+                        <outlet property="premiumPlanView" destination="xxm-9G-y2P" id="JOK-0R-RMY"/>
+                        <outlet property="tryLbl" destination="Fde-X5-2WN" id="QMp-tU-bu4"/>
+                        <outlet property="upgradeBtn" destination="It5-3m-GYL" id="KHn-Ml-lLV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bOX-NP-4O9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1793,11 +1854,12 @@ this email.</string>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
                                                         <color key="value" name="Text grey"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="bl"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
                                                         <real key="value" value="24"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontSuezOne" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ArK-r3-zYe">
@@ -2121,11 +2183,12 @@ this email.</string>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
                                                         <color key="value" name="Text grey"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="bl"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
                                                         <real key="value" value="24"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontSuezOne" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2fM-v3-udH">
@@ -2747,181 +2810,214 @@ this email.</string>
             </objects>
             <point key="canvasLocation" x="3868" y="-1393"/>
         </scene>
+        <!--BlockedVC-->
+        <scene sceneID="erf-bv-8Ek">
+            <objects>
+                <viewController storyboardIdentifier="BlockedVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1sh-IK-Bea" customClass="BlockedVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="d7y-If-PAW">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hDU-29-uib">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="UGU-YS-jJR"/>
+                        <color key="backgroundColor" name="BG Base White"/>
+                        <constraints>
+                            <constraint firstItem="hDU-29-uib" firstAttribute="trailing" secondItem="UGU-YS-jJR" secondAttribute="trailing" id="DBZ-NX-bwN"/>
+                            <constraint firstItem="hDU-29-uib" firstAttribute="top" secondItem="d7y-If-PAW" secondAttribute="top" id="OUe-Ic-Ulx"/>
+                            <constraint firstAttribute="bottom" secondItem="hDU-29-uib" secondAttribute="bottom" id="ejZ-hD-h57"/>
+                            <constraint firstItem="hDU-29-uib" firstAttribute="leading" secondItem="UGU-YS-jJR" secondAttribute="leading" id="ttA-WQ-YIB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="blockedTV" destination="hDU-29-uib" id="Agp-f8-WIV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hdK-Ka-eo0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6237" y="-696"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="0ZP-IY-8wV">
-            <size key="intrinsicContentSize" width="112.33333333333333" height="17"/>
+            <size key="intrinsicContentSize" width="70.333333333333329" height="13.666666666666666"/>
         </designable>
         <designable name="0pz-yD-d4n">
-            <size key="intrinsicContentSize" width="90.333333333333329" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="108.66666666666667" height="20.333333333333332"/>
         </designable>
         <designable name="0t0-UR-Tat">
-            <size key="intrinsicContentSize" width="133.33333333333334" height="35.333333333333336"/>
+            <size key="intrinsicContentSize" width="61.333333333333336" height="20"/>
         </designable>
         <designable name="2WZ-mT-JiU">
-            <size key="intrinsicContentSize" width="733.33333333333337" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="889.66666666666663" height="20.333333333333332"/>
         </designable>
         <designable name="3gP-Q6-AXE">
-            <size key="intrinsicContentSize" width="107" height="17"/>
+            <size key="intrinsicContentSize" width="66" height="13.666666666666666"/>
         </designable>
         <designable name="43Y-pb-wtz">
-            <size key="intrinsicContentSize" width="114.66666666666667" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="146.66666666666666" height="20.333333333333332"/>
         </designable>
         <designable name="4Sp-6M-OBh">
-            <size key="intrinsicContentSize" width="68.666666666666671" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="98.666666666666671" height="20.333333333333332"/>
         </designable>
         <designable name="5w6-ZN-cHD">
-            <size key="intrinsicContentSize" width="168" height="15.333333333333334"/>
+            <size key="intrinsicContentSize" width="218.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="7es-w6-l3U">
-            <size key="intrinsicContentSize" width="20" height="19"/>
+            <size key="intrinsicContentSize" width="20" height="22"/>
         </designable>
         <designable name="8b6-LU-FPq">
-            <size key="intrinsicContentSize" width="55.666666666666664" height="17"/>
+            <size key="intrinsicContentSize" width="26" height="13.666666666666666"/>
         </designable>
         <designable name="8kg-pJ-3sY">
-            <size key="intrinsicContentSize" width="72.666666666666671" height="17"/>
+            <size key="intrinsicContentSize" width="39" height="13.666666666666666"/>
         </designable>
         <designable name="9Lg-cq-Nv0">
-            <size key="intrinsicContentSize" width="142" height="19"/>
+            <size key="intrinsicContentSize" width="148.66666666666666" height="20.333333333333332"/>
         </designable>
         <designable name="CcO-Ru-ZFl">
-            <size key="intrinsicContentSize" width="71" height="31"/>
+            <size key="intrinsicContentSize" width="62" height="30"/>
         </designable>
         <designable name="CvK-p4-XF2">
-            <size key="intrinsicContentSize" width="35" height="31"/>
+            <size key="intrinsicContentSize" width="34" height="30"/>
         </designable>
         <designable name="D0O-Hf-zFJ">
-            <size key="intrinsicContentSize" width="80.666666666666671" height="16"/>
+            <size key="intrinsicContentSize" width="46.333333333333336" height="12"/>
         </designable>
         <designable name="FdF-zO-SsO">
-            <size key="intrinsicContentSize" width="129" height="31"/>
+            <size key="intrinsicContentSize" width="123" height="30"/>
         </designable>
         <designable name="Fde-X5-2WN">
-            <size key="intrinsicContentSize" width="170.33333333333334" height="19"/>
+            <size key="intrinsicContentSize" width="174.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="Fkw-EZ-gfF">
-            <size key="intrinsicContentSize" width="154.33333333333334" height="17"/>
+            <size key="intrinsicContentSize" width="101.66666666666667" height="13.666666666666666"/>
         </designable>
         <designable name="Hvi-f8-508">
-            <size key="intrinsicContentSize" width="47.333333333333336" height="21.333333333333332"/>
+            <size key="intrinsicContentSize" width="45" height="20.333333333333332"/>
         </designable>
         <designable name="IdU-6F-ZgX">
-            <size key="intrinsicContentSize" width="90" height="23.666666666666668"/>
+            <size key="intrinsicContentSize" width="74.333333333333329" height="20.333333333333332"/>
         </designable>
         <designable name="It5-3m-GYL">
-            <size key="intrinsicContentSize" width="96" height="31"/>
+            <size key="intrinsicContentSize" width="93" height="30"/>
         </designable>
         <designable name="JBx-SY-DoZ">
-            <size key="intrinsicContentSize" width="55.666666666666664" height="17"/>
+            <size key="intrinsicContentSize" width="26" height="13.666666666666666"/>
         </designable>
         <designable name="JxZ-YY-3L0">
-            <size key="intrinsicContentSize" width="168.33333333333334" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="239.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="KaR-Mc-BMB">
-            <size key="intrinsicContentSize" width="35" height="31"/>
+            <size key="intrinsicContentSize" width="34" height="30"/>
         </designable>
         <designable name="L62-5r-p0Y">
-            <size key="intrinsicContentSize" width="245.66666666666666" height="28.333333333333332"/>
+            <size key="intrinsicContentSize" width="165.66666666666666" height="20.333333333333332"/>
         </designable>
         <designable name="LHQ-gX-34N">
-            <size key="intrinsicContentSize" width="121.33333333333333" height="35.333333333333336"/>
+            <size key="intrinsicContentSize" width="52.666666666666664" height="20"/>
+        </designable>
+        <designable name="OZM-Ne-b6O">
+            <size key="intrinsicContentSize" width="239.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="S9Q-It-9Aw">
-            <size key="intrinsicContentSize" width="173" height="21.333333333333332"/>
+            <size key="intrinsicContentSize" width="151.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="SCe-NB-PKY">
-            <size key="intrinsicContentSize" width="216" height="28.333333333333332"/>
+            <size key="intrinsicContentSize" width="147.66666666666666" height="20.333333333333332"/>
         </designable>
         <designable name="SM8-lU-P1b">
-            <size key="intrinsicContentSize" width="15.666666666666666" height="19"/>
+            <size key="intrinsicContentSize" width="15.666666666666666" height="22"/>
         </designable>
         <designable name="Sux-1S-tdw">
-            <size key="intrinsicContentSize" width="146" height="15.333333333333334"/>
+            <size key="intrinsicContentSize" width="194" height="20.333333333333332"/>
         </designable>
         <designable name="X59-RV-k6Q">
-            <size key="intrinsicContentSize" width="625.66666666666663" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="753.66666666666663" height="20.333333333333332"/>
         </designable>
         <designable name="ZlU-Hb-i3S">
-            <size key="intrinsicContentSize" width="248.33333333333334" height="61"/>
+            <size key="intrinsicContentSize" width="317.33333333333331" height="81.333333333333329"/>
         </designable>
         <designable name="a6e-P2-qtG">
-            <size key="intrinsicContentSize" width="55" height="31"/>
+            <size key="intrinsicContentSize" width="54" height="30"/>
         </designable>
         <designable name="aRI-Xg-5o1">
-            <size key="intrinsicContentSize" width="136" height="16"/>
+            <size key="intrinsicContentSize" width="87.666666666666671" height="12"/>
         </designable>
         <designable name="af5-1i-EA4">
-            <size key="intrinsicContentSize" width="20" height="19"/>
+            <size key="intrinsicContentSize" width="20" height="22"/>
         </designable>
         <designable name="b3O-xc-bXC">
-            <size key="intrinsicContentSize" width="168" height="15.333333333333334"/>
+            <size key="intrinsicContentSize" width="218.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="bAO-7l-v8h">
-            <size key="intrinsicContentSize" width="20" height="19"/>
+            <size key="intrinsicContentSize" width="20" height="22"/>
         </designable>
         <designable name="bf5-4T-Cpx">
-            <size key="intrinsicContentSize" width="76" height="31"/>
+            <size key="intrinsicContentSize" width="74" height="30"/>
         </designable>
         <designable name="e1r-8r-A1G">
-            <size key="intrinsicContentSize" width="91.333333333333329" height="19"/>
+            <size key="intrinsicContentSize" width="95" height="20.333333333333332"/>
         </designable>
         <designable name="eku-i5-B1A">
-            <size key="intrinsicContentSize" width="174" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="207.66666666666666" height="20.333333333333332"/>
         </designable>
         <designable name="f47-es-wTH">
-            <size key="intrinsicContentSize" width="142.66666666666666" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="172" height="20.333333333333332"/>
         </designable>
         <designable name="fHp-u4-Vaf">
-            <size key="intrinsicContentSize" width="49" height="31"/>
+            <size key="intrinsicContentSize" width="48" height="30"/>
         </designable>
         <designable name="hzv-hu-A8p">
-            <size key="intrinsicContentSize" width="49" height="31"/>
+            <size key="intrinsicContentSize" width="48" height="30"/>
         </designable>
         <designable name="iWN-4Z-XWq">
-            <size key="intrinsicContentSize" width="170.33333333333334" height="19"/>
+            <size key="intrinsicContentSize" width="174.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="ixr-0u-dTD">
-            <size key="intrinsicContentSize" width="49" height="31"/>
+            <size key="intrinsicContentSize" width="47" height="30"/>
         </designable>
         <designable name="lhD-Tf-j08">
-            <size key="intrinsicContentSize" width="146" height="15.333333333333334"/>
+            <size key="intrinsicContentSize" width="194" height="20.333333333333332"/>
         </designable>
         <designable name="nIQ-VS-jss">
-            <size key="intrinsicContentSize" width="91.333333333333329" height="19"/>
+            <size key="intrinsicContentSize" width="71" height="20.333333333333332"/>
         </designable>
         <designable name="pRZ-i9-kuF">
-            <size key="intrinsicContentSize" width="192.33333333333334" height="33"/>
+            <size key="intrinsicContentSize" width="107" height="20.333333333333332"/>
         </designable>
         <designable name="sDr-88-Fbj">
-            <size key="intrinsicContentSize" width="136" height="17"/>
+            <size key="intrinsicContentSize" width="87.666666666666671" height="13.666666666666666"/>
         </designable>
         <designable name="sX1-rv-q59">
-            <size key="intrinsicContentSize" width="367" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="445.66666666666669" height="20.333333333333332"/>
         </designable>
         <designable name="uF1-P3-XVr">
-            <size key="intrinsicContentSize" width="46.333333333333336" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="62.333333333333336" height="20.333333333333332"/>
         </designable>
         <designable name="vZc-Ue-Ajr">
             <size key="intrinsicContentSize" width="407" height="612"/>
         </designable>
         <designable name="vdO-D0-c2r">
-            <size key="intrinsicContentSize" width="304" height="30.666666666666668"/>
+            <size key="intrinsicContentSize" width="397.66666666666669" height="40.666666666666664"/>
         </designable>
         <designable name="w12-80-ph3">
-            <size key="intrinsicContentSize" width="111.33333333333333" height="19"/>
+            <size key="intrinsicContentSize" width="116.66666666666667" height="20.333333333333332"/>
         </designable>
         <designable name="whs-bR-EUC">
-            <size key="intrinsicContentSize" width="15.666666666666666" height="19"/>
+            <size key="intrinsicContentSize" width="15.666666666666666" height="22"/>
         </designable>
         <designable name="xbv-4R-o9Y">
             <size key="intrinsicContentSize" width="25.666666666666668" height="25.666666666666668"/>
         </designable>
         <designable name="xnB-yp-Wkb">
-            <size key="intrinsicContentSize" width="80.666666666666671" height="16"/>
+            <size key="intrinsicContentSize" width="46.333333333333336" height="12"/>
         </designable>
         <designable name="y1c-ai-HyS">
-            <size key="intrinsicContentSize" width="30" height="31"/>
+            <size key="intrinsicContentSize" width="30" height="30"/>
         </designable>
     </designables>
     <resources>

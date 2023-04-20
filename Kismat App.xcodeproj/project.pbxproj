@@ -34,6 +34,8 @@
 		294A79B1299AEB2E00089161 /* AboutTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 294A79AF299AEB2E00089161 /* AboutTVCell.xib */; };
 		294A79B4299AEB5100089161 /* SocialAccTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294A79B2299AEB5100089161 /* SocialAccTVCell.swift */; };
 		294A79B5299AEB5100089161 /* SocialAccTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 294A79B3299AEB5100089161 /* SocialAccTVCell.xib */; };
+		2964617129EEC913003FD692 /* BlockedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2964617029EEC913003FD692 /* BlockedVC.swift */; };
+		2964617329EECC55003FD692 /* SuezOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2964617229EECC55003FD692 /* SuezOne-Regular.ttf */; };
 		2976102C29DDB85300B74050 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2976102B29DDB85300B74050 /* StoreKit.framework */; };
 		2976102F29DDBF0700B74050 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2976102E29DDBF0700B74050 /* IAPManager.swift */; };
 		2977B7F7299B81D600A0670C /* MixHeaderTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2977B7F5299B81D600A0670C /* MixHeaderTVCell.swift */; };
@@ -149,6 +151,8 @@
 		294A79AF299AEB2E00089161 /* AboutTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutTVCell.xib; sourceTree = "<group>"; };
 		294A79B2299AEB5100089161 /* SocialAccTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAccTVCell.swift; sourceTree = "<group>"; };
 		294A79B3299AEB5100089161 /* SocialAccTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialAccTVCell.xib; sourceTree = "<group>"; };
+		2964617029EEC913003FD692 /* BlockedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedVC.swift; sourceTree = "<group>"; };
+		2964617229EECC55003FD692 /* SuezOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SuezOne-Regular.ttf"; sourceTree = "<group>"; };
 		2976102B29DDB85300B74050 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2976102E29DDBF0700B74050 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		2977B7F5299B81D600A0670C /* MixHeaderTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixHeaderTVCell.swift; sourceTree = "<group>"; };
@@ -327,6 +331,14 @@
 				294A79AF299AEB2E00089161 /* AboutTVCell.xib */,
 			);
 			path = Xibs;
+			sourceTree = "<group>";
+		};
+		2964616F29EEC8F3003FD692 /* Blocked */ = {
+			isa = PBXGroup;
+			children = (
+				2964617029EEC913003FD692 /* BlockedVC.swift */,
+			);
+			path = Blocked;
 			sourceTree = "<group>";
 		};
 		2976102D29DDBEF400B74050 /* InAppPurchases */ = {
@@ -589,6 +601,7 @@
 				29473E53299C663200859D8A /* Notification */,
 				294A79AA299AE87900089161 /* Profile */,
 				294A79A2299ADC7D00089161 /* Setting */,
+				2964616F29EEC8F3003FD692 /* Blocked */,
 				29985F3E2999371C001F769B /* Viewed */,
 				29985F3D2999370E001F769B /* Starred */,
 				29985F31299819A1001F769B /* Feed */,
@@ -637,6 +650,7 @@
 		299FDD8D2996C0800049741B /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				2964617229EECC55003FD692 /* SuezOne-Regular.ttf */,
 				299FDD8E2996C0F20049741B /* Work Sans.ttf */,
 				299FDD902996C2630049741B /* Work Sans Bold.ttf */,
 				299FDD932996C8ED0049741B /* Roboto-Black.ttf */,
@@ -844,6 +858,7 @@
 				299FDD982996C8ED0049741B /* Roboto-Black.ttf in Resources */,
 				299FDD162996796A0049741B /* Assets.xcassets in Resources */,
 				29985F3829981ADE001F769B /* GeneralHeaderTVCell.xib in Resources */,
+				2964617329EECC55003FD692 /* SuezOne-Regular.ttf in Resources */,
 				29F5290429970DA500FE2EBA /* GeneralTextviewTVCell.xib in Resources */,
 				299FDD11299679690049741B /* Main.storyboard in Resources */,
 				299FDD8F2996C0F20049741B /* Work Sans.ttf in Resources */,
@@ -994,6 +1009,7 @@
 				299FDDA52996E2B00049741B /* ProfileHeaderTVCell.swift in Sources */,
 				29985F42299937E6001F769B /* ViewedProfilesVC.swift in Sources */,
 				299FDD6B29967D670049741B /* MainViewController.swift in Sources */,
+				2964617129EEC913003FD692 /* BlockedVC.swift in Sources */,
 				29473E51299C634A00859D8A /* TagsTVCell.swift in Sources */,
 				299E03CB29A135C60064A5E3 /* AddLinksVC.swift in Sources */,
 				29985F30299808FD001F769B /* RoundedTabBarController.swift in Sources */,

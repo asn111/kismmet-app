@@ -60,7 +60,7 @@ class EditProfileSetupExt: MainViewController {
         } else if sender.tag == 004 {
             msg = "Please note that the email and phone number fields on this page are private and will not be visible to other users. These fields are for account verification purposes only and will not be shared on your profile page, where you can add a separate email for networking."
         } else if sender.tag == 003 {
-            msg = "The lock icon next to your phone number indicates that this number cannot be changed. Please ensure that you have entered the correct phone number during the registration process."
+            msg = "The lock icon next to your phone number indicates that this number cannot be changed."
         }
         
         AppFunctions.showToolTip(str: msg, btn: sender)
@@ -178,6 +178,8 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 let cell : ProfileTVCell = tableView.dequeueReusableCell(withIdentifier: "ProfileTVCell", for: indexPath) as! ProfileTVCell
                 if placeholderArray[indexPath.row] == "Phone" {
                     cell.numberView.isHidden = false
+                    cell.numberView.isUserInteractionEnabled = false
+                    cell.countryPickerView.isUserInteractionEnabled = false
                     cell.generalTFView.isHidden = true
                     cell.setupCountryCode()
                     cell.numberTF.text = dataArray[indexPath.row]
@@ -188,6 +190,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                     cell.lockTipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
                 } else {
                     cell.numberView.isHidden = true
+                    cell.generalTFView.isUserInteractionEnabled = false
                     cell.generalTFView.isHidden = false
                     cell.toolTipBtn.isHidden = false
                     cell.generalTF.text = dataArray[indexPath.row]

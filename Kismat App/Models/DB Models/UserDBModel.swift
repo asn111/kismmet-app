@@ -26,6 +26,9 @@ class UserDBModel: Object {
     @objc dynamic var isStarred : Bool = false
     @objc dynamic var tags : String = ""
     @objc dynamic var isActive : Bool = false
+    @objc dynamic var shadowMode : Bool = false
+    @objc dynamic var accountStatus : String = ""
+    @objc dynamic var subscription : String = ""
     
     override class func primaryKey() -> String? {
         "userId"

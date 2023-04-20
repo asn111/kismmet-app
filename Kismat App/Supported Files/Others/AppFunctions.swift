@@ -21,9 +21,16 @@ let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
 var connectionStarted = false
 let dispose_Bag = DisposeBag()
 
-let userRoleID = 2
-let motiveRoleID = 3
-//"Role": MotiveBusiness
+let userRoleID = 1
+let adminRoleID = 2
+
+let freeSubscriptionId = 1
+let premiumSubscriptionId = 2
+
+let activeAccountStatusId = 1
+let deactivedAccountStatusId = 2
+let deletedAccountStatusId = 3
+
 
 var dict : [String:Any] = [String:Any]()
 
@@ -55,6 +62,7 @@ let isNumVerified = "isNumVerified"
 let isEmailVerifyed = "isEmailVerifyed"
 let isShadowMode = "isShadowMode"
 let profileVisble = "profileVisble"
+let premiumUser = "premiumUser"
 let userId = "userId"
 let role = "role"
 let devTokenString = "devTokenString"
@@ -297,7 +305,19 @@ class AppFunctions {
         return value
     }
     
-    
+    open class func setIsPremiumUser(value: Bool){
+        preferences.set(value, forKey: premiumUser)
+        preferences.synchronize()
+    }
+    open class func isPremiumUser() -> Bool{
+        var value = false
+        if preferences.object(forKey: premiumUser) == nil {
+            Logs.show(message: "NIL isPremiumUser")
+        } else {
+            value = preferences.bool(forKey: premiumUser)
+        }
+        return value
+    }
     
     //MARK: Remove all data
     

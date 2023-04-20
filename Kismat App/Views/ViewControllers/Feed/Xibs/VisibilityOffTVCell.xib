@@ -185,9 +185,11 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
+                <outlet property="textLbl" destination="uNv-Qs-WlO" id="8ze-Hk-ELn"/>
                 <outlet property="toggleBtn" destination="4Hk-df-lRc" id="sBi-XL-bgY"/>
                 <outlet property="toolTipBtn" destination="pFp-fk-tBI" id="eNa-ck-RTZ"/>
                 <outlet property="updateBtn" destination="wVb-Po-o6r" id="BGw-An-aI2"/>
+                <outlet property="visibiltyView" destination="Jch-K8-tMu" id="Uyx-JN-bGL"/>
             </connections>
             <point key="canvasLocation" x="151.14503816793894" y="95.774647887323951"/>
         </tableViewCell>

@@ -1,64 +1,62 @@
 //
-//  StarredVC.swift
+//  BlockedVC.swift
 //  Kismat App
 //
-//  Created by Ahsan Iqbal on 12/02/2023.
+//  Created by Ahsan Iqbal on 18/04/2023.
 //
+
+import Foundation
 
 import UIKit
 
-class StarredVC: MainViewController {
-
-    @IBOutlet weak var starredTV: UITableView!
+class BlockedVC: MainViewController {
     
-    var nameArray = ["James Nio","Nesa Node"]
-    var profArray = ["Bachelor, Student","Chemist"]
-    var imageArray = [UIImage(named: "guy"),UIImage(named: "teacher")]
+    @IBOutlet weak var blockedTV: UITableView!
     
     var users = [UserModel]()
+    
     var searchString = ""
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         registerCells()
-        getStarUsers(load: true)
+        getBlockedUsers(load: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getStarUsers(load: false)
-
     }
     
     func registerCells() {
         
-        starredTV.tableFooterView = UIView()
-        starredTV.separatorStyle = .none
-        starredTV.delegate = self
-        starredTV.dataSource = self
-        starredTV.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
-        starredTV.register(UINib(nibName: "FeedItemsTVCell", bundle: nil), forCellReuseIdentifier: "FeedItemsTVCell")
-        starredTV.register(UINib(nibName: "VisibilityOffTVCell", bundle: nil), forCellReuseIdentifier: "VisibilityOffTVCell")
+        blockedTV.tableFooterView = UIView()
+        blockedTV.separatorStyle = .none
+        blockedTV.delegate = self
+        blockedTV.dataSource = self
+        blockedTV.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
+        blockedTV.register(UINib(nibName: "FeedItemsTVCell", bundle: nil), forCellReuseIdentifier: "FeedItemsTVCell")
+        blockedTV.register(UINib(nibName: "VisibilityOffTVCell", bundle: nil), forCellReuseIdentifier: "VisibilityOffTVCell")
 
     }
     
     @objc func picBtnPressed(sender: UIButton) {
-        self.tabBarController?.selectedIndex = 2
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func notifBtnPressed(sender: UIButton) {
-        self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
+        self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
+            vc.selectedIndex = 2
+        }
     }
     
     @objc func toolBtnPressed(sender: UIButton) {
-        AppFunctions.showToolTip(str: "Search Users that you marked starred.", btn: sender)
+        AppFunctions.showToolTip(str: "Search Users that you blocked.", btn: sender)
     }
     
-
     //MARK: API METHODS
     
-    func getStarUsers(load: Bool) {
+    func getBlockedUsers(load: Bool) {
         
         if load {
             self.showPKHUD(WithMessage: "Fetching...")
@@ -69,7 +67,7 @@ class StarredVC: MainViewController {
         
         APIService
             .singelton
-            .getStarredUsers(pram: pram)
+            .getBlockUsers(pram: pram)
             .subscribe({[weak self] model in
                 guard let self = self else {return}
                 switch model {
@@ -77,17 +75,17 @@ class StarredVC: MainViewController {
                         if val.count > 0 {
                             self.users.removeAll()
                             self.users = val
-                            self.starredTV.reloadData()
+                            self.blockedTV.reloadData()
                             self.hidePKHUD()
                         } else {
                             self.users.removeAll()
                             self.hidePKHUD()
-                            self.starredTV.reloadData()
+                            self.blockedTV.reloadData()
                         }
                     case .error(let error):
+                        print(error)
                         self.hidePKHUD()
-                        self.users.removeAll()
-                        self.starredTV.reloadData()
+                        self.blockedTV.reloadData()
                     case .completed:
                         print("completed")
                         self.hidePKHUD()
@@ -99,7 +97,7 @@ class StarredVC: MainViewController {
     
 }
 //MARK: TableView Extention
-extension StarredVC : UITableViewDelegate, UITableViewDataSource {
+extension BlockedVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if users.isEmpty {
@@ -114,22 +112,24 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
             case 0:
                 let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
                 cell.headerLbl.isHidden = false
-                cell.headerLbl.text = "STARRED"
+                cell.headerLbl.text = "BLOCKED"
                 cell.searchView.isHidden = false
                 cell.swipeTxtLbl.isHidden = false
+                cell.swipeTxtLbl.text = "Please swipe left to remove from block list."
                 cell.headerView.isHidden = false
                 
+                cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
+                cell.notifBtn.setImage(UIImage(named: "wifi man grey"), for: .normal)
 
                 cell.toolTipBtn.addTarget(self, action: #selector(toolBtnPressed(sender:)), for: .touchUpInside)
                 cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
-
-                cell.picBtn.borderWidth = 0
-
+                                
                 
                 return cell
                 
             default:
+                
                 
                 var cell = UITableViewCell()
                 
@@ -143,7 +143,7 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
                     
                     visiblityCell.visibiltyView.isHidden = true
                     visiblityCell.updateBtn.isHidden = true
-                    visiblityCell.textLbl.text = "At this time, there are no users that you have marked starred or matching your search criteria."
+                    visiblityCell.textLbl.text = "At this time, there are no users that you have blocked."
                     
                     
                 } else if let feedCell = cell as? FeedItemsTVCell {
@@ -153,8 +153,7 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
                     feedCell.professionLbl.text = user.workTitle
                     feedCell.educationLbl.text = user.workAddress
                     feedCell.profilePicIV.image = UIImage(named: "placeholder")
-                    feedCell.starLbl.image = UIImage(systemName: "star.fill")
-
+                    feedCell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
                 }
                 
                 return cell
@@ -175,9 +174,9 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            ApiService.markStarUser(val: users[indexPath.row - 1].userId)
+            ApiService.markBlockUser(val: users[indexPath.row - 1].userId)
             if users[indexPath.row - 1].userId == users.last?.userId {
-                self.tabBarController?.selectedIndex = 2
+                self.navigationController?.popViewController(animated: true)
                 return
             }
             users.remove(at: indexPath.row - 1)

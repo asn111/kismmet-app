@@ -9,6 +9,7 @@ import UIKit
 import RxRealm
 import RxSwift
 import RealmSwift
+import SDWebImage
 
 class ProfileVC: MainViewController {
 
@@ -300,8 +301,14 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 
             default:
                 let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
-                cell.socialImgView.image = socialAccImgArray[indexPath.row - 5]
+                //cell.socialImgView.image = socialAccImgArray[indexPath.row - 5]
 
+                if socialAccModel[indexPath.row - 5].linkImage != "" && socialAccModel[indexPath.row - 5].linkImage != nil {
+                 let imageUrl = URL(string: socialAccModel[indexPath.row - 5].linkImage)
+                 cell.socialImgView.sd_setImage(with: imageUrl , placeholderImage: UIImage()) { (image, error, imageCacheType, url) in }
+                 } else {
+                 //cell.profilePicBtn.setImage(img, for: .normal)
+                 }
                 cell.socialLbl.text = socialAccModel[indexPath.row - 5].linkTitle.capitalized
                 cell.socialLbl.isUserInteractionEnabled = false
                 return cell

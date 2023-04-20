@@ -14,6 +14,7 @@ class SocialAccModel: NSObject, Codable {
     var linkUrl : String!
     var linkTypeId : Int!
     var linkType : String!
+    var linkImage : String!
     
     override init() {
         
@@ -22,6 +23,7 @@ class SocialAccModel: NSObject, Codable {
         linkUrl = ""
         linkTypeId = 0
         linkType = ""
+        linkImage = ""
     }
     
     private enum CodingKeys: String, CodingKey {
@@ -31,6 +33,7 @@ class SocialAccModel: NSObject, Codable {
         case linkUrl = "linkUrl"
         case linkTypeId = "linkTypeId"
         case linkType = "linkType"
+        case linkImage = "linkImage"
     }
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -40,5 +43,6 @@ class SocialAccModel: NSObject, Codable {
         linkUrl  = try values.decodeIfPresent(String.self, forKey: .linkUrl)
         linkTypeId  = try values.decodeIfPresent(Int.self, forKey: .linkTypeId)
         linkType  = try values.decodeIfPresent(String.self, forKey: .linkType)
+        linkImage  = try values.decodeIfPresent(String.self, forKey: .linkImage)
     }
 }

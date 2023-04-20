@@ -16,6 +16,7 @@ class ViewedProfilesVC: MainViewController {
     var imageArray = [UIImage(named: "guy"),UIImage(named: "office"),UIImage(named: "professor")]
         
     var users = [UserModel]()
+    var searchString = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,8 @@ class ViewedProfilesVC: MainViewController {
         viewedListTV.dataSource = self
         viewedListTV.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
         viewedListTV.register(UINib(nibName: "FeedItemsTVCell", bundle: nil), forCellReuseIdentifier: "FeedItemsTVCell")
+        viewedListTV.register(UINib(nibName: "VisibilityOffTVCell", bundle: nil), forCellReuseIdentifier: "VisibilityOffTVCell")
+
     }
     
     @objc func picBtnPressed(sender: UIButton) {
@@ -54,12 +57,12 @@ class ViewedProfilesVC: MainViewController {
             self.showPKHUD(WithMessage: "Fetching...")
         }
         
-        let pram : [String : Any] = ["searchString": ""]
+        let pram : [String : Any] = ["searchString": searchString]
         Logs.show(message: "SKILLS PRAM: \(pram)")
         
         APIService
             .singelton
-            .getViewedByUsers()
+            .getViewedByUsers(pram: pram)
             .subscribe({[weak self] model in
                 guard let self = self else {return}
                 switch model {
@@ -74,6 +77,7 @@ class ViewedProfilesVC: MainViewController {
                     case .error(let error):
                         print(error)
                         self.hidePKHUD()
+                        self.viewedListTV.reloadData()
                     case .completed:
                         print("completed")
                         self.hidePKHUD()
@@ -88,6 +92,9 @@ class ViewedProfilesVC: MainViewController {
 extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if users.isEmpty {
+            return 2
+        }
         return users.count + 1
     }
     
@@ -112,16 +119,31 @@ extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
                 return cell
                 
             default:
-                let cell : FeedItemsTVCell = tableView.dequeueReusableCell(withIdentifier: "FeedItemsTVCell", for: indexPath) as! FeedItemsTVCell
-                let user = users[indexPath.row - 1]
-                cell.nameLbl.text = user.userName
-                cell.professionLbl.text = user.workTitle
-                cell.educationLbl.text = user.workAddress
-                cell.profilePicIV.image = UIImage(named: "placeholder")
-                cell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
                 
-                //cell.blurView.isHidden = false
-                //cell.blurView.addBlurEffect(style: .extraLight, cornerRadius: 4)
+                var cell = UITableViewCell()
+                
+                if users.isEmpty {
+                    cell = tableView.dequeueReusableCell(withIdentifier: "VisibilityOffTVCell", for: indexPath) as! VisibilityOffTVCell
+                } else {
+                    cell = tableView.dequeueReusableCell(withIdentifier: "FeedItemsTVCell", for: indexPath) as! FeedItemsTVCell
+                }
+                
+                if let visiblityCell = cell as? VisibilityOffTVCell {
+                    
+                    visiblityCell.visibiltyView.isHidden = true
+                    visiblityCell.updateBtn.isHidden = true
+                    visiblityCell.textLbl.text = "At this time, there are no users who viewed your profile."
+                    
+                    
+                } else if let feedCell = cell as? FeedItemsTVCell {
+                    
+                    let user = users[indexPath.row - 1]
+                    feedCell.nameLbl.text = user.userName
+                    feedCell.professionLbl.text = user.workTitle
+                    feedCell.educationLbl.text = user.workAddress
+                    feedCell.profilePicIV.image = UIImage(named: "placeholder")
+                    feedCell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+                }
 
                 return cell
         }

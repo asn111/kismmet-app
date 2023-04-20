@@ -42,6 +42,24 @@ class Database {
             if APIlist.isStarred != nil {userDB.isStarred = APIlist.isStarred}
             if APIlist.tags != nil {userDB.tags = APIlist.tags}
             if APIlist.isActive != nil {userDB.isActive = APIlist.isActive}
+            if APIlist.accountStatus != nil {userDB.isActive = APIlist.isActive}
+            
+            if APIlist.subscription != nil {
+                userDB.subscription = APIlist.subscription
+                if APIlist.subscription == "Premium Plan" {
+                    AppFunctions.setIsPremiumUser(value: true)
+                } else {
+                    AppFunctions.setIsPremiumUser(value: false)
+                }
+            } else {
+                AppFunctions.setIsPremiumUser(value: false)
+            }
+            if APIlist.shadowMode != nil {
+                userDB.shadowMode = APIlist.shadowMode
+                AppFunctions.setIsShadowMode(value: APIlist.shadowMode)
+            } else {
+                AppFunctions.setIsShadowMode(value: false)
+            }
             
             realm.create(UserDBModel.self, value: userDB, update: .all)
         }
