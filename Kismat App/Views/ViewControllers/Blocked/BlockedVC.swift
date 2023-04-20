@@ -193,7 +193,7 @@ extension BlockedVC : UITableViewDelegate, UITableViewDataSource {
                     feedCell.professionLbl.text = user.workTitle
                     feedCell.educationLbl.text = user.workAddress
                     feedCell.profilePicIV.image = UIImage(named: "placeholder")
-                    //feedCell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+                    feedCell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
                 }
                 
                 return cell

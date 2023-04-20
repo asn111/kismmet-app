@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import MultiSlider
+import RealmSwift
 
 class EditProfileSetupExt: MainViewController {
     
@@ -18,9 +19,21 @@ class EditProfileSetupExt: MainViewController {
     
     var isFromSetting = true
     var isProfileVisible = false
+    var isShadowMode = false
+    var proximity = 150
+
+    var userdbModel = UserDBModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if DBService.fetchloggedInUser().count > 0 {
+            self.userdbModel = DBService.fetchloggedInUser().first!
+        }
+        
+        proximity = userdbModel.proximity
+        isProfileVisible = userdbModel.isProfileVisible
+        isShadowMode = userdbModel.shadowMode
         
         registerCells()
     }
@@ -41,13 +54,31 @@ class EditProfileSetupExt: MainViewController {
         profileExtTV.register(UINib(nibName: "SocialAccTVCell", bundle: nil), forCellReuseIdentifier: "SocialAccTVCell")
         profileExtTV.register(UINib(nibName: "GeneralButtonTVCell", bundle: nil), forCellReuseIdentifier: "GeneralButtonTVCell")
     }
+
     
-    @objc func addBtnPressed(sender:UIButton) {
-        self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in }
+    @objc func picBtnPressed(sender:UIButton) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func genBtnPressed(sender:UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        updateConfig()
+    }
+    
+    func updateConfig() {
+        let pram = ["proximity": "\(proximity)",
+                    "shadowMode":"\(isShadowMode)",
+                    "isProfileVisible":"\(isProfileVisible)"
+        ]
+        
+        Logs.show(message: "PRAM: \(pram)")
+        
+        SignalRService.connection.invoke(method: "UpdateUserConfigurations", pram) {  error in            Logs.show(message: "\(pram)")
+            self.navigationController?.popViewController(animated: true)
+            if let e = error {
+                Logs.show(message: "Error: \(e)")
+                return
+            }
+        }
     }
     
     @objc func toolTipBtnPressed(sender:UIButton) {
@@ -74,7 +105,7 @@ class EditProfileSetupExt: MainViewController {
             let cell : MixHeaderTVCell = profileExtTV.cellForRow(at: IndexPath(row: 1, section: 0)) as! MixHeaderTVCell
             cell.proximeterLbl.text = "\(Int(round(slider.value[1]))) m"
             profileExtTV.rectForRow(at: IndexPath(row: 1, section: 0))
-            //proximity = Int(round(slider.value[1]))
+            proximity = Int(round(slider.value[1]))
         }
     }
     
@@ -84,9 +115,10 @@ class EditProfileSetupExt: MainViewController {
             
             if cell.toggleBtn.tag == 3 {
                 isProfileVisible = cell.toggleBtn.isOn
-                AppFunctions.setIsProfileVisble(value: cell.toggleBtn.isOn)
+                //AppFunctions.setIsProfileVisble(value: cell.toggleBtn.isOn)
             } else {
-                AppFunctions.setIsShadowMode(value: cell.toggleBtn.isOn)
+                isShadowMode = cell.toggleBtn.isOn
+                //AppFunctions.setIsShadowMode(value: cell.toggleBtn.isOn)
             }
         }
     }
@@ -111,7 +143,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 cell.swipeTxtLbl.isHidden = true
                 cell.headerView.isHidden = false
                 cell.notifBtn.isHidden = true
-                cell.picBtn.addTarget(self, action: #selector(genBtnPressed(sender:)), for: .touchUpInside)
+                cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
                 cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
 
 
@@ -122,7 +154,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 cell.headerLblView.isHidden = false
                 cell.proximeterLbl.isHidden = false
                 cell.headerLbl.text = "Set Proximity"
-                cell.proximeterLbl.text = "\(cell.maxValue/2) m"
+                cell.proximeterLbl.text = "\(proximity) m"
                 
                 return cell
             case 2: // Slider
@@ -134,9 +166,8 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.toggleBtnView.isHidden = false
                 cell.toggleLbl.text = "Profile Visibility"
-                cell.toggleBtn.isOn = true
+                cell.toggleBtn.isOn = isProfileVisible
                 cell.toggleBtn.tag = indexPath.row
-                isProfileVisible = cell.toggleBtn.isOn
                 cell.toggleTooltipBtn.tag = 001
                 
                 cell.toggleTooltipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
@@ -148,8 +179,8 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.toggleBtnView.isHidden = false
                 cell.toggleLbl.text = "Shadow Mode"
-                cell.toggleBtn.isOn = false
-                cell.toggleBtn.isEnabled = false
+                cell.toggleBtn.isOn = isShadowMode
+                cell.toggleBtn.isEnabled = AppFunctions.isPremiumUser()
                 cell.toggleBtn.tag = indexPath.row
                 AppFunctions.setIsShadowMode(value: cell.toggleBtn.isOn)
                 cell.toggleTooltipBtn.tag = 002
@@ -178,7 +209,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 let cell : ProfileTVCell = tableView.dequeueReusableCell(withIdentifier: "ProfileTVCell", for: indexPath) as! ProfileTVCell
                 if placeholderArray[indexPath.row] == "Phone" {
                     cell.numberView.isHidden = false
-                    cell.numberView.isUserInteractionEnabled = false
+                    cell.numberTF.isUserInteractionEnabled = false
                     cell.countryPickerView.isUserInteractionEnabled = false
                     cell.generalTFView.isHidden = true
                     cell.setupCountryCode()
@@ -190,7 +221,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                     cell.lockTipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
                 } else {
                     cell.numberView.isHidden = true
-                    cell.generalTFView.isUserInteractionEnabled = false
+                    cell.generalTF.isUserInteractionEnabled = false
                     cell.generalTFView.isHidden = false
                     cell.toolTipBtn.isHidden = false
                     cell.generalTF.text = dataArray[indexPath.row]

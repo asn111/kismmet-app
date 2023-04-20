@@ -16,8 +16,13 @@ class ViewedProfilesVC: MainViewController {
     var imageArray = [UIImage(named: "guy"),UIImage(named: "office"),UIImage(named: "professor")]
         
     var users = [UserModel]()
+    var userdbModel = UserDBModel()
     var searchString = ""
 
+    var isProfileVisible = false
+    var isShadowMode = false
+    var proximity = 150
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,6 +68,35 @@ class ViewedProfilesVC: MainViewController {
         getViewedByUsers(load: true)
     }
     
+    @objc func updateBtnPressed(sender: UIButton) {
+        updateConfig()
+    }
+    
+    @objc func toggleButtonPressed(_ sender: UISwitch) {
+        let indexPath = IndexPath(row: sender.tag, section: 0)
+        if let cell = viewedListTV.cellForRow(at: indexPath) as? VisibilityOffTVCell {
+            isProfileVisible = cell.toggleBtn.isOn
+        }
+    }
+    
+    func updateConfig() {
+        let pram = ["proximity": "\(proximity)",
+                    "shadowMode":"\(isShadowMode)",
+                    "isProfileVisible":"\(isProfileVisible)"
+        ]
+        
+        Logs.show(message: "PRAM: \(pram)")
+        
+        SignalRService.connection.invoke(method: "UpdateUserConfigurations", pram) {  error in            Logs.show(message: "\(pram)")
+            AppFunctions.setIsProfileVisble(value: self.isProfileVisible)
+            self.getViewedByUsers(load: true)
+            if let e = error {
+                Logs.show(message: "Error: \(e)")
+                return
+            }
+        }
+    }
+    
     @objc func textFieldDidChangeSelection(_ textField: UITextField) {
         searchString = !textField.text!.isTFBlank ? textField.text! : ""
     }
@@ -96,10 +130,13 @@ class ViewedProfilesVC: MainViewController {
                 switch model {
                     case .next(let val):
                         if val.count > 0 {
+                            self.users.removeAll()
                             self.users = val
                             self.viewedListTV.reloadData()
                             self.hidePKHUD()
                         } else {
+                            self.users.removeAll()
+                            self.viewedListTV.reloadData()
                             self.hidePKHUD()
                         }
                     case .error(let error):
@@ -120,7 +157,9 @@ class ViewedProfilesVC: MainViewController {
 extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if users.isEmpty {
+        if !AppFunctions.isProfileVisble(){
+            return 2
+        } else if users.isEmpty {
             return 2
         }
         return users.count + 1
@@ -162,39 +201,63 @@ extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
                 
             default:
                 
+                
                 var cell = UITableViewCell()
                 
-                if users.isEmpty {
+                if !AppFunctions.isProfileVisble(){
                     cell = tableView.dequeueReusableCell(withIdentifier: "VisibilityOffTVCell", for: indexPath) as! VisibilityOffTVCell
                 } else {
-                    cell = tableView.dequeueReusableCell(withIdentifier: "FeedItemsTVCell", for: indexPath) as! FeedItemsTVCell
+                    if users.isEmpty {
+                        cell = tableView.dequeueReusableCell(withIdentifier: "VisibilityOffTVCell", for: indexPath) as! VisibilityOffTVCell
+                    } else {
+                        cell = tableView.dequeueReusableCell(withIdentifier: "FeedItemsTVCell", for: indexPath) as! FeedItemsTVCell
+                    }
                 }
                 
                 if let visiblityCell = cell as? VisibilityOffTVCell {
                     
-                    visiblityCell.visibiltyView.isHidden = true
-                    visiblityCell.updateBtn.isHidden = true
-                    visiblityCell.textLbl.text = "At this time, there are no users who viewed your profile."
+                    visiblityCell.toggleBtn.isOn = false
+                    visiblityCell.toggleBtn.tag = indexPath.row
+                    visiblityCell.toolTipBtn.tag = 005
+                    
+                    
+                    visiblityCell.toolTipBtn.addTarget(self, action: #selector(toolBtnPressed(sender:)), for: .touchUpInside)
+                    visiblityCell.updateBtn.addTarget(self, action: #selector(updateBtnPressed(sender:)), for: .touchUpInside)
+                    visiblityCell.toggleBtn.addTarget(self, action: #selector(toggleButtonPressed(_:)), for: .valueChanged)
+                    
+                    if users.isEmpty && AppFunctions.isProfileVisble() {
+                        visiblityCell.visibiltyView.isHidden = true
+                        visiblityCell.updateBtn.isHidden = true
+                        visiblityCell.textLbl.text = "At this time, there are no users within your proximity range or matching your search criteria."
+                    } else {
+                        visiblityCell.visibiltyView.isHidden = false
+                        visiblityCell.updateBtn.isHidden = false
+                        visiblityCell.textLbl.text = "Your visibility is off, Please change your visibility to on to view people who have viewed profile."
+                    }
                     
                     
                 } else if let feedCell = cell as? FeedItemsTVCell {
-                    
+                                        
                     let user = users[indexPath.row - 1]
                     feedCell.nameLbl.text = user.userName
                     feedCell.professionLbl.text = user.workTitle
                     feedCell.educationLbl.text = user.workAddress
                     feedCell.profilePicIV.image = UIImage(named: "placeholder")
                     feedCell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+                    
                 }
-
+                
                 return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row != 0 {
-            self.pushVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
-                vc.userModel = users[indexPath.row - 1]
+        if indexPath.row != 0 && AppFunctions.isProfileVisble() {
+            if !users.isEmpty {
+                self.pushVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
+                    vc.userModel = users[indexPath.row - 1]
+                    vc.markView = true
+                }
             }
         }
         

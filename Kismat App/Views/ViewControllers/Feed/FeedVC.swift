@@ -17,8 +17,14 @@ class FeedVC: MainViewController {
     //MARK: PROPERTIES
     
     var users = [UserModel]()
+    var userdbModel = UserDBModel()
+
     var viewedCount = 0
     var searchString = ""
+    
+    var isProfileVisible = false
+    var isShadowMode = false
+    var proximity = 150
 
     var nameArray = ["Zoya Grey","James Nio","Kris Burner","Nesa Node","Mark Denial"]
     var profArray = ["Professor","Bachelor, Student","Entrepreneur","Chemist","Professor"]
@@ -27,6 +33,14 @@ class FeedVC: MainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if DBService.fetchloggedInUser().count > 0 {
+            self.userdbModel = DBService.fetchloggedInUser().first!
+        }
+        
+        proximity = userdbModel.proximity
+        isProfileVisible = userdbModel.isProfileVisible
+        isShadowMode = userdbModel.shadowMode
+        
         getProxUsers(load: true)
         registerCells()
     }
@@ -60,7 +74,7 @@ class FeedVC: MainViewController {
     }
     
     @objc func updateBtnPressed(sender: UIButton) {
-        getProxUsers(load: true)
+        updateConfig()
     }
     
     @objc func searchBtnPressed(sender: UIButton) {
@@ -72,6 +86,23 @@ class FeedVC: MainViewController {
         getProxUsers(load: true)
     }
     
+    func updateConfig() {
+        let pram = ["proximity": "\(proximity)",
+                    "shadowMode":"\(isShadowMode)",
+                    "isProfileVisible":"\(isProfileVisible)"
+        ]
+        
+        Logs.show(message: "PRAM: \(pram)")
+        
+        SignalRService.connection.invoke(method: "UpdateUserConfigurations", pram) {  error in            Logs.show(message: "\(pram)")
+            AppFunctions.setIsProfileVisble(value: self.isProfileVisible)
+            self.getProxUsers(load: true)
+            if let e = error {
+                Logs.show(message: "Error: \(e)")
+                return
+            }
+        }
+    }
     
     @objc func toolBtnPressed(sender: UIButton) {
         var msg = ""
@@ -95,7 +126,8 @@ class FeedVC: MainViewController {
     @objc func toggleButtonPressed(_ sender: UISwitch) {
         let indexPath = IndexPath(row: sender.tag, section: 0)
         if let cell = feedTV.cellForRow(at: indexPath) as? VisibilityOffTVCell {
-            AppFunctions.setIsProfileVisble(value: cell.toggleBtn.isOn)
+            //AppFunctions.setIsProfileVisble(value: cell.toggleBtn.isOn)
+            isProfileVisible = cell.toggleBtn.isOn
         }
     }
     

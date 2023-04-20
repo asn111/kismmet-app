@@ -27,7 +27,12 @@ class SettingVC: MainViewController {
             self.userdbModel = DBService.fetchloggedInUser()
         }
         registerCells()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         userProfile()
+
     }
     
     func registerCells() {
