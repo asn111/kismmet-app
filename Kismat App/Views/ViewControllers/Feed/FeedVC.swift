@@ -38,6 +38,11 @@ class FeedVC: MainViewController {
         feedTV.reloadData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        searchString = ""
+    }
+    
     func registerCells() {
         
         feedTV.tableFooterView = UIView()
@@ -57,6 +62,16 @@ class FeedVC: MainViewController {
     @objc func updateBtnPressed(sender: UIButton) {
         getProxUsers(load: true)
     }
+    
+    @objc func searchBtnPressed(sender: UIButton) {
+        if searchString != "" {
+            searchString = ""
+            getProxUsers(load: true)
+            return
+        }
+        getProxUsers(load: true)
+    }
+    
     
     @objc func toolBtnPressed(sender: UIButton) {
         var msg = ""
@@ -99,6 +114,21 @@ class FeedVC: MainViewController {
             }
         }
     }
+    
+    @objc func textFieldDidChangeSelection(_ textField: UITextField) {
+        searchString = !textField.text!.isTFBlank ? textField.text! : ""
+    }
+    
+    @objc func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.returnKeyType = .done
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        getProxUsers(load: true)
+        return true
+    }
+    
     //MARK: API METHODS
     
     func getProxUsers(load: Bool) {
@@ -166,6 +196,17 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                 cell.headerView.isHidden = false
                 cell.viewedToolTipBtn.isHidden = !AppFunctions.isProfileVisble()
                 
+                cell.searchTF.delegate = self
+                cell.searchTF.returnKeyType = .search
+                cell.searchTF.tag = 010
+                cell.searchBtn.addTarget(self, action: #selector(searchBtnPressed(sender:)), for: .touchUpInside)
+
+                if searchString != "" {
+                    cell.searchBtn.setImage(UIImage(systemName: "x.circle"), for: .normal)
+                } else {
+                    cell.searchBtn.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+                    cell.searchTF.text = ""
+                }
                 
                 cell.toolTipBtn.tag = 001
                 cell.viewedToolTipBtn.tag = 002

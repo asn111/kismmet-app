@@ -555,22 +555,22 @@
     </objects>
     <designables>
         <designable name="6BT-Eq-hcD">
-            <size key="intrinsicContentSize" width="128" height="36.666666666666664"/>
+            <size key="intrinsicContentSize" width="73.333333333333329" height="20.333333333333332"/>
         </designable>
         <designable name="A8B-bt-df2">
-            <size key="intrinsicContentSize" width="271.66666666666669" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="337.33333333333331" height="20.333333333333332"/>
         </designable>
         <designable name="Baj-Qv-s2c">
             <size key="intrinsicContentSize" width="162" height="152"/>
         </designable>
         <designable name="Cf5-Cq-dE3">
-            <size key="intrinsicContentSize" width="148.33333333333334" height="33"/>
+            <size key="intrinsicContentSize" width="81" height="20.333333333333332"/>
         </designable>
         <designable name="HOG-bk-97u">
-            <size key="intrinsicContentSize" width="53" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="73" height="20.333333333333332"/>
         </designable>
         <designable name="Icb-FA-TAT">
-            <size key="intrinsicContentSize" width="62.666666666666664" height="19.333333333333332"/>
+            <size key="intrinsicContentSize" width="64.666666666666671" height="22"/>
         </designable>
         <designable name="bc3-O3-AQ1">
             <size key="intrinsicContentSize" width="407" height="612"/>
@@ -582,19 +582,19 @@
             <size key="intrinsicContentSize" width="54" height="54"/>
         </designable>
         <designable name="dpP-cf-H6r">
-            <size key="intrinsicContentSize" width="173" height="21.333333333333332"/>
+            <size key="intrinsicContentSize" width="151.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="nax-I1-dp4">
             <size key="intrinsicContentSize" width="162" height="152"/>
         </designable>
         <designable name="nzF-aI-iJF">
-            <size key="intrinsicContentSize" width="163.33333333333334" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="211" height="20.333333333333332"/>
         </designable>
         <designable name="pXu-df-J1k">
-            <size key="intrinsicContentSize" width="164" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="207.66666666666666" height="20.333333333333332"/>
         </designable>
         <designable name="v2n-8t-cBj">
-            <size key="intrinsicContentSize" width="237" height="23.666666666666668"/>
+            <size key="intrinsicContentSize" width="207.66666666666666" height="20.333333333333332"/>
         </designable>
     </designables>
     <resources>

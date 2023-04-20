@@ -25,7 +25,7 @@ class SplashVC: MainViewController {
         
         if AppFunctions.isLoggedIn() {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                self.userProfile()
+                self.startUpCall()
             }
             animateThisView.isHidden = false
             
@@ -39,26 +39,64 @@ class SplashVC: MainViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        timer.invalidate()
+        if timer != nil {
+            timer.invalidate()
+        }
     }
     
     @objc func timerMethod() {
         heightChnage()
     }
     
-    func userProfile() {
+    func startUpCall() {
         
         APIService
             .singelton
-            .getUserById(userId: "")
+            .startUpCall()
             .subscribe({[weak self] model in
                 guard let self = self else {return}
                 switch model {
                     case .next(let val):
-                        if val.userId != "" {
-                            self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
-                                vc.selectedIndex = 2
+                        if val.accountStatusId != 0 {
+                            
+                            if let subs = val.subscription {
+                                if subs == "Premium Plan" {
+                                    AppFunctions.setIsPremiumUser(value: true)
+                                } else {
+                                    AppFunctions.setIsPremiumUser(value: false)
+                                }
                             }
+                            
+                            if let shadowMode = val.shadowMode {
+                                AppFunctions.setIsShadowMode(value: shadowMode)
+                                
+                            }
+                            
+                            if let profVis = val.isProfileVisible {
+                                AppFunctions.setIsProfileVisble(value: profVis)
+                                
+                            }
+                            
+                            if let accStatus = val.accountStatusId {
+                                if accStatus == deactivedAccountStatusId {
+                                    AppFunctions.resetDefaults2()
+                                    DBService.removeCompletedDB()
+                                    self.btnView.isHidden = false
+                                    AppFunctions.showSnackBar(str: "Your Account is deactivated, please login again to get back in the app.")
+                                } else if accStatus == deletedAccountStatusId {
+                                    AppFunctions.resetDefaults2()
+                                    DBService.removeCompletedDB()
+                                    self.btnView.isHidden = false
+                                    AppFunctions.showSnackBar(str: "Your Account is deleted, please create a new using different email to login back.")
+                                } else if accStatus == activeAccountStatusId {
+                                    self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
+                                        vc.selectedIndex = 2
+                                    }
+                                }
+                                
+                            }
+                            
+                            
                             self.hidePKHUD()
                         } else {
                             self.hidePKHUD()
@@ -104,3 +142,5 @@ class SplashVC: MainViewController {
     }
     
 }
+
+

@@ -15,6 +15,7 @@ class NotificationVC: MainViewController {
         super.viewDidLoad()
         
         registerCells()
+        AppFunctions.showSnackBar(str: "Notifications are in progress.")
     }
     
     func registerCells() {

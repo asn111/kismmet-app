@@ -54,6 +54,30 @@ class BlockedVC: MainViewController {
         AppFunctions.showToolTip(str: "Search Users that you blocked.", btn: sender)
     }
     
+    @objc func searchBtnPressed(sender: UIButton) {
+        if searchString != "" {
+            searchString = ""
+            getBlockedUsers(load: true)
+            return
+        }
+        getBlockedUsers(load: true)
+    }
+    
+    
+    @objc func textFieldDidChangeSelection(_ textField: UITextField) {
+        searchString = !textField.text!.isTFBlank ? textField.text! : ""
+    }
+    
+    @objc func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.returnKeyType = .done
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        getBlockedUsers(load: true)
+        return true
+    }
+    
     //MARK: API METHODS
     
     func getBlockedUsers(load: Bool) {
@@ -110,21 +134,37 @@ extension BlockedVC : UITableViewDelegate, UITableViewDataSource {
         
         switch indexPath.row {
             case 0:
+                
                 let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
                 cell.headerLbl.isHidden = false
                 cell.headerLbl.text = "BLOCKED"
                 cell.searchView.isHidden = false
                 cell.swipeTxtLbl.isHidden = false
-                cell.swipeTxtLbl.text = "Please swipe left to remove from block list."
                 cell.headerView.isHidden = false
+                cell.swipeTxtLbl.text = "Please swipe left to remove from block list."
+
+                cell.searchTF.delegate = self
+                cell.searchTF.returnKeyType = .search
+                cell.searchTF.tag = 010
+                cell.searchBtn.addTarget(self, action: #selector(searchBtnPressed(sender:)), for: .touchUpInside)
+                
+                if searchString != "" {
+                    cell.searchBtn.setImage(UIImage(systemName: "x.circle"), for: .normal)
+                } else {
+                    cell.searchBtn.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+                    cell.searchTF.text = ""
+                }
                 
                 cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
                 cell.notifBtn.setImage(UIImage(named: "wifi man grey"), for: .normal)
 
+                
                 cell.toolTipBtn.addTarget(self, action: #selector(toolBtnPressed(sender:)), for: .touchUpInside)
                 cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
-                                
+                
+                cell.picBtn.borderWidth = 0
+                
                 
                 return cell
                 
@@ -153,7 +193,7 @@ extension BlockedVC : UITableViewDelegate, UITableViewDataSource {
                     feedCell.professionLbl.text = user.workTitle
                     feedCell.educationLbl.text = user.workAddress
                     feedCell.profilePicIV.image = UIImage(named: "placeholder")
-                    feedCell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+                    //feedCell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
                 }
                 
                 return cell

@@ -112,7 +112,32 @@ class SignInVC: MainViewController {
                     case .next(let val):
                         Logs.show(message: "MARKED: 👉🏻 \(val)")
                         if val {
-                            Logs.show(message: "Profile UPDATED: \(AppFunctions.IsProfileUpdated())")
+                            self.userProfile()
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
+    
+    
+    func userProfile() {
+        
+        APIService
+            .singelton
+            .getUserById(userId: "")
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        if val.userId != "" {
                             self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
                                 vc.selectedIndex = 2
                             }
@@ -129,5 +154,5 @@ class SignInVC: MainViewController {
             })
             .disposed(by: dispose_Bag)
     }
-    
+
 }

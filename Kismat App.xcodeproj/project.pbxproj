@@ -94,6 +94,7 @@
 		299FDDAA2996E85C0049741B /* ProfileTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299FDDA82996E85C0049741B /* ProfileTVCell.xib */; };
 		299FDDAE2996EB7E0049741B /* GeneralButtonTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299FDDAC2996EB7E0049741B /* GeneralButtonTVCell.swift */; };
 		299FDDAF2996EB7E0049741B /* GeneralButtonTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299FDDAD2996EB7E0049741B /* GeneralButtonTVCell.xib */; };
+		29BAD3BC29F1B18B00F16C2B /* StartupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAD3BB29F1B18B00F16C2B /* StartupModel.swift */; };
 		29F5290329970DA500FE2EBA /* GeneralTextviewTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F5290129970DA500FE2EBA /* GeneralTextviewTVCell.swift */; };
 		29F5290429970DA500FE2EBA /* GeneralTextviewTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29F5290229970DA500FE2EBA /* GeneralTextviewTVCell.xib */; };
 		29FD316629A5FD9400BDBD9C /* EditProfileSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD316529A5FD9400BDBD9C /* EditProfileSetup.swift */; };
@@ -215,6 +216,7 @@
 		299FDDA82996E85C0049741B /* ProfileTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTVCell.xib; sourceTree = "<group>"; };
 		299FDDAC2996EB7E0049741B /* GeneralButtonTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralButtonTVCell.swift; sourceTree = "<group>"; };
 		299FDDAD2996EB7E0049741B /* GeneralButtonTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralButtonTVCell.xib; sourceTree = "<group>"; };
+		29BAD3BB29F1B18B00F16C2B /* StartupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupModel.swift; sourceTree = "<group>"; };
 		29F5290129970DA500FE2EBA /* GeneralTextviewTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTextviewTVCell.swift; sourceTree = "<group>"; };
 		29F5290229970DA500FE2EBA /* GeneralTextviewTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralTextviewTVCell.xib; sourceTree = "<group>"; };
 		29FD316529A5FD9400BDBD9C /* EditProfileSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileSetup.swift; sourceTree = "<group>"; };
@@ -635,6 +637,7 @@
 				29350A1929D0C43B00F19BD5 /* UserModel.swift */,
 				29350A1B29D0C6A900F19BD5 /* SocialAccType.swift */,
 				29350A1E29D0C89C00F19BD5 /* SocialAccModel.swift */,
+				29BAD3BB29F1B18B00F16C2B /* StartupModel.swift */,
 			);
 			path = "API Models";
 			sourceTree = "<group>";
@@ -997,6 +1000,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29846D4329A1676000393EB3 /* ImportantDialogVC.swift in Sources */,
+				29BAD3BC29F1B18B00F16C2B /* StartupModel.swift in Sources */,
 				29985F40299937CE001F769B /* StarredVC.swift in Sources */,
 				294A79A4299ADCAE00089161 /* SettingVC.swift in Sources */,
 				29350A2729D1C51200F19BD5 /* ViewedByMe.swift in Sources */,

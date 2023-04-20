@@ -152,12 +152,12 @@ class APIService: NSObject {
     ///////////////////*********************////////////////////////********************////////////////////////*********************///////////////////////
 
     //MARK: StartUp Call
-    func startUpCall() -> Observable<Bool> {
+    func startUpCall() -> Observable<StartupModel> {
         
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(self?.baseUrl ?? "")/api/User/StartUp", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/StartUp", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -172,7 +172,7 @@ class APIService: NSObject {
                                 do {
                                     let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
                                     Logs.show(message: "SUCCESS IN startUpCall")
-                                    observer.onNext(true)
+                                    observer.onNext(genResponse.body.startUp)
                                     //DBService.createStartupDB(startup: genResponse.body.userPreferences)
                                     observer.onCompleted()
                                 } catch {
@@ -194,6 +194,8 @@ class APIService: NSObject {
                         }
                     }
             } else {
+                observer.onNext(StartupModel())
+                observer.onCompleted()
                 AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
             }
             return Disposables.create()
@@ -1018,6 +1020,46 @@ class APIService: NSObject {
             return Disposables.create()
         }
     }
+    
+    //MARK: Get User By ID without callback
+    func getUserProfile() {
+        
+            if (self.isCheckReachable()) {
+                AF.request("\(self.baseUrl)/api/Users/GetUserProfile", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self.getRequestHeader())
+                    .validate()
+                    .responseData{ response in
+                        Logs.show(message: "URL: \(response.debugDescription)")
+                        guard let data = response.data else {
+                            AppFunctions.showSnackBar(str: "Server Request Error")
+                            Logs.show(message: "Error on Response.data\(response.error!)")
+                            return
+                        }
+                        switch response.result {
+                            case .success:
+                                do {
+                                    let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    DBService.createUserDB(APIlist: genResponse.body.user)
+                                    Logs.show(message: "SUCCESS IN \(#function)")
+                                } catch {
+                                    AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                }
+                            case .failure(_):
+                                do {
+                                    let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                    AppFunctions.showSnackBar(str: responce.message)
+                                }catch {
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                    AppFunctions.showSnackBar(str: "Server Request Error")
+                                }
+                        }
+                    }
+            } else {
+                AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
+            }
+    }
+    
     
     
     //MARK: Get Locations

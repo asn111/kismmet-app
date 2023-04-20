@@ -31,6 +31,11 @@ class StarredVC: MainViewController {
 
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        searchString = ""
+    }
+    
     func registerCells() {
         
         starredTV.tableFooterView = UIView()
@@ -55,7 +60,31 @@ class StarredVC: MainViewController {
         AppFunctions.showToolTip(str: "Search Users that you marked starred.", btn: sender)
     }
     
-
+    @objc func searchBtnPressed(sender: UIButton) {
+        if searchString != "" {
+            searchString = ""
+            getStarUsers(load: true)
+            return
+        }
+        getStarUsers(load: true)
+    }
+    
+    
+    
+    @objc func textFieldDidChangeSelection(_ textField: UITextField) {
+        searchString = !textField.text!.isTFBlank ? textField.text! : ""
+    }
+    
+    @objc func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.returnKeyType = .done
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        getStarUsers(load: true)
+        return true
+    }
+    
     //MARK: API METHODS
     
     func getStarUsers(load: Bool) {
@@ -119,6 +148,17 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
                 cell.swipeTxtLbl.isHidden = false
                 cell.headerView.isHidden = false
                 
+                cell.searchTF.delegate = self
+                cell.searchTF.returnKeyType = .search
+                cell.searchTF.tag = 010
+                cell.searchBtn.addTarget(self, action: #selector(searchBtnPressed(sender:)), for: .touchUpInside)
+
+                if searchString != "" {
+                    cell.searchBtn.setImage(UIImage(systemName: "x.circle"), for: .normal)
+                } else {
+                    cell.searchBtn.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+                    cell.searchTF.text = ""
+                }
 
                 cell.toolTipBtn.addTarget(self, action: #selector(toolBtnPressed(sender:)), for: .touchUpInside)
                 cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)

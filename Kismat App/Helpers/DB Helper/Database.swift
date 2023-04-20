@@ -37,7 +37,6 @@ class Database {
             if APIlist.workTitle != nil {userDB.workTitle = APIlist.workTitle}
             if APIlist.about != nil {userDB.about = APIlist.about}
             if APIlist.proximity != nil {userDB.proximity = APIlist.proximity}
-            if APIlist.isProfileVisible != nil {userDB.isProfileVisible = APIlist.isProfileVisible}
             if APIlist.isProfileUpdated != nil {userDB.isProfileUpdated = APIlist.isProfileUpdated}
             if APIlist.isStarred != nil {userDB.isStarred = APIlist.isStarred}
             if APIlist.tags != nil {userDB.tags = APIlist.tags}
@@ -59,6 +58,13 @@ class Database {
                 AppFunctions.setIsShadowMode(value: APIlist.shadowMode)
             } else {
                 AppFunctions.setIsShadowMode(value: false)
+            }
+            
+            if APIlist.isProfileVisible != nil {
+                userDB.isProfileVisible = APIlist.isProfileVisible
+                AppFunctions.setIsProfileVisble(value: APIlist.isProfileVisible)
+            } else {
+                AppFunctions.setIsProfileVisble(value: false)
             }
             
             realm.create(UserDBModel.self, value: userDB, update: .all)

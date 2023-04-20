@@ -50,6 +50,35 @@ class ViewedByMeVC: MainViewController {
     @objc func notifBtnPressed(sender: UIButton) {
         self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
     }
+    
+    @objc func toolBtnPressed(sender: UIButton) {
+        AppFunctions.showToolTip(str: "Search Users that are viewed by you.", btn: sender)
+    }
+    
+    @objc func searchBtnPressed(sender: UIButton) {
+        if searchString != "" {
+            searchString = ""
+            getViewedByMe(load: true)
+            return
+        }
+        getViewedByMe(load: true)
+    }
+    
+    
+    @objc func textFieldDidChangeSelection(_ textField: UITextField) {
+        searchString = !textField.text!.isTFBlank ? textField.text! : ""
+    }
+    
+    @objc func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.returnKeyType = .done
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        getViewedByMe(load: true)
+        return true
+    }
+    
     //MARK: API METHODS
     
     func getViewedByMe(load: Bool) {
@@ -104,17 +133,27 @@ extension ViewedByMeVC : UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
             case 0:
                 let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
+                
                 cell.headerLbl.isHidden = false
                 cell.headerLbl.text = "VIEWED BY ME"
-                cell.toolTipBtn.isHidden = true
-                cell.searchTFView.isHidden = true
+                cell.searchView.isHidden = false
                 cell.headerView.isHidden = false
                 
+                cell.searchTF.delegate = self
+                cell.searchTF.returnKeyType = .search
+                cell.searchTF.tag = 010
+                cell.searchBtn.addTarget(self, action: #selector(searchBtnPressed(sender:)), for: .touchUpInside)
+                
+                if searchString != "" {
+                    cell.searchBtn.setImage(UIImage(systemName: "x.circle"), for: .normal)
+                } else {
+                    cell.searchBtn.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+                    cell.searchTF.text = ""
+                }
+                
                 cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
-                cell.notifBtn.isHidden = true
                 
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
-                
                 
                 
                 return cell
@@ -159,11 +198,7 @@ extension ViewedByMeVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return 100.0
-        } else {
             return UITableView.automaticDimension
-        }
     }
 }
 

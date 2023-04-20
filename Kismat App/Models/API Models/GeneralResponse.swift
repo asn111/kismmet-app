@@ -46,6 +46,7 @@ class Body : NSObject, Codable {
     var profileViewer : [UserModel]!
     var socialLinkTypes : [SocialAccTypeModel]!
     var socialAccounts : [SocialAccModel]!
+    var startUp : StartupModel!
 
     override init() {
         token = ""
@@ -55,6 +56,7 @@ class Body : NSObject, Codable {
         profileViewer = [UserModel]()
         socialLinkTypes = [SocialAccTypeModel]()
         socialAccounts = [SocialAccModel]()
+        startUp = StartupModel()
     }
     
     private enum CodingKeys: String, CodingKey {
@@ -65,6 +67,7 @@ class Body : NSObject, Codable {
         case profileViewer = "profileViewer"
         case socialLinkTypes = "socialLinkTypes"
         case socialAccounts = "socialAccounts"
+        case startUp = "startUp"
 
     }
     
@@ -78,6 +81,7 @@ class Body : NSObject, Codable {
         profileViewer  = try values.decodeIfPresent([UserModel].self, forKey: .profileViewer)
         socialLinkTypes  = try values.decodeIfPresent([SocialAccTypeModel].self, forKey: .socialLinkTypes)
         socialAccounts  = try values.decodeIfPresent([SocialAccModel].self, forKey: .socialAccounts)
+        startUp  = try values.decodeIfPresent(StartupModel.self, forKey: .startUp)
 
     }
 }
