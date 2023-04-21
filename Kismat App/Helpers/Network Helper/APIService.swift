@@ -551,12 +551,52 @@ class APIService: NSObject {
         }
     }
     
-    func updateAccountStatus(val: Int){
+    func updateAccountStatus(val: Int) {
         
         if (self.isCheckReachable()) {
             let pram: Parameters = ["statusId": val]
             
             AF.request("\(self.baseUrl)/api/Users/UpdateUserAccountStatus", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
+                .validate()
+                .responseData{ response in
+                    Logs.show(message: "URL: \(response.debugDescription)")
+                    guard let data = response.data else {
+                        AppFunctions.showSnackBar(str: "Server Request Error")
+                        Logs.show(message: "Error on Response.data\(response.error!)")
+                        return
+                    }
+                    switch response.result {
+                        case .success:
+                            do {
+                                let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                //AppFunctions.showSnackBar(str: genResponse.message)
+                                Logs.show(message: "SUCCESS IN \(#function)")
+                            } catch {
+                                AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                            }
+                        case .failure( _):
+                            do {
+                                let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                AppFunctions.showSnackBar(str: responce.message)
+                            } catch {
+                                Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                AppFunctions.showSnackBar(str: "Server Request Error")
+                            }
+                    }
+                }
+        } else {
+            AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
+        }
+    }
+    
+    func deleteSocialLink(val: Int) {
+        
+        if (self.isCheckReachable()) {
+            let pram: Parameters = ["linkId": val]
+            
+            AF.request("\(self.baseUrl)/api/Users/RemoveUserSocialAccount", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
                 .validate()
                 .responseData{ response in
                     Logs.show(message: "URL: \(response.debugDescription)")

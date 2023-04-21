@@ -19,9 +19,9 @@ class ProfileVC: MainViewController {
     var socialAccArray = [String]()
     var socialAccImgArray = [UIImage(named: "LinkedIn"),UIImage(named: "Twitter"),UIImage(named: "Instagram"),UIImage(named: "Snapchat"),UIImage(named: "Website")]
     
-    var titleName = "TAMARA PENSIERO"
+    var tempSocialAccImgArray = ["LinkedIn","Twitter","Insta","snapchat","Website"]
+
     var img = UIImage(named: "placeholder")
-    var prof = "Professor"
     var isOtherProfile = false
     
     var userdbModel : Results<UserDBModel>!
@@ -37,7 +37,6 @@ class ProfileVC: MainViewController {
         super.viewWillAppear(animated)
         
         userProfile()
-        //userSocialAcc()
         if DBService.fetchloggedInUser().count > 0 {
             userdbModel = DBService.fetchloggedInUser()
             DBUpdateUserdb()
@@ -152,6 +151,24 @@ class ProfileVC: MainViewController {
                     case .next(let val):
                         if val.userId != "" {
                             self.socialAccModel = val.socialAccounts
+                            
+                            var imageIndices = [String: Int]()
+                            for (index, imageName) in self.tempSocialAccImgArray.enumerated() {
+                                imageIndices[imageName.lowercased()] = index
+                            }
+                            
+                            self.socialAccModel.sort { (model1, model2) -> Bool in
+                                if let imageName1 = model1.linkImage.components(separatedBy: "/").last?.replacingOccurrences(of: ".png", with: "").lowercased(),
+                                   let imageName2 = model2.linkImage.components(separatedBy: "/").last?.replacingOccurrences(of: ".png", with: "").lowercased(),
+                                   let index1 = imageIndices[imageName1],
+                                   let index2 = imageIndices[imageName2] {
+                                    return index1 < index2
+                                } else {
+                                    // If there is any error in extracting the image name or index, keep the original order
+                                    return false
+                                }
+                            }
+                            
                         } else {
                             self.hidePKHUD()
                         }

@@ -29,6 +29,25 @@
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OrF-Lz-C5N" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="90" height="28"/>
                                         <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ChemistryBA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRO-RN-hKA" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="15" y="8" width="60" height="12"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="60" id="T5d-td-cYk"/>
+                                                    <constraint firstAttribute="height" constant="12" id="y52-6m-prq"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                                        <color key="value" name="Text grey"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                        <real key="value" value="12"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cre-uA-K6R" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
                                                 <rect key="frame" x="75" y="-5" width="20" height="20"/>
                                                 <constraints>
@@ -50,25 +69,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ChemistryBA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRO-RN-hKA" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="8" width="60" height="12"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="60" id="T5d-td-cYk"/>
-                                                    <constraint firstAttribute="height" constant="12" id="y52-6m-prq"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
-                                                        <color key="value" name="Text grey"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                        <real key="value" value="12"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" name="Primary Yellow"/>
                                         <constraints>
@@ -89,6 +89,25 @@
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ka-tI-lp8" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="102" y="0.0" width="90" height="28"/>
                                         <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chemistry101" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtx-C5-zbC" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="8" width="74" height="12"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="74" id="ZaL-2P-LDE"/>
+                                                    <constraint firstAttribute="height" constant="12" id="yBS-cu-7MW"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                                        <color key="value" name="Text grey"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                        <real key="value" value="12"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qjk-Gm-fBb" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
                                                 <rect key="frame" x="75" y="-5" width="20" height="20"/>
                                                 <constraints>
@@ -110,25 +129,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chemistry101" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtx-C5-zbC" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="8" width="74" height="12"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="74" id="ZaL-2P-LDE"/>
-                                                    <constraint firstAttribute="height" constant="12" id="yBS-cu-7MW"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
-                                                        <color key="value" name="Text grey"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                        <real key="value" value="12"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" name="Primary Yellow"/>
                                         <constraints>
@@ -149,29 +149,6 @@
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qfV-cB-PBj" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="204" y="0.0" width="80" height="28"/>
                                         <subviews>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZIc-mR-nvd" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="63" y="-5" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="OZP-8C-vQh"/>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="RCS-CM-T1b"/>
-                                                    <constraint firstAttribute="height" constant="20" id="glQ-AN-YnJ"/>
-                                                    <constraint firstAttribute="width" constant="20" id="iWo-tX-lOP"/>
-                                                </constraints>
-                                                <color key="tintColor" name="Primary Yellow"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal">
-                                                    <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
-                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="medium"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
-                                                        <color key="value" name="Secondary Grey"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="10"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFn-pr-x5z" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
                                                 <rect key="frame" x="10" y="8" width="62" height="12"/>
                                                 <constraints>
@@ -191,6 +168,27 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZIc-mR-nvd" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="63" y="-5" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="glQ-AN-YnJ"/>
+                                                    <constraint firstAttribute="width" constant="20" id="iWo-tX-lOP"/>
+                                                </constraints>
+                                                <color key="tintColor" name="Primary Yellow"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="medium"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                        <color key="value" name="Secondary Grey"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" name="Primary Yellow"/>
                                         <constraints>
@@ -210,6 +208,25 @@
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CqF-qp-Wag" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="33" width="90" height="28"/>
                                         <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ChemistryBA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Sd-rE-NEW" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="15" y="8" width="60" height="12"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="12" id="D7g-Jy-5PS"/>
+                                                    <constraint firstAttribute="width" constant="60" id="xtH-IT-37d"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                                        <color key="value" name="Text grey"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                        <real key="value" value="12"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xd-B0-2lT" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
                                                 <rect key="frame" x="75" y="-5" width="20" height="20"/>
                                                 <constraints>
@@ -231,25 +248,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ChemistryBA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Sd-rE-NEW" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="8" width="60" height="12"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="12" id="D7g-Jy-5PS"/>
-                                                    <constraint firstAttribute="width" constant="60" id="xtH-IT-37d"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
-                                                        <color key="value" name="Text grey"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                        <real key="value" value="12"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" name="Primary Yellow"/>
                                         <constraints>
@@ -270,29 +268,6 @@
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CId-gD-vV5" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="102" y="33" width="80" height="28"/>
                                         <subviews>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSR-YM-i50" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="63" y="-5" width="20" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="AxB-nK-3Va"/>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="fHm-39-71s"/>
-                                                    <constraint firstAttribute="width" constant="20" id="hFu-Wq-zAC"/>
-                                                    <constraint firstAttribute="height" constant="20" id="xdf-eW-QoL"/>
-                                                </constraints>
-                                                <color key="tintColor" name="Primary Yellow"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal">
-                                                    <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
-                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="medium"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
-                                                        <color key="value" name="Secondary Grey"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="10"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muH-6z-pUN" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
                                                 <rect key="frame" x="10" y="8" width="62" height="12"/>
                                                 <constraints>
@@ -312,6 +287,27 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSR-YM-i50" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="63" y="-5" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="hFu-Wq-zAC"/>
+                                                    <constraint firstAttribute="height" constant="20" id="xdf-eW-QoL"/>
+                                                </constraints>
+                                                <color key="tintColor" name="Primary Yellow"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="xmark" catalog="system" symbolScale="small"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="medium"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                        <color key="value" name="Secondary Grey"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" name="Primary Yellow"/>
                                         <constraints>

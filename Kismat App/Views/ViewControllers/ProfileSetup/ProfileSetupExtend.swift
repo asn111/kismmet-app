@@ -191,19 +191,6 @@ class ProfileSetupExtend: MainViewController {
             AppFunctions.showSnackBar(str: "Tags are important part of profile, please add at least one.")
         }
         
-        /*if sender.tag == socialAccImgArray.count + 11 {
-            if isFromSetting {
-                self.navigationController?.popViewController(animated: true)
-            } else {
-                self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
-                    vc.selectedIndex = 2
-                }
-            }
-            
-        } else {
-            self.pushVC(id: "ProfileSetupVC") { (vc:ProfileSetupVC) in }
-        }*/
-        
     }
     
     @objc func sliderChanged(slider: MultiSlider) {

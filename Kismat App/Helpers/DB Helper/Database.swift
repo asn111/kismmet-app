@@ -82,6 +82,7 @@ class Database {
                 if item.linkTypeId != nil {socialDB.linkTypeId = item.linkTypeId}
                 if item.linkType != nil {socialDB.linkType = item.linkType}
                 if item.socialAccountId != nil {socialDB.socialAccountId = item.socialAccountId}
+                if item.linkImage != nil {socialDB.linkImage = item.linkImage}
                 
                 realm.create(SocialAccDBModel.self, value: socialDB, update: .all)
             }

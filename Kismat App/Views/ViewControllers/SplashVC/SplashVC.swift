@@ -24,10 +24,9 @@ class SplashVC: MainViewController {
         super.viewDidLoad()
         
         if AppFunctions.isLoggedIn() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                self.startUpCall()
-            }
-            animateThisView.isHidden = false
+            /*DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            }*/
+            self.startUpCall()
             
             timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(timerMethod), userInfo: nil, repeats: true)
 

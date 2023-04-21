@@ -20,6 +20,8 @@ class OtherUserProfile: MainViewController {
     var socialAccImgArray = [UIImage(named: "LinkedIn"),UIImage(named: "Twitter"),UIImage(named: "Instagram"),UIImage(named: "Snapchat"),UIImage(named: "Website")]
     var img = UIImage(named: "placeholder")
 
+    var tempSocialAccImgArray = ["LinkedIn","Twitter","Insta","snapchat","Website"]
+
     var markView = false
     var userModel = UserModel()
     var socialAccModel = [SocialAccModel]()
@@ -32,43 +34,33 @@ class OtherUserProfile: MainViewController {
         if markView {
             ApiService.markViewedUser(val: userModel.userId)
         }
-    }
-    
-    func setupSocialArray() {
         
-        let socialAccTypes = ["LinkedIn", "Twitter", "Instagram", "Snapchat", "Website"]
-        let placeholderValues = ["LinkedIn not connected", "Twitter not linked", "No Instagram handle", "No Snapchat shared", "No website link"]
+        socialAccModel = userModel.socialAccounts
         
-        if let socialAccdbModel = userModel.socialAccounts, !userModel.socialAccounts.isEmpty {
-            let socialAccTitles = socialAccdbModel.compactMap{ $0.linkTitle }
-            let socialAccTypesSet = Set(socialAccdbModel.compactMap{ $0.linkType })
-            let missingTypes = Set(socialAccTypes).subtracting(socialAccTypesSet)
-            socialAccArray = zip(socialAccTypes, placeholderValues).map { type, placeholder in
-                if missingTypes.contains(type) {
-                    return placeholder
-                } else if let index = socialAccdbModel.firstIndex(where: { $0.linkType == type }) {
-                    return socialAccTitles[index]
-                } else {
-                    return ""
-                }
-            }
-        } else {
-            socialAccArray = placeholderValues
+        for i in 0..<socialAccModel.count {
+            Logs.show(message: "NOT SORTED: \(self.socialAccModel[i].linkType)")
         }
-    }
-    
-    func setupSocialArrayd() {
+
         
-        if userModel.socialAccounts != nil && userModel.socialAccounts.count > 0 {
-            socialAccArray = userModel.socialAccounts.compactMap{ $0.linkTitle }
-            for i in 0...socialAccArray.count {
-                let placeholderValues = ["LinkedIn not connected","Twitter not linked","No Instagram handle","No Snapchat Shared","No Website Link"]
-            
-                socialAccArray[i] = placeholderValues[i]
+        var imageIndices = [String: Int]()
+        for (index, imageName) in self.tempSocialAccImgArray.enumerated() {
+            imageIndices[imageName.lowercased()] = index
+        }
+        
+        self.socialAccModel.sort { (model1, model2) -> Bool in
+            if let imageName1 = model1.linkImage.components(separatedBy: "/").last?.replacingOccurrences(of: ".png", with: "").lowercased(),
+               let imageName2 = model2.linkImage.components(separatedBy: "/").last?.replacingOccurrences(of: ".png", with: "").lowercased(),
+               let index1 = imageIndices[imageName1],
+               let index2 = imageIndices[imageName2] {
+                return index1 < index2
+            } else {
+                // If there is any error in extracting the image name or index, keep the original order
+                return false
             }
-            
-        } else {
-            socialAccArray = ["LinkedIn not connected","Twitter not linked","No Instagram handle","No Snapchat Shared","No Website Link"]
+        }
+        
+        for i in 0..<socialAccModel.count {
+            Logs.show(message: "SORTED: \(self.socialAccModel[i].linkType)")
         }
     }
     
@@ -110,10 +102,10 @@ class OtherUserProfile: MainViewController {
 extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if userModel.socialAccounts.isEmpty {
+        if socialAccModel.isEmpty {
             return 5
         }
-        return userModel.socialAccounts.count + 6
+        return socialAccModel.count + 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -207,13 +199,13 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 
             default:
                 let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
-                if userModel.socialAccounts[indexPath.row - 6].linkImage != "" && userModel.socialAccounts[indexPath.row - 6].linkImage != nil {
-                    let imageUrl = URL(string: userModel.socialAccounts[indexPath.row - 6].linkImage)
+                if socialAccModel[indexPath.row - 6].linkImage != "" && socialAccModel[indexPath.row - 6].linkImage != nil {
+                    let imageUrl = URL(string: socialAccModel[indexPath.row - 6].linkImage)
                     cell.socialImgView.sd_setImage(with: imageUrl , placeholderImage: UIImage()) { (image, error, imageCacheType, url) in }
                 } else {
                     //cell.profilePicBtn.setImage(img, for: .normal)
                 }
-                cell.socialLbl.text = userModel.socialAccounts[indexPath.row - 6].linkTitle.capitalized
+                cell.socialLbl.text = socialAccModel[indexPath.row - 6].linkTitle.capitalized
                 cell.socialLbl.isUserInteractionEnabled = false
                 return cell
 
@@ -225,15 +217,15 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
             //AppFunctions.showSnackBar(str: "\(indexPath.row)")
             switch userModel.socialAccounts[indexPath.row - 6].linkType {
                 case "LinkedIn":
-                    AppFunctions.openLinkedIn(userName: userModel.socialAccounts[indexPath.row - 6].linkUrl)
+                    AppFunctions.openLinkedIn(userName: socialAccModel[indexPath.row - 6].linkUrl)
                 case "Twitter":
-                    AppFunctions.openTwitter(userName: userModel.socialAccounts[indexPath.row - 6].linkUrl)
+                    AppFunctions.openTwitter(userName: socialAccModel[indexPath.row - 6].linkUrl)
                 case "Instagram":
-                    AppFunctions.openInstagram(userName: userModel.socialAccounts[indexPath.row - 6].linkUrl)
+                    AppFunctions.openInstagram(userName: socialAccModel[indexPath.row - 6].linkUrl)
                 case "Snapchat":
-                    AppFunctions.openSnapchat(userName: userModel.socialAccounts[indexPath.row - 6].linkUrl)
+                    AppFunctions.openSnapchat(userName: socialAccModel[indexPath.row - 6].linkUrl)
                 case "Website":
-                    AppFunctions.openWebLink(link: userModel.socialAccounts[indexPath.row - 6].linkUrl)
+                    AppFunctions.openWebLink(link: socialAccModel[indexPath.row - 6].linkUrl)
                 default:
                     print("default")
             }
