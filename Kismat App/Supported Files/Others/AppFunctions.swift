@@ -12,6 +12,7 @@ import RxSwift
 import CoreLocation
 import MKToolTip
 import StoreKit
+import SafariServices
 
 //MARK: Globel Variables
 
@@ -462,15 +463,14 @@ class AppFunctions {
        
     }
     
-    open class func openWebLink(link: String) {
-        let application = UIApplication.shared
-
-        guard let url = URL(string: link) else {
-            showSnackBar(str: "Invalid link provided")
-            return //be safe
-        }
+    open class func openWebLink(link: String, vc: UIViewController) {
         
-        application.open(url)
+        if let privacyPolicyURL = URL(string: link) {
+            if link.contains("http") {
+                let safariVC = SFSafariViewController(url: privacyPolicyURL)
+                vc.present(safariVC, animated: true)
+            } else { showSnackBar(str: "Invalid link provided") }
+        } else { showSnackBar(str: "Invalid link provided") }
 
     }
     

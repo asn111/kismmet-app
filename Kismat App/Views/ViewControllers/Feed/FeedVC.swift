@@ -8,6 +8,7 @@
 import UIKit
 import Combine
 import CoreLocation
+import SDWebImage
 
 class FeedVC: MainViewController {
 
@@ -300,7 +301,14 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                     feedCell.nameLbl.text = user.userName
                     feedCell.professionLbl.text = user.workTitle
                     feedCell.educationLbl.text = user.workAddress
-                    feedCell.profilePicIV.image = UIImage(named: "placeholder")
+                    
+                    if user.profilePicture != "" && user.profilePicture != nil {
+                        let imageUrl = URL(string: user.profilePicture)
+                        feedCell.profilePicIV?.sd_setImage(with: imageUrl , placeholderImage: UIImage(named: "placeholder")) { (image, error, imageCacheType, url) in }
+                    } else {
+                        feedCell.profilePicIV.image = UIImage(named: "placeholder")
+                    }
+                    
                     feedCell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
                     
                     let tap = UITapGestureRecognizer(target: self, action: #selector(starTapFunction(sender:)))

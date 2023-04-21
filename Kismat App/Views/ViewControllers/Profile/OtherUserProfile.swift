@@ -9,6 +9,7 @@ import UIKit
 import RxRealm
 import RxSwift
 import RealmSwift
+import CDAlertView
 
 class OtherUserProfile: MainViewController {
     
@@ -22,6 +23,8 @@ class OtherUserProfile: MainViewController {
 
     var tempSocialAccImgArray = ["LinkedIn","Twitter","Insta","snapchat","Website"]
 
+    var isFromBlock = false
+    
     var markView = false
     var userModel = UserModel()
     var socialAccModel = [SocialAccModel]()
@@ -78,18 +81,43 @@ class OtherUserProfile: MainViewController {
         otherProfileTV.register(UINib(nibName: "SocialAccTVCell", bundle: nil), forCellReuseIdentifier: "SocialAccTVCell")
     }
     
+    func showAlert(){
+        let message = "Alert!"
+        let alert = CDAlertView(title: message, message: "Are you sure you want to block this user?", type: .warning)
+        let action = CDAlertViewAction(title: "Block",
+                                       handler: {[weak self] action in
+            ApiService.markBlockUser(val: (self?.userModel.userId)!)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                AppFunctions.showSnackBar(str: "User Blocked")
+                
+                self?.navigationController?.popViewController(animated: true)
+            }
+            return true
+        })
+        let cancel = CDAlertViewAction(title: "Cancel",
+                                       handler: { action in
+            print("CANCEL PRESSED")
+            return true
+        })
+        alert.isTextFieldHidden = true
+        alert.add(action: action)
+        alert.add(action: cancel)
+        alert.hideAnimations = { (center, transform, alpha) in
+            transform = .identity
+            alpha = 0
+        }
+        alert.show() { (alert) in
+            print("completed")
+        }
+    }
+    
     @objc func picBtnPressed(sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
         
     }
     @objc func notifBtnPressed(sender: UIButton) {
-        ApiService.markBlockUser(val: userModel.userId)
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            AppFunctions.showSnackBar(str: "User Blocked")
-            
-            self.navigationController?.popViewController(animated: true)
-        }
+        showAlert()
         
     }
     
@@ -127,17 +155,21 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
                 cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
                 
-                    cell.profilePicBtn.setImage(img, for: .normal)
-                    cell.nameLbl.text = userModel.userName
-                    cell.professionLbl.text = userModel.workTitle
-                    cell.educationLbl.text = userModel.workAddress
+                cell.profilePicBtn.setImage(img, for: .normal)
+                cell.nameLbl.text = userModel.userName
+                cell.professionLbl.text = userModel.workTitle
+                cell.educationLbl.text = userModel.workAddress
                     
-                    /*if user. != "" {
-                     let imageUrl = URL(string: userdbModel.profilePicture)
-                     cell.profilePicIV?.sd_setImage(with: imageUrl , placeholderImage: img) { (image, error, imageCacheType, url) in }
-                     } else {
-                     cell.profilePicBtn.setImage(img, for: .normal)
-                     }*/
+                if userModel.profilePicture != "" && userModel.profilePicture != nil {
+                    let imageUrl = URL(string: userModel.profilePicture)
+                    cell.profilePicBtn?.sd_setImage(with: imageUrl, for: .normal , placeholderImage: img) { (image, error, imageCacheType, url) in }
+                } else {
+                    cell.profilePicBtn.setImage(img, for: .normal)
+                }
+                
+                if isFromBlock {
+                    cell.notifBtn.isHidden = true
+                }
                     
                 return cell
             case 1:
@@ -225,7 +257,7 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 case "Snapchat":
                     AppFunctions.openSnapchat(userName: socialAccModel[indexPath.row - 6].linkUrl)
                 case "Website":
-                    AppFunctions.openWebLink(link: socialAccModel[indexPath.row - 6].linkUrl)
+                    AppFunctions.openWebLink(link: socialAccModel[indexPath.row - 6].linkUrl, vc: self)
                 default:
                     print("default")
             }

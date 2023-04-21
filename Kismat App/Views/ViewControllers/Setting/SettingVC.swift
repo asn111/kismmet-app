@@ -137,7 +137,14 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
                         cell.nameLbl.text = user.userName
                         cell.educationLbl.text = user.publicEmail
                         cell.professionLbl.text = "\(user.countryCode)\(user.phone)"
-                        cell.profilePicBtn.setImage(img, for: .normal)
+                        
+                        if user.profilePicture != "" {
+                            let imageUrl = URL(string: user.profilePicture)
+                            cell.profilePicBtn?.sd_setImage(with: imageUrl, for: .normal , placeholderImage: img) { (image, error, imageCacheType, url) in }
+                        } else {
+                            cell.profilePicBtn.setImage(img, for: .normal)
+                        }
+                        
                     }
                     
                 }
@@ -169,7 +176,7 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
             case 6:
                 self.pushVC(id: "MembershipVC") { (vc:MembershipVC) in }
             case 7:
-                if let privacyPolicyURL = URL(string: "http://www.myqabilaapp.com/") {
+                if let privacyPolicyURL = URL(string: "https://www.kismmet.com/") {
                     let safariVC = SFSafariViewController(url: privacyPolicyURL)
                     present(safariVC, animated: true)
                 } ///pp

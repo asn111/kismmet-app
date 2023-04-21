@@ -28,6 +28,7 @@ class Database {
         try! realm.write {
             if APIlist.userId != nil {userDB.userId = APIlist.userId}
             if APIlist.userName != nil {userDB.userName = APIlist.userName}
+            if APIlist.profilePicture != nil {userDB.profilePicture = APIlist.profilePicture}
             if APIlist.email != nil {userDB.email = APIlist.email}
             if APIlist.publicEmail != nil {userDB.publicEmail = APIlist.publicEmail}
             if APIlist.countryCode != nil {userDB.countryCode = APIlist.countryCode}

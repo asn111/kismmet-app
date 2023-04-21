@@ -192,8 +192,14 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
                     feedCell.nameLbl.text = user.userName
                     feedCell.professionLbl.text = user.workTitle
                     feedCell.educationLbl.text = user.workAddress
-                    feedCell.profilePicIV.image = UIImage(named: "placeholder")
                     feedCell.starLbl.image = UIImage(systemName: "star.fill")
+                    
+                    if user.profilePicture != "" && user.profilePicture != nil {
+                        let imageUrl = URL(string: user.profilePicture)
+                        feedCell.profilePicIV?.sd_setImage(with: imageUrl , placeholderImage: UIImage(named: "placeholder")) { (image, error, imageCacheType, url) in }
+                    } else {
+                        feedCell.profilePicIV.image = UIImage(named: "placeholder")
+                    }
 
                 }
                 

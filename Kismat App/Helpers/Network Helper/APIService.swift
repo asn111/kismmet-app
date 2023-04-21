@@ -365,8 +365,8 @@ class APIService: NSObject {
                                     AppFunctions.saveToken(name: genResponse.body.token ?? "")
                                     AppFunctions.saveUserId(name: userId as! String)
                                     AppFunctions.saveRole(name: role as! String)
-                                    
-                                    
+                                    AppFunctions.setIsLoggedIn(value: true)
+
                                     Logs.show(message: "SUCCESS IN \(#function)")
                                     observer.onNext(true)
                                     observer.onCompleted()

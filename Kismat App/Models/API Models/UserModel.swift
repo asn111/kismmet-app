@@ -38,6 +38,7 @@ class UserModel: NSObject, Codable {
     
     var userId : String!
     var userName : String!
+    var profilePicture : String!
     var email : String!
     var publicEmail : String!
     var countryCode : String!
@@ -62,6 +63,7 @@ class UserModel: NSObject, Codable {
         
         userId = ""
         userName = ""
+        profilePicture = ""
         email = ""
         publicEmail = ""
         countryCode = ""
@@ -85,6 +87,7 @@ class UserModel: NSObject, Codable {
     
     init(fromDictionary dictionary: [String: Any]) {
         userName = dictionary["fullName"] as? String
+        profilePicture = dictionary["profilePicture"] as? String
         workAddress = dictionary["workAdress"] as? String
         workTitle = dictionary["workTitle"] as? String
         about = dictionary["about"] as? String
@@ -96,6 +99,7 @@ class UserModel: NSObject, Codable {
         
         case userId = "userId"
         case userName = "userName"
+        case profilePicture = "profilePicture"
         case email = "email"
         case publicEmail = "publicEmail"
         case countryCode = "countryCode"
@@ -120,6 +124,7 @@ class UserModel: NSObject, Codable {
 
         userId  = try values.decodeIfPresent(String.self, forKey: .userId)
         userName  = try values.decodeIfPresent(String.self, forKey: .userName)
+        profilePicture  = try values.decodeIfPresent(String.self, forKey: .profilePicture)
         email  = try values.decodeIfPresent(String.self, forKey: .email)
         publicEmail  = try values.decodeIfPresent(String.self, forKey: .publicEmail)
         countryCode  = try values.decodeIfPresent(String.self, forKey: .countryCode)

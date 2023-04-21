@@ -18,7 +18,7 @@ class ProfileSetupVC: MainViewController  {
     
     var updatedImagePicked : UIImage!
     var profileDict = [String: Any]()
-    var fullName = "", publicEmail = "", placeOfWork = "", workTitle = "" , dateOfBirth = "", countryCode = "", phoneNum = "" , about = ""
+    var fullName = "", publicEmail = "", placeOfWork = "", workTitle = "" , dateOfBirth = "", countryCode = "", phoneNum = "" , about = "", profilePic = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,8 +103,12 @@ class ProfileSetupVC: MainViewController  {
         Logs.show(message: "\(fullName), \(publicEmail), \(countryCode), \(dateOfBirth), \(phoneNum), \(placeOfWork), \(workTitle), \(about)")
         if fullName != "" && publicEmail != "" && countryCode != "" && phoneNum != "" && dateOfBirth != "" && placeOfWork != "" && workTitle != "" {
             
+            if updatedImagePicked != nil {
+                profilePic = AppFunctions.convertImageToBase64(image: updatedImagePicked)
+            }
+            
             profileDict["fullName"] = fullName
-            profileDict["profilePicture"] = "https://ibb.co/SNydr1f"
+            profileDict["profilePicture"] = profilePic
             profileDict["publicEmail"] = publicEmail
             profileDict["countryCode"] = countryCode
             profileDict["phoneNumber"] = phoneNum

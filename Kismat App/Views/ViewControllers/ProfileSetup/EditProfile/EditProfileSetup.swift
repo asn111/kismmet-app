@@ -17,7 +17,7 @@ class EditProfileSetup: MainViewController {
     var placeholderArray = ["","Full Name","Date of Birth"
                             ,"Public Email","Where do you work / study?","Title","Tell us about your self..",""]
     var dataArray = [String]()
-    var fullName = "", publicEmail = "", placeOfWork = "", workTitle = "" , dateOfBirth = "" , about = "", countryCode = "", phoneNum = ""
+    var fullName = "", publicEmail = "", placeOfWork = "", workTitle = "" , dateOfBirth = "" , about = "", countryCode = "", phoneNum = "", profilePic = ""
     
     var proximity = 0
     var isProfileVisible = false
@@ -119,6 +119,7 @@ class EditProfileSetup: MainViewController {
                                            user!.workTitle,
                                            ""]
                         self?.fullName = user!.userName
+                        self?.profilePic = user!.profilePicture
                         self?.dateOfBirth = user!.dob
                         self?.publicEmail = user!.publicEmail
                         self?.workTitle = user!.workAddress
@@ -356,7 +357,7 @@ class EditProfileSetup: MainViewController {
         self.pushVC(id: "ProfileVC") { (vc:ProfileVC) in
             
             profileDict["fullName"] = fullName
-            profileDict["profilePicture"] = "https://ibb.co/SNydr1f"
+            profileDict["profilePicture"] = profilePic
             profileDict["workAdress"] = placeOfWork
             profileDict["workTitle"] = workTitle
             profileDict["about"] = about
@@ -597,8 +598,12 @@ class EditProfileSetup: MainViewController {
     func userProfileUpdate() {
         self.showPKHUD(WithMessage: "Signing up")
         
+        if updatedImagePicked != nil {
+            profilePic = AppFunctions.convertImageToBase64(image: updatedImagePicked)
+        }
+        
         profileDict["fullName"] = fullName
-        profileDict["profilePicture"] = "https://ibb.co/SNydr1f"
+        profileDict["profilePicture"] = profilePic
         profileDict["publicEmail"] = publicEmail
         profileDict["countryCode"] = countryCode
         profileDict["phoneNumber"] = phoneNum
@@ -657,7 +662,12 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                     cell.profileIV.image = updatedImagePicked
                     Logs.show(message: "Updated")
                 } else {
-                    cell.profileIV.image = UIImage(named: "placeholder_icon")
+                    if profilePic != "" {
+                        let imageUrl = URL(string: profilePic)
+                        cell.profileIV?.sd_setImage(with: imageUrl , placeholderImage: UIImage(named: "placeholder_icon")) { (image, error, imageCacheType, url) in }
+                    } else {
+                        cell.profileIV.image = UIImage(named: "placeholder_icon")
+                    }
                 }
                 cell.editBtn.addTarget(self, action: #selector(editBtnPressed(sender:)), for: .touchUpInside)
                 

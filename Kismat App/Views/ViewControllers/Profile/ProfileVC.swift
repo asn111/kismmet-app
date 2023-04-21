@@ -33,10 +33,6 @@ class ProfileVC: MainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if userModel.tags != "" {
-            Logs.show(message: "USER MODEL: \(userModel.tags)")
-        }
-        
         registerCells()
         
     }
@@ -256,24 +252,28 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
                 
                 if isOtherProfile {
-                    cell.profilePicBtn.setImage(img, for: .normal)
+                    if userModel.profilePicture != "" {
+                        let imageUrl = URL(string: userModel.profilePicture)
+                        cell.profilePicBtn?.sd_setImage(with: imageUrl, for: .normal , placeholderImage: img) { (image, error, imageCacheType, url) in }
+                    } else {
+                        cell.profilePicBtn.setImage(img, for: .normal)
+                    }
                     cell.nameLbl.text = userModel.userName
                     cell.professionLbl.text = userModel.workTitle
                     cell.educationLbl.text = userModel.workAddress
                 } else {
                     if let userDb = userdbModel {
                         if let user = userDb.first {
-                            cell.profilePicBtn.setImage(img, for: .normal)
                             cell.nameLbl.text = user.userName
                             cell.professionLbl.text = user.workTitle
                             cell.educationLbl.text = user.workAddress
                             
-                            /*if user. != "" {
-                             let imageUrl = URL(string: userdbModel.profilePicture)
-                             cell.profilePicIV?.sd_setImage(with: imageUrl , placeholderImage: img) { (image, error, imageCacheType, url) in }
+                            if user.profilePicture != "" {
+                                let imageUrl = URL(string: user.profilePicture)
+                                cell.profilePicBtn?.sd_setImage(with: imageUrl, for: .normal , placeholderImage: img) { (image, error, imageCacheType, url) in }
                              } else {
-                             cell.profilePicBtn.setImage(img, for: .normal)
-                             }*/
+                                 cell.profilePicBtn.setImage(img, for: .normal)
+                             }
                         }
                     }
                 }
@@ -405,7 +405,7 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 case "Snapchat":
                     AppFunctions.openSnapchat(userName: socialAccModel[indexPath.row - 5].linkUrl)
                 case "Website":
-                    AppFunctions.openWebLink(link: socialAccModel[indexPath.row - 5].linkUrl)
+                    AppFunctions.openWebLink(link: socialAccModel[indexPath.row - 5].linkUrl, vc: self)
                 default:
                     print("default")
             }
