@@ -12,9 +12,12 @@ class ProfileSetupExtend: MainViewController {
     
     @IBOutlet weak var profileExtTV: UITableView!
     
-    var socialAccArray = ["Network via LinkedIn","Your Twitter account","Your Instagram handle","Snapchat","Link your Website"]
-    var tempSocialAccArray = ["Network via LinkedIn","Your Twitter account","Your Instagram handle","Snapchat","Link your Website"]
+    var socialAccArray = ["LinkedIn Profile","Twitter Username","Instagram Handle","Snapchat Username","Website URL"]
+    var tempSocialAccArray = ["LinkedIn Profile","Twitter Username","Instagram Handle","Snapchat Username","Website URL"]
+    
     var socialAccImgArray = [UIImage(named: "LinkedIn"),UIImage(named: "Twitter"),UIImage(named: "Instagram"),UIImage(named: "Snapchat"),UIImage(named: "Website")]
+    
+    var socialAccdbModel = [SocialAccDBModel]()
     
     var isFromSetting = false
     var proximity = 150
@@ -43,16 +46,18 @@ class ProfileSetupExtend: MainViewController {
             } else if val.contains("socialAdded") {
                 Logs.show(message: val)
                 
+                self?.userSocialAcc()
+                
                 if AppFunctions.getSocialArray().count > 0 {
                     switch AppFunctions.getSocialArray().count {
                         case 1:
-                            self?.socialAccArray = AppFunctions.getSocialArray() + ["Your Twitter account","Your Instagram handle","Snapchat","Link your Website"]
+                            self?.socialAccArray = AppFunctions.getSocialArray() + ["Twitter Username","Instagram Handle","Snapchat Username","Website URL"]
                         case 2:
-                            self?.socialAccArray = AppFunctions.getSocialArray() + ["Your Instagram handle","Snapchat","Link your Website"]
+                            self?.socialAccArray = AppFunctions.getSocialArray() + ["Instagram Handle","Snapchat Username","Website URL"]
                         case 3:
-                            self?.socialAccArray = AppFunctions.getSocialArray() + ["Snapchat","Link your Website"]
+                            self?.socialAccArray = AppFunctions.getSocialArray() + ["Snapchat Username","Website URL"]
                         case 4:
-                            self?.socialAccArray = AppFunctions.getSocialArray() + ["Link your Website"]
+                            self?.socialAccArray = AppFunctions.getSocialArray() + ["Website URL"]
                         case 5:
                             self?.socialAccArray = AppFunctions.getSocialArray()
                         default:
@@ -138,19 +143,24 @@ class ProfileSetupExtend: MainViewController {
         switch sender.tag {
             case 6:
                 socialAccArray[0] = tempSocialAccArray[0]
-                profileExtTV.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .right)
+                deleteSocialLink(index: 6)
+                profileExtTV.reloadRows(at: [IndexPath(row: 6, section: 0)], with: .right)
             case 7:
                 socialAccArray[1] = tempSocialAccArray[1]
-                profileExtTV.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .right)
+                deleteSocialLink(index: 7)
+                profileExtTV.reloadRows(at: [IndexPath(row: 7, section: 0)], with: .right)
             case 8:
                 socialAccArray[2] = tempSocialAccArray[2]
-                profileExtTV.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .right)
+                deleteSocialLink(index: 8)
+                profileExtTV.reloadRows(at: [IndexPath(row: 8, section: 0)], with: .right)
             case 9:
                 socialAccArray[3] = tempSocialAccArray[3]
-                profileExtTV.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .right)
+                deleteSocialLink(index: 9)
+                profileExtTV.reloadRows(at: [IndexPath(row: 9, section: 0)], with: .right)
             case 10:
                 socialAccArray[4] = tempSocialAccArray[4]
-                profileExtTV.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .right)
+                deleteSocialLink(index: 10)
+                profileExtTV.reloadRows(at: [IndexPath(row: 10, section: 0)], with: .right)
             case 100:
                 removeFromTagArray(index: sender.tag)
             case 200:
@@ -164,6 +174,56 @@ class ProfileSetupExtend: MainViewController {
             default:
                 print("default")
         }
+    }
+    
+    func deleteSocialLink(index: Int) {
+        
+        var newIndex = 0
+        var comingType = ""
+
+        switch index {
+            case 6:
+                comingType = "linkedIn"
+                let linkTypes = self.socialAccdbModel.compactMap({$0.linkType})
+                if let matchingIndex = linkTypes.firstIndex(where: { $0.range(of: comingType, options: .caseInsensitive) != nil }) {
+                    Logs.show(message: "Index : \(matchingIndex)")
+                    newIndex = matchingIndex
+                }
+            case 7:
+                comingType = "twitter"
+                let linkTypes = self.socialAccdbModel.compactMap({$0.linkType})
+                if let matchingIndex = linkTypes.firstIndex(where: { $0.range(of: comingType, options: .caseInsensitive) != nil }) {
+                    Logs.show(message: "Index : \(matchingIndex)")
+                    newIndex = matchingIndex
+                }
+            case 8:
+                comingType = "instagram"
+                let linkTypes = self.socialAccdbModel.compactMap({$0.linkType})
+                if let matchingIndex = linkTypes.firstIndex(where: { $0.range(of: comingType, options: .caseInsensitive) != nil }) {
+                    Logs.show(message: "Index : \(matchingIndex)")
+                    newIndex = matchingIndex
+                }
+            case 9:
+                comingType = "snapchat"
+                let linkTypes = self.socialAccdbModel.compactMap({$0.linkType})
+                if let matchingIndex = linkTypes.firstIndex(where: { $0.range(of: comingType, options: .caseInsensitive) != nil }) {
+                    Logs.show(message: "Index : \(matchingIndex)")
+                    newIndex = matchingIndex
+                }
+            case 10:
+                comingType = "website"
+                let linkTypes = self.socialAccdbModel.compactMap({$0.linkType})
+                if let matchingIndex = linkTypes.firstIndex(where: { $0.range(of: comingType, options: .caseInsensitive) != nil }) {
+                    Logs.show(message: "Index : \(matchingIndex)")
+                    newIndex = matchingIndex
+                }
+            default:
+            print("default")
+                
+        }
+        
+        ApiService.deleteSocialLink(val: socialAccdbModel[newIndex].socialAccountId)
+
     }
     
     @objc func toolTipBtnPressed(sender:UIButton) {
@@ -251,18 +311,18 @@ class ProfileSetupExtend: MainViewController {
             .disposed(by: dispose_Bag)
     }
     
-    func userProfile() {
+    func userSocialAcc() {
         
         APIService
             .singelton
-            .getUserById(userId: "")
+            .getUserSocialAccounts()
             .subscribe({[weak self] model in
                 guard let self = self else {return}
                 switch model {
                     case .next(let val):
-                        if val.userId != "" {
-                            self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
-                                vc.selectedIndex = 2
+                        if val {
+                            if DBService.fetchSocialAccList().count > 0 {
+                                self.socialAccdbModel = Array(DBService.fetchSocialAccList())
                             }
                         } else {
                             self.hidePKHUD()

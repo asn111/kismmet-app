@@ -37,7 +37,6 @@ class Database {
             if APIlist.workTitle != nil {userDB.workTitle = APIlist.workTitle}
             if APIlist.about != nil {userDB.about = APIlist.about}
             if APIlist.proximity != nil {userDB.proximity = APIlist.proximity}
-            if APIlist.isProfileUpdated != nil {userDB.isProfileUpdated = APIlist.isProfileUpdated}
             if APIlist.isStarred != nil {userDB.isStarred = APIlist.isStarred}
             if APIlist.tags != nil {userDB.tags = APIlist.tags}
             if APIlist.isActive != nil {userDB.isActive = APIlist.isActive}
@@ -65,6 +64,13 @@ class Database {
                 AppFunctions.setIsProfileVisble(value: APIlist.isProfileVisible)
             } else {
                 AppFunctions.setIsProfileVisble(value: false)
+            }
+            
+            if APIlist.isProfileUpdated != nil {
+                userDB.isProfileUpdated = APIlist.isProfileUpdated
+                AppFunctions.setIsProfileUpdated(value: APIlist.isProfileUpdated)
+            } else {
+                AppFunctions.setIsProfileUpdated(value: false)
             }
             
             realm.create(UserDBModel.self, value: userDB, update: .all)
@@ -119,6 +125,20 @@ class Database {
     
     
     //MARK: delete records
+    
+    
+    
+    func removeUserSocialAcc(){
+        let realm = try! Realm()
+        try! realm.write {
+            let socialAcc = realm.objects(SocialAccDBModel.self)
+            if socialAcc.count > 0 {
+                realm.delete(socialAcc)
+                Logs.show(message: "DELETED socialAcc")
+            }
+        }
+    }
+    
     
     func removeCompletedDB() {
         let realm = try! Realm()

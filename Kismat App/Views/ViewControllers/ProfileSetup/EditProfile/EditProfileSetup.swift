@@ -17,13 +17,22 @@ class EditProfileSetup: MainViewController {
     var placeholderArray = ["","Full Name","Date of Birth"
                             ,"Public Email","Where do you work / study?","Title","Tell us about your self..",""]
     var dataArray = [String]()
+    var fullName = "", publicEmail = "", placeOfWork = "", workTitle = "" , dateOfBirth = "" , about = "", countryCode = "", phoneNum = ""
     
+    var proximity = 0
+    var isProfileVisible = false
+    
+    var updatedImagePicked : UIImage!
+
     var tags = [String]()
     var addedSocialArray = [String]()
-    
+    var profileDict = [String: Any]()
+
+    weak var activeTextField: UITextField?
+    weak var activeTextView: UITextView?
+
     var socialAccArray = [String]()
-    var tempSocialAccArray = ["Network via LinkedIn","Your Twitter account","Your Instagram handle","Snapchat","Link your Website"]
-    
+    var tempSocialAccArray = ["LinkedIn Profile","Twitter Username","Instagram Handle","Snapchat Username","Website URL"]
     
     var tempSocialAccImgArray = ["LinkedIn","Twitter","Insta","snapchat","Website"]
 
@@ -45,9 +54,16 @@ class EditProfileSetup: MainViewController {
             DBUpdateUserdb()
         }
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         _ = generalPublisher.subscribe(onNext: {[weak self] val in
             
-            if val == "tagsAdded" {
+            if val == "imageUpdate" {
+                if self?.updatedImagePicked != nil {
+                    self?.profileTV.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+                }
+            } else if val == "tagsAdded" {
                 Logs.show(message: val)
                 if AppFunctions.getTagsArray().count > 0 {
                     self?.tags = AppFunctions.getTagsArray()
@@ -57,29 +73,8 @@ class EditProfileSetup: MainViewController {
             } else if val.contains("socialAdded") {
                 Logs.show(message: val)
                 
-                if AppFunctions.getSocialArray().count > 0 {
-                    switch AppFunctions.getSocialArray().count {
-                        case 1:
-                            self?.socialAccArray = AppFunctions.getSocialArray() + ["Your Twitter account","Your Instagram handle","Snapchat","Link your Website"]
-                        case 2:
-                            self?.socialAccArray = AppFunctions.getSocialArray() + ["Your Instagram handle","Snapchat","Link your Website"]
-                        case 3:
-                            self?.socialAccArray = AppFunctions.getSocialArray() + ["Snapchat","Link your Website"]
-                        case 4:
-                            self?.socialAccArray = AppFunctions.getSocialArray() + ["Link your Website"]
-                        case 5:
-                            self?.socialAccArray = AppFunctions.getSocialArray()
-                        default:
-                            print("default")
-                    }
-                    var indexPaths: [IndexPath] = []
-                    
-                    for i in 8...12 {
-                        let indexPath = IndexPath(item: i, section: 0)
-                        indexPaths.append(indexPath)
-                    }
-                    self?.profileTV.reloadRows(at: indexPaths, with: .none)
-                }
+                self?.userSocialAcc()
+
             }
         }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
         
@@ -118,11 +113,21 @@ class EditProfileSetup: MainViewController {
                         let user = self?.userdbModel.first
                         self?.dataArray = ["",
                                            user!.userName,
-                                           self!.formatDateForDisplay(date: Date(user!.dob) ?? Date()),
+                                           self!.formatDateForDisplay(date: self!.convertToDate(dateStr: user?.dob ?? "")),
                                            user!.publicEmail,
                                            user!.workAddress,
                                            user!.workTitle,
                                            ""]
+                        self?.fullName = user!.userName
+                        self?.dateOfBirth = user!.dob
+                        self?.publicEmail = user!.publicEmail
+                        self?.workTitle = user!.workAddress
+                        self?.placeOfWork = user!.workAddress
+                        self?.about = user!.about
+                        self?.countryCode = user!.countryCode
+                        self?.phoneNum = user!.phone
+                        self?.proximity = user!.proximity
+                        self?.isProfileVisible = user!.isProfileVisible
                         
                         self?.tags = (user?.tags.components(separatedBy: ","))!
                         AppFunctions.setTagsArray(value: self?.tags ?? [""])
@@ -133,34 +138,89 @@ class EditProfileSetup: MainViewController {
             .disposed(by: dispose_Bag)
     }
     
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size else {
+            return
+        }
+        
+        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+        profileTV.contentInset = contentInsets
+        profileTV.scrollIndicatorInsets = contentInsets
+        
+        var activeView: UIView?
+        if let activeTextField = activeTextField {
+            activeView = activeTextField
+        } else if let activeTextView = activeTextView {
+            activeView = activeTextView
+        }
+        
+        if let activeView = activeView {
+            let rect = profileTV.convert(activeView.bounds, from: activeView)
+            let offsetY = rect.maxY - (profileTV.bounds.height - keyboardSize.height)
+            if offsetY > 0 {
+                profileTV.setContentOffset(CGPoint(x: 0, y: offsetY), animated: true)
+            }
+        }
+    }
+
+
+    
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        profileTV.contentInset = .zero
+    }
+    
+    @objc func updateDateField(sender: UIDatePicker) {
+        let indexPath = IndexPath(row: sender.tag, section: 0)
+        let cell = self.profileTV.cellForRow(at: indexPath) as! ProfileTVCell
+        
+        cell.generalTF.text = formatDateForDisplay(date: sender.date)
+    }
+    
+    @objc func cancelDatePicker(){
+        self.view.endEditing(true)
+    }
+    
     fileprivate func formatDateForDisplay(date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMM yyyy" ///"yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         return formatter.string(from: date)
     }
     
+    fileprivate func convertToDate(dateStr: String) -> Date {
+        var theDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        if let date = dateFormatter.date(from: dateStr) {
+            theDate = date
+        } else {
+            print("Error: Unable to convert date string.")
+        }
+
+        return theDate
+    }
+    
     @objc func removeBtnPressed(sender:UIButton) {
         switch sender.tag {
             case 8:
                 socialAccArray[0] = tempSocialAccArray[0]
-                ApiService.deleteSocialLink(val: 0)
-                profileTV.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .right)
+                deleteSocialLink(index: 8)
+                profileTV.reloadRows(at: [IndexPath(row: 8, section: 0)], with: .right)
             case 9:
                 socialAccArray[1] = tempSocialAccArray[1]
-                ApiService.deleteSocialLink(val: 0)
-                profileTV.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .right)
+                deleteSocialLink(index: 9)
+                profileTV.reloadRows(at: [IndexPath(row: 9, section: 0)], with: .right)
             case 10:
                 socialAccArray[2] = tempSocialAccArray[2]
-                ApiService.deleteSocialLink(val: 0)
-                profileTV.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .right)
+                deleteSocialLink(index: 10)
+                profileTV.reloadRows(at: [IndexPath(row: 10, section: 0)], with: .right)
             case 11:
                 socialAccArray[3] = tempSocialAccArray[3]
-                ApiService.deleteSocialLink(val: 0)
-                profileTV.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .right)
+                deleteSocialLink(index: 11)
+                profileTV.reloadRows(at: [IndexPath(row: 11, section: 0)], with: .right)
             case 12:
                 socialAccArray[4] = tempSocialAccArray[4]
-                ApiService.deleteSocialLink(val: 0)
-                profileTV.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .right)
+                deleteSocialLink(index: 12)
+                profileTV.reloadRows(at: [IndexPath(row: 12, section: 0)], with: .right)
             case 100:
                 removeFromTagArray(index: sender.tag)
             case 200:
@@ -184,6 +244,56 @@ class EditProfileSetup: MainViewController {
         self.tags.removeAll()
         self.tags = AppFunctions.getTagsArray()
         profileTV.reloadRows(at: [IndexPath(row: placeholderArray.count + socialAccImgArray.count + 1, section: 0)], with: .fade)
+    }
+    
+    func deleteSocialLink(index: Int) {
+        
+        var newIndex = 0
+        var comingType = ""
+        
+        switch index {
+            case 6:
+                comingType = "linkedIn"
+                let linkTypes = self.socialAccdbModel.compactMap({$0.linkType})
+                if let matchingIndex = linkTypes.firstIndex(where: { $0.range(of: comingType, options: .caseInsensitive) != nil }) {
+                    Logs.show(message: "Index : \(matchingIndex)")
+                    newIndex = matchingIndex
+                }
+            case 7:
+                comingType = "twitter"
+                let linkTypes = self.socialAccdbModel.compactMap({$0.linkType})
+                if let matchingIndex = linkTypes.firstIndex(where: { $0.range(of: comingType, options: .caseInsensitive) != nil }) {
+                    Logs.show(message: "Index : \(matchingIndex)")
+                    newIndex = matchingIndex
+                }
+            case 8:
+                comingType = "instagram"
+                let linkTypes = self.socialAccdbModel.compactMap({$0.linkType})
+                if let matchingIndex = linkTypes.firstIndex(where: { $0.range(of: comingType, options: .caseInsensitive) != nil }) {
+                    Logs.show(message: "Index : \(matchingIndex)")
+                    newIndex = matchingIndex
+                }
+            case 9:
+                comingType = "snapchat"
+                let linkTypes = self.socialAccdbModel.compactMap({$0.linkType})
+                if let matchingIndex = linkTypes.firstIndex(where: { $0.range(of: comingType, options: .caseInsensitive) != nil }) {
+                    Logs.show(message: "Index : \(matchingIndex)")
+                    newIndex = matchingIndex
+                }
+            case 10:
+                comingType = "website"
+                let linkTypes = self.socialAccdbModel.compactMap({$0.linkType})
+                if let matchingIndex = linkTypes.firstIndex(where: { $0.range(of: comingType, options: .caseInsensitive) != nil }) {
+                    Logs.show(message: "Index : \(matchingIndex)")
+                    newIndex = matchingIndex
+                }
+            default:
+                print("default")
+                
+        }
+        
+        ApiService.deleteSocialLink(val: socialAccdbModel[newIndex].socialAccountId)
+        
     }
     
     @objc func addBtnPressed(sender:UIButton) {
@@ -235,16 +345,143 @@ class EditProfileSetup: MainViewController {
     }
     
     @objc func genBtnPressedForDone(sender:UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        
+        //Logs.show(message: "\(fullName), \(publicEmail), \(dateOfBirth), \(placeOfWork), \(workTitle), \(about), \(tags.joined(separator: ","))")
+        
+        userProfileUpdate()
+
+        
     }
     @objc func genBtnPressedForProfile(sender:UIButton) {
         self.pushVC(id: "ProfileVC") { (vc:ProfileVC) in
+            
+            profileDict["fullName"] = fullName
+            profileDict["profilePicture"] = "https://ibb.co/SNydr1f"
+            profileDict["workAdress"] = placeOfWork
+            profileDict["workTitle"] = workTitle
+            profileDict["about"] = about
+            profileDict["tags"] = tags.joined(separator: ",")
+
+            let userModel = UserModel(fromDictionary: profileDict)
+            vc.userModel = userModel
             vc.isOtherProfile = true
         }
     }
     @objc func backBtnPressed(sender:UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    @objc func editBtnPressed(sender:UIButton) {
+        let imagePickerClass = ImagePicker(viewController: self)
+        imagePickerClass.handleTap()
+    }
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        activeTextView = textView
+        if textView.text == "Tell us about your self.." {
+            // Clear the text view
+            textView.text = ""
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        about = !textView.text!.isTFBlank ? textView.text! : ""
+        activeTextView = nil
+    }
+    
+    
+    @objc func textFieldDidChangeSelection(_ textField: UITextField) {
+        
+        activeTextField = textField
+
+        if textField.tag == 1 {
+            fullName = !textField.text!.isTFBlank ? textField.text! : ""
+        } else if textField.tag == 3 {
+            publicEmail = !textField.text!.isTFBlank ? textField.text! : ""
+        } else if textField.tag == 4 {
+            placeOfWork = !textField.text!.isTFBlank ? textField.text! : ""
+        } else if textField.tag == 5 {
+            workTitle = !textField.text!.isTFBlank ? textField.text! : ""
+        }
+        
+    }
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        activeTextField = nil
+    }
+    
+    //MARK: UIPickerView Methods
+
+    @objc func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.tag == 5 {
+            textField.returnKeyType = .done
+        } else {
+            textField.returnKeyType = .next
+        }
+        if textField.tag == 2 {
+            
+            let indexPath = IndexPath(row: textField.tag, section: 0)
+            let cell = self.profileTV.cellForRow(at: indexPath) as! ProfileTVCell
+            cell.generalTF = textField as? FormTextField
+            
+            let picker = UIDatePicker()
+            picker.datePickerMode = .date
+            if #available(iOS 13.4, *) {
+                picker.preferredDatePickerStyle = .wheels
+            } else {
+                // Fallback on earlier versions
+            }
+            picker.minimumDate = Calendar.current.date(byAdding: .year, value: -70, to: Date())
+            picker.maximumDate = Calendar.current.date(byAdding: .year, value: -18, to: Date())
+            
+            picker.tag = textField.tag
+            picker.addTarget(self, action: #selector(updateDateField(sender:)), for: .valueChanged)
+            
+            //ToolBar
+            let toolbar = UIToolbar();
+            toolbar.sizeToFit()
+            
+            let cancelButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(tapDone(sender:datePicker1:)));
+            
+            toolbar.setItems([cancelButton], animated: false)
+            
+            cell.generalTF.inputAccessoryView = toolbar
+            
+            textField.inputView = picker
+            textField.text = formatDateForDisplay(date: picker.date)
+            
+            
+        }
+    }
+    
+        
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        let nextTag = textField.tag + 1
+        let nextResponder = textField.superview?.superview?.superview?.superview?.superview?.viewWithTag(nextTag) as UIResponder?
+        
+        if nextResponder != nil {
+            nextResponder?.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        
+        return false
+    }
+    
+    @objc func tapDone(sender: Any, datePicker1: UIDatePicker) {
+        let indexPath = IndexPath(row: 2, section: 0)
+        let cell = self.profileTV.cellForRow(at: indexPath) as! ProfileTVCell
+        print(datePicker1)
+        if let datePicker = cell.generalTF.inputView as? UIDatePicker { // 2.1
+            let dateformatter = DateFormatter() // 2.2
+            dateformatter.dateStyle = .long // 2.3
+            dateformatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+            !cell.generalTF.text!.isTFBlank ? dateOfBirth = dateformatter.string(from: datePicker.date) : print("Empty Date")
+        }
+        cell.generalTF.resignFirstResponder() // 2.5
+    }
+    
     
     //MARK: API METHODS
     
@@ -285,7 +522,6 @@ class EditProfileSetup: MainViewController {
                         if val {
                             if DBService.fetchSocialAccList().count > 0 {
                                 self.socialAccdbModel = Array(DBService.fetchSocialAccList())
-                                
 
                                 var imageIndices = [String: Int]()
                                 for (index, imageName) in self.tempSocialAccImgArray.enumerated() {
@@ -337,7 +573,11 @@ class EditProfileSetup: MainViewController {
                                     self.profileTV.reloadRows(at: indexPaths, with: .none)
                                     
 
+                                } else {
+                                    self.socialAccArray = self.tempSocialAccArray
                                 }
+                            } else {
+                                self.socialAccArray = self.tempSocialAccArray
                             }
 
                         } else {
@@ -354,6 +594,48 @@ class EditProfileSetup: MainViewController {
             .disposed(by: dispose_Bag)
     }
 
+    func userProfileUpdate() {
+        self.showPKHUD(WithMessage: "Signing up")
+        
+        profileDict["fullName"] = fullName
+        profileDict["profilePicture"] = "https://ibb.co/SNydr1f"
+        profileDict["publicEmail"] = publicEmail
+        profileDict["countryCode"] = countryCode
+        profileDict["phoneNumber"] = phoneNum
+        profileDict["dob"] = dateOfBirth
+        profileDict["workAdress"] = placeOfWork
+        profileDict["workTitle"] = workTitle
+        profileDict["about"] = about
+        profileDict["proximity"] = proximity
+        profileDict["isProfileVisible"] = isProfileVisible
+        profileDict["tags"] = tags.joined(separator: ",")
+        
+        Logs.show(message: "SKILLS PRAM: \(profileDict)")
+        
+        APIService
+            .singelton
+            .userProfileUpdate(pram: profileDict)
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        Logs.show(message: "MARKED: 👉🏻 \(val)")
+                        if val {
+                            self.hidePKHUD()
+                            self.navigationController?.popViewController(animated: true)
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
     
 }
 //MARK: TableView Extention
@@ -368,13 +650,20 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
             case 0:
                 let cell : ProfileHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "ProfileHeaderTVCell", for: indexPath) as! ProfileHeaderTVCell
-                if isfromExtProf {
-                    cell.backBtn.isHidden = false
-                    cell.backBtn.addTarget(self, action: #selector(backBtnPressed(sender:)), for: .touchUpInside)
+                cell.backBtn.isHidden = false
+                cell.backBtn.addTarget(self, action: #selector(backBtnPressed(sender:)), for: .touchUpInside)
+                
+                if updatedImagePicked != nil {
+                    cell.profileIV.image = updatedImagePicked
+                    Logs.show(message: "Updated")
+                } else {
+                    cell.profileIV.image = UIImage(named: "placeholder_icon")
                 }
+                cell.editBtn.addTarget(self, action: #selector(editBtnPressed(sender:)), for: .touchUpInside)
+                
                 return cell
                 
-            case placeholderArray.count - 2 :
+            case placeholderArray.count - 2 : // About
                 
                 let cell : GeneralTextviewTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralTextviewTVCell", for: indexPath) as! GeneralTextviewTVCell
                 
@@ -383,6 +672,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                         cell.generalTV.text = user.about
                     }
                 }
+                cell.generalTV.delegate = self
                 cell.generalTV.textColor = UIColor(named: "Text grey")
                 
                 return cell
@@ -506,6 +796,10 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                     
                     cell.numberView.isHidden = true
                     cell.generalTFView.isHidden = false
+                    cell.generalTF.delegate = self
+                    
+                    cell.generalTF.tag = indexPath.row
+                    
                     cell.generalTF.placeholder = placeholderArray[indexPath.row]
                     AppFunctions.colorPlaceholder(tf: cell.generalTF, s: placeholderArray[indexPath.row])
                     if dataArray.count > 2 {

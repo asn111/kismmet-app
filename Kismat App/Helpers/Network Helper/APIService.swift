@@ -295,9 +295,7 @@ class APIService: NSObject {
                                     AppFunctions.saveRole(name: role as! String)
                                     AppFunctions.setIsLoggedIn(value: true)
                                     
-                                    if isProfileUpdated.contains("True") {
-                                        AppFunctions.setIsProfileUpdated(value: true)
-                                    }
+                                    
                                     if isUserAgreement.contains("True") {
                                         AppFunctions.setIsTermsNCndCheck(value: true)
                                     }
@@ -368,12 +366,6 @@ class APIService: NSObject {
                                     AppFunctions.saveUserId(name: userId as! String)
                                     AppFunctions.saveRole(name: role as! String)
                                     
-                                    if isProfileUpdated.contains("True") {
-                                        AppFunctions.setIsProfileUpdated(value: true)
-                                    }
-                                    if isUserAgreement.contains("True") {
-                                        AppFunctions.setIsTermsNCndCheck(value: true)
-                                    }
                                     
                                     Logs.show(message: "SUCCESS IN \(#function)")
                                     observer.onNext(true)
@@ -596,7 +588,7 @@ class APIService: NSObject {
         if (self.isCheckReachable()) {
             let pram: Parameters = ["linkId": val]
             
-            AF.request("\(self.baseUrl)/api/Users/RemoveUserSocialAccount", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
+            AF.request("\(self.baseUrl)/api/Users/RemoveUserSocialAccount", method:.delete, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
                 .validate()
                 .responseData{ response in
                     Logs.show(message: "URL: \(response.debugDescription)")
@@ -1123,6 +1115,7 @@ class APIService: NSObject {
                                 do {
                                     let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
                                     Logs.show(message: "SUCCESS IN \(#function)")
+                                    DBService.removeUserSocialAcc()
                                     DBService.createSocialAccDB(APIlist: genResponse.body.socialAccounts)
                                     observer.onNext(true)
                                     observer.onCompleted()

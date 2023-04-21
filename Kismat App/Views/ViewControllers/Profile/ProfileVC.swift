@@ -24,13 +24,21 @@ class ProfileVC: MainViewController {
     var img = UIImage(named: "placeholder")
     var isOtherProfile = false
     
+    var userModel = UserModel()
+
     var userdbModel : Results<UserDBModel>!
     var socialAccModel = [SocialAccModel]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if userModel.tags != "" {
+            Logs.show(message: "USER MODEL: \(userModel.tags)")
+        }
+        
         registerCells()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,6 +49,7 @@ class ProfileVC: MainViewController {
             userdbModel = DBService.fetchloggedInUser()
             DBUpdateUserdb()
         }
+        
     }
     
     func registerCells() {
@@ -216,6 +225,9 @@ class ProfileVC: MainViewController {
 extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if socialAccModel.isEmpty {
+            return 4
+        }
         return socialAccModel.count + 5
     }
     
@@ -243,31 +255,44 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
                 cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
                 
-                if let userDb = userdbModel {
-                    if let user = userDb.first {
-                        cell.profilePicBtn.setImage(img, for: .normal)
-                        cell.nameLbl.text = user.userName
-                        cell.professionLbl.text = user.workTitle
-                        cell.educationLbl.text = user.workAddress
-                        
-                        /*if user. != "" {
-                         let imageUrl = URL(string: userdbModel.profilePicture)
-                         cell.profilePicIV?.sd_setImage(with: imageUrl , placeholderImage: img) { (image, error, imageCacheType, url) in }
-                         } else {
-                         cell.profilePicBtn.setImage(img, for: .normal)
-                         }*/
+                if isOtherProfile {
+                    cell.profilePicBtn.setImage(img, for: .normal)
+                    cell.nameLbl.text = userModel.userName
+                    cell.professionLbl.text = userModel.workTitle
+                    cell.educationLbl.text = userModel.workAddress
+                } else {
+                    if let userDb = userdbModel {
+                        if let user = userDb.first {
+                            cell.profilePicBtn.setImage(img, for: .normal)
+                            cell.nameLbl.text = user.userName
+                            cell.professionLbl.text = user.workTitle
+                            cell.educationLbl.text = user.workAddress
+                            
+                            /*if user. != "" {
+                             let imageUrl = URL(string: userdbModel.profilePicture)
+                             cell.profilePicIV?.sd_setImage(with: imageUrl , placeholderImage: img) { (image, error, imageCacheType, url) in }
+                             } else {
+                             cell.profilePicBtn.setImage(img, for: .normal)
+                             }*/
+                        }
                     }
-                  
                 }
+                
 
                 return cell
             case 1:
                 let cell : AboutTVCell = tableView.dequeueReusableCell(withIdentifier: "AboutTVCell", for: indexPath) as! AboutTVCell
-                if let userDb = userdbModel {
-                    if let user = userDb.first {
-                        cell.aboutTxtView.text = user.about
+                
+                if isOtherProfile {
+                    cell.aboutTxtView.text = userModel.about
+                } else {
+                    if let userDb = userdbModel {
+                        if let user = userDb.first {
+                            cell.aboutTxtView.text = user.about
+                        }
                     }
                 }
+                
                 return cell
             case 2:
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
@@ -276,39 +301,74 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 return cell
             case 3:
                 let cell : TagsTVCell = tableView.dequeueReusableCell(withIdentifier: "TagsTVCell", for: indexPath) as! TagsTVCell
-                if let userDb = userdbModel {
-                    if let user = userDb.first {
-                        if user.tags != "" {
-                            if !user.tags.contains(",") {
-                                cell.tagLbl1.text = user.tags
-                                cell.tagView1.isHidden = false
-                            } else {
-                                let split = user.tags.split(separator: ",")
-                                for i in 0...split.count - 1 {
-                                    switch i {
-                                        case 0:
-                                            cell.tagLbl1.text = "\(split[i])"
-                                            cell.tagView1.isHidden = false
-                                        case 1:
-                                            cell.tagLbl2.text = "\(split[i])"
-                                            cell.tagView2.isHidden = false
-                                        case 2:
-                                            cell.tagLbl3.text = "\(split[i])"
-                                            cell.tagView3.isHidden = false
-                                        case 3:
-                                            cell.tagLbl4.text = "\(split[i])"
-                                            cell.tagView4.isHidden = false
-                                        case 4:
-                                            cell.tagLbl5.text = "\(split[i])"
-                                            cell.tagView5.isHidden = false
-                                        default:
-                                            print("default")
+                
+                if isOtherProfile {
+                    if userModel.tags != "" {
+                        if !userModel.tags.contains(",") {
+                            cell.tagLbl1.text = userModel.tags
+                            cell.tagView1.isHidden = false
+                        } else {
+                            let split = userModel.tags.split(separator: ",")
+                            for i in 0...split.count - 1 {
+                                switch i {
+                                    case 0:
+                                        cell.tagLbl1.text = "\(split[i])"
+                                        cell.tagView1.isHidden = false
+                                    case 1:
+                                        cell.tagLbl2.text = "\(split[i])"
+                                        cell.tagView2.isHidden = false
+                                    case 2:
+                                        cell.tagLbl3.text = "\(split[i])"
+                                        cell.tagView3.isHidden = false
+                                    case 3:
+                                        cell.tagLbl4.text = "\(split[i])"
+                                        cell.tagView4.isHidden = false
+                                    case 4:
+                                        cell.tagLbl5.text = "\(split[i])"
+                                        cell.tagView5.isHidden = false
+                                    default:
+                                        print("default")
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    if let userDb = userdbModel {
+                        if let user = userDb.first {
+                            if user.tags != "" {
+                                if !user.tags.contains(",") {
+                                    cell.tagLbl1.text = user.tags
+                                    cell.tagView1.isHidden = false
+                                } else {
+                                    let split = user.tags.split(separator: ",")
+                                    for i in 0...split.count - 1 {
+                                        switch i {
+                                            case 0:
+                                                cell.tagLbl1.text = "\(split[i])"
+                                                cell.tagView1.isHidden = false
+                                            case 1:
+                                                cell.tagLbl2.text = "\(split[i])"
+                                                cell.tagView2.isHidden = false
+                                            case 2:
+                                                cell.tagLbl3.text = "\(split[i])"
+                                                cell.tagView3.isHidden = false
+                                            case 3:
+                                                cell.tagLbl4.text = "\(split[i])"
+                                                cell.tagView4.isHidden = false
+                                            case 4:
+                                                cell.tagLbl5.text = "\(split[i])"
+                                                cell.tagView5.isHidden = false
+                                            default:
+                                                print("default")
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
+                
+                
                 return cell
             case 4:
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell

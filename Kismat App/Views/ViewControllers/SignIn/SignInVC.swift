@@ -138,9 +138,14 @@ class SignInVC: MainViewController {
                 switch model {
                     case .next(let val):
                         if val.userId != "" {
-                            self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
-                                vc.selectedIndex = 2
+                            if AppFunctions.IsProfileUpdated(){
+                                self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
+                                    vc.selectedIndex = 2
+                                }
+                            } else {
+                                self.navigateVC(id: "ProfileSetupVC") { (vc:ProfileSetupVC) in }
                             }
+                            
                         } else {
                             self.hidePKHUD()
                         }

@@ -128,7 +128,7 @@ class AddLinksVC: MainViewController {
         if !isUpdatedOnServer { return }
         var arr = AppFunctions.getSocialArray()
         
-        let placeholderValues = ["Network via LinkedIn","Your Twitter account","Your Instagram handle","Snapchat","Link your Website"]
+        let placeholderValues = ["LinkedIn Profile","Twitter Username","Instagram Handle","Snapchat Username","Website URL"]
         // Initialize the array with placeholder values if it's empty
         if arr.isEmpty {
             arr = placeholderValues

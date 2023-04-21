@@ -83,6 +83,15 @@ class UserModel: NSObject, Codable {
         
     }
     
+    init(fromDictionary dictionary: [String: Any]) {
+        userName = dictionary["fullName"] as? String
+        workAddress = dictionary["workAdress"] as? String
+        workTitle = dictionary["workTitle"] as? String
+        about = dictionary["about"] as? String
+        tags = dictionary["tags"] as? String
+        
+    }
+    
     private enum CodingKeys: String, CodingKey {
         
         case userId = "userId"

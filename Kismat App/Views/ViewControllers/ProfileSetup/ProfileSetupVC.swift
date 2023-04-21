@@ -13,6 +13,9 @@ class ProfileSetupVC: MainViewController  {
         
     var placeholderArray = ["","Full Name","Public Email","Phone","Date of Birth","Where do you work / study?","Work Title","Tell us about your self..",""]
     
+    weak var activeTextField: UITextField?
+    weak var activeTextView: UITextView?
+    
     var updatedImagePicked : UIImage!
     var profileDict = [String: Any]()
     var fullName = "", publicEmail = "", placeOfWork = "", workTitle = "" , dateOfBirth = "", countryCode = "", phoneNum = "" , about = ""
@@ -56,13 +59,27 @@ class ProfileSetupVC: MainViewController  {
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size else {
             return
         }
+        
         let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
         profileTV.contentInset = contentInsets
         profileTV.scrollIndicatorInsets = contentInsets
-        if let indexPath = profileTV.indexPathsForVisibleRows?.last {
-            profileTV.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        
+        var activeView: UIView?
+        if let activeTextField = activeTextField {
+            activeView = activeTextField
+        } else if let activeTextView = activeTextView {
+            activeView = activeTextView
+        }
+        
+        if let activeView = activeView {
+            let rect = profileTV.convert(activeView.bounds, from: activeView)
+            let offsetY = rect.maxY - (profileTV.bounds.height - keyboardSize.height)
+            if offsetY > 0 {
+                profileTV.setContentOffset(CGPoint(x: 0, y: offsetY), animated: true)
+            }
         }
     }
+
     
     @objc private func keyboardWillHide(notification: NSNotification) {
         profileTV.contentInset = .zero
@@ -113,12 +130,6 @@ class ProfileSetupVC: MainViewController  {
         let imagePickerClass = ImagePicker(viewController: self)
         imagePickerClass.handleTap()
     }
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "Tell us about your self.." {
-            // Clear the text view
-            textView.text = ""
-        }
-    }
     
     @objc func toolTipBtnPressed(sender:UIButton) {
         var msg = ""
@@ -133,12 +144,11 @@ class ProfileSetupVC: MainViewController  {
         
         AppFunctions.showToolTip(str: msg, btn: sender)
     }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        about = !textView.text!.isTFBlank ? textView.text! : ""
-    }
+
     
     @objc func textFieldDidChangeSelection(_ textField: UITextField) {
+        
+        activeTextField = textField
         
         if textField.tag == 1 {
             fullName = !textField.text!.isTFBlank ? textField.text! : ""
@@ -154,12 +164,27 @@ class ProfileSetupVC: MainViewController  {
         
     }
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        activeTextView = textView
+        if textView.text == "Tell us about your self.." {
+            // Clear the text view
+            textView.text = ""
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        about = !textView.text!.isTFBlank ? textView.text! : ""
+        activeTextView = nil
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        activeTextField = nil
+    }
+    
     
     @objc func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.tag == 6 {
             textField.returnKeyType = .done
         } else {
-            textField.returnKeyType = .next
         }
         if textField.tag == 4 {
             
@@ -201,16 +226,7 @@ class ProfileSetupVC: MainViewController  {
     //MARK: UIPickerView Methods
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        let nextTag = textField.tag + 1
-        let nextResponder = textField.superview?.superview?.superview?.superview?.superview?.viewWithTag(nextTag) as UIResponder?
-        
-        if nextResponder != nil {
-            nextResponder?.becomeFirstResponder()
-        } else {
-            textField.resignFirstResponder()
-        }
-        
+        textField.resignFirstResponder()
         return false
     }
     
