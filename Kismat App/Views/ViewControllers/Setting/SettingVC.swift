@@ -72,6 +72,17 @@ class SettingVC: MainViewController {
         }
     }
     
+    @objc func profilePicBtnPressed(sender: UIButton) {
+        
+        if sender.currentImage == img {
+            return
+        }
+        self.presentVC(id: "EnlargedIV_VC", presentFullType: "over" ) { (vc:EnlargedIV_VC) in
+            vc.profileImage = sender.currentImage ?? img!
+        }
+    }
+    
+    
     @objc func picBtnPressed(sender: UIButton) {
         self.tabBarController?.selectedIndex = 2
     }
@@ -149,6 +160,7 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
                     
                 }
                 
+                cell.profilePicBtn.addTarget(self, action: #selector(profilePicBtnPressed(sender:)), for: .touchUpInside)
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
                 cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
 

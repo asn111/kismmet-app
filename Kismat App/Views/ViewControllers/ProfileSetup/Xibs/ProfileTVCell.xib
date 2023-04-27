@@ -42,7 +42,7 @@
                                                 <color key="value" red="0.66666666669999997" green="0.078431372550000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                <real key="value" value="13"/>
+                                                <real key="value" value="15"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
@@ -160,7 +160,7 @@
                                                 <color key="value" red="0.66666666669999997" green="0.078431372550000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                <real key="value" value="13"/>
+                                                <real key="value" value="15"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
@@ -233,10 +233,10 @@
     </objects>
     <designables>
         <designable name="lEa-z3-zuD">
-            <size key="intrinsicContentSize" width="60.666666666666664" height="22"/>
+            <size key="intrinsicContentSize" width="61" height="19.333333333333332"/>
         </designable>
         <designable name="oPc-B4-0kB">
-            <size key="intrinsicContentSize" width="60.666666666666664" height="22"/>
+            <size key="intrinsicContentSize" width="61" height="19.333333333333332"/>
         </designable>
     </designables>
     <resources>

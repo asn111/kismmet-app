@@ -96,6 +96,9 @@
 		299FDDAE2996EB7E0049741B /* GeneralButtonTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299FDDAC2996EB7E0049741B /* GeneralButtonTVCell.swift */; };
 		299FDDAF2996EB7E0049741B /* GeneralButtonTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299FDDAD2996EB7E0049741B /* GeneralButtonTVCell.xib */; };
 		29BAD3BC29F1B18B00F16C2B /* StartupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAD3BB29F1B18B00F16C2B /* StartupModel.swift */; };
+		29BE184C29FA6E68000EAC0E /* EnlargedIV VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BE184B29FA6E68000EAC0E /* EnlargedIV VC.swift */; };
+		29BE184F29FA8573000EAC0E /* BlockBtnTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BE184D29FA8573000EAC0E /* BlockBtnTVCell.swift */; };
+		29BE185029FA8573000EAC0E /* BlockBtnTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29BE184E29FA8573000EAC0E /* BlockBtnTVCell.xib */; };
 		29F5290329970DA500FE2EBA /* GeneralTextviewTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F5290129970DA500FE2EBA /* GeneralTextviewTVCell.swift */; };
 		29F5290429970DA500FE2EBA /* GeneralTextviewTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29F5290229970DA500FE2EBA /* GeneralTextviewTVCell.xib */; };
 		29FD316629A5FD9400BDBD9C /* EditProfileSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD316529A5FD9400BDBD9C /* EditProfileSetup.swift */; };
@@ -219,6 +222,9 @@
 		299FDDAC2996EB7E0049741B /* GeneralButtonTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralButtonTVCell.swift; sourceTree = "<group>"; };
 		299FDDAD2996EB7E0049741B /* GeneralButtonTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralButtonTVCell.xib; sourceTree = "<group>"; };
 		29BAD3BB29F1B18B00F16C2B /* StartupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupModel.swift; sourceTree = "<group>"; };
+		29BE184B29FA6E68000EAC0E /* EnlargedIV VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnlargedIV VC.swift"; sourceTree = "<group>"; };
+		29BE184D29FA8573000EAC0E /* BlockBtnTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockBtnTVCell.swift; sourceTree = "<group>"; };
+		29BE184E29FA8573000EAC0E /* BlockBtnTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlockBtnTVCell.xib; sourceTree = "<group>"; };
 		29F5290129970DA500FE2EBA /* GeneralTextviewTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTextviewTVCell.swift; sourceTree = "<group>"; };
 		29F5290229970DA500FE2EBA /* GeneralTextviewTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralTextviewTVCell.xib; sourceTree = "<group>"; };
 		29FD316529A5FD9400BDBD9C /* EditProfileSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileSetup.swift; sourceTree = "<group>"; };
@@ -598,6 +604,7 @@
 		299FDD82299684E50049741B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				29BE184A29FA6E42000EAC0E /* EnlargedIV */,
 				29846D3F29A15AF800393EB3 /* AccountStatus */,
 				29846D3C29A154DA00393EB3 /* ChangePass */,
 				299E03CC29A1412D0064A5E3 /* Membership */,
@@ -715,8 +722,18 @@
 				29473E50299C634A00859D8A /* TagsTVCell.xib */,
 				2940B8FD299D634300D3F863 /* ImageViewTVCell.swift */,
 				2940B8FE299D634300D3F863 /* ImageViewTVCell.xib */,
+				29BE184D29FA8573000EAC0E /* BlockBtnTVCell.swift */,
+				29BE184E29FA8573000EAC0E /* BlockBtnTVCell.xib */,
 			);
 			path = Xibs;
+			sourceTree = "<group>";
+		};
+		29BE184A29FA6E42000EAC0E /* EnlargedIV */ = {
+			isa = PBXGroup;
+			children = (
+				29BE184B29FA6E68000EAC0E /* EnlargedIV VC.swift */,
+			);
+			path = EnlargedIV;
 			sourceTree = "<group>";
 		};
 		29FD316429A5FD6A00BDBD9C /* EditProfile */ = {
@@ -852,6 +869,7 @@
 				29473E52299C634A00859D8A /* TagsTVCell.xib in Resources */,
 				299FDD192996796A0049741B /* LaunchScreen.storyboard in Resources */,
 				299FDD972996C8ED0049741B /* Roboto-Regular.ttf in Resources */,
+				29BE185029FA8573000EAC0E /* BlockBtnTVCell.xib in Resources */,
 				299FDD9A2996C8ED0049741B /* Roboto-Bold.ttf in Resources */,
 				294A79B1299AEB2E00089161 /* AboutTVCell.xib in Resources */,
 				294A79B5299AEB5100089161 /* SocialAccTVCell.xib in Resources */,
@@ -1025,6 +1043,7 @@
 				294A79B0299AEB2E00089161 /* AboutTVCell.swift in Sources */,
 				2940B8FF299D634300D3F863 /* ImageViewTVCell.swift in Sources */,
 				299FDD5B29967D1D0049741B /* Styling.swift in Sources */,
+				29BE184F29FA8573000EAC0E /* BlockBtnTVCell.swift in Sources */,
 				295A11DC29F28EE200D0D436 /* EditProfileExtention.swift in Sources */,
 				299FDD5929967D1D0049741B /* loadingView.swift in Sources */,
 				294A79B4299AEB5100089161 /* SocialAccTVCell.swift in Sources */,
@@ -1042,6 +1061,7 @@
 				294A79A8299ADD4200089161 /* SettingTVCell.swift in Sources */,
 				29985F3729981ADE001F769B /* GeneralHeaderTVCell.swift in Sources */,
 				299FDD14299679690049741B /* Kismat_App.xcdatamodeld in Sources */,
+				29BE184C29FA6E68000EAC0E /* EnlargedIV VC.swift in Sources */,
 				299FDD5C29967D1D0049741B /* SampleFile.swift in Sources */,
 				299FDD5A29967D1D0049741B /* Extentions.swift in Sources */,
 				29350A1729CF489300F19BD5 /* SignalR Manager.swift in Sources */,

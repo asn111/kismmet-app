@@ -35,6 +35,9 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
                                                 <color key="value" name="Text grey"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                <real key="value" value="16"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textView>
                                 </subviews>

@@ -290,7 +290,7 @@ and Privacy Policy</string>
                                                         <color key="value" red="0.66666666669999997" green="0.078431372550000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                        <real key="value" value="13"/>
+                                                        <real key="value" value="16"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
@@ -325,7 +325,7 @@ and Privacy Policy</string>
                                                         <color key="value" red="0.66666666669999997" green="0.078431372550000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                        <real key="value" value="13"/>
+                                                        <real key="value" value="16"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
@@ -358,7 +358,7 @@ and Privacy Policy</string>
                                                         <color key="value" red="0.66666666669999997" green="0.078431372550000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                        <real key="value" value="13"/>
+                                                        <real key="value" value="16"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
@@ -619,7 +619,7 @@ this email.</string>
                                                         <color key="value" red="0.66666666669999997" green="0.078431372550000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                        <real key="value" value="13"/>
+                                                        <real key="value" value="16"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
@@ -654,7 +654,7 @@ this email.</string>
                                                         <color key="value" red="0.66666666669999997" green="0.078431372550000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                        <real key="value" value="13"/>
+                                                        <real key="value" value="16"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
@@ -843,7 +843,7 @@ this email.</string>
                                                         <color key="value" red="0.66666666669999997" green="0.078431372550000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                        <real key="value" value="13"/>
+                                                        <real key="value" value="16"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
@@ -896,7 +896,7 @@ this email.</string>
                                                         <color key="value" red="0.66666666669999997" green="0.078431372550000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                        <real key="value" value="13"/>
+                                                        <real key="value" value="16"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
@@ -1550,7 +1550,7 @@ this email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shadow Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0pz-yD-d4n" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shadow mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0pz-yD-d4n" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
                                                 <rect key="frame" x="70" y="78" width="90.333333333333314" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="90.333333333333314" id="Cnf-g9-3dc"/>
@@ -1903,7 +1903,7 @@ this email.</string>
                                                                 <color key="value" red="0.66666666669999997" green="0.078431372550000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                                <real key="value" value="13"/>
+                                                                <real key="value" value="16"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
@@ -1956,7 +1956,7 @@ this email.</string>
                                                                 <color key="value" red="0.66666666669999997" green="0.078431372550000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                                <real key="value" value="13"/>
+                                                                <real key="value" value="16"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
@@ -2009,7 +2009,7 @@ this email.</string>
                                                                 <color key="value" red="0.66666666669999997" green="0.078431372550000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                                <real key="value" value="13"/>
+                                                                <real key="value" value="16"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
@@ -2362,9 +2362,9 @@ this email.</string>
                                         <rect key="frame" x="17" y="145" width="359" height="100"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tamara@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43Y-pb-wtz" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="98" y="56" width="171" height="14"/>
+                                                <rect key="frame" x="98" y="50" width="171" height="24"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="14" id="2bR-Ef-2nD"/>
+                                                    <constraint firstAttribute="height" constant="24" id="2bR-Ef-2nD"/>
                                                     <constraint firstAttribute="width" constant="171" id="xFU-rE-gkt"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -2381,10 +2381,10 @@ this email.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+123456789" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Sp-6M-OBh" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="98" y="73" width="120" height="10"/>
+                                                <rect key="frame" x="98" y="67" width="120" height="19"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="Abr-q0-Ax7"/>
-                                                    <constraint firstAttribute="height" constant="10" id="qGS-Sj-uJ6"/>
+                                                    <constraint firstAttribute="height" constant="19" id="qGS-Sj-uJ6"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -2396,7 +2396,7 @@ this email.</string>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
                                                         <real key="value" value="12"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TAMARA PENSIERO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9Q-It-9Aw" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
@@ -2455,8 +2455,8 @@ this email.</string>
                                             <constraint firstItem="vZc-Ue-Ajr" firstAttribute="leading" secondItem="CLG-MO-JmN" secondAttribute="leading" constant="18" id="P1Z-WN-pMN"/>
                                             <constraint firstAttribute="bottom" secondItem="vZc-Ue-Ajr" secondAttribute="bottom" constant="17" id="RZG-1s-JTF"/>
                                             <constraint firstItem="4Sp-6M-OBh" firstAttribute="leading" secondItem="vZc-Ue-Ajr" secondAttribute="trailing" constant="15" id="eqG-e6-Pon"/>
-                                            <constraint firstItem="43Y-pb-wtz" firstAttribute="top" secondItem="CLG-MO-JmN" secondAttribute="top" constant="56" id="n76-ie-Dkc"/>
-                                            <constraint firstItem="4Sp-6M-OBh" firstAttribute="top" secondItem="43Y-pb-wtz" secondAttribute="bottom" constant="3" id="wUA-e3-9QC"/>
+                                            <constraint firstItem="43Y-pb-wtz" firstAttribute="top" secondItem="CLG-MO-JmN" secondAttribute="top" constant="50" id="n76-ie-Dkc"/>
+                                            <constraint firstItem="4Sp-6M-OBh" firstAttribute="top" secondItem="43Y-pb-wtz" secondAttribute="bottom" constant="-7" id="wUA-e3-9QC"/>
                                             <constraint firstAttribute="width" constant="359" id="z7D-mQ-qPG"/>
                                         </constraints>
                                     </view>
@@ -2516,7 +2516,11 @@ this email.</string>
                         <outlet property="deactivateView" destination="ylH-wO-xH9" id="XOi-Ag-ukb"/>
                         <outlet property="delTxtLbl" destination="X59-RV-k6Q" id="XN9-Z3-NrV"/>
                         <outlet property="deleteView" destination="XZB-Uw-dza" id="9Q1-zm-8VQ"/>
+                        <outlet property="educationLbl" destination="43Y-pb-wtz" id="ZS6-X0-OVX"/>
                         <outlet property="genBtn" destination="bf5-4T-Cpx" id="Ktw-BV-A5B"/>
+                        <outlet property="nameLbl" destination="S9Q-It-9Aw" id="Cpm-sK-wUP"/>
+                        <outlet property="professionLbl" destination="4Sp-6M-OBh" id="Phb-1r-FQZ"/>
+                        <outlet property="profilePicBtn" destination="vZc-Ue-Ajr" id="39s-Oo-Nn4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jAq-Ki-WrG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2828,10 +2832,78 @@ this email.</string>
             </objects>
             <point key="canvasLocation" x="6237" y="-696"/>
         </scene>
+        <!--EnlargedIVVC-->
+        <scene sceneID="jt4-aA-4DR">
+            <objects>
+                <viewController storyboardIdentifier="EnlargedIV_VC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YaT-gi-3vd" customClass="EnlargedIV_VC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eYo-mm-A9c">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n21-Gq-wfD" customClass="RoundedImageView" customModule="Kismat_App" customModuleProvider="target">
+                                <rect key="frame" x="8.6666666666666572" y="238" width="376" height="376"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="376" id="37e-st-BzA"/>
+                                    <constraint firstAttribute="width" constant="376" id="3JW-p2-sub"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="Secondary Grey"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVr-ZZ-ejE" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                <rect key="frame" x="367" y="224" width="26" height="26"/>
+                                <color key="backgroundColor" white="0.19536564625850339" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="2Ib-iG-RUW"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="NRe-fx-kya"/>
+                                    <constraint firstAttribute="height" constant="26" id="TFd-Cc-8oc"/>
+                                    <constraint firstAttribute="width" constant="26" id="bDg-WZ-xGR"/>
+                                </constraints>
+                                <color key="tintColor" name="Danger"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="xmark.circle" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="heavy"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="13"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="crossBtnPressed:" destination="YaT-gi-3vd" eventType="touchUpInside" id="gON-Pq-wNj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="N82-oo-Hqd"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.39830815400000003" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="N82-oo-Hqd" firstAttribute="bottom" secondItem="EVr-ZZ-ejE" secondAttribute="bottom" constant="568" id="BvF-3W-XdX"/>
+                            <constraint firstItem="n21-Gq-wfD" firstAttribute="centerX" secondItem="eYo-mm-A9c" secondAttribute="centerX" id="G5K-cQ-3iz"/>
+                            <constraint firstItem="EVr-ZZ-ejE" firstAttribute="top" secondItem="N82-oo-Hqd" secondAttribute="top" constant="165" id="Xoj-bN-sba"/>
+                            <constraint firstItem="n21-Gq-wfD" firstAttribute="centerY" secondItem="eYo-mm-A9c" secondAttribute="centerY" id="mCM-ri-43Q"/>
+                            <constraint firstItem="EVr-ZZ-ejE" firstAttribute="trailing" secondItem="N82-oo-Hqd" secondAttribute="trailing" id="p54-iY-cP0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ProfileIV" destination="n21-Gq-wfD" id="elY-lL-v0I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RY6-yh-gcT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="875.57251908396938" y="1391.549295774648"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="0ZP-IY-8wV">
-            <size key="intrinsicContentSize" width="112.33333333333333" height="17"/>
+            <size key="intrinsicContentSize" width="134" height="20.666666666666668"/>
         </designable>
         <designable name="0pz-yD-d4n">
             <size key="intrinsicContentSize" width="90.333333333333329" height="16.666666666666668"/>
@@ -2843,13 +2915,13 @@ this email.</string>
             <size key="intrinsicContentSize" width="733.33333333333337" height="16.666666666666668"/>
         </designable>
         <designable name="3gP-Q6-AXE">
-            <size key="intrinsicContentSize" width="107" height="17"/>
+            <size key="intrinsicContentSize" width="127" height="20.666666666666668"/>
         </designable>
         <designable name="43Y-pb-wtz">
             <size key="intrinsicContentSize" width="114.66666666666667" height="14.333333333333334"/>
         </designable>
         <designable name="4Sp-6M-OBh">
-            <size key="intrinsicContentSize" width="68.666666666666671" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="69.666666666666671" height="14.333333333333334"/>
         </designable>
         <designable name="5w6-ZN-cHD">
             <size key="intrinsicContentSize" width="168" height="15.333333333333334"/>
@@ -2858,10 +2930,10 @@ this email.</string>
             <size key="intrinsicContentSize" width="20" height="19"/>
         </designable>
         <designable name="8b6-LU-FPq">
-            <size key="intrinsicContentSize" width="55.666666666666664" height="17"/>
+            <size key="intrinsicContentSize" width="63.666666666666664" height="20.666666666666668"/>
         </designable>
         <designable name="8kg-pJ-3sY">
-            <size key="intrinsicContentSize" width="72.666666666666671" height="17"/>
+            <size key="intrinsicContentSize" width="84.333333333333329" height="20.666666666666668"/>
         </designable>
         <designable name="9Lg-cq-Nv0">
             <size key="intrinsicContentSize" width="142" height="19"/>
@@ -2873,7 +2945,10 @@ this email.</string>
             <size key="intrinsicContentSize" width="35" height="31"/>
         </designable>
         <designable name="D0O-Hf-zFJ">
-            <size key="intrinsicContentSize" width="80.666666666666671" height="16"/>
+            <size key="intrinsicContentSize" width="94.333333333333329" height="19"/>
+        </designable>
+        <designable name="EVr-ZZ-ejE">
+            <size key="intrinsicContentSize" width="27" height="27"/>
         </designable>
         <designable name="FdF-zO-SsO">
             <size key="intrinsicContentSize" width="129" height="31"/>
@@ -2882,7 +2957,7 @@ this email.</string>
             <size key="intrinsicContentSize" width="170.33333333333334" height="19"/>
         </designable>
         <designable name="Fkw-EZ-gfF">
-            <size key="intrinsicContentSize" width="154.33333333333334" height="17"/>
+            <size key="intrinsicContentSize" width="185.33333333333334" height="20.666666666666668"/>
         </designable>
         <designable name="Hvi-f8-508">
             <size key="intrinsicContentSize" width="47.333333333333336" height="21.333333333333332"/>
@@ -2894,7 +2969,7 @@ this email.</string>
             <size key="intrinsicContentSize" width="96" height="31"/>
         </designable>
         <designable name="JBx-SY-DoZ">
-            <size key="intrinsicContentSize" width="55.666666666666664" height="17"/>
+            <size key="intrinsicContentSize" width="63.666666666666664" height="20.666666666666668"/>
         </designable>
         <designable name="JxZ-YY-3L0">
             <size key="intrinsicContentSize" width="168.33333333333334" height="14.333333333333334"/>
@@ -2933,7 +3008,7 @@ this email.</string>
             <size key="intrinsicContentSize" width="55" height="31"/>
         </designable>
         <designable name="aRI-Xg-5o1">
-            <size key="intrinsicContentSize" width="136" height="16"/>
+            <size key="intrinsicContentSize" width="162.66666666666666" height="19"/>
         </designable>
         <designable name="af5-1i-EA4">
             <size key="intrinsicContentSize" width="20" height="19"/>
@@ -2978,7 +3053,7 @@ this email.</string>
             <size key="intrinsicContentSize" width="192.33333333333334" height="36.666666666666664"/>
         </designable>
         <designable name="sDr-88-Fbj">
-            <size key="intrinsicContentSize" width="136" height="17"/>
+            <size key="intrinsicContentSize" width="162.66666666666666" height="20.666666666666668"/>
         </designable>
         <designable name="sX1-rv-q59">
             <size key="intrinsicContentSize" width="367" height="16.666666666666668"/>
@@ -3002,7 +3077,7 @@ this email.</string>
             <size key="intrinsicContentSize" width="25.666666666666668" height="25.666666666666668"/>
         </designable>
         <designable name="xnB-yp-Wkb">
-            <size key="intrinsicContentSize" width="80.666666666666671" height="16"/>
+            <size key="intrinsicContentSize" width="94.333333333333329" height="19"/>
         </designable>
         <designable name="y1c-ai-HyS">
             <size key="intrinsicContentSize" width="30" height="31"/>
@@ -3023,6 +3098,7 @@ this email.</string>
         <image name="wifi man" width="332" height="512"/>
         <image name="wifi man grey" width="162" height="152"/>
         <image name="wifi man grey smaller" width="35" height="43"/>
+        <image name="xmark.circle" catalog="system" width="128" height="123"/>
         <namedColor name="BG Base White">
             <color red="0.9570000171661377" green="0.9570000171661377" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

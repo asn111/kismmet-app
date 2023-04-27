@@ -79,6 +79,23 @@ class ViewedByMeVC: MainViewController {
         return true
     }
     
+    @objc
+    func starTapFunction(sender:UITapGestureRecognizer) {
+        if let image = sender.view {
+            if let cell = image.superview?.superview?.superview?.superview  as? FeedItemsTVCell {
+                guard let indexPath = self.viewedListTV.indexPath(for: cell) else {return}
+                print("index path =\(indexPath)")
+                if cell.starLbl.image == UIImage(systemName: "star.fill") {
+                    cell.starLbl.image = UIImage(systemName: "star")
+                    ApiService.markStarUser(val: users[indexPath.row - 1].userId)
+                } else {
+                    cell.starLbl.image = UIImage(systemName: "star.fill")
+                    ApiService.markStarUser(val: users[indexPath.row - 1].userId)
+                }
+            }
+        }
+    }
+    
     //MARK: API METHODS
     
     func getViewedByMe(load: Bool) {
@@ -182,14 +199,31 @@ extension ViewedByMeVC : UITableViewDelegate, UITableViewDataSource {
                     feedCell.educationLbl.text = user.workAddress
                     feedCell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
                     
+                    if user.tags != "" {
+                        if !user.tags.contains(",") {
+                            feedCell.tagLbl.text = user.tags
+                            feedCell.tagMoreView.isHidden = true
+                        } else {
+                            feedCell.tagMoreView.isHidden = false
+                            let split = user.tags.split(separator: ",")
+                            feedCell.tagLbl.text = "\(split[0])"
+                            feedCell.tagMoreLbl.text = "\(split.count - 1) more"
+                        }
+                    }
+                    
                     if user.profilePicture != "" && user.profilePicture != nil {
                         let imageUrl = URL(string: user.profilePicture)
                         feedCell.profilePicIV?.sd_setImage(with: imageUrl , placeholderImage: UIImage(named: "placeholder")) { (image, error, imageCacheType, url) in }
                     } else {
                         feedCell.profilePicIV.image = UIImage(named: "placeholder")
                     }
+                    
+                    let tap = UITapGestureRecognizer(target: self, action: #selector(starTapFunction(sender:)))
+                    feedCell.starLbl.isUserInteractionEnabled = true
+                    feedCell.starLbl.addGestureRecognizer(tap)
 
                 }
+                
                 
                 return cell
         }

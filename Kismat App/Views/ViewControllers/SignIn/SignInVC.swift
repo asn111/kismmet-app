@@ -27,6 +27,8 @@ class SignInVC: MainViewController {
     var isKeyBoardShown = false
     var email = ""
     var password = ""
+    weak var activeTextField: UITextField?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +69,8 @@ class SignInVC: MainViewController {
     
     @objc func textFieldDidChangeSelection(_ textField: UITextField) {
         Logs.show(message: "\(textField.text ?? "nil")")
+        activeTextField = textField
+
         if textField == emailTF {
             email = textField.text!.isValidEmail ? textField.text! : ""
         } else if textField == passwordTF {
@@ -74,18 +78,35 @@ class SignInVC: MainViewController {
         }
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        activeTextField = nil
+    }
+    
     @objc func action() {
         isKeyBoardShown = false
         view.endEditing(true)
     }
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if !isKeyBoardShown {
-                isKeyBoardShown = true
-                self.view.frame.origin.y -= keyboardSize.height - 250
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size else {
+            return
+        }
+        
+        var activeView: UIView?
+        if let activeTextField = activeTextField {
+            activeView = activeTextField
+        }
+        
+        if let activeView = activeView {
+            let frameInWindow = activeView.superview?.convert(activeView.frame, to: nil)
+            let bottomOfTextField = frameInWindow?.maxY ?? 0
+            let topOfKeyboard = UIScreen.main.bounds.height - keyboardSize.height
+            
+            if bottomOfTextField > topOfKeyboard {
+                self.view.frame.origin.y -= bottomOfTextField - topOfKeyboard
             }
         }
     }
+    
     @objc func keyboardWillHide(notification: NSNotification) {
         isKeyBoardShown = false
         self.view.frame.origin.y = 0

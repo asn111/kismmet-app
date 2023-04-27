@@ -25,6 +25,7 @@ class GeneralHeaderTVCell: UITableViewCell {
     @IBOutlet weak var notifBtn: UIButton!
     @IBOutlet weak var picBtn: RoundCornerButton!
     
+    @IBOutlet weak var rattingBtn: RoundCornerButton!
     @IBOutlet weak var searchTFView: RoundCornerView!
     @IBOutlet weak var viewedprofLbl: fullyCustomLbl!
     @IBOutlet weak var viewCountsLbl: fullyCustomLbl!

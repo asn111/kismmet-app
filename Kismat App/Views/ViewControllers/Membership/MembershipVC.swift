@@ -16,6 +16,8 @@ class MembershipVC: MainViewController {
     @IBAction func upgradeBtnPressed(_ sender: Any) {
         
         if AppFunctions.isPremiumUser() {
+            AppFunctions.setIsPremiumUser(value: false)
+            freePlan()
             IAPManager.shared.showManageSubscriptions()
         } else {
             IAPManager.shared.fetchProducts()
@@ -79,7 +81,7 @@ class MembershipVC: MainViewController {
         UIView.animate(withDuration: duration, animations: {
             self.planNameLbl.text = "KISMMET Premium"
             self.featureLbl1.text = "Unlimited profile views"
-            self.featureLbl2.text = "Shadow Mode"
+            self.featureLbl2.text = "Shadow mode"
             
             self.upgradeBtn.setTitle("Cancel Subscription", for: .normal)
             

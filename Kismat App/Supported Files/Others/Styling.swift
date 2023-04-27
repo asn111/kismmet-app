@@ -910,11 +910,23 @@ class fullyCustomLbl : UILabel {
                 
         var baseFont = UIFont()
         if isWork {
-            baseFont = UIFont(name: "Work Sans Bold", size: txtSize)!
+            if let font = UIFont(name: "Work Sans Bold", size: txtSize) {
+                baseFont = font
+            } else {
+                baseFont = UIFont(name: "Helvetica", size: txtSize)!
+            }
         } else if isSuezOne {
-            baseFont = UIFont(name: "SuezOne-Regular", size: txtSize)!
+            if let font = UIFont(name: "SuezOne-Regular", size: txtSize) {
+                baseFont = font
+            } else {
+                baseFont = UIFont(name: "Helvetica", size: txtSize)!
+            }
         } else {
-            baseFont = UIFont(name: "Roboto", size: txtSize)!
+            if let font = UIFont(name: "Roboto", size: txtSize) {
+                baseFont = font
+            } else {
+                baseFont = UIFont(name: "Helvetica", size: txtSize)!
+            }
         }
         self.textColor = txtColor
         self.adjustsFontSizeToFitWidth = false

@@ -26,6 +26,7 @@ class FeedVC: MainViewController {
     var isProfileVisible = false
     var isShadowMode = false
     var proximity = 150
+    var profilePic = ""
 
     var nameArray = ["Zoya Grey","James Nio","Kris Burner","Nesa Node","Mark Denial"]
     var profArray = ["Professor","Bachelor, Student","Entrepreneur","Chemist","Professor"]
@@ -34,6 +35,7 @@ class FeedVC: MainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         if DBService.fetchloggedInUser().count > 0 {
             self.userdbModel = DBService.fetchloggedInUser().first!
         }
@@ -41,6 +43,7 @@ class FeedVC: MainViewController {
         proximity = userdbModel.proximity
         isProfileVisible = userdbModel.isProfileVisible
         isShadowMode = userdbModel.shadowMode
+        profilePic = userdbModel.profilePicture
         
         getProxUsers(load: true)
         registerCells()
@@ -140,6 +143,7 @@ class FeedVC: MainViewController {
                 print("index path =\(indexPath)")
                 if cell.starLbl.image == UIImage(systemName: "star.fill") {
                     cell.starLbl.image = UIImage(systemName: "star")
+                    ApiService.markStarUser(val: users[indexPath.row - 1].userId)
                 } else {
                     cell.starLbl.image = UIImage(systemName: "star.fill")
                     ApiService.markStarUser(val: users[indexPath.row - 1].userId)
@@ -248,7 +252,13 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                 
                 cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
                 
-                cell.picBtn.setImage(UIImage(named: "placeholder_f"), for: .normal)
+                if profilePic != "" {
+                    let imageUrl = URL(string: profilePic)
+                    cell.picBtn?.sd_setImage(with: imageUrl, for: .normal , placeholderImage: UIImage(named: "placeholder")) { (image, error, imageCacheType, url) in }
+                } else {
+                    cell.picBtn.setImage(UIImage(named: "placeholder"), for: .normal)
+                }
+
                 cell.picBtn.isUserInteractionEnabled = false
                 
                 let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction(sender:)))
@@ -301,6 +311,19 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                     feedCell.nameLbl.text = user.userName
                     feedCell.professionLbl.text = user.workTitle
                     feedCell.educationLbl.text = user.workAddress
+                    
+                    if user.tags != "" {
+                        if !user.tags.contains(",") {
+                            feedCell.tagLbl.text = user.tags
+                            feedCell.tagMoreView.isHidden = true
+                        } else {
+                            feedCell.tagMoreView.isHidden = false
+                            let split = user.tags.split(separator: ",")
+                            feedCell.tagLbl.text = "\(split[0])"
+                            feedCell.tagMoreLbl.text = "\(split.count - 1) more"
+
+                        }
+                    }
                     
                     if user.profilePicture != "" && user.profilePicture != nil {
                         let imageUrl = URL(string: user.profilePicture)

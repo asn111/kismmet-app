@@ -69,7 +69,21 @@ class StarredVC: MainViewController {
         getStarUsers(load: true)
     }
     
-    
+    @objc
+    func starTapFunction(sender:UITapGestureRecognizer) {
+        if let image = sender.view {
+            if let cell = image.superview?.superview?.superview?.superview  as? FeedItemsTVCell {
+                guard let indexPath = self.starredTV.indexPath(for: cell) else {return}
+                print("index path =\(indexPath)")
+                if cell.starLbl.image == UIImage(systemName: "star.fill") {
+                    cell.starLbl.image = UIImage(systemName: "star")
+                } else {
+                    cell.starLbl.image = UIImage(systemName: "star.fill")
+                    ApiService.markStarUser(val: users[indexPath.row - 1].userId)
+                }
+            }
+        }
+    }
     
     @objc func textFieldDidChangeSelection(_ textField: UITextField) {
         searchString = !textField.text!.isTFBlank ? textField.text! : ""
@@ -194,6 +208,19 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
                     feedCell.educationLbl.text = user.workAddress
                     feedCell.starLbl.image = UIImage(systemName: "star.fill")
                     
+                    if user.tags != "" {
+                        if !user.tags.contains(",") {
+                            feedCell.tagLbl.text = user.tags
+                            feedCell.tagMoreView.isHidden = true
+                        } else {
+                            feedCell.tagMoreView.isHidden = false
+                            let split = user.tags.split(separator: ",")
+                            feedCell.tagLbl.text = "\(split[0])"
+                            feedCell.tagMoreLbl.text = "\(split.count - 1) more"
+                            
+                        }
+                    }
+                    
                     if user.profilePicture != "" && user.profilePicture != nil {
                         let imageUrl = URL(string: user.profilePicture)
                         feedCell.profilePicIV?.sd_setImage(with: imageUrl , placeholderImage: UIImage(named: "placeholder")) { (image, error, imageCacheType, url) in }
@@ -234,7 +261,9 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Remove" // Replace "Your Custom Text" with the desired button text
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension

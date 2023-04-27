@@ -56,6 +56,7 @@ class ProfileVC: MainViewController {
         profileTV.dataSource = self
         profileTV.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
         profileTV.register(UINib(nibName: "AboutTVCell", bundle: nil), forCellReuseIdentifier: "AboutTVCell")
+        profileTV.register(UINib(nibName: "ProfileTVCell", bundle: nil), forCellReuseIdentifier: "ProfileTVCell")
         profileTV.register(UINib(nibName: "MixHeaderTVCell", bundle: nil), forCellReuseIdentifier: "MixHeaderTVCell")
         profileTV.register(UINib(nibName: "TagsTVCell", bundle: nil), forCellReuseIdentifier: "TagsTVCell")
         profileTV.register(UINib(nibName: "SocialAccTVCell", bundle: nil), forCellReuseIdentifier: "SocialAccTVCell")
@@ -139,6 +140,16 @@ class ProfileVC: MainViewController {
             self.tabBarController?.selectedIndex = 2
         }
     }
+    
+    @objc func profilePicBtnPressed(sender: UIButton) {
+        if sender.currentImage == img {
+            return
+        }
+        self.presentVC(id: "EnlargedIV_VC", presentFullType: "over" ) { (vc:EnlargedIV_VC) in
+            vc.profileImage = sender.currentImage ?? img!
+        }
+    }
+    
     @objc func notifBtnPressed(sender: UIButton) {
         self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
     }
@@ -222,9 +233,9 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if socialAccModel.isEmpty {
-            return 4
+            return 5
         }
-        return socialAccModel.count + 5
+        return socialAccModel.count + 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -247,6 +258,8 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 } else {
                     cell.picBtn.borderWidth = 0
                 }
+                
+                cell.profilePicBtn.addTarget(self, action: #selector(profilePicBtnPressed(sender:)), for: .touchUpInside)
                 
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
                 cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
@@ -295,11 +308,24 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 
                 return cell
             case 2:
+                let cell : ProfileTVCell = tableView.dequeueReusableCell(withIdentifier: "ProfileTVCell", for: indexPath) as! ProfileTVCell
+                
+                cell.numberView.isHidden = true
+                cell.generalTFView.isHidden = false
+                if let userDb = userdbModel {
+                    if let user = userDb.first {
+                        cell.generalTF.text = user.publicEmail
+                    }
+                }
+                cell.generalTF.isUserInteractionEnabled = false
+                
+                return cell
+            case 3:
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
                 cell.headerLbl.text = "Tags"
                 return cell
-            case 3:
+            case 4:
                 let cell : TagsTVCell = tableView.dequeueReusableCell(withIdentifier: "TagsTVCell", for: indexPath) as! TagsTVCell
                 
                 if isOtherProfile {
@@ -370,7 +396,7 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 
                 
                 return cell
-            case 4:
+            case 5:
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
                 cell.headerLbl.text = "Social accounts"
@@ -380,32 +406,32 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
                 //cell.socialImgView.image = socialAccImgArray[indexPath.row - 5]
 
-                if socialAccModel[indexPath.row - 5].linkImage != "" && socialAccModel[indexPath.row - 5].linkImage != nil {
-                 let imageUrl = URL(string: socialAccModel[indexPath.row - 5].linkImage)
+                if socialAccModel[indexPath.row - 6].linkImage != "" && socialAccModel[indexPath.row - 6].linkImage != nil {
+                 let imageUrl = URL(string: socialAccModel[indexPath.row - 6].linkImage)
                  cell.socialImgView.sd_setImage(with: imageUrl , placeholderImage: UIImage()) { (image, error, imageCacheType, url) in }
                  } else {
                  //cell.profilePicBtn.setImage(img, for: .normal)
                  }
-                cell.socialLbl.text = socialAccModel[indexPath.row - 5].linkTitle.capitalized
+                cell.socialLbl.text = socialAccModel[indexPath.row - 6].linkTitle.capitalized
                 cell.socialLbl.isUserInteractionEnabled = false
                 return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row > 4 {
+        if indexPath.row > 5 {
             //AppFunctions.showSnackBar(str: "\(indexPath.row)")
-            switch socialAccModel[indexPath.row - 5].linkType {
+            switch socialAccModel[indexPath.row - 6].linkType {
                 case "LinkedIn":
-                    AppFunctions.openLinkedIn(userName: socialAccModel[indexPath.row - 5].linkUrl)
+                    AppFunctions.openLinkedIn(userName: socialAccModel[indexPath.row - 6].linkUrl)
                 case "Twitter":
-                    AppFunctions.openTwitter(userName: socialAccModel[indexPath.row - 5].linkUrl)
+                    AppFunctions.openTwitter(userName: socialAccModel[indexPath.row - 6].linkUrl)
                 case "Instagram":
-                    AppFunctions.openInstagram(userName: socialAccModel[indexPath.row - 5].linkUrl)
+                    AppFunctions.openInstagram(userName: socialAccModel[indexPath.row - 6].linkUrl)
                 case "Snapchat":
-                    AppFunctions.openSnapchat(userName: socialAccModel[indexPath.row - 5].linkUrl)
+                    AppFunctions.openSnapchat(userName: socialAccModel[indexPath.row - 6].linkUrl)
                 case "Website":
-                    AppFunctions.openWebLink(link: socialAccModel[indexPath.row - 5].linkUrl, vc: self)
+                    AppFunctions.openWebLink(link: socialAccModel[indexPath.row - 6].linkUrl, vc: self)
                 default:
                     print("default")
             }

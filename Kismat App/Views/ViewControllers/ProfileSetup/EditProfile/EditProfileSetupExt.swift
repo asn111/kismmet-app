@@ -21,6 +21,10 @@ class EditProfileSetupExt: MainViewController {
     var isProfileVisible = false
     var isShadowMode = false
     var proximity = 150
+    var email = ""
+    var phoneCode = ""
+    var phoneNum = ""
+    var name = ""
 
     var userdbModel = UserDBModel()
     
@@ -32,8 +36,12 @@ class EditProfileSetupExt: MainViewController {
         }
         
         proximity = userdbModel.proximity
+        name = userdbModel.userName
         isProfileVisible = userdbModel.isProfileVisible
         isShadowMode = userdbModel.shadowMode
+        email = userdbModel.email
+        phoneCode = userdbModel.countryCode
+        phoneNum = userdbModel.phone
         
         registerCells()
     }
@@ -123,6 +131,19 @@ class EditProfileSetupExt: MainViewController {
         }
     }
     
+    fileprivate func convertToDate(dateStr: String) -> Date {
+        var theDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        if let date = dateFormatter.date(from: dateStr) {
+            theDate = date
+        } else {
+            print("Error: Unable to convert date string.")
+        }
+        
+        return theDate
+    }
+    
 }
 //MARK: TableView Extention
 extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
@@ -137,7 +158,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
             case 0: // Header
                 let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
                 cell.headerLbl.isHidden = false
-                cell.headerLbl.text = "Hi, Tamara"
+                cell.headerLbl.text = "Hi, \(name)"
                 cell.headerLbl.textAlignment = .left
                 cell.searchView.isHidden = false
                 cell.swipeTxtLbl.isHidden = true
@@ -212,8 +233,8 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                     cell.numberTF.isUserInteractionEnabled = false
                     cell.countryPickerView.isUserInteractionEnabled = false
                     cell.generalTFView.isHidden = true
-                    cell.setupCountryCode()
-                    cell.numberTF.text = dataArray[indexPath.row]
+                    cell.setupCountryCode(code: phoneCode)
+                    cell.numberTF.text = phoneNum
                     cell.numberTF.placeholder = placeholderArray[indexPath.row]
                     AppFunctions.colorPlaceholder(tf: cell.numberTF, s: placeholderArray[indexPath.row])
                     cell.lockTipBtn.tag = 003
@@ -224,7 +245,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                     cell.generalTF.isUserInteractionEnabled = false
                     cell.generalTFView.isHidden = false
                     cell.toolTipBtn.isHidden = false
-                    cell.generalTF.text = dataArray[indexPath.row]
+                    cell.generalTF.text = email
                     cell.generalTF.placeholder = placeholderArray[indexPath.row]
                     AppFunctions.colorPlaceholder(tf: cell.generalTF, s: placeholderArray[indexPath.row])
                     

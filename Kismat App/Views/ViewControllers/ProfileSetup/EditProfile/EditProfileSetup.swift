@@ -190,15 +190,21 @@ class EditProfileSetup: MainViewController {
     fileprivate func convertToDate(dateStr: String) -> Date {
         var theDate = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         if let date = dateFormatter.date(from: dateStr) {
             theDate = date
         } else {
-            print("Error: Unable to convert date string.")
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            dateFormatter.timeZone = TimeZone(identifier: "UTC")
+            if let date = dateFormatter.date(from: dateStr) {
+                theDate = date
+            } else {
+                print("Error: Unable to convert date string.")
+            }
         }
-
         return theDate
     }
+
     
     @objc func removeBtnPressed(sender:UIButton) {
         switch sender.tag {
@@ -357,6 +363,7 @@ class EditProfileSetup: MainViewController {
         self.pushVC(id: "ProfileVC") { (vc:ProfileVC) in
             
             profileDict["fullName"] = fullName
+            profileDict["publicEmail"] = publicEmail
             profileDict["profilePicture"] = profilePic
             profileDict["workAdress"] = placeOfWork
             profileDict["workTitle"] = workTitle
@@ -435,6 +442,9 @@ class EditProfileSetup: MainViewController {
             picker.minimumDate = Calendar.current.date(byAdding: .year, value: -70, to: Date())
             picker.maximumDate = Calendar.current.date(byAdding: .year, value: -18, to: Date())
             
+            if dateOfBirth != "" {
+                picker.date = convertToDate(dateStr: dateOfBirth)
+            }
             picker.tag = textField.tag
             picker.addTarget(self, action: #selector(updateDateField(sender:)), for: .valueChanged)
             

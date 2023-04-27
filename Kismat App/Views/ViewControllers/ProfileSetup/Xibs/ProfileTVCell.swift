@@ -32,7 +32,7 @@ class ProfileTVCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setupCountryCode() {
+    func setupCountryCode(code: String = "+1") {
         
         //let indexPath = IndexPath(row: placeholderArray.count, section: 0)
         //let cell = self.profileTV.cellForRow(at: indexPath) as! ProfileTFCell
@@ -43,8 +43,10 @@ class ProfileTVCell: UITableViewCell {
         countryPickerView.showCountryNameInView = false
         countryPickerView.showPhoneCodeInView = false
         countryPickerView.showCountryCodeInView = false
-        countryPickerView.setCountryByPhoneCode("+1")
-        countryPickerView.setCountryByName("United States")
+        countryPickerView.setCountryByPhoneCode(code)
+        countryPickerView.setCountryByName(countryPickerView.countries.filter { country in
+            country.phoneCode == code
+        }.first?.name ?? "United States")
         phoneCode = countryPickerView.selectedCountry.phoneCode
         Logs.show(message: "\(countryPickerView.selectedCountry.phoneCode) ,, \(countryPickerView.selectedCountry.code)")
         

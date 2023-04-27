@@ -79,6 +79,7 @@ class OtherUserProfile: MainViewController {
         otherProfileTV.register(UINib(nibName: "ProfileTVCell", bundle: nil), forCellReuseIdentifier: "ProfileTVCell")
         otherProfileTV.register(UINib(nibName: "TagsTVCell", bundle: nil), forCellReuseIdentifier: "TagsTVCell")
         otherProfileTV.register(UINib(nibName: "SocialAccTVCell", bundle: nil), forCellReuseIdentifier: "SocialAccTVCell")
+        otherProfileTV.register(UINib(nibName: "BlockBtnTVCell", bundle: nil), forCellReuseIdentifier: "BlockBtnTVCell")
     }
     
     func showAlert(){
@@ -116,9 +117,33 @@ class OtherUserProfile: MainViewController {
         self.navigationController?.popViewController(animated: true)
         
     }
+    
+    @objc
+    func starTapFunction(sender:UIButton) {
+        
+        let cell = otherProfileTV.cellForRow(at: IndexPath(row: sender.tag, section: 0)) as? GeneralHeaderTVCell
+        
+        if cell?.rattingBtn.imageView?.image == UIImage(systemName: "star.fill") {
+            cell?.rattingBtn.setImage(UIImage(systemName: "star"), for: .normal)
+            ApiService.markStarUser(val: userModel.userId)
+        } else {
+            cell?.rattingBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            ApiService.markStarUser(val: userModel.userId)
+        }
+    }
+    
+    @objc func profilePicBtnPressed(sender: UIButton) {
+        
+        if sender.currentImage == img {
+            return
+        }
+        self.presentVC(id: "EnlargedIV_VC", presentFullType: "over" ) { (vc:EnlargedIV_VC) in
+            vc.profileImage = sender.currentImage ?? img!
+        }
+    }
+    
     @objc func notifBtnPressed(sender: UIButton) {
         showAlert()
-        
     }
     
     
@@ -131,9 +156,9 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if socialAccModel.isEmpty {
-            return 5
+            return 7
         }
-        return socialAccModel.count + 6
+        return socialAccModel.count + 8
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -146,16 +171,21 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 cell.profileView.isHidden = false
                 cell.headerLogo.isHidden = false
                 cell.headerView.isHidden = false
+                cell.ratingView.isHidden = false
 
-                
                 cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
-                cell.notifBtn.setImage(UIImage(systemName: "hand.raised.brakesignal.slash"), for: .normal)
-                cell.notifBtn.tintColor = UIColor(named: "Danger")
                 
+                cell.profilePicBtn.addTarget(self, action: #selector(profilePicBtnPressed(sender:)), for: .touchUpInside)
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
-                cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
+                cell.rattingBtn.addTarget(self, action: #selector(starTapFunction(sender:)), for: .touchUpInside)
+                cell.rattingBtn.tag = indexPath.row
                 
-                cell.profilePicBtn.setImage(img, for: .normal)
+                if userModel.isStarred {
+                    cell.rattingBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
+                } else {
+                    cell.rattingBtn.setImage(UIImage(systemName: "star"), for: .normal)
+                }
+                
                 cell.nameLbl.text = userModel.userName
                 cell.professionLbl.text = userModel.workTitle
                 cell.educationLbl.text = userModel.workAddress
@@ -167,9 +197,8 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                     cell.profilePicBtn.setImage(img, for: .normal)
                 }
                 
-                if isFromBlock {
-                    cell.notifBtn.isHidden = true
-                }
+                cell.notifBtn.isHidden = true
+
                     
                 return cell
             case 1:
@@ -225,8 +254,28 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 return cell
             case 5:
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
-                cell.headerLblView.isHidden = false
-                cell.headerLbl.text = "Social accounts"
+                if !socialAccModel.isEmpty {
+                    cell.headerLblView.isHidden = false
+                    cell.headerLbl.text = "Social accounts"
+                } else {
+                    cell.headerLblView.isHidden = true
+                }
+                
+                return cell
+                
+            case socialAccModel.isEmpty ? 5 : socialAccModel.count + 6: // EmptyView
+                
+                let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
+                cell.headerLblView.isHidden = true
+                return cell
+                
+            case socialAccModel.isEmpty ? 6 : socialAccModel.count + 7:
+                let cell : BlockBtnTVCell = tableView.dequeueReusableCell(withIdentifier: "BlockBtnTVCell", for: indexPath) as! BlockBtnTVCell
+                if isFromBlock {
+                    cell.blockBtn.isHidden = true
+                }
+                cell.blockBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
+
                 return cell
                 
             default:
@@ -240,14 +289,13 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 cell.socialLbl.text = socialAccModel[indexPath.row - 6].linkTitle.capitalized
                 cell.socialLbl.isUserInteractionEnabled = false
                 return cell
-
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row > 5 {
             //AppFunctions.showSnackBar(str: "\(indexPath.row)")
-            switch userModel.socialAccounts[indexPath.row - 6].linkType {
+            switch socialAccModel[indexPath.row - 6].linkType {
                 case "LinkedIn":
                     AppFunctions.openLinkedIn(userName: socialAccModel[indexPath.row - 6].linkUrl)
                 case "Twitter":

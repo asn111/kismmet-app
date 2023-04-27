@@ -23,10 +23,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gP4-G8-zrb" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
-                                <rect key="frame" x="18.666666666666657" y="10" width="338" height="100"/>
+                                <rect key="frame" x="13" y="10" width="349" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEd-wu-Vd8" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="8" width="65" height="20"/>
+                                        <rect key="frame" x="6" y="8" width="65" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="65" id="12E-na-WRJ"/>
                                             <constraint firstAttribute="height" constant="20" id="6SP-gp-Hn4"/>
@@ -46,11 +46,11 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="F68-w9-xdi" customClass="FormTextView" customModule="Kismat_App" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="28" width="304" height="72"/>
+                                        <rect key="frame" x="8" y="28" width="333" height="72"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="72" id="CSJ-iX-D1B"/>
-                                            <constraint firstAttribute="width" constant="304" id="n5q-Sh-bef"/>
+                                            <constraint firstAttribute="width" constant="333" id="n5q-Sh-bef"/>
                                         </constraints>
                                         <string key="text">Chemistry professor, having a decade of experience in teaching chemistry. Completed PHD from Rich University, Houston TX. Nobel prize winner in “biorthogonal chemistry”</string>
                                         <color key="textColor" name="Secondary Grey"/>
@@ -61,7 +61,7 @@
                                                 <color key="value" name="Text grey"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                <real key="value" value="11"/>
+                                                <real key="value" value="16"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="bottmInset">
                                                 <real key="value" value="15"/>
@@ -71,14 +71,14 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="338" id="2rz-xS-xtq"/>
-                                    <constraint firstAttribute="trailing" secondItem="F68-w9-xdi" secondAttribute="trailing" constant="19" id="3JB-yE-o7u"/>
+                                    <constraint firstAttribute="width" constant="349" id="2rz-xS-xtq"/>
+                                    <constraint firstAttribute="trailing" secondItem="F68-w9-xdi" secondAttribute="trailing" constant="8" id="3JB-yE-o7u"/>
                                     <constraint firstAttribute="bottom" secondItem="F68-w9-xdi" secondAttribute="bottom" id="7L8-gW-3YF"/>
                                     <constraint firstAttribute="height" constant="100" id="Qbe-nW-Tq3"/>
                                     <constraint firstItem="gEd-wu-Vd8" firstAttribute="top" secondItem="gP4-G8-zrb" secondAttribute="top" constant="8" id="dHX-ab-IgD"/>
-                                    <constraint firstItem="gEd-wu-Vd8" firstAttribute="leading" secondItem="gP4-G8-zrb" secondAttribute="leading" constant="15" id="giL-Tk-99f"/>
+                                    <constraint firstItem="gEd-wu-Vd8" firstAttribute="leading" secondItem="gP4-G8-zrb" secondAttribute="leading" constant="6" id="giL-Tk-99f"/>
                                     <constraint firstItem="F68-w9-xdi" firstAttribute="top" secondItem="gEd-wu-Vd8" secondAttribute="bottom" id="wBZ-2C-1wg"/>
-                                    <constraint firstItem="F68-w9-xdi" firstAttribute="leading" secondItem="gP4-G8-zrb" secondAttribute="leading" constant="15" id="ygg-ZV-NAI"/>
+                                    <constraint firstItem="F68-w9-xdi" firstAttribute="leading" secondItem="gP4-G8-zrb" secondAttribute="leading" constant="8" id="ygg-ZV-NAI"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -123,7 +123,7 @@
     </objects>
     <designables>
         <designable name="gEd-wu-Vd8">
-            <size key="intrinsicContentSize" width="46" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="49" height="21.333333333333332"/>
         </designable>
     </designables>
     <resources>

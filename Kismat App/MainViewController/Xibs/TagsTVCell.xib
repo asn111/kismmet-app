@@ -29,11 +29,11 @@
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OrF-Lz-C5N" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="90" height="28"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ChemistryBA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRO-RN-hKA" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="8" width="60" height="12"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ChemistryB b" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRO-RN-hKA" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="2" width="74" height="24"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="60" id="T5d-td-cYk"/>
-                                                    <constraint firstAttribute="height" constant="12" id="y52-6m-prq"/>
+                                                    <constraint firstAttribute="width" constant="74" id="T5d-td-cYk"/>
+                                                    <constraint firstAttribute="height" constant="24" id="y52-6m-prq"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -43,7 +43,7 @@
                                                         <color key="value" name="Text grey"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                        <real key="value" value="12"/>
+                                                        <real key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                                 </userDefinedRuntimeAttributes>
@@ -73,7 +73,7 @@
                                         <color key="backgroundColor" name="Primary Yellow"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="cre-uA-K6R" secondAttribute="trailing" constant="-5" id="5rz-iE-1vP"/>
-                                            <constraint firstItem="cre-uA-K6R" firstAttribute="leading" secondItem="KRO-RN-hKA" secondAttribute="trailing" id="B4u-mK-ku0"/>
+                                            <constraint firstItem="cre-uA-K6R" firstAttribute="leading" secondItem="KRO-RN-hKA" secondAttribute="trailing" constant="-7" id="B4u-mK-ku0"/>
                                             <constraint firstItem="KRO-RN-hKA" firstAttribute="centerY" secondItem="OrF-Lz-C5N" secondAttribute="centerY" id="R9J-Zn-nqQ"/>
                                             <constraint firstAttribute="width" constant="90" id="Y7q-Eu-yka"/>
                                             <constraint firstItem="KRO-RN-hKA" firstAttribute="centerX" secondItem="OrF-Lz-C5N" secondAttribute="centerX" id="ZJT-wj-uqs"/>
@@ -89,11 +89,11 @@
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ka-tI-lp8" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="102" y="0.0" width="90" height="28"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chemistry101" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtx-C5-zbC" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="8" width="74" height="12"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chemistry101" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtx-C5-zbC" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="1.6666666666666661" width="74" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="74" id="ZaL-2P-LDE"/>
-                                                    <constraint firstAttribute="height" constant="12" id="yBS-cu-7MW"/>
+                                                    <constraint firstAttribute="height" constant="25" id="yBS-cu-7MW"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -103,7 +103,7 @@
                                                         <color key="value" name="Text grey"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                        <real key="value" value="12"/>
+                                                        <real key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                                 </userDefinedRuntimeAttributes>
@@ -149,11 +149,10 @@
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qfV-cB-PBj" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="204" y="0.0" width="80" height="28"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFn-pr-x5z" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="8" width="62" height="12"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFn-pr-x5z" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="5.3333333333333339" width="64" height="17.666666666666664"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="62" id="Ky0-IT-aDI"/>
-                                                    <constraint firstAttribute="height" constant="12" id="xC6-Eu-6Rl"/>
+                                                    <constraint firstAttribute="width" constant="64" id="Ky0-IT-aDI"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -163,7 +162,7 @@
                                                         <color key="value" name="Text grey"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                        <real key="value" value="12"/>
+                                                        <real key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                                 </userDefinedRuntimeAttributes>
@@ -193,10 +192,9 @@
                                         <color key="backgroundColor" name="Primary Yellow"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="ZIc-mR-nvd" secondAttribute="trailing" constant="-3" id="6tg-rB-oRe"/>
-                                            <constraint firstAttribute="height" constant="28" id="7bS-sL-Ky5"/>
                                             <constraint firstItem="xFn-pr-x5z" firstAttribute="centerY" secondItem="qfV-cB-PBj" secondAttribute="centerY" id="Fd6-Eh-yKp"/>
                                             <constraint firstItem="ZIc-mR-nvd" firstAttribute="top" secondItem="qfV-cB-PBj" secondAttribute="top" constant="-5" id="Fth-dp-U8g"/>
-                                            <constraint firstItem="xFn-pr-x5z" firstAttribute="centerX" secondItem="qfV-cB-PBj" secondAttribute="centerX" constant="1" id="Tgr-38-LXL"/>
+                                            <constraint firstItem="xFn-pr-x5z" firstAttribute="centerX" secondItem="qfV-cB-PBj" secondAttribute="centerX" id="Tgr-38-LXL"/>
                                             <constraint firstAttribute="width" constant="80" id="tNe-9s-vS0"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -208,11 +206,11 @@
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CqF-qp-Wag" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="33" width="90" height="28"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ChemistryBA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Sd-rE-NEW" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="8" width="60" height="12"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ChemistryBA" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Sd-rE-NEW" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="2.6666666666666643" width="74" height="23"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="12" id="D7g-Jy-5PS"/>
-                                                    <constraint firstAttribute="width" constant="60" id="xtH-IT-37d"/>
+                                                    <constraint firstAttribute="height" constant="23" id="D7g-Jy-5PS"/>
+                                                    <constraint firstAttribute="width" constant="74" id="xtH-IT-37d"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -222,7 +220,7 @@
                                                         <color key="value" name="Text grey"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                        <real key="value" value="12"/>
+                                                        <real key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                                 </userDefinedRuntimeAttributes>
@@ -257,7 +255,7 @@
                                             <constraint firstAttribute="width" constant="90" id="lqi-et-HQm"/>
                                             <constraint firstAttribute="trailing" secondItem="9xd-B0-2lT" secondAttribute="trailing" constant="-5" id="rCt-A9-5JT"/>
                                             <constraint firstAttribute="height" constant="28" id="rJp-fj-JhZ"/>
-                                            <constraint firstItem="9xd-B0-2lT" firstAttribute="leading" secondItem="0Sd-rE-NEW" secondAttribute="trailing" id="yC9-j6-Hyc"/>
+                                            <constraint firstItem="9xd-B0-2lT" firstAttribute="leading" secondItem="0Sd-rE-NEW" secondAttribute="trailing" constant="-7" id="yC9-j6-Hyc"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -268,11 +266,11 @@
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CId-gD-vV5" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="102" y="33" width="80" height="28"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muH-6z-pUN" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="8" width="62" height="12"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muH-6z-pUN" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="2.6666666666666643" width="64" height="23"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="12" id="vEb-vG-ASU"/>
-                                                    <constraint firstAttribute="width" constant="62" id="wmy-Pv-4Th"/>
+                                                    <constraint firstAttribute="height" constant="23" id="vEb-vG-ASU"/>
+                                                    <constraint firstAttribute="width" constant="64" id="wmy-Pv-4Th"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -282,7 +280,7 @@
                                                         <color key="value" name="Text grey"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                        <real key="value" value="12"/>
+                                                        <real key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                                 </userDefinedRuntimeAttributes>
@@ -311,7 +309,7 @@
                                         </subviews>
                                         <color key="backgroundColor" name="Primary Yellow"/>
                                         <constraints>
-                                            <constraint firstItem="muH-6z-pUN" firstAttribute="centerX" secondItem="CId-gD-vV5" secondAttribute="centerX" constant="1" id="Heu-zt-L76"/>
+                                            <constraint firstItem="muH-6z-pUN" firstAttribute="centerX" secondItem="CId-gD-vV5" secondAttribute="centerX" id="Heu-zt-L76"/>
                                             <constraint firstAttribute="width" constant="80" id="JxP-Kn-Lcx"/>
                                             <constraint firstAttribute="trailing" secondItem="dSR-YM-i50" secondAttribute="trailing" constant="-3" id="go8-pW-fKJ"/>
                                             <constraint firstItem="dSR-YM-i50" firstAttribute="top" secondItem="CId-gD-vV5" secondAttribute="top" constant="-5" id="kdX-rI-1iW"/>
@@ -385,13 +383,13 @@
     </objects>
     <designables>
         <designable name="0Sd-rE-NEW">
-            <size key="intrinsicContentSize" width="70.666666666666671" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="88" height="17.666666666666668"/>
         </designable>
         <designable name="9xd-B0-2lT">
             <size key="intrinsicContentSize" width="14.333333333333334" height="19"/>
         </designable>
         <designable name="KRO-RN-hKA">
-            <size key="intrinsicContentSize" width="70.666666666666671" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="90.666666666666671" height="17.666666666666668"/>
         </designable>
         <designable name="Qjk-Gm-fBb">
             <size key="intrinsicContentSize" width="14.333333333333334" height="19"/>
@@ -406,13 +404,13 @@
             <size key="intrinsicContentSize" width="14.333333333333334" height="19"/>
         </designable>
         <designable name="gtx-C5-zbC">
-            <size key="intrinsicContentSize" width="75.666666666666671" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="94.333333333333329" height="17.666666666666668"/>
         </designable>
         <designable name="muH-6z-pUN">
-            <size key="intrinsicContentSize" width="30" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="37.333333333333336" height="17.666666666666668"/>
         </designable>
         <designable name="xFn-pr-x5z">
-            <size key="intrinsicContentSize" width="30" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="37.333333333333336" height="17.666666666666668"/>
         </designable>
     </designables>
     <resources>
