@@ -15,6 +15,7 @@ class SocialLinks_VC: MainViewController {
     
     var socialAccModel = [SocialAccModel]()
     var linkType = ""
+    var canEdit = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,11 @@ class SocialLinks_VC: MainViewController {
         registerCells()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        generalPublisher.onNext("socialAdded")
+    }
+    
     func registerCells() {
         
         socialLinksTV.tableFooterView = UIView()
@@ -31,6 +37,16 @@ class SocialLinks_VC: MainViewController {
         socialLinksTV.register(UINib(nibName: "SocialAccTVCell", bundle: nil), forCellReuseIdentifier: "SocialAccTVCell")
 
     }
+
+    
+    @objc func removeBtnPressed(sender:UIButton) {
+        let index = sender.tag
+        ApiService.deleteSocialLink(val: socialAccModel[index].socialAccountId)
+        socialAccModel.remove(at: index)
+        socialLinksTV.reloadData()
+    }
+    
+    
 }
 //MARK: TableView Extention
 extension SocialLinks_VC : UITableViewDelegate, UITableViewDataSource {
@@ -47,6 +63,15 @@ extension SocialLinks_VC : UITableViewDelegate, UITableViewDataSource {
         cell.socialLbl.text = socialAccModel[indexPath.row].linkTitle.capitalized
         cell.socialImgView.image = UIImage(named: linkType)
         cell.socialLbl.isUserInteractionEnabled = false
+        
+        if canEdit {
+            cell.removeBtn.isHidden = false
+            cell.removeBtn.addTarget(self, action: #selector(removeBtnPressed(sender:)), for: .touchUpInside)
+            cell.removeBtn.setImage(UIImage(systemName: "xmark"), for: .normal)
+            cell.removeBtn.cornerRadius = 10
+            cell.removeBtn.tag = indexPath.row
+        }
+        
         return cell
     }
     

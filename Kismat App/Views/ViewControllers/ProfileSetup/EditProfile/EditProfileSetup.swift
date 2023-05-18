@@ -32,7 +32,6 @@ class EditProfileSetup: MainViewController {
     weak var activeTextView: UITextView?
 
     var socialAccArray = [String]()
-    //var tempSocialAccArray = ["LinkedIn Handle","Twitter Handle","Instagram Handle","Snapchat Handle","Website"]
     
     var socialAccImgArray = [UIImage(named: ""),UIImage(named: "LinkedIn"),UIImage(named: "Twitter"),UIImage(named: "Instagram"),UIImage(named: "Snapchat"),UIImage(named: "Website")]
     
@@ -42,7 +41,6 @@ class EditProfileSetup: MainViewController {
     
     var userdbModel : Results<UserDBModel>!
     var socialAccModel = [SocialAccModel]()
-    //var socialAccdbModel = [UserSocialAccDBModel]()
     
     var isfromExtProf = true
     
@@ -54,7 +52,7 @@ class EditProfileSetup: MainViewController {
         
         
         registerCells()
-        userSocialAcc()
+        //userSocialAcc()
         userProfile()
         if DBService.fetchloggedInUser().count > 0 {
             userdbModel = DBService.fetchloggedInUser()
@@ -80,7 +78,7 @@ class EditProfileSetup: MainViewController {
             } else if val.contains("socialAdded") {
                 Logs.show(message: val)
                 
-                self?.userSocialAcc()
+                self?.userProfile()
 
             }
         }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
@@ -115,32 +113,6 @@ class EditProfileSetup: MainViewController {
             .subscribe(onNext: { [weak self] _, changes in
                 if let changes = changes {
                     Logs.show(message: "CHANGES: \(changes)")
-                    if DBService.fetchloggedInUser().count > 0 {
-                        self?.userdbModel = DBService.fetchloggedInUser()
-                        let user = self?.userdbModel.first
-                        self?.dataArray = ["",
-                                           user!.userName,
-                                           self!.formatDateForDisplay(date: self!.convertToDate(dateStr: user?.dob ?? "")),
-                                           user!.publicEmail,
-                                           user!.workAddress,
-                                           user!.workTitle,
-                                           ""]
-                        self?.fullName = user!.userName
-                        self?.profilePic = user!.profilePicture
-                        self?.dateOfBirth = user!.dob
-                        self?.publicEmail = user!.publicEmail
-                        self?.workTitle = user!.workAddress
-                        self?.placeOfWork = user!.workAddress
-                        self?.about = user!.about
-                        self?.countryCode = user!.countryCode
-                        self?.phoneNum = user!.phone
-                        self?.proximity = user!.proximity
-                        self?.isProfileVisible = user!.isProfileVisible
-                        
-                        self?.tags = (user?.tags.components(separatedBy: ","))!
-                        AppFunctions.setTagsArray(value: self?.tags ?? [""])
-                    }
-                    self?.profileTV.reloadData()
                 }
             })
             .disposed(by: dispose_Bag)
@@ -238,56 +210,6 @@ class EditProfileSetup: MainViewController {
         self.tags.removeAll()
         self.tags = AppFunctions.getTagsArray()
         profileTV.reloadRows(at: [IndexPath(row: placeholderArray.count + socialAccImgArray.count + 1, section: 0)], with: .fade)
-    }
-    
-    func deleteSocialLink(index: Int) {
-        
-        /*var newIndex = 0
-        var comingType = ""
-        
-        switch index {
-            case 6:
-                comingType = "linkedIn"
-                let linkTypes = self.socialAccdbModel.compactMap({$0.linkType})
-                if let matchingIndex = linkTypes.firstIndex(where: { $0.range(of: comingType, options: .caseInsensitive) != nil }) {
-                    Logs.show(message: "Index : \(matchingIndex)")
-                    newIndex = matchingIndex
-                }
-            case 7:
-                comingType = "twitter"
-                let linkTypes = self.socialAccdbModel.compactMap({$0.linkType})
-                if let matchingIndex = linkTypes.firstIndex(where: { $0.range(of: comingType, options: .caseInsensitive) != nil }) {
-                    Logs.show(message: "Index : \(matchingIndex)")
-                    newIndex = matchingIndex
-                }
-            case 8:
-                comingType = "instagram"
-                let linkTypes = self.socialAccdbModel.compactMap({$0.linkType})
-                if let matchingIndex = linkTypes.firstIndex(where: { $0.range(of: comingType, options: .caseInsensitive) != nil }) {
-                    Logs.show(message: "Index : \(matchingIndex)")
-                    newIndex = matchingIndex
-                }
-            case 9:
-                comingType = "snapchat"
-                let linkTypes = self.socialAccdbModel.compactMap({$0.linkType})
-                if let matchingIndex = linkTypes.firstIndex(where: { $0.range(of: comingType, options: .caseInsensitive) != nil }) {
-                    Logs.show(message: "Index : \(matchingIndex)")
-                    newIndex = matchingIndex
-                }
-            case 10:
-                comingType = "website"
-                let linkTypes = self.socialAccdbModel.compactMap({$0.linkType})
-                if let matchingIndex = linkTypes.firstIndex(where: { $0.range(of: comingType, options: .caseInsensitive) != nil }) {
-                    Logs.show(message: "Index : \(matchingIndex)")
-                    newIndex = matchingIndex
-                }
-            default:
-                print("default")
-                
-        }
-        
-        ApiService.deleteSocialLink(val: socialAccdbModel[newIndex].socialAccountId)*/
-        
     }
     
     @objc func addBtnPressed(sender:UIButton) {
@@ -476,7 +398,32 @@ class EditProfileSetup: MainViewController {
                         if val.userId != "" {
                             Logs.show(message: "PROFILE: 👉🏻 \(String(describing: self.userdbModel))")
                             self.socialAccModel = val.socialAccounts
-
+                            if DBService.fetchloggedInUser().count > 0 {
+                                self.userdbModel = DBService.fetchloggedInUser()
+                                let user = self.userdbModel.first
+                                self.dataArray = ["",
+                                                   user!.userName,
+                                                   self.formatDateForDisplay(date: self.convertToDate(dateStr: user?.dob ?? "")),
+                                                   user!.publicEmail,
+                                                   user!.workAddress,
+                                                   user!.workTitle,
+                                                   ""]
+                                self.fullName = user!.userName
+                                self.profilePic = user!.profilePicture
+                                self.dateOfBirth = user!.dob
+                                self.publicEmail = user!.publicEmail
+                                self.workTitle = user!.workAddress
+                                self.placeOfWork = user!.workAddress
+                                self.about = user!.about
+                                self.countryCode = user!.countryCode
+                                self.phoneNum = user!.phone
+                                self.proximity = user!.proximity
+                                self.isProfileVisible = user!.isProfileVisible
+                                
+                                self.tags = (user?.tags.components(separatedBy: ","))!
+                                AppFunctions.setTagsArray(value: self.tags)
+                            }
+                            self.profileTV.reloadData()
                         } else {
                             self.hidePKHUD()
                         }
@@ -501,66 +448,7 @@ class EditProfileSetup: MainViewController {
                 switch model {
                     case .next(let val):
                         if val {
-                            if DBService.fetchUserSocialAccList().count > 0 {
-                                //self.socialAccdbModel = Array(DBService.fetchUserSocialAccList())
-
-                                /*var imageIndices = [String: Int]()
-                                for (index, imageName) in self.tempSocialAccImgArray.enumerated() {
-                                    imageIndices[imageName.lowercased()] = index
-                                }
-                                
-                                self.socialAccdbModel.sort { (model1, model2) -> Bool in
-                                    if let imageName1 = model1.linkImage.components(separatedBy: "/").last?.replacingOccurrences(of: ".png", with: "").lowercased(),
-                                       let imageName2 = model2.linkImage.components(separatedBy: "/").last?.replacingOccurrences(of: ".png", with: "").lowercased(),
-                                       let index1 = imageIndices[imageName1],
-                                       let index2 = imageIndices[imageName2] {
-                                        return index1 < index2
-                                    } else {
-                                        // If there is any error in extracting the image name or index, keep the original order
-                                        return false
-                                    }
-                                }
-                                
-                                self.socialAccArray = self.socialAccdbModel.compactMap({$0.linkTitle})
-                                AppFunctions.setSocialArray(value: self.socialAccArray)
-                               
-                                if AppFunctions.getSocialArray().count > 0 {
-                                    
-                                    self.socialAccArray = self.socialAccdbModel.compactMap({$0.linkTitle})
-                                    let linkTypes = self.socialAccdbModel.compactMap({$0.linkType})
-                                    AppFunctions.setSocialArray(value: self.socialAccArray)
-                                    
-                                    var matchedIndex = [Int]()
-                                    if self.tempSocialAccArray.count > 0 {
-
-                                        for (_, linkType) in linkTypes.enumerated() {
-                                            if let matchingIndex = self.tempSocialAccArray.firstIndex(where: { $0.range(of: linkType, options: .caseInsensitive) != nil }) {
-                                                matchedIndex.append(matchingIndex)
-                                            }
-                                        }
-                                        
-                                        let nonMatchedIndex = self.tempSocialAccArray.indices.filter { !matchedIndex.contains($0) }
-                                        for index in nonMatchedIndex {
-                                            self.socialAccArray.insert(self.tempSocialAccArray[index], at: index)
-                                        }
-                                    }
-                                    
-                                    var indexPaths: [IndexPath] = []
-                                    
-                                    for i in 8...12 {
-                                        let indexPath = IndexPath(item: i, section: 0)
-                                        indexPaths.append(indexPath)
-                                    }
-                                    self.profileTV.reloadRows(at: indexPaths, with: .none)
-                                    
-
-                                } else {
-                                    self.socialAccArray = self.tempSocialAccArray
-                                }*/
-                            } else {
-                                //self.socialAccArray = self.tempSocialAccArray
-                            }
-
+                            
                         } else {
                             self.hidePKHUD()
                         }
@@ -819,8 +707,6 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                     let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
                     
                     cell.socialLbl.isUserInteractionEnabled = false
-
-                    //cell.socialImgView.image = //tempSocialAccImgArray[(indexPath.row - placeholderArray.count) + 1]
                     
                     if socialAccounts[(indexPath.row - placeholderArray.count)].linkImage != "" {
                         let imageUrl = URL(string: socialAccounts[(indexPath.row - placeholderArray.count)].linkImage)
@@ -828,21 +714,6 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                     }
                     
                     cell.socialLbl.text = socialAccounts[(indexPath.row - placeholderArray.count)].linkType
-
-                    /*if !socialAccArray.isEmpty {
-                        
-                       if socialAccArray[(indexPath.row - placeholderArray.count)].isEqual(tempSocialAccArray[(indexPath.row - placeholderArray.count)]) {
-                            cell.removeBtn.removeTarget(self, action: #selector(removeBtnPressed(sender:)), for: .touchUpInside)
-                            cell.removeBtn.addTarget(self, action: #selector(addBtnPressed(sender:)), for: .touchUpInside)
-                            cell.removeBtn.setImage(UIImage(systemName: "plus"), for: .normal)
-                            cell.removeBtn.cornerRadius = 4
-                        } else {
-                            cell.removeBtn.removeTarget(self, action: #selector(addBtnPressed(sender:)), for: .touchUpInside)
-                            cell.removeBtn.addTarget(self, action: #selector(removeBtnPressed(sender:)), for: .touchUpInside)
-                            cell.removeBtn.setImage(UIImage(systemName: "xmark"), for: .normal)
-                            cell.removeBtn.cornerRadius = 10
-                        }
-                    }*/
                     
                     return cell
                 }
@@ -858,6 +729,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 self.presentVC(id: "SocialLinks_VC",presentFullType: "not") { (vc:SocialLinks_VC) in
                     vc.socialAccModel = socialAccModel.filter {$0.linkType == socialAccounts[(indexPath.row - placeholderArray.count)].linkType }
                     vc.linkType = socialAccounts[(indexPath.row - placeholderArray.count)].linkType
+                    vc.canEdit = true
                 }
             } else {
                 AppFunctions.showSnackBar(str: "Please add Social account")

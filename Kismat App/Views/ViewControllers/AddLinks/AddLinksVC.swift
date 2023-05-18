@@ -98,9 +98,7 @@ class AddLinksVC: MainViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        if accountName == "" { return }
-        
+                
         if accountType == "tags" {
             if !isUpdatedOnServer { return }
             var arr = AppFunctions.getTagsArray()
@@ -108,29 +106,9 @@ class AddLinksVC: MainViewController {
             arr.append(accountName)
             AppFunctions.setTagsArray(value: arr)
             generalPublisher.onNext("tagsAdded")
+        } else {
+            generalPublisher.onNext("socialAdded")
         }
-    }
-    
-    func addToArrays(index: Int) {
-        
-        if !isUpdatedOnServer { return }
-        var arr = AppFunctions.getSocialArray()
-        
-        let placeholderValues = ["LinkedIn Profile","Twitter Username","Instagram Handle","Snapchat Username","Website URL"]
-        // Initialize the array with placeholder values if it's empty
-        if arr.isEmpty {
-            arr = placeholderValues
-        }
-        // If the index is out of bounds, pad the array with empty strings
-        while index >= arr.count {
-            arr.append("")
-        }
-        // Update the value at the specified index
-        arr[index] = accountName
-        
-        AppFunctions.setSocialArray(value: arr)
-        generalPublisher.onNext("socialAdded")
-        
     }
     
     func setupDropDown() {
