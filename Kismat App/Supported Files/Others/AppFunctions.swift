@@ -65,6 +65,7 @@ let isShadowMode = "isShadowMode"
 let profileVisble = "profileVisble"
 let premiumUser = "premiumUser"
 let userId = "userId"
+let viewedCount = "viewedCount"
 let role = "role"
 let devTokenString = "devTokenString"
 let isPaymentSaved = "isPaymentSaved"
@@ -136,6 +137,20 @@ class AppFunctions {
             token = preferences.string(forKey: userId)!
         }
         return token
+    }
+    
+    open class func saveviewedCount( count: Int){
+        preferences.set(count, forKey: viewedCount)
+        preferences.synchronize()
+    }
+    open class func getviewedCount() -> Int{
+        var count = 0
+        if preferences.object(forKey: userId) == nil {
+            Logs.show(message: "NIL getviewedCount")
+        } else {
+            count = preferences.integer(forKey: viewedCount)
+        }
+        return count
     }
     
     open class func saveRole( name: String){

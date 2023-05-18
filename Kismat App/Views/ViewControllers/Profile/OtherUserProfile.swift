@@ -21,7 +21,8 @@ class OtherUserProfile: MainViewController {
     var socialAccImgArray = [UIImage(named: "LinkedIn"),UIImage(named: "Twitter"),UIImage(named: "Instagram"),UIImage(named: "Snapchat"),UIImage(named: "Website")]
     var img = UIImage(named: "placeholder")
 
-    var tempSocialAccImgArray = ["LinkedIn","Twitter","Insta","snapchat","Website"]
+    var tempSocialAccImgArray = [String()]
+    var socialAccounts = [SocialAccDBModel()]
 
     var isFromBlock = false
     
@@ -34,18 +35,19 @@ class OtherUserProfile: MainViewController {
         
         //setupSocialArray()
         registerCells()
+        
+        socialAccounts = Array(DBService.fetchSocialAccList())
+        tempSocialAccImgArray = socialAccounts.compactMap { $0.linkType }
+        
+        
         if markView {
             ApiService.markViewedUser(val: userModel.userId)
         }
         
         socialAccModel = userModel.socialAccounts
         
-        for i in 0..<socialAccModel.count {
-            Logs.show(message: "NOT SORTED: \(self.socialAccModel[i].linkType)")
-        }
-
         
-        var imageIndices = [String: Int]()
+        /*var imageIndices = [String: Int]()
         for (index, imageName) in self.tempSocialAccImgArray.enumerated() {
             imageIndices[imageName.lowercased()] = index
         }
@@ -64,7 +66,7 @@ class OtherUserProfile: MainViewController {
         
         for i in 0..<socialAccModel.count {
             Logs.show(message: "SORTED: \(self.socialAccModel[i].linkType)")
-        }
+        }*/
     }
     
     func registerCells() {
@@ -155,10 +157,10 @@ class OtherUserProfile: MainViewController {
 extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if socialAccModel.isEmpty {
+        if socialAccounts.isEmpty {
             return 7
         }
-        return socialAccModel.count + 8
+        return socialAccounts.count + 8
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -254,7 +256,7 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 return cell
             case 5:
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
-                if !socialAccModel.isEmpty {
+                if !socialAccounts.isEmpty {
                     cell.headerLblView.isHidden = false
                     cell.headerLbl.text = "Social accounts"
                 } else {
@@ -263,13 +265,13 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 
                 return cell
                 
-            case socialAccModel.isEmpty ? 5 : socialAccModel.count + 6: // EmptyView
+            case socialAccounts.isEmpty ? 5 : socialAccounts.count + 6: // EmptyView
                 
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = true
                 return cell
                 
-            case socialAccModel.isEmpty ? 6 : socialAccModel.count + 7:
+            case socialAccounts.isEmpty ? 6 : socialAccounts.count + 7:
                 let cell : BlockBtnTVCell = tableView.dequeueReusableCell(withIdentifier: "BlockBtnTVCell", for: indexPath) as! BlockBtnTVCell
                 if isFromBlock {
                     cell.blockBtn.isHidden = true
@@ -280,13 +282,13 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 
             default:
                 let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
-                if socialAccModel[indexPath.row - 6].linkImage != "" && socialAccModel[indexPath.row - 6].linkImage != nil {
-                    let imageUrl = URL(string: socialAccModel[indexPath.row - 6].linkImage)
+                if socialAccounts[indexPath.row - 6].linkImage != "" {
+                    let imageUrl = URL(string: socialAccounts[indexPath.row - 6].linkImage)
                     cell.socialImgView.sd_setImage(with: imageUrl , placeholderImage: UIImage()) { (image, error, imageCacheType, url) in }
                 } else {
                     //cell.profilePicBtn.setImage(img, for: .normal)
                 }
-                cell.socialLbl.text = socialAccModel[indexPath.row - 6].linkTitle.capitalized
+                cell.socialLbl.text = socialAccounts[indexPath.row - 6].linkType.capitalized
                 cell.socialLbl.isUserInteractionEnabled = false
                 return cell
         }
@@ -294,20 +296,13 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row > 5 {
-            //AppFunctions.showSnackBar(str: "\(indexPath.row)")
-            switch socialAccModel[indexPath.row - 6].linkType {
-                case "LinkedIn":
-                    AppFunctions.openLinkedIn(userName: socialAccModel[indexPath.row - 6].linkUrl)
-                case "Twitter":
-                    AppFunctions.openTwitter(userName: socialAccModel[indexPath.row - 6].linkUrl)
-                case "Instagram":
-                    AppFunctions.openInstagram(userName: socialAccModel[indexPath.row - 6].linkUrl)
-                case "Snapchat":
-                    AppFunctions.openSnapchat(userName: socialAccModel[indexPath.row - 6].linkUrl)
-                case "Website":
-                    AppFunctions.openWebLink(link: socialAccModel[indexPath.row - 6].linkUrl, vc: self)
-                default:
-                    print("default")
+            if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 6].linkType }).count > 0 {
+                self.presentVC(id: "SocialLinks_VC",presentFullType: "not") { (vc:SocialLinks_VC) in
+                    vc.socialAccModel = socialAccModel.filter {$0.linkType == socialAccounts[indexPath.row - 6].linkType }
+                    vc.linkType = socialAccounts[indexPath.row - 6].linkType
+                }
+            } else {
+                AppFunctions.showSnackBar(str: "No social account found")
             }
         }
     }

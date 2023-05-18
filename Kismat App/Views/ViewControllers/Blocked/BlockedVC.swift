@@ -242,10 +242,14 @@ extension BlockedVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row != 0 {
-            self.pushVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
-                vc.isFromBlock = true
-                vc.userModel = users[indexPath.row - 1]
+        if indexPath.row != 0 && AppFunctions.isProfileVisble() {
+            if !AppFunctions.isPremiumUser() && AppFunctions.getviewedCount() >= 15 {
+                AppFunctions.showSnackBar(str: "You have reached your profile views limit.")
+            } else if !users.isEmpty {
+                self.pushVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
+                    vc.userModel = users[indexPath.row - 1]
+                    vc.isFromBlock = true
+                }
             }
         }
     }

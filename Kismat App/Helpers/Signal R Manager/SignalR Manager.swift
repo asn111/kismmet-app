@@ -23,8 +23,8 @@ class SignalRManager: NSObject {
     
     func initializeSignalR() {
         
-        let baseUrl = "http://35.170.190.98"
-        
+        let baseUrl = "http://api.kismmet.com"
+
         connection = HubConnectionBuilder(url: URL(string: baseUrl + "/kismmetHub")!)
             .withLogging(minLogLevel: .debug)
             .withAutoReconnect()

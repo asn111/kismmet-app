@@ -232,6 +232,21 @@ extension UILabel {
 
 //MARK: Texfields
 
+extension UITextField.BorderStyle {
+    func insets() -> UIEdgeInsets {
+        switch self {
+            case .none:
+                return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            case .line, .bezel:
+                return UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+            case .roundedRect:
+                return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+            @unknown default:
+                return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
+    }
+}
+
 extension UITextField {
     
     @IBInspectable var doneAccessory: Bool{
@@ -631,6 +646,13 @@ extension UINavigationController {
 
 extension UIImage {
     
+    func resized(to size: CGSize) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        self.draw(in: CGRect(origin: .zero, size: size))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
+    }
     
     func fixOrientation() -> UIImage? {
         

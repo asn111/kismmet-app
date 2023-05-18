@@ -32,19 +32,26 @@ class EditProfileSetup: MainViewController {
     weak var activeTextView: UITextView?
 
     var socialAccArray = [String]()
-    var tempSocialAccArray = ["LinkedIn Profile","Twitter Username","Instagram Handle","Snapchat Username","Website URL"]
+    //var tempSocialAccArray = ["LinkedIn Handle","Twitter Handle","Instagram Handle","Snapchat Handle","Website"]
     
-    var tempSocialAccImgArray = ["LinkedIn","Twitter","Insta","snapchat","Website"]
-
     var socialAccImgArray = [UIImage(named: ""),UIImage(named: "LinkedIn"),UIImage(named: "Twitter"),UIImage(named: "Instagram"),UIImage(named: "Snapchat"),UIImage(named: "Website")]
     
+    var tempSocialAccImgArray = [String()]
+    var socialAccounts = [SocialAccDBModel()]
+
+    
     var userdbModel : Results<UserDBModel>!
-    var socialAccdbModel = [SocialAccDBModel]()
+    var socialAccModel = [SocialAccModel]()
+    //var socialAccdbModel = [UserSocialAccDBModel]()
     
     var isfromExtProf = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        socialAccounts = Array(DBService.fetchSocialAccList())
+        tempSocialAccImgArray = socialAccounts.compactMap { $0.linkType }
+        
         
         registerCells()
         userSocialAcc()
@@ -208,26 +215,6 @@ class EditProfileSetup: MainViewController {
     
     @objc func removeBtnPressed(sender:UIButton) {
         switch sender.tag {
-            case 8:
-                socialAccArray[0] = tempSocialAccArray[0]
-                deleteSocialLink(index: 8)
-                profileTV.reloadRows(at: [IndexPath(row: 8, section: 0)], with: .right)
-            case 9:
-                socialAccArray[1] = tempSocialAccArray[1]
-                deleteSocialLink(index: 9)
-                profileTV.reloadRows(at: [IndexPath(row: 9, section: 0)], with: .right)
-            case 10:
-                socialAccArray[2] = tempSocialAccArray[2]
-                deleteSocialLink(index: 10)
-                profileTV.reloadRows(at: [IndexPath(row: 10, section: 0)], with: .right)
-            case 11:
-                socialAccArray[3] = tempSocialAccArray[3]
-                deleteSocialLink(index: 11)
-                profileTV.reloadRows(at: [IndexPath(row: 11, section: 0)], with: .right)
-            case 12:
-                socialAccArray[4] = tempSocialAccArray[4]
-                deleteSocialLink(index: 12)
-                profileTV.reloadRows(at: [IndexPath(row: 12, section: 0)], with: .right)
             case 100:
                 removeFromTagArray(index: sender.tag)
             case 200:
@@ -255,7 +242,7 @@ class EditProfileSetup: MainViewController {
     
     func deleteSocialLink(index: Int) {
         
-        var newIndex = 0
+        /*var newIndex = 0
         var comingType = ""
         
         switch index {
@@ -299,43 +286,24 @@ class EditProfileSetup: MainViewController {
                 
         }
         
-        ApiService.deleteSocialLink(val: socialAccdbModel[newIndex].socialAccountId)
+        ApiService.deleteSocialLink(val: socialAccdbModel[newIndex].socialAccountId)*/
         
     }
     
     @objc func addBtnPressed(sender:UIButton) {
-        switch sender.tag {
-            case 8:
-                self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
-                    vc.accountType = "linkedIn"
-                }
-            case 9:
-                self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
-                    vc.accountType = "twitter"
-                }
-            case 10:
-                self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
-                    vc.accountType = "instagram"
-                }
-            case 11:
-                self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
-                    vc.accountType = "snapchat"
-                }
-            case 12:
-                self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
-                    vc.accountType = "website"
-                }
-            default:
-                let arr = AppFunctions.getTagsArray()
-                if arr.count >= 5 {
-                    AppFunctions.showSnackBar(str: "Maximum tags added, remove to add new")
-                    return
-                }
-                self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
-                    vc.accountType = "tags"
-                }
+        if sender.tag > 12 {
+            let arr = AppFunctions.getTagsArray()
+            if arr.count >= 5 {
+                AppFunctions.showSnackBar(str: "Maximum tags added, remove to add new")
+                return
+            }
+            self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
+                vc.accountType = "tags"
+            }
+        } else if sender.tag == 7 {
+            self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
+            }
         }
-        
     }
     
     
@@ -507,6 +475,8 @@ class EditProfileSetup: MainViewController {
                     case .next(let val):
                         if val.userId != "" {
                             Logs.show(message: "PROFILE: 👉🏻 \(String(describing: self.userdbModel))")
+                            self.socialAccModel = val.socialAccounts
+
                         } else {
                             self.hidePKHUD()
                         }
@@ -531,10 +501,10 @@ class EditProfileSetup: MainViewController {
                 switch model {
                     case .next(let val):
                         if val {
-                            if DBService.fetchSocialAccList().count > 0 {
-                                self.socialAccdbModel = Array(DBService.fetchSocialAccList())
+                            if DBService.fetchUserSocialAccList().count > 0 {
+                                //self.socialAccdbModel = Array(DBService.fetchUserSocialAccList())
 
-                                var imageIndices = [String: Int]()
+                                /*var imageIndices = [String: Int]()
                                 for (index, imageName) in self.tempSocialAccImgArray.enumerated() {
                                     imageIndices[imageName.lowercased()] = index
                                 }
@@ -586,9 +556,9 @@ class EditProfileSetup: MainViewController {
 
                                 } else {
                                     self.socialAccArray = self.tempSocialAccArray
-                                }
+                                }*/
                             } else {
-                                self.socialAccArray = self.tempSocialAccArray
+                                //self.socialAccArray = self.tempSocialAccArray
                             }
 
                         } else {
@@ -657,7 +627,7 @@ class EditProfileSetup: MainViewController {
 extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return placeholderArray.count + socialAccImgArray.count + 5
+        return placeholderArray.count + socialAccounts.count + 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -697,22 +667,26 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 
                 return cell
                 
-            case placeholderArray.count - 1 :
+            case placeholderArray.count - 1 : // Social Accounts Heading
                 
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
                 cell.addBtn.isHidden = true
                 cell.headerLbl.text = "Link your social accounts"
+                cell.addBtn.isHidden = false
+                cell.addBtn.tag = indexPath.row
+            
+                cell.addBtn.addTarget(self, action: #selector(addBtnPressed(sender:)), for: .touchUpInside)
                 
                 return cell
                 
-            case (placeholderArray.count + socialAccImgArray.count) - 1: // EmptyView
+            case (placeholderArray.count + socialAccounts.count + 1) - 1: // EmptyView
                 
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = true
                 return cell
                 
-            case placeholderArray.count + socialAccImgArray.count: // Tags Heading
+            case placeholderArray.count + socialAccounts.count + 1: // Tags Heading
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
                 cell.headerLbl.text = "Tags"
@@ -727,7 +701,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 cell.addBtn.addTarget(self, action: #selector(addBtnPressed(sender:)), for: .touchUpInside)
                 return cell
                 
-            case placeholderArray.count + socialAccImgArray.count + 1 : // Tags view Btn
+            case placeholderArray.count + socialAccounts.count + 2 : // Tags view Btn
                 let cell : TagsTVCell = tableView.dequeueReusableCell(withIdentifier: "TagsTVCell", for: indexPath) as! TagsTVCell
                 
                 cell.isForEditing = true
@@ -776,7 +750,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 
                 return cell
                 
-            case placeholderArray.count + socialAccImgArray.count + 2 : // Tags Count view
+            case placeholderArray.count + socialAccounts.count + 3 : // Tags Count view
                 
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.notifHeaderView.isHidden = false
@@ -784,7 +758,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 
                 return cell
                 
-            case placeholderArray.count + socialAccImgArray.count + 3: // Profile Btn
+            case placeholderArray.count + socialAccounts.count + 4: // Profile Btn
                 
                 let cell : GeneralButtonTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralButtonTVCell", for: indexPath) as! GeneralButtonTVCell
                 
@@ -801,7 +775,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 return cell
                 
                 
-            case placeholderArray.count + socialAccImgArray.count + 4: // Done Btn
+            case placeholderArray.count + socialAccounts.count + 5: // Done Btn
                 
                 let cell : GeneralButtonTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralButtonTVCell", for: indexPath) as! GeneralButtonTVCell
                 cell.genBtn.setTitle("Done", for: .normal)
@@ -844,15 +818,20 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                     
                     let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
                     
-                    cell.removeBtn.isHidden = false
-                    cell.removeBtn.tag = indexPath.row
                     cell.socialLbl.isUserInteractionEnabled = false
 
-                    cell.socialImgView.image = socialAccImgArray[(indexPath.row - placeholderArray.count) + 1]
-                    if !socialAccArray.isEmpty {
-                        cell.socialLbl.text = socialAccArray[(indexPath.row - placeholderArray.count)]
+                    //cell.socialImgView.image = //tempSocialAccImgArray[(indexPath.row - placeholderArray.count) + 1]
+                    
+                    if socialAccounts[(indexPath.row - placeholderArray.count)].linkImage != "" {
+                        let imageUrl = URL(string: socialAccounts[(indexPath.row - placeholderArray.count)].linkImage)
+                        cell.socialImgView.sd_setImage(with: imageUrl , placeholderImage: UIImage()) { (image, error, imageCacheType, url) in }
+                    }
+                    
+                    cell.socialLbl.text = socialAccounts[(indexPath.row - placeholderArray.count)].linkType
+
+                    /*if !socialAccArray.isEmpty {
                         
-                        if socialAccArray[(indexPath.row - placeholderArray.count)].isEqual(tempSocialAccArray[(indexPath.row - placeholderArray.count)]) {
+                       if socialAccArray[(indexPath.row - placeholderArray.count)].isEqual(tempSocialAccArray[(indexPath.row - placeholderArray.count)]) {
                             cell.removeBtn.removeTarget(self, action: #selector(removeBtnPressed(sender:)), for: .touchUpInside)
                             cell.removeBtn.addTarget(self, action: #selector(addBtnPressed(sender:)), for: .touchUpInside)
                             cell.removeBtn.setImage(UIImage(systemName: "plus"), for: .normal)
@@ -863,7 +842,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                             cell.removeBtn.setImage(UIImage(systemName: "xmark"), for: .normal)
                             cell.removeBtn.cornerRadius = 10
                         }
-                    }
+                    }*/
                     
                     return cell
                 }
@@ -874,34 +853,26 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
         
         Logs.show(message: "INDEX: \(indexPath.row)")
 
-        
-        /*if indexPath.row > 4 {
-            //AppFunctions.showSnackBar(str: "\(indexPath.row)")
-            switch socialAccModel[indexPath.row - 5].linkType {
-                case "LinkedIn":
-                    AppFunctions.openLinkedIn(userName: socialAccModel[indexPath.row - 5].linkUrl)
-                case "Twitter":
-                    AppFunctions.openTwitter(userName: socialAccModel[indexPath.row - 5].linkUrl)
-                case "Instagram":
-                    AppFunctions.openInstagram(userName: socialAccModel[indexPath.row - 5].linkUrl)
-                case "Snapchat":
-                    AppFunctions.openSnapchat(userName: socialAccModel[indexPath.row - 5].linkUrl)
-                case "Website":
-                    AppFunctions.openWebLink(link: socialAccModel[indexPath.row - 5].linkUrl)
-                default:
-                    print("default")
+        if indexPath.row > placeholderArray.count - 1 && indexPath.row < (placeholderArray.count + socialAccounts.count + 1) - 1{
+            if socialAccModel.filter({$0.linkType == socialAccounts[(indexPath.row - placeholderArray.count)].linkType }).count > 0 {
+                self.presentVC(id: "SocialLinks_VC",presentFullType: "not") { (vc:SocialLinks_VC) in
+                    vc.socialAccModel = socialAccModel.filter {$0.linkType == socialAccounts[(indexPath.row - placeholderArray.count)].linkType }
+                    vc.linkType = socialAccounts[(indexPath.row - placeholderArray.count)].linkType
+                }
+            } else {
+                AppFunctions.showSnackBar(str: "Please add Social account")
             }
-        }*/
+        }
     }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if indexPath.row == (placeholderArray.count + socialAccImgArray.count) - 1 {
+        if indexPath.row == (placeholderArray.count + socialAccounts.count + 1) - 1 {
             return 20.0 // empty view
-        } else if indexPath.row == placeholderArray.count + socialAccImgArray.count + 2 {
+        } else if indexPath.row == placeholderArray.count + socialAccounts.count + 3 {
             return 30.0 // empty view
-        } else if indexPath.row == placeholderArray.count + socialAccImgArray.count + 3 {
+        } else if indexPath.row == placeholderArray.count + socialAccounts.count + 4 {
             return 30.0 // profile btn
         } else {
             return UITableView.automaticDimension

@@ -20,7 +20,7 @@ class FeedVC: MainViewController {
     var users = [UserModel]()
     var userdbModel = UserDBModel()
 
-    var viewedCount = 0
+    //var viewedCount = 0
     var searchString = ""
     
     var isProfileVisible = false
@@ -184,7 +184,7 @@ class FeedVC: MainViewController {
                 guard let self = self else {return}
                 switch model {
                     case .next(let val):
-                        self.viewedCount = val.profilesViewed
+                        AppFunctions.saveviewedCount(count: val.profilesViewed)
                         if val.users.count > 0 {
                             self.users.removeAll()
                             self.users = val.users
@@ -265,7 +265,14 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                 cell.viewCountsLbl.isUserInteractionEnabled = true
                 cell.viewCountsLbl.addGestureRecognizer(tap)
                 
-                cell.viewCountsLbl.attributedText = NSAttributedString(string: "\(viewedCount) out of 15 profiles viewed", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
+                if AppFunctions.isPremiumUser() {
+                    cell.viewCountsLbl.isHidden = true
+                    cell.viewedToolTipBtn.isHidden = true
+                } else {
+                    cell.viewCountsLbl.isHidden = false
+                    cell.viewedToolTipBtn.isHidden = false
+                }
+                cell.viewCountsLbl.attributedText = NSAttributedString(string: "\(AppFunctions.getviewedCount()) out of 15 profiles viewed", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
                 return cell
                 
             default:
@@ -347,10 +354,9 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row != 0 && AppFunctions.isProfileVisble() {
-            //if viewedCount >= 15 {
-             //   AppFunctions.showSnackBar(str: "You have reached your profile views limit.")
-            //} else
-            if !users.isEmpty {
+            if !AppFunctions.isPremiumUser() && AppFunctions.getviewedCount() >= 15 {
+                AppFunctions.showSnackBar(str: "You have reached your profile views limit.")
+            } else if !users.isEmpty {
                 self.pushVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
                     vc.userModel = users[indexPath.row - 1]
                     vc.markView = true

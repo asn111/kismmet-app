@@ -24,6 +24,7 @@ class ProfileSetupVC: MainViewController  {
         super.viewDidLoad()
 
         registerCells()
+        getSocialAccounts()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -276,7 +277,32 @@ class ProfileSetupVC: MainViewController  {
         cell.generalTF.resignFirstResponder() // 2.5
     }
     
+    //MARK: API Method
     
+    func getSocialAccounts() {
+        
+        APIService
+            .singelton
+            .getSocialAccounts()
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        if val {
+                            
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
     
 }
 //MARK: TableView Extention

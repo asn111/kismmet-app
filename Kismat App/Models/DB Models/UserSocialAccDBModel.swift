@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class SocialAccDBModel: Object {
+class UserSocialAccDBModel: Object {
     
     @objc dynamic var socialAccountId : Int = 0
     @objc dynamic var linkTitle : String = ""
@@ -19,5 +19,16 @@ class SocialAccDBModel: Object {
     
     override class func primaryKey() -> String? {
         "socialAccountId"
+    }
+}
+
+class SocialAccDBModel: Object {
+    
+    @objc dynamic var linkTypeId : Int = 0
+    @objc dynamic var linkType : String = ""
+    @objc dynamic var linkImage : String = ""
+    
+    override class func primaryKey() -> String? {
+        "linkTypeId"
     }
 }

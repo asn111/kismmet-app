@@ -6,9 +6,16 @@
 //
 
 import UIKit
+import SDWebImage
+import DropDown
 
 class AddLinksVC: MainViewController {
 
+    
+    
+    @IBAction func dropDownBtnPressed(_ sender: Any) {
+            dropDown.show()
+    }
     
     @IBAction func cancelBtnPressed(_ sender: Any) {
         self.dismiss(animated: true)
@@ -23,7 +30,7 @@ class AddLinksVC: MainViewController {
                 AppFunctions.showSnackBar(str: "All fields are required")
             }
         } else {
-            if accountName != "" && accountLink != "" {
+            if accountName != "" && accountLink != "" && linkId != 0 {
                 userSocialAdd()
             } else {
                 AppFunctions.showSnackBar(str: "All fields are required")
@@ -37,19 +44,31 @@ class AddLinksVC: MainViewController {
     @IBOutlet weak var cancelBtnTopConst: NSLayoutConstraint!
     @IBOutlet weak var headingLbl: fullyCustomLbl!
     @IBOutlet weak var addAccView: RoundCornerView!
+    @IBOutlet weak var accountTypeView: RoundCornerView!
     @IBOutlet weak var addAccName: FormTextField!
     @IBOutlet weak var adAccLink: RoundCornerView!
     @IBOutlet weak var addAccLink: FormTextField!
+    @IBOutlet weak var dropDownBtn: UIButton!
     
     var isKeyBoardShown = false
     var isUpdatedOnServer = false
     var accountType = ""
     var accountName = ""
     var accountLink = ""
+    var linkId = 0
+    let dropDown = DropDown()
+
+    var socialAccName = [String()] //["LinkedIn","Twitter","Instagram","Snapchat","Website"]
+    var socialAccounts = [SocialAccDBModel()]
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        socialAccounts = Array(DBService.fetchSocialAccList())
+        socialAccName = socialAccounts.compactMap { $0.linkType }
+        
+        setupDropDown()
         self.view.addBlurEffect(style: .extraLight, cornerRadius: 0, alpha: 0.5)
         
         self.view.bringSubviewToFront(mainView)
@@ -65,32 +84,14 @@ class AddLinksVC: MainViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        switch accountType {
-            case "linkedIn":
-                headingLbl.text = "Increase your connection through LinkedIn"
-                addAccName.placeholder = "Name your LinkedIn Username"
-            case "twitter":
-                headingLbl.text = "Share your Twitter account"
-                addAccName.placeholder = "Name your Twitter Username"
-            case "instagram":
-                headingLbl.text = "Get followers through your Instagram handle"
-                addAccName.placeholder = "Name your Instagram handle"
-            case "snapchat":
-                headingLbl.text = "Your Snapchat account"
-                addAccName.placeholder = "Name your Snapchat account"
-            case "website":
-                headingLbl.text = "Get reach on your Website"
-                addAccName.placeholder = "Name your Website link"
-                addAccLink.placeholder = "Enter your website link"
-            case "tags":
-                adAccLink.isHidden = true
-                headingLbl.text = "Tags are what describe you in here"
-                addAccName.placeholder = "Enter tag here"
-                saveBtnTopConst.constant = 80
-                cancelBtnTopConst.constant = 80
-                view.setNeedsLayout()
-            default :
-                print("default")
+        if accountType == "tags" {
+            adAccLink.isHidden = true
+            headingLbl.text = "Tags are what describe you in here"
+            addAccName.placeholder = "Enter tag here"
+            accountTypeView.isHidden = true
+            saveBtnTopConst.constant = 120
+            cancelBtnTopConst.constant = 120
+            view.setNeedsLayout()
         }
         
     }
@@ -100,26 +101,13 @@ class AddLinksVC: MainViewController {
         
         if accountName == "" { return }
         
-        switch accountType {
-            case "linkedIn":
-                addToArrays(index: 0)
-            case "twitter":
-                addToArrays(index: 1)
-            case "instagram":
-                addToArrays(index: 2)
-            case "snapchat":
-                addToArrays(index: 3)
-            case "website":
-                addToArrays(index: 4)
-            case "tags":
-                if !isUpdatedOnServer { return }
-                var arr = AppFunctions.getTagsArray()
-                if arr.count >= 5 { return }
-                arr.append(accountName)
-                AppFunctions.setTagsArray(value: arr)
-                generalPublisher.onNext("tagsAdded")
-            default :
-                print("default")
+        if accountType == "tags" {
+            if !isUpdatedOnServer { return }
+            var arr = AppFunctions.getTagsArray()
+            if arr.count >= 5 { return }
+            arr.append(accountName)
+            AppFunctions.setTagsArray(value: arr)
+            generalPublisher.onNext("tagsAdded")
         }
     }
     
@@ -143,6 +131,52 @@ class AddLinksVC: MainViewController {
         AppFunctions.setSocialArray(value: arr)
         generalPublisher.onNext("socialAdded")
         
+    }
+    
+    func setupDropDown() {
+        
+        dropDown.hide()
+        dropDown.anchorView = dropDownBtn // UIView or UIBarButtonItem
+        dropDown.dataSource = socialAccName
+        dropDown.direction = .bottom
+        
+        let appearance = DropDown.appearance()
+        
+        appearance.cellHeight = 50
+        appearance.backgroundColor = UIColor(named: "BG Base White")
+        appearance.selectionBackgroundColor = UIColor(red: 0.6494, green: 0.8155, blue: 1.0, alpha: 0.2)
+        appearance.separatorColor = UIColor(named: "Secondary Grey")!
+        appearance.cornerRadius = 10
+        //appearance.shadowColor = UIColor(white: 0.6, alpha: 1)
+        //appearance.shadowOpacity = 0.9
+        appearance.shadowRadius = 15
+        appearance.animationduration = 0.25
+        appearance.textColor = UIColor(named: "Text grey")!
+        appearance.textFont = UIFont(name: "Work Sans", size: 20)!
+        appearance.setupMaskedCorners([.layerMaxXMaxYCorner, .layerMinXMaxYCorner])
+        
+        // Action triggered on selection
+        dropDown.selectionAction = { [weak self] (index: Int, item: String) in
+            print("Selected item: \(item) at index: \(index)")
+            
+            let account = self?.socialAccounts[index]
+
+            self?.dropDownBtn.setTitle("  \(item)", for: .normal)
+            self?.linkId = account?.linkTypeId ?? 0
+            if account?.linkImage != "" {
+                let imageUrl = URL(string: account?.linkImage ?? "")
+                
+                // Create the transformer with the desired size and scale mode
+                let transformer = SDImageResizingTransformer(size: CGSize(width: 20, height: 20), scaleMode: .aspectFit)
+
+                self?.dropDownBtn.sd_setImage(with: imageUrl, for: .normal, placeholderImage: UIImage(named: "Website")?.resized(to: CGSize(width: 20, height: 20)), context: [.imageTransformer: transformer]) { (image, error, imageCacheType) in
+                    // Perform any additional actions after the image is set
+                }
+            } else {
+                self?.dropDownBtn.setImage(UIImage(named: "Website")?.resized(to: CGSize(width: 20, height: 20)), for: .normal)
+            }
+                        
+        }
     }
     
     @objc
@@ -179,22 +213,6 @@ class AddLinksVC: MainViewController {
     
     func userSocialAdd() {
         self.showPKHUD(WithMessage: "Signing up")
-        
-        var linkId = 0
-        switch accountType {
-            case "linkedIn":
-                linkId = 1
-            case "twitter":
-                linkId = 2
-            case "instagram":
-                linkId = 3
-            case "snapchat":
-                linkId = 4
-            case "website":
-                linkId = 5
-            default :
-                print("default")
-        }
         
         let pram : [String : Any] = [ "linkTitle": accountName,
                                       "linkURL": accountLink,

@@ -134,6 +134,7 @@ class SignInVC: MainViewController {
                         Logs.show(message: "MARKED: 👉🏻 \(val)")
                         if val {
                             self.userProfile()
+                            self.getSocialAccounts()
                         } else {
                             self.hidePKHUD()
                         }
@@ -181,4 +182,28 @@ class SignInVC: MainViewController {
             .disposed(by: dispose_Bag)
     }
 
+    func getSocialAccounts() {
+        
+        APIService
+            .singelton
+            .getSocialAccounts()
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        if val {
+                            
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
 }

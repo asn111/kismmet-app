@@ -78,9 +78,9 @@ class Database {
         }
     }
     
-    func createSocialAccDB(APIlist: [SocialAccModel]) {
+    func createUserSocialAccDB(APIlist: [SocialAccModel]) {
         let realm = try! Realm()
-        let socialDB = SocialAccDBModel()
+        let socialDB = UserSocialAccDBModel()
         
         try! realm.write {
             for item in APIlist {
@@ -91,10 +91,26 @@ class Database {
                 if item.socialAccountId != nil {socialDB.socialAccountId = item.socialAccountId}
                 if item.linkImage != nil {socialDB.linkImage = item.linkImage}
                 
+                realm.create(UserSocialAccDBModel.self, value: socialDB, update: .all)
+            }
+        }
+    }
+    
+    func createSocialAccDB(APIlist: [SocialAccTypeModel]) {
+        let realm = try! Realm()
+        let socialDB = SocialAccDBModel()
+        
+        try! realm.write {
+            for item in APIlist {
+                if item.socialLinkTypeId != nil {socialDB.linkTypeId = item.socialLinkTypeId}
+                if item.linkType != nil {socialDB.linkType = item.linkType}
+                if item.linkImage != nil {socialDB.linkImage = item.linkImage}
+                
                 realm.create(SocialAccDBModel.self, value: socialDB, update: .all)
             }
         }
     }
+
     
     
     ///////////////////*********************////////////////////////********************////////////////////////*********************///////////////////////
@@ -106,6 +122,11 @@ class Database {
     func fetchloggedInUser() -> Results<UserDBModel> {
         let realm = try! Realm()
         return realm.objects(UserDBModel.self).filter(NSPredicate(format: "userId = %@", "\(AppFunctions.getUserId())"))
+    }
+    
+    func fetchUserSocialAccList() -> Results<UserSocialAccDBModel> {
+        let realm = try! Realm()
+        return realm.objects(UserSocialAccDBModel.self)
     }
     
     func fetchSocialAccList() -> Results<SocialAccDBModel> {
@@ -130,6 +151,17 @@ class Database {
     
     
     func removeUserSocialAcc(){
+        let realm = try! Realm()
+        try! realm.write {
+            let socialAcc = realm.objects(UserSocialAccDBModel.self)
+            if socialAcc.count > 0 {
+                realm.delete(socialAcc)
+                Logs.show(message: "DELETED socialAcc")
+            }
+        }
+    }
+    
+    func removeSocialAcc(){
         let realm = try! Realm()
         try! realm.write {
             let socialAcc = realm.objects(SocialAccDBModel.self)

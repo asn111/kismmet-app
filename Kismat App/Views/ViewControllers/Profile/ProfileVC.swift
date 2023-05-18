@@ -19,7 +19,8 @@ class ProfileVC: MainViewController {
     var socialAccArray = [String]()
     var socialAccImgArray = [UIImage(named: "LinkedIn"),UIImage(named: "Twitter"),UIImage(named: "Instagram"),UIImage(named: "Snapchat"),UIImage(named: "Website")]
     
-    var tempSocialAccImgArray = ["LinkedIn","Twitter","Insta","snapchat","Website"]
+    var tempSocialAccImgArray = [String()]
+    var socialAccounts = [SocialAccDBModel()]
 
     var img = UIImage(named: "placeholder")
     var isOtherProfile = false
@@ -32,6 +33,9 @@ class ProfileVC: MainViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        socialAccounts = Array(DBService.fetchSocialAccList())
+        tempSocialAccImgArray = socialAccounts.compactMap { $0.linkType }
         
         registerCells()
         
@@ -154,6 +158,42 @@ class ProfileVC: MainViewController {
         self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
     }
     
+    func setupLbl(textLbl: UITextField, completeText: String, textToHighlight: String) {
+        let remainingText = completeText.replacingOccurrences(of: textToHighlight, with: "")
+        
+        let remainingLabel = UILabel()
+        remainingLabel.text = remainingText
+        remainingLabel.font = UIFont(name: "Roboto", size: 14)
+        remainingLabel.textColor = UIColor(hexFromString: "4E6E81")
+        
+        let textToHighlightLabel = UILabel()
+        textToHighlightLabel.attributedText = attributedStringForLbl(completeText: completeText, textToHighlight: textToHighlight)
+    
+        textLbl.leftView = remainingLabel
+        textLbl.leftViewMode = .always
+        textLbl.rightView = textToHighlightLabel
+        textLbl.rightViewMode = .always
+        textLbl.rightView?.contentMode = .right
+    }
+
+    func attributedStringForLbl(completeText: String, textToHighlight: String) -> NSAttributedString {
+        
+        let attributedText = NSMutableAttributedString(string: textToHighlight)
+        
+        let highlightRange = NSRange(location: 0, length: textToHighlight.count)
+                
+        attributedText.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Roboto", size: 14)!.light , range: highlightRange)
+        attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexFromString: "4E6E81") , range: highlightRange)
+        
+        return attributedText
+    }
+
+
+
+
+
+
+    
     //MARK: API METHODS
 
     func userProfile() {
@@ -168,7 +208,7 @@ class ProfileVC: MainViewController {
                         if val.userId != "" {
                             self.socialAccModel = val.socialAccounts
                             
-                            var imageIndices = [String: Int]()
+                            /*var imageIndices = [String: Int]()
                             for (index, imageName) in self.tempSocialAccImgArray.enumerated() {
                                 imageIndices[imageName.lowercased()] = index
                             }
@@ -183,7 +223,7 @@ class ProfileVC: MainViewController {
                                     // If there is any error in extracting the image name or index, keep the original order
                                     return false
                                 }
-                            }
+                            }*/
                             
                         } else {
                             self.hidePKHUD()
@@ -232,10 +272,10 @@ class ProfileVC: MainViewController {
 extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if socialAccModel.isEmpty {
+        if tempSocialAccImgArray.isEmpty {
             return 5
         }
-        return socialAccModel.count + 6
+        return tempSocialAccImgArray.count + 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -404,15 +444,18 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 
             default:
                 let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
-                //cell.socialImgView.image = socialAccImgArray[indexPath.row - 5]
 
-                if socialAccModel[indexPath.row - 6].linkImage != "" && socialAccModel[indexPath.row - 6].linkImage != nil {
-                 let imageUrl = URL(string: socialAccModel[indexPath.row - 6].linkImage)
+                if socialAccounts[indexPath.row - 6].linkImage != "" {
+                 let imageUrl = URL(string: socialAccounts[indexPath.row - 6].linkImage)
                  cell.socialImgView.sd_setImage(with: imageUrl , placeholderImage: UIImage()) { (image, error, imageCacheType, url) in }
-                 } else {
-                 //cell.profilePicBtn.setImage(img, for: .normal)
                  }
-                cell.socialLbl.text = socialAccModel[indexPath.row - 6].linkTitle.capitalized
+                
+                //var countTxt = socialAccModel.filter {$0.linkType == socialAccounts[indexPath.row - 6].linkType}.count
+                
+                cell.socialLbl.text = socialAccounts[indexPath.row - 6].linkType.capitalized
+                
+                //setupLbl(textLbl: cell.socialLbl, completeText: "\(socialAccounts[indexPath.row - 6].linkType.capitalized)   \(countTxt) Accounts", textToHighlight: " \(countTxt) Accounts")
+
                 cell.socialLbl.isUserInteractionEnabled = false
                 return cell
         }
@@ -420,21 +463,16 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row > 5 {
-            //AppFunctions.showSnackBar(str: "\(indexPath.row)")
-            switch socialAccModel[indexPath.row - 6].linkType {
-                case "LinkedIn":
-                    AppFunctions.openLinkedIn(userName: socialAccModel[indexPath.row - 6].linkUrl)
-                case "Twitter":
-                    AppFunctions.openTwitter(userName: socialAccModel[indexPath.row - 6].linkUrl)
-                case "Instagram":
-                    AppFunctions.openInstagram(userName: socialAccModel[indexPath.row - 6].linkUrl)
-                case "Snapchat":
-                    AppFunctions.openSnapchat(userName: socialAccModel[indexPath.row - 6].linkUrl)
-                case "Website":
-                    AppFunctions.openWebLink(link: socialAccModel[indexPath.row - 6].linkUrl, vc: self)
-                default:
-                    print("default")
+            
+            if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 6].linkType }).count > 0 {
+                self.presentVC(id: "SocialLinks_VC",presentFullType: "not") { (vc:SocialLinks_VC) in
+                    vc.socialAccModel = socialAccModel.filter {$0.linkType == socialAccounts[indexPath.row - 6].linkType }
+                    vc.linkType = socialAccounts[indexPath.row - 6].linkType
+                }
+            } else {
+                AppFunctions.showSnackBar(str: "No social account found")
             }
+            
         }
     }
     

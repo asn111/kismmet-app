@@ -17,7 +17,7 @@ class ProfileSetupExtend: MainViewController {
     
     var socialAccImgArray = [UIImage(named: "LinkedIn"),UIImage(named: "Twitter"),UIImage(named: "Instagram"),UIImage(named: "Snapchat"),UIImage(named: "Website")]
     
-    var socialAccdbModel = [SocialAccDBModel]()
+    var socialAccdbModel = [UserSocialAccDBModel]()
     
     var isFromSetting = false
     var proximity = 150
@@ -319,8 +319,8 @@ class ProfileSetupExtend: MainViewController {
                 switch model {
                     case .next(let val):
                         if val {
-                            if DBService.fetchSocialAccList().count > 0 {
-                                self.socialAccdbModel = Array(DBService.fetchSocialAccList())
+                            if DBService.fetchUserSocialAccList().count > 0 {
+                                self.socialAccdbModel = Array(DBService.fetchUserSocialAccList())
                             }
                         } else {
                             self.hidePKHUD()

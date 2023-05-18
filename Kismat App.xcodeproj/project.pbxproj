@@ -14,10 +14,11 @@
 		29350A1C29D0C6A900F19BD5 /* SocialAccType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29350A1B29D0C6A900F19BD5 /* SocialAccType.swift */; };
 		29350A1F29D0C89C00F19BD5 /* SocialAccModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29350A1E29D0C89C00F19BD5 /* SocialAccModel.swift */; };
 		29350A2129D0CC4100F19BD5 /* UserDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29350A2029D0CC4100F19BD5 /* UserDBModel.swift */; };
-		29350A2329D1A08800F19BD5 /* SocialAccDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29350A2229D1A08800F19BD5 /* SocialAccDBModel.swift */; };
+		29350A2329D1A08800F19BD5 /* UserSocialAccDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29350A2229D1A08800F19BD5 /* UserSocialAccDBModel.swift */; };
 		29350A2529D1C0D100F19BD5 /* OtherUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29350A2429D1C0D100F19BD5 /* OtherUserProfile.swift */; };
 		29350A2729D1C51200F19BD5 /* ViewedByMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29350A2629D1C51200F19BD5 /* ViewedByMe.swift */; };
 		29350A2929D3A78800F19BD5 /* ProfileSetupExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29350A2829D3A78800F19BD5 /* ProfileSetupExtentions.swift */; };
+		2938E73E2A02CD7D00C21AEA /* SocialLinks VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2938E73D2A02CD7D00C21AEA /* SocialLinks VC.swift */; };
 		2940B8FF299D634300D3F863 /* ImageViewTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2940B8FD299D634300D3F863 /* ImageViewTVCell.swift */; };
 		2940B900299D634300D3F863 /* ImageViewTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2940B8FE299D634300D3F863 /* ImageViewTVCell.xib */; };
 		29473E51299C634A00859D8A /* TagsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29473E4F299C634A00859D8A /* TagsTVCell.swift */; };
@@ -136,10 +137,11 @@
 		29350A1B29D0C6A900F19BD5 /* SocialAccType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAccType.swift; sourceTree = "<group>"; };
 		29350A1E29D0C89C00F19BD5 /* SocialAccModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAccModel.swift; sourceTree = "<group>"; };
 		29350A2029D0CC4100F19BD5 /* UserDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDBModel.swift; sourceTree = "<group>"; };
-		29350A2229D1A08800F19BD5 /* SocialAccDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAccDBModel.swift; sourceTree = "<group>"; };
+		29350A2229D1A08800F19BD5 /* UserSocialAccDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSocialAccDBModel.swift; sourceTree = "<group>"; };
 		29350A2429D1C0D100F19BD5 /* OtherUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserProfile.swift; sourceTree = "<group>"; };
 		29350A2629D1C51200F19BD5 /* ViewedByMe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewedByMe.swift; sourceTree = "<group>"; };
 		29350A2829D3A78800F19BD5 /* ProfileSetupExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupExtentions.swift; sourceTree = "<group>"; };
+		2938E73D2A02CD7D00C21AEA /* SocialLinks VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SocialLinks VC.swift"; sourceTree = "<group>"; };
 		2940B8FD299D634300D3F863 /* ImageViewTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewTVCell.swift; sourceTree = "<group>"; };
 		2940B8FE299D634300D3F863 /* ImageViewTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewTVCell.xib; sourceTree = "<group>"; };
 		29473E4F299C634A00859D8A /* TagsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsTVCell.swift; sourceTree = "<group>"; };
@@ -283,9 +285,17 @@
 			isa = PBXGroup;
 			children = (
 				29350A2029D0CC4100F19BD5 /* UserDBModel.swift */,
-				29350A2229D1A08800F19BD5 /* SocialAccDBModel.swift */,
+				29350A2229D1A08800F19BD5 /* UserSocialAccDBModel.swift */,
 			);
 			path = "DB Models";
+			sourceTree = "<group>";
+		};
+		2938E73C2A02CD1F00C21AEA /* SocialLinksView */ = {
+			isa = PBXGroup;
+			children = (
+				2938E73D2A02CD7D00C21AEA /* SocialLinks VC.swift */,
+			);
+			path = SocialLinksView;
 			sourceTree = "<group>";
 		};
 		29473E53299C663200859D8A /* Notification */ = {
@@ -604,6 +614,7 @@
 		299FDD82299684E50049741B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2938E73C2A02CD1F00C21AEA /* SocialLinksView */,
 				29BE184A29FA6E42000EAC0E /* EnlargedIV */,
 				29846D3F29A15AF800393EB3 /* AccountStatus */,
 				29846D3C29A154DA00393EB3 /* ChangePass */,
@@ -1054,6 +1065,7 @@
 				29350A1F29D0C89C00F19BD5 /* SocialAccModel.swift in Sources */,
 				29473E5D299CBFA400859D8A /* ProfileSetupExtend.swift in Sources */,
 				29350A1A29D0C43B00F19BD5 /* UserModel.swift in Sources */,
+				2938E73E2A02CD7D00C21AEA /* SocialLinks VC.swift in Sources */,
 				299FDD5E29967D1D0049741B /* AppFunctions.swift in Sources */,
 				29FD316629A5FD9400BDBD9C /* EditProfileSetup.swift in Sources */,
 				299FDD5829967D1D0049741B /* LoadingViewable.swift in Sources */,
@@ -1075,7 +1087,7 @@
 				29F5290329970DA500FE2EBA /* GeneralTextviewTVCell.swift in Sources */,
 				299FDD5629967D1D0049741B /* AnimateloadingView.swift in Sources */,
 				299FDD8C2996B20A0049741B /* SignupVC.swift in Sources */,
-				29350A2329D1A08800F19BD5 /* SocialAccDBModel.swift in Sources */,
+				29350A2329D1A08800F19BD5 /* UserSocialAccDBModel.swift in Sources */,
 				299FDD7D29967DC90049741B /* Database.swift in Sources */,
 				299E03CE29A141450064A5E3 /* MembershipVC.swift in Sources */,
 				29219B7129ED952000B47D40 /* VisibilityOffTVCell.swift in Sources */,
@@ -1261,7 +1273,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Kismat App/Info.plist";
@@ -1299,7 +1311,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Kismat App/Info.plist";

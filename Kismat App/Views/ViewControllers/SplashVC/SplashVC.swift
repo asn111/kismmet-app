@@ -25,6 +25,8 @@ class SplashVC: MainViewController {
             /*DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             }*/
             self.startUpCall()
+            self.getSocialAccounts()
+
 
         } else {
             btnView.isHidden = false
@@ -115,6 +117,31 @@ class SplashVC: MainViewController {
                             } else {
                                 self.navigateVC(id: "ProfileSetupVC") { (vc:ProfileSetupVC) in }
                             }
+                            
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
+    
+    func getSocialAccounts() {
+        
+        APIService
+            .singelton
+            .getSocialAccounts()
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        if val {
                             
                         } else {
                             self.hidePKHUD()
