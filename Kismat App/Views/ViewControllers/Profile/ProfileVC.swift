@@ -462,7 +462,38 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row > 5 {
+        if indexPath.row == 4 {
+            
+            var tagList = [String]()
+            if isOtherProfile {
+                if userModel.tags != "" {
+                    if !userModel.tags.contains(",") {
+                        tagList.append(userModel.tags)
+                    } else {
+                        let split = userModel.tags.split(separator: ",")
+                        tagList = split.map { String($0) } // Convert Substring to String
+                    }
+                }
+            } else {
+                if let userDb = userdbModel {
+                    if let user = userDb.first {
+                        if user.tags != "" {
+                            if !user.tags.contains(",") {
+                                tagList.append(userModel.tags)
+                            } else {
+                                let split = user.tags.split(separator: ",")
+                                tagList = split.map { String($0) } // Convert Substring to String
+                                }
+                            }
+                        }
+                    }
+                }
+            
+            
+            self.presentVC(id: "TagsView_VC",presentFullType: "not") { (vc:TagsView_VC) in
+                vc.tagList = tagList
+            }
+        } else if indexPath.row > 5 {
             
             if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 6].linkType }).count > 0 {
                 self.presentVC(id: "SocialLinks_VC",presentFullType: "not") { (vc:SocialLinks_VC) in

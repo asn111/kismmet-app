@@ -85,15 +85,19 @@ class AddLinksVC: MainViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         if accountType == "tags" {
+            
+            addAccName.delegate = self
+            createNonDisappearingPlaceholder(for: addAccName, placeholderText: "#", font: UIFont.systemFont(ofSize: 16), color: UIColor(named: "Secondary Grey")!)
+
             adAccLink.isHidden = true
-            headingLbl.text = "Tags are what describe you in here"
+            headingLbl.text = "Find people with similar interests by searching tags in the feed. Choose 5 tags that represent you, your hobbies, and your passions."
             addAccName.placeholder = "Enter tag here"
             accountTypeView.isHidden = true
             saveBtnTopConst.constant = 120
             cancelBtnTopConst.constant = 120
             view.setNeedsLayout()
         }
-        
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -109,6 +113,26 @@ class AddLinksVC: MainViewController {
         } else {
             generalPublisher.onNext("socialAdded")
         }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if accountType != "tags" {
+            return true
+        }
+        let currentText = textField.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        return !updatedText.contains(" ")
+    }
+    
+    func createNonDisappearingPlaceholder(for textField: UITextField, placeholderText: String, font: UIFont, color: UIColor) {
+        let attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: color])
+        let placeholderLabel = UILabel()
+        placeholderLabel.attributedText = attributedPlaceholder
+        placeholderLabel.sizeToFit()
+        
+        textField.leftView = placeholderLabel
+        textField.leftViewMode = .always
     }
     
     func setupDropDown() {

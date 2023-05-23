@@ -20,6 +20,7 @@ class SocialLinks_VC: MainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        headingLbl.text = "Social Links Conneted"
         registerCells()
     }
 

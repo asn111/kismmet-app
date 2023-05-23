@@ -3019,6 +3019,76 @@ this email.</string>
             </objects>
             <point key="canvasLocation" x="3116.7938931297708" y="716.90140845070425"/>
         </scene>
+        <!--Tags ViewVC-->
+        <scene sceneID="9V2-6F-b1k">
+            <objects>
+                <viewController storyboardIdentifier="TagsView_VC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MUf-76-xAo" customClass="TagsView_VC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="l7f-gd-wUd">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kR1-dd-pfA" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="232" width="393" height="620"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="2Fl-q8-ijr">
+                                        <rect key="frame" x="0.0" y="75" width="393" height="545"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some text here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDK-rV-LMg" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="30" y="30" width="343" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="IPQ-t5-Ktc"/>
+                                            <constraint firstAttribute="width" constant="343" id="h7l-Vp-GGk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                                <color key="value" name="Secondary Grey"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="m"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                <real key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="BG Base White"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="620" id="C33-5i-v6h"/>
+                                    <constraint firstItem="2Fl-q8-ijr" firstAttribute="leading" secondItem="kR1-dd-pfA" secondAttribute="leading" id="FLM-Aa-LEe"/>
+                                    <constraint firstItem="PDK-rV-LMg" firstAttribute="top" secondItem="kR1-dd-pfA" secondAttribute="top" constant="30" id="G4h-JQ-c4K"/>
+                                    <constraint firstAttribute="bottom" secondItem="2Fl-q8-ijr" secondAttribute="bottom" id="hKr-Lk-h5i"/>
+                                    <constraint firstItem="2Fl-q8-ijr" firstAttribute="top" secondItem="PDK-rV-LMg" secondAttribute="bottom" constant="24" id="j4j-mV-ETw"/>
+                                    <constraint firstItem="PDK-rV-LMg" firstAttribute="leading" secondItem="kR1-dd-pfA" secondAttribute="leading" constant="30" id="vVC-WB-Ln4"/>
+                                    <constraint firstAttribute="trailing" secondItem="2Fl-q8-ijr" secondAttribute="trailing" id="z6K-nk-8Ya"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="topLimitedCornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="zDg-y2-NuO"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kR1-dd-pfA" firstAttribute="leading" secondItem="zDg-y2-NuO" secondAttribute="leading" id="4nV-6q-mZ2"/>
+                            <constraint firstItem="kR1-dd-pfA" firstAttribute="trailing" secondItem="zDg-y2-NuO" secondAttribute="trailing" id="SPh-MX-vg6"/>
+                            <constraint firstAttribute="bottom" secondItem="kR1-dd-pfA" secondAttribute="bottom" id="xxB-9B-M7a"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="headingLbl" destination="PDK-rV-LMg" id="uQu-od-N84"/>
+                        <outlet property="tagsTV" destination="2Fl-q8-ijr" id="PnW-be-PtM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4mL-u8-NY4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2355" y="718"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="0ZP-IY-8wV">
@@ -3104,6 +3174,9 @@ this email.</string>
         </designable>
         <designable name="OZM-Ne-b6O">
             <size key="intrinsicContentSize" width="168.33333333333334" height="14.333333333333334"/>
+        </designable>
+        <designable name="PDK-rV-LMg">
+            <size key="intrinsicContentSize" width="96" height="16.666666666666668"/>
         </designable>
         <designable name="S9Q-It-9Aw">
             <size key="intrinsicContentSize" width="173" height="21.333333333333332"/>

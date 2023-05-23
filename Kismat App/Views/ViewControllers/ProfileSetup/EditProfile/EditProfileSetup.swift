@@ -579,6 +579,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 cell.headerLblView.isHidden = false
                 cell.headerLbl.text = "Tags"
                 cell.addBtn.isHidden = false
+                cell.notifHeaderLbl.isHidden = true
                 cell.addBtn.tag = indexPath.row
                 if tags.count == 5 {
                     cell.addBtn.isHidden = true

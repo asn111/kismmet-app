@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		29219B7129ED952000B47D40 /* VisibilityOffTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29219B6F29ED952000B47D40 /* VisibilityOffTVCell.swift */; };
 		29219B7229ED952000B47D40 /* VisibilityOffTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29219B7029ED952000B47D40 /* VisibilityOffTVCell.xib */; };
+		292B22E42A1CC01100D43783 /* TagsView VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292B22E32A1CC01100D43783 /* TagsView VC.swift */; };
 		29350A1729CF489300F19BD5 /* SignalR Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29350A1629CF489300F19BD5 /* SignalR Manager.swift */; };
 		29350A1A29D0C43B00F19BD5 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29350A1929D0C43B00F19BD5 /* UserModel.swift */; };
 		29350A1C29D0C6A900F19BD5 /* SocialAccType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29350A1B29D0C6A900F19BD5 /* SocialAccType.swift */; };
@@ -38,6 +39,8 @@
 		295A11DC29F28EE200D0D436 /* EditProfileExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295A11DB29F28EE200D0D436 /* EditProfileExtention.swift */; };
 		2964617129EEC913003FD692 /* BlockedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2964617029EEC913003FD692 /* BlockedVC.swift */; };
 		2964617329EECC55003FD692 /* SuezOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2964617229EECC55003FD692 /* SuezOne-Regular.ttf */; };
+		296D76912A1CF0A0005A3A99 /* hashTagsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D768F2A1CF0A0005A3A99 /* hashTagsTVCell.swift */; };
+		296D76922A1CF0A0005A3A99 /* hashTagsTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 296D76902A1CF0A0005A3A99 /* hashTagsTVCell.xib */; };
 		2976102C29DDB85300B74050 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2976102B29DDB85300B74050 /* StoreKit.framework */; };
 		2976102F29DDBF0700B74050 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2976102E29DDBF0700B74050 /* IAPManager.swift */; };
 		2977B7F7299B81D600A0670C /* MixHeaderTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2977B7F5299B81D600A0670C /* MixHeaderTVCell.swift */; };
@@ -132,6 +135,7 @@
 		2788D47DD7B231370D26CC44 /* Pods-Kismat App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat App.release.xcconfig"; path = "Target Support Files/Pods-Kismat App/Pods-Kismat App.release.xcconfig"; sourceTree = "<group>"; };
 		29219B6F29ED952000B47D40 /* VisibilityOffTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisibilityOffTVCell.swift; sourceTree = "<group>"; };
 		29219B7029ED952000B47D40 /* VisibilityOffTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VisibilityOffTVCell.xib; sourceTree = "<group>"; };
+		292B22E32A1CC01100D43783 /* TagsView VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TagsView VC.swift"; sourceTree = "<group>"; };
 		29350A1629CF489300F19BD5 /* SignalR Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SignalR Manager.swift"; sourceTree = "<group>"; };
 		29350A1929D0C43B00F19BD5 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		29350A1B29D0C6A900F19BD5 /* SocialAccType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAccType.swift; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 		295A11DB29F28EE200D0D436 /* EditProfileExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileExtention.swift; sourceTree = "<group>"; };
 		2964617029EEC913003FD692 /* BlockedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedVC.swift; sourceTree = "<group>"; };
 		2964617229EECC55003FD692 /* SuezOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SuezOne-Regular.ttf"; sourceTree = "<group>"; };
+		296D768F2A1CF0A0005A3A99 /* hashTagsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hashTagsTVCell.swift; sourceTree = "<group>"; };
+		296D76902A1CF0A0005A3A99 /* hashTagsTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = hashTagsTVCell.xib; sourceTree = "<group>"; };
 		2976102B29DDB85300B74050 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2976102E29DDBF0700B74050 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		2977B7F5299B81D600A0670C /* MixHeaderTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixHeaderTVCell.swift; sourceTree = "<group>"; };
@@ -281,6 +287,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		292B22E22A1CBFE800D43783 /* TagsView  */ = {
+			isa = PBXGroup;
+			children = (
+				292B22E32A1CC01100D43783 /* TagsView VC.swift */,
+				296D768E2A1CF079005A3A99 /* Xibs */,
+			);
+			path = "TagsView ";
+			sourceTree = "<group>";
+		};
 		29350A1829D0BAAB00F19BD5 /* DB Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,6 +374,15 @@
 				2964617029EEC913003FD692 /* BlockedVC.swift */,
 			);
 			path = Blocked;
+			sourceTree = "<group>";
+		};
+		296D768E2A1CF079005A3A99 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				296D768F2A1CF0A0005A3A99 /* hashTagsTVCell.swift */,
+				296D76902A1CF0A0005A3A99 /* hashTagsTVCell.xib */,
+			);
+			path = Xibs;
 			sourceTree = "<group>";
 		};
 		2976102D29DDBEF400B74050 /* InAppPurchases */ = {
@@ -614,6 +638,7 @@
 		299FDD82299684E50049741B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				292B22E22A1CBFE800D43783 /* TagsView  */,
 				2938E73C2A02CD1F00C21AEA /* SocialLinksView */,
 				29BE184A29FA6E42000EAC0E /* EnlargedIV */,
 				29846D3F29A15AF800393EB3 /* AccountStatus */,
@@ -881,6 +906,7 @@
 				299FDD192996796A0049741B /* LaunchScreen.storyboard in Resources */,
 				299FDD972996C8ED0049741B /* Roboto-Regular.ttf in Resources */,
 				29BE185029FA8573000EAC0E /* BlockBtnTVCell.xib in Resources */,
+				296D76922A1CF0A0005A3A99 /* hashTagsTVCell.xib in Resources */,
 				299FDD9A2996C8ED0049741B /* Roboto-Bold.ttf in Resources */,
 				294A79B1299AEB2E00089161 /* AboutTVCell.xib in Resources */,
 				294A79B5299AEB5100089161 /* SocialAccTVCell.xib in Resources */,
@@ -1047,6 +1073,7 @@
 				299FDD6B29967D670049741B /* MainViewController.swift in Sources */,
 				2964617129EEC913003FD692 /* BlockedVC.swift in Sources */,
 				29473E51299C634A00859D8A /* TagsTVCell.swift in Sources */,
+				296D76912A1CF0A0005A3A99 /* hashTagsTVCell.swift in Sources */,
 				299E03CB29A135C60064A5E3 /* AddLinksVC.swift in Sources */,
 				29985F30299808FD001F769B /* RoundedTabBarController.swift in Sources */,
 				299FDD89299692C20049741B /* GeneralResponse.swift in Sources */,
@@ -1058,6 +1085,7 @@
 				295A11DC29F28EE200D0D436 /* EditProfileExtention.swift in Sources */,
 				299FDD5929967D1D0049741B /* loadingView.swift in Sources */,
 				294A79B4299AEB5100089161 /* SocialAccTVCell.swift in Sources */,
+				292B22E42A1CC01100D43783 /* TagsView VC.swift in Sources */,
 				299FDD5529967D1D0049741B /* ReactiveExtensiones.swift in Sources */,
 				29350A2929D3A78800F19BD5 /* ProfileSetupExtentions.swift in Sources */,
 				299FDDA92996E85C0049741B /* ProfileTVCell.swift in Sources */,
@@ -1273,7 +1301,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Kismat App/Info.plist";
@@ -1311,7 +1339,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Kismat App/Info.plist";
