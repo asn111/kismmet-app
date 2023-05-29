@@ -66,29 +66,6 @@ class ProfileVC: MainViewController {
         profileTV.register(UINib(nibName: "SocialAccTVCell", bundle: nil), forCellReuseIdentifier: "SocialAccTVCell")
     }
     
-    /*func setupSocialArray() {
-        
-        let socialAccTypes = ["LinkedIn", "Twitter", "Instagram", "Snapchat", "Website"]
-        let placeholderValues = ["LinkedIn not connected", "Twitter not linked", "No Instagram handle", "No Snapchat shared", "No website link"]
-
-        if let socialAccdbModel = socialAccdbModel, !socialAccdbModel.isEmpty {
-            let socialAccTitles = socialAccdbModel.compactMap{ $0.linkTitle }
-            let socialAccTypesSet = Set(socialAccdbModel.compactMap{ $0.linkType })
-            let missingTypes = Set(socialAccTypes).subtracting(socialAccTypesSet)
-            socialAccArray = zip(socialAccTypes, placeholderValues).map { type, placeholder in
-                if missingTypes.contains(type) {
-                    return placeholder
-                } else if let index = socialAccdbModel.firstIndex(where: { $0.linkType == type }) {
-                    return socialAccTitles[index]
-                } else {
-                    return ""
-                }
-            }
-        } else {
-            socialAccArray = placeholderValues
-        }
-    }*/
-    
     func DBUpdateUserdb() {
         
         Observable.changeset(from: userdbModel)
@@ -104,38 +81,6 @@ class ProfileVC: MainViewController {
             .disposed(by: dispose_Bag)
     }
     
-    /*func DBUpdateSocialAcc() {
-        
-        Observable.changeset(from: socialAccdbModel)
-            .subscribe(onNext: { [weak self] _, changes in
-                if let changes = changes {
-                    Logs.show(message: "CHANGES: \(changes)")
-                    /*if DBService.fetchSocialAccList().count > 0 {
-                        self?.socialAccdbModel = DBService.fetchSocialAccList()
-                        self?.socialAccArray = self!.socialAccdbModel.compactMap { $0.linkTitle }
-                        if self?.socialAccArray.count != self?.socialAccImgArray.count {
-                            switch self?.socialAccArray.count {
-                                case 1:
-                                    self?.socialAccArray = self!.socialAccArray + ["Add your Twitter account","your Instagram handle","Snapchat","Link your Website"]
-                                case 2:
-                                    self?.socialAccArray = self!.socialAccArray + ["Share your Instagram handle","Snapchat","Link your Website"]
-                                case 3:
-                                    self?.socialAccArray = self!.socialAccArray + ["Snapchat","Link your Website"]
-                                case 4:
-                                    self?.socialAccArray = self!.socialAccArray + ["Link your Website"]
-                                case 5:
-                                    print("5")
-                                default:
-                                    print("default")
-                            }
-                        }
-                    }*/
-                    self?.setupSocialArray()
-                    self?.profileTV.reloadData()
-                }
-            })
-            .disposed(by: dispose_Bag)
-    }*/
     
     @objc func picBtnPressed(sender: UIButton) {
         if isOtherProfile {
@@ -207,24 +152,6 @@ class ProfileVC: MainViewController {
                     case .next(let val):
                         if val.userId != "" {
                             self.socialAccModel = val.socialAccounts
-                            
-                            /*var imageIndices = [String: Int]()
-                            for (index, imageName) in self.tempSocialAccImgArray.enumerated() {
-                                imageIndices[imageName.lowercased()] = index
-                            }
-                            
-                            self.socialAccModel.sort { (model1, model2) -> Bool in
-                                if let imageName1 = model1.linkImage.components(separatedBy: "/").last?.replacingOccurrences(of: ".png", with: "").lowercased(),
-                                   let imageName2 = model2.linkImage.components(separatedBy: "/").last?.replacingOccurrences(of: ".png", with: "").lowercased(),
-                                   let index1 = imageIndices[imageName1],
-                                   let index2 = imageIndices[imageName2] {
-                                    return index1 < index2
-                                } else {
-                                    // If there is any error in extracting the image name or index, keep the original order
-                                    return false
-                                }
-                            }*/
-                            
                         } else {
                             self.hidePKHUD()
                         }

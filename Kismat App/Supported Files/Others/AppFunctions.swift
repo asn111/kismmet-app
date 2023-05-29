@@ -58,6 +58,7 @@ var testSecretKey = ""
 
 let authToken = "authToken"
 let isLogin = "isLogin"
+let notifEnable = "notifEnable"
 let isTermsNCond = "isTermsNCond"
 let isNumVerified = "isNumVerified"
 let isEmailVerifyed = "isEmailVerifyed"
@@ -177,6 +178,20 @@ class AppFunctions {
             Logs.show(message: "NIL isLoggedIn")
         } else {
             value = preferences.bool(forKey: isLogin)
+        }
+        return value
+    }
+    
+    open class func setNotifEnable(value: Bool){
+        preferences.set(value, forKey: notifEnable)
+        preferences.synchronize()
+    }
+    open class func isNotifEnable() -> Bool{
+        var value = false
+        if preferences.object(forKey: notifEnable) == nil {
+            Logs.show(message: "NIL isNotifEnable")
+        } else {
+            value = preferences.bool(forKey: notifEnable)
         }
         return value
     }

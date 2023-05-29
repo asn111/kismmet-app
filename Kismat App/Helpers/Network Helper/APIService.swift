@@ -1199,6 +1199,58 @@ class APIService: NSObject {
     }
     
     
+    //MARK: Get Notif List
+    func getNotif() -> Observable<[NotificationModel]> {
+        
+        return Observable.create{[weak self] observer -> Disposable in
+            if (self?.isCheckReachable())! {
+                
+                AF.request("\(self?.baseUrl ?? "")/api/Notifications/GetUserNotifications", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                    .validate()
+                    .responseData{ response in
+                        Logs.show(message: "URL: \(response.debugDescription)")
+                        guard let data = response.data else {
+                            observer.onError(response.error!)
+                            AppFunctions.showSnackBar(str: "Server Request Error")
+                            Logs.show(message: "Error on Response.data\(response.error!)")
+                            return
+                        }
+                        switch response.result {
+                            case .success:
+                                do {
+                                    let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    let notif = genResponse.body.userNotifications
+                                    Logs.show(message: "SUCCESS IN \(#function)")
+                                    observer.onNext(notif!)
+                                    observer.onCompleted()
+                                } catch {
+                                    observer.onError(error)
+                                    AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                }
+                            case .failure(let error):
+                                do {
+                                    let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    observer.onError(error)
+                                    Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                    AppFunctions.showSnackBar(str: responce.message)
+                                }catch {
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                    AppFunctions.showSnackBar(str: "Server Request Error")
+                                    observer.onError(error)
+                                }
+                        }
+                    }
+            } else {
+                observer.onNext([NotificationModel]())
+                observer.onCompleted()
+                AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
+            }
+            return Disposables.create()
+        }
+    }
+    
+    
     
     //MARK: POST CALLS
     ///////////////////*********************////////////////////////********************////////////////////////*********************///////////////////////

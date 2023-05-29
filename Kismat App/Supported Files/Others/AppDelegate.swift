@@ -35,12 +35,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func initializations() {
         //FirebaseApp.configure() //no GoogleService-Info.plist
-        //registerNotification()
+        registerNotification()
         
         if AppFunctions.isLoggedIn() {
             //APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
         }        
         
+
         AppFunctions.removeFromDefaults(key: tagsArray)
         AppFunctions.removeFromDefaults(key: socialArray)
         
@@ -103,3 +104,146 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+//MARK: NOTIFICATIONS
+extension AppDelegate {
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        Logs.show(message: "UINFO: \(userInfo)") // this one is calling when a notification got recevied on foreground & background.
+        
+        let apsPayload = userInfo["aps"] as! [String: Any]
+        Logs.show(message: "APS: \(apsPayload)") // this one is calling when a notification got recevied on foreground & background.
+        let state = application.applicationState
+        switch state {
+            case .inactive:
+                
+                application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1
+                
+            case .background:
+                Logs.show(message: "Back Ground")
+                
+                //let notifData = apsPayload["data"] as? [String: Any]
+                
+                application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1
+                
+            case .active:
+                
+                //let notifData = apsPayload["data"] as? [String: Any]
+                
+                application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1
+                
+            @unknown default: break
+                
+        }
+        
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        let apsPayload = userInfo["aps"] as! [String: Any]
+        
+        //Logs.value(message: "\(userInfo)")
+        let state = application.applicationState
+        switch state {
+            case .inactive:
+                print("")
+            case .background:
+                
+                // update badge count here
+                application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1
+                
+            case .active:
+                print("")
+                
+            @unknown default: break
+        }
+    }
+    
+    //for displaying notification when app is in foreground
+    // This method will be called when app received push notifications in foreground
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    {
+        var userInfo = [AnyHashable: Any]()
+        userInfo = (notification.request.content.userInfo)
+        Logs.show(message: "xxx: \n\(userInfo)")
+        
+        completionHandler([.alert, .badge, .sound])
+    }
+    
+    // For handling tap and user actions
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("notification tapped here")
+        completionHandler()
+        
+    }
+    
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        // Sometimes it’s useful to store the device token in UserDefaults
+        let   tokenString = deviceToken.reduce("", {$0 + String(format: "%02.2hhx",    $1)})
+        Logs.show(message: "Dev Toke: \(tokenString)")
+        
+        AppFunctions.setDevToken(value: tokenString)
+        
+        if AppFunctions.isLoggedIn() {
+            //APIService.singelton.registerDeviceToken(token: tokenString)
+        }
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        
+        Logs.show(message: "Dev Toke: \(error)")
+        
+    }
+    
+    func registerNotification() {
+        
+        // First we must determine your iOS type:
+        // Note this will only work for iOS 8 and up, if you require iOS 7 notifications then
+        // contact support@pubnub.com with your request
+        if #available(iOS 10, *) {
+            UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+                switch settings.authorizationStatus {
+                    case .notDetermined:
+                        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { (granted, error) in
+                            // You might want to remove this, or handle errors differently in production
+                            assert(error == nil)
+                            if granted {
+                                DispatchQueue.main.async {
+                                    UIApplication.shared.registerForRemoteNotifications()
+                                }
+                            }
+                        })
+                    case .authorized:
+                        DispatchQueue.main.async {
+                            UIApplication.shared.registerForRemoteNotifications()
+                        }
+                    case .denied:
+                        let useNotificationsAlertController = UIAlertController(title: "Turn on notifications", message: "This app needs notifications turned on for the best user experience", preferredStyle: .alert)
+                        let goToSettingsAction = UIAlertAction(title: "Go to settings", style: .default, handler: { (action) in
+                            
+                            if let bundleIdentifier = Bundle.main.bundleIdentifier, let appSettings = URL(string: UIApplication.openSettingsURLString + bundleIdentifier) {
+                                if UIApplication.shared.canOpenURL(appSettings) {
+                                    UIApplication.shared.open(appSettings)
+                                }
+                            }
+                        })
+                        let cancelAction = UIAlertAction(title: "Cancel", style: .default)
+                        useNotificationsAlertController.addAction(goToSettingsAction)
+                        useNotificationsAlertController.addAction(cancelAction)
+                        DispatchQueue.main.async {
+                            self.window?.rootViewController?.present(useNotificationsAlertController, animated: true)
+                        }
+                    case .provisional:
+                        // The application is authorized to post non-interruptive user notifications.
+                        break
+                    case .ephemeral:
+                        // The application is temporarily authorized to post notifications. Only available to app clips.
+                        break
+                    @unknown default: break
+                        
+                }
+            }
+        }
+    }
+    
+}

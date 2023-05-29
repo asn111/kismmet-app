@@ -25,8 +25,9 @@
                                 <rect key="frame" x="18.666666666666657" y="6" width="338" height="48"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zoya Grey," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tC-lT-b0A" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                        <rect key="frame" x="78" y="4" width="56" height="21"/>
+                                        <rect key="frame" x="49" y="5" width="113" height="21"/>
                                         <constraints>
+                                            <constraint firstAttribute="width" constant="113" id="7Cb-a6-NQh"/>
                                             <constraint firstAttribute="height" constant="21" id="fgq-aj-88I"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -43,7 +44,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="girl" translatesAutoresizingMaskIntoConstraints="NO" id="3K7-xY-tSk" customClass="RoundedImageView" customModule="Kismat_App" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="6" width="35" height="35"/>
+                                        <rect key="frame" x="6" y="6" width="35" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="3Z5-cd-1fb"/>
                                             <constraint firstAttribute="width" constant="35" id="uBc-VD-1TJ"/>
@@ -64,12 +65,18 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                 <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" name="Secondary Grey"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recently viewed your profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awn-L4-6vZ" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                        <rect key="frame" x="140" y="4" width="190" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan 29, 2023 at 4:30 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awn-L4-6vZ" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="170" y="5" width="150" height="21"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="190" id="KqO-05-HA8"/>
+                                            <constraint firstAttribute="width" constant="150" id="KqO-05-HA8"/>
                                             <constraint firstAttribute="height" constant="21" id="Qpd-oI-fi2"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -86,11 +93,11 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="l"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan 29, 2023 at 4:30 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0z-u8-403" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                        <rect key="frame" x="78" y="21" width="190" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" your profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0z-u8-403" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="49" y="22" width="271" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="PqP-A2-OWn"/>
-                                            <constraint firstAttribute="width" constant="190" id="jS1-YE-HZe"/>
+                                            <constraint firstAttribute="width" constant="271" id="jS1-YE-HZe"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -110,20 +117,20 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="338" id="AM7-dO-Tka"/>
-                                    <constraint firstAttribute="bottom" secondItem="F0z-u8-403" secondAttribute="bottom" constant="6" id="Cd4-wk-MTU"/>
+                                    <constraint firstAttribute="bottom" secondItem="F0z-u8-403" secondAttribute="bottom" constant="5" id="Cd4-wk-MTU"/>
                                     <constraint firstAttribute="bottom" secondItem="3K7-xY-tSk" secondAttribute="bottom" constant="7" id="Eka-fq-iUh"/>
                                     <constraint firstItem="3K7-xY-tSk" firstAttribute="top" secondItem="u6Q-ma-6OQ" secondAttribute="top" constant="6" id="IWc-69-fEs"/>
-                                    <constraint firstAttribute="bottom" secondItem="awn-L4-6vZ" secondAttribute="bottom" constant="23" id="J8z-9x-PSn"/>
+                                    <constraint firstAttribute="bottom" secondItem="awn-L4-6vZ" secondAttribute="bottom" constant="22" id="J8z-9x-PSn"/>
                                     <constraint firstItem="F0z-u8-403" firstAttribute="top" secondItem="4tC-lT-b0A" secondAttribute="bottom" constant="-4" id="R4V-gB-bgv"/>
-                                    <constraint firstItem="4tC-lT-b0A" firstAttribute="top" secondItem="u6Q-ma-6OQ" secondAttribute="top" constant="4" id="RJz-oC-73G"/>
+                                    <constraint firstItem="4tC-lT-b0A" firstAttribute="top" secondItem="u6Q-ma-6OQ" secondAttribute="top" constant="5" id="RJz-oC-73G"/>
                                     <constraint firstItem="awn-L4-6vZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4tC-lT-b0A" secondAttribute="trailing" priority="500" constant="6" id="TAQ-lM-ncq"/>
-                                    <constraint firstItem="3K7-xY-tSk" firstAttribute="leading" secondItem="u6Q-ma-6OQ" secondAttribute="leading" constant="16" id="Ulx-1W-tTB"/>
-                                    <constraint firstItem="4tC-lT-b0A" firstAttribute="leading" secondItem="3K7-xY-tSk" secondAttribute="trailing" constant="27" id="V2Z-d4-PXJ"/>
-                                    <constraint firstItem="F0z-u8-403" firstAttribute="leading" secondItem="3K7-xY-tSk" secondAttribute="trailing" constant="27" id="Z36-Xo-DxE"/>
-                                    <constraint firstAttribute="trailing" secondItem="awn-L4-6vZ" secondAttribute="trailing" constant="8" id="bwb-Pp-IKO"/>
-                                    <constraint firstItem="awn-L4-6vZ" firstAttribute="top" secondItem="u6Q-ma-6OQ" secondAttribute="top" constant="4" id="hqw-M6-8zt"/>
+                                    <constraint firstItem="3K7-xY-tSk" firstAttribute="leading" secondItem="u6Q-ma-6OQ" secondAttribute="leading" constant="6" id="Ulx-1W-tTB"/>
+                                    <constraint firstItem="4tC-lT-b0A" firstAttribute="leading" secondItem="3K7-xY-tSk" secondAttribute="trailing" constant="8" id="V2Z-d4-PXJ"/>
+                                    <constraint firstItem="F0z-u8-403" firstAttribute="leading" secondItem="3K7-xY-tSk" secondAttribute="trailing" constant="8" id="Z36-Xo-DxE"/>
+                                    <constraint firstAttribute="trailing" secondItem="awn-L4-6vZ" secondAttribute="trailing" constant="18" id="bwb-Pp-IKO"/>
+                                    <constraint firstItem="awn-L4-6vZ" firstAttribute="top" secondItem="u6Q-ma-6OQ" secondAttribute="top" constant="5" id="hqw-M6-8zt"/>
                                     <constraint firstAttribute="height" constant="48" id="kir-en-1uy"/>
-                                    <constraint firstAttribute="bottom" secondItem="4tC-lT-b0A" secondAttribute="bottom" constant="23" id="zDI-ic-Ong"/>
+                                    <constraint firstAttribute="bottom" secondItem="4tC-lT-b0A" secondAttribute="bottom" constant="22" id="zDI-ic-Ong"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -180,14 +187,17 @@
             <size key="intrinsicContentSize" width="56" height="14.333333333333334"/>
         </designable>
         <designable name="F0z-u8-403">
-            <size key="intrinsicContentSize" width="118.66666666666667" height="13"/>
+            <size key="intrinsicContentSize" width="57.666666666666664" height="13"/>
         </designable>
         <designable name="awn-L4-6vZ">
-            <size key="intrinsicContentSize" width="136.66666666666666" height="13"/>
+            <size key="intrinsicContentSize" width="118.66666666666667" height="13"/>
         </designable>
     </designables>
     <resources>
         <image name="girl" width="407" height="612"/>
+        <namedColor name="Secondary Grey">
+            <color red="0.3059999942779541" green="0.4309999942779541" blue="0.50599998235702515" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Text grey">
             <color red="0.20800000429153442" green="0.31000000238418579" blue="0.35699999332427979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
