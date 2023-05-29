@@ -84,12 +84,7 @@ class EditProfileSetup: MainViewController {
         }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
         
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        AppFunctions.removeFromDefaults(key: tagsArray)
-        AppFunctions.removeFromDefaults(key: socialArray)
-    }
+
     
     
     func registerCells() {
@@ -283,6 +278,7 @@ class EditProfileSetup: MainViewController {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         about = !textView.text!.isTFBlank ? textView.text! : ""
+        dataArray[6] = about
         activeTextView = nil
     }
     
@@ -293,12 +289,16 @@ class EditProfileSetup: MainViewController {
 
         if textField.tag == 1 {
             fullName = !textField.text!.isTFBlank ? textField.text! : ""
+            dataArray[1] = fullName
         } else if textField.tag == 3 {
             publicEmail = !textField.text!.isTFBlank ? textField.text! : ""
+            dataArray[3] = publicEmail
         } else if textField.tag == 4 {
             placeOfWork = !textField.text!.isTFBlank ? textField.text! : ""
+            dataArray[4] = placeOfWork
         } else if textField.tag == 5 {
             workTitle = !textField.text!.isTFBlank ? textField.text! : ""
+            dataArray[5] = workTitle
         }
         
     }
@@ -379,6 +379,9 @@ class EditProfileSetup: MainViewController {
             dateformatter.dateStyle = .long // 2.3
             dateformatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
             !cell.generalTF.text!.isTFBlank ? dateOfBirth = dateformatter.string(from: datePicker.date) : print("Empty Date")
+            dataArray[2] = formatDateForDisplay(date: datePicker.date)
+            //profileTV.reloadRows(at: [IndexPath(row: 2, section: 0)], with: .none)
+
         }
         cell.generalTF.resignFirstResponder() // 2.5
     }

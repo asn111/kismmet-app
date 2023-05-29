@@ -35,6 +35,12 @@ class SettingVC: MainViewController {
 
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        AppFunctions.removeFromDefaults(key: tagsArray)
+    }
+
+    
     func registerCells() {
         
         settingTV.tableFooterView = UIView()

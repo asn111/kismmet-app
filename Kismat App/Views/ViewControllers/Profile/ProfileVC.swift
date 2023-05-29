@@ -352,11 +352,16 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 
                 cell.numberView.isHidden = true
                 cell.generalTFView.isHidden = false
-                if let userDb = userdbModel {
-                    if let user = userDb.first {
-                        cell.generalTF.text = user.publicEmail
+                if isOtherProfile {
+                    cell.generalTF.text = userModel.publicEmail
+                } else {
+                    if let userDb = userdbModel {
+                        if let user = userDb.first {
+                            cell.generalTF.text = user.publicEmail
+                        }
                     }
                 }
+                
                 cell.generalTF.isUserInteractionEnabled = false
                 
                 return cell

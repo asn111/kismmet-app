@@ -139,6 +139,7 @@
                                             <constraint firstItem="Qjk-Gm-fBb" firstAttribute="top" secondItem="9Ka-tI-lp8" secondAttribute="top" constant="-5" id="s2J-qY-WhK"/>
                                             <constraint firstItem="Qjk-Gm-fBb" firstAttribute="leading" secondItem="9Ka-tI-lp8" secondAttribute="leading" constant="75" id="wQt-kO-KSt"/>
                                             <constraint firstAttribute="width" constant="90" id="yMO-Tu-XxD"/>
+                                            <constraint firstAttribute="trailing" secondItem="gtx-C5-zbC" secondAttribute="trailing" constant="8" id="ya4-bh-0vn"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -150,9 +151,10 @@
                                         <rect key="frame" x="204" y="0.0" width="80" height="28"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFn-pr-x5z" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="5.3333333333333339" width="64" height="17.666666666666664"/>
+                                                <rect key="frame" x="8" y="5" width="64" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="64" id="Ky0-IT-aDI"/>
+                                                    <constraint firstAttribute="height" constant="17.670000000000002" id="fVf-B4-owB"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -192,6 +194,7 @@
                                         <color key="backgroundColor" name="Primary Yellow"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="ZIc-mR-nvd" secondAttribute="trailing" constant="-3" id="6tg-rB-oRe"/>
+                                            <constraint firstAttribute="trailing" secondItem="xFn-pr-x5z" secondAttribute="trailing" constant="8" id="Dk4-Wk-TA5"/>
                                             <constraint firstItem="xFn-pr-x5z" firstAttribute="centerY" secondItem="qfV-cB-PBj" secondAttribute="centerY" id="Fd6-Eh-yKp"/>
                                             <constraint firstItem="ZIc-mR-nvd" firstAttribute="top" secondItem="qfV-cB-PBj" secondAttribute="top" constant="-5" id="Fth-dp-U8g"/>
                                             <constraint firstItem="xFn-pr-x5z" firstAttribute="centerX" secondItem="qfV-cB-PBj" secondAttribute="centerX" id="Tgr-38-LXL"/>
@@ -311,6 +314,7 @@
                                         <constraints>
                                             <constraint firstItem="muH-6z-pUN" firstAttribute="centerX" secondItem="CId-gD-vV5" secondAttribute="centerX" id="Heu-zt-L76"/>
                                             <constraint firstAttribute="width" constant="80" id="JxP-Kn-Lcx"/>
+                                            <constraint firstAttribute="trailing" secondItem="muH-6z-pUN" secondAttribute="trailing" constant="8" id="QnW-YL-52S"/>
                                             <constraint firstAttribute="trailing" secondItem="dSR-YM-i50" secondAttribute="trailing" constant="-3" id="go8-pW-fKJ"/>
                                             <constraint firstItem="dSR-YM-i50" firstAttribute="top" secondItem="CId-gD-vV5" secondAttribute="top" constant="-5" id="kdX-rI-1iW"/>
                                             <constraint firstAttribute="height" constant="28" id="miM-rP-QvD"/>

@@ -88,6 +88,7 @@ class UserModel: NSObject, Codable {
     init(fromDictionary dictionary: [String: Any]) {
         userName = dictionary["fullName"] as? String
         profilePicture = dictionary["profilePicture"] as? String
+        publicEmail = dictionary["publicEmail"] as? String
         workAddress = dictionary["workAdress"] as? String
         workTitle = dictionary["workTitle"] as? String
         about = dictionary["about"] as? String
