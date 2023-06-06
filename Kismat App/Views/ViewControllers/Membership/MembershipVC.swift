@@ -101,7 +101,7 @@ class MembershipVC: MainViewController {
         
         UIView.animate(withDuration: duration, animations: {
             self.planNameLbl.text = "Free Plan"
-            self.featureLbl1.text = "Can view 15 profiles per month."
+            self.featureLbl1.text = "Discover up to 15 profiles per month"
             self.featureLbl2.text = ""
             
             self.upgradeBtn.setTitle("Upgrade Subscription", for: .normal)

@@ -228,7 +228,7 @@ class EditProfileSetup: MainViewController {
         var msg = ""
         
         if sender.tag == 001 {
-            msg = "Please note that this email is visible to other users on the app."
+            msg = "Add an optional email address to your profile for convenient connections.\nMuch like you would on a business card.\nNote: It will be visible on your profile."
         } else if sender.tag == 002 {
             msg = "Please note that your date of birth is private and will not be visible to other users on the app."
         }
@@ -646,7 +646,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.notifHeaderView.isHidden = false
-                cell.notifHeaderLbl.text = "You can maximum add five tags."
+                cell.notifHeaderLbl.text = "Highlight your interests and personality with up to five tags."
                 
                 return cell
                 

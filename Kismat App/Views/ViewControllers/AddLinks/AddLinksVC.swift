@@ -164,9 +164,17 @@ class AddLinksVC: MainViewController {
             let account = self?.socialAccounts[index]
 
             self?.dropDownBtn.setTitle("  \(item)", for: .normal)
+            
+            if item == "Website" {
+                self?.addAccName.placeholder = "Name your website link"
+                self?.addAccLink.placeholder = "Enter your website’s full URL"
+            }
+            
             self?.linkId = account?.linkTypeId ?? 0
             if account?.linkImage != "" {
                 let imageUrl = URL(string: account?.linkImage ?? "")
+                
+                
                 
                 // Create the transformer with the desired size and scale mode
                 let transformer = SDImageResizingTransformer(size: CGSize(width: 20, height: 20), scaleMode: .aspectFit)

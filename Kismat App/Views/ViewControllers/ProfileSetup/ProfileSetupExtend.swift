@@ -520,7 +520,7 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
             case socialAccounts.count + 9: // Tags count
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.notifHeaderView.isHidden = false
-                cell.notifHeaderLbl.text = "You can maximum add five tags."
+                cell.notifHeaderLbl.text = "Highlight your interests and personality with up to five tags."
                 
                 return cell
                 

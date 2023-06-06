@@ -25,7 +25,7 @@ class APIService: NSObject {
     private override init() {
         super.init()
         
-        baseUrl = "http://api.kismmet.com"
+        baseUrl = "https://api.kismmet.com"
         Logs.show(message: "SERVER: \(baseUrl)")
         
         self.startMonitoring()
@@ -120,7 +120,7 @@ class APIService: NSObject {
         if isCheckReachable() {
             let pram: Parameters = ["deviceTokenId": "\(token)"]
             print(pram)
-            AF.request("\(self.baseUrl)/api/Notification/RegDeviceToken", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
+            AF.request("\(self.baseUrl)/api/Notifications/RegDeviceToken", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
                 .validate()
                 .responseData{ response in
                     Logs.show(message: "URL: \(response.debugDescription)")
@@ -406,6 +406,58 @@ class APIService: NSObject {
             if (self?.isCheckReachable())! {
                 
                 AF.request("\(self?.baseUrl ?? "")/api/Users/UpdateUserProfile", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                    .validate()
+                    .responseData{ response in
+                        Logs.show(message: "URL: \(response.debugDescription)")
+                        guard let data = response.data else {
+                            observer.onError(response.error!)
+                            AppFunctions.showSnackBar(str: "Server Request Error")
+                            Logs.show(message: "Error on Response.data\(response.error!)")
+                            return
+                        }
+                        switch response.result {
+                            case .success:
+                                do {
+                                    let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    AppFunctions.showSnackBar(str: genResponse.message)
+                                    Logs.show(message: "SUCCESS IN \(#function)")
+                                    observer.onNext(true)
+                                    observer.onCompleted()
+                                } catch {
+                                    observer.onError(error)
+                                    AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                }
+                            case .failure( _):
+                                do {
+                                    let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    observer.onNext(false)
+                                    Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                    AppFunctions.showSnackBar(str: responce.message)
+                                } catch {
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                    AppFunctions.showSnackBar(str: "Server Request Error")
+                                    observer.onError(error)
+                                    
+                                }
+                        }
+                    }
+            } else {
+                observer.onNext(false)
+                observer.onCompleted()
+                AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
+            }
+            return Disposables.create()
+        }
+    }
+    
+    //MARK: Change Password
+    func changePassword(pram: Parameters) -> Observable<Bool> {
+        
+        return Observable.create{[weak self] observer -> Disposable in
+            if (self?.isCheckReachable())! {
+                
+                AF.request("\(self?.baseUrl ?? "")/api/Users/ChangePassword", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1008,7 +1060,7 @@ class APIService: NSObject {
         
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
-                AF.request("\(self?.baseUrl ?? "")/api/Users/GetUserProfile", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/GetUserProfile?userId=\(userId)", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")

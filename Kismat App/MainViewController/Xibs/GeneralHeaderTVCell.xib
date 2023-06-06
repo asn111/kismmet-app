@@ -237,7 +237,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rice University, Houston TX" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzF-aI-iJF" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                        <rect key="frame" x="98" y="45" width="253" height="17.333333333333329"/>
+                                        <rect key="frame" x="98" y="45" width="253" height="17.666666666666671"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="253" id="Zgs-uT-uNZ"/>
                                         </constraints>
@@ -255,7 +255,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Professor" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOG-bk-97u" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                        <rect key="frame" x="98" y="60.33333333333335" width="253" height="17.333333333333336"/>
+                                        <rect key="frame" x="98" y="60.666666666666657" width="253" height="17.666666666666657"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="253" id="niB-xs-mxA"/>
                                         </constraints>
@@ -555,22 +555,22 @@
     </objects>
     <designables>
         <designable name="6BT-Eq-hcD">
-            <size key="intrinsicContentSize" width="134" height="32.333333333333336"/>
+            <size key="intrinsicContentSize" width="128" height="36.666666666666664"/>
         </designable>
         <designable name="A8B-bt-df2">
-            <size key="intrinsicContentSize" width="241" height="14"/>
+            <size key="intrinsicContentSize" width="271.66666666666669" height="14.333333333333334"/>
         </designable>
         <designable name="Baj-Qv-s2c">
             <size key="intrinsicContentSize" width="162" height="152"/>
         </designable>
         <designable name="Cf5-Cq-dE3">
-            <size key="intrinsicContentSize" width="142.33333333333334" height="32.333333333333336"/>
+            <size key="intrinsicContentSize" width="148.33333333333334" height="33"/>
         </designable>
         <designable name="HOG-bk-97u">
-            <size key="intrinsicContentSize" width="65.333333333333329" height="17.333333333333332"/>
+            <size key="intrinsicContentSize" width="70.333333333333329" height="17.666666666666668"/>
         </designable>
         <designable name="Icb-FA-TAT">
-            <size key="intrinsicContentSize" width="30" height="21.333333333333332"/>
+            <size key="intrinsicContentSize" width="30" height="20.666666666666668"/>
         </designable>
         <designable name="bc3-O3-AQ1">
             <size key="intrinsicContentSize" width="407" height="612"/>
@@ -582,19 +582,19 @@
             <size key="intrinsicContentSize" width="54" height="54"/>
         </designable>
         <designable name="dpP-cf-H6r">
-            <size key="intrinsicContentSize" width="175.66666666666666" height="21"/>
+            <size key="intrinsicContentSize" width="173" height="21.333333333333332"/>
         </designable>
         <designable name="nax-I1-dp4">
             <size key="intrinsicContentSize" width="162" height="152"/>
         </designable>
         <designable name="nzF-aI-iJF">
-            <size key="intrinsicContentSize" width="189" height="17.333333333333332"/>
+            <size key="intrinsicContentSize" width="203.33333333333334" height="17.666666666666668"/>
         </designable>
         <designable name="pXu-df-J1k">
-            <size key="intrinsicContentSize" width="159.66666666666666" height="14"/>
+            <size key="intrinsicContentSize" width="164" height="14.333333333333334"/>
         </designable>
         <designable name="v2n-8t-cBj">
-            <size key="intrinsicContentSize" width="237" height="21"/>
+            <size key="intrinsicContentSize" width="237" height="23.666666666666668"/>
         </designable>
     </designables>
     <resources>

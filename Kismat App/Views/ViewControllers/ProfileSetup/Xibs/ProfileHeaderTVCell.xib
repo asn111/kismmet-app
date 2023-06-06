@@ -23,7 +23,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDo-WP-Eux">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="154"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WELCOME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWm-hV-jnf" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="WELCOME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWm-hV-jnf" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
                                 <rect key="frame" x="90" y="10" width="195" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="195" id="Bvy-QG-a6c"/>
@@ -38,11 +38,12 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
                                         <real key="value" value="28"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="sb"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontSuezOne" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please setup your profile " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmD-Ff-vUG" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Please setup your profile " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmD-Ff-vUG" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
                                 <rect key="frame" x="133" y="44" width="110" height="12"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="110" id="IG7-0W-BmL"/>
@@ -155,7 +156,7 @@
             <size key="intrinsicContentSize" width="19.666666666666668" height="19"/>
         </designable>
         <designable name="mWm-hV-jnf">
-            <size key="intrinsicContentSize" width="145.66666666666666" height="33"/>
+            <size key="intrinsicContentSize" width="147" height="36.666666666666664"/>
         </designable>
         <designable name="r6s-s1-rdI">
             <size key="intrinsicContentSize" width="512" height="512"/>

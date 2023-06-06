@@ -112,9 +112,9 @@ class FeedVC: MainViewController {
         var msg = ""
         
         if sender.tag == 001 {
-            msg = "Search for people or hashtags in your proximity!\n\nPlease note that if a user has turned off their visibility, they will not appear in search results when searched by name."
+            msg = "Search for people or hashtags in your proximity!\n\nPlease note that if a user has turned off their visibility, or they are not in your chosen proximity, they will not appear in your search results when searched by name."
         } else if sender.tag == 002 {
-            msg = "You have a limit of 15 free profile views per month in the feed. The red text shows how many free views you have left.\nUpgrade to our premium monthly membership to unlock unlimited profile views and get access to exclusive features."
+            msg = "Discover 15 free profile views every month!\nTrack your remaining views in red.\nUpgrade to premium membership for unlimited profile views and exciting additional features."
         } else if sender.tag == 005 {
             msg = "Turning off your profile visibility will make your account private, which means you won't appear in other people's feeds. However, please note that you also won't be able to search for other people on the app when your profile visibility is off."
         }

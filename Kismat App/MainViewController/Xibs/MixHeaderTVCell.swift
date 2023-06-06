@@ -25,12 +25,17 @@ class MixHeaderTVCell: UITableViewCell {
     @IBOutlet weak var addBtn: RoundCornerButton!
     
     var minValue = 1
-    var maxValue = 300
+    var maxValue = 2500
     let slider = MultiSlider()
+    
+    var sliderValue: Int = 0 {
+        didSet {
+            bindViewModel()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupSlider()
         // Initialization code
     }
 
@@ -53,7 +58,7 @@ class MixHeaderTVCell: UITableViewCell {
         slider.outerTrackColor = .lightGray
         slider.tintColor = UIColor(named: "Secondary Grey")
         
-        slider.value = [CGFloat(minValue),CGFloat(maxValue/2)]
+        slider.value = [CGFloat(minValue),CGFloat(sliderValue)]
         
         
         sliderView.addSubview(slider)
@@ -67,4 +72,13 @@ class MixHeaderTVCell: UITableViewCell {
         sliderView.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
     }
     
+    func bindViewModel() {
+        if sliderValue == 0 {
+            sliderValue = maxValue/2
+            setupSlider()
+        } else {
+            setupSlider()
+        }
+    }
+
 }

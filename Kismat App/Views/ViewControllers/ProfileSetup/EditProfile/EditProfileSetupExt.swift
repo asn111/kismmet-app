@@ -35,8 +35,12 @@ class EditProfileSetupExt: MainViewController {
             self.userdbModel = DBService.fetchloggedInUser().first!
         }
         
+        if userdbModel.userName != "" {
+            let nameStr = userdbModel.userName.components(separatedBy: " ")
+            name = nameStr.first ?? ""
+        }
+        
         proximity = userdbModel.proximity
-        name = userdbModel.userName
         isProfileVisible = userdbModel.isProfileVisible
         isShadowMode = userdbModel.shadowMode
         email = userdbModel.email
@@ -93,13 +97,13 @@ class EditProfileSetupExt: MainViewController {
         var msg = ""
         
         if sender.tag == 001 {
-            msg = "Turning off your profile visibility will make your account private, which means you won't appear in other people's feeds. However, please note that you also won't be able to search for other people on the app when your profile visibility is off."
+            msg = "When you choose to turn off your profile visibility, your account becomes private, ensuring that you won't appear in other users' feeds.\nKeep in mind that while your profile is hidden, you won't have access to search and discover other users on the app."
         } else if sender.tag == 002 {
-            msg = "Shadow mode lets you view profiles privately without appearing on the 'viewed by' page. This feature is only available for premium users."
+            msg = "Stay incognito with Shadow Mode, allowing you to discreetly browse profiles without leaving a trace on the “Viewed By” page.\nExclusive to premium users."
         } else if sender.tag == 004 {
-            msg = "Please note that the email and phone number fields on this page are private and will not be visible to other users. These fields are for account verification purposes only and will not be shared on your profile page, where you can add a separate email for networking."
+            msg = "Please note that the email and phone number fields on this page are kept private and will not be visible to other users.\nThese fields serve solely for account verification purposes and will not be shared on your profile.\nTo enhance your networking experience, you can add a separate email address on your Edit Profile page."
         } else if sender.tag == 003 {
-            msg = "The lock icon next to your phone number indicates that this number cannot be changed."
+            msg = "The lock icon next to your phone number means that the number cannot be changed."
         }
         
         AppFunctions.showToolTip(str: msg, btn: sender)
@@ -181,6 +185,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
             case 2: // Slider
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.sliderView.isHidden = false
+                cell.sliderValue = proximity
                 cell.slider.addTarget(self, action: #selector(sliderChanged(slider:)), for: .valueChanged) /// continuous changes
                 return cell
             case 3: // Visibilty 1

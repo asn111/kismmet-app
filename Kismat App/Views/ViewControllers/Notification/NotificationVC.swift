@@ -72,13 +72,12 @@ class NotificationVC: MainViewController {
         ]
         
         Logs.show(message: "PRAM: \(pram)")
-        
         SignalRService.connection.invoke(method: "UpdateUserNotificationStatus", pram) {  error in            Logs.show(message: "\(pram)")
-            self.getNotifs()
             if let e = error {
                 Logs.show(message: "Error: \(e)")
                 return
             }
+            self.getNotifs()
         }
     }
     
@@ -102,6 +101,42 @@ class NotificationVC: MainViewController {
                             self.readNotifList = self.notifList.filter({$0.isRead})
                             self.unreadNotifList = self.notifList.filter({$0.isRead == false})
                             self.notifTV.reloadData()
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
+    
+    func userProfile(id: String) {
+        self.showPKHUD(WithMessage: "fetching notification")
+
+        APIService
+            .singelton
+            .getUserById(userId: id)
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        if val.userId != "" {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                if !AppFunctions.isPremiumUser() && AppFunctions.getviewedCount() >= 15 {
+                                    AppFunctions.showSnackBar(str: "You have reached your profile views limit.")
+                                } else {
+                                    self.pushVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
+                                        vc.userModel = val
+                                    }
+                                }
+                                self.hidePKHUD()
+                            }
+                            
                         } else {
                             self.hidePKHUD()
                         }
@@ -193,7 +228,7 @@ extension NotificationVC : UITableViewDelegate, UITableViewDataSource {
                 if indexPath.row == 0 { // Subheader
                     let cell: MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                     cell.notifHeaderView.isHidden = false
-                    cell.notifHeaderLbl.text = "Earlier"
+                    cell.notifHeaderLbl.text = readNotifList.count > 0 ? "Earlier" : "You haven't received any notifications yet."
                     return cell
                 } else { // Read notification cells
                     let cell: NotifTVCell = tableView.dequeueReusableCell(withIdentifier: "NotifTVCell", for: indexPath) as! NotifTVCell
@@ -223,12 +258,18 @@ extension NotificationVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        
         if indexPath.section == 1 {
             if indexPath.row != 0 {
                 updateNotif(id: unreadNotifList[indexPath.row - 1].notificationId)
+                userProfile(id: unreadNotifList[indexPath.row - 1].notifiedUserId)
+            }
+        } else {
+            if indexPath.row != 0 {
+                userProfile(id: readNotifList[indexPath.row - 1].notifiedUserId)
+                
             }
         }
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

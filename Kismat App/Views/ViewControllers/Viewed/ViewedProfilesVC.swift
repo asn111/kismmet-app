@@ -56,7 +56,7 @@ class ViewedProfilesVC: MainViewController {
     }
     
     @objc func toolBtnPressed(sender: UIButton) {
-        AppFunctions.showToolTip(str: "Search Users that viewed your profile.", btn: sender)
+        AppFunctions.showToolTip(str: "Unlock Kismmet: Find kindred spirits among your profile viewers and forge lasting friendships.", btn: sender)
     }
     
     @objc func searchBtnPressed(sender: UIButton) {

@@ -51,7 +51,7 @@ class BlockedVC: MainViewController {
     }
     
     @objc func toolBtnPressed(sender: UIButton) {
-        AppFunctions.showToolTip(str: "Search Users that you blocked.", btn: sender)
+        AppFunctions.showToolTip(str: "Browse your blocked users.", btn: sender)
     }
     
     @objc func searchBtnPressed(sender: UIButton) {
@@ -162,6 +162,7 @@ extension BlockedVC : UITableViewDelegate, UITableViewDataSource {
                 cell.swipeTxtLbl.text = "Please swipe left to remove from block list."
 
                 cell.searchTF.delegate = self
+                cell.searchTF.placeholder = "Search through your blocked list.."
                 cell.searchTF.returnKeyType = .search
                 cell.searchTF.tag = 010
                 cell.searchBtn.addTarget(self, action: #selector(searchBtnPressed(sender:)), for: .touchUpInside)
@@ -201,7 +202,7 @@ extension BlockedVC : UITableViewDelegate, UITableViewDataSource {
                     
                     visiblityCell.visibiltyView.isHidden = true
                     visiblityCell.updateBtn.isHidden = true
-                    visiblityCell.textLbl.text = "At this time, there are no users that you have blocked."
+                    visiblityCell.textLbl.text = "You currently have no blocked users."
                     
                     
                 } else if let feedCell = cell as? FeedItemsTVCell {

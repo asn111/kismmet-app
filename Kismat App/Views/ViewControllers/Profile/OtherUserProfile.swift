@@ -182,11 +182,14 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 cell.rattingBtn.addTarget(self, action: #selector(starTapFunction(sender:)), for: .touchUpInside)
                 cell.rattingBtn.tag = indexPath.row
                 
-                if userModel.isStarred {
-                    cell.rattingBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
-                } else {
-                    cell.rattingBtn.setImage(UIImage(systemName: "star"), for: .normal)
+                if userModel.isStarred != nil {
+                    if userModel.isStarred {
+                        cell.rattingBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
+                    } else {
+                        cell.rattingBtn.setImage(UIImage(systemName: "star"), for: .normal)
+                    }
                 }
+                
                 
                 cell.nameLbl.text = userModel.userName
                 cell.professionLbl.text = userModel.workTitle
