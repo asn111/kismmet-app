@@ -415,7 +415,7 @@ class EditProfileSetup: MainViewController {
                                 self.profilePic = user!.profilePicture
                                 self.dateOfBirth = user!.dob
                                 self.publicEmail = user!.publicEmail
-                                self.workTitle = user!.workAddress
+                                self.workTitle = user!.workTitle
                                 self.placeOfWork = user!.workAddress
                                 self.about = user!.about
                                 self.countryCode = user!.countryCode

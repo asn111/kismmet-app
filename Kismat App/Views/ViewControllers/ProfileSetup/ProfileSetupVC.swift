@@ -18,7 +18,7 @@ class ProfileSetupVC: MainViewController  {
     
     var updatedImagePicked : UIImage!
     var profileDict = [String: Any]()
-    var fullName = "", publicEmail = "", placeOfWork = "", workTitle = "" , dateOfBirth = "", countryCode = "", phoneNum = "" , about = "", profilePic = ""
+    var fullName = "", publicEmail = "", placeOfWork = "", workTitle = "" , dateOfBirth = "", countryCode = "", countryName = "", phoneNum = "" , about = "", profilePic = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,9 +35,15 @@ class ProfileSetupVC: MainViewController  {
                 if self?.updatedImagePicked != nil {
                     self?.profileTV.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
                 }
-            } else if val.contains("+") {
-                self?.countryCode = val
             }
+        }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
+        
+        _ = generalPublisherCountry.subscribe(onNext: {[weak self] val in
+            
+            self?.countryCode = val.phoneCode
+            self?.countryName = val.name
+            
+            
         }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
         
     }
@@ -112,6 +118,7 @@ class ProfileSetupVC: MainViewController  {
             profileDict["profilePicture"] = profilePic
             profileDict["publicEmail"] = publicEmail
             profileDict["countryCode"] = countryCode
+            profileDict["countryName"] = countryName
             profileDict["phoneNumber"] = phoneNum
             profileDict["dob"] = dateOfBirth
             profileDict["workAdress"] = placeOfWork
@@ -140,9 +147,9 @@ class ProfileSetupVC: MainViewController  {
         var msg = ""
         
         if sender.tag == 001 {
-            msg = "Please note that this email is visible to other users on the app."
+            msg = "Add an optional email address to your profile for convenient connections.\nMuch like you would on a business card.\nNote: It will be visible on your profile."
         } else if sender.tag == 002 {
-            msg = "The lock icon next to your phone number indicates that this number cannot be changed. Please ensure that you have entered the correct phone number during the registration process."
+            msg = "The lock icon next to your phone number means that the number cannot be changed."
         } else if sender.tag == 003 {
             msg = "Please note that your date of birth is private and will not be visible to other users on the app."
         }

@@ -44,6 +44,7 @@
 		296D76922A1CF0A0005A3A99 /* hashTagsTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 296D76902A1CF0A0005A3A99 /* hashTagsTVCell.xib */; };
 		2976102C29DDB85300B74050 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2976102B29DDB85300B74050 /* StoreKit.framework */; };
 		2976102F29DDBF0700B74050 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2976102E29DDBF0700B74050 /* IAPManager.swift */; };
+		2976D89D2A2FD0D800A855F1 /* CodeVerification_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2976D89C2A2FD0D800A855F1 /* CodeVerification_VC.swift */; };
 		2977B7F7299B81D600A0670C /* MixHeaderTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2977B7F5299B81D600A0670C /* MixHeaderTVCell.swift */; };
 		2977B7F8299B81D600A0670C /* MixHeaderTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2977B7F6299B81D600A0670C /* MixHeaderTVCell.xib */; };
 		29846D3E29A154FF00393EB3 /* ChangePassVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29846D3D29A154FF00393EB3 /* ChangePassVC.swift */; };
@@ -172,6 +173,7 @@
 		296D76902A1CF0A0005A3A99 /* hashTagsTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = hashTagsTVCell.xib; sourceTree = "<group>"; };
 		2976102B29DDB85300B74050 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2976102E29DDBF0700B74050 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
+		2976D89C2A2FD0D800A855F1 /* CodeVerification_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeVerification_VC.swift; sourceTree = "<group>"; };
 		2977B7F5299B81D600A0670C /* MixHeaderTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixHeaderTVCell.swift; sourceTree = "<group>"; };
 		2977B7F6299B81D600A0670C /* MixHeaderTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MixHeaderTVCell.xib; sourceTree = "<group>"; };
 		29846D3D29A154FF00393EB3 /* ChangePassVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassVC.swift; sourceTree = "<group>"; };
@@ -394,6 +396,14 @@
 				2976102E29DDBF0700B74050 /* IAPManager.swift */,
 			);
 			path = InAppPurchases;
+			sourceTree = "<group>";
+		};
+		2976D89B2A2FD0B000A855F1 /* Code Verification */ = {
+			isa = PBXGroup;
+			children = (
+				2976D89C2A2FD0D800A855F1 /* CodeVerification_VC.swift */,
+			);
+			path = "Code Verification";
 			sourceTree = "<group>";
 		};
 		29846D3C29A154DA00393EB3 /* ChangePass */ = {
@@ -642,6 +652,7 @@
 		299FDD82299684E50049741B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2976D89B2A2FD0B000A855F1 /* Code Verification */,
 				292B22E22A1CBFE800D43783 /* TagsView  */,
 				2938E73C2A02CD1F00C21AEA /* SocialLinksView */,
 				29BE184A29FA6E42000EAC0E /* EnlargedIV */,
@@ -1084,6 +1095,7 @@
 				29985F30299808FD001F769B /* RoundedTabBarController.swift in Sources */,
 				299FDD89299692C20049741B /* GeneralResponse.swift in Sources */,
 				29FD316829A5FDAD00BDBD9C /* EditProfileSetupExt.swift in Sources */,
+				2976D89D2A2FD0D800A855F1 /* CodeVerification_VC.swift in Sources */,
 				294A79B0299AEB2E00089161 /* AboutTVCell.swift in Sources */,
 				2940B8FF299D634300D3F863 /* ImageViewTVCell.swift in Sources */,
 				299FDD5B29967D1D0049741B /* Styling.swift in Sources */,

@@ -57,9 +57,11 @@ class NotificationVC: MainViewController {
         if AppFunctions.isNotifEnable() {
             UIApplication.shared.unregisterForRemoteNotifications()
             AppFunctions.setNotifEnable(value: false)
+            AppFunctions.showSnackBar(str: "Notifications enabled")
         } else {
             UIApplication.shared.registerForRemoteNotifications()
             AppFunctions.setNotifEnable(value: true)
+            AppFunctions.showSnackBar(str: "Notifications are paused")
         }
         notifTV.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
     }

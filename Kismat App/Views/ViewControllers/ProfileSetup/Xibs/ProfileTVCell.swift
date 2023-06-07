@@ -20,6 +20,7 @@ class ProfileTVCell: UITableViewCell {
     @IBOutlet weak var lockTipBtn: UIButton!
     
     var phoneCode = ""
+    var countryName = ""
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -57,7 +58,8 @@ extension ProfileTVCell: CountryPickerViewDelegate {
     func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country) {
         let message = "Name: \(country.name) \nCode: \(country.code) \nPhone: \(country.phoneCode)"
         phoneCode = country.phoneCode
-        generalPublisher.onNext(country.phoneCode)
+        countryName = country.name
+        generalPublisherCountry.onNext(country)
         Logs.show(message: "\(message)")
     }
 }

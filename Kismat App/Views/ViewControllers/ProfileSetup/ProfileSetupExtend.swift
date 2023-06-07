@@ -408,6 +408,7 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
             case 2: // Slider
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.sliderView.isHidden = false
+                cell.sliderValue = 1250
                 cell.slider.addTarget(self, action: #selector(sliderChanged(slider:)), for: .valueChanged) /// continuous changes
                 return cell
             case 3: // Visibilty 1

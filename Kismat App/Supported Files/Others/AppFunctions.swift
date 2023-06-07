@@ -13,6 +13,7 @@ import CoreLocation
 import MKToolTip
 import StoreKit
 import SafariServices
+import CountryPickerView
 
 //MARK: Globel Variables
 
@@ -47,6 +48,7 @@ let SignalRService = SignalRManager.singelton
 
 public let loading: PublishSubject<Bool> = PublishSubject()
 let generalPublisher: PublishSubject<String> = PublishSubject()
+let generalPublisherCountry: PublishSubject<Country> = PublishSubject()
 let productPublisher: PublishSubject<[String: SKProduct]> = PublishSubject()
 
 

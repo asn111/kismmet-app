@@ -682,6 +682,9 @@ this email.</string>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="forgotPassPressed:" destination="WWv-Bs-My6" eventType="touchUpInside" id="Xlu-vn-wqU"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3099,6 +3102,459 @@ You will not be able to use this account in the future.</string>
             </objects>
             <point key="canvasLocation" x="2355" y="718"/>
         </scene>
+        <!--Code VerificationVC-->
+        <scene sceneID="wQI-EH-AUi">
+            <objects>
+                <viewController storyboardIdentifier="CodeVerification_VC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jWj-cL-4VV" customClass="CodeVerification_VC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cG5-cg-X2r">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T0q-Xx-Myc">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <subviews>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ndX-4k-0Qp" customClass="RoundCornerView" customModule="Von_Rides" customModuleProvider="target">
+                                        <rect key="frame" x="38" y="276" width="317" height="61"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nkZ-aa-Vie" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="317" height="61"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="at.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="kkH-Is-qBT">
+                                                        <rect key="frame" x="22" y="20.666666666666686" width="20" height="20"/>
+                                                        <color key="tintColor" name="Secondary Grey"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21.333333333333314" id="8yW-gS-iFW"/>
+                                                            <constraint firstAttribute="height" constant="21.333333333333314" id="Enx-2x-Uub"/>
+                                                            <constraint firstAttribute="width" constant="20" id="bMl-4V-iwh"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="dbG-EL-zxb"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mXR-LI-eao" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                                        <rect key="frame" x="50" y="8" width="255" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="45" id="en3-1j-MgN"/>
+                                                            <constraint firstAttribute="width" constant="255" id="p1A-2h-pGk"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="255" id="uAL-wU-Ss9"/>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="uHz-vz-326"/>
+                                                        </constraints>
+                                                        <color key="textColor" name="Text grey"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                                <real key="value" value="18"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="mXR-LI-eao" firstAttribute="leading" secondItem="kkH-Is-qBT" secondAttribute="trailing" constant="8" id="1Hb-3P-Ds7"/>
+                                                    <constraint firstItem="kkH-Is-qBT" firstAttribute="leading" secondItem="nkZ-aa-Vie" secondAttribute="leading" constant="22" id="57R-lt-KUw"/>
+                                                    <constraint firstItem="mXR-LI-eao" firstAttribute="top" secondItem="nkZ-aa-Vie" secondAttribute="top" constant="8" id="838-Pf-t11"/>
+                                                    <constraint firstAttribute="bottom" secondItem="kkH-Is-qBT" secondAttribute="bottom" constant="19.999999999999929" id="EnU-st-0Wa"/>
+                                                    <constraint firstItem="kkH-Is-qBT" firstAttribute="top" secondItem="nkZ-aa-Vie" secondAttribute="top" constant="19.666666666666742" id="LQI-aS-3BT"/>
+                                                    <constraint firstItem="mXR-LI-eao" firstAttribute="leading" secondItem="kkH-Is-qBT" secondAttribute="trailing" constant="8" id="S1e-Fs-ugf"/>
+                                                    <constraint firstAttribute="bottom" secondItem="mXR-LI-eao" secondAttribute="bottom" constant="8" id="Zl4-qq-aWs"/>
+                                                    <constraint firstAttribute="trailing" secondItem="mXR-LI-eao" secondAttribute="trailing" constant="12" id="klP-A8-Akm"/>
+                                                    <constraint firstItem="mXR-LI-eao" firstAttribute="leading" secondItem="kkH-Is-qBT" secondAttribute="trailing" constant="8" id="rMC-Po-8a3"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="nkZ-aa-Vie" firstAttribute="top" secondItem="ndX-4k-0Qp" secondAttribute="top" id="DJO-dw-pxA"/>
+                                            <constraint firstAttribute="width" constant="317" id="Ehj-B4-92m"/>
+                                            <constraint firstItem="nkZ-aa-Vie" firstAttribute="leading" secondItem="ndX-4k-0Qp" secondAttribute="leading" id="Oau-cm-rA6"/>
+                                            <constraint firstAttribute="height" constant="61" id="kZh-qV-7jL"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVc-ug-2Zi" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="38" y="202" width="317" height="54"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="317" id="VWb-yv-Sb0"/>
+                                            <constraint firstAttribute="height" constant="54" id="ush-6s-Tvk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="0.0"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                <real key="value" value="16"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="m"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="txtSpacing">
+                                                <real key="value" value="0.29999999999999999"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Didn't Received? Resend" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEz-EQ-Cg9" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="59" y="423" width="276" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="vUh-ZQ-VLJ"/>
+                                            <constraint firstAttribute="width" constant="276" id="vem-ZA-N0f"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                <real key="value" value="18"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="m"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="txtSpacing">
+                                                <real key="value" value="0.40000000000000002"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ydp-Ny-Bxs" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="28" y="276" width="338" height="61"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eKV-UR-Sxu" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="5" y="6" width="50" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="6E2-Fv-jLx"/>
+                                                    <constraint firstAttribute="width" constant="50" id="w4x-xf-OQk"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.14117647059999999" green="0.23137254900000001" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="23"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="one-time-code"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderRadious">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                        <real key="value" value="23"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="h"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wcf-nM-exb" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="61" y="6" width="50" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="HRn-DG-OtA"/>
+                                                    <constraint firstAttribute="width" constant="50" id="a04-79-Oly"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.14117647059999999" green="0.23137254900000001" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="23"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderRadious">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                        <real key="value" value="23"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="h"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WTt-vI-6R4" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="117" y="6" width="50" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="fuO-uP-7hu"/>
+                                                    <constraint firstAttribute="width" constant="50" id="rlG-EX-y14"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.14117647059999999" green="0.23137254900000001" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="23"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderRadious">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                        <real key="value" value="23"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="h"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I6S-jA-cbg" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="173" y="6" width="50" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="LtP-kS-KEW"/>
+                                                    <constraint firstAttribute="width" constant="50" id="qzc-YO-6R4"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.14117647059999999" green="0.23137254900000001" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="23"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderRadious">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                        <real key="value" value="23"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="h"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mSU-jE-98L" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="229" y="6" width="50" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="k7h-tc-iWW"/>
+                                                    <constraint firstAttribute="width" constant="50" id="rpg-fo-JNn"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.14117647059999999" green="0.23137254900000001" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="23"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderRadious">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                        <real key="value" value="23"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="h"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Bc-kx-gWY" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="284" y="6" width="50" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="1tG-jd-nIJ"/>
+                                                    <constraint firstAttribute="height" constant="50" id="b9q-vB-Stc"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.14117647059999999" green="0.23137254900000001" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="23"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderRadious">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                        <real key="value" value="23"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="h"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="7Bc-kx-gWY" firstAttribute="leading" secondItem="mSU-jE-98L" secondAttribute="trailing" constant="5" id="0fG-7U-BnW"/>
+                                            <constraint firstAttribute="bottom" secondItem="mSU-jE-98L" secondAttribute="bottom" constant="5" id="3hO-Hg-oip"/>
+                                            <constraint firstItem="wcf-nM-exb" firstAttribute="leading" secondItem="eKV-UR-Sxu" secondAttribute="trailing" constant="6" id="4Ry-Il-bcg"/>
+                                            <constraint firstItem="wcf-nM-exb" firstAttribute="top" secondItem="ydp-Ny-Bxs" secondAttribute="top" constant="6" id="5P6-Pe-yrh"/>
+                                            <constraint firstItem="I6S-jA-cbg" firstAttribute="top" secondItem="ydp-Ny-Bxs" secondAttribute="top" constant="6" id="75f-yb-krP"/>
+                                            <constraint firstAttribute="bottom" secondItem="WTt-vI-6R4" secondAttribute="bottom" constant="5" id="7fl-q3-qtj"/>
+                                            <constraint firstAttribute="height" constant="61" id="8Kv-SQ-7am"/>
+                                            <constraint firstAttribute="bottom" secondItem="wcf-nM-exb" secondAttribute="bottom" constant="5" id="Fnd-N0-xZ8"/>
+                                            <constraint firstItem="WTt-vI-6R4" firstAttribute="top" secondItem="ydp-Ny-Bxs" secondAttribute="top" constant="6" id="H2W-j3-DW2"/>
+                                            <constraint firstAttribute="bottom" secondItem="eKV-UR-Sxu" secondAttribute="bottom" constant="5" id="JVT-KI-HcO"/>
+                                            <constraint firstItem="7Bc-kx-gWY" firstAttribute="top" secondItem="ydp-Ny-Bxs" secondAttribute="top" constant="6" id="Pwp-kv-6Bx"/>
+                                            <constraint firstAttribute="width" constant="338" id="R33-oJ-P1g"/>
+                                            <constraint firstItem="mSU-jE-98L" firstAttribute="leading" secondItem="I6S-jA-cbg" secondAttribute="trailing" constant="6" id="VFp-Te-GHa"/>
+                                            <constraint firstAttribute="bottom" secondItem="I6S-jA-cbg" secondAttribute="bottom" constant="5" id="W9V-d6-aQG"/>
+                                            <constraint firstItem="I6S-jA-cbg" firstAttribute="leading" secondItem="WTt-vI-6R4" secondAttribute="trailing" constant="6" id="Ynb-RQ-oM7"/>
+                                            <constraint firstAttribute="trailing" secondItem="7Bc-kx-gWY" secondAttribute="trailing" constant="4" id="Z68-da-gJj"/>
+                                            <constraint firstAttribute="bottom" secondItem="7Bc-kx-gWY" secondAttribute="bottom" constant="5" id="ZtX-NQ-3eU"/>
+                                            <constraint firstItem="eKV-UR-Sxu" firstAttribute="top" secondItem="ydp-Ny-Bxs" secondAttribute="top" constant="6" id="b59-g4-9ux"/>
+                                            <constraint firstItem="WTt-vI-6R4" firstAttribute="leading" secondItem="wcf-nM-exb" secondAttribute="trailing" constant="6" id="rNo-PD-7J8"/>
+                                            <constraint firstItem="eKV-UR-Sxu" firstAttribute="leading" secondItem="ydp-Ny-Bxs" secondAttribute="leading" constant="5" id="u36-kC-7Ge"/>
+                                            <constraint firstItem="mSU-jE-98L" firstAttribute="top" secondItem="ydp-Ny-Bxs" secondAttribute="top" constant="6" id="wb6-uj-IBw"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ioz-Qe-yuJ" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="69" y="355" width="255" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="EmZ-e6-hY1"/>
+                                            <constraint firstAttribute="width" constant="255" id="Yz5-Rv-3wT"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
+                                        <state key="normal" title="Verify Code">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                <color key="value" name="Secondary Grey"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="Primary Yellow"/>
+                                <constraints>
+                                    <constraint firstItem="JVc-ug-2Zi" firstAttribute="leading" secondItem="T0q-Xx-Myc" secondAttribute="leading" constant="38" id="304-0r-lST"/>
+                                    <constraint firstItem="ydp-Ny-Bxs" firstAttribute="leading" secondItem="T0q-Xx-Myc" secondAttribute="leading" constant="28" id="HTa-kt-Ewm"/>
+                                    <constraint firstItem="ndX-4k-0Qp" firstAttribute="top" secondItem="JVc-ug-2Zi" secondAttribute="bottom" constant="20" id="Kkf-Nl-49R"/>
+                                    <constraint firstItem="ioz-Qe-yuJ" firstAttribute="top" secondItem="ydp-Ny-Bxs" secondAttribute="bottom" constant="18" id="Nv5-0j-qH3"/>
+                                    <constraint firstAttribute="trailing" secondItem="ydp-Ny-Bxs" secondAttribute="trailing" constant="27" id="TeU-1o-1mA"/>
+                                    <constraint firstAttribute="bottom" secondItem="cEz-EQ-Cg9" secondAttribute="bottom" constant="408" id="U4W-Rc-WYI"/>
+                                    <constraint firstItem="cEz-EQ-Cg9" firstAttribute="top" secondItem="ioz-Qe-yuJ" secondAttribute="bottom" constant="23" id="b9P-us-m2V"/>
+                                    <constraint firstItem="ndX-4k-0Qp" firstAttribute="leading" secondItem="T0q-Xx-Myc" secondAttribute="leading" constant="38" id="cUD-2M-hfh"/>
+                                    <constraint firstItem="ioz-Qe-yuJ" firstAttribute="top" secondItem="ydp-Ny-Bxs" secondAttribute="bottom" constant="18" id="coo-Yr-5fH"/>
+                                    <constraint firstItem="cEz-EQ-Cg9" firstAttribute="leading" secondItem="T0q-Xx-Myc" secondAttribute="leading" constant="59" id="ei5-NM-Gvu"/>
+                                    <constraint firstItem="ioz-Qe-yuJ" firstAttribute="leading" secondItem="T0q-Xx-Myc" secondAttribute="leading" constant="69" id="gUo-At-y6L"/>
+                                    <constraint firstAttribute="trailing" secondItem="cEz-EQ-Cg9" secondAttribute="trailing" constant="58" id="gwf-dF-twm"/>
+                                    <constraint firstAttribute="trailing" secondItem="JVc-ug-2Zi" secondAttribute="trailing" constant="38" id="iMC-0D-ULC"/>
+                                    <constraint firstAttribute="trailing" secondItem="ioz-Qe-yuJ" secondAttribute="trailing" constant="69" id="kue-gL-p9h"/>
+                                    <constraint firstAttribute="trailing" secondItem="ndX-4k-0Qp" secondAttribute="trailing" constant="38" id="oz2-vO-a5s"/>
+                                    <constraint firstItem="ydp-Ny-Bxs" firstAttribute="top" secondItem="JVc-ug-2Zi" secondAttribute="bottom" constant="20" id="vpc-kY-K3N"/>
+                                    <constraint firstItem="ioz-Qe-yuJ" firstAttribute="top" secondItem="ndX-4k-0Qp" secondAttribute="bottom" constant="18" id="ym9-XC-bEg"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwM-Un-vJo" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                <rect key="frame" x="10" y="59" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="dJd-0m-RVA"/>
+                                    <constraint firstAttribute="width" constant="30" id="ym1-lb-oNi"/>
+                                </constraints>
+                                <color key="tintColor" name="Secondary Grey"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="arrow.backward" catalog="system" symbolScale="medium"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="medium"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="Text grey"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="backBtnPressed:" destination="jWj-cL-4VV" eventType="touchUpInside" id="23C-a6-h7S"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bAa-9E-zwR">
+                                <rect key="frame" x="53" y="110" width="286" height="64"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi man grey" translatesAutoresizingMaskIntoConstraints="NO" id="dgE-Jh-eOt">
+                                        <rect key="frame" x="8" y="0.0" width="50" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="HgI-iK-AFd"/>
+                                            <constraint firstAttribute="height" constant="60" id="vnd-gZ-zLN"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo name" translatesAutoresizingMaskIntoConstraints="NO" id="aZM-Uf-zAk">
+                                        <rect key="frame" x="66" y="8" width="190" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="190" id="VCw-1V-Fqp"/>
+                                            <constraint firstAttribute="height" constant="48" id="cjt-fg-qYU"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="dgE-Jh-eOt" firstAttribute="top" secondItem="bAa-9E-zwR" secondAttribute="top" id="Avk-yr-BhF"/>
+                                    <constraint firstItem="dgE-Jh-eOt" firstAttribute="leading" secondItem="bAa-9E-zwR" secondAttribute="leading" constant="8" id="Hbt-aQ-e7H"/>
+                                    <constraint firstAttribute="height" constant="64" id="OrJ-Pg-SLv"/>
+                                    <constraint firstItem="aZM-Uf-zAk" firstAttribute="leading" secondItem="dgE-Jh-eOt" secondAttribute="trailing" constant="8" id="P1w-XG-VVU"/>
+                                    <constraint firstItem="aZM-Uf-zAk" firstAttribute="top" secondItem="bAa-9E-zwR" secondAttribute="top" constant="8" id="hsr-hW-QqX"/>
+                                    <constraint firstAttribute="width" constant="286" id="pmE-vW-iEb"/>
+                                    <constraint firstAttribute="trailing" secondItem="aZM-Uf-zAk" secondAttribute="trailing" constant="30" id="wh1-wn-hNc"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mRK-lV-avN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="T0q-Xx-Myc" firstAttribute="leading" secondItem="mRK-lV-avN" secondAttribute="leading" id="3Q9-jf-EtX"/>
+                            <constraint firstItem="T0q-Xx-Myc" firstAttribute="top" secondItem="cG5-cg-X2r" secondAttribute="top" id="9o6-iT-XGl"/>
+                            <constraint firstAttribute="bottom" secondItem="T0q-Xx-Myc" secondAttribute="bottom" id="EVN-vK-PoQ"/>
+                            <constraint firstItem="T0q-Xx-Myc" firstAttribute="top" secondItem="cG5-cg-X2r" secondAttribute="top" id="ErB-T5-KHB"/>
+                            <constraint firstItem="mRK-lV-avN" firstAttribute="trailing" secondItem="bAa-9E-zwR" secondAttribute="trailing" constant="54" id="JA2-eu-CqX"/>
+                            <constraint firstItem="bAa-9E-zwR" firstAttribute="leading" secondItem="mRK-lV-avN" secondAttribute="leading" constant="53" id="Jqh-HG-iBp"/>
+                            <constraint firstItem="jwM-Un-vJo" firstAttribute="leading" secondItem="mRK-lV-avN" secondAttribute="leading" constant="10" id="KIW-kh-GOS"/>
+                            <constraint firstItem="jwM-Un-vJo" firstAttribute="top" secondItem="mRK-lV-avN" secondAttribute="top" id="M7k-wF-ACC"/>
+                            <constraint firstItem="bAa-9E-zwR" firstAttribute="top" secondItem="mRK-lV-avN" secondAttribute="top" constant="51" id="P6E-xh-U1Q"/>
+                            <constraint firstItem="T0q-Xx-Myc" firstAttribute="leading" secondItem="mRK-lV-avN" secondAttribute="leading" id="RWs-9d-TX3"/>
+                            <constraint firstAttribute="trailing" secondItem="T0q-Xx-Myc" secondAttribute="trailing" id="T5t-z9-rvn"/>
+                            <constraint firstAttribute="bottom" secondItem="T0q-Xx-Myc" secondAttribute="bottom" id="Z0j-N1-PEL"/>
+                            <constraint firstItem="T0q-Xx-Myc" firstAttribute="trailing" secondItem="mRK-lV-avN" secondAttribute="trailing" id="Zy3-1r-GWy"/>
+                            <constraint firstItem="T0q-Xx-Myc" firstAttribute="leading" secondItem="mRK-lV-avN" secondAttribute="leading" id="kNB-Bs-nLV"/>
+                            <constraint firstAttribute="bottom" secondItem="T0q-Xx-Myc" secondAttribute="bottom" id="pHW-fH-u3H"/>
+                            <constraint firstItem="T0q-Xx-Myc" firstAttribute="trailing" secondItem="mRK-lV-avN" secondAttribute="trailing" id="s8b-qN-El2"/>
+                            <constraint firstItem="T0q-Xx-Myc" firstAttribute="top" secondItem="cG5-cg-X2r" secondAttribute="top" id="sfY-ur-KNz"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="codeView" destination="ydp-Ny-Bxs" id="ag7-vL-Aay"/>
+                        <outlet property="fifthTF" destination="mSU-jE-98L" id="ZZg-Ug-KT4"/>
+                        <outlet property="firstTF" destination="eKV-UR-Sxu" id="Ct1-rP-10y"/>
+                        <outlet property="fourthTF" destination="I6S-jA-cbg" id="6QO-ta-LTK"/>
+                        <outlet property="numberLbl" destination="JVc-ug-2Zi" id="yez-bv-98G"/>
+                        <outlet property="numberView" destination="ndX-4k-0Qp" id="Wsz-ZN-8Gr"/>
+                        <outlet property="phoneNumTF" destination="mXR-LI-eao" id="cfY-EP-Rhv"/>
+                        <outlet property="resendCodeLbl" destination="cEz-EQ-Cg9" id="mC1-7F-Uhg"/>
+                        <outlet property="secondTF" destination="wcf-nM-exb" id="UAa-0C-34h"/>
+                        <outlet property="sixthTF" destination="7Bc-kx-gWY" id="0vd-0L-7V7"/>
+                        <outlet property="thirdTF" destination="WTt-vI-6R4" id="h6H-qP-qVK"/>
+                        <outlet property="verifyBtn" destination="ioz-Qe-yuJ" id="fZs-c2-cf8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Vh-1I-cm2" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="875.57251908396938" y="-696.47887323943667"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="0ZP-IY-8wV">
@@ -3124,6 +3580,9 @@ You will not be able to use this account in the future.</string>
         </designable>
         <designable name="5w6-ZN-cHD">
             <size key="intrinsicContentSize" width="168" height="15.333333333333334"/>
+        </designable>
+        <designable name="7Bc-kx-gWY">
+            <size key="intrinsicContentSize" width="35" height="29"/>
         </designable>
         <designable name="7es-w6-l3U">
             <size key="intrinsicContentSize" width="20" height="19"/>
@@ -3161,6 +3620,9 @@ You will not be able to use this account in the future.</string>
         <designable name="Hvi-f8-508">
             <size key="intrinsicContentSize" width="47.333333333333336" height="21.333333333333332"/>
         </designable>
+        <designable name="I6S-jA-cbg">
+            <size key="intrinsicContentSize" width="35" height="29"/>
+        </designable>
         <designable name="IdU-6F-ZgX">
             <size key="intrinsicContentSize" width="90" height="23.666666666666668"/>
         </designable>
@@ -3170,6 +3632,7 @@ You will not be able to use this account in the future.</string>
         <designable name="JBx-SY-DoZ">
             <size key="intrinsicContentSize" width="63.666666666666664" height="20.666666666666668"/>
         </designable>
+        <designable name="JVc-ug-2Zi"/>
         <designable name="JxZ-YY-3L0">
             <size key="intrinsicContentSize" width="193.66666666666666" height="14.333333333333334"/>
         </designable>
@@ -3200,6 +3663,9 @@ You will not be able to use this account in the future.</string>
         <designable name="Sux-1S-tdw">
             <size key="intrinsicContentSize" width="146" height="15.333333333333334"/>
         </designable>
+        <designable name="WTt-vI-6R4">
+            <size key="intrinsicContentSize" width="35" height="29"/>
+        </designable>
         <designable name="X59-RV-k6Q">
             <size key="intrinsicContentSize" width="506.66666666666669" height="33"/>
         </designable>
@@ -3224,8 +3690,14 @@ You will not be able to use this account in the future.</string>
         <designable name="bf5-4T-Cpx">
             <size key="intrinsicContentSize" width="76" height="31"/>
         </designable>
+        <designable name="cEz-EQ-Cg9">
+            <size key="intrinsicContentSize" width="205" height="21.333333333333332"/>
+        </designable>
         <designable name="e1r-8r-A1G">
             <size key="intrinsicContentSize" width="91.333333333333329" height="19"/>
+        </designable>
+        <designable name="eKV-UR-Sxu">
+            <size key="intrinsicContentSize" width="35" height="29"/>
         </designable>
         <designable name="eku-i5-B1A">
             <size key="intrinsicContentSize" width="294" height="16.666666666666668"/>
@@ -3245,11 +3717,23 @@ You will not be able to use this account in the future.</string>
         <designable name="iWN-4Z-XWq">
             <size key="intrinsicContentSize" width="179" height="19"/>
         </designable>
+        <designable name="ioz-Qe-yuJ">
+            <size key="intrinsicContentSize" width="90" height="31"/>
+        </designable>
         <designable name="ixr-0u-dTD">
             <size key="intrinsicContentSize" width="49" height="31"/>
         </designable>
+        <designable name="jwM-Un-vJo">
+            <size key="intrinsicContentSize" width="20" height="19"/>
+        </designable>
         <designable name="lhD-Tf-j08">
             <size key="intrinsicContentSize" width="146" height="15.333333333333334"/>
+        </designable>
+        <designable name="mSU-jE-98L">
+            <size key="intrinsicContentSize" width="35" height="29"/>
+        </designable>
+        <designable name="mXR-LI-eao">
+            <size key="intrinsicContentSize" width="69.666666666666671" height="23"/>
         </designable>
         <designable name="nIQ-VS-jss">
             <size key="intrinsicContentSize" width="68.666666666666671" height="19"/>
@@ -3275,6 +3759,9 @@ You will not be able to use this account in the future.</string>
         <designable name="w12-80-ph3">
             <size key="intrinsicContentSize" width="111.33333333333333" height="19"/>
         </designable>
+        <designable name="wcf-nM-exb">
+            <size key="intrinsicContentSize" width="35" height="29"/>
+        </designable>
         <designable name="whs-bR-EUC">
             <size key="intrinsicContentSize" width="15.666666666666666" height="19"/>
         </designable>
@@ -3292,6 +3779,7 @@ You will not be able to use this account in the future.</string>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>
         <image name="arrow.right" catalog="system" width="128" height="95"/>
         <image name="arrowtriangle.down.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="at.circle" catalog="system" width="128" height="123"/>
         <image name="bell.fill" catalog="system" width="123" height="128"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
         <image name="eye.circle.fill" catalog="system" width="128" height="123"/>

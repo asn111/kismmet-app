@@ -19,6 +19,11 @@ class SignInVC: MainViewController {
         }
     }
     
+    @IBAction func forgotPassPressed(_ sender: Any) {
+        self.presentVC(id: "CodeVerification_VC") { (vc:CodeVerification_VC) in }
+
+    }
+    
     @IBOutlet weak var emailTF: FormTextField!
     @IBOutlet weak var passwordTF: FormTextField!
     

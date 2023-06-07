@@ -1307,14 +1307,12 @@ class APIService: NSObject {
     //MARK: POST CALLS
     ///////////////////*********************////////////////////////********************////////////////////////*********************///////////////////////
     
-    
-    //MARK: Verify Code & Login && Social Login User
-    func codeVerificationNLogin(pram: Parameters, isFromSocial: Bool) -> Observable<Bool> {
+    //MARK: Verify Email
+    func sendEmailToVerify(pram: Parameters) -> Observable<Bool> {
         
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
-                let url = ""
-                AF.request("\(self?.baseUrl ?? "")\(url)", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: isFromSocial ? self?.getRequestHeader() : nil)
+                AF.request("\(self?.baseUrl ?? "")/api/Users/ForgotPassword", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1326,64 +1324,70 @@ class APIService: NSObject {
                         }
                         switch response.result {
                             case .success:
-                                if !isFromSocial {
-                                    do {
-                                        let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
-                                        let jwtValue = try! AppFunctions.decode(jwtToken: genResponse.body.token)
-                                        Logs.show(message: "TOKEN: \(genResponse.body.token ?? "")")
-                                        Logs.show(message: "jwtValue: \(jwtValue)")
-                                        let role = jwtValue["Role"]
-                                        let userId = jwtValue["Id"]
-                                        //let paymentInfo : String = jwtValue["IsPaymentInfoSaved"] as! String
-                                        let isProfileUpdated : String = jwtValue["IsProfileUpdated"] as! String
-                                        let isUserAgreement : String = jwtValue["IsUserAgreement"] as! String
-                                        let isPhoneVerifyed : String = jwtValue["IsPhoneVerified"] as! String
-                                        let isEmailVerifyed : String = jwtValue["IsEmailVerified"] as! String
-                                        
-                                        AppFunctions.saveToken(name: genResponse.body.token ?? "")
-                                        AppFunctions.saveUserId(name: userId as! String)
-                                        AppFunctions.saveRole(name: role as! String)
-                                        AppFunctions.setIsLoggedIn(value: true)
-                                        
-                                        //                                        if paymentInfo.contains("True") {
-                                        //                                            AppFunctions.setIsPaymentInfoSaved(value: true)
-                                        //                                        }
-                                        if isProfileUpdated.contains("True") {
-                                            AppFunctions.setIsProfileUpdated(value: true)
-                                        }
-                                        if isUserAgreement.contains("True") {
-                                            AppFunctions.setIsTermsNCndCheck(value: true)
-                                        }
-                                        if isPhoneVerifyed.contains("True") {
-                                            AppFunctions.setIsNumberVerified(value: true)
-                                        }
-                                        if isEmailVerifyed.contains("True") {
-                                            AppFunctions.setIsEmailVerified(value: true)
-                                        }
-                                        if (AppFunctions.getDevToken() != "") {
-                                            self!.registerDeviceToken(token: AppFunctions.getDevToken())
-                                        }
-                                        
-                                        observer.onNext(true)
-                                        observer.onCompleted()
-                                    } catch {
-                                        observer.onError(error)
-                                        AppFunctions.showSnackBar(str: "Server Parsing Error")
-                                        Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
-                                    }
-                                } else {
+                                do {
+                                    let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    Logs.show(message: "SUCCESS IN \(#function)")
                                     observer.onNext(true)
                                     observer.onCompleted()
+                                } catch {
+                                    observer.onError(error)
+                                    AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
                                 }
-                                
-                                Logs.show(message: "SUCCESS IN codeVerificationNLogin")
-                                
-                            case .failure( _):
+                            case .failure(let error):
                                 do {
                                     let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
-                                    observer.onNext(false)
-                                    Logs.show(isLogTrue: true, message: "S:: \(responce.errorMessage ?? "")")
-                                    AppFunctions.showSnackBar(str: responce.message)
+                                    observer.onError(error)
+                                    Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                    AppFunctions.showSnackBar(str: responce.errorMessage)
+                                }catch {
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                    AppFunctions.showSnackBar(str: "Server Request Error")
+                                    observer.onError(error)
+                                }
+                        }
+                    }
+            } else {
+                AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
+            }
+            return Disposables.create()
+        }
+    }
+    
+    
+    //MARK: Verify Code
+    func codeVerificationNLogin(pram: Parameters) -> Observable<Bool> {
+        
+        return Observable.create{[weak self] observer -> Disposable in
+            if (self?.isCheckReachable())! {
+                AF.request("\(self?.baseUrl ?? "")/api/Users/ValidateCode", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                    .validate()
+                    .responseData{ response in
+                        Logs.show(message: "URL: \(response.debugDescription)")
+                        guard let data = response.data else {
+                            observer.onError(response.error!)
+                            AppFunctions.showSnackBar(str: "Server Request Error")
+                            Logs.show(isLogTrue: true, message: "Error on Response.data\(response.error!)")
+                            return
+                        }
+                        switch response.result {
+                            case .success:
+                                do {
+                                    let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    Logs.show(message: "SUCCESS IN \(#function)")
+                                    observer.onNext(true)
+                                    observer.onCompleted()
+                                } catch {
+                                    observer.onError(error)
+                                    AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                }
+                            case .failure(let error):
+                                do {
+                                    let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    observer.onError(error)
+                                    Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                    AppFunctions.showSnackBar(str: responce.errorMessage)
                                 }catch {
                                     Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
                                     AppFunctions.showSnackBar(str: "Server Request Error")
