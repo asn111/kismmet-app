@@ -42,6 +42,7 @@ class UserModel: NSObject, Codable {
     var email : String!
     var publicEmail : String!
     var countryCode : String!
+    var countryName : String!
     var phone : String!
     var dob : String!
     var workAddress : String!
@@ -67,6 +68,7 @@ class UserModel: NSObject, Codable {
         email = ""
         publicEmail = ""
         countryCode = ""
+        countryName = ""
         phone = ""
         dob = ""
         workAddress = ""
@@ -104,6 +106,7 @@ class UserModel: NSObject, Codable {
         case email = "email"
         case publicEmail = "publicEmail"
         case countryCode = "countryCode"
+        case countryName = "countryName"
         case phone = "phone"
         case dob = "dob"
         case workAddress = "workAddress"
@@ -129,6 +132,7 @@ class UserModel: NSObject, Codable {
         email  = try values.decodeIfPresent(String.self, forKey: .email)
         publicEmail  = try values.decodeIfPresent(String.self, forKey: .publicEmail)
         countryCode  = try values.decodeIfPresent(String.self, forKey: .countryCode)
+        countryName  = try values.decodeIfPresent(String.self, forKey: .countryName)
         phone  = try values.decodeIfPresent(String.self, forKey: .phone)
         dob  = try values.decodeIfPresent(String.self, forKey: .dob)
         workAddress  = try values.decodeIfPresent(String.self, forKey: .workAddress)

@@ -189,7 +189,7 @@
 		29985F41299937E6001F769B /* ViewedProfilesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewedProfilesVC.swift; sourceTree = "<group>"; };
 		299E03CA29A135C60064A5E3 /* AddLinksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLinksVC.swift; sourceTree = "<group>"; };
 		299E03CD29A141450064A5E3 /* MembershipVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipVC.swift; sourceTree = "<group>"; };
-		299FDD06299679690049741B /* Kismat App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kismat App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		299FDD06299679690049741B /* Kismmat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kismmat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		299FDD09299679690049741B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		299FDD10299679690049741B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		299FDD13299679690049741B /* Kismat_App.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Kismat_App.xcdatamodel; sourceTree = "<group>"; };
@@ -491,7 +491,7 @@
 		299FDD07299679690049741B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				299FDD06299679690049741B /* Kismat App.app */,
+				299FDD06299679690049741B /* Kismmat.app */,
 				299FDD1F2996796B0049741B /* Kismat AppTests.xctest */,
 				299FDD292996796B0049741B /* Kismat AppUITests.xctest */,
 			);
@@ -812,9 +812,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		299FDD05299679690049741B /* Kismat App */ = {
+		299FDD05299679690049741B /* Kismmat */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 299FDD332996796B0049741B /* Build configuration list for PBXNativeTarget "Kismat App" */;
+			buildConfigurationList = 299FDD332996796B0049741B /* Build configuration list for PBXNativeTarget "Kismmat" */;
 			buildPhases = (
 				92798B63DB5AE0499297F58C /* [CP] Check Pods Manifest.lock */,
 				299FDD02299679690049741B /* Sources */,
@@ -826,9 +826,9 @@
 			);
 			dependencies = (
 			);
-			name = "Kismat App";
+			name = Kismmat;
 			productName = "Kismat App";
-			productReference = 299FDD06299679690049741B /* Kismat App.app */;
+			productReference = 299FDD06299679690049741B /* Kismmat.app */;
 			productType = "com.apple.product-type.application";
 		};
 		299FDD1E2996796B0049741B /* Kismat AppTests */ = {
@@ -906,7 +906,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				299FDD05299679690049741B /* Kismat App */,
+				299FDD05299679690049741B /* Kismmat */,
 				299FDD1E2996796B0049741B /* Kismat AppTests */,
 				299FDD282996796B0049741B /* Kismat AppUITests */,
 			);
@@ -1168,12 +1168,12 @@
 /* Begin PBXTargetDependency section */
 		299FDD212996796B0049741B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 299FDD05299679690049741B /* Kismat App */;
+			target = 299FDD05299679690049741B /* Kismmat */;
 			targetProxy = 299FDD202996796B0049741B /* PBXContainerItemProxy */;
 		};
 		299FDD2B2996796B0049741B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 299FDD05299679690049741B /* Kismat App */;
+			target = 299FDD05299679690049741B /* Kismmat */;
 			targetProxy = 299FDD2A2996796B0049741B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1320,16 +1320,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Kismat App/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "This allows you to take photos from within the image library (e.g. your profile photo)";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This allows you to take photos from within the app (e.g. your profile photo)";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "For a reliable ride, Von Rides would require location data from the time you open the app until a trip ends. This improves pickups and more.";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "For a reliable ride, Von Rides would require location data from the time you open the app until a trip ends. This improves pickups and more.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For a reliable ride, Von Rides would require location data from the time you open the app until a trip ends. This improves pickups and more.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "To get user arround you, Kismmet would require location data from the time you open the app until a app closes.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "To get user arround you, Kismmet would require location data from the time you open the app until a app closes.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To get user arround you, Kismmet would require location data from the time you open the app until a app closes.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1359,16 +1359,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Kismat App/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "This allows you to take photos from within the image library (e.g. your profile photo)";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This allows you to take photos from within the app (e.g. your profile photo)";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "For a reliable ride, Von Rides would require location data from the time you open the app until a trip ends. This improves pickups and more.";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "For a reliable ride, Von Rides would require location data from the time you open the app until a trip ends. This improves pickups and more.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "For a reliable ride, Von Rides would require location data from the time you open the app until a trip ends. This improves pickups and more.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "To get user arround you, Kismmet would require location data from the time you open the app until a app closes.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "To get user arround you, Kismmet would require location data from the time you open the app until a app closes.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To get user arround you, Kismmet would require location data from the time you open the app until a app closes.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1482,7 +1482,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		299FDD332996796B0049741B /* Build configuration list for PBXNativeTarget "Kismat App" */ = {
+		299FDD332996796B0049741B /* Build configuration list for PBXNativeTarget "Kismmat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				299FDD342996796B0049741B /* Debug */,

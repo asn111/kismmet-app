@@ -75,6 +75,10 @@ class OtherUserProfile: MainViewController {
         otherProfileTV.separatorStyle = .none
         otherProfileTV.delegate = self
         otherProfileTV.dataSource = self
+        let tabBarHeight: CGFloat = self.tabBarController?.tabBar.frame.height ?? 0
+        let bottomSpace: CGFloat = 5  // Adjust the value as needed
+        otherProfileTV.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tabBarHeight + bottomSpace, right: 0)
+        
         otherProfileTV.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
         otherProfileTV.register(UINib(nibName: "AboutTVCell", bundle: nil), forCellReuseIdentifier: "AboutTVCell")
         otherProfileTV.register(UINib(nibName: "MixHeaderTVCell", bundle: nil), forCellReuseIdentifier: "MixHeaderTVCell")

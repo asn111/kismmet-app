@@ -18,7 +18,11 @@ class ChangePassVC: MainViewController {
     @IBOutlet weak var oldPassView: RoundCornerView!
     
     @IBAction func backBtnPressed(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        if isForgotPass {
+            self.dismiss(animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func feedBtnPressed(_ sender: Any) {
@@ -36,7 +40,6 @@ class ChangePassVC: MainViewController {
         super.viewDidLoad()
         
         if isForgotPass {
-            backBtn.isHidden = true
             personIcon.isHidden = true
             oldPassView.isHidden = true
         }

@@ -72,10 +72,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xUm-Sj-qbE" customClass="CustomToggleButton" customModule="Kismat_App" customModuleProvider="target">
-                                        <rect key="frame" x="311.16666666666663" y="11.583333333333334" width="14.333333333333314" height="7.8333333333333339"/>
+                                        <rect key="frame" x="315.5" y="14.583333333333336" width="5" height="1.8333333333333321"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="15.5" id="7QG-He-LjK"/>
-                                            <constraint firstAttribute="width" constant="22.5" id="dKM-t8-AJW"/>
+                                            <constraint firstAttribute="height" constant="3.8333333333333321" id="7QG-He-LjK"/>
+                                            <constraint firstAttribute="width" constant="4.1666666666666856" id="dKM-t8-AJW"/>
                                         </constraints>
                                         <color key="onTintColor" name="Secondary Grey"/>
                                         <userDefinedRuntimeAttributes>
@@ -93,24 +93,24 @@
                                     <constraint firstItem="jLp-rH-ZeA" firstAttribute="leading" secondItem="Rtt-Zr-LA8" secondAttribute="leading" constant="8" id="8oS-4j-kCn"/>
                                     <constraint firstItem="5Zd-77-ahs" firstAttribute="leading" secondItem="jLp-rH-ZeA" secondAttribute="trailing" id="A6c-HV-aPv"/>
                                     <constraint firstAttribute="bottom" secondItem="jLp-rH-ZeA" secondAttribute="bottom" constant="5" id="DHe-eJ-JWv"/>
-                                    <constraint firstItem="xUm-Sj-qbE" firstAttribute="top" secondItem="Rtt-Zr-LA8" secondAttribute="top" constant="7.75" id="QDX-hb-xvp"/>
+                                    <constraint firstItem="xUm-Sj-qbE" firstAttribute="top" secondItem="Rtt-Zr-LA8" secondAttribute="top" constant="13.583333333333336" id="QDX-hb-xvp"/>
                                     <constraint firstItem="jLp-rH-ZeA" firstAttribute="top" secondItem="Rtt-Zr-LA8" secondAttribute="top" constant="4" id="U9M-wk-Hdh"/>
                                     <constraint firstAttribute="bottom" secondItem="5Zd-77-ahs" secondAttribute="bottom" constant="8" id="hAj-bu-fhj"/>
                                     <constraint firstAttribute="height" constant="30" id="iwz-CU-Xmp"/>
                                     <constraint firstAttribute="width" constant="340" id="jhY-as-ub6"/>
-                                    <constraint firstAttribute="bottom" secondItem="xUm-Sj-qbE" secondAttribute="bottom" constant="6.75" id="mvQ-z6-uQu"/>
-                                    <constraint firstAttribute="trailing" secondItem="xUm-Sj-qbE" secondAttribute="trailing" constant="12.25" id="rNw-5q-d9M"/>
+                                    <constraint firstAttribute="bottom" secondItem="xUm-Sj-qbE" secondAttribute="bottom" constant="12.583333333333332" id="mvQ-z6-uQu"/>
+                                    <constraint firstAttribute="trailing" secondItem="xUm-Sj-qbE" secondAttribute="trailing" constant="21.749999999999943" id="rNw-5q-d9M"/>
                                     <constraint firstItem="5Zd-77-ahs" firstAttribute="top" secondItem="Rtt-Zr-LA8" secondAttribute="top" constant="7" id="sGx-Ev-hmI"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8lF-4I-lbp">
-                                <rect key="frame" x="17.666666666666657" y="7" width="340" height="30"/>
+                                <rect key="frame" x="17.666666666666657" y="0.0" width="340" height="44"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tags" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3PY-qB-7mJ" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="4.6666666666666661" width="324" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tags" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3PY-qB-7mJ" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="-3" width="324" height="47"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="324" id="Bec-BK-o2s"/>
-                                            <constraint firstAttribute="height" constant="21" id="mvG-Yc-9aZ"/>
+                                            <constraint firstAttribute="height" constant="47" id="mvG-Yc-9aZ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -122,16 +122,16 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="l"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                <real key="value" value="16"/>
+                                                <real key="value" value="14"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="3PY-qB-7mJ" firstAttribute="centerY" secondItem="8lF-4I-lbp" secondAttribute="centerY" id="CYz-7O-7js"/>
+                                    <constraint firstItem="3PY-qB-7mJ" firstAttribute="centerY" secondItem="8lF-4I-lbp" secondAttribute="centerY" constant="-1.5" id="CYz-7O-7js"/>
                                     <constraint firstItem="3PY-qB-7mJ" firstAttribute="centerX" secondItem="8lF-4I-lbp" secondAttribute="centerX" id="HHj-tW-OdO"/>
-                                    <constraint firstAttribute="height" constant="30" id="Lxy-7g-PyN"/>
+                                    <constraint firstAttribute="height" constant="44" id="Lxy-7g-PyN"/>
                                     <constraint firstAttribute="width" constant="340" id="NMH-vG-QQU"/>
                                 </constraints>
                             </view>
@@ -261,7 +261,7 @@
             <size key="intrinsicContentSize" width="39.333333333333336" height="21.333333333333332"/>
         </designable>
         <designable name="3PY-qB-7mJ">
-            <size key="intrinsicContentSize" width="34.666666666666664" height="19"/>
+            <size key="intrinsicContentSize" width="30.666666666666668" height="16.666666666666668"/>
         </designable>
         <designable name="5Zd-77-ahs">
             <size key="intrinsicContentSize" width="48" height="48"/>

@@ -233,10 +233,10 @@
     </objects>
     <designables>
         <designable name="lEa-z3-zuD">
-            <size key="intrinsicContentSize" width="61" height="19.333333333333332"/>
+            <size key="intrinsicContentSize" width="26" height="13.666666666666666"/>
         </designable>
         <designable name="oPc-B4-0kB">
-            <size key="intrinsicContentSize" width="61" height="19.333333333333332"/>
+            <size key="intrinsicContentSize" width="26" height="13.666666666666666"/>
         </designable>
     </designables>
     <resources>

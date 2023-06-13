@@ -17,7 +17,7 @@ class EditProfileSetup: MainViewController {
     var placeholderArray = ["","Full Name","Date of Birth"
                             ,"Public Email","Where do you work / study?","Title","Tell us about your self..",""]
     var dataArray = [String]()
-    var fullName = "", publicEmail = "", placeOfWork = "", workTitle = "" , dateOfBirth = "" , about = "", countryCode = "", phoneNum = "", profilePic = ""
+    var fullName = "", publicEmail = "", placeOfWork = "", workTitle = "" , dateOfBirth = "" , about = "", countryCode = "", phoneNum = "", countryName = "", profilePic = ""
     
     var proximity = 0
     var isProfileVisible = false
@@ -419,6 +419,7 @@ class EditProfileSetup: MainViewController {
                                 self.placeOfWork = user!.workAddress
                                 self.about = user!.about
                                 self.countryCode = user!.countryCode
+                                self.countryName = user!.countryName
                                 self.phoneNum = user!.phone
                                 self.proximity = user!.proximity
                                 self.isProfileVisible = user!.isProfileVisible
@@ -479,6 +480,7 @@ class EditProfileSetup: MainViewController {
         profileDict["countryCode"] = countryCode
         profileDict["phoneNumber"] = phoneNum
         profileDict["dob"] = dateOfBirth
+        profileDict["countryName"] = dateOfBirth
         profileDict["workAdress"] = placeOfWork
         profileDict["workTitle"] = workTitle
         profileDict["about"] = about
@@ -662,6 +664,9 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 cell.genBtn.tintColor = UIColor(named: "Secondary Grey")
                 cell.genBtn.underline()
                 cell.genBtn.isWork = true
+                
+                cell.genBtn.tag = indexPath.row
+                cell.genBtn.removeTarget(nil, action: nil, for: .allEvents)
                 cell.genBtn.addTarget(self, action: #selector(genBtnPressedForProfile(sender:)), for: .touchUpInside)
                 
                 return cell
@@ -671,9 +676,15 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 
                 let cell : GeneralButtonTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralButtonTVCell", for: indexPath) as! GeneralButtonTVCell
                 cell.genBtn.setTitle("Done", for: .normal)
+                cell.genBtn.backgroundColor = UIColor(named: "Secondary Grey")
+                cell.genBtn.tintColor = UIColor.white
+                cell.genBtn.isWork = false
                 cell.arrowView.isHidden = true
                 
+                cell.genBtn.tag = indexPath.row
+                cell.genBtn.removeTarget(nil, action: nil, for: .allEvents)
                 cell.genBtn.addTarget(self, action: #selector(genBtnPressedForDone(sender:)), for: .touchUpInside)
+                
                 return cell
                 
             default:

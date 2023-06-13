@@ -1374,6 +1374,21 @@ class APIService: NSObject {
                             case .success:
                                 do {
                                     let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    let jwtValue = try! AppFunctions.decode(jwtToken: genResponse.body.token)
+                                    Logs.show(message: "TOKEN: \(genResponse.body.token ?? "")")
+                                    Logs.show(message: "jwtValue: \(jwtValue)")
+                                    let role = jwtValue["Role"]
+                                    let userId = jwtValue["Id"]
+                                    //let paymentInfo : String = jwtValue["IsPaymentInfoSaved"] as! String
+                                    
+                                    let isProfileUpdated : String = jwtValue["IsProfileUpdated"] as! String
+                                    let isUserAgreement : String = jwtValue["IsUserAgreement"] as! String
+                                    
+                                    AppFunctions.saveToken(name: genResponse.body.token ?? "")
+                                    AppFunctions.saveUserId(name: userId as! String)
+                                    AppFunctions.saveRole(name: role as! String)
+                                    AppFunctions.setIsLoggedIn(value: true)
+                                    
                                     Logs.show(message: "SUCCESS IN \(#function)")
                                     observer.onNext(true)
                                     observer.onCompleted()

@@ -829,10 +829,10 @@ this email.</string>
                                         <rect key="frame" x="20" y="86" width="353" height="60"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name Your Account username" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8kg-pJ-3sY" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
+                                                <rect key="frame" x="31" y="0.0" width="322" height="60"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="353" id="9N2-Tb-1aS"/>
+                                                    <constraint firstAttribute="width" constant="322" id="9N2-Tb-1aS"/>
                                                     <constraint firstAttribute="height" constant="60" id="KHu-9f-cdw"/>
                                                 </constraints>
                                                 <color key="textColor" name="Text grey"/>
@@ -850,14 +850,36 @@ this email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FHk-a9-YUN" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="22" width="15" height="15"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="15" id="lqj-wb-cYS"/>
+                                                    <constraint firstAttribute="width" constant="15" id="qH6-OQ-Iv2"/>
+                                                </constraints>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="tooltip_icon" symbolScale="medium"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="nameToolTip:" destination="FLr-3f-7MZ" eventType="touchUpInside" id="7kJ-nv-6ai"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" name="Cell BG Base Grey"/>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="FHk-a9-YUN" secondAttribute="bottom" constant="23" id="1qq-Ai-Asd"/>
                                             <constraint firstAttribute="height" constant="60" id="5gl-IR-Ny8"/>
                                             <constraint firstAttribute="trailing" secondItem="8kg-pJ-3sY" secondAttribute="trailing" id="8W4-Zo-6vi"/>
-                                            <constraint firstItem="8kg-pJ-3sY" firstAttribute="leading" secondItem="Cxs-Rj-zIi" secondAttribute="leading" id="Fkq-Nz-ewb"/>
+                                            <constraint firstItem="8kg-pJ-3sY" firstAttribute="leading" secondItem="Cxs-Rj-zIi" secondAttribute="leading" constant="31" id="Fkq-Nz-ewb"/>
                                             <constraint firstAttribute="bottom" secondItem="8kg-pJ-3sY" secondAttribute="bottom" id="NHg-qK-h5D"/>
+                                            <constraint firstItem="FHk-a9-YUN" firstAttribute="top" secondItem="Cxs-Rj-zIi" secondAttribute="top" constant="22" id="VfU-oG-fEO"/>
                                             <constraint firstItem="8kg-pJ-3sY" firstAttribute="top" secondItem="Cxs-Rj-zIi" secondAttribute="top" id="ap3-ql-2jO"/>
+                                            <constraint firstItem="FHk-a9-YUN" firstAttribute="leading" secondItem="Cxs-Rj-zIi" secondAttribute="leading" constant="8" id="d3P-Wz-wr9"/>
                                             <constraint firstAttribute="width" constant="353" id="kdP-5V-5Eu"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -882,10 +904,10 @@ this email.</string>
                                         <rect key="frame" x="20" y="151" width="353" height="60"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your Username" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Fkw-EZ-gfF" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
+                                                <rect key="frame" x="31" y="0.0" width="322" height="60"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="353" id="5XL-Dy-nyX"/>
+                                                    <constraint firstAttribute="width" constant="322" id="5XL-Dy-nyX"/>
                                                     <constraint firstAttribute="height" constant="60" id="W65-xL-UMC"/>
                                                 </constraints>
                                                 <color key="textColor" name="Text grey"/>
@@ -903,14 +925,60 @@ this email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAM-Zs-drD" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="22" width="15" height="15"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="15" id="RII-6q-phf"/>
+                                                    <constraint firstAttribute="width" constant="15" id="VEl-fx-fks"/>
+                                                </constraints>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="tooltip_icon" symbolScale="medium"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="toolTipLink:" destination="FLr-3f-7MZ" eventType="touchUpInside" id="VS3-vz-qr1"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Hm-hD-Ke7" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                                <rect key="frame" x="324" y="18" width="24" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="24" id="YXA-ku-TT4"/>
+                                                    <constraint firstAttribute="height" constant="24" id="b6W-NH-AsH"/>
+                                                </constraints>
+                                                <color key="tintColor" name="Text grey"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="mail.and.text.magnifyingglass.rtl" catalog="system" symbolScale="medium"/>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="medium"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="linkToolTip:" destination="FLr-3f-7MZ" eventType="touchUpInside" id="DgD-rH-lk0"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" name="Cell BG Base Grey"/>
                                         <constraints>
+                                            <constraint firstItem="vAM-Zs-drD" firstAttribute="leading" secondItem="s2d-eg-MkL" secondAttribute="leading" constant="8" id="9GQ-O5-jBi"/>
+                                            <constraint firstItem="7Hm-hD-Ke7" firstAttribute="top" secondItem="s2d-eg-MkL" secondAttribute="top" constant="18" id="Dmy-g2-MKP"/>
+                                            <constraint firstAttribute="trailing" secondItem="7Hm-hD-Ke7" secondAttribute="trailing" constant="5" id="Fhk-Fp-Ofi"/>
+                                            <constraint firstItem="vAM-Zs-drD" firstAttribute="top" secondItem="s2d-eg-MkL" secondAttribute="top" constant="22" id="OTD-xl-4A4"/>
                                             <constraint firstAttribute="bottom" secondItem="Fkw-EZ-gfF" secondAttribute="bottom" id="SZP-Pz-Zam"/>
+                                            <constraint firstAttribute="bottom" secondItem="7Hm-hD-Ke7" secondAttribute="bottom" constant="18" id="Sgn-25-NkQ"/>
                                             <constraint firstAttribute="width" constant="353" id="Ujm-bp-V4I"/>
                                             <constraint firstAttribute="height" constant="60" id="VvK-wc-loT"/>
+                                            <constraint firstAttribute="bottom" secondItem="vAM-Zs-drD" secondAttribute="bottom" constant="23" id="XNY-8y-h7n"/>
                                             <constraint firstItem="Fkw-EZ-gfF" firstAttribute="top" secondItem="s2d-eg-MkL" secondAttribute="top" id="YNG-AG-dd5"/>
-                                            <constraint firstItem="Fkw-EZ-gfF" firstAttribute="leading" secondItem="s2d-eg-MkL" secondAttribute="leading" id="eGA-Sc-ZvZ"/>
+                                            <constraint firstItem="Fkw-EZ-gfF" firstAttribute="leading" secondItem="s2d-eg-MkL" secondAttribute="leading" constant="31" id="eGA-Sc-ZvZ"/>
                                             <constraint firstAttribute="trailing" secondItem="Fkw-EZ-gfF" secondAttribute="trailing" id="zHq-7U-Tp6"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -3113,7 +3181,7 @@ You will not be able to use this account in the future.</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T0q-Xx-Myc">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
-                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ndX-4k-0Qp" customClass="RoundCornerView" customModule="Von_Rides" customModuleProvider="target">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ndX-4k-0Qp" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
                                         <rect key="frame" x="38" y="276" width="317" height="61"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nkZ-aa-Vie" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
@@ -3513,13 +3581,45 @@ You will not be able to use this account in the future.</string>
                                     <constraint firstAttribute="trailing" secondItem="aZM-Uf-zAk" secondAttribute="trailing" constant="30" id="wh1-wn-hNc"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DwX-B0-KIi" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                <rect key="frame" x="347" y="59" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="Afk-J3-WTi"/>
+                                    <constraint firstAttribute="height" constant="30" id="jah-6Z-6kS"/>
+                                </constraints>
+                                <color key="tintColor" name="Secondary Grey"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="power.circle.fill" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="heavy"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="Text grey"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="logOutBtn:" destination="jWj-cL-4VV" eventType="touchUpInside" id="Kjv-yM-Whe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mRK-lV-avN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="T0q-Xx-Myc" firstAttribute="leading" secondItem="mRK-lV-avN" secondAttribute="leading" id="3Q9-jf-EtX"/>
+                            <constraint firstItem="DwX-B0-KIi" firstAttribute="top" secondItem="mRK-lV-avN" secondAttribute="top" id="7dc-gL-WQM"/>
                             <constraint firstItem="T0q-Xx-Myc" firstAttribute="top" secondItem="cG5-cg-X2r" secondAttribute="top" id="9o6-iT-XGl"/>
                             <constraint firstAttribute="bottom" secondItem="T0q-Xx-Myc" secondAttribute="bottom" id="EVN-vK-PoQ"/>
+                            <constraint firstItem="mRK-lV-avN" firstAttribute="trailing" secondItem="DwX-B0-KIi" secondAttribute="trailing" constant="16" id="Egt-9h-L9v"/>
                             <constraint firstItem="T0q-Xx-Myc" firstAttribute="top" secondItem="cG5-cg-X2r" secondAttribute="top" id="ErB-T5-KHB"/>
                             <constraint firstItem="mRK-lV-avN" firstAttribute="trailing" secondItem="bAa-9E-zwR" secondAttribute="trailing" constant="54" id="JA2-eu-CqX"/>
                             <constraint firstItem="bAa-9E-zwR" firstAttribute="leading" secondItem="mRK-lV-avN" secondAttribute="leading" constant="53" id="Jqh-HG-iBp"/>
@@ -3584,6 +3684,9 @@ You will not be able to use this account in the future.</string>
         <designable name="7Bc-kx-gWY">
             <size key="intrinsicContentSize" width="35" height="29"/>
         </designable>
+        <designable name="7Hm-hD-Ke7">
+            <size key="intrinsicContentSize" width="26.666666666666668" height="19.666666666666668"/>
+        </designable>
         <designable name="7es-w6-l3U">
             <size key="intrinsicContentSize" width="20" height="19"/>
         </designable>
@@ -3605,8 +3708,14 @@ You will not be able to use this account in the future.</string>
         <designable name="D0O-Hf-zFJ">
             <size key="intrinsicContentSize" width="94.333333333333329" height="19"/>
         </designable>
+        <designable name="DwX-B0-KIi">
+            <size key="intrinsicContentSize" width="27" height="27"/>
+        </designable>
         <designable name="EVr-ZZ-ejE">
             <size key="intrinsicContentSize" width="27" height="27"/>
+        </designable>
+        <designable name="FHk-a9-YUN">
+            <size key="intrinsicContentSize" width="48" height="48"/>
         </designable>
         <designable name="FdF-zO-SsO">
             <size key="intrinsicContentSize" width="129" height="31"/>
@@ -3750,6 +3859,9 @@ You will not be able to use this account in the future.</string>
         <designable name="uF1-P3-XVr">
             <size key="intrinsicContentSize" width="46.333333333333336" height="14.333333333333334"/>
         </designable>
+        <designable name="vAM-Zs-drD">
+            <size key="intrinsicContentSize" width="48" height="48"/>
+        </designable>
         <designable name="vZc-Ue-Ajr">
             <size key="intrinsicContentSize" width="407" height="612"/>
         </designable>
@@ -3786,9 +3898,12 @@ You will not be able to use this account in the future.</string>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="girl" width="407" height="612"/>
         <image name="logo name" width="3289" height="512"/>
+        <image name="mail.and.text.magnifyingglass.rtl" catalog="system" width="128" height="89"/>
         <image name="person.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="power.circle.fill" catalog="system" width="128" height="123"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="sub logo text" width="3270" height="512"/>
+        <image name="tooltip_icon" width="48" height="48"/>
         <image name="wifi man" width="332" height="512"/>
         <image name="wifi man grey" width="162" height="152"/>
         <image name="wifi man grey smaller" width="35" height="43"/>

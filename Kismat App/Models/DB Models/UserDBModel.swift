@@ -16,6 +16,7 @@ class UserDBModel: Object {
     @objc dynamic var email : String = ""
     @objc dynamic var publicEmail : String = ""
     @objc dynamic var countryCode : String = ""
+    @objc dynamic var countryName : String = ""
     @objc dynamic var phone : String = ""
     @objc dynamic var dob : String = ""
     @objc dynamic var workAddress : String = ""

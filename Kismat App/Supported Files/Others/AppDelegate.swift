@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         registerNotification()
         
         if AppFunctions.isLoggedIn() {
-            //APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
+            APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
         }        
         
 
@@ -105,7 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 //MARK: NOTIFICATIONS
-extension AppDelegate {
+extension AppDelegate : UNUserNotificationCenterDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         Logs.show(message: "UINFO: \(userInfo)") // this one is calling when a notification got recevied on foreground & background.
@@ -141,7 +141,7 @@ extension AppDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
         let apsPayload = userInfo["aps"] as! [String: Any]
         
-        //Logs.value(message: "\(userInfo)")
+        Logs.show(message: "\(userInfo)")
         let state = application.applicationState
         switch state {
             case .inactive:
@@ -166,7 +166,7 @@ extension AppDelegate {
         userInfo = (notification.request.content.userInfo)
         Logs.show(message: "xxx: \n\(userInfo)")
         
-        completionHandler([.alert, .badge, .sound])
+        completionHandler([.alert, .sound])
     }
     
     // For handling tap and user actions
@@ -185,7 +185,7 @@ extension AppDelegate {
         AppFunctions.setDevToken(value: tokenString)
         
         if AppFunctions.isLoggedIn() {
-            //APIService.singelton.registerDeviceToken(token: tokenString)
+            APIService.singelton.registerDeviceToken(token: tokenString)
         }
     }
     
@@ -194,9 +194,9 @@ extension AppDelegate {
         Logs.show(message: "Dev Toke: \(error)")
         
     }
+
     
     func registerNotification() {
-        
         // First we must determine your iOS type:
         // Note this will only work for iOS 8 and up, if you require iOS 7 notifications then
         // contact support@pubnub.com with your request
@@ -222,28 +222,31 @@ extension AppDelegate {
                         let goToSettingsAction = UIAlertAction(title: "Go to settings", style: .default, handler: { (action) in
                             
                             if let bundleIdentifier = Bundle.main.bundleIdentifier, let appSettings = URL(string: UIApplication.openSettingsURLString + bundleIdentifier) {
-                                if UIApplication.shared.canOpenURL(appSettings) {
-                                    UIApplication.shared.open(appSettings)
-                                }
+                                
+                                UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
                             }
                         })
-                        let cancelAction = UIAlertAction(title: "Cancel", style: .default)
                         useNotificationsAlertController.addAction(goToSettingsAction)
-                        useNotificationsAlertController.addAction(cancelAction)
-                        DispatchQueue.main.async {
-                            self.window?.rootViewController?.present(useNotificationsAlertController, animated: true)
-                        }
+                        UIApplication.shared.keyWindow?.rootViewController?.present(useNotificationsAlertController, animated: true, completion: nil)
                     case .provisional:
-                        // The application is authorized to post non-interruptive user notifications.
-                        break
+                        print("")
                     case .ephemeral:
-                        // The application is temporarily authorized to post notifications. Only available to app clips.
-                        break
+                        print("")
                     @unknown default: break
-                        
                 }
             }
+            // Set the delegate
+            UNUserNotificationCenter.current().delegate = self
+        } else {
+            // Fallback on earlier versions
+            let types: UIUserNotificationType = [.alert, .badge, .sound]
+            let settings = UIUserNotificationSettings(types: types, categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(settings)
+            UIApplication.shared.registerForRemoteNotifications()
         }
     }
+
     
 }
+
+

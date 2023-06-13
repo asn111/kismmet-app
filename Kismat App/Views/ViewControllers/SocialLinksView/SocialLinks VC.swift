@@ -62,7 +62,11 @@ extension SocialLinks_VC : UITableViewDelegate, UITableViewDataSource {
         let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
         
         cell.socialLbl.text = socialAccModel[indexPath.row].linkTitle.capitalized
-        cell.socialImgView.image = UIImage(named: linkType)
+        //cell.socialImgView.image = UIImage(named: linkType)
+        if socialAccModel[indexPath.row].linkImage != "" {
+            let imageUrl = URL(string: socialAccModel[indexPath.row].linkImage)
+            cell.socialImgView.sd_setImage(with: imageUrl , placeholderImage: UIImage()) { (image, error, imageCacheType, url) in }
+        }
         cell.socialLbl.isUserInteractionEnabled = false
         
         if canEdit {
@@ -86,6 +90,10 @@ extension SocialLinks_VC : UITableViewDelegate, UITableViewDataSource {
                 AppFunctions.openInstagram(userName: socialAccModel[indexPath.row].linkUrl)
             case "Snapchat":
                 AppFunctions.openSnapchat(userName: socialAccModel[indexPath.row].linkUrl)
+            case "Facebook":
+                AppFunctions.openFacebook(userName: socialAccModel[indexPath.row].linkUrl)
+            case "Reddit":
+                AppFunctions.openRedditProfile(userName: socialAccModel[indexPath.row].linkUrl)
             case "Website":
                 AppFunctions.openWebLink(link: socialAccModel[indexPath.row].linkUrl, vc: self)
             default:

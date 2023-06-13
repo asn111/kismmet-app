@@ -32,6 +32,7 @@ class Database {
             if APIlist.email != nil {userDB.email = APIlist.email}
             if APIlist.publicEmail != nil {userDB.publicEmail = APIlist.publicEmail}
             if APIlist.countryCode != nil {userDB.countryCode = APIlist.countryCode}
+            if APIlist.countryName != nil {userDB.countryName = APIlist.countryName}
             if APIlist.phone != nil {userDB.phone = APIlist.phone}
             if APIlist.dob != nil {userDB.dob = APIlist.dob}
             if APIlist.workAddress != nil {userDB.workAddress = APIlist.workAddress}

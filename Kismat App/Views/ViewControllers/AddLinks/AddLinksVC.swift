@@ -12,6 +12,19 @@ import DropDown
 class AddLinksVC: MainViewController {
 
     
+    @IBAction func nameToolTip(_ sender: Any) {
+        let msg = "Choose a name for your link that will be shown next to the icon on your profile. Use your username or something that helps others recognize you easily."
+        AppFunctions.showToolTip(str: msg, btn: sender as! UIButton)
+
+    }
+    @IBAction func toolTipLink(_ sender: Any) {
+        let msg = "Enter the appropriate link based on the type you've chosen. For social media accounts like Twitter, Instagram, and Snapchat, enter your username without the '@' symbol. For LinkedIn, Facebook, and Reddit, use the username found at the end of the URL link. For websites, enter the full URL."
+        AppFunctions.showToolTip(str: msg, btn: sender as! UIButton)
+    }
+    
+    @IBAction func linkToolTip(_ sender: Any) {
+        AppFunctions.openWebLink(link: "https://www.kismmet.com/howtolink", vc: self)
+    }
     
     @IBAction func dropDownBtnPressed(_ sender: Any) {
             dropDown.show()

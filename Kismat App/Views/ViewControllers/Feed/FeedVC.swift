@@ -28,6 +28,9 @@ class FeedVC: MainViewController {
     var proximity = 150
     var profilePic = ""
 
+    private let refresher = UIRefreshControl()
+
+    
     var nameArray = ["Zoya Grey","James Nio","Kris Burner","Nesa Node","Mark Denial"]
     var profArray = ["Professor","Bachelor, Student","Entrepreneur","Chemist","Professor"]
     var imageArray = [UIImage(named: "girl"),UIImage(named: "guy"),UIImage(named: "office"),UIImage(named: "teacher"),UIImage(named: "professor")]
@@ -52,7 +55,7 @@ class FeedVC: MainViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        getProxUsers(load: false)
+        getProxUsers(load: true)
         feedTV.reloadData()
     }
     
@@ -67,6 +70,13 @@ class FeedVC: MainViewController {
         feedTV.separatorStyle = .none
         feedTV.delegate = self
         feedTV.dataSource = self
+        
+        feedTV.alwaysBounceVertical = true
+        refresher.addTarget(self, action: #selector(didPullToRefresh(_:)), for: .valueChanged)
+        feedTV.alwaysBounceVertical = true
+        feedTV.refreshControl = refresher // iOS 10
+        feedTV.addSubview(refresher)
+        
         feedTV.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
         feedTV.register(UINib(nibName: "FeedItemsTVCell", bundle: nil), forCellReuseIdentifier: "FeedItemsTVCell")
         feedTV.register(UINib(nibName: "VisibilityOffTVCell", bundle: nil), forCellReuseIdentifier: "VisibilityOffTVCell")
@@ -79,6 +89,14 @@ class FeedVC: MainViewController {
     
     @objc func updateBtnPressed(sender: UIButton) {
         updateConfig()
+    }
+    
+    @objc
+    private func didPullToRefresh(_ sender: Any) {
+        // Do you your api calls in here, and then a
+        self.showPKHUD(WithMessage: "")
+        feedTV.refreshControl?.beginRefreshing()
+        getProxUsers(load: false)
     }
     
     @objc func searchBtnPressed(sender: UIButton) {
@@ -125,6 +143,11 @@ class FeedVC: MainViewController {
     @objc
     func tapFunction(sender:UITapGestureRecognizer) {
         self.pushVC(id: "ViewedByMeVC") { (vc:ViewedByMeVC) in }
+    }
+    
+    func stopRefresher() {
+        self.hidePKHUD()
+        feedTV.refreshControl?.endRefreshing()
     }
     
     @objc func toggleButtonPressed(_ sender: UISwitch) {
@@ -190,7 +213,9 @@ class FeedVC: MainViewController {
                             self.users = val.users
                             self.feedTV.reloadData()
                             self.hidePKHUD()
+                            self.stopRefresher()
                         } else {
+                            self.stopRefresher()
                             self.hidePKHUD()
                             self.users.removeAll()
                             self.feedTV.reloadData()

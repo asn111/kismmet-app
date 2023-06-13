@@ -22,7 +22,7 @@ class EditProfileSetupExt: MainViewController {
     var isShadowMode = false
     var proximity = 150
     var email = ""
-    var phoneCode = ""
+    var countName = ""
     var phoneNum = ""
     var name = ""
 
@@ -44,7 +44,7 @@ class EditProfileSetupExt: MainViewController {
         isProfileVisible = userdbModel.isProfileVisible
         isShadowMode = userdbModel.shadowMode
         email = userdbModel.email
-        phoneCode = userdbModel.countryCode
+        countName = userdbModel.countryName
         phoneNum = userdbModel.phone
         
         registerCells()
@@ -238,7 +238,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                     cell.numberTF.isUserInteractionEnabled = false
                     cell.countryPickerView.isUserInteractionEnabled = false
                     cell.generalTFView.isHidden = true
-                    cell.setupCountryCode(code: phoneCode)
+                    cell.setupCountryCode(name: countName)
                     cell.numberTF.text = phoneNum
                     cell.numberTF.placeholder = placeholderArray[indexPath.row]
                     AppFunctions.colorPlaceholder(tf: cell.numberTF, s: placeholderArray[indexPath.row])

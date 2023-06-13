@@ -19,6 +19,11 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
 
     let internetView = UIView()
     let internetLbl = fullyCustomLbl()
+    var locationManager = LocationManager()
+    var cancellable: AnyCancellable? = nil
+    var lastLocation : CLLocation?
+    
+    private var timer: Timer?
 
     
     override func viewDidLoad() {
@@ -31,6 +36,7 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
         } else {
             internetView.isHidden = false
         }
+        
         
         _ = generalPublisher.subscribe(onNext: {[weak self] val in
             
@@ -46,8 +52,25 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
         if AppFunctions.getToken() != "" && !connectionStarted {
             SignalRService.chatHubConnectionDelegate = self
             SignalRService.initializeSignalR()
+            
+            self.cancellable = self.locationManager.$currentLocation.sink(receiveValue: {[weak self] (CLLocation) in
+                Logs.show(message: "LOC C: \(String(describing: CLLocation))")
+                if let loc = CLLocation {
+                    self?.lastLocation = loc
+                    self?.sendLocation()
+                }
+            })
+            
+            self.cancellable = self.locationManager.$lastLocation.sink(receiveValue: {[weak self] (CLLocation) in
+                Logs.show(message: "LOC L: \(String(describing: CLLocation))")
+                if let loc = CLLocation {
+                    self?.lastLocation = loc
+                    self?.sendLocation()
+                }
+            })
         }
 
+        
         
         // --Navigation--
         self.navigationController?.isNavigationBarHidden = true
@@ -59,6 +82,22 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
         
         loading
             .bind(to: self.rx.isAnimating).disposed(by: dispose_Bag)
+        
+        //timer = Timer.scheduledTimer(timeInterval: 120, target: self, selector: #selector(sendLocation), userInfo: nil, repeats: true)
+
+    }
+    
+    func sendLocation() {
+        let pram = ["lat": "\(self.lastLocation?.coordinate.latitude ?? 0.0)",
+                    "long":"\(self.lastLocation?.coordinate.latitude ?? 0.0)"
+        ]
+        SignalRService.connection.invoke(method: "UpdateUserLocation", pram) {  error in
+            Logs.show(message: "\(pram)")
+            if let e = error {
+                Logs.show(message: "Error: \(e)")
+                return
+            }
+        }
     }
     
     // --StatusBarMode--(Dark Or Light)

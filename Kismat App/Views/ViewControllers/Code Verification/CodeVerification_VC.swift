@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CDAlertView
 
 class CodeVerification_VC: MainViewController {
     
@@ -30,6 +31,10 @@ class CodeVerification_VC: MainViewController {
     
     @IBAction func backBtnPressed(_ sender: Any) {
         self.dismiss(animated: true)
+    }
+    
+    @IBAction func logOutBtn(_ sender: Any) {
+        showAlert()
     }
     
     //MARK: PROPERTIES
@@ -242,6 +247,32 @@ class CodeVerification_VC: MainViewController {
         textFiled.inputAccessoryView = toolBar
     }
     
+    func showAlert(){
+        let message = "Alert!"
+        let alert = CDAlertView(title: message, message: "Are you sure you want to Logout?", type: .warning)
+        let action = CDAlertViewAction(title: "Logout",
+                                       handler: {[weak self] action in
+            AppFunctions.resetDefaults2()
+            DBService.removeCompletedDB()
+            self?.navigateVC(id: "SplashVC") { (vc:SplashVC) in }
+            return true
+        })
+        let cancel = CDAlertViewAction(title: "Cancel",
+                                       handler: { action in
+            print("CANCEL PRESSED")
+            return true
+        })
+        alert.isTextFieldHidden = true
+        alert.add(action: action)
+        alert.add(action: cancel)
+        alert.hideAnimations = { (center, transform, alpha) in
+            transform = .identity
+            alpha = 0
+        }
+        alert.show() { (alert) in
+            print("completed")
+        }
+    }
     
     //MARK: Web Calls
     
@@ -288,7 +319,7 @@ class CodeVerification_VC: MainViewController {
         self.showPKHUD(WithMessage: "Verifying Code")
         
         let pram : [String : Any] = [ "email":email,
-                "verificationCode": verificationCode,
+                "verificationCode": "\(verificationCode)",
                 "isEmailValidationCode": true
         ]
         
@@ -308,7 +339,9 @@ class CodeVerification_VC: MainViewController {
                             if self.fromSignup {
                                 self.navigateVC(id: "ProfileSetupVC") { (vc:ProfileSetupVC) in }
                             } else {
-                                self.dismiss(animated: true)
+                                self.presentVC(id: "ChangePassVC") { (vc:ChangePassVC) in
+                                    vc.isForgotPass = true
+                                }
                             }
                         } else {
                             self.hidePKHUD()

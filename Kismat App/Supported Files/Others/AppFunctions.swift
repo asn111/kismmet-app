@@ -462,6 +462,41 @@ class AppFunctions {
 
     }
     
+    open class func openFacebook(userName: String) {
+        
+        let application = UIApplication.shared
+        
+        if let appURL = NSURL(string: "fb://profile/\(userName)") {
+            if(UIApplication.shared.canOpenURL(appURL as URL)){
+                // FB installed
+                application.open(appURL as URL)
+            } else {
+                if let webURL =  NSURL(string: "https://www.facebook.com/\(userName)") {
+                    application.open(webURL as URL)
+                } else { showSnackBar(str: "Invalid link provided") }
+            }
+        } else { showSnackBar(str: "Invalid link provided") }
+        
+        
+    }
+    
+    open class func openRedditProfile(userName: String) {
+        let application = UIApplication.shared
+        
+        if let webURL = URL(string: "https://www.reddit.com/user/\(userName)") {
+            if application.canOpenURL(webURL) {
+                application.open(webURL)
+            } else {
+                // Reddit app is not installed, open in Safari or default browser
+                application.open(URL(string: "https://www.reddit.com/user/\(userName)")!)
+            }
+        } else {
+            // Invalid link provided
+            showSnackBar(str: "Invalid link provided")
+        }
+    }
+
+    
     open class func openLinkedIn(userName: String) {
         
         let application = UIApplication.shared

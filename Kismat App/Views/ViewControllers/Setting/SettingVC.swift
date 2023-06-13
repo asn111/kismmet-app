@@ -194,7 +194,7 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
             case 6:
                 self.pushVC(id: "MembershipVC") { (vc:MembershipVC) in }
             case 7:
-                if let privacyPolicyURL = URL(string: "https://www.kismmet.com/") {
+                if let privacyPolicyURL = URL(string: "https://www.kismmet.com/privacypolicy") {
                     let safariVC = SFSafariViewController(url: privacyPolicyURL)
                     present(safariVC, animated: true)
                 } ///pp

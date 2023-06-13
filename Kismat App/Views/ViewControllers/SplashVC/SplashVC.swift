@@ -22,8 +22,7 @@ class SplashVC: MainViewController {
         super.viewDidLoad()
         
         if AppFunctions.isLoggedIn() {
-            /*DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            }*/
+            
             self.startUpCall()
             self.getSocialAccounts()
 
@@ -64,6 +63,16 @@ class SplashVC: MainViewController {
                             
                             if let profVis = val.isProfileVisible {
                                 AppFunctions.setIsProfileVisble(value: profVis)
+                                
+                            }
+                            
+                            if let profVis = val.isProfileVisible {
+                                AppFunctions.setIsProfileVisble(value: profVis)
+                                
+                            }
+                            
+                            if let emailVerifed = val.isEmailVarified {
+                                AppFunctions.setIsEmailVerified(value: emailVerifed)
                                 
                             }
                             
@@ -110,12 +119,16 @@ class SplashVC: MainViewController {
                 switch model {
                     case .next(let val):
                         if val.userId != "" {
-                            if AppFunctions.IsProfileUpdated(){
+                            /*if !AppFunctions.isEmailVerified(){
+                                self.presentVC(id: "CodeVerification_VC") { (vc:CodeVerification_VC) in
+                                    vc.fromSignup = true
+                                }
+                            } else */if !AppFunctions.IsProfileUpdated(){
+                                self.navigateVC(id: "ProfileSetupVC") { (vc:ProfileSetupVC) in }
+                            } else {
                                 self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
                                     vc.selectedIndex = 2
                                 }
-                            } else {
-                                self.navigateVC(id: "ProfileSetupVC") { (vc:ProfileSetupVC) in }
                             }
                             
                         } else {

@@ -20,7 +20,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         willSet { objectWillChange.send() }
     }
     
-    private var timer: Timer?
     
     override init() {
         super.init()
@@ -32,29 +31,16 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse) || (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways) {
             self.currentLocation = locationManager.location
         }
+        // Create a timer that triggers the sendLocation() function every 2 minutes
+        
     }
     
-    func sendLocation() {
-        let pram = ["lat": "\(self.lastLocation?.coordinate.latitude ?? 0.0)",
-                    "long":"\(self.lastLocation?.coordinate.latitude ?? 0.0)"
-        ]
-        SignalRService.connection.invoke(method: "UpdateUserLocation", pram) {  error in            Logs.show(message: "\(pram)")
-            if let e = error {
-                Logs.show(message: "Error: \(e)")
-                return
-            }
-        }
-    }
+    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         self.lastLocation = location
-        
-        let pram = ["lat" : "\(location.coordinate.latitude)",
-                    "long" : "\(location.coordinate.longitude)" ]
-        if SignalRService.connection != nil && connectionStarted {
-            sendLocation()
-        }
         Logs.show(message: " --------- \(location) --------- ")
     }
+
 }

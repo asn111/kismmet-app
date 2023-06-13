@@ -356,7 +356,7 @@ extension ProfileSetupVC : UITableViewDelegate, UITableViewDataSource {
                     cell.numberTF.tag = indexPath.row
                     cell.numberTF.delegate = self
                     cell.generalTFView.isHidden = true
-                    cell.setupCountryCode()
+                    cell.setupCountryCode(name: "United States")
                     cell.numberTF.keyboardType = .phonePad
                     cell.numberTF.placeholder = placeholderArray[indexPath.row]
                     AppFunctions.colorPlaceholder(tf: cell.numberTF, s: placeholderArray[indexPath.row])
