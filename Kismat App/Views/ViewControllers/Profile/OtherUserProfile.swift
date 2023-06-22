@@ -337,7 +337,7 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
             self.presentVC(id: "TagsView_VC",presentFullType: "not") { (vc:TagsView_VC) in
                 vc.tagList = tagList
             }
-        } else if indexPath.row > 5 {
+        } else if indexPath.row > 5 && indexPath.row < 14 {
             if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 6].linkType }).count > 0 {
                 self.presentVC(id: "SocialLinks_VC",presentFullType: "not") { (vc:SocialLinks_VC) in
                     vc.socialAccModel = socialAccModel.filter {$0.linkType == socialAccounts[indexPath.row - 6].linkType }

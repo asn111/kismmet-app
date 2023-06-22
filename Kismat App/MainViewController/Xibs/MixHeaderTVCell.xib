@@ -72,7 +72,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rgH-vW-BiW" customClass="CustomToggleButton" customModule="Kismmat" customModuleProvider="target">
-                                        <rect key="frame" x="295.75" y="7.75" width="27.5" height="15.5"/>
+                                        <rect key="frame" x="283" y="0.0" width="51" height="31"/>
                                         <color key="onTintColor" name="Secondary Grey"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="scale">
@@ -224,12 +224,6 @@
                             <constraint firstItem="ObE-7r-VTI" firstAttribute="centerX" secondItem="ZTB-pB-aiy" secondAttribute="centerX" constant="0.5" id="y0a-W9-7SU"/>
                             <constraint firstItem="Rtt-Zr-LA8" firstAttribute="centerY" secondItem="ZTB-pB-aiy" secondAttribute="centerY" id="zUI-tu-Udq"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="8lF-4I-lbp"/>
-                                <exclude reference="ObE-7r-VTI"/>
-                            </mask>
-                        </variation>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -260,25 +254,25 @@
     </objects>
     <designables>
         <designable name="0ir-Q9-gZ4">
-            <size key="intrinsicContentSize" width="39.333333333333336" height="21.333333333333332"/>
+            <size key="intrinsicContentSize" width="36" height="20.333333333333332"/>
         </designable>
         <designable name="3PY-qB-7mJ">
-            <size key="intrinsicContentSize" width="30.666666666666668" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="36" height="20.333333333333332"/>
         </designable>
         <designable name="5Zd-77-ahs">
             <size key="intrinsicContentSize" width="48" height="48"/>
         </designable>
         <designable name="cx2-Bl-JDe">
-            <size key="intrinsicContentSize" width="14.333333333333334" height="19"/>
+            <size key="intrinsicContentSize" width="14.333333333333334" height="22"/>
         </designable>
         <designable name="jLp-rH-ZeA">
-            <size key="intrinsicContentSize" width="99.666666666666671" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="116" height="20.333333333333332"/>
         </designable>
         <designable name="rgH-vW-BiW">
             <size key="intrinsicContentSize" width="49" height="31"/>
         </designable>
         <designable name="v3c-Ag-h76">
-            <size key="intrinsicContentSize" width="40.333333333333336" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="49.666666666666664" height="20.333333333333332"/>
         </designable>
     </designables>
     <resources>
