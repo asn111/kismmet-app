@@ -42,6 +42,9 @@ class StarredVC: MainViewController {
         starredTV.separatorStyle = .none
         starredTV.delegate = self
         starredTV.dataSource = self
+        let tabBarHeight: CGFloat = self.tabBarController?.tabBar.frame.height ?? 0
+        let bottomSpace: CGFloat = 5  // Adjust the value as needed
+        starredTV.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tabBarHeight + bottomSpace, right: 0)
         starredTV.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
         starredTV.register(UINib(nibName: "FeedItemsTVCell", bundle: nil), forCellReuseIdentifier: "FeedItemsTVCell")
         starredTV.register(UINib(nibName: "VisibilityOffTVCell", bundle: nil), forCellReuseIdentifier: "VisibilityOffTVCell")
@@ -161,6 +164,9 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
                 cell.searchView.isHidden = false
                 cell.swipeTxtLbl.isHidden = false
                 cell.headerView.isHidden = false
+                
+                cell.toolTipBtn.isHidden = true
+                cell.searchContraint.constant = 10
                 
                 cell.searchTF.delegate = self
                 cell.searchTF.returnKeyType = .search

@@ -35,6 +35,8 @@ class GeneralHeaderTVCell: UITableViewCell {
     @IBOutlet weak var toolTipBtn: RoundCornerButton!
     @IBOutlet weak var searchView: UIView!
     
+    @IBOutlet weak var searchContraint: NSLayoutConstraint!
+    
     @IBOutlet weak var viewedToolTipBtn: RoundCornerButton!
     override func awakeFromNib() {
         super.awakeFromNib()

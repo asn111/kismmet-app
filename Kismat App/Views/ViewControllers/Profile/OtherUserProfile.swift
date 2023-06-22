@@ -79,6 +79,9 @@ class OtherUserProfile: MainViewController {
         let bottomSpace: CGFloat = 5  // Adjust the value as needed
         otherProfileTV.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tabBarHeight + bottomSpace, right: 0)
         
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(sender:)))
+        otherProfileTV.addGestureRecognizer(longPressRecognizer)
+        
         otherProfileTV.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
         otherProfileTV.register(UINib(nibName: "AboutTVCell", bundle: nil), forCellReuseIdentifier: "AboutTVCell")
         otherProfileTV.register(UINib(nibName: "MixHeaderTVCell", bundle: nil), forCellReuseIdentifier: "MixHeaderTVCell")
@@ -87,6 +90,23 @@ class OtherUserProfile: MainViewController {
         otherProfileTV.register(UINib(nibName: "SocialAccTVCell", bundle: nil), forCellReuseIdentifier: "SocialAccTVCell")
         otherProfileTV.register(UINib(nibName: "BlockBtnTVCell", bundle: nil), forCellReuseIdentifier: "BlockBtnTVCell")
     }
+    
+    @objc func handleLongPress(sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            let touchPoint = sender.location(in: otherProfileTV)
+            if let indexPath = otherProfileTV.indexPathForRow(at: touchPoint) {
+                // Get the cell and label text
+                if let cell : ProfileTVCell = otherProfileTV.cellForRow(at: indexPath) as? ProfileTVCell {
+                    if let labelText = cell.generalTF.text {
+                        // Copy the label text to the clipboard
+                        UIPasteboard.general.string = labelText
+                        AppFunctions.showSnackBar(str: "Email copied to clipboard...")
+                    }
+                }
+            }
+        }
+    }
+
     
     func showAlert(){
         let message = "Alert!"

@@ -115,7 +115,7 @@ class EditProfileSetupExt: MainViewController {
         
         if slider.draggedThumbIndex == 1 {
             let cell : MixHeaderTVCell = profileExtTV.cellForRow(at: IndexPath(row: 1, section: 0)) as! MixHeaderTVCell
-            cell.proximeterLbl.text = "\(Int(round(slider.value[1]))) m"
+            cell.proximeterLbl.text = "\(Int(round(slider.value[1]))) Meters"
             profileExtTV.rectForRow(at: IndexPath(row: 1, section: 0))
             proximity = Int(round(slider.value[1]))
         }
@@ -179,7 +179,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 cell.headerLblView.isHidden = false
                 cell.proximeterLbl.isHidden = false
                 cell.headerLbl.text = "Set Proximity"
-                cell.proximeterLbl.text = "\(proximity) m"
+                cell.proximeterLbl.text = "\(proximity) Meters"
                 
                 return cell
             case 2: // Slider

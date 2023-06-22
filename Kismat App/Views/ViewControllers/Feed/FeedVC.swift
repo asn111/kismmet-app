@@ -71,6 +71,10 @@ class FeedVC: MainViewController {
         feedTV.delegate = self
         feedTV.dataSource = self
         
+        let tabBarHeight: CGFloat = self.tabBarController?.tabBar.frame.height ?? 0
+        let bottomSpace: CGFloat = 5  // Adjust the value as needed
+        feedTV.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tabBarHeight + bottomSpace, right: 0)
+        
         feedTV.alwaysBounceVertical = true
         refresher.addTarget(self, action: #selector(didPullToRefresh(_:)), for: .valueChanged)
         feedTV.alwaysBounceVertical = true
@@ -108,6 +112,10 @@ class FeedVC: MainViewController {
         getProxUsers(load: true)
     }
     
+    @objc func picBtnPressed(sender: UIButton) {
+        self.tabBarController?.selectedIndex = 0
+    }
+    
     func updateConfig() {
         let pram = ["proximity": "\(proximity)",
                     "shadowMode":"\(isShadowMode)",
@@ -130,9 +138,9 @@ class FeedVC: MainViewController {
         var msg = ""
         
         if sender.tag == 001 {
-            msg = "Search for people or hashtags in your proximity!\n\nPlease note that if a user has turned off their visibility, or they are not in your chosen proximity, they will not appear in your search results when searched by name."
+            msg = "Search for people or hashtags in your proximity!"
         } else if sender.tag == 002 {
-            msg = "Discover 15 free profile views every month!\nTrack your remaining views in red.\nUpgrade to premium membership for unlimited profile views and exciting additional features."
+            msg = "Upgrade to premium for unlimited profile views and to unlock Shadow Mode!"
         } else if sender.tag == 005 {
             msg = "Turning off your profile visibility will make your account private, which means you won't appear in other people's feeds. However, please note that you also won't be able to search for other people on the app when your profile visibility is off."
         }
@@ -142,7 +150,7 @@ class FeedVC: MainViewController {
     
     @objc
     func tapFunction(sender:UITapGestureRecognizer) {
-        self.pushVC(id: "ViewedByMeVC") { (vc:ViewedByMeVC) in }
+        //self.pushVC(id: "ViewedByMeVC") { (vc:ViewedByMeVC) in }
     }
     
     func stopRefresher() {
@@ -284,7 +292,8 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                     cell.picBtn.setImage(UIImage(named: "placeholder"), for: .normal)
                 }
 
-                cell.picBtn.isUserInteractionEnabled = false
+                cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
+                
                 
                 let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction(sender:)))
                 cell.viewCountsLbl.isUserInteractionEnabled = true

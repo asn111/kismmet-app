@@ -53,7 +53,7 @@ class SignInVC: MainViewController {
     }
 
     func setupLbl() {
-        let text = "Don’t have an account? Sing Up"
+        let text = "Don’t have an account? Sign up"
         let textRange = NSRange(location: 23, length: 7)
         let attributedText = NSMutableAttributedString(string: text)
         attributedText.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Roboto", size: 14)!.medium , range: textRange)

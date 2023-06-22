@@ -193,6 +193,9 @@ extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
                 cell.searchView.isHidden = false
                 cell.headerView.isHidden = false
                 
+                cell.toolTipBtn.isHidden = true
+                cell.searchContraint.constant = 10
+                
                 cell.searchTF.delegate = self
                 cell.searchTF.returnKeyType = .search
                 cell.searchTF.tag = 010

@@ -19,7 +19,7 @@
         <!--SplashVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="SplashVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="SplashVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SplashVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="SplashVC" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -38,7 +38,7 @@
                                     <constraint firstAttribute="width" constant="150" id="tVB-Br-N6A"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2023 - All rights reserved" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhD-Tf-j08" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2023 - All rights reserved" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhD-Tf-j08" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                 <rect key="frame" x="36" y="778" width="320" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="XIm-v4-RUb"/>
@@ -77,7 +77,7 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vtk-vg-2KG">
                                 <rect key="frame" x="-13" y="693" width="333" height="45"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CcO-Ru-ZFl" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CcO-Ru-ZFl" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="333" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="n6p-xU-3Rd"/>
@@ -98,7 +98,7 @@
                                             <action selector="continueBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ITM-G7-1hL"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9kR-bt-Uil" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9kR-bt-Uil" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="298" y="12" width="20" height="20"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jHn-Sh-Lh7">
@@ -170,7 +170,7 @@
         <!--SignupVC-->
         <scene sceneID="O7U-W7-C20">
             <objects>
-                <viewController storyboardIdentifier="SignupVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jhI-XY-3vr" customClass="SignupVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignupVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jhI-XY-3vr" customClass="SignupVC" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Ww-G2-Ucr">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -207,7 +207,7 @@
                                             <constraint firstItem="cEW-1y-Z8M" firstAttribute="top" secondItem="uDf-ut-fLn" secondAttribute="top" id="pV1-mx-v79"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0t0-UR-Tat" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0t0-UR-Tat" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="98" y="114" width="180" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="I4g-Jn-DVz"/>
@@ -244,7 +244,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v3O-g4-4It">
                                 <rect key="frame" x="16" y="778" width="361" height="40"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdO-D0-c2r" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdO-D0-c2r" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="21" y="0.0" width="320" height="40"/>
                                         <string key="text">By signing up, you agree to our  Terms &amp; Conditions 
 and Privacy Policy</string>
@@ -270,10 +270,10 @@ and Privacy Policy</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="agt-VE-8v4">
                                 <rect key="frame" x="16" y="245" width="361" height="200"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V5l-cX-AhP" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V5l-cX-AhP" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="4" y="1" width="353" height="60"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="JBx-SY-DoZ" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="JBx-SY-DoZ" customClass="FormTextField" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -305,10 +305,10 @@ and Privacy Policy</string>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="V7a-c7-RTo"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OQj-Oc-MZD" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OQj-Oc-MZD" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="4" y="69" width="353" height="60"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="D0O-Hf-zFJ" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="D0O-Hf-zFJ" customClass="FormTextField" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -338,10 +338,10 @@ and Privacy Policy</string>
                                             <constraint firstItem="D0O-Hf-zFJ" firstAttribute="centerY" secondItem="OQj-Oc-MZD" secondAttribute="centerY" id="tiM-RV-vhn"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Sx-b8-OcN" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Sx-b8-OcN" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="4" y="138" width="353" height="60"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aRI-Xg-5o1" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aRI-Xg-5o1" customClass="FormTextField" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -388,7 +388,7 @@ and Privacy Policy</string>
                                     <constraint firstAttribute="height" constant="200" id="yx3-1H-TyI"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZlU-Hb-i3S" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZlU-Hb-i3S" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                 <rect key="frame" x="59" y="473" width="275" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="59V-B8-6Dt"/>
@@ -408,7 +408,7 @@ this email.</string>
                                     <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="m"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6e-P2-qtG" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6e-P2-qtG" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                 <rect key="frame" x="44" y="571" width="305" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="BU9-dc-TgB"/>
@@ -430,7 +430,7 @@ this email.</string>
                                     <action selector="signUpBtnPressed:" destination="jhI-XY-3vr" eventType="touchUpInside" id="l1q-dv-8xj"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have account? Login" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3O-xc-bXC" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have account? Login" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3O-xc-bXC" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                 <rect key="frame" x="37" y="629" width="320" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="F6J-4r-1Es"/>
@@ -501,7 +501,7 @@ this email.</string>
         <!--Sign InVC-->
         <scene sceneID="C5U-2H-Hf3">
             <objects>
-                <viewController storyboardIdentifier="SignInVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WWv-Bs-My6" customClass="SignInVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WWv-Bs-My6" customClass="SignInVC" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vh2-lE-2nX">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -538,7 +538,7 @@ this email.</string>
                                             <constraint firstItem="DuB-Rz-Y8v" firstAttribute="top" secondItem="bkZ-Kl-yFt" secondAttribute="top" constant="8" id="yqQ-WL-oEf"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHQ-gX-34N" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHQ-gX-34N" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="98" y="114" width="180" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="LNy-OP-E0e"/>
@@ -575,7 +575,7 @@ this email.</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iqf-KA-I2Z">
                                 <rect key="frame" x="16" y="778" width="361" height="40"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2023 - All rights reserved" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sux-1S-tdw" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2023 - All rights reserved" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sux-1S-tdw" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="21" y="0.0" width="320" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -599,10 +599,10 @@ this email.</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z2H-xn-w0Y">
                                 <rect key="frame" x="16" y="245" width="361" height="200"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BKh-LJ-DQk" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BKh-LJ-DQk" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="4" y="8" width="353" height="60"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8b6-LU-FPq" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8b6-LU-FPq" customClass="FormTextField" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -634,10 +634,10 @@ this email.</string>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="353" id="xIM-vK-knD"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hB0-Vj-Zst" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hB0-Vj-Zst" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="4" y="76" width="353" height="60"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xnB-yp-Wkb" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xnB-yp-Wkb" customClass="FormTextField" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -667,7 +667,7 @@ this email.</string>
                                             <constraint firstAttribute="height" constant="60" id="zLr-yB-4EM"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FdF-zO-SsO" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FdF-zO-SsO" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="219" y="150" width="134" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="134" id="Qxa-qH-823"/>
@@ -702,7 +702,7 @@ this email.</string>
                                     <constraint firstItem="BKh-LJ-DQk" firstAttribute="top" secondItem="z2H-xn-w0Y" secondAttribute="top" constant="8" id="zQM-CB-Soe"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixr-0u-dTD" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixr-0u-dTD" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                 <rect key="frame" x="44" y="495" width="305" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Hlt-36-xtu"/>
@@ -724,7 +724,7 @@ this email.</string>
                                     <action selector="SignInBtnPressed:" destination="WWv-Bs-My6" eventType="touchUpInside" id="mcu-SB-HKd"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have account? Login" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5w6-ZN-cHD" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have account? Login" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5w6-ZN-cHD" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                 <rect key="frame" x="37" y="553" width="320" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="WtI-8c-j3a"/>
@@ -773,15 +773,15 @@ this email.</string>
         <!--Add LinksVC-->
         <scene sceneID="Mpe-6H-8a8">
             <objects>
-                <viewController storyboardIdentifier="AddLinksVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FLr-3f-7MZ" customClass="AddLinksVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddLinksVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FLr-3f-7MZ" customClass="AddLinksVC" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qXe-HS-e0r">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qG-Fq-dO6" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qG-Fq-dO6" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="439" width="393" height="413"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hzv-hu-A8p" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hzv-hu-A8p" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="203" y="315" width="170" height="56"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="170" id="8bA-9W-UT6"/>
@@ -803,7 +803,7 @@ this email.</string>
                                             <action selector="cancelBtnPressed:" destination="FLr-3f-7MZ" eventType="touchUpInside" id="AdX-9O-y8c"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KaR-Mc-BMB" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KaR-Mc-BMB" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="20" y="315" width="170" height="56"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="170" id="jRL-Ls-laA"/>
@@ -825,10 +825,10 @@ this email.</string>
                                             <action selector="saveBtnPressed:" destination="FLr-3f-7MZ" eventType="touchUpInside" id="xNU-ai-SmF"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cxs-Rj-zIi" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cxs-Rj-zIi" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="20" y="86" width="353" height="60"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name Your Account username" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8kg-pJ-3sY" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name it" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8kg-pJ-3sY" customClass="FormTextField" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="31" y="0.0" width="322" height="60"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -850,7 +850,7 @@ this email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FHk-a9-YUN" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FHk-a9-YUN" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="22" width="15" height="15"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="lqj-wb-cYS"/>
@@ -900,10 +900,10 @@ this email.</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2d-eg-MkL" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2d-eg-MkL" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="20" y="151" width="353" height="60"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your Username" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Fkw-EZ-gfF" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Link it" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Fkw-EZ-gfF" customClass="FormTextField" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="31" y="0.0" width="322" height="60"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -925,7 +925,7 @@ this email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAM-Zs-drD" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAM-Zs-drD" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="22" width="15" height="15"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="RII-6q-phf"/>
@@ -944,7 +944,7 @@ this email.</string>
                                                     <action selector="toolTipLink:" destination="FLr-3f-7MZ" eventType="touchUpInside" id="VS3-vz-qr1"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Hm-hD-Ke7" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Hm-hD-Ke7" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="324" y="18" width="24" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="24" id="YXA-ku-TT4"/>
@@ -999,7 +999,7 @@ this email.</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6h3-s9-8KE" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6h3-s9-8KE" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="20" y="216" width="353" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CaJ-9N-NbI">
@@ -1044,7 +1044,7 @@ this email.</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Increase your connections by linking accounts" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eku-i5-B1A" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Increase your connections by linking accounts" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eku-i5-B1A" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="30" y="30" width="343" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="LlD-nI-hde"/>
@@ -1123,7 +1123,7 @@ this email.</string>
         <!--Profile SetupVC-->
         <scene sceneID="UbW-zT-MXO">
             <objects>
-                <viewController storyboardIdentifier="ProfileSetupVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8nj-NC-2NV" customClass="ProfileSetupVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileSetupVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8nj-NC-2NV" customClass="ProfileSetupVC" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a73-lC-Mso">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1153,7 +1153,7 @@ this email.</string>
         <!--ProfileVC-->
         <scene sceneID="oLe-vP-ekg">
             <objects>
-                <viewController storyboardIdentifier="ProfileVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="x4y-mx-1nw" customClass="ProfileVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="x4y-mx-1nw" customClass="ProfileVC" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RzE-af-ofZ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1186,7 +1186,7 @@ this email.</string>
         <!--Rounded Tab Bar Controller-->
         <scene sceneID="vEi-qw-klh">
             <objects>
-                <tabBarController storyboardIdentifier="RoundedTabBarController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tPn-Iw-XGJ" customClass="RoundedTabBarController" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="RoundedTabBarController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tPn-Iw-XGJ" customClass="RoundedTabBarController" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="o3B-2B-9GQ">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -1209,7 +1209,7 @@ this email.</string>
         <!--StarredVC-->
         <scene sceneID="Yh6-qO-dXV">
             <objects>
-                <viewController storyboardIdentifier="StarredVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="T9z-m0-FYh" customClass="StarredVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StarredVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="T9z-m0-FYh" customClass="StarredVC" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZhT-Qr-AsB">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1242,7 +1242,7 @@ this email.</string>
         <!--FeedVC-->
         <scene sceneID="ocX-NC-iyf">
             <objects>
-                <viewController storyboardIdentifier="FeedVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wZg-tK-RbI" customClass="FeedVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wZg-tK-RbI" customClass="FeedVC" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TvD-rR-PrF">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1275,7 +1275,7 @@ this email.</string>
         <!--Viewed ProfilesVC-->
         <scene sceneID="0By-vn-vwR">
             <objects>
-                <viewController storyboardIdentifier="ViewedProfilesVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Uln-CW-fsy" customClass="ViewedProfilesVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewedProfilesVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Uln-CW-fsy" customClass="ViewedProfilesVC" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4iw-jX-MYI">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1308,7 +1308,7 @@ this email.</string>
         <!--SettingVC-->
         <scene sceneID="WYQ-5R-l01">
             <objects>
-                <viewController storyboardIdentifier="SettingVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QSV-IC-db0" customClass="SettingVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QSV-IC-db0" customClass="SettingVC" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Udz-as-naP">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1341,7 +1341,7 @@ this email.</string>
         <!--NotificationVC-->
         <scene sceneID="e7Y-Ut-z6s">
             <objects>
-                <viewController storyboardIdentifier="NotificationVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ech-dM-v5L" customClass="NotificationVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NotificationVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ech-dM-v5L" customClass="NotificationVC" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Yn-KN-DOe">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1374,7 +1374,7 @@ this email.</string>
         <!--Profile Setup Extend-->
         <scene sceneID="e1F-mK-2aL">
             <objects>
-                <viewController storyboardIdentifier="ProfileSetupExtend" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tNp-cl-TiW" customClass="ProfileSetupExtend" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileSetupExtend" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tNp-cl-TiW" customClass="ProfileSetupExtend" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g1b-lo-BTX">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1407,7 +1407,7 @@ this email.</string>
         <!--MembershipVC-->
         <scene sceneID="DNC-Pr-5IR">
             <objects>
-                <viewController storyboardIdentifier="MembershipVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ewU-MZ-Hda" customClass="MembershipVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MembershipVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ewU-MZ-Hda" customClass="MembershipVC" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B4R-37-WoY">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1418,7 +1418,7 @@ this email.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s5i-97-5OF">
                                         <rect key="frame" x="17" y="65" width="359" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAO-7l-v8h" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAO-7l-v8h" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="10" width="30" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="bqu-zU-Eie"/>
@@ -1448,7 +1448,7 @@ this email.</string>
                                                     <action selector="backBtnPressed:" destination="ewU-MZ-Hda" eventType="touchUpInside" id="80d-Sy-QBD"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MEMBERSHIP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pRZ-i9-kuF" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MEMBERSHIP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pRZ-i9-kuF" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="46" y="9" width="267" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="267" id="8pX-K5-Ock"/>
@@ -1498,10 +1498,10 @@ this email.</string>
                                             <constraint firstItem="bAO-7l-v8h" firstAttribute="leading" secondItem="s5i-97-5OF" secondAttribute="leading" constant="8" id="va8-HP-exA"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xj8-DJ-5BY" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xj8-DJ-5BY" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="34" y="184" width="325" height="87"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbv-4R-o9Y" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbv-4R-o9Y" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="29" width="30" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="MUl-Uu-QlI"/>
@@ -1518,7 +1518,7 @@ this email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Free Plan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIQ-VS-jss" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Free Plan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIQ-VS-jss" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="50" y="30" width="195" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="d88-93-ELC"/>
@@ -1538,7 +1538,7 @@ this email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover up to 15 profiles per month" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxZ-YY-3L0" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover up to 15 profiles per month" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxZ-YY-3L0" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="50" y="49" width="195" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="3qh-C5-2Sm"/>
@@ -1558,7 +1558,7 @@ this email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can view 15 profiles per month." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZM-Ne-b6O" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can view 15 profiles per month." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZM-Ne-b6O" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="50" y="67" width="195" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="195" id="12o-gk-QUk"/>
@@ -1605,10 +1605,10 @@ this email.</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ii4-nh-bG8" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ii4-nh-bG8" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="132" y="164" width="129" height="37"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Plan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1r-8r-A1G" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Plan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1r-8r-A1G" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="6" y="8" width="117" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="aKQ-00-2r0"/>
@@ -1648,10 +1648,10 @@ this email.</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xxm-9G-y2P" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xxm-9G-y2P" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="34" y="405" width="325" height="150"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlimited profile views" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f47-es-wTH" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlimited profile views" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f47-es-wTH" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="69.999999999999986" y="60" width="144.66666666666663" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="144.66666666666663" id="Ibp-PF-9U3"/>
@@ -1670,7 +1670,7 @@ this email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shadow mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0pz-yD-d4n" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shadow mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0pz-yD-d4n" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="70" y="78" width="90.333333333333314" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="90.333333333333314" id="Cnf-g9-3dc"/>
@@ -1689,7 +1689,7 @@ this email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KISMMET Premium Plan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWN-4Z-XWq" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KISMMET Premium Plan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWN-4Z-XWq" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="48" y="15" width="230" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="230" id="8YE-sX-DfI"/>
@@ -1709,7 +1709,7 @@ this email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" / Month" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uF1-P3-XVr" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" / Month" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uF1-P3-XVr" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="160" y="107" width="70" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="70" id="R6w-mM-4VS"/>
@@ -1729,7 +1729,7 @@ this email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whs-bR-EUC" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whs-bR-EUC" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="48" y="61" width="16" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="16" id="HjR-dm-d1n"/>
@@ -1746,7 +1746,7 @@ this email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SM8-lU-P1b" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SM8-lU-P1b" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="48" y="79" width="16" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="16" id="9sZ-re-0Q1"/>
@@ -1763,7 +1763,7 @@ this email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$9.98" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hvi-f8-508" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$9.98" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hvi-f8-508" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="90" y="107" width="70" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="70" id="OyW-Ca-h2d"/>
@@ -1828,7 +1828,7 @@ this email.</string>
                                     <constraint firstAttribute="trailing" secondItem="s5i-97-5OF" secondAttribute="trailing" constant="17" id="zX3-ol-taV"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="It5-3m-GYL" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="It5-3m-GYL" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                 <rect key="frame" x="29" y="676" width="333" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="333" id="ogS-Ik-YaO"/>
@@ -1850,7 +1850,7 @@ this email.</string>
                                     <action selector="upgradeBtnPressed:" destination="ewU-MZ-Hda" eventType="touchUpInside" id="K2M-aa-AJl"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Experience KISMMET Premium" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fde-X5-2WN" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Experience KISMMET Premium" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fde-X5-2WN" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                 <rect key="frame" x="56" y="322" width="280" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="7Md-oh-oF5"/>
@@ -1908,7 +1908,7 @@ this email.</string>
         <!--Change PassVC-->
         <scene sceneID="inf-3k-HDn">
             <objects>
-                <viewController storyboardIdentifier="ChangePassVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Zdl-a2-s54" customClass="ChangePassVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChangePassVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Zdl-a2-s54" customClass="ChangePassVC" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Esz-Xz-UFG">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1919,7 +1919,7 @@ this email.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lsi-cl-097">
                                         <rect key="frame" x="17" y="65" width="359" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="af5-1i-EA4" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="af5-1i-EA4" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="10" width="30" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="30" id="CVd-Vg-d3M"/>
@@ -1949,7 +1949,7 @@ this email.</string>
                                                     <action selector="backBtnPressed:" destination="Zdl-a2-s54" eventType="touchUpInside" id="NZb-tn-cLc"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHANGE PASSWORD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L62-5r-p0Y" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHANGE PASSWORD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L62-5r-p0Y" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="46" y="9" width="267" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="267" id="C4A-za-f3o"/>
@@ -2002,10 +2002,10 @@ this email.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PCd-xv-ZVK">
                                         <rect key="frame" x="12" y="210" width="368" height="218"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Hd-te-DLh" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Hd-te-DLh" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="7" y="11" width="353" height="60"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Old password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3gP-Q6-AXE" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Old password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3gP-Q6-AXE" customClass="FormTextField" customModule="Kismmat" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -2055,10 +2055,10 @@ this email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="foJ-xD-sol" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="foJ-xD-sol" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="7" y="79" width="353" height="60"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0ZP-IY-8wV" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0ZP-IY-8wV" customClass="FormTextField" customModule="Kismmat" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -2108,10 +2108,10 @@ this email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FdJ-eb-5Lc" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FdJ-eb-5Lc" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="7" y="149" width="353" height="60"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="sDr-88-Fbj" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="sDr-88-Fbj" customClass="FormTextField" customModule="Kismmat" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="353" height="60"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -2189,7 +2189,7 @@ this email.</string>
                                     <constraint firstItem="lsi-cl-097" firstAttribute="leading" secondItem="hUW-ko-xoQ" secondAttribute="leading" constant="17" id="y4z-fF-WEf"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CvK-p4-XF2" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CvK-p4-XF2" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                 <rect key="frame" x="29" y="541" width="333" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="333" id="JI6-nY-fQl"/>
@@ -2243,7 +2243,7 @@ this email.</string>
         <!--Account StatusVC-->
         <scene sceneID="9wZ-Tg-tSW">
             <objects>
-                <viewController storyboardIdentifier="AccountStatusVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CM1-oY-xUi" customClass="AccountStatusVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AccountStatusVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CM1-oY-xUi" customClass="AccountStatusVC" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YhD-ui-RSc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2254,7 +2254,7 @@ this email.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lh5-gK-8jl">
                                         <rect key="frame" x="17" y="65" width="359" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7es-w6-l3U" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7es-w6-l3U" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="10" width="30" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="8rf-fy-z5W"/>
@@ -2284,7 +2284,7 @@ this email.</string>
                                                     <action selector="backBtnPressed:" destination="CM1-oY-xUi" eventType="touchUpInside" id="dpY-LM-Ub0"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT STATUS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCe-NB-PKY" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT STATUS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCe-NB-PKY" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="46" y="9" width="267" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="267" id="NGD-BI-guf"/>
@@ -2335,13 +2335,13 @@ this email.</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYy-hp-Sje">
-                                        <rect key="frame" x="12.666666666666657" y="301" width="368" height="250"/>
+                                        <rect key="frame" x="12.666666666666657" y="301" width="368" height="296"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ylH-wO-xH9" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ylH-wO-xH9" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="13" y="8" width="341" height="110"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2WZ-mT-JiU" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                                        <rect key="frame" x="9" y="39" width="323" height="56"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2WZ-mT-JiU" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
+                                                        <rect key="frame" x="9" y="35" width="323" height="56"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="323" id="SFC-GT-BRB"/>
                                                             <constraint firstAttribute="height" constant="56" id="ZnL-Y2-ZJX"/>
@@ -2361,8 +2361,8 @@ If you don’t login within 30 days, your account will be permanently deleted.</
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deactivate Account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Lg-cq-Nv0" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                                        <rect key="frame" x="10" y="11" width="230" height="30"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deactivate Account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Lg-cq-Nv0" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
+                                                        <rect key="frame" x="10" y="5" width="230" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="T5x-uf-Pwi"/>
                                                             <constraint firstAttribute="width" constant="230" id="hbu-et-9bf"/>
@@ -2385,10 +2385,10 @@ If you don’t login within 30 days, your account will be permanently deleted.</
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="2WZ-mT-JiU" secondAttribute="trailing" constant="9" id="7JN-hO-k8N"/>
-                                                    <constraint firstItem="2WZ-mT-JiU" firstAttribute="top" secondItem="9Lg-cq-Nv0" secondAttribute="bottom" constant="-2" id="8hJ-yV-Ggk"/>
+                                                    <constraint firstItem="2WZ-mT-JiU" firstAttribute="top" secondItem="9Lg-cq-Nv0" secondAttribute="bottom" id="8hJ-yV-Ggk"/>
                                                     <constraint firstAttribute="width" constant="341" id="LiN-e1-oGx"/>
-                                                    <constraint firstAttribute="bottom" secondItem="2WZ-mT-JiU" secondAttribute="bottom" constant="15" id="WRR-hE-1Pb"/>
-                                                    <constraint firstItem="9Lg-cq-Nv0" firstAttribute="top" secondItem="ylH-wO-xH9" secondAttribute="top" constant="11" id="WkV-zS-pJ5"/>
+                                                    <constraint firstAttribute="bottom" secondItem="2WZ-mT-JiU" secondAttribute="bottom" constant="19" id="WRR-hE-1Pb"/>
+                                                    <constraint firstItem="9Lg-cq-Nv0" firstAttribute="top" secondItem="ylH-wO-xH9" secondAttribute="top" constant="5" id="WkV-zS-pJ5"/>
                                                     <constraint firstItem="2WZ-mT-JiU" firstAttribute="leading" secondItem="ylH-wO-xH9" secondAttribute="leading" constant="9" id="Zcz-49-dsZ"/>
                                                     <constraint firstItem="9Lg-cq-Nv0" firstAttribute="leading" secondItem="ylH-wO-xH9" secondAttribute="leading" constant="10" id="fem-Ow-zFQ"/>
                                                     <constraint firstAttribute="height" constant="110" id="yjp-cx-cKk"/>
@@ -2405,11 +2405,11 @@ If you don’t login within 30 days, your account will be permanently deleted.</
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XZB-Uw-dza" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
-                                                <rect key="frame" x="13" y="128" width="341" height="110"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XZB-Uw-dza" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
+                                                <rect key="frame" x="13" y="138" width="341" height="110"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X59-RV-k6Q" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                                        <rect key="frame" x="9" y="41" width="323" height="69"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X59-RV-k6Q" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
+                                                        <rect key="frame" x="9" y="35" width="323" height="69"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="323" id="Cbx-UI-ELo"/>
                                                             <constraint firstAttribute="height" constant="69" id="ZhW-UU-fRw"/>
@@ -2429,8 +2429,8 @@ You will not be able to use this account in the future.</string>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete Account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w12-80-ph3" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
-                                                        <rect key="frame" x="10" y="13" width="230" height="30"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete Account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w12-80-ph3" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
+                                                        <rect key="frame" x="10" y="5" width="230" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="LEX-Qu-Isy"/>
                                                             <constraint firstAttribute="width" constant="230" id="nyD-cu-FkE"/>
@@ -2452,15 +2452,15 @@ You will not be able to use this account in the future.</string>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="X59-RV-k6Q" firstAttribute="top" secondItem="w12-80-ph3" secondAttribute="bottom" constant="-2" id="BMP-IJ-6wh"/>
-                                                    <constraint firstItem="w12-80-ph3" firstAttribute="top" secondItem="XZB-Uw-dza" secondAttribute="top" constant="13" id="L9Q-OM-NhP"/>
-                                                    <constraint firstAttribute="bottom" secondItem="X59-RV-k6Q" secondAttribute="bottom" id="V8f-91-TYX"/>
+                                                    <constraint firstItem="X59-RV-k6Q" firstAttribute="top" secondItem="w12-80-ph3" secondAttribute="bottom" id="BMP-IJ-6wh"/>
+                                                    <constraint firstItem="w12-80-ph3" firstAttribute="top" secondItem="XZB-Uw-dza" secondAttribute="top" constant="5" id="L9Q-OM-NhP"/>
+                                                    <constraint firstAttribute="bottom" secondItem="X59-RV-k6Q" secondAttribute="bottom" constant="6" id="V8f-91-TYX"/>
                                                     <constraint firstAttribute="width" constant="341" id="b8K-fv-3Xj"/>
-                                                    <constraint firstItem="X59-RV-k6Q" firstAttribute="top" secondItem="w12-80-ph3" secondAttribute="bottom" constant="-2" id="cbl-tD-5dC"/>
+                                                    <constraint firstItem="X59-RV-k6Q" firstAttribute="top" secondItem="w12-80-ph3" secondAttribute="bottom" id="cbl-tD-5dC"/>
                                                     <constraint firstItem="w12-80-ph3" firstAttribute="leading" secondItem="XZB-Uw-dza" secondAttribute="leading" constant="10" id="ei2-lw-PpY"/>
                                                     <constraint firstAttribute="height" constant="110" id="iYt-lg-9V5"/>
                                                     <constraint firstItem="X59-RV-k6Q" firstAttribute="leading" secondItem="XZB-Uw-dza" secondAttribute="leading" constant="9" id="onR-fw-F88"/>
-                                                    <constraint firstItem="X59-RV-k6Q" firstAttribute="top" secondItem="w12-80-ph3" secondAttribute="bottom" constant="-2" id="rdl-5v-mJP"/>
+                                                    <constraint firstItem="X59-RV-k6Q" firstAttribute="top" secondItem="w12-80-ph3" secondAttribute="bottom" id="rdl-5v-mJP"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -2478,20 +2478,20 @@ You will not be able to use this account in the future.</string>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="368" id="2tg-Ey-B68"/>
-                                            <constraint firstAttribute="height" constant="250" id="E8d-HO-4LF"/>
+                                            <constraint firstAttribute="height" constant="296" id="E8d-HO-4LF"/>
                                             <constraint firstItem="ylH-wO-xH9" firstAttribute="leading" secondItem="hYy-hp-Sje" secondAttribute="leading" constant="13" id="FkP-S7-mGx"/>
                                             <constraint firstAttribute="trailing" secondItem="ylH-wO-xH9" secondAttribute="trailing" constant="14" id="MQK-69-ekq"/>
                                             <constraint firstItem="XZB-Uw-dza" firstAttribute="leading" secondItem="hYy-hp-Sje" secondAttribute="leading" constant="13" id="NPN-eo-gJX"/>
                                             <constraint firstAttribute="trailing" secondItem="XZB-Uw-dza" secondAttribute="trailing" constant="14" id="c2c-Ii-Aej"/>
-                                            <constraint firstAttribute="bottom" secondItem="XZB-Uw-dza" secondAttribute="bottom" constant="12" id="dzA-Ks-bdK"/>
+                                            <constraint firstAttribute="bottom" secondItem="XZB-Uw-dza" secondAttribute="bottom" constant="48" id="dzA-Ks-bdK"/>
                                             <constraint firstItem="ylH-wO-xH9" firstAttribute="top" secondItem="hYy-hp-Sje" secondAttribute="top" constant="8" id="hnG-2V-Mi9"/>
-                                            <constraint firstItem="XZB-Uw-dza" firstAttribute="top" secondItem="ylH-wO-xH9" secondAttribute="bottom" constant="10" id="wai-Ro-11R"/>
+                                            <constraint firstItem="XZB-Uw-dza" firstAttribute="top" secondItem="ylH-wO-xH9" secondAttribute="bottom" constant="20" id="wai-Ro-11R"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CLG-MO-JmN">
                                         <rect key="frame" x="17" y="145" width="359" height="100"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tamara@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43Y-pb-wtz" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tamara@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43Y-pb-wtz" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="98" y="50" width="171" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="2bR-Ef-2nD"/>
@@ -2510,7 +2510,7 @@ You will not be able to use this account in the future.</string>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+123456789" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Sp-6M-OBh" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+123456789" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Sp-6M-OBh" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="98" y="67" width="120" height="19"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="Abr-q0-Ax7"/>
@@ -2529,7 +2529,7 @@ You will not be able to use this account in the future.</string>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TAMARA PENSIERO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9Q-It-9Aw" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TAMARA PENSIERO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9Q-It-9Aw" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="98" y="30" width="200" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="200" id="w7k-0I-nGG"/>
@@ -2549,7 +2549,7 @@ You will not be able to use this account in the future.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZc-Ue-Ajr" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZc-Ue-Ajr" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="18" y="18" width="65" height="65"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="65" id="ZEg-5U-ryL"/>
@@ -2593,7 +2593,7 @@ You will not be able to use this account in the future.</string>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="hYy-hp-Sje" firstAttribute="centerY" secondItem="JiE-YI-qp7" secondAttribute="centerY" id="0c8-Gt-dzH"/>
+                                    <constraint firstItem="hYy-hp-Sje" firstAttribute="centerY" secondItem="JiE-YI-qp7" secondAttribute="centerY" constant="23" id="0c8-Gt-dzH"/>
                                     <constraint firstItem="CLG-MO-JmN" firstAttribute="top" secondItem="Lh5-gK-8jl" secondAttribute="bottom" constant="30" id="6HL-nr-Woq"/>
                                     <constraint firstItem="CLG-MO-JmN" firstAttribute="leading" secondItem="JiE-YI-qp7" secondAttribute="leading" constant="17" id="Mwo-7g-B1Q"/>
                                     <constraint firstItem="Lh5-gK-8jl" firstAttribute="top" secondItem="JiE-YI-qp7" secondAttribute="top" constant="65" id="PgI-ir-Rdy"/>
@@ -2603,7 +2603,7 @@ You will not be able to use this account in the future.</string>
                                     <constraint firstAttribute="trailing" secondItem="CLG-MO-JmN" secondAttribute="trailing" constant="17" id="zdC-1G-BzS"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bf5-4T-Cpx" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bf5-4T-Cpx" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                 <rect key="frame" x="29" y="691" width="333" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="RSS-R1-M7e"/>
@@ -2660,15 +2660,15 @@ You will not be able to use this account in the future.</string>
         <!--Important DialogVC-->
         <scene sceneID="M3W-LB-utq">
             <objects>
-                <viewController storyboardIdentifier="ImportantDialogVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JAO-st-fdy" customClass="ImportantDialogVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ImportantDialogVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JAO-st-fdy" customClass="ImportantDialogVC" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xPu-3F-Nhv">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A8M-oB-BRs" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A8M-oB-BRs" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="552" width="393" height="300"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure you want to permanently delete you account?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sX1-rv-q59" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure you want to permanently delete you account?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sX1-rv-q59" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="29" y="59" width="336" height="130"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="130" id="6VO-6T-T0Y"/>
@@ -2687,7 +2687,7 @@ You will not be able to use this account in the future.</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHp-u4-Vaf" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHp-u4-Vaf" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="203" y="192" width="170" height="56"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="56" id="JmG-Uf-EVo"/>
@@ -2709,7 +2709,7 @@ You will not be able to use this account in the future.</string>
                                             <action selector="cancelBtnPressed:" destination="JAO-st-fdy" eventType="touchUpInside" id="bsF-jH-JkP"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y1c-ai-HyS" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y1c-ai-HyS" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="20" y="192" width="170" height="56"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="56" id="8XH-IC-yXb"/>
@@ -2731,7 +2731,7 @@ You will not be able to use this account in the future.</string>
                                             <action selector="yesBtnPressed:" destination="JAO-st-fdy" eventType="touchUpInside" id="cg0-fP-48J"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Important" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdU-6F-ZgX" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Important" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdU-6F-ZgX" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="67" y="21" width="227" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="227" id="4vx-R4-DLC"/>
@@ -2806,7 +2806,7 @@ You will not be able to use this account in the future.</string>
         <!--Edit Profile Setup-->
         <scene sceneID="BuI-1s-EQi">
             <objects>
-                <viewController storyboardIdentifier="EditProfileSetup" useStoryboardIdentifierAsRestorationIdentifier="YES" id="leM-kh-FPI" customClass="EditProfileSetup" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditProfileSetup" useStoryboardIdentifierAsRestorationIdentifier="YES" id="leM-kh-FPI" customClass="EditProfileSetup" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Aw3-k0-4wG">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2836,7 +2836,7 @@ You will not be able to use this account in the future.</string>
         <!--Edit Profile Setup Ext-->
         <scene sceneID="MvJ-i7-Pjs">
             <objects>
-                <viewController storyboardIdentifier="EditProfileSetupExt" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sj9-iB-ILG" customClass="EditProfileSetupExt" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditProfileSetupExt" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sj9-iB-ILG" customClass="EditProfileSetupExt" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BD7-xG-Nfe">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2869,7 +2869,7 @@ You will not be able to use this account in the future.</string>
         <!--Other User Profile-->
         <scene sceneID="p8B-47-d3p">
             <objects>
-                <viewController storyboardIdentifier="OtherUserProfile" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Foi-6F-gM5" customClass="OtherUserProfile" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OtherUserProfile" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Foi-6F-gM5" customClass="OtherUserProfile" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pwa-IS-juP">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2902,7 +2902,7 @@ You will not be able to use this account in the future.</string>
         <!--Viewed By MeVC-->
         <scene sceneID="3al-Rs-toc">
             <objects>
-                <viewController storyboardIdentifier="ViewedByMeVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WKn-jx-4Wu" customClass="ViewedByMeVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewedByMeVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WKn-jx-4Wu" customClass="ViewedByMeVC" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ogj-FP-lZp">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2935,7 +2935,7 @@ You will not be able to use this account in the future.</string>
         <!--BlockedVC-->
         <scene sceneID="erf-bv-8Ek">
             <objects>
-                <viewController storyboardIdentifier="BlockedVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1sh-IK-Bea" customClass="BlockedVC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BlockedVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1sh-IK-Bea" customClass="BlockedVC" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d7y-If-PAW">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2965,12 +2965,12 @@ You will not be able to use this account in the future.</string>
         <!--EnlargedIVVC-->
         <scene sceneID="jt4-aA-4DR">
             <objects>
-                <viewController storyboardIdentifier="EnlargedIV_VC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YaT-gi-3vd" customClass="EnlargedIV_VC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EnlargedIV_VC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YaT-gi-3vd" customClass="EnlargedIV_VC" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eYo-mm-A9c">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n21-Gq-wfD" customClass="RoundedImageView" customModule="Kismat_App" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n21-Gq-wfD" customClass="RoundedImageView" customModule="Kismmat" customModuleProvider="target">
                                 <rect key="frame" x="8.6666666666666572" y="238" width="376" height="376"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="376" id="37e-st-BzA"/>
@@ -2988,7 +2988,7 @@ You will not be able to use this account in the future.</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVr-ZZ-ejE" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVr-ZZ-ejE" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                 <rect key="frame" x="367" y="224" width="26" height="26"/>
                                 <color key="backgroundColor" white="0.19536564625850339" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -3033,19 +3033,19 @@ You will not be able to use this account in the future.</string>
         <!--Social LinksVC-->
         <scene sceneID="qyw-S0-OZE">
             <objects>
-                <viewController storyboardIdentifier="SocialLinks_VC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5EK-aa-lOd" customClass="SocialLinks_VC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SocialLinks_VC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5EK-aa-lOd" customClass="SocialLinks_VC" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d1c-xC-3yC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="185-TO-MOK" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="185-TO-MOK" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="232" width="393" height="620"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="AAp-bY-qVJ">
                                         <rect key="frame" x="0.0" y="75" width="393" height="545"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some text here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNY-NF-s6k" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some text here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNY-NF-s6k" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="30" y="30" width="343" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="343" id="8tE-aX-JoE"/>
@@ -3103,19 +3103,19 @@ You will not be able to use this account in the future.</string>
         <!--Tags ViewVC-->
         <scene sceneID="9V2-6F-b1k">
             <objects>
-                <viewController storyboardIdentifier="TagsView_VC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MUf-76-xAo" customClass="TagsView_VC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TagsView_VC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MUf-76-xAo" customClass="TagsView_VC" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l7f-gd-wUd">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kR1-dd-pfA" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kR1-dd-pfA" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="232" width="393" height="620"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="2Fl-q8-ijr">
                                         <rect key="frame" x="0.0" y="75" width="393" height="545"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some text here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDK-rV-LMg" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some text here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDK-rV-LMg" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="30" y="30" width="343" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="IPQ-t5-Ktc"/>
@@ -3173,7 +3173,7 @@ You will not be able to use this account in the future.</string>
         <!--Code VerificationVC-->
         <scene sceneID="wQI-EH-AUi">
             <objects>
-                <viewController storyboardIdentifier="CodeVerification_VC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jWj-cL-4VV" customClass="CodeVerification_VC" customModule="Kismat_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CodeVerification_VC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jWj-cL-4VV" customClass="CodeVerification_VC" customModule="Kismmat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cG5-cg-X2r">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3181,10 +3181,10 @@ You will not be able to use this account in the future.</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T0q-Xx-Myc">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
-                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ndX-4k-0Qp" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ndX-4k-0Qp" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="38" y="276" width="317" height="61"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nkZ-aa-Vie" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nkZ-aa-Vie" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="317" height="61"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="at.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="kkH-Is-qBT">
@@ -3197,7 +3197,7 @@ You will not be able to use this account in the future.</string>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="dbG-EL-zxb"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mXR-LI-eao" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mXR-LI-eao" customClass="FormTextField" customModule="Kismmat" customModuleProvider="target">
                                                         <rect key="frame" x="50" y="8" width="255" height="45"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="45" id="en3-1j-MgN"/>
@@ -3247,7 +3247,7 @@ You will not be able to use this account in the future.</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVc-ug-2Zi" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVc-ug-2Zi" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="38" y="202" width="317" height="54"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="317" id="VWb-yv-Sb0"/>
@@ -3269,7 +3269,7 @@ You will not be able to use this account in the future.</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Didn't Received? Resend" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEz-EQ-Cg9" customClass="fullyCustomLbl" customModule="Kismat_App" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Didn't Received? Resend" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEz-EQ-Cg9" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="59" y="423" width="276" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="vUh-ZQ-VLJ"/>
@@ -3291,10 +3291,10 @@ You will not be able to use this account in the future.</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ydp-Ny-Bxs" customClass="RoundCornerView" customModule="Kismat_App" customModuleProvider="target">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ydp-Ny-Bxs" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="28" y="276" width="338" height="61"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eKV-UR-Sxu" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eKV-UR-Sxu" customClass="FormTextField" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="5" y="6" width="50" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -3320,7 +3320,7 @@ You will not be able to use this account in the future.</string>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="h"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wcf-nM-exb" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wcf-nM-exb" customClass="FormTextField" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="61" y="6" width="50" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -3346,7 +3346,7 @@ You will not be able to use this account in the future.</string>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="h"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WTt-vI-6R4" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WTt-vI-6R4" customClass="FormTextField" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="117" y="6" width="50" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -3372,7 +3372,7 @@ You will not be able to use this account in the future.</string>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="h"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I6S-jA-cbg" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I6S-jA-cbg" customClass="FormTextField" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="173" y="6" width="50" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -3398,7 +3398,7 @@ You will not be able to use this account in the future.</string>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="h"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mSU-jE-98L" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mSU-jE-98L" customClass="FormTextField" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="229" y="6" width="50" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -3424,7 +3424,7 @@ You will not be able to use this account in the future.</string>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="h"/>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Bc-kx-gWY" customClass="FormTextField" customModule="Kismat_App" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Bc-kx-gWY" customClass="FormTextField" customModule="Kismmat" customModuleProvider="target">
                                                 <rect key="frame" x="284" y="6" width="50" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -3481,7 +3481,7 @@ You will not be able to use this account in the future.</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ioz-Qe-yuJ" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ioz-Qe-yuJ" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                         <rect key="frame" x="69" y="355" width="255" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="EmZ-e6-hY1"/>
@@ -3522,7 +3522,7 @@ You will not be able to use this account in the future.</string>
                                     <constraint firstItem="ioz-Qe-yuJ" firstAttribute="top" secondItem="ndX-4k-0Qp" secondAttribute="bottom" constant="18" id="ym9-XC-bEg"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwM-Un-vJo" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwM-Un-vJo" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                 <rect key="frame" x="10" y="59" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="dJd-0m-RVA"/>
@@ -3581,7 +3581,7 @@ You will not be able to use this account in the future.</string>
                                     <constraint firstAttribute="trailing" secondItem="aZM-Uf-zAk" secondAttribute="trailing" constant="30" id="wh1-wn-hNc"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DwX-B0-KIi" customClass="RoundCornerButton" customModule="Kismat_App" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DwX-B0-KIi" customClass="RoundCornerButton" customModule="Kismmat" customModuleProvider="target">
                                 <rect key="frame" x="347" y="59" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="Afk-J3-WTi"/>
@@ -3694,7 +3694,7 @@ You will not be able to use this account in the future.</string>
             <size key="intrinsicContentSize" width="63.666666666666664" height="20.666666666666668"/>
         </designable>
         <designable name="8kg-pJ-3sY">
-            <size key="intrinsicContentSize" width="256" height="20.666666666666668"/>
+            <size key="intrinsicContentSize" width="81.666666666666671" height="20.666666666666668"/>
         </designable>
         <designable name="9Lg-cq-Nv0">
             <size key="intrinsicContentSize" width="142" height="19"/>
@@ -3724,7 +3724,7 @@ You will not be able to use this account in the future.</string>
             <size key="intrinsicContentSize" width="227" height="19"/>
         </designable>
         <designable name="Fkw-EZ-gfF">
-            <size key="intrinsicContentSize" width="185.33333333333334" height="20.666666666666668"/>
+            <size key="intrinsicContentSize" width="69" height="20.666666666666668"/>
         </designable>
         <designable name="Hvi-f8-508">
             <size key="intrinsicContentSize" width="47.333333333333336" height="21.333333333333332"/>

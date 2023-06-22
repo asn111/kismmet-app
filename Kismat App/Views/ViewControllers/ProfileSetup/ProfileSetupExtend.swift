@@ -264,7 +264,7 @@ class ProfileSetupExtend: MainViewController {
         
         if slider.draggedThumbIndex == 1 {
             let cell : MixHeaderTVCell = profileExtTV.cellForRow(at: IndexPath(row: 1, section: 0)) as! MixHeaderTVCell
-            cell.proximeterLbl.text = "\(Int(round(slider.value[1]))) m"
+            cell.proximeterLbl.text = "\(Int(round(slider.value[1]))) Meters"
             profileExtTV.rectForRow(at: IndexPath(row: 1, section: 0))
             proximity = Int(round(slider.value[1]))
         }
@@ -402,7 +402,7 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
                 cell.headerLblView.isHidden = false
                 cell.proximeterLbl.isHidden = false
                 cell.headerLbl.text = "Set Proximity"
-                cell.proximeterLbl.text = "\(cell.maxValue/2) m"
+                cell.proximeterLbl.text = "\(cell.maxValue/2) Meters"
                 
                 return cell
             case 2: // Slider
@@ -442,7 +442,7 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
                 cell.addBtn.isHidden = true
-                cell.headerLbl.text = "Link your social accounts"
+                cell.headerLbl.text = "Link your social media accounts"
                 cell.addBtn.isHidden = false
                 cell.addBtn.tag = indexPath.row
                 

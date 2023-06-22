@@ -7,11 +7,11 @@
 
 import UIKit
 
-class ProfileSetupVC: MainViewController  {
+class ProfileSetupVC: MainViewController  { //Birthday
 
     @IBOutlet weak var profileTV: UITableView!
         
-    var placeholderArray = ["","Full Name","Public Email","Phone","Date of Birth","Where do you work / study?","Work Title","Tell us about your self..",""]
+    var placeholderArray = ["","Full Name","Public Email","Phone","Birthday","Where do you work / study?","Work Title","Bio..",""]
     
     weak var activeTextField: UITextField?
     weak var activeTextView: UITextView?
@@ -178,7 +178,7 @@ class ProfileSetupVC: MainViewController  {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         activeTextView = textView
-        if textView.text == "Tell us about your self.." {
+        if textView.text == "Bio.." {
             // Clear the text view
             textView.text = ""
         }
@@ -346,7 +346,7 @@ extension ProfileSetupVC : UITableViewDelegate, UITableViewDataSource {
                 let cell : GeneralTextviewTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralTextviewTVCell", for: indexPath) as! GeneralTextviewTVCell
                 cell.generalTV.delegate = self
                 cell.generalTV.tag = indexPath.row
-                cell.generalTV.text = "Tell us about your self.."
+                cell.generalTV.text = "Bio.."
                 return cell
                 
             default:
@@ -379,7 +379,7 @@ extension ProfileSetupVC : UITableViewDelegate, UITableViewDataSource {
                     
                     cell.toolTipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
                     cell.generalTF.keyboardType = .emailAddress
-                } else if placeholderArray[indexPath.row] == "Date of Birth" {
+                } else if placeholderArray[indexPath.row] == "Birthday" {
                     cell.toolTipBtn.isHidden = false
                     cell.toolTipBtn.tag = 003
                     

@@ -181,6 +181,9 @@ class AddLinksVC: MainViewController {
             if item == "Website" {
                 self?.addAccName.placeholder = "Name your website link"
                 self?.addAccLink.placeholder = "Enter your website’s full URL"
+            } else {
+                self?.addAccName.placeholder = "Name it"
+                self?.addAccLink.placeholder = "Link it"
             }
             
             self?.linkId = account?.linkTypeId ?? 0

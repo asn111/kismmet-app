@@ -10,12 +10,12 @@ import UIKit
 import RxSwift
 import RealmSwift
 
-class EditProfileSetup: MainViewController {
+class EditProfileSetup: MainViewController { //Birthday
     
     @IBOutlet weak var profileTV: UITableView!
     
-    var placeholderArray = ["","Full Name","Date of Birth"
-                            ,"Public Email","Where do you work / study?","Title","Tell us about your self..",""]
+    var placeholderArray = ["","Full Name","Birthday"
+                            ,"Public Email","Where do you work / study?","Title","Bio..",""]
     var dataArray = [String]()
     var fullName = "", publicEmail = "", placeOfWork = "", workTitle = "" , dateOfBirth = "" , about = "", countryCode = "", phoneNum = "", countryName = "", profilePic = ""
     
@@ -228,7 +228,7 @@ class EditProfileSetup: MainViewController {
         var msg = ""
         
         if sender.tag == 001 {
-            msg = "Add an optional email address to your profile for convenient connections.\nMuch like you would on a business card.\nNote: It will be visible on your profile."
+            msg = "Add an optional email address to your profile for convenient connections.\nNote: it will be visible on your profile."
         } else if sender.tag == 002 {
             msg = "Please note that your date of birth is private and will not be visible to other users on the app."
         }
@@ -270,7 +270,7 @@ class EditProfileSetup: MainViewController {
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
         activeTextView = textView
-        if textView.text == "Tell us about your self.." {
+        if textView.text == "Bio" {
             // Clear the text view
             textView.text = ""
         }
@@ -405,13 +405,13 @@ class EditProfileSetup: MainViewController {
                                 self.userdbModel = DBService.fetchloggedInUser()
                                 let user = self.userdbModel.first
                                 self.dataArray = ["",
-                                                   user!.userName,
-                                                   self.formatDateForDisplay(date: self.convertToDate(dateStr: user?.dob ?? "")),
-                                                   user!.publicEmail,
-                                                   user!.workAddress,
-                                                   user!.workTitle,
+                                                   user!.userName.isEmpty ? "Full Name" : user!.userName,
+                                                   self.formatDateForDisplay(date: self.convertToDate(dateStr: user?.dob ?? "Birthday")),
+                                                  user!.publicEmail.isEmpty ? "Public Email" : user!.publicEmail,
+                                                  user!.workAddress.isEmpty ? "Where do you work / study?" : user!.workAddress,
+                                                  user!.workTitle.isEmpty ? "Title" : user!.workTitle,
                                                    ""]
-                                self.fullName = user!.userName
+                                self.fullName = user!.userName.isEmpty ? "" : user!.userName
                                 self.profilePic = user!.profilePicture
                                 self.dateOfBirth = user!.dob
                                 self.publicEmail = user!.publicEmail
@@ -552,7 +552,8 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 
                 if let userDb = userdbModel {
                     if let user = userDb.first {
-                        cell.generalTV.text = user.about
+                        cell.generalTV.text = user.about.isEmpty ? "Bio.." : user.about
+
                     }
                 }
                 cell.generalTV.delegate = self
@@ -565,7 +566,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
                 cell.addBtn.isHidden = true
-                cell.headerLbl.text = "Link your social accounts"
+                cell.headerLbl.text = "Link your social media accounts"
                 cell.addBtn.isHidden = false
                 cell.addBtn.tag = indexPath.row
             
@@ -705,7 +706,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                     if placeholderArray[indexPath.row] == "Public Email" {
                         cell.toolTipBtn.isHidden = false
                         cell.toolTipBtn.tag = 001
-                    } else if placeholderArray[indexPath.row] == "Date of Birth" {
+                    } else if placeholderArray[indexPath.row] == "Birthday" {
                         cell.toolTipBtn.isHidden = false
                         cell.toolTipBtn.tag = 002
                     } else {
