@@ -72,7 +72,7 @@ class EditProfileSetup: MainViewController { //Birthday
                 Logs.show(message: val)
                 if AppFunctions.getTagsArray().count > 0 {
                     self?.tags = AppFunctions.getTagsArray()
-                    self?.profileTV.reloadRows(at: [IndexPath(row: (self?.placeholderArray.count)! + (self?.socialAccImgArray.count)! + 1, section: 0)], with: .fade)
+                    self?.profileTV.reloadRows(at: [IndexPath(row: (self?.placeholderArray.count)! + (self?.socialAccounts.count)! + 2, section: 0)], with: .fade)
                 }
                 
             } else if val.contains("socialAdded") {
@@ -204,7 +204,7 @@ class EditProfileSetup: MainViewController { //Birthday
         AppFunctions.setTagsArray(value: arr)
         self.tags.removeAll()
         self.tags = AppFunctions.getTagsArray()
-        profileTV.reloadRows(at: [IndexPath(row: placeholderArray.count + socialAccImgArray.count + 1, section: 0)], with: .fade)
+        profileTV.reloadRows(at: [IndexPath(row: placeholderArray.count + socialAccounts.count + 2, section: 0)], with: .fade)
     }
     
     @objc func addBtnPressed(sender:UIButton) {
