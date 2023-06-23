@@ -76,6 +76,7 @@ let isProfileUpdated = "isProfileUpdated"
 let stripeKey = "stripeKey"
 let tagsArray = "tagsArray"
 let socialArray = "socialArray"
+let notif = "notif"
 
 class Logs {
     
@@ -238,6 +239,20 @@ class AppFunctions {
             token = preferences.string(forKey: devTokenString)!
         }
         return token
+    }
+    
+    open class func setIsNotifCheck(value: Bool){
+        preferences.set(value, forKey: notif)
+        preferences.synchronize()
+    }
+    open class func isNotifNotCheck() -> Bool{
+        var value = false
+        if preferences.object(forKey: notif) == nil {
+            Logs.show(message: "NIL isNotifCheckCheck")
+        } else {
+            value = preferences.bool(forKey: notif)
+        }
+        return value
     }
     
     open class func setIsTermsNCndCheck(value: Bool){

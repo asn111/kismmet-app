@@ -54,15 +54,17 @@ class NotificationVC: MainViewController {
     }
     
     @objc func notifBtnPressed(sender: UIButton) {
+        
         if AppFunctions.isNotifEnable() {
             UIApplication.shared.unregisterForRemoteNotifications()
             AppFunctions.setNotifEnable(value: false)
-            AppFunctions.showSnackBar(str: "Notifications enabled")
+            AppFunctions.showSnackBar(str: "Notifications are paused")
         } else {
             UIApplication.shared.registerForRemoteNotifications()
             AppFunctions.setNotifEnable(value: true)
-            AppFunctions.showSnackBar(str: "Notifications are paused")
+            AppFunctions.showSnackBar(str: "Notifications are enabled")
         }
+        
         notifTV.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
     }
     
@@ -94,10 +96,12 @@ class NotificationVC: MainViewController {
                 guard let self = self else {return}
                 switch model {
                     case .next(let val):
+                        AppFunctions.setIsNotifCheck(value: false)
                         if val.count > 0 {
                             self.notifList.removeAll()
                             self.readNotifList.removeAll()
                             self.unreadNotifList.removeAll()
+                            
                             
                             self.notifList = val
                             self.readNotifList = self.notifList.filter({$0.isRead})
@@ -189,9 +193,9 @@ extension NotificationVC : UITableViewDelegate, UITableViewDataSource {
                 cell.notifBtn.isHidden = false
                 
                 if AppFunctions.isNotifEnable() {
-                    cell.notifBtn.setImage(UIImage(systemName: "bell.slash.fill"), for: .normal)
-                } else {
                     cell.notifBtn.setImage(UIImage(systemName: "bell.badge.fill"), for: .normal)
+                } else {
+                    cell.notifBtn.setImage(UIImage(systemName: "bell.slash.fill"), for: .normal)
                 }
                 
                 cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)

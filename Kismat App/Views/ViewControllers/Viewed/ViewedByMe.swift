@@ -24,6 +24,14 @@ class ViewedByMeVC: MainViewController {
         
         registerCells()
         getViewedByMe(load: true)
+        
+        _ = generalPublisher.subscribe(onNext: {[weak self] val in
+            
+            if val == "notif" {
+                self?.viewedListTV.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+            }
+            
+        }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -172,6 +180,11 @@ extension ViewedByMeVC : UITableViewDelegate, UITableViewDataSource {
                 
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
                 
+                if AppFunctions.isNotifNotCheck() {
+                    cell.notifBtn.tintColor = UIColor(named:"Danger")
+                } else {
+                    cell.notifBtn.tintColor = UIColor(named: "Text grey")
+                }
                 
                 return cell
                 

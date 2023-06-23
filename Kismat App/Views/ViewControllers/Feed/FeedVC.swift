@@ -50,6 +50,15 @@ class FeedVC: MainViewController {
         
         getProxUsers(load: true)
         registerCells()
+        
+        _ = generalPublisher.subscribe(onNext: {[weak self] val in
+            
+            if val == "notif" {
+                self?.feedTV.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+            }
+            
+        }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -307,6 +316,13 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                     cell.viewedToolTipBtn.isHidden = false
                 }
                 cell.viewCountsLbl.attributedText = NSAttributedString(string: "\(AppFunctions.getviewedCount()) out of 15 profiles viewed", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
+                
+                if AppFunctions.isNotifNotCheck() {
+                    cell.notifBtn.tintColor = UIColor(named:"Danger")
+                } else {
+                    cell.notifBtn.tintColor = UIColor(named: "Text grey")
+                }
+                
                 return cell
                 
             default:

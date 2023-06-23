@@ -23,6 +23,14 @@ class StarredVC: MainViewController {
         
         registerCells()
         getStarUsers(load: true)
+        
+        _ = generalPublisher.subscribe(onNext: {[weak self] val in
+            
+            if val == "notif" {
+                self?.starredTV.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+            }
+            
+        }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -190,6 +198,11 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
 
                 cell.picBtn.borderWidth = 0
 
+                if AppFunctions.isNotifNotCheck() {
+                    cell.notifBtn.tintColor = UIColor(named:"Danger")
+                } else {
+                    cell.notifBtn.tintColor = UIColor(named: "Text grey")
+                }
                 
                 return cell
                 

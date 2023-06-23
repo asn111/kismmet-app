@@ -18,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        // Set the delegate
+        UNUserNotificationCenter.current().delegate = self
+        
         initializations()
         return true
     }
@@ -34,8 +37,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Random Functions
     
     private func initializations() {
+        
         //FirebaseApp.configure() //no GoogleService-Info.plist
         registerNotification()
+        getNotificationSettings()
+        
         
         if AppFunctions.isLoggedIn() {
             APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
@@ -107,11 +113,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //MARK: NOTIFICATIONS
 extension AppDelegate : UNUserNotificationCenterDelegate {
     
+    
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         Logs.show(message: "UINFO: \(userInfo)") // this one is calling when a notification got recevied on foreground & background.
         
+        AppFunctions.setIsNotifCheck(value: true)
+        generalPublisher.onNext("notif")
+
         let apsPayload = userInfo["aps"] as! [String: Any]
-        Logs.show(message: "APS: \(apsPayload)") // this one is calling when a notification got recevied on foreground & background.
+
         let state = application.applicationState
         switch state {
             case .inactive:
@@ -120,7 +130,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                 
             case .background:
                 Logs.show(message: "Back Ground")
-                
+                Logs.show(message: "APS: \(apsPayload)")
+
                 //let notifData = apsPayload["data"] as? [String: Any]
                 
                 application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1
@@ -142,6 +153,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         let apsPayload = userInfo["aps"] as! [String: Any]
         
         Logs.show(message: "\(userInfo)")
+        
+
+        
         let state = application.applicationState
         switch state {
             case .inactive:
@@ -165,8 +179,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         var userInfo = [AnyHashable: Any]()
         userInfo = (notification.request.content.userInfo)
         Logs.show(message: "xxx: \n\(userInfo)")
-        
-        completionHandler([.alert, .sound])
+        Logs.show(message: "App is in the foreground")
+
+        completionHandler([.alert, .badge, .sound])
     }
     
     // For handling tap and user actions
@@ -195,12 +210,14 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         
     }
 
+    func getNotificationSettings() {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            Logs.show(message: "Notification settings: \(settings)")
+
+        }
+    }
     
     func registerNotification() {
-        // First we must determine your iOS type:
-        // Note this will only work for iOS 8 and up, if you require iOS 7 notifications then
-        // contact support@pubnub.com with your request
-        if #available(iOS 10, *) {
             UNUserNotificationCenter.current().getNotificationSettings { (settings) in
                 switch settings.authorizationStatus {
                     case .notDetermined:
@@ -235,15 +252,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                     @unknown default: break
                 }
             }
-            // Set the delegate
-            UNUserNotificationCenter.current().delegate = self
-        } else {
-            // Fallback on earlier versions
-            let types: UIUserNotificationType = [.alert, .badge, .sound]
-            let settings = UIUserNotificationSettings(types: types, categories: nil)
-            UIApplication.shared.registerUserNotificationSettings(settings)
-            UIApplication.shared.registerForRemoteNotifications()
-        }
+            
     }
 
     
