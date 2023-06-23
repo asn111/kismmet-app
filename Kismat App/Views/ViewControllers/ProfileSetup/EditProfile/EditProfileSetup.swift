@@ -240,25 +240,37 @@ class EditProfileSetup: MainViewController { //Birthday
         
         //Logs.show(message: "\(fullName), \(publicEmail), \(dateOfBirth), \(placeOfWork), \(workTitle), \(about), \(tags.joined(separator: ","))")
         
-        userProfileUpdate()
-
+        
+        if tags.joined(separator: ",").count != 0 {
+            
+            userProfileUpdate()
+        } else {
+            AppFunctions.showSnackBar(str: "Tags are important part of profile, please add at least one.")
+        }
         
     }
     @objc func genBtnPressedForProfile(sender:UIButton) {
-        self.pushVC(id: "ProfileVC") { (vc:ProfileVC) in
-            
-            profileDict["fullName"] = fullName
-            profileDict["publicEmail"] = publicEmail
-            profileDict["profilePicture"] = profilePic
-            profileDict["workAdress"] = placeOfWork
-            profileDict["workTitle"] = workTitle
-            profileDict["about"] = about
-            profileDict["tags"] = tags.joined(separator: ",")
-
-            let userModel = UserModel(fromDictionary: profileDict)
-            vc.userModel = userModel
-            vc.isOtherProfile = true
+        
+        if tags.joined(separator: ",").count != 0 {
+        
+            self.pushVC(id: "ProfileVC") { (vc:ProfileVC) in
+                
+                profileDict["fullName"] = fullName
+                profileDict["publicEmail"] = publicEmail
+                profileDict["profilePicture"] = profilePic
+                profileDict["workAdress"] = placeOfWork
+                profileDict["workTitle"] = workTitle
+                profileDict["about"] = about
+                profileDict["tags"] = tags.joined(separator: ",")
+                
+                let userModel = UserModel(fromDictionary: profileDict)
+                vc.userModel = userModel
+                vc.isOtherProfile = true
+            }
+        } else {
+            AppFunctions.showSnackBar(str: "Tags are important part of profile, please add at least one.")
         }
+        
     }
     @objc func backBtnPressed(sender:UIButton) {
         self.navigationController?.popViewController(animated: true)
