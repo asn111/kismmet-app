@@ -119,11 +119,11 @@ class SplashVC: MainViewController {
                 switch model {
                     case .next(let val):
                         if val.userId != "" {
-                            /*if !AppFunctions.isEmailVerified(){
+                            if !AppFunctions.isEmailVerified(){
                                 self.presentVC(id: "CodeVerification_VC") { (vc:CodeVerification_VC) in
                                     vc.fromSignup = true
                                 }
-                            } else */if !AppFunctions.IsProfileUpdated(){
+                            } else if !AppFunctions.IsProfileUpdated(){
                                 self.navigateVC(id: "ProfileSetupVC") { (vc:ProfileSetupVC) in }
                             } else {
                                 self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in

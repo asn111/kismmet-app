@@ -180,6 +180,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         userInfo = (notification.request.content.userInfo)
         Logs.show(message: "xxx: \n\(userInfo)")
         Logs.show(message: "App is in the foreground")
+        
+        AppFunctions.setIsNotifCheck(value: true)
+        generalPublisher.onNext("notif")
 
         completionHandler([.alert, .badge, .sound])
     }

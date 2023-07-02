@@ -154,6 +154,7 @@ class SignupVC: MainViewController {
                     case .next(let val):
                         Logs.show(message: "MARKED: 👉🏻 \(val)")
                         if val {
+                            AppFunctions.saveEmail(name: self.email)
                             self.presentVC(id: "CodeVerification_VC") { (vc:CodeVerification_VC) in
                                 vc.email = self.email
                                 vc.fromSignup = true

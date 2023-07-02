@@ -59,6 +59,7 @@ var testSecretKey = ""
 //MARK: Pref Strings
 
 let authToken = "authToken"
+let userEmail = "userEmail"
 let isLogin = "isLogin"
 let notifEnable = "notifEnable"
 let isTermsNCond = "isTermsNCond"
@@ -111,6 +112,20 @@ class AppFunctions {
             Logs.show(message: "NIL getToken")
         } else {
             token = preferences.string(forKey: authToken)!
+        }
+        return token
+    }
+    
+    open class func saveEmail( name: String){
+        preferences.set(name, forKey: userEmail)
+        preferences.synchronize()
+    }
+    open class func getEmail() -> String{
+        var token = ""
+        if preferences.object(forKey: userEmail) == nil {
+            Logs.show(message: "NIL getEmail")
+        } else {
+            token = preferences.string(forKey: userEmail)!
         }
         return token
     }

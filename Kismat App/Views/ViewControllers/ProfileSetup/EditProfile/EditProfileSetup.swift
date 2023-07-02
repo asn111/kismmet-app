@@ -49,7 +49,7 @@ class EditProfileSetup: MainViewController { //Birthday
         
         socialAccounts = Array(DBService.fetchSocialAccList())
         tempSocialAccImgArray = socialAccounts.compactMap { $0.linkType }
-        
+
         
         registerCells()
         //userSocialAcc()
@@ -337,7 +337,12 @@ class EditProfileSetup: MainViewController { //Birthday
             let picker = UIDatePicker()
             picker.datePickerMode = .date
             if #available(iOS 13.4, *) {
-                picker.preferredDatePickerStyle = .wheels
+                if #available(iOS 14.0, *) {
+                    picker.preferredDatePickerStyle = .inline
+                } else {
+                    // Fallback on earlier versions
+                    picker.preferredDatePickerStyle = .wheels
+                }
             } else {
                 // Fallback on earlier versions
             }
@@ -367,6 +372,10 @@ class EditProfileSetup: MainViewController { //Birthday
         }
     }
     
+    override var prefersHomeIndicatorAutoHidden: Bool {
+        return true
+    }
+
         
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         

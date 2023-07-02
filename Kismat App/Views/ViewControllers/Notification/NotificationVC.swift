@@ -126,7 +126,7 @@ class NotificationVC: MainViewController {
 
         APIService
             .singelton
-            .getUserById(userId: id)
+            .getUserById(userId: id, isOtherUser: true)
             .subscribe({[weak self] model in
                 guard let self = self else {return}
                 switch model {

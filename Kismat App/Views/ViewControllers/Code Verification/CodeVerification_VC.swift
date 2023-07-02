@@ -29,6 +29,7 @@ class CodeVerification_VC: MainViewController {
     
     @IBOutlet weak var phoneNumTF: FormTextField!
     
+    @IBOutlet weak var backBtn: RoundCornerButton!
     @IBAction func backBtnPressed(_ sender: Any) {
         self.dismiss(animated: true)
     }
@@ -52,6 +53,7 @@ class CodeVerification_VC: MainViewController {
         
         
     }
+
     
     //MARK: Objc Functions
     
@@ -70,8 +72,8 @@ class CodeVerification_VC: MainViewController {
     @objc
     func verifyBtnPressed(sender:UIButton) {
         
-        email = phoneNumTF.text?.isValidEmail ?? false ? phoneNumTF.text! : ""
         if !emailSent {
+            email = phoneNumTF.text?.isValidEmail ?? false ? phoneNumTF.text! : ""
             if email != "" {
                 sendEmail()
             } else {
@@ -207,11 +209,13 @@ class CodeVerification_VC: MainViewController {
 
         if fromSignup {
             emailSent = true
-            self.numberView.isHidden = true
-            self.codeView.isHidden = false
-            self.numberLbl.isHidden = false
-            self.numberLbl.text = "Code Sent on email: \(self.email)"
-            self.verifyBtn.setTitle("Verify Code", for: .normal)
+            email = AppFunctions.getEmail()
+            backBtn.isHidden = true
+            numberView.isHidden = true
+            codeView.isHidden = false
+            numberLbl.isHidden = false
+            numberLbl.text = "Code Sent on email: \(email)"
+            verifyBtn.setTitle("Verify Code", for: .normal)
         } else {
             numberView.isHidden = false
             self.codeView.isHidden = true
@@ -336,6 +340,7 @@ class CodeVerification_VC: MainViewController {
                         Logs.show(message: "MARKED: 👉🏻 \(val)")
                         if val {
                             self.hidePKHUD()
+                            AppFunctions.saveEmail(name: "")
                             if self.fromSignup {
                                 self.navigateVC(id: "ProfileSetupVC") { (vc:ProfileSetupVC) in }
                             } else {

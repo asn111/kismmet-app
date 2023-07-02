@@ -315,6 +315,12 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 } else {
                     //cell.profilePicBtn.setImage(img, for: .normal)
                 }
+                if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 6].linkType }).count > 0 {
+                    cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.medium
+                } else {
+                    cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.regular
+                }
+                
                 cell.socialLbl.text = socialAccounts[indexPath.row - 6].linkType.capitalized
                 cell.socialLbl.isUserInteractionEnabled = false
                 return cell

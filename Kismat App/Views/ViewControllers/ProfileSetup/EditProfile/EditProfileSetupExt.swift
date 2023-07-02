@@ -164,7 +164,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 cell.headerLbl.isHidden = false
                 cell.headerLbl.text = "Hi, \(name)"
                 cell.headerLbl.textAlignment = .left
-                cell.searchView.isHidden = false
+                cell.searchView.isHidden = true
                 cell.swipeTxtLbl.isHidden = true
                 cell.headerView.isHidden = false
                 cell.notifBtn.isHidden = true

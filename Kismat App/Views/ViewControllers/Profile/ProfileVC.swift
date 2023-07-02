@@ -386,10 +386,15 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                  cell.socialImgView.sd_setImage(with: imageUrl , placeholderImage: UIImage()) { (image, error, imageCacheType, url) in }
                  }
                 
-                //var countTxt = socialAccModel.filter {$0.linkType == socialAccounts[indexPath.row - 6].linkType}.count
+                
                 
                 cell.socialLbl.text = socialAccounts[indexPath.row - 6].linkType.capitalized
                 
+                if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 6].linkType }).count > 0 {
+                    cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.medium
+                } else {
+                    cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.regular
+                }
                 //setupLbl(textLbl: cell.socialLbl, completeText: "\(socialAccounts[indexPath.row - 6].linkType.capitalized)   \(countTxt) Accounts", textToHighlight: " \(countTxt) Accounts")
 
                 cell.socialLbl.isUserInteractionEnabled = false

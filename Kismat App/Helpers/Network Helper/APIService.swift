@@ -1056,7 +1056,7 @@ class APIService: NSObject {
     
     
     //MARK: Get User By ID
-    func getUserById(userId: String) -> Observable<UserModel> {
+    func getUserById(userId: String, isOtherUser: Bool = false) -> Observable<UserModel> {
         
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
@@ -1074,7 +1074,9 @@ class APIService: NSObject {
                             case .success:
                                 do {
                                     let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
-                                    DBService.createUserDB(APIlist: genResponse.body.user)
+                                    if !isOtherUser {
+                                        DBService.createUserDB(APIlist: genResponse.body.user)
+                                    }
                                     Logs.show(message: "SUCCESS IN \(#function)")
                                     observer.onNext(genResponse.body.user)
                                     observer.onCompleted()
