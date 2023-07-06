@@ -244,7 +244,7 @@ extension BlockedVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row != 0 && AppFunctions.isProfileVisble() {
-            if !AppFunctions.isPremiumUser() && AppFunctions.getviewedCount() >= 15 {
+            if !AppFunctions.isPremiumUser() && AppFunctions.getviewedCount() >= AppFunctions.getMaxProfViewedCount() {
                 AppFunctions.showSnackBar(str: "You have reached your profile views limit.")
             } else if !users.isEmpty {
                 self.pushVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in

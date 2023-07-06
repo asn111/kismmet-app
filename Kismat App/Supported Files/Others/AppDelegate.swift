@@ -18,9 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        // Set the delegate
-        UNUserNotificationCenter.current().delegate = self
-        
         initializations()
         return true
     }
@@ -40,13 +37,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //FirebaseApp.configure() //no GoogleService-Info.plist
         registerNotification()
-        getNotificationSettings()
-        
+        UNUserNotificationCenter.current().delegate = self
+
         
         if AppFunctions.isLoggedIn() {
+            IAPManager.shared.checkSubscriptionStatus()
             APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
         }        
-        
 
         AppFunctions.removeFromDefaults(key: tagsArray)
         AppFunctions.removeFromDefaults(key: socialArray)

@@ -15,7 +15,7 @@ class SettingVC: MainViewController {
     
     @IBOutlet weak var settingTV: UITableView!
     
-    var lblTxt = ["","","Edit Profile","Preferences","Notifications","Change Password","Membership","Privacy Policy","About Kismmet","Account Status","Blocked Users","Logout"]
+    var lblTxt = ["","","Edit Profile","Preferences","Notifications","Change Password","Membership","Privacy Policy","Terms of Services","About Kismmet","Account Status","Blocked Users","Logout"]
     
     var userdbModel : Results<UserDBModel>!
     var img = UIImage(named: "placeholder")
@@ -214,15 +214,20 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
                     present(safariVC, animated: true)
                 } ///pp
             case 8:
+                if let tosUrl = URL(string: "https://www.kismmet.com/termsofservices") {
+                    let safariVC = SFSafariViewController(url: tosUrl)
+                    present(safariVC, animated: true)
+                } ///tos
+            case 9:
                 if let privacyPolicyURL = URL(string: "https://www.kismmet.com/") {
                     let safariVC = SFSafariViewController(url: privacyPolicyURL)
                     present(safariVC, animated: true)
                 } ///about
-            case 9:
-                self.pushVC(id: "AccountStatusVC") { (vc:AccountStatusVC) in }
             case 10:
-                self.pushVC(id: "BlockedVC") { (vc:BlockedVC) in }
+                self.pushVC(id: "AccountStatusVC") { (vc:AccountStatusVC) in }
             case 11:
+                self.pushVC(id: "BlockedVC") { (vc:BlockedVC) in }
+            case 12:
                 showAlert()
             default:
                 print("")

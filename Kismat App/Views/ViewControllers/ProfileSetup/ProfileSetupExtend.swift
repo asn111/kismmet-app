@@ -31,6 +31,8 @@ class ProfileSetupExtend: MainViewController {
     var isProfileVisible = false
         
     var profileDict = [String: Any]()
+    
+    var name = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +43,12 @@ class ProfileSetupExtend: MainViewController {
         registerCells()
         
         Logs.show(message: "Profile: \(profileDict)")
+        
+        if profileDict["fullName"] as! String != "" {
+            let nameStr = profileDict["fullName"] as! String
+            let nameStrArr = nameStr.components(separatedBy: " ")
+            name = nameStrArr.first ?? ""
+        }
         
         _ = generalPublisher.subscribe(onNext: {[weak self] val in
             
@@ -55,31 +63,7 @@ class ProfileSetupExtend: MainViewController {
                 Logs.show(message: val)
                 
                 self?.userProfile(fromUpdate: false)
-                //self?.userSocialAcc()
-                
-                /*if AppFunctions.getSocialArray().count > 0 {
-                    switch AppFunctions.getSocialArray().count {
-                        case 1:
-                            self?.socialAccArray = AppFunctions.getSocialArray() + ["Twitter Username","Instagram Handle","Snapchat Username","Website URL"]
-                        case 2:
-                            self?.socialAccArray = AppFunctions.getSocialArray() + ["Instagram Handle","Snapchat Username","Website URL"]
-                        case 3:
-                            self?.socialAccArray = AppFunctions.getSocialArray() + ["Snapchat Username","Website URL"]
-                        case 4:
-                            self?.socialAccArray = AppFunctions.getSocialArray() + ["Website URL"]
-                        case 5:
-                            self?.socialAccArray = AppFunctions.getSocialArray()
-                        default:
-                            print("default")
-                    }
-                    var indexPaths: [IndexPath] = []
-                    
-                    for i in 6...10 {
-                        let indexPath = IndexPath(item: i, section: 0)
-                        indexPaths.append(indexPath)
-                    }
-                    self?.profileExtTV.reloadRows(at: indexPaths, with: .none)
-                }*/
+            
             }
         }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
     }
@@ -128,41 +112,7 @@ class ProfileSetupExtend: MainViewController {
             }
         }
     }
-    
-    /*@objc func addBtnPressed(sender:UIButton) {
-        switch sender.tag {
-            case 6:
-                self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
-                    vc.accountType = "linkedIn"
-                }
-            case 7:
-                self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
-                    vc.accountType = "twitter"
-                }
-            case 8:
-                self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
-                    vc.accountType = "instagram"
-                }
-            case 9:
-                self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
-                    vc.accountType = "snapchat"
-                }
-            case 10:
-                self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
-                    vc.accountType = "website"
-                }
-            default:
-                let arr = AppFunctions.getTagsArray()
-                if arr.count >= 5 {
-                    AppFunctions.showSnackBar(str: "Maximum tags added, remove to add new")
-                    return
-                }
-                self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
-                    vc.accountType = "tags"
-                }
-        }
-        
-    }*/
+
     
     @objc func removeBtnPressed(sender:UIButton) {
         switch sender.tag {
@@ -183,52 +133,6 @@ class ProfileSetupExtend: MainViewController {
     
     func deleteSocialLink(index: Int) {
         
-    /*    var newIndex = 0
-        var comingType = ""
-
-        switch index {
-            case 6:
-                comingType = "linkedIn"
-                let linkTypes = self.socialAccdbModel.compactMap({$0.linkType})
-                if let matchingIndex = linkTypes.firstIndex(where: { $0.range(of: comingType, options: .caseInsensitive) != nil }) {
-                    Logs.show(message: "Index : \(matchingIndex)")
-                    newIndex = matchingIndex
-                }
-            case 7:
-                comingType = "twitter"
-                let linkTypes = self.socialAccdbModel.compactMap({$0.linkType})
-                if let matchingIndex = linkTypes.firstIndex(where: { $0.range(of: comingType, options: .caseInsensitive) != nil }) {
-                    Logs.show(message: "Index : \(matchingIndex)")
-                    newIndex = matchingIndex
-                }
-            case 8:
-                comingType = "instagram"
-                let linkTypes = self.socialAccdbModel.compactMap({$0.linkType})
-                if let matchingIndex = linkTypes.firstIndex(where: { $0.range(of: comingType, options: .caseInsensitive) != nil }) {
-                    Logs.show(message: "Index : \(matchingIndex)")
-                    newIndex = matchingIndex
-                }
-            case 9:
-                comingType = "snapchat"
-                let linkTypes = self.socialAccdbModel.compactMap({$0.linkType})
-                if let matchingIndex = linkTypes.firstIndex(where: { $0.range(of: comingType, options: .caseInsensitive) != nil }) {
-                    Logs.show(message: "Index : \(matchingIndex)")
-                    newIndex = matchingIndex
-                }
-            case 10:
-                comingType = "website"
-                let linkTypes = self.socialAccdbModel.compactMap({$0.linkType})
-                if let matchingIndex = linkTypes.firstIndex(where: { $0.range(of: comingType, options: .caseInsensitive) != nil }) {
-                    Logs.show(message: "Index : \(matchingIndex)")
-                    newIndex = matchingIndex
-                }
-            default:
-            print("default")
-                
-        }
-        
-        ApiService.deleteSocialLink(val: socialAccdbModel[newIndex].socialAccountId)*/
-
     }
     
     @objc func toolTipBtnPressed(sender:UIButton) {
@@ -299,6 +203,7 @@ class ProfileSetupExtend: MainViewController {
                     case .next(let val):
                         Logs.show(message: "MARKED: 👉🏻 \(val)")
                         if val {
+                            self.startUpCall()
                             self.userProfile(fromUpdate: true)
                         } else {
                             self.hidePKHUD()
@@ -373,6 +278,64 @@ class ProfileSetupExtend: MainViewController {
             .disposed(by: dispose_Bag)
     }
     
+    func startUpCall() {
+        
+        APIService
+            .singelton
+            .startUpCall()
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        if val.accountStatusId != 0 {
+                            
+                            if let subs = val.subscription {
+                                if subs == "Premium Plan" {
+                                    AppFunctions.setIsPremiumUser(value: true)
+                                } else {
+                                    AppFunctions.setIsPremiumUser(value: false)
+                                }
+                            }
+                            
+                            if let shadowMode = val.shadowMode {
+                                AppFunctions.setIsShadowMode(value: shadowMode)
+                                
+                            }
+                            
+                            if let profVis = val.isProfileVisible {
+                                AppFunctions.setIsProfileVisble(value: profVis)
+                                
+                            }
+                            
+                            if let profVis = val.isProfileVisible {
+                                AppFunctions.setIsProfileVisble(value: profVis)
+                                
+                            }
+                            
+                            if let emailVerifed = val.isEmailVarified {
+                                AppFunctions.setIsEmailVerified(value: emailVerifed)
+                                
+                            }
+                            
+                            if let profCount = val.profileCountForSubscription {
+                                AppFunctions.saveMaxProfViewedCount(count: profCount)
+                            }
+                            
+                            self.hidePKHUD()
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
+    
 }
 //MARK: TableView Extention
 extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
@@ -393,7 +356,7 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
                 cell.welcomeView.isHidden = false
                 
                 
-                cell.welcomeHeaderLbl.text = "Hi, \(profileDict["fullName"] ?? "")"
+                cell.welcomeHeaderLbl.text = "Hi, \(name)"
                 
                 
                 return cell

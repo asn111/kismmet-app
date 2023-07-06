@@ -29,9 +29,12 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse) || (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways) {
-            self.currentLocation = locationManager.location
+            if let loc = locationManager.location {
+                generalPublisherLoc.onNext(loc)
+            }
+
+            //self.currentLocation = locationManager.location
         }
-        // Create a timer that triggers the sendLocation() function every 2 minutes
         
     }
     
@@ -39,7 +42,8 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
-        self.lastLocation = location
+        //self.lastLocation = location
+        generalPublisherLoc.onNext(location)
         Logs.show(message: " --------- \(location) --------- ")
     }
 

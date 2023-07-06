@@ -37,7 +37,6 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
             internetView.isHidden = false
         }
         
-        
         _ = generalPublisher.subscribe(onNext: {[weak self] val in
             
             if val == "Internet" {
@@ -47,13 +46,22 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
             }
         }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
         
+       
         // --Signal R Init--
         
         if AppFunctions.getToken() != "" && !connectionStarted {
             SignalRService.chatHubConnectionDelegate = self
             SignalRService.initializeSignalR()
             
-            self.cancellable = self.locationManager.$currentLocation.sink(receiveValue: {[weak self] (CLLocation) in
+            
+            _ = generalPublisherLoc.subscribe(onNext: {[weak self] loc in
+                
+                
+                self?.lastLocation = loc
+                self?.sendLocation()
+            }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
+            
+            /*self.cancellable = self.locationManager.$currentLocation.sink(receiveValue: {[weak self] (CLLocation) in
                 Logs.show(message: "LOC C: \(String(describing: CLLocation))")
                 if let loc = CLLocation {
                     self?.lastLocation = loc
@@ -67,7 +75,7 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
                     self?.lastLocation = loc
                     self?.sendLocation()
                 }
-            })
+            })*/
         }
 
         
@@ -89,7 +97,7 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
     
     func sendLocation() {
         let pram = ["lat": "\(self.lastLocation?.coordinate.latitude ?? 0.0)",
-                    "long":"\(self.lastLocation?.coordinate.latitude ?? 0.0)"
+                    "long":"\(self.lastLocation?.coordinate.longitude ?? 0.0)"
         ]
         SignalRService.connection.invoke(method: "UpdateUserLocation", pram) {  error in
             Logs.show(message: "\(pram)")

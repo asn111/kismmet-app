@@ -48,6 +48,7 @@ let SignalRService = SignalRManager.singelton
 
 public let loading: PublishSubject<Bool> = PublishSubject()
 let generalPublisher: PublishSubject<String> = PublishSubject()
+let generalPublisherLoc: PublishSubject<CLLocation> = PublishSubject()
 let generalPublisherCountry: PublishSubject<Country> = PublishSubject()
 let productPublisher: PublishSubject<[String: SKProduct]> = PublishSubject()
 
@@ -70,6 +71,7 @@ let profileVisble = "profileVisble"
 let premiumUser = "premiumUser"
 let userId = "userId"
 let viewedCount = "viewedCount"
+let profViewCount = "profViewCount"
 let role = "role"
 let devTokenString = "devTokenString"
 let isPaymentSaved = "isPaymentSaved"
@@ -164,10 +166,24 @@ class AppFunctions {
     }
     open class func getviewedCount() -> Int{
         var count = 0
-        if preferences.object(forKey: userId) == nil {
+        if preferences.object(forKey: viewedCount) == nil {
             Logs.show(message: "NIL getviewedCount")
         } else {
             count = preferences.integer(forKey: viewedCount)
+        }
+        return count
+    }
+    
+    open class func saveMaxProfViewedCount( count: Int){
+        preferences.set(count, forKey: profViewCount)
+        preferences.synchronize()
+    }
+    open class func getMaxProfViewedCount() -> Int{
+        var count = 0
+        if preferences.object(forKey: profViewCount) == nil {
+            Logs.show(message: "NIL getMaxProfViewedCount")
+        } else {
+            count = preferences.integer(forKey: profViewCount)
         }
         return count
     }

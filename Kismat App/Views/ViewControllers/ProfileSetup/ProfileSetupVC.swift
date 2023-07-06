@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CDAlertView
 
 class ProfileSetupVC: MainViewController  { //Birthday
 
@@ -60,6 +61,33 @@ class ProfileSetupVC: MainViewController  { //Birthday
         profileTV.register(UINib(nibName: "GeneralButtonTVCell", bundle: nil), forCellReuseIdentifier: "GeneralButtonTVCell")
     }
     
+    func showAlert(){
+        let message = "Alert!"
+        let alert = CDAlertView(title: message, message: "Are you sure you want to exit the setup?", type: .warning)
+        let action = CDAlertViewAction(title: "Yes",
+                                       handler: {[weak self] action in
+            AppFunctions.resetDefaults2()
+            DBService.removeCompletedDB()
+            self?.navigateVC(id: "SplashVC") { (vc:SplashVC) in }
+            return true
+        })
+        let cancel = CDAlertViewAction(title: "Cancel",
+                                       handler: { action in
+            print("CANCEL PRESSED")
+            return true
+        })
+        alert.isTextFieldHidden = true
+        alert.add(action: action)
+        alert.add(action: cancel)
+        alert.hideAnimations = { (center, transform, alpha) in
+            transform = .identity
+            alpha = 0
+        }
+        alert.show() { (alert) in
+            print("completed")
+        }
+    }
+    
     //MARK: OBJC Methods
 
     @objc private func keyboardWillShow(notification: NSNotification) {
@@ -90,17 +118,6 @@ class ProfileSetupVC: MainViewController  { //Birthday
     
     @objc private func keyboardWillHide(notification: NSNotification) {
         profileTV.contentInset = .zero
-    }
-    
-    @objc func updateDateField(sender: UIDatePicker) {
-        let indexPath = IndexPath(row: sender.tag, section: 0)
-        let cell = self.profileTV.cellForRow(at: indexPath) as! ProfileTVCell
-        
-        cell.generalTF.text = formatDateForDisplay(date: sender.date)
-    }
-    
-    @objc func cancelDatePicker(){
-        self.view.endEditing(true)
     }
     
     @objc func genBtnPressed(sender:UIButton) {
@@ -137,6 +154,11 @@ class ProfileSetupVC: MainViewController  { //Birthday
     @objc func backBtnPressed(sender:UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    @objc func powerBtnPressed(sender:UIButton) {
+        showAlert()
+    }
+    
     
     @objc func editBtnPressed(sender:UIButton) {
         let imagePickerClass = ImagePicker(viewController: self)
@@ -175,6 +197,7 @@ class ProfileSetupVC: MainViewController  { //Birthday
         }
         
     }
+
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         activeTextView = textView
@@ -189,7 +212,14 @@ class ProfileSetupVC: MainViewController  { //Birthday
         activeTextView = nil
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
+        //let isTextFieldBlank = textField.text?.isTFBlank ?? true
+        //textField.backgroundColor = isTextFieldBlank ? UIColor.red : UIColor.clear
         activeTextField = nil
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
     
     fileprivate func convertToDate(dateStr: String) -> Date {
@@ -224,7 +254,12 @@ class ProfileSetupVC: MainViewController  { //Birthday
             let picker = UIDatePicker()
             picker.datePickerMode = .date
             if #available(iOS 13.4, *) {
-                picker.preferredDatePickerStyle = .wheels
+                if #available(iOS 14.0, *) {
+                    picker.preferredDatePickerStyle = .inline
+                } else {
+                    // Fallback on earlier versions
+                    picker.preferredDatePickerStyle = .wheels
+                }
             } else {
                 // Fallback on earlier versions
             }
@@ -259,11 +294,6 @@ class ProfileSetupVC: MainViewController  { //Birthday
     
     //MARK: UIPickerView Methods
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return false
-    }
-    
     
     fileprivate func formatDateForDisplay(date: Date) -> String {
         let formatter = DateFormatter()
@@ -283,6 +313,23 @@ class ProfileSetupVC: MainViewController  { //Birthday
         }
         cell.generalTF.resignFirstResponder() // 2.5
     }
+    
+    @objc func updateDateField(sender: UIDatePicker) {
+        let indexPath = IndexPath(row: sender.tag, section: 0)
+        let cell = self.profileTV.cellForRow(at: indexPath) as! ProfileTVCell
+        
+        cell.generalTF.text = formatDateForDisplay(date: sender.date)
+        
+        let dateformatter = DateFormatter()
+        dateformatter.dateStyle = .long
+        dateformatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        !cell.generalTF.text!.isTFBlank ? dateOfBirth = dateformatter.string(from: sender.date) : print("Empty Date")
+    }
+    
+    @objc func cancelDatePicker(){
+        self.view.endEditing(true)
+    }
+    
     
     //MARK: API Method
     
@@ -331,6 +378,10 @@ extension ProfileSetupVC : UITableViewDelegate, UITableViewDataSource {
                 } else {
                     cell.profileIV.image = UIImage(named: "placeholder_icon")
                 }
+                cell.powerBtn.isHidden = false
+                
+                cell.powerBtn.addTarget(self, action: #selector(powerBtnPressed(sender:)), for: .touchUpInside)
+                
                 cell.editBtn.addTarget(self, action: #selector(editBtnPressed(sender:)), for: .touchUpInside)
                 return cell
             case placeholderArray.count - 1 :

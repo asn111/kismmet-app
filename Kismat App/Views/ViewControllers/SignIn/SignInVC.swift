@@ -138,8 +138,67 @@ class SignInVC: MainViewController {
                     case .next(let val):
                         Logs.show(message: "MARKED: 👉🏻 \(val)")
                         if val {
+                            self.startUpCall()
                             self.userProfile()
                             self.getSocialAccounts()
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
+    
+    func startUpCall() {
+        
+        APIService
+            .singelton
+            .startUpCall()
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        if val.accountStatusId != 0 {
+                            
+                            if let subs = val.subscription {
+                                if subs == "Premium Plan" {
+                                    AppFunctions.setIsPremiumUser(value: true)
+                                } else {
+                                    AppFunctions.setIsPremiumUser(value: false)
+                                }
+                            }
+                            
+                            if let shadowMode = val.shadowMode {
+                                AppFunctions.setIsShadowMode(value: shadowMode)
+                                
+                            }
+                            
+                            if let profVis = val.isProfileVisible {
+                                AppFunctions.setIsProfileVisble(value: profVis)
+                                
+                            }
+                            
+                            if let profVis = val.isProfileVisible {
+                                AppFunctions.setIsProfileVisble(value: profVis)
+                                
+                            }
+                            
+                            if let emailVerifed = val.isEmailVarified {
+                                AppFunctions.setIsEmailVerified(value: emailVerifed)
+                                
+                            }
+                            
+                            if let profCount = val.profileCountForSubscription {
+                                AppFunctions.saveMaxProfViewedCount(count: profCount)
+                            }
+                            
+                            self.hidePKHUD()
                         } else {
                             self.hidePKHUD()
                         }

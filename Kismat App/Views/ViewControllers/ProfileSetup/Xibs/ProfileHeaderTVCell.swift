@@ -12,6 +12,7 @@ class ProfileHeaderTVCell: UITableViewCell {
     @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var backBtn: RoundCornerButton!
     
+    @IBOutlet weak var powerBtn: RoundCornerButton!
     @IBOutlet weak var profileIV: RoundedImageView!
     
     override func awakeFromNib() {

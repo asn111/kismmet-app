@@ -133,7 +133,7 @@ class NotificationVC: MainViewController {
                     case .next(let val):
                         if val.userId != "" {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                if !AppFunctions.isPremiumUser() && AppFunctions.getviewedCount() >= 15 {
+                                if !AppFunctions.isPremiumUser() && AppFunctions.getviewedCount() >= AppFunctions.getMaxProfViewedCount() {
                                     AppFunctions.showSnackBar(str: "You have reached your profile views limit.")
                                 } else {
                                     self.pushVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in

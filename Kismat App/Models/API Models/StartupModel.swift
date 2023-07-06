@@ -11,6 +11,7 @@ class StartupModel: NSObject, Codable {
     
     var subscription : String!
     var accountStatusId : Int!
+    var profileCountForSubscription : Int!
     var isEmailVarified : Bool!
     var isProfileVisible : Bool!
     var shadowMode : Bool!
@@ -20,6 +21,7 @@ class StartupModel: NSObject, Codable {
         
         subscription = ""
         accountStatusId = 0
+        profileCountForSubscription = 0
         isEmailVarified = false
         isProfileVisible = false
         shadowMode = false
@@ -29,6 +31,7 @@ class StartupModel: NSObject, Codable {
         
         case subscription = "subscription"
         case accountStatusId = "accountStatusId"
+        case profileCountForSubscription = "profileCountForSubscription"
         case isEmailVarified = "isEmailVerified"
         case isProfileVisible = "isProfileVisible"
         case shadowMode = "shadowMode"
@@ -38,6 +41,7 @@ class StartupModel: NSObject, Codable {
         
         subscription  = try values.decodeIfPresent(String.self, forKey: .subscription)
         accountStatusId  = try values.decodeIfPresent(Int.self, forKey: .accountStatusId)
+        profileCountForSubscription  = try values.decodeIfPresent(Int.self, forKey: .profileCountForSubscription)
         isEmailVarified  = try values.decodeIfPresent(Bool.self, forKey: .isEmailVarified)
         isProfileVisible  = try values.decodeIfPresent(Bool.self, forKey: .isProfileVisible)
         shadowMode  = try values.decodeIfPresent(Bool.self, forKey: .shadowMode)

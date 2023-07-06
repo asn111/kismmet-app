@@ -7,13 +7,15 @@
 
 import Foundation
 import StoreKit
+import SwiftyStoreKit
 
 
 
 class IAPManager: NSObject {
     
     static let shared = IAPManager()
-    let monthlySubID = "kissmet_premium_sub_1"
+    let monthlySubID = "kismmet_premium"
+    let app_Specific_Shared_Secret = "b629c35cb3a34bf5b1a92351f2bb9338"
     var products: [String: SKProduct] = [:]
     
     
@@ -45,13 +47,53 @@ class IAPManager: NSObject {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
+    
+    func checkSubscriptionStatus() {
+        SwiftyStoreKit.fetchReceipt(forceRefresh: true) { result in
+            switch result {
+                case .success(let receiptData):
+                    let appleValidator = AppleReceiptValidator(service: .production, sharedSecret: self.app_Specific_Shared_Secret)
+                    SwiftyStoreKit.verifyReceipt(using: appleValidator) { result in
+                        switch result {
+                            case .success(let receipt):
+                                let purchaseResult = SwiftyStoreKit.verifySubscription(
+                                    ofType: .autoRenewable,
+                                    productId: self.monthlySubID,
+                                    inReceipt: receipt)
+                                
+                                switch purchaseResult {
+                                    case .purchased(let expiryDate, _):
+                                        Logs.show(message: "Subscription is valid until \(expiryDate)")
+                                        // Update the app state to reflect that the user is subscribed
+                                    case .expired(let expiryDate):
+                                        Logs.show(message: "Subscription expired on \(expiryDate)")
+                                        ApiService.updateSubscription(val: freeSubscriptionId)
+                                        AppFunctions.setIsPremiumUser(value: false)
+                                        // Update the app state to reflect that the user is not subscribed
+                                    case .notPurchased:
+                                        Logs.show(message: "The user has never purchased this subscription")
+                                        // Update the app state to reflect that the user is not subscribed
+                                        AppFunctions.setIsPremiumUser(value: false)
+                                }
+                                
+                            case .error(let error):
+                                Logs.show(message: "Receipt verification failed: \(error)")
+                        }
+                    }
+                    
+                case .error(let error):
+                    Logs.show(message: "Receipt refresh failed: \(error)")
+            }
+        }
+    }
+
 }
 
 extension IAPManager: SKProductsRequestDelegate, SKPaymentTransactionObserver {
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         response.invalidProductIdentifiers.forEach { product in
-            Logs.show(message: "InValid: \(product)")
+            Logs.show(message: "Invalid: \(product)")
         }
         products.removeAll()
         response.products.forEach { product in

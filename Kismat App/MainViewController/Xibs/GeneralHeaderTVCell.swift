@@ -19,6 +19,7 @@ class GeneralHeaderTVCell: UITableViewCell {
     @IBOutlet weak var profilePicBtn: RoundCornerButton!
     @IBOutlet weak var welcomePicBtn: RoundCornerButton!
     @IBOutlet weak var welcomeHeaderLbl: fullyCustomLbl!
+    @IBOutlet weak var welcomePowerBtn: RoundCornerButton!
     
     @IBOutlet weak var headerLbl: fullyCustomLbl!
     @IBOutlet weak var headerLogo: UIImageView!
