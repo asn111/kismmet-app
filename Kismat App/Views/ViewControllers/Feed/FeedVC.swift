@@ -315,7 +315,7 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                     cell.viewCountsLbl.isHidden = false
                     cell.viewedToolTipBtn.isHidden = false
                 }
-                cell.viewCountsLbl.attributedText = NSAttributedString(string: "\(AppFunctions.getviewedCount()) out of 15 profiles viewed", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
+                cell.viewCountsLbl.attributedText = NSAttributedString(string: "\(AppFunctions.getviewedCount()) out of \(AppFunctions.getMaxProfViewedCount()) profiles viewed", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
                 
                 if AppFunctions.isNotifNotCheck() {
                     cell.notifBtn.tintColor = UIColor(named:"Danger")

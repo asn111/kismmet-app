@@ -62,6 +62,7 @@ var testSecretKey = ""
 let authToken = "authToken"
 let userEmail = "userEmail"
 let isLogin = "isLogin"
+let isFirstDownload = "isFirstDownload"
 let notifEnable = "notifEnable"
 let isTermsNCond = "isTermsNCond"
 let isNumVerified = "isNumVerified"
@@ -206,6 +207,7 @@ class AppFunctions {
         preferences.set(value, forKey: isLogin)
         preferences.synchronize()
     }
+    
     open class func isLoggedIn() -> Bool{
         var value = false
         if preferences.object(forKey: isLogin) == nil {
@@ -413,12 +415,11 @@ class AppFunctions {
     open class func resetDefaults() {
         let dictionary = preferences.dictionaryRepresentation()
         dictionary.keys.forEach { key in
-            if key == devTokenString {
+            if key == devTokenString || key == isFirstDownload {
                 
             } else {
                 preferences.removeObject(forKey: key)
             }
-
         }
     }
     

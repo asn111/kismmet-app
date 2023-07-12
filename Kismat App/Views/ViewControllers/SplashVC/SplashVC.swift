@@ -10,7 +10,8 @@ import UIKit
 class SplashVC: MainViewController {
 
     @IBAction func continueBtnPressed(_ sender: Any) {
-        self.navigateVC(id: "SignInVC") { (vc:SignInVC) in }
+        
+        self.navigateVC(id: "SignupVC") { (vc:SignupVC) in }
     }
 
     @IBOutlet weak var heightConst: NSLayoutConstraint!

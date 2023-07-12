@@ -380,7 +380,7 @@ class APIService: NSObject {
                                     let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
                                     observer.onNext(false)
                                     Logs.show(message: "S:: \(responce.errorMessage ?? "")")
-                                    AppFunctions.showSnackBar(str: responce.message)
+                                    AppFunctions.showSnackBar(str: responce.errorMessage)
                                 } catch {
                                     Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
                                     AppFunctions.showSnackBar(str: "Server Request Error")

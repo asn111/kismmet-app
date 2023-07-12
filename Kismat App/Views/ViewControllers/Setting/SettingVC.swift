@@ -65,8 +65,7 @@ class SettingVC: MainViewController {
         let alert = CDAlertView(title: message, message: "Are you sure you want to Logout?", type: .warning)
         let action = CDAlertViewAction(title: "Logout",
                                        handler: {[weak self] action in
-            AppFunctions.resetDefaults2()
-            DBService.removeCompletedDB()
+            AppFunctions.logoutUser()
             self?.navigateVC(id: "SplashVC") { (vc:SplashVC) in }
             return true
         })

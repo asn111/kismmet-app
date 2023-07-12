@@ -38,7 +38,7 @@ class NotificationVC: MainViewController {
     
     func convertDateFormat(inputDateString: String) -> String? {
         let inputFormatter = DateFormatter()
-        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
         
         if let date = inputFormatter.date(from: inputDateString) {
             let outputFormatter = DateFormatter()
@@ -47,6 +47,7 @@ class NotificationVC: MainViewController {
         }
         return nil
     }
+
 
     
     @objc func picBtnPressed(sender: UIButton) {
@@ -102,10 +103,9 @@ class NotificationVC: MainViewController {
                             self.readNotifList.removeAll()
                             self.unreadNotifList.removeAll()
                             
-                            
                             self.notifList = val
-                            self.readNotifList = self.notifList.filter({$0.isRead})
-                            self.unreadNotifList = self.notifList.filter({$0.isRead == false})
+                            self.readNotifList = self.notifList.filter({$0.isRead}).sorted(by: { $0.createdAt.compare($1.createdAt) == .orderedDescending })
+                            self.unreadNotifList = self.notifList.filter({$0.isRead == false}).sorted(by: { $0.createdAt.compare($1.createdAt) == .orderedDescending })
                             self.notifTV.reloadData()
                         } else {
                             self.hidePKHUD()
@@ -234,7 +234,7 @@ extension NotificationVC : UITableViewDelegate, UITableViewDataSource {
                 if indexPath.row == 0 { // Subheader
                     let cell: MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                     cell.notifHeaderView.isHidden = false
-                    cell.notifHeaderLbl.text = readNotifList.count > 0 ? "Earlier" : "You haven't received any notifications yet."
+                    cell.notifHeaderLbl.text = readNotifList.count > 0 && unreadNotifList.count > 0 ? "Earlier" : "You haven't received any notifications yet."
                     return cell
                 } else { // Read notification cells
                     let cell: NotifTVCell = tableView.dequeueReusableCell(withIdentifier: "NotifTVCell", for: indexPath) as! NotifTVCell

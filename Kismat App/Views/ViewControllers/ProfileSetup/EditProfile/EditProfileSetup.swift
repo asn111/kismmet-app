@@ -149,6 +149,11 @@ class EditProfileSetup: MainViewController { //Birthday
         let cell = self.profileTV.cellForRow(at: indexPath) as! ProfileTVCell
         
         cell.generalTF.text = formatDateForDisplay(date: sender.date)
+        
+        let dateformatter = DateFormatter()
+        dateformatter.dateStyle = .long
+        dateformatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        !cell.generalTF.text!.isTFBlank ? dateOfBirth = dateformatter.string(from: sender.date) : print("Empty Date")
     }
     
     @objc func cancelDatePicker(){
