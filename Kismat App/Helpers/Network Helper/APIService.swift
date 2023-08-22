@@ -331,6 +331,81 @@ class APIService: NSObject {
         }
     }
     
+    //MARK: USER Social Login
+    func userSocialLogin(pram: Parameters) -> Observable<Bool> {
+        
+        return Observable.create{[weak self] observer -> Disposable in
+            if (self?.isCheckReachable())! {
+                
+                AF.request("\(self?.baseUrl ?? "")/api/Token/SocialLogin", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: nil)
+                    .validate()
+                    .responseData{ response in
+                        Logs.show(message: "URL: \(response.debugDescription)")
+                        guard let data = response.data else {
+                            observer.onError(response.error!)
+                            AppFunctions.showSnackBar(str: "Server Request Error")
+                            Logs.show(message: "Error on Response.data\(response.error!)")
+                            return
+                        }
+                        switch response.result {
+                            case .success:
+                                do {
+                                    let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    let jwtValue = try! AppFunctions.decode(jwtToken: genResponse.body.token)
+                                    Logs.show(message: "TOKEN: \(genResponse.body.token ?? "")")
+                                    Logs.show(message: "jwtValue: \(jwtValue)")
+                                    let role = jwtValue["Role"]
+                                    let userId = jwtValue["Id"]
+                                    //let paymentInfo : String = jwtValue["IsPaymentInfoSaved"] as! String
+                                    
+                                    let isProfileUpdated : String = jwtValue["IsProfileUpdated"] as! String
+                                    let isUserAgreement : String = jwtValue["IsUserAgreement"] as! String
+                                    
+                                    AppFunctions.saveToken(name: genResponse.body.token ?? "")
+                                    AppFunctions.saveUserId(name: userId as! String)
+                                    AppFunctions.saveRole(name: role as! String)
+                                    AppFunctions.setIsLoggedIn(value: true)
+                                    
+                                    
+                                    
+                                    if isUserAgreement.contains("True") {
+                                        AppFunctions.setIsTermsNCndCheck(value: true)
+                                    }
+                                    if isProfileUpdated.contains("True") {
+                                        AppFunctions.setIsProfileUpdated(value: true)
+                                    }
+                                    
+                                    Logs.show(message: "SUCCESS IN \(#function)")
+                                    observer.onNext(true)
+                                    observer.onCompleted()
+                                } catch {
+                                    observer.onError(error)
+                                    AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                }
+                            case .failure( _):
+                                do {
+                                    let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    observer.onNext(false)
+                                    Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                    AppFunctions.showSnackBar(str: responce.errorMessage)
+                                } catch {
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                    AppFunctions.showSnackBar(str: "Server Request Error")
+                                    observer.onError(error)
+                                    
+                                }
+                        }
+                    }
+            } else {
+                observer.onNext(false)
+                observer.onCompleted()
+                AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
+            }
+            return Disposables.create()
+        }
+    }
+    
     
     //MARK: USER SignUp
     func userSignUp(pram: Parameters) -> Observable<Bool> {
@@ -1245,6 +1320,56 @@ class APIService: NSObject {
                     }
             } else {
                 observer.onNext(false)
+                observer.onCompleted()
+                AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
+            }
+            return Disposables.create()
+        }
+    }
+    
+    //MARK: Get Report Reason List
+    func getReportReasons() -> Observable<[ReportReasonsModel]> {
+        
+        return Observable.create{[weak self] observer -> Disposable in
+            if (self?.isCheckReachable())! {
+                
+                AF.request("\(self?.baseUrl ?? "")/api/Configuration/GetReportReasons", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                    .validate()
+                    .responseData{ response in
+                        Logs.show(message: "URL: \(response.debugDescription)")
+                        guard let data = response.data else {
+                            observer.onError(response.error!)
+                            AppFunctions.showSnackBar(str: "Server Request Error")
+                            Logs.show(message: "Error on Response.data\(response.error!)")
+                            return
+                        }
+                        switch response.result {
+                            case .success:
+                                do {
+                                    let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    Logs.show(message: "SUCCESS IN \(#function)")
+                                    observer.onNext(genResponse.body.reportReasons)
+                                    observer.onCompleted()
+                                } catch {
+                                    observer.onError(error)
+                                    AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                }
+                            case .failure(let error):
+                                do {
+                                    let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    observer.onError(error)
+                                    Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                    AppFunctions.showSnackBar(str: responce.message)
+                                }catch {
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                    AppFunctions.showSnackBar(str: "Server Request Error")
+                                    observer.onError(error)
+                                }
+                        }
+                    }
+            } else {
+                observer.onNext([ReportReasonsModel]())
                 observer.onCompleted()
                 AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
             }

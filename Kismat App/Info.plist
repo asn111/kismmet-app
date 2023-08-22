@@ -36,5 +36,16 @@
 	<string>$(baseURL)</string>
 	<key>protocol</key>
 	<string>$(protocol)</string>
+    <key>GIDClientID</key>
+    <string>464505001033-pk77rgck0i7702u259nmv6n18sp8l331.apps.googleusercontent.com</string>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>com.googleusercontent.apps.464505001033-pk77rgck0i7702u259nmv6n18sp8l331</string>
+            </array>
+        </dict>
+    </array>
 </dict>
 </plist>

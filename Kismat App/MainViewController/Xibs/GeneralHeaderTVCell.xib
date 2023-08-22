@@ -452,8 +452,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please swipe left to remove starred from list." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8B-bt-df2" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="72" width="343" height="20"/>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please swipe left to remove starred from list." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8B-bt-df2" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="78" width="343" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="343" id="Eex-xf-9k7"/>
                                             <constraint firstAttribute="height" constant="20" id="SoS-oA-riV"/>
@@ -513,7 +513,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="92" id="2K9-HA-0PX"/>
                                     <constraint firstItem="pXu-df-J1k" firstAttribute="top" secondItem="sja-AP-Tc4" secondAttribute="bottom" constant="8" symbolic="YES" id="4od-ug-YUU"/>
-                                    <constraint firstAttribute="bottom" secondItem="A8B-bt-df2" secondAttribute="bottom" id="Chg-jr-Vqd"/>
+                                    <constraint firstAttribute="bottom" secondItem="A8B-bt-df2" secondAttribute="bottom" constant="-6" id="Chg-jr-Vqd"/>
                                     <constraint firstItem="sja-AP-Tc4" firstAttribute="leading" secondItem="dX8-SZ-fyC" secondAttribute="trailing" constant="13" id="Gvo-Uf-IE4"/>
                                     <constraint firstItem="pXu-df-J1k" firstAttribute="leading" secondItem="TDA-ZG-dfd" secondAttribute="leading" constant="8" id="OFM-v2-jtf"/>
                                     <constraint firstItem="dX8-SZ-fyC" firstAttribute="leading" secondItem="TDA-ZG-dfd" secondAttribute="leading" constant="8" id="TwC-0Z-EdD"/>

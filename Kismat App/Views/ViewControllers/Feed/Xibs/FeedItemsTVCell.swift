@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class FeedItemsTVCell: UITableViewCell {
 
@@ -30,13 +31,13 @@ class FeedItemsTVCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        sd_cancelCurrentImageLoad()
         profilePicIV.image = UIImage()
         
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     

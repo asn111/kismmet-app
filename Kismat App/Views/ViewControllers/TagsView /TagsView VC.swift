@@ -6,21 +6,44 @@
 //
 
 import UIKit
+import UIMultiPicker
 
 class TagsView_VC: MainViewController {
 
     
     @IBOutlet weak var tagsTV: UITableView!
     
+    @IBOutlet weak var reportBtn: RoundCornerButton!
+    @IBOutlet weak var pickerView: UIView!
+    
     @IBOutlet weak var headingLbl: fullyCustomLbl!
     
+    @IBOutlet weak var multiPickerView: UIMultiPicker!
+    
+    @IBAction func reportBtnPressed(_ sender: Any) {
+        setupMultiPickerView()
+    }
+    
+    @IBAction func doneBtnPressed(_ sender: Any) {
+        pickerView.isHidden = true
+    }
+    
     var tagList = [String]()
+    var reasonsList = [ReportReasonsModel]()
+    var reasonsListName = [String]()
+    var selectedReasonsAray = [Int]()
+    
+    var isFromOther = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        getReasons()
         headingLbl.text = "#TAGS"
         registerCells()
+        if isFromOther {
+            reportBtn.isHidden = false
+        }
     }
 
     func registerCells() {
@@ -33,6 +56,58 @@ class TagsView_VC: MainViewController {
         
     }
 
+    func setupMultiPickerView() {
+        
+        pickerView.isHidden = false
+        multiPickerView.options = reasonsListName
+        
+        multiPickerView.addTarget(self, action: #selector(selected(_:)), for: .valueChanged)
+        
+        multiPickerView.color = .darkGray
+        multiPickerView.tintColor = .black
+        multiPickerView.font = .systemFont(ofSize: 18, weight: .semibold)
+        
+        multiPickerView.highlight(0, animated: false)
+    }
+    @objc func selected(_ sender: UIMultiPicker) {
+        
+        Logs.show(message: "Selected Index: \(sender.selectedIndexes)")
+        
+        selectedReasonsAray = sender.selectedIndexes
+        Logs.show(message: "Selected REASONS: \(selectedReasonsAray)")
+        
+    }
+    
+    //MARK: API METHODS
+    
+    func getReasons() {
+        
+        
+        APIService
+            .singelton
+            .getReportReasons()
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        AppFunctions.setIsNotifCheck(value: false)
+                        if val.count > 0 {
+                            self.reasonsList = val
+                            self.reasonsListName = self.reasonsList.map({$0.reason})
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
+    
 
 }
 

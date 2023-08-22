@@ -23,6 +23,7 @@ target 'Kismmet' do
   pod 'Siren'
   pod 'SwiftyStoreKit'
 
+  pod 'GoogleSignIn'
   
   pod 'TransitionableTab', '~> 0.2.0'
   pod 'PKHUD'

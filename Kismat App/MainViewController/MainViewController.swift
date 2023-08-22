@@ -96,8 +96,11 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
     }
     
     func sendLocation() {
-        let pram = ["lat": "\(self.lastLocation?.coordinate.latitude ?? 0.0)",
-                    "long":"\(self.lastLocation?.coordinate.longitude ?? 0.0)"
+        let lat = self.lastLocation?.coordinate.latitude ?? 0.0
+        let long = self.lastLocation?.coordinate.longitude ?? 0.0
+        
+        let pram = ["lat": "\(lat)",
+                    "long":"\(long)"
         ]
         SignalRService.connection.invoke(method: "UpdateUserLocation", pram) {  error in
             Logs.show(message: "\(pram)")
@@ -126,7 +129,7 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
         
         internetLbl.frame = CGRect(x: 0, y: 0, width: self.internetView.bounds.width, height: 20)
         internetLbl.text = "No Internet!☹️ Check your connection"
-        internetLbl.txtColor = .white
+        internetLbl.txtColor = .red
         internetLbl.textAlignment = .center
         internetLbl.font = UIFont(name: "Avenir", size: 14)?.semibold
         

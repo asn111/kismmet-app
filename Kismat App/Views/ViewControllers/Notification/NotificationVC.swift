@@ -39,7 +39,8 @@ class NotificationVC: MainViewController {
     func convertDateFormat(inputDateString: String) -> String? {
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
-        
+        inputFormatter.timeZone = TimeZone(abbreviation: "UTC")
+
         if let date = inputFormatter.date(from: inputDateString) {
             let outputFormatter = DateFormatter()
             outputFormatter.dateFormat = "MMM dd, yyyy 'at' h:mm a"

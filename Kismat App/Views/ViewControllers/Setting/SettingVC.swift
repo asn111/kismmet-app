@@ -60,11 +60,26 @@ class SettingVC: MainViewController {
         settingTV.register(UINib(nibName: "SettingTVCell", bundle: nil), forCellReuseIdentifier: "SettingTVCell")
     }
     
+    func sendLocationForLogout() {
+        let pram = ["lat": "",
+                    "long":""
+        ]
+        SignalRService.connection.invoke(method: "UpdateUserLocation", pram) {  error in
+            Logs.show(message: "\(pram)")
+            //AppFunctions.showSnackBar(str: "loc killed")
+            if let e = error {
+                Logs.show(message: "Error: \(e)")
+                return
+            }
+        }
+    }
+
     func showAlert(){
         let message = "Alert!"
         let alert = CDAlertView(title: message, message: "Are you sure you want to Logout?", type: .warning)
         let action = CDAlertViewAction(title: "Logout",
                                        handler: {[weak self] action in
+            self?.sendLocationForLogout()
             AppFunctions.logoutUser()
             self?.navigateVC(id: "SplashVC") { (vc:SplashVC) in }
             return true

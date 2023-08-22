@@ -25,7 +25,7 @@ class MixHeaderTVCell: UITableViewCell {
     @IBOutlet weak var addBtn: RoundCornerButton!
     
     var minValue = 1
-    var maxValue = 2500
+    var maxValue = 5000
     let slider = MultiSlider()
     
     var sliderValue: Int = 0 {
@@ -79,7 +79,7 @@ class MixHeaderTVCell: UITableViewCell {
     
     func bindViewModel() {
         if sliderValue == 0 {
-            sliderValue = maxValue/2
+            sliderValue = maxValue
             setupSlider()
         } else {
             setupSlider()

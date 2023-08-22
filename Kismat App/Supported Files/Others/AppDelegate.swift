@@ -10,6 +10,9 @@ import CoreData
 import RxSwift
 import RealmSwift
 import Firebase
+import GoogleSignIn
+import AuthenticationServices
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,10 +28,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
         _ = SignalRManager.init()
         application.applicationIconBadgeNumber = 0
+        if AppFunctions.isLoggedIn() {
+            IAPManager.shared.checkSubscriptionStatus()
+            APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
+        }
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
+        if AppFunctions.isLoggedIn() {
+            sendLocation()
+        }
+    }
+    
+    func application(
+        _ app: UIApplication,
+        open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]
+    ) -> Bool {
+        var handled: Bool
         
+        handled = GIDSignIn.sharedInstance.handle(url)
+        if handled {
+            return true
+        }
+        
+        // Handle other custom URL types.
+        
+        // If not handled by this app, return false.
+        return false
     }
     
     // MARK: - Random Functions
@@ -38,12 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //FirebaseApp.configure() //no GoogleService-Info.plist
         registerNotification()
         UNUserNotificationCenter.current().delegate = self
-
-        
-        if AppFunctions.isLoggedIn() {
-            IAPManager.shared.checkSubscriptionStatus()
-            APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
-        }        
 
         AppFunctions.removeFromDefaults(key: tagsArray)
         AppFunctions.removeFromDefaults(key: socialArray)
@@ -57,6 +77,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Realm.Configuration.defaultConfiguration = config
         Logs.show(message: "MIGRATION: \(config)")
         ///Migration
+    }
+    
+    func sendLocation() {
+        let pram = ["lat": "",
+                    "long":""
+        ]
+        SignalRService.connection.invoke(method: "UpdateUserLocation", pram) {  error in
+            Logs.show(message: "\(pram)")
+            AppFunctions.showSnackBar(str: "loc killed")
+            if let e = error {
+                Logs.show(message: "Error: \(e)")
+                return
+            }
+        }
     }
 
     // MARK: - Core Data stack

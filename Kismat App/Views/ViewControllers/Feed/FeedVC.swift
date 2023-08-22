@@ -25,7 +25,7 @@ class FeedVC: MainViewController {
     
     var isProfileVisible = false
     var isShadowMode = false
-    var proximity = 150
+    var proximity = 5000
     var profilePic = ""
 
     private let refresher = UIRefreshControl()
@@ -37,7 +37,7 @@ class FeedVC: MainViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
         if DBService.fetchloggedInUser().count > 0 {
             self.userdbModel = DBService.fetchloggedInUser().first!
@@ -48,8 +48,16 @@ class FeedVC: MainViewController {
         isShadowMode = userdbModel.shadowMode
         profilePic = userdbModel.profilePicture
         
+        if isFromProfile {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                self.presentVC(id: "PopupVC", presentFullType: "over" ) { (vc:PopupVC) in }
+            }
+        }
+        
+        
         getProxUsers(load: true)
         registerCells()
+        
         
         _ = generalPublisher.subscribe(onNext: {[weak self] val in
             
@@ -249,8 +257,6 @@ class FeedVC: MainViewController {
             })
             .disposed(by: dispose_Bag)
     }
-    
-    
 }
 //MARK: TableView Extention
 extension FeedVC : UITableViewDelegate, UITableViewDataSource {
@@ -274,6 +280,8 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                 cell.searchView.isHidden = false
                 cell.headerView.isHidden = false
                 cell.viewedToolTipBtn.isHidden = !AppFunctions.isProfileVisble()
+                cell.swipeTxtLbl.isHidden = false
+                cell.swipeTxtLbl.text = "Refresh & Connect"
                 
                 cell.searchTF.delegate = self
                 cell.searchTF.returnKeyType = .search

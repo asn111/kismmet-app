@@ -20,7 +20,7 @@ class EditProfileSetupExt: MainViewController {
     var isFromSetting = true
     var isProfileVisible = false
     var isShadowMode = false
-    var proximity = 150
+    var proximity = 5000
     var email = ""
     var countName = ""
     var phoneNum = ""

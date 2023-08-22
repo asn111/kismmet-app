@@ -10,11 +10,17 @@ import RxRealm
 import RxSwift
 import RealmSwift
 import CDAlertView
+import UIMultiPicker
 
 class OtherUserProfile: MainViewController {
     
-
+    @IBAction func doneBtnPressed(_ sender: Any) {
+        pickerView.isHidden = true
+    }
+    
+    @IBOutlet weak var pickerView: UIView!
     @IBOutlet weak var otherProfileTV: UITableView!
+    @IBOutlet weak var multiPickerView: UIMultiPicker!
     
     var socialAccArray = [String]()
     //var socialAccArray = ["Tamara Pensiero","@tamaraapp","@tamara","@tamarasnap","My Website"]
@@ -30,10 +36,15 @@ class OtherUserProfile: MainViewController {
     var userModel = UserModel()
     var socialAccModel = [SocialAccModel]()
     
+    var reasonsList = [ReportReasonsModel]()
+    var reasonsListName = [String]()
+    var selectedReasonsAray = [Int]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //setupSocialArray()
+        getReasons()
         registerCells()
         
         socialAccounts = Array(DBService.fetchSocialAccList())
@@ -46,27 +57,6 @@ class OtherUserProfile: MainViewController {
         
         socialAccModel = userModel.socialAccounts
         
-        
-        /*var imageIndices = [String: Int]()
-        for (index, imageName) in self.tempSocialAccImgArray.enumerated() {
-            imageIndices[imageName.lowercased()] = index
-        }
-        
-        self.socialAccModel.sort { (model1, model2) -> Bool in
-            if let imageName1 = model1.linkImage.components(separatedBy: "/").last?.replacingOccurrences(of: ".png", with: "").lowercased(),
-               let imageName2 = model2.linkImage.components(separatedBy: "/").last?.replacingOccurrences(of: ".png", with: "").lowercased(),
-               let index1 = imageIndices[imageName1],
-               let index2 = imageIndices[imageName2] {
-                return index1 < index2
-            } else {
-                // If there is any error in extracting the image name or index, keep the original order
-                return false
-            }
-        }
-        
-        for i in 0..<socialAccModel.count {
-            Logs.show(message: "SORTED: \(self.socialAccModel[i].linkType)")
-        }*/
     }
     
     func registerCells() {
@@ -122,14 +112,20 @@ class OtherUserProfile: MainViewController {
             }
             return true
         })
-        let cancel = CDAlertViewAction(title: "Cancel",
-                                       handler: { action in
-            print("CANCEL PRESSED")
+        let action2 = CDAlertViewAction(title: "Report",
+                                       handler: {[weak self] action in
+            self?.setupMultiPickerView()
             return true
         })
+//        let cancel = CDAlertViewAction(title: "Cancel",
+//                                       handler: { action in
+//            print("CANCEL PRESSED")
+//            return true
+//        })
         alert.isTextFieldHidden = true
+        alert.canHideWhenTapBack = true
         alert.add(action: action)
-        alert.add(action: cancel)
+        alert.add(action: action2)
         alert.hideAnimations = { (center, transform, alpha) in
             transform = .identity
             alpha = 0
@@ -137,6 +133,28 @@ class OtherUserProfile: MainViewController {
         alert.show() { (alert) in
             print("completed")
         }
+    }
+    
+    func setupMultiPickerView() {
+        
+        pickerView.isHidden = false
+        multiPickerView.options = reasonsListName
+        
+        multiPickerView.addTarget(self, action: #selector(selected(_:)), for: .valueChanged)
+        
+        multiPickerView.color = .darkGray
+        multiPickerView.tintColor = .black
+        multiPickerView.font = .systemFont(ofSize: 18, weight: .semibold)
+        
+        multiPickerView.highlight(0, animated: false)
+    }
+    @objc func selected(_ sender: UIMultiPicker) {
+        
+        Logs.show(message: "Selected Index: \(sender.selectedIndexes)")
+        
+        selectedReasonsAray = sender.selectedIndexes
+        Logs.show(message: "Selected REASONS: \(selectedReasonsAray)")
+        
     }
     
     @objc func picBtnPressed(sender: UIButton) {
@@ -174,6 +192,34 @@ class OtherUserProfile: MainViewController {
     
     
     //MARK: API METHODS
+    
+    func getReasons() {
+        
+        
+        APIService
+            .singelton
+            .getReportReasons()
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        AppFunctions.setIsNotifCheck(value: false)
+                        if val.count > 0 {
+                            self.reasonsList = val
+                            self.reasonsListName = self.reasonsList.map({$0.reason})
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
     
     
 }
@@ -341,11 +387,13 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 }
             
             self.presentVC(id: "TagsView_VC",presentFullType: "not") { (vc:TagsView_VC) in
+                vc.isFromOther = true
                 vc.tagList = tagList
             }
         } else if indexPath.row > 5 && indexPath.row < 14 {
             if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 6].linkType }).count > 0 {
                 self.presentVC(id: "SocialLinks_VC",presentFullType: "not") { (vc:SocialLinks_VC) in
+                    vc.isFromOther = true
                     vc.socialAccModel = socialAccModel.filter {$0.linkType == socialAccounts[indexPath.row - 6].linkType }
                     vc.linkType = socialAccounts[indexPath.row - 6].linkType
                 }

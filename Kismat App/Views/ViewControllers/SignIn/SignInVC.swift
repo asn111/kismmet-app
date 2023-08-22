@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import GoogleSignIn
+import AuthenticationServices
+
 
 class SignInVC: MainViewController {
 
@@ -17,6 +20,34 @@ class SignInVC: MainViewController {
         } else {
             AppFunctions.showSnackBar(str: "Invalid or Empty Feilds")
         }
+    }
+    
+    @IBAction func googleSignInPressed(_ sender: Any) {
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
+            guard error == nil else { return }
+            guard let signInResult = signInResult else { return }
+            
+            let user = signInResult.user
+            
+            let emailAddress = user.profile?.email
+            
+            let fullName = user.profile?.name
+            let givenName = user.profile?.givenName
+            let familyName = user.profile?.familyName
+            
+            let profilePicUrl = user.profile?.imageURL(withDimension: 320)
+            
+            Logs.show(message: "\(String(describing: user.profile?.name))")
+            Logs.show(message: "\(String(describing: user.idToken?.tokenString))")
+            //self.socialLoginUser(providor: "Google", token: user.authentication.idToken)
+            self.userSocialLogin(token: user.idToken?.tokenString ?? "", provider: "Google")
+
+
+        }
+    }
+    
+    @IBAction func appleSignInPressed(_ sender: Any) {
+        handleAppleIdRequest()
     }
     
     @IBAction func forgotPassPressed(_ sender: Any) {
@@ -42,7 +73,7 @@ class SignInVC: MainViewController {
         passwordTF.delegate = self
         emailTF.addDoneButtonOnKeyboard()
         passwordTF.addDoneButtonOnKeyboard()
-        
+
         setupLbl()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -117,6 +148,16 @@ class SignInVC: MainViewController {
         self.view.frame.origin.y = 0
     }
     
+    @objc
+    func handleAppleIdRequest() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.performRequests()
+    }
+    
     //MARK: API Functions
     
     func userLogin() {
@@ -154,6 +195,47 @@ class SignInVC: MainViewController {
             })
             .disposed(by: dispose_Bag)
     }
+    
+    func userSocialLogin(token: String, provider: String) {
+        self.showPKHUD(WithMessage: "Logging In")
+        
+        let pram : [String : Any] = ["provider": provider,
+                                     "token": token,
+                                     "deviceId":UIDevice.current.identifierForVendor!.uuidString,
+                                     "deviceName":UIDevice.modelName,
+                                     "devicePlatform":"iOS"]
+        Logs.show(message: "SKILLS PRAM: \(pram)")
+        
+        APIService
+            .singelton
+            .userSocialLogin(pram: pram)
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        Logs.show(message: "MARKED: 👉🏻 \(val)")
+                        if val {
+                            if AppFunctions.IsProfileUpdated() {
+                                self.startUpCall()
+                                self.userProfile()
+                                self.getSocialAccounts()
+                            } else {
+                                self.navigateVC(id: "ProfileSetupVC") { (vc:ProfileSetupVC) in }
+                            }
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
+    
     
     func startUpCall() {
         
@@ -269,5 +351,62 @@ class SignInVC: MainViewController {
                 }
             })
             .disposed(by: dispose_Bag)
+    }
+}
+
+//MARK: Apple Login Extentions
+extension SignInVC: ASAuthorizationControllerDelegate {
+    /// - Tag: did_complete_authorization
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        switch authorization.credential {
+            case let appleIDCredential as ASAuthorizationAppleIDCredential:
+                
+                if let identityTokenData = appleIDCredential.identityToken,
+                   let identityTokenString = String(data: identityTokenData, encoding: .utf8) {
+                    //print("Identity Token \(identityTokenString)")
+                    let jwtValue = try! AppFunctions.decode(jwtToken: identityTokenString)
+                    Logs.show(message: "\(jwtValue)")
+                    //socialLoginUser(providor: "Apple", token: identityTokenString)
+                    userSocialLogin(token: identityTokenString, provider: "Apple")
+                    
+                }
+                // For the purpose of this demo app, show the Apple ID credential information in the `ResultViewController`.
+            case let passwordCredential as ASPasswordCredential:
+                
+                // Sign in using an existing iCloud Keychain credential.
+                let username = passwordCredential.user
+                let password = passwordCredential.password
+                
+                // For the purpose of this demo app, show the password credential as an alert.
+                DispatchQueue.main.async {
+                    self.showPasswordCredentialAlert(username: username, password: password)
+                }
+                
+            default:
+                break
+        }
+    }
+    
+    
+    
+    private func showPasswordCredentialAlert(username: String, password: String) {
+        let message = "The app has received your selected credential from the keychain. \n\n Username: \(username)\n Password: \(password)"
+        let alertController = UIAlertController(title: "Keychain Credential Received",
+                                                message: message,
+                                                preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    /// - Tag: did_complete_error
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        // Handle error.
+    }
+}
+
+extension SignInVC: ASAuthorizationControllerPresentationContextProviding {
+    /// - Tag: provide_presentation_anchor
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
     }
 }

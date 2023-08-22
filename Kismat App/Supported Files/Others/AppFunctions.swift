@@ -43,6 +43,9 @@ let ApiService = APIService.singelton
 let DBService = Database.singleton
 let SignalRService = SignalRManager.singelton
 
+var isFromProfile = false
+
+//GOOGLE CLIENT ID 464505001033-pk77rgck0i7702u259nmv6n18sp8l331.apps.googleusercontent.com
 
 //MARK: rx Publishers
 

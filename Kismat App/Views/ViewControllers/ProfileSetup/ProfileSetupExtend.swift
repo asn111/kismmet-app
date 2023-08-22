@@ -25,7 +25,7 @@ class ProfileSetupExtend: MainViewController {
     
     
     var isFromSetting = false
-    var proximity = 150
+    var proximity = 5000
     var tags = [String]()
     var addedSocialArray = [String]()
     var isProfileVisible = false
@@ -260,6 +260,7 @@ class ProfileSetupExtend: MainViewController {
                             if fromUpdate {
                                 self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
                                     vc.selectedIndex = 2
+                                    isFromProfile = true
                                 }
                             } else {
                                 self.socialAccModel = val.socialAccounts
@@ -365,13 +366,13 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
                 cell.headerLblView.isHidden = false
                 cell.proximeterLbl.isHidden = false
                 cell.headerLbl.text = "Set Proximity"
-                cell.proximeterLbl.text = "\(cell.maxValue/2) Meters"
+                cell.proximeterLbl.text = "\(cell.maxValue) Meters"
                 
                 return cell
             case 2: // Slider
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.sliderView.isHidden = false
-                cell.sliderValue = 1250
+                cell.sliderValue = cell.maxValue
                 cell.slider.addTarget(self, action: #selector(sliderChanged(slider:)), for: .valueChanged) /// continuous changes
                 return cell
             case 3: // Visibilty 1
