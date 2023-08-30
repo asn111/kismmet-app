@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		290527292A9B3A59002A3FF4 /* SupportPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290527282A9B3A59002A3FF4 /* SupportPageVC.swift */; };
+		2905272C2A9B3EF1002A3FF4 /* HowToUseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2905272B2A9B3EF1002A3FF4 /* HowToUseVC.swift */; };
 		29219B7129ED952000B47D40 /* VisibilityOffTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29219B6F29ED952000B47D40 /* VisibilityOffTVCell.swift */; };
 		29219B7229ED952000B47D40 /* VisibilityOffTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29219B7029ED952000B47D40 /* VisibilityOffTVCell.xib */; };
+		292B1FFD2A9E930900435223 /* ReportDialogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292B1FFC2A9E930800435223 /* ReportDialogVC.swift */; };
 		292B22E42A1CC01100D43783 /* TagsView VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292B22E32A1CC01100D43783 /* TagsView VC.swift */; };
 		29350A1729CF489300F19BD5 /* SignalR Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29350A1629CF489300F19BD5 /* SignalR Manager.swift */; };
 		29350A1A29D0C43B00F19BD5 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29350A1929D0C43B00F19BD5 /* UserModel.swift */; };
@@ -138,8 +141,11 @@
 		19574AD3E82A49613F152C89 /* Pods-Kismat App-Kismat AppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat App-Kismat AppUITests.debug.xcconfig"; path = "Target Support Files/Pods-Kismat App-Kismat AppUITests/Pods-Kismat App-Kismat AppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1DD10B6998FBF8F63EA8798C /* Pods-Kismat App-Kismat AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat App-Kismat AppUITests.release.xcconfig"; path = "Target Support Files/Pods-Kismat App-Kismat AppUITests/Pods-Kismat App-Kismat AppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2788D47DD7B231370D26CC44 /* Pods-Kismat App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat App.release.xcconfig"; path = "Target Support Files/Pods-Kismat App/Pods-Kismat App.release.xcconfig"; sourceTree = "<group>"; };
+		290527282A9B3A59002A3FF4 /* SupportPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportPageVC.swift; sourceTree = "<group>"; };
+		2905272B2A9B3EF1002A3FF4 /* HowToUseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUseVC.swift; sourceTree = "<group>"; };
 		29219B6F29ED952000B47D40 /* VisibilityOffTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisibilityOffTVCell.swift; sourceTree = "<group>"; };
 		29219B7029ED952000B47D40 /* VisibilityOffTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VisibilityOffTVCell.xib; sourceTree = "<group>"; };
+		292B1FFC2A9E930800435223 /* ReportDialogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDialogVC.swift; sourceTree = "<group>"; };
 		292B22E32A1CC01100D43783 /* TagsView VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TagsView VC.swift"; sourceTree = "<group>"; };
 		29350A1629CF489300F19BD5 /* SignalR Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SignalR Manager.swift"; sourceTree = "<group>"; };
 		29350A1929D0C43B00F19BD5 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -302,6 +308,22 @@
 				08C4FE9D82AD9771979ECC0E /* Pods-Kismmet-Kismat AppUITests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		290527272A9B39B6002A3FF4 /* SupportPage */ = {
+			isa = PBXGroup;
+			children = (
+				290527282A9B3A59002A3FF4 /* SupportPageVC.swift */,
+			);
+			path = SupportPage;
+			sourceTree = "<group>";
+		};
+		2905272A2A9B3EAF002A3FF4 /* HowToUse */ = {
+			isa = PBXGroup;
+			children = (
+				2905272B2A9B3EF1002A3FF4 /* HowToUseVC.swift */,
+			);
+			path = HowToUse;
 			sourceTree = "<group>";
 		};
 		292B22E22A1CBFE800D43783 /* TagsView  */ = {
@@ -477,6 +499,7 @@
 				299E03CA29A135C60064A5E3 /* AddLinksVC.swift */,
 				29846D4229A1676000393EB3 /* ImportantDialogVC.swift */,
 				294DD5222A94976E004A7F22 /* PopupVC.swift */,
+				292B1FFC2A9E930800435223 /* ReportDialogVC.swift */,
 			);
 			path = DailogVCs;
 			sourceTree = "<group>";
@@ -665,6 +688,8 @@
 		299FDD82299684E50049741B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2905272A2A9B3EAF002A3FF4 /* HowToUse */,
+				290527272A9B39B6002A3FF4 /* SupportPage */,
 				292B22E22A1CBFE800D43783 /* TagsView  */,
 				2938E73C2A02CD1F00C21AEA /* SocialLinksView */,
 				29BE184A29FA6E42000EAC0E /* EnlargedIV */,
@@ -1112,6 +1137,7 @@
 				29FD316829A5FDAD00BDBD9C /* EditProfileSetupExt.swift in Sources */,
 				294DD5232A94976E004A7F22 /* PopupVC.swift in Sources */,
 				2976D89D2A2FD0D800A855F1 /* CodeVerification_VC.swift in Sources */,
+				290527292A9B3A59002A3FF4 /* SupportPageVC.swift in Sources */,
 				294A79B0299AEB2E00089161 /* AboutTVCell.swift in Sources */,
 				2940B8FF299D634300D3F863 /* ImageViewTVCell.swift in Sources */,
 				299FDD5B29967D1D0049741B /* Styling.swift in Sources */,
@@ -1149,9 +1175,11 @@
 				29F5290329970DA500FE2EBA /* GeneralTextviewTVCell.swift in Sources */,
 				299FDD5629967D1D0049741B /* AnimateloadingView.swift in Sources */,
 				299FDD8C2996B20A0049741B /* SignupVC.swift in Sources */,
+				292B1FFD2A9E930900435223 /* ReportDialogVC.swift in Sources */,
 				29350A2329D1A08800F19BD5 /* UserSocialAccDBModel.swift in Sources */,
 				299FDD7D29967DC90049741B /* Database.swift in Sources */,
 				299E03CE29A141450064A5E3 /* MembershipVC.swift in Sources */,
+				2905272C2A9B3EF1002A3FF4 /* HowToUseVC.swift in Sources */,
 				29219B7129ED952000B47D40 /* VisibilityOffTVCell.swift in Sources */,
 				294A79AC299AE89E00089161 /* ProfileVC.swift in Sources */,
 				299FDD0A299679690049741B /* AppDelegate.swift in Sources */,
@@ -1358,7 +1386,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "codenablers.Kismat-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1397,7 +1425,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "codenablers.Kismat-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

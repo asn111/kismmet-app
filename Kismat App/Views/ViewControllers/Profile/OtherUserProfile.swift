@@ -16,6 +16,7 @@ class OtherUserProfile: MainViewController {
     
     @IBAction func doneBtnPressed(_ sender: Any) {
         pickerView.isHidden = true
+        AppFunctions.showSnackBar(str: "Thanks for taking time to let us know.\nYour report is submitted")
     }
     
     @IBOutlet weak var pickerView: UIView!
@@ -114,7 +115,8 @@ class OtherUserProfile: MainViewController {
         })
         let action2 = CDAlertViewAction(title: "Report",
                                        handler: {[weak self] action in
-            self?.setupMultiPickerView()
+            //self?.setupMultiPickerView()
+            self?.userReport()
             return true
         })
 //        let cancel = CDAlertViewAction(title: "Cancel",
@@ -207,6 +209,41 @@ class OtherUserProfile: MainViewController {
                         if val.count > 0 {
                             self.reasonsList = val
                             self.reasonsListName = self.reasonsList.map({$0.reason})
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
+    
+    func userReport() {
+        self.showPKHUD(WithMessage: "")
+        
+        let pram : [String : Any] = [ "reportedUser": userModel.userId ?? "",
+                                      "reportReasons": "1",
+                                      "reportDetails": ""
+        ]
+        
+        Logs.show(message: "SKILLS PRAM: \(pram)")
+        
+        APIService
+            .singelton
+            .reportUser(pram: pram)
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        Logs.show(message: "MARKED: 👉🏻 \(val)")
+                        if val {
+                            AppFunctions.showSnackBar(str: "Thanks for taking time to let us know.\nYour report is submitted")
+                            self.hidePKHUD()
                         } else {
                             self.hidePKHUD()
                         }
@@ -388,12 +425,14 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
             
             self.presentVC(id: "TagsView_VC",presentFullType: "not") { (vc:TagsView_VC) in
                 vc.isFromOther = true
+                vc.userId = userModel.userId
                 vc.tagList = tagList
             }
         } else if indexPath.row > 5 && indexPath.row < 14 {
             if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 6].linkType }).count > 0 {
                 self.presentVC(id: "SocialLinks_VC",presentFullType: "not") { (vc:SocialLinks_VC) in
                     vc.isFromOther = true
+                    vc.userId = userModel.userId
                     vc.socialAccModel = socialAccModel.filter {$0.linkType == socialAccounts[indexPath.row - 6].linkType }
                     vc.linkType = socialAccounts[indexPath.row - 6].linkType
                 }

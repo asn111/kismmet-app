@@ -9,13 +9,13 @@ import Foundation
 
 class ReportReasonsModel: NSObject, Codable {
     
-    var reasonId : Int!
+    var reasonId : String!
     var reason : String!
     
     
     override init() {
         
-        reasonId = 0
+        reasonId = "0"
         reason = ""
     }
     
@@ -27,7 +27,7 @@ class ReportReasonsModel: NSObject, Codable {
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
-        reasonId  = try values.decodeIfPresent(Int.self, forKey: .reasonId)
+        reasonId  = try values.decodeIfPresent(String.self, forKey: .reasonId)
         reason  = try values.decodeIfPresent(String.self, forKey: .reason)
     }
 }

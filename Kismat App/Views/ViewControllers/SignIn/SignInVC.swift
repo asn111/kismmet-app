@@ -22,6 +22,7 @@ class SignInVC: MainViewController {
         }
     }
     
+    @IBOutlet weak var googleLbl: fullyCustomLbl!
     @IBAction func googleSignInPressed(_ sender: Any) {
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
             guard error == nil else { return }
@@ -46,6 +47,7 @@ class SignInVC: MainViewController {
         }
     }
     
+    @IBOutlet weak var appleLbl: fullyCustomLbl!
     @IBAction func appleSignInPressed(_ sender: Any) {
         handleAppleIdRequest()
     }
@@ -75,6 +77,7 @@ class SignInVC: MainViewController {
         passwordTF.addDoneButtonOnKeyboard()
 
         setupLbl()
+        setupClickableLbls()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -97,10 +100,49 @@ class SignInVC: MainViewController {
         signUpLbl.isUserInteractionEnabled = true
     }
     
+    func setupClickableLbls() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(googleTapFunction(sender:)))
+        googleLbl.isUserInteractionEnabled = true
+        googleLbl.addGestureRecognizer(tap)
+        
+        let tap2 = UITapGestureRecognizer(target: self, action: #selector(appleTapFunction(sender:)))
+        appleLbl.isUserInteractionEnabled = true
+        appleLbl.addGestureRecognizer(tap2)
+    }
+    
     //MARK: objc Functions
 
     @objc func handleTap() {
         self.presentVC(id: "SignupVC") { (vc:SignupVC) in }
+    }
+    
+    @objc
+    func googleTapFunction(sender:UITapGestureRecognizer) {
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
+            guard error == nil else { return }
+            guard let signInResult = signInResult else { return }
+            
+            let user = signInResult.user
+            
+            let emailAddress = user.profile?.email
+            
+            let fullName = user.profile?.name
+            let givenName = user.profile?.givenName
+            let familyName = user.profile?.familyName
+            
+            let profilePicUrl = user.profile?.imageURL(withDimension: 320)
+            
+            Logs.show(message: "\(String(describing: user.profile?.name))")
+            Logs.show(message: "\(String(describing: user.idToken?.tokenString))")
+            //self.socialLoginUser(providor: "Google", token: user.authentication.idToken)
+            self.userSocialLogin(token: user.idToken?.tokenString ?? "", provider: "Google")
+            
+        }
+    }
+    
+    @objc
+    func appleTapFunction(sender:UITapGestureRecognizer) {
+        handleAppleIdRequest()
     }
     
     @objc func textFieldDidChangeSelection(_ textField: UITextField) {

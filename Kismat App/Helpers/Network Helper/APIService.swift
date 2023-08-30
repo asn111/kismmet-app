@@ -630,6 +630,58 @@ class APIService: NSObject {
         }
     }
     
+    //MARK: USER Report
+    func reportUser(pram: Parameters) -> Observable<Bool> {
+        
+        return Observable.create{[weak self] observer -> Disposable in
+            if (self?.isCheckReachable())! {
+                
+                AF.request("\(self?.baseUrl ?? "")/api/Users/ReportUser", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                    .validate()
+                    .responseData{ response in
+                        Logs.show(message: "URL: \(response.debugDescription)")
+                        guard let data = response.data else {
+                            observer.onError(response.error!)
+                            AppFunctions.showSnackBar(str: "Server Request Error")
+                            Logs.show(message: "Error on Response.data\(response.error!)")
+                            return
+                        }
+                        switch response.result {
+                            case .success:
+                                do {
+                                    let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    AppFunctions.showSnackBar(str: genResponse.message)
+                                    Logs.show(message: "SUCCESS IN \(#function)")
+                                    observer.onNext(true)
+                                    observer.onCompleted()
+                                } catch {
+                                    observer.onError(error)
+                                    AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                }
+                            case .failure( _):
+                                do {
+                                    let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    observer.onNext(false)
+                                    Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                    AppFunctions.showSnackBar(str: responce.message)
+                                } catch {
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                    AppFunctions.showSnackBar(str: "Server Request Error")
+                                    observer.onError(error)
+                                    
+                                }
+                        }
+                    }
+            } else {
+                observer.onNext(false)
+                observer.onCompleted()
+                AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
+            }
+            return Disposables.create()
+        }
+    }
+    
     func updateSubscription(val: Int){
         
         if (self.isCheckReachable()) {

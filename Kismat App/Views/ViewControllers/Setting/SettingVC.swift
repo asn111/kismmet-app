@@ -15,7 +15,7 @@ class SettingVC: MainViewController {
     
     @IBOutlet weak var settingTV: UITableView!
     
-    var lblTxt = ["","","Edit Profile","Preferences","Notifications","Change Password","Membership","Privacy Policy","Terms of Services","About Kismmet","Account Status","Blocked Users","Logout"]
+    var lblTxt = ["","","Edit Profile","Preferences","Notifications","Change Password","Membership","Privacy Policy","Terms of Services","About Kismmet","Account Status","Support","How to use","Blocked Users","Logout"]
     
     var userdbModel : Results<UserDBModel>!
     var img = UIImage(named: "placeholder")
@@ -240,8 +240,12 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
             case 10:
                 self.pushVC(id: "AccountStatusVC") { (vc:AccountStatusVC) in }
             case 11:
-                self.pushVC(id: "BlockedVC") { (vc:BlockedVC) in }
+                self.pushVC(id: "SupportPageVC") { (vc:SupportPageVC) in } ///support
             case 12:
+                self.pushVC(id: "HowToUseVC") { (vc:HowToUseVC) in }///howToUse
+            case 13:
+                self.pushVC(id: "BlockedVC") { (vc:BlockedVC) in }
+            case 14:
                 showAlert()
             default:
                 print("")

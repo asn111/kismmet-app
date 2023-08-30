@@ -102,16 +102,15 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Md-QD-M9M" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
-                                <rect key="frame" x="334" y="8" width="25" height="25"/>
+                                <rect key="frame" x="309" y="8" width="50" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="f0P-45-Yhl"/>
-                                    <constraint firstAttribute="width" constant="25" id="muG-RP-imU"/>
+                                    <constraint firstAttribute="width" constant="50" id="muG-RP-imU"/>
                                 </constraints>
                                 <color key="tintColor" name="Secondary Grey"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal">
-                                    <imageReference key="image" image="power.circle.fill" catalog="system" symbolScale="large"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="medium"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" name="Text grey"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -180,7 +179,7 @@
     </objects>
     <designables>
         <designable name="0Md-QD-M9M">
-            <size key="intrinsicContentSize" width="26" height="26"/>
+            <size key="intrinsicContentSize" width="54" height="31"/>
         </designable>
         <designable name="4Er-cy-xq2">
             <size key="intrinsicContentSize" width="19.666666666666668" height="19"/>
@@ -198,7 +197,6 @@
     <resources>
         <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="placeholder_icon" width="512" height="512"/>
-        <image name="power.circle.fill" catalog="system" width="128" height="123"/>
         <image name="square.and.pencil" catalog="system" width="128" height="113"/>
         <namedColor name="Secondary Grey">
             <color red="0.3059999942779541" green="0.4309999942779541" blue="0.50599998235702515" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

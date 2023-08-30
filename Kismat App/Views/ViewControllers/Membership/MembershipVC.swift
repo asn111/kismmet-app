@@ -80,8 +80,8 @@ class MembershipVC: MainViewController {
 
         UIView.animate(withDuration: duration, animations: {
             self.planNameLbl.text = "KISMMET Premium"
-            self.featureLbl1.text = "Unlimited profile views"
-            self.featureLbl2.text = "Shadow mode"
+            self.featureLbl1.text = "Shadow mode"
+            self.featureLbl2.text = ""
             
             self.upgradeBtn.setTitle("Cancel Subscription", for: .normal)
             
@@ -101,7 +101,7 @@ class MembershipVC: MainViewController {
         
         UIView.animate(withDuration: duration, animations: {
             self.planNameLbl.text = "Free Plan"
-            self.featureLbl1.text = "Discover up to 15 profiles per month"
+            self.featureLbl1.text = "Discover up to unlimited profiles per month"
             self.featureLbl2.text = ""
             
             self.upgradeBtn.setTitle("Upgrade Subscription", for: .normal)

@@ -18,6 +18,7 @@ class SocialLinks_VC: MainViewController {
     
     @IBAction func doneBtnPressed(_ sender: Any) {
         pickerView.isHidden = true
+        AppFunctions.showSnackBar(str: "Thanks for taking time to let us know.\nYour report is submitted")
     }
     
     
@@ -29,6 +30,8 @@ class SocialLinks_VC: MainViewController {
     var reasonsListName = [String]()
     var selectedReasonsAray = [Int]()
 
+    var userId = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -82,9 +85,57 @@ class SocialLinks_VC: MainViewController {
             socialAccModel.remove(at: index)
             socialLinksTV.reloadData()
         } else {
-            setupMultiPickerView()
+            
+            let alert = UIAlertController(title: "Select Option", message: "Please Select an Option", preferredStyle: .actionSheet)
+            
+            alert.addAction(UIAlertAction(title: "Copy Link", style: .default , handler:{ (UIAlertAction)in
+                UIPasteboard.general.string = "Selected for copy \(self.socialAccModel[index].linkUrl ?? "")"
+                AppFunctions.showSnackBar(str: "Link copied.")
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Share Link", style: .default , handler:{ (UIAlertAction)in
+                self.share(message: "Share the \(self.socialAccModel[index].linkType ?? "") link", link: self.socialAccModel[index].linkUrl, sender: sender)
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Report Link", style: .destructive , handler:{ (UIAlertAction)in
+                self.presentVC(id: "ReportDialogVC", presentFullType: "no" ) { (vc:ReportDialogVC) in
+                    vc.userId = self.userId
+                }
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
+                print("User click Dismiss button")
+            }))
+            
+            
+            //uncomment for iPad Support
+            //alert.popoverPresentationController?.sourceView = self.view
+            
+            self.present(alert, animated: true, completion: {
+                print("completion block")
+            })
+            
+            //setupMultiPickerView()
         }
         
+    }
+    
+    func share(message: String, link: String, sender: UIButton) {
+        let textToShare = message
+                
+        if let myWebsite = NSURL(string: link) {
+            let objectsToShare = [textToShare, myWebsite] as [Any]
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            
+            //New Excluded Activities Code
+            activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
+            //
+            
+            activityVC.popoverPresentationController?.sourceView = sender
+            self.present(activityVC, animated: true, completion: nil)
+        } else {
+            AppFunctions.showSnackBar(str: "Provided link is invalid.")
+        }
     }
    
     //MARK: API METHODS
@@ -142,9 +193,10 @@ extension SocialLinks_VC : UITableViewDelegate, UITableViewDataSource {
         if isFromOther {
             cell.removeBtn.isHidden = false
         }
-        cell.removeBtn.tintColor = UIColor(named: "warning")
+        cell.removeBtn.tintColor = UIColor(named: "Text grey")
         cell.removeBtn.backgroundColor = UIColor.clear
-        cell.removeBtn.setImage(UIImage(systemName: "exclamationmark.shield.fill"), for: .normal)
+        cell.removeBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
+        cell.removeBtn.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
         cell.removeBtn.tag = indexPath.row
         cell.removeBtn.addTarget(self, action: #selector(removeBtnPressed(sender:)), for: .touchUpInside)
         

@@ -14,6 +14,19 @@ class SplashVC: MainViewController {
         self.navigateVC(id: "SignupVC") { (vc:SignupVC) in }
     }
 
+    @IBAction func signInBtn(_ sender: Any) {
+        self.navigateVC(id: "SignupVC") { (vc:SignupVC) in }
+    }
+    
+    @IBAction func loginBtn(_ sender: Any) {
+        self.navigateVC(id: "SignInVC") { (vc:SignInVC) in }
+    }
+    
+    @IBOutlet weak var lBtn: RoundCornerButton!
+    
+    @IBOutlet weak var sBtn: RoundCornerButton!
+    
+    
     @IBOutlet weak var heightConst: NSLayoutConstraint!
     @IBOutlet weak var animateThisView: UIView!
     @IBOutlet weak var btnView: UIView!
@@ -29,7 +42,9 @@ class SplashVC: MainViewController {
 
 
         } else {
-            btnView.isHidden = false
+            //btnView.isHidden = false
+            sBtn.isHidden = false
+            lBtn.isHidden = false
         }
     }
     

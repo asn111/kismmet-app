@@ -72,7 +72,7 @@ class FeedVC: MainViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        getProxUsers(load: true)
+        getProxUsers(load: false)
         feedTV.reloadData()
     }
     
@@ -157,7 +157,12 @@ class FeedVC: MainViewController {
         if sender.tag == 001 {
             msg = "Search for people or hashtags in your proximity!"
         } else if sender.tag == 002 {
-            msg = "Upgrade to premium for unlimited profile views and to unlock Shadow Mode!"
+            if AppFunctions.getRole() == "Admin" {
+                msg = "This shows here the total number of app users that are active in the app!"
+            } else {
+                msg = "Upgrade to premium for unlimited profile views and to unlock Shadow Mode!"
+            }
+            
         } else if sender.tag == 005 {
             msg = "Turning off your profile visibility will make your account private, which means you won't appear in other people's feeds. However, please note that you also won't be able to search for other people on the app when your profile visibility is off."
         }
@@ -323,7 +328,14 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                     cell.viewCountsLbl.isHidden = false
                     cell.viewedToolTipBtn.isHidden = false
                 }
-                cell.viewCountsLbl.attributedText = NSAttributedString(string: "\(AppFunctions.getviewedCount()) out of \(AppFunctions.getMaxProfViewedCount()) profiles viewed", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
+                if AppFunctions.getRole() == "Admin" {
+                    cell.viewCountsLbl.attributedText = NSAttributedString(string: "Total number of users are \(users.count)", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
+                } else {
+                    cell.viewCountsLbl.isHidden = true
+                    cell.viewedToolTipBtn.isHidden = true
+                    //cell.viewCountsLbl.attributedText = NSAttributedString(string: "\(AppFunctions.getviewedCount()) out of \(AppFunctions.getMaxProfViewedCount()) profiles viewed", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
+                }
+                
                 
                 if AppFunctions.isNotifNotCheck() {
                     cell.notifBtn.tintColor = UIColor(named:"Danger")
@@ -426,5 +438,33 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if AppFunctions.getRole() == "Admin" {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            //ApiService.markStarUser(val: users[indexPath.row - 1].userId)
+            if users[indexPath.row - 1].userId == users.last?.userId {
+                self.tabBarController?.selectedIndex = 2
+                return
+            }
+            users.remove(at: indexPath.row - 1)
+            tableView.performBatchUpdates({
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }, completion: nil)
+            
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Remove" // Replace "Your Custom Text" with the desired button text
+    }
+    
 }
 

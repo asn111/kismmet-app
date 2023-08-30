@@ -21,11 +21,15 @@ class TagsView_VC: MainViewController {
     @IBOutlet weak var multiPickerView: UIMultiPicker!
     
     @IBAction func reportBtnPressed(_ sender: Any) {
-        setupMultiPickerView()
+        //setupMultiPickerView()
+        self.presentVC(id: "ReportDialogVC", presentFullType: "no" ) { (vc:ReportDialogVC) in
+            vc.userId = userId
+        }
     }
     
     @IBAction func doneBtnPressed(_ sender: Any) {
-        pickerView.isHidden = true
+        /*pickerView.isHidden = true
+        AppFunctions.showSnackBar(str: "Thanks for taking time to let us know.\nYour report is submitted")*/
     }
     
     var tagList = [String]()
@@ -34,6 +38,7 @@ class TagsView_VC: MainViewController {
     var selectedReasonsAray = [Int]()
     
     var isFromOther = false
+    var userId = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
