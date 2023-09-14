@@ -29,8 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ = SignalRManager.init()
         application.applicationIconBadgeNumber = 0
         if AppFunctions.isLoggedIn() {
-            IAPManager.shared.checkSubscriptionStatus()
-            APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
+            //IAPManager.shared.checkSubscriptionStatus()
+            //APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
         }
     }
     
@@ -67,6 +67,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         AppFunctions.removeFromDefaults(key: tagsArray)
         AppFunctions.removeFromDefaults(key: socialArray)
+        
+        if AppFunctions.isLoggedIn() {
+            IAPManager.shared.checkSubscriptionStatus()
+            APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
+        }
         
         ///Migration
         let config = Realm.Configuration(

@@ -803,11 +803,51 @@ class APIService: NSObject {
     }
     
     
+    func markUserActiveOrDeactive(param: Parameters){
+        
+        if (self.isCheckReachable()) {
+
+            AF.request("\(self.baseUrl)/api/Users/DeactivateUser", method:.post, parameters: param, encoding: JSONEncoding.default, headers: self.getRequestHeader())
+                .validate()
+                .responseData{ response in
+                    Logs.show(message: "URL: \(response.debugDescription)")
+                    guard let data = response.data else {
+                        AppFunctions.showSnackBar(str: "Server Request Error")
+                        Logs.show(message: "Error on Response.data\(response.error!)")
+                        return
+                    }
+                    switch response.result {
+                        case .success:
+                            do {
+                                let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                //AppFunctions.showSnackBar(str: genResponse.message)
+                                Logs.show(message: "SUCCESS IN \(#function)")
+                            } catch {
+                                AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                            }
+                        case .failure( _):
+                            do {
+                                let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                AppFunctions.showSnackBar(str: responce.message)
+                            } catch {
+                                Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                AppFunctions.showSnackBar(str: "Server Request Error")
+                            }
+                    }
+                }
+        } else {
+            AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
+        }
+    }
+    
+    
     func markStarUser(val: String){
         
         if (self.isCheckReachable()) {
             let pram: Parameters = ["userId": val]
-
+            
             AF.request("\(self.baseUrl)/api/Users/StarUser", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
                 .validate()
                 .responseData{ response in
@@ -1131,12 +1171,12 @@ class APIService: NSObject {
     
     
     //MARK: Get Viewed By Me
-    func getViewedByMe(pram: Parameters) -> Observable<[UserModel]> {
+    func getDeactivatedUsers(pram: Parameters) -> Observable<[UserModel]> {
         
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(self?.baseUrl ?? "")/api/Users/ProfilesViewed", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/GetDeactivatedUsers", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1151,7 +1191,7 @@ class APIService: NSObject {
                                 do {
                                     let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
                                     Logs.show(message: "SUCCESS IN \(#function)")
-                                    observer.onNext(genResponse.body.profileViewer)
+                                    observer.onNext(genResponse.body.deactivatedUsers)
                                     observer.onCompleted()
                                 } catch {
                                     observer.onError(error)

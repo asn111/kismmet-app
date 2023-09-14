@@ -134,13 +134,13 @@ class NotificationVC: MainViewController {
                     case .next(let val):
                         if val.userId != "" {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                if !AppFunctions.isPremiumUser() && AppFunctions.getviewedCount() >= AppFunctions.getMaxProfViewedCount() {
-                                    AppFunctions.showSnackBar(str: "You have reached your profile views limit.")
-                                } else {
+                                //if !AppFunctions.isPremiumUser() && AppFunctions.getviewedCount() >= AppFunctions.getMaxProfViewedCount() {
+                                    //AppFunctions.showSnackBar(str: "You have reached your profile views limit.")
+                                //} else {
                                     self.pushVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
                                         vc.userModel = val
                                     }
-                                }
+                                //}
                                 self.hidePKHUD()
                             }
                             
@@ -191,7 +191,13 @@ extension NotificationVC : UITableViewDelegate, UITableViewDataSource {
                 cell.toolTipBtn.isHidden = true
                 cell.searchTFView.isHidden = true
                 cell.headerView.isHidden = false
-                cell.notifBtn.isHidden = false
+                if (AppFunctions.isShadowModeOn()){
+                    cell.shadowLbl.isHidden = false
+                    cell.notifBtn.isHidden = true
+                } else {
+                    cell.shadowLbl.isHidden = true
+                    cell.notifBtn.isHidden = false
+                }
                 
                 if AppFunctions.isNotifEnable() {
                     cell.notifBtn.setImage(UIImage(systemName: "bell.badge.fill"), for: .normal)

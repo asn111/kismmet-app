@@ -117,7 +117,7 @@ class ViewedByMeVC: MainViewController {
         
         APIService
             .singelton
-            .getViewedByMe(pram: pram)
+            .getDeactivatedUsers(pram: pram)
             .subscribe({[weak self] model in
                 guard let self = self else {return}
                 switch model {
@@ -160,7 +160,7 @@ extension ViewedByMeVC : UITableViewDelegate, UITableViewDataSource {
                 let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
                 
                 cell.headerLbl.isHidden = false
-                cell.headerLbl.text = "VIEWED BY ME"
+                cell.headerLbl.text = "Deactivated Users"
                 cell.searchView.isHidden = false
                 cell.headerView.isHidden = false
                 
@@ -182,6 +182,8 @@ extension ViewedByMeVC : UITableViewDelegate, UITableViewDataSource {
                 
                 if AppFunctions.isNotifNotCheck() {
                     cell.notifBtn.tintColor = UIColor(named:"Danger")
+                } else if AppFunctions.isShadowModeOn() {
+                    cell.notifBtn.tintColor = UIColor.black
                 } else {
                     cell.notifBtn.tintColor = UIColor(named: "Text grey")
                 }
@@ -207,12 +209,12 @@ extension ViewedByMeVC : UITableViewDelegate, UITableViewDataSource {
                 } else if let feedCell = cell as? FeedItemsTVCell {
                     
                     let user = users[indexPath.row - 1]
+                    
                     feedCell.nameLbl.text = user.userName
                     feedCell.professionLbl.text = user.workTitle
                     feedCell.educationLbl.text = user.workAddress
-                    feedCell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
                     
-                    if user.tags != "" {
+                    if user.tags != nil && user.tags != "" {
                         if !user.tags.contains(",") {
                             feedCell.tagLbl.text = user.tags
                             feedCell.tagMoreView.isHidden = true
@@ -221,6 +223,7 @@ extension ViewedByMeVC : UITableViewDelegate, UITableViewDataSource {
                             let split = user.tags.split(separator: ",")
                             feedCell.tagLbl.text = "\(split[0])"
                             feedCell.tagMoreLbl.text = "\(split.count - 1) more"
+                            
                         }
                     }
                     
@@ -230,10 +233,6 @@ extension ViewedByMeVC : UITableViewDelegate, UITableViewDataSource {
                     } else {
                         feedCell.profilePicIV.image = UIImage(named: "placeholder")
                     }
-                    
-                    let tap = UITapGestureRecognizer(target: self, action: #selector(starTapFunction(sender:)))
-                    feedCell.starLbl.isUserInteractionEnabled = true
-                    feedCell.starLbl.addGestureRecognizer(tap)
 
                 }
                 
@@ -244,9 +243,9 @@ extension ViewedByMeVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row != 0 && AppFunctions.isProfileVisble() {
-            if !AppFunctions.isPremiumUser() && AppFunctions.getviewedCount() >= 15 {
-                AppFunctions.showSnackBar(str: "You have reached your profile views limit.")
-            } else if !users.isEmpty {
+            //if !AppFunctions.isPremiumUser() && AppFunctions.getviewedCount() >= 15 {
+                //AppFunctions.showSnackBar(str: "You have reached your profile views limit.")
+            if !users.isEmpty {
                 self.pushVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
                     vc.userModel = users[indexPath.row - 1]
                 }
@@ -257,6 +256,37 @@ extension ViewedByMeVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if AppFunctions.getRole() == "Admin" {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            let pram : [String : Any] = ["userId": users[indexPath.row - 1].userId ?? "",
+                                         "reason" : "",
+                                         "isActive": true]
+
+            ApiService.markUserActiveOrDeactive(param: pram)
+            if users[indexPath.row - 1].userId == users.last?.userId {
+                self.tabBarController?.selectedIndex = 2
+                return
+            }
+            users.remove(at: indexPath.row - 1)
+            tableView.performBatchUpdates({
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }, completion: nil)
+            
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Reactive" // Replace "Your Custom Text" with the desired button text
     }
 }
 

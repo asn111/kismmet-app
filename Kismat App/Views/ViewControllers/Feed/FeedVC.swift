@@ -158,7 +158,7 @@ class FeedVC: MainViewController {
             msg = "Search for people or hashtags in your proximity!"
         } else if sender.tag == 002 {
             if AppFunctions.getRole() == "Admin" {
-                msg = "This shows here the total number of app users that are active in the app!"
+                msg = "This will take you to the app users that are deatcivated in the app!"
             } else {
                 msg = "Upgrade to premium for unlimited profile views and to unlock Shadow Mode!"
             }
@@ -172,7 +172,7 @@ class FeedVC: MainViewController {
     
     @objc
     func tapFunction(sender:UITapGestureRecognizer) {
-        //self.pushVC(id: "ViewedByMeVC") { (vc:ViewedByMeVC) in }
+        self.pushVC(id: "ViewedByMeVC") { (vc:ViewedByMeVC) in }
     }
     
     func stopRefresher() {
@@ -286,7 +286,6 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                 cell.headerView.isHidden = false
                 cell.viewedToolTipBtn.isHidden = !AppFunctions.isProfileVisble()
                 cell.swipeTxtLbl.isHidden = false
-                cell.swipeTxtLbl.text = "Refresh & Connect"
                 
                 cell.searchTF.delegate = self
                 cell.searchTF.returnKeyType = .search
@@ -317,9 +316,7 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
                 
                 
-                let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction(sender:)))
-                cell.viewCountsLbl.isUserInteractionEnabled = true
-                cell.viewCountsLbl.addGestureRecognizer(tap)
+                
                 
                 if AppFunctions.isPremiumUser() {
                     cell.viewCountsLbl.isHidden = true
@@ -329,16 +326,27 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                     cell.viewedToolTipBtn.isHidden = false
                 }
                 if AppFunctions.getRole() == "Admin" {
-                    cell.viewCountsLbl.attributedText = NSAttributedString(string: "Total number of users are \(users.count)", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
+                    cell.viewCountsLbl.attributedText = NSAttributedString(string: "Deactivated Users here", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
+                    
+                    cell.swipeTxtLbl.text = "Total number of active users are \(users.count)"
+
+                    
+                    let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction(sender:)))
+                    cell.viewCountsLbl.isUserInteractionEnabled = true
+                    cell.viewCountsLbl.addGestureRecognizer(tap)
                 } else {
                     cell.viewCountsLbl.isHidden = true
                     cell.viewedToolTipBtn.isHidden = true
+                    cell.swipeTxtLbl.text = "Refresh & Connect"
+
                     //cell.viewCountsLbl.attributedText = NSAttributedString(string: "\(AppFunctions.getviewedCount()) out of \(AppFunctions.getMaxProfViewedCount()) profiles viewed", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue])
                 }
                 
                 
                 if AppFunctions.isNotifNotCheck() {
                     cell.notifBtn.tintColor = UIColor(named:"Danger")
+                } else if AppFunctions.isShadowModeOn() {
+                    cell.notifBtn.tintColor = UIColor.black
                 } else {
                     cell.notifBtn.tintColor = UIColor(named: "Text grey")
                 }
@@ -389,7 +397,7 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                     feedCell.professionLbl.text = user.workTitle
                     feedCell.educationLbl.text = user.workAddress
                     
-                    if user.tags != "" {
+                    if user.tags != nil && user.tags != "" {
                         if !user.tags.contains(",") {
                             feedCell.tagLbl.text = user.tags
                             feedCell.tagMoreView.isHidden = true
@@ -424,9 +432,9 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row != 0 && AppFunctions.isProfileVisble() {
-            if !AppFunctions.isPremiumUser() && AppFunctions.getviewedCount() >= AppFunctions.getMaxProfViewedCount() {
-                AppFunctions.showSnackBar(str: "You have reached your profile views limit.")
-            } else if !users.isEmpty {
+            //if !AppFunctions.isPremiumUser() && AppFunctions.getviewedCount() >= AppFunctions.getMaxProfViewedCount() {
+                //AppFunctions.showSnackBar(str: "You have reached your profile views limit.")
+            if !users.isEmpty {
                 self.pushVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
                     vc.userModel = users[indexPath.row - 1]
                     vc.markView = true
@@ -449,7 +457,12 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            //ApiService.markStarUser(val: users[indexPath.row - 1].userId)
+            
+            let pram : [String : Any] = ["userId": users[indexPath.row - 1].userId ?? "",
+                                         "reason" : "",
+                                         "isActive": false]
+            
+            ApiService.markUserActiveOrDeactive(param: pram)
             if users[indexPath.row - 1].userId == users.last?.userId {
                 self.tabBarController?.selectedIndex = 2
                 return

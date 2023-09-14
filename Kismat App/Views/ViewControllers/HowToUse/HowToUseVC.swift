@@ -35,8 +35,7 @@ class HowToUseVC: MainViewController, WKNavigationDelegate {
         // Load the YouTube video URL in the WKWebView.
         //let url = URL(string: "https://www.youtube.com/watch?v=UbYONxCvd8g")!
         
-        
-        let videoID = "UbYONxCvd8g" // Replace with your YouTube video ID
+        let videoID = "3cYBfuphkuE" // Replace with your YouTube video ID
         let urlString = "https://www.youtube.com/embed/\(videoID)?playsinline=1&showinfo=0&rel=0"
         let url = URL(string: urlString)!
         let request = URLRequest(url: url)

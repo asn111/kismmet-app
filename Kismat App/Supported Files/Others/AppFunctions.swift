@@ -291,6 +291,8 @@ class AppFunctions {
         return value
     }
     
+    
+    
     open class func setIsTermsNCndCheck(value: Bool){
         preferences.set(value, forKey: isTermsNCond)
         preferences.synchronize()

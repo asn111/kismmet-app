@@ -44,6 +44,7 @@ class Body : NSObject, Codable {
     var proximityUsers : ProximityUsersModel!
     var users : [UserModel]!
     var profileViewer : [UserModel]!
+    var deactivatedUsers : [UserModel]!
     var socialLinkTypes : [SocialAccTypeModel]!
     var socialAccounts : [SocialAccModel]!
     var startUp : StartupModel!
@@ -56,6 +57,7 @@ class Body : NSObject, Codable {
         proximityUsers = ProximityUsersModel()
         users = [UserModel]()
         profileViewer = [UserModel]()
+        deactivatedUsers = [UserModel]()
         socialLinkTypes = [SocialAccTypeModel]()
         socialAccounts = [SocialAccModel]()
         startUp = StartupModel()
@@ -69,6 +71,7 @@ class Body : NSObject, Codable {
         case proximityUsers = "proximityUsers"
         case users = "users"
         case profileViewer = "profileViewer"
+        case deactivatedUsers = "deactivatedUsers"
         case socialLinkTypes = "socialLinkTypes"
         case socialAccounts = "socialAccounts"
         case startUp = "startUp"
@@ -85,6 +88,7 @@ class Body : NSObject, Codable {
         proximityUsers  = try values.decodeIfPresent(ProximityUsersModel.self, forKey: .proximityUsers)
         users  = try values.decodeIfPresent([UserModel].self, forKey: .users)
         profileViewer  = try values.decodeIfPresent([UserModel].self, forKey: .profileViewer)
+        deactivatedUsers  = try values.decodeIfPresent([UserModel].self, forKey: .deactivatedUsers)
         socialLinkTypes  = try values.decodeIfPresent([SocialAccTypeModel].self, forKey: .socialLinkTypes)
         socialAccounts  = try values.decodeIfPresent([SocialAccModel].self, forKey: .socialAccounts)
         startUp  = try values.decodeIfPresent(StartupModel.self, forKey: .startUp)

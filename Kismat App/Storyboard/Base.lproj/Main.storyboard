@@ -141,10 +141,10 @@
                                 </constraints>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pvv-4i-W02" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
-                                <rect key="frame" x="59" y="613" width="160" height="50"/>
+                                <rect key="frame" x="44" y="613" width="189" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Fro-nm-iDj"/>
-                                    <constraint firstAttribute="width" constant="160" id="T3y-vx-Xes"/>
+                                    <constraint firstAttribute="width" constant="189" id="T3y-vx-Xes"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -190,7 +190,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="Primary Yellow"/>
                         <constraints>
-                            <constraint firstItem="Pvv-4i-W02" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="59" id="1eE-d8-SVH"/>
+                            <constraint firstItem="Pvv-4i-W02" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="44" id="1eE-d8-SVH"/>
                             <constraint firstItem="lhD-Tf-j08" firstAttribute="top" secondItem="fcU-6o-oGH" secondAttribute="bottom" constant="57" id="86H-b1-NpI"/>
                             <constraint firstItem="fcU-6o-oGH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="44" id="Dh4-lR-oSH"/>
                             <constraint firstItem="W8o-dQ-5UA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="GWf-xN-7kA"/>
@@ -4177,12 +4177,14 @@ You will not be able to use this account in the future.</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2SB-Aj-DvM" customClass="RoundCornerView" customModule="Kismmet" customModuleProvider="target">
                                 <rect key="frame" x="14" y="282.66666666666669" width="365" height="287.00000000000006"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For real time and accurate user around you, keep the feed open and refresh..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZW-A7-ryf" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZW-A7-ryf" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
                                         <rect key="frame" x="27" y="71" width="306" height="130"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="130" id="mUT-6z-xkJ"/>
                                             <constraint firstAttribute="width" constant="306" id="od8-DE-rld"/>
                                         </constraints>
+                                        <string key="text">• Refresh your feed for accurate nearby profiles.
+• Ensure the app is running in the background to be visible to other users.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -4218,7 +4220,7 @@ You will not be able to use this account in the future.</string>
                                             <action selector="okayBtnPressed:" destination="i2M-PQ-YHP" eventType="touchUpInside" id="XDy-Fy-UiA"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Important" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1M-LC-Jgo" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mportant notice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1M-LC-Jgo" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
                                         <rect key="frame" x="67" y="22" width="227" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="EBj-0I-gUq"/>
@@ -4299,18 +4301,18 @@ You will not be able to use this account in the future.</string>
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7tf-TU-wq2" customClass="RoundCornerView" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="26" y="229" width="341" height="240"/>
+                                        <rect key="frame" x="26" y="229" width="341" height="299"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NEW-Hu-HLT" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                                <rect key="frame" x="9" y="8" width="323" height="140"/>
+                                                <rect key="frame" x="9" y="8" width="323" height="168"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="323" id="OHt-fe-uDz"/>
-                                                    <constraint firstAttribute="height" constant="140" id="q4T-2o-RCS"/>
+                                                    <constraint firstAttribute="height" constant="168" id="q4T-2o-RCS"/>
                                                 </constraints>
-                                                <string key="text">Thank you for using Kismmet.
-We are always looking forward to hear suggestion/feedback from our users.
-
-You can contact us on below mentioned email.</string>
+                                                <string key="text">Thank you for being a valued user of Kismmet.
+We greatly appreciate your feedback and suggestions, which play a crucial role in shaping the future of our app.
+Feel free to reach out to us anytime at the following email address:
+</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -4325,7 +4327,7 @@ You can contact us on below mentioned email.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="support@kismmet.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2n-sC-hqt" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="156" width="269" height="20.333333333333343"/>
+                                                <rect key="frame" x="10" y="184" width="269" height="20.333333333333343"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20.329999999999998" id="Gk3-p1-dRf"/>
                                                     <constraint firstAttribute="width" constant="269" id="qj7-Rs-AQq"/>
@@ -4344,14 +4346,38 @@ You can contact us on below mentioned email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Il5-8r-mJd" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                                                <rect key="frame" x="9" y="212" width="323" height="79"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="79" id="KAH-Dg-fvQ"/>
+                                                    <constraint firstAttribute="width" constant="323" id="zyG-BZ-Nh4"/>
+                                                </constraints>
+                                                <string key="text">Your input helps us enhance your experience! 
+Thank you</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                                        <color key="value" name="Text grey"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                        <real key="value" value="14"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Il5-8r-mJd" secondAttribute="bottom" constant="8" id="0Ix-QY-sqp"/>
                                             <constraint firstItem="F2n-sC-hqt" firstAttribute="leading" secondItem="7tf-TU-wq2" secondAttribute="leading" constant="10" id="13h-Fy-wPV"/>
+                                            <constraint firstItem="Il5-8r-mJd" firstAttribute="leading" secondItem="7tf-TU-wq2" secondAttribute="leading" constant="9" id="45h-mV-Lfw"/>
                                             <constraint firstItem="F2n-sC-hqt" firstAttribute="top" secondItem="NEW-Hu-HLT" secondAttribute="bottom" constant="8" id="KOP-gu-hfc"/>
                                             <constraint firstAttribute="trailing" secondItem="NEW-Hu-HLT" secondAttribute="trailing" constant="9" id="OXR-k8-Ix6"/>
                                             <constraint firstItem="NEW-Hu-HLT" firstAttribute="leading" secondItem="7tf-TU-wq2" secondAttribute="leading" constant="9" id="k2J-pu-9KT"/>
-                                            <constraint firstAttribute="height" constant="240" id="tnw-J7-yrf"/>
+                                            <constraint firstAttribute="trailing" secondItem="Il5-8r-mJd" secondAttribute="trailing" constant="9" id="lka-7h-21E"/>
+                                            <constraint firstAttribute="height" constant="299" id="tnw-J7-yrf"/>
                                             <constraint firstAttribute="width" constant="341" id="x4w-N5-4Mq"/>
                                             <constraint firstItem="NEW-Hu-HLT" firstAttribute="top" secondItem="7tf-TU-wq2" secondAttribute="top" constant="8" id="zRJ-k5-Ysc"/>
                                         </constraints>
@@ -4526,7 +4552,7 @@ You can contact us on below mentioned email.</string>
                                                     <action selector="backBtnPressed:" destination="dui-B1-htO" eventType="touchUpInside" id="IWu-Vp-ptq"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HOW TO USE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="URV-RO-AMo" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HOW TO KISMMET" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="URV-RO-AMo" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
                                                 <rect key="frame" x="46" y="9" width="267" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="32" id="64w-jE-kE1"/>
@@ -4576,7 +4602,7 @@ You can contact us on below mentioned email.</string>
                                             <constraint firstItem="URV-RO-AMo" firstAttribute="centerY" secondItem="mgu-n1-Hy1" secondAttribute="centerY" id="wIT-ld-MHz"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Following Video shows how to use Kismmet App" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oT-HV-MaA" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The following video" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oT-HV-MaA" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
                                         <rect key="frame" x="26" y="165" width="341" height="56"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="56" id="fYg-DW-ty9"/>
@@ -4829,7 +4855,7 @@ You can contact us on below mentioned email.</string>
             <size key="intrinsicContentSize" width="20" height="19"/>
         </designable>
         <designable name="7oT-HV-MaA">
-            <size key="intrinsicContentSize" width="395" height="19"/>
+            <size key="intrinsicContentSize" width="160.33333333333334" height="19"/>
         </designable>
         <designable name="8b6-LU-FPq">
             <size key="intrinsicContentSize" width="63.666666666666664" height="20.666666666666668"/>
@@ -4882,6 +4908,9 @@ You can contact us on below mentioned email.</string>
         <designable name="IdU-6F-ZgX">
             <size key="intrinsicContentSize" width="90" height="23.666666666666668"/>
         </designable>
+        <designable name="Il5-8r-mJd">
+            <size key="intrinsicContentSize" width="288.33333333333331" height="33"/>
+        </designable>
         <designable name="It5-3m-GYL">
             <size key="intrinsicContentSize" width="96" height="31"/>
         </designable>
@@ -4920,7 +4949,7 @@ You can contact us on below mentioned email.</string>
             <size key="intrinsicContentSize" width="20" height="19"/>
         </designable>
         <designable name="NEW-Hu-HLT">
-            <size key="intrinsicContentSize" width="478" height="65.666666666666671"/>
+            <size key="intrinsicContentSize" width="699.66666666666663" height="65.666666666666671"/>
         </designable>
         <designable name="OZM-Ne-b6O">
             <size key="intrinsicContentSize" width="168.33333333333334" height="14.333333333333334"/>
@@ -4947,10 +4976,10 @@ You can contact us on below mentioned email.</string>
             <size key="intrinsicContentSize" width="146" height="15.333333333333334"/>
         </designable>
         <designable name="URV-RO-AMo">
-            <size key="intrinsicContentSize" width="150.33333333333334" height="31.666666666666668"/>
+            <size key="intrinsicContentSize" width="221.66666666666666" height="31.666666666666668"/>
         </designable>
         <designable name="VZW-A7-ryf">
-            <size key="intrinsicContentSize" width="482.66666666666669" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="458.33333333333331" height="33"/>
         </designable>
         <designable name="WTt-vI-6R4">
             <size key="intrinsicContentSize" width="35" height="29"/>
@@ -5016,7 +5045,7 @@ You can contact us on below mentioned email.</string>
             <size key="intrinsicContentSize" width="20" height="19"/>
         </designable>
         <designable name="g1M-LC-Jgo">
-            <size key="intrinsicContentSize" width="90" height="23.666666666666668"/>
+            <size key="intrinsicContentSize" width="145.66666666666666" height="23.666666666666668"/>
         </designable>
         <designable name="hzv-hu-A8p">
             <size key="intrinsicContentSize" width="49" height="31"/>

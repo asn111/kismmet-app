@@ -15,7 +15,7 @@ class SettingVC: MainViewController {
     
     @IBOutlet weak var settingTV: UITableView!
     
-    var lblTxt = ["","","Edit Profile","Preferences","Notifications","Change Password","Membership","Privacy Policy","Terms of Services","About Kismmet","Account Status","Support","How to use","Blocked Users","Logout"]
+    var lblTxt = ["","","Edit Profile","Preferences","Notifications","Change Password","Membership","Privacy Policy","Terms of Services","About Kismmet","Account Status","Support","How to Kismmet","Blocked Users","Logout"]
     
     var userdbModel : Results<UserDBModel>!
     var img = UIImage(named: "placeholder")
@@ -195,6 +195,8 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
 
                 if AppFunctions.isNotifNotCheck() {
                     cell.notifBtn.tintColor = UIColor(named:"Danger")
+                } else if AppFunctions.isShadowModeOn() {
+                    cell.notifBtn.tintColor = UIColor.black
                 } else {
                     cell.notifBtn.tintColor = UIColor(named: "Text grey")
                 }

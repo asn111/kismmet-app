@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="120" id="KGk-i7-Jjw" customClass="AboutTVCell" customModule="Kismmat" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="120" id="KGk-i7-Jjw" customClass="AboutTVCell" customModule="Kismmet" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -22,10 +22,10 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l6f-nd-26I">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gP4-G8-zrb" customClass="RoundCornerView" customModule="Kismmat" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gP4-G8-zrb" customClass="RoundCornerView" customModule="Kismmet" customModuleProvider="target">
                                 <rect key="frame" x="13" y="10" width="349" height="100"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio.." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEd-wu-Vd8" customClass="fullyCustomLbl" customModule="Kismmat" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio.." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEd-wu-Vd8" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="8" width="65" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="65" id="12E-na-WRJ"/>
@@ -45,7 +45,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="F68-w9-xdi" customClass="FormTextView" customModule="Kismmat" customModuleProvider="target">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="F68-w9-xdi" customClass="FormTextView" customModule="Kismmet" customModuleProvider="target">
                                         <rect key="frame" x="8" y="28" width="333" height="72"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -123,7 +123,7 @@
     </objects>
     <designables>
         <designable name="gEd-wu-Vd8">
-            <size key="intrinsicContentSize" width="37" height="21.333333333333332"/>
+            <size key="intrinsicContentSize" width="39.666666666666664" height="21"/>
         </designable>
     </designables>
     <resources>

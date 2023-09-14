@@ -213,7 +213,7 @@ extension BlockedVC : UITableViewDelegate, UITableViewDataSource {
                     feedCell.educationLbl.text = user.workAddress
                     feedCell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
                     
-                    if user.tags != "" {
+                    if user.tags != nil && user.tags != "" {
                         if !user.tags.contains(",") {
                             feedCell.tagLbl.text = user.tags
                             feedCell.tagMoreView.isHidden = true
@@ -244,9 +244,9 @@ extension BlockedVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row != 0 && AppFunctions.isProfileVisble() {
-            if !AppFunctions.isPremiumUser() && AppFunctions.getviewedCount() >= AppFunctions.getMaxProfViewedCount() {
-                AppFunctions.showSnackBar(str: "You have reached your profile views limit.")
-            } else if !users.isEmpty {
+            //if !AppFunctions.isPremiumUser() && AppFunctions.getviewedCount() >= AppFunctions.getMaxProfViewedCount() {
+                //AppFunctions.showSnackBar(str: "You have reached your profile views limit.")
+            if !users.isEmpty {
                 self.pushVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
                     vc.userModel = users[indexPath.row - 1]
                     vc.isFromBlock = true

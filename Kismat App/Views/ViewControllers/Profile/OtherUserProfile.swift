@@ -101,7 +101,7 @@ class OtherUserProfile: MainViewController {
     
     func showAlert(){
         let message = "Alert!"
-        let alert = CDAlertView(title: message, message: "Are you sure you want to block this user?", type: .warning)
+        let alert = CDAlertView(title: message, message: "Take action against this user: Block or Report?", type: .warning)
         let action = CDAlertViewAction(title: "Block",
                                        handler: {[weak self] action in
             ApiService.markBlockUser(val: (self?.userModel.userId)!)
@@ -242,7 +242,7 @@ class OtherUserProfile: MainViewController {
                     case .next(let val):
                         Logs.show(message: "MARKED: 👉🏻 \(val)")
                         if val {
-                            AppFunctions.showSnackBar(str: "Thanks for taking time to let us know.\nYour report is submitted")
+                            AppFunctions.showSnackBar(str: "Your report has been submitted for review")
                             self.hidePKHUD()
                         } else {
                             self.hidePKHUD()
