@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import RxRealm
+//RxRealmimport RxRealm
 import RxSwift
 import RealmSwift
 import CDAlertView
@@ -301,6 +301,14 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 cell.nameLbl.text = userModel.userName
                 cell.professionLbl.text = userModel.workTitle
                 cell.educationLbl.text = userModel.workAddress
+                
+                if AppFunctions.isNotifNotCheck() {
+                    cell.notifBtn.tintColor = UIColor(named:"Danger")
+                } else if AppFunctions.isShadowModeOn() {
+                    cell.notifBtn.tintColor = UIColor(named: "Primary Yellow")
+                } else {
+                    cell.notifBtn.tintColor = UIColor(named: "Text grey")
+                }
                     
                 if userModel.profilePicture != "" && userModel.profilePicture != nil {
                     let imageUrl = URL(string: userModel.profilePicture)

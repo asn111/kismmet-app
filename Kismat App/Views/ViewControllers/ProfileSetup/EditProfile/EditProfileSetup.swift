@@ -56,7 +56,7 @@ class EditProfileSetup: MainViewController { //Birthday
         userProfile()
         if DBService.fetchloggedInUser().count > 0 {
             userdbModel = DBService.fetchloggedInUser()
-            DBUpdateUserdb()
+            //DBUpdateUserdb()
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -102,7 +102,7 @@ class EditProfileSetup: MainViewController { //Birthday
         profileTV.register(UINib(nibName: "GeneralButtonTVCell", bundle: nil), forCellReuseIdentifier: "GeneralButtonTVCell")
     }
     
-    func DBUpdateUserdb() {
+    /*func DBUpdateUserdb() {
         
         Observable.changeset(from: userdbModel)
             .subscribe(onNext: { [weak self] _, changes in
@@ -111,7 +111,7 @@ class EditProfileSetup: MainViewController { //Birthday
                 }
             })
             .disposed(by: dispose_Bag)
-    }
+    }*/
     
     @objc private func keyboardWillShow(notification: NSNotification) {
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size else {
@@ -754,7 +754,11 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                         let imageUrl = URL(string: socialAccounts[(indexPath.row - placeholderArray.count)].linkImage)
                         cell.socialImgView.sd_setImage(with: imageUrl , placeholderImage: UIImage()) { (image, error, imageCacheType, url) in }
                     }
-                    
+                    if socialAccModel.filter({$0.linkType == socialAccounts[(indexPath.row - placeholderArray.count)].linkType }).count > 0 {
+                        cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.medium
+                    } else {
+                        cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.regular
+                    }
                     cell.socialLbl.text = socialAccounts[(indexPath.row - placeholderArray.count)].linkType
                     
                     return cell

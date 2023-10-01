@@ -14,7 +14,9 @@ import SwiftyStoreKit
 class IAPManager: NSObject {
     
     static let shared = IAPManager()
-    let monthlySubID = "kissmet_premium_sub1"
+    //kissmet_premium_s1 ///Group Reference Name
+    //kismmet_premium_s1_shadow_mode ///Product ID
+    let monthlySubID = "kismmet_premium_s1_shadow_mode"
     let app_Specific_Shared_Secret = "b629c35cb3a34bf5b1a92351f2bb9338"
     var products: [String: SKProduct] = [:]
     

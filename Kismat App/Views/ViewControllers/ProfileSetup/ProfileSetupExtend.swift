@@ -529,6 +529,12 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
                     cell.socialImgView.sd_setImage(with: imageUrl , placeholderImage: UIImage()) { (image, error, imageCacheType, url) in }
                 }
                 
+                if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 6].linkType }).count > 0 {
+                    cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.medium
+                } else {
+                    cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.regular
+                }
+                
                 cell.socialLbl.text = socialAccounts[indexPath.row - 6].linkType
                 cell.socialLbl.isUserInteractionEnabled = false
                 

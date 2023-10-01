@@ -183,7 +183,7 @@ extension ViewedByMeVC : UITableViewDelegate, UITableViewDataSource {
                 if AppFunctions.isNotifNotCheck() {
                     cell.notifBtn.tintColor = UIColor(named:"Danger")
                 } else if AppFunctions.isShadowModeOn() {
-                    cell.notifBtn.tintColor = UIColor.black
+                    cell.notifBtn.tintColor = UIColor(named: "Primary Yellow")
                 } else {
                     cell.notifBtn.tintColor = UIColor(named: "Text grey")
                 }

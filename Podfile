@@ -19,7 +19,7 @@ target 'Kismmet' do
   pod 'Alamofire'
   pod 'SwiftDate'
   pod 'RealmSwift'
-  pod "RxRealm"
+  #pod "RxRealm"
   pod 'Siren'
   pod 'SwiftyStoreKit'
 
@@ -56,6 +56,17 @@ target 'Kismmet' do
 
   target 'Kismat AppUITests' do
     # Pods for testing
+  end
+  
+  post_install do |installer|
+    installer.generated_projects.each do |project|
+      project.targets.each do |target|
+        target.build_configurations.each do |config|
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+          config.build_settings['CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER'] = 'NO'
+        end
+      end
+    end
   end
 
 end

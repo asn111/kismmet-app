@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import RxRealm
+//import RxRealm
 import RxSwift
 import RealmSwift
 import SDWebImage
@@ -47,7 +47,7 @@ class ProfileVC: MainViewController {
         userProfile()
         if DBService.fetchloggedInUser().count > 0 {
             userdbModel = DBService.fetchloggedInUser()
-            DBUpdateUserdb()
+            //DBUpdateUserdb()
         }
         
     }
@@ -70,7 +70,7 @@ class ProfileVC: MainViewController {
         profileTV.register(UINib(nibName: "SocialAccTVCell", bundle: nil), forCellReuseIdentifier: "SocialAccTVCell")
     }
     
-    func DBUpdateUserdb() {
+    /*func DBUpdateUserdb() {
         
         Observable.changeset(from: userdbModel)
             .subscribe(onNext: { [weak self] _, changes in
@@ -83,7 +83,7 @@ class ProfileVC: MainViewController {
                 }
             })
             .disposed(by: dispose_Bag)
-    }
+    }*/
     
     
     @objc func picBtnPressed(sender: UIButton) {
@@ -137,12 +137,6 @@ class ProfileVC: MainViewController {
         return attributedText
     }
 
-
-
-
-
-
-    
     //MARK: API METHODS
 
     func userProfile() {
@@ -156,6 +150,7 @@ class ProfileVC: MainViewController {
                     case .next(let val):
                         if val.userId != "" {
                             self.socialAccModel = val.socialAccounts
+                            self.profileTV.reloadData()
                         } else {
                             self.hidePKHUD()
                         }
@@ -182,6 +177,7 @@ class ProfileVC: MainViewController {
                         if val {
                             
                             //Logs.show(message: "SOCIAL ACC: 👉🏻 \(String(describing: self.socialAccdbModel))")
+                            self.profileTV.reloadData()
                         } else {
                             self.hidePKHUD()
                         }
@@ -234,6 +230,14 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
                 cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
+                
+                if AppFunctions.isNotifNotCheck() {
+                    cell.notifBtn.tintColor = UIColor(named:"Danger")
+                } else if AppFunctions.isShadowModeOn() {
+                    cell.notifBtn.tintColor = UIColor(named: "Primary Yellow")
+                } else {
+                    cell.notifBtn.tintColor = UIColor(named: "Text grey")
+                }
                 
                 if isOtherProfile {
                     if userModel.profilePicture != "" {

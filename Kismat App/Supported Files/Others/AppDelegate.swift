@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ = SignalRManager.init()
         application.applicationIconBadgeNumber = 0
         if AppFunctions.isLoggedIn() {
-            //IAPManager.shared.checkSubscriptionStatus()
+            IAPManager.shared.checkSubscriptionStatus()
             //APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
         }
     }
@@ -226,6 +226,16 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     // For handling tap and user actions
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         print("notification tapped here")
+        if let apsPayload = response.notification.request.content.userInfo["aps"] as? [String: Any] {
+            if let alrt = apsPayload["alert"] as? String {
+                if alrt.contains("New features and improvements!") {
+                    AppFunctions.setIsNotifCheck(value: false)
+                    if let url = URL(string: "itms-apps://itunes.apple.com/app/id1673236769") {
+                        UIApplication.shared.open(url)
+                    }
+                }
+            }
+        }
         completionHandler()
         
     }

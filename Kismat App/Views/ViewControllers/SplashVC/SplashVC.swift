@@ -39,7 +39,7 @@ class SplashVC: MainViewController {
             
             self.startUpCall()
             self.getSocialAccounts()
-
+            APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
 
         } else {
             //btnView.isHidden = false

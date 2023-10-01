@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SwiftUI
 import PKHUD
-import RxRealm
+//import RxRealm
 import RxSwift
 import RxCocoa
 
@@ -722,7 +722,7 @@ extension UIImageView {
 //MARK: UITableView
 
 extension UITableView {
-    func applyChangeset(_ changes: RealmChangeset , operation: Int) {
+    /*func applyChangeset(_ changes: RealmChangeset , operation: Int) {
         beginUpdates()
         
         if operation == 1 {
@@ -734,7 +734,7 @@ extension UITableView {
         }
         
         endUpdates()
-    }
+    }*/
 }
 
 //MARK: Button

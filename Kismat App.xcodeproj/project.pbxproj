@@ -114,9 +114,9 @@
 		29F5290429970DA500FE2EBA /* GeneralTextviewTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29F5290229970DA500FE2EBA /* GeneralTextviewTVCell.xib */; };
 		29FD316629A5FD9400BDBD9C /* EditProfileSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD316529A5FD9400BDBD9C /* EditProfileSetup.swift */; };
 		29FD316829A5FDAD00BDBD9C /* EditProfileSetupExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD316729A5FDAD00BDBD9C /* EditProfileSetupExt.swift */; };
-		554A73504561AE8B2D7333B4 /* Pods_Kismmet_Kismat_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70266F808B32622D84D283A9 /* Pods_Kismmet_Kismat_AppUITests.framework */; };
-		57389EE98C5399895034D03F /* Pods_Kismat_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94193A959EB0E87687CB2C2 /* Pods_Kismat_AppTests.framework */; };
-		A0B42CDFB31D1E6B840F2E2D /* Pods_Kismmet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 687C7776992CB341612EEA20 /* Pods_Kismmet.framework */; };
+		318C545CCB22AF74965369E3 /* Pods_Kismmet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AFDF8360CC7F44FBCD302D /* Pods_Kismmet.framework */; };
+		62A705649DA7278A6BD53BC5 /* Pods_Kismmet_Kismat_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE7F3123D72016F2EA0E83EA /* Pods_Kismmet_Kismat_AppUITests.framework */; };
+		9F04C89C4F94911557F6C696 /* Pods_Kismat_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC2FD581D165EB7D803EA915 /* Pods_Kismat_AppTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,10 +137,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		08C4FE9D82AD9771979ECC0E /* Pods-Kismmet-Kismat AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismmet-Kismat AppUITests.release.xcconfig"; path = "Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests.release.xcconfig"; sourceTree = "<group>"; };
-		19574AD3E82A49613F152C89 /* Pods-Kismat App-Kismat AppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat App-Kismat AppUITests.debug.xcconfig"; path = "Target Support Files/Pods-Kismat App-Kismat AppUITests/Pods-Kismat App-Kismat AppUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		1DD10B6998FBF8F63EA8798C /* Pods-Kismat App-Kismat AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat App-Kismat AppUITests.release.xcconfig"; path = "Target Support Files/Pods-Kismat App-Kismat AppUITests/Pods-Kismat App-Kismat AppUITests.release.xcconfig"; sourceTree = "<group>"; };
-		2788D47DD7B231370D26CC44 /* Pods-Kismat App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat App.release.xcconfig"; path = "Target Support Files/Pods-Kismat App/Pods-Kismat App.release.xcconfig"; sourceTree = "<group>"; };
+		02AFDF8360CC7F44FBCD302D /* Pods_Kismmet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kismmet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		21EF0E1DD759770A00BF6822 /* Pods-Kismmet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismmet.release.xcconfig"; path = "Target Support Files/Pods-Kismmet/Pods-Kismmet.release.xcconfig"; sourceTree = "<group>"; };
 		290527282A9B3A59002A3FF4 /* SupportPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportPageVC.swift; sourceTree = "<group>"; };
 		2905272B2A9B3EF1002A3FF4 /* HowToUseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUseVC.swift; sourceTree = "<group>"; };
 		29219B6F29ED952000B47D40 /* VisibilityOffTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisibilityOffTVCell.swift; sourceTree = "<group>"; };
@@ -253,15 +251,13 @@
 		29F5290229970DA500FE2EBA /* GeneralTextviewTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralTextviewTVCell.xib; sourceTree = "<group>"; };
 		29FD316529A5FD9400BDBD9C /* EditProfileSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileSetup.swift; sourceTree = "<group>"; };
 		29FD316729A5FDAD00BDBD9C /* EditProfileSetupExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileSetupExt.swift; sourceTree = "<group>"; };
-		305465A42FE8AC505100BED8 /* Pods-Kismat AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat AppTests.debug.xcconfig"; path = "Target Support Files/Pods-Kismat AppTests/Pods-Kismat AppTests.debug.xcconfig"; sourceTree = "<group>"; };
-		39279F63662C384CFC545C7A /* Pods-Kismmet-Kismat AppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismmet-Kismat AppUITests.debug.xcconfig"; path = "Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		3EEEA3F5A221737FCAACDCC0 /* Pods-Kismat App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat App.debug.xcconfig"; path = "Target Support Files/Pods-Kismat App/Pods-Kismat App.debug.xcconfig"; sourceTree = "<group>"; };
-		5E414B42F4AF33345EA04C1E /* Pods-Kismmet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismmet.debug.xcconfig"; path = "Target Support Files/Pods-Kismmet/Pods-Kismmet.debug.xcconfig"; sourceTree = "<group>"; };
-		687C7776992CB341612EEA20 /* Pods_Kismmet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kismmet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6DA06AB2A8CD64B65BE2907E /* Pods-Kismat AppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat AppTests.release.xcconfig"; path = "Target Support Files/Pods-Kismat AppTests/Pods-Kismat AppTests.release.xcconfig"; sourceTree = "<group>"; };
-		70266F808B32622D84D283A9 /* Pods_Kismmet_Kismat_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kismmet_Kismat_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A3A1751D0B752A19B89271A6 /* Pods-Kismmet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismmet.release.xcconfig"; path = "Target Support Files/Pods-Kismmet/Pods-Kismmet.release.xcconfig"; sourceTree = "<group>"; };
-		A94193A959EB0E87687CB2C2 /* Pods_Kismat_AppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kismat_AppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C6F814DE66E1A8A76F4A30E /* Pods-Kismmet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismmet.debug.xcconfig"; path = "Target Support Files/Pods-Kismmet/Pods-Kismmet.debug.xcconfig"; sourceTree = "<group>"; };
+		46120C3CCC3AF3E53B771BEF /* Pods-Kismmet-Kismat AppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismmet-Kismat AppUITests.debug.xcconfig"; path = "Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		7555DB9248FAD126644258C0 /* Pods-Kismmet-Kismat AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismmet-Kismat AppUITests.release.xcconfig"; path = "Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B7669D4D6393279E6DE0483E /* Pods-Kismat AppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat AppTests.release.xcconfig"; path = "Target Support Files/Pods-Kismat AppTests/Pods-Kismat AppTests.release.xcconfig"; sourceTree = "<group>"; };
+		C757DAA9BE02206D4F1CABDF /* Pods-Kismat AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat AppTests.debug.xcconfig"; path = "Target Support Files/Pods-Kismat AppTests/Pods-Kismat AppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CC2FD581D165EB7D803EA915 /* Pods_Kismat_AppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kismat_AppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE7F3123D72016F2EA0E83EA /* Pods_Kismmet_Kismat_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kismmet_Kismat_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,7 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2976102C29DDB85300B74050 /* StoreKit.framework in Frameworks */,
-				A0B42CDFB31D1E6B840F2E2D /* Pods_Kismmet.framework in Frameworks */,
+				318C545CCB22AF74965369E3 /* Pods_Kismmet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,7 +274,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57389EE98C5399895034D03F /* Pods_Kismat_AppTests.framework in Frameworks */,
+				9F04C89C4F94911557F6C696 /* Pods_Kismat_AppTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,7 +282,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				554A73504561AE8B2D7333B4 /* Pods_Kismmet_Kismat_AppUITests.framework in Frameworks */,
+				62A705649DA7278A6BD53BC5 /* Pods_Kismmet_Kismat_AppUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,16 +292,12 @@
 		0834C4864B1B722675325DAE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3EEEA3F5A221737FCAACDCC0 /* Pods-Kismat App.debug.xcconfig */,
-				2788D47DD7B231370D26CC44 /* Pods-Kismat App.release.xcconfig */,
-				19574AD3E82A49613F152C89 /* Pods-Kismat App-Kismat AppUITests.debug.xcconfig */,
-				1DD10B6998FBF8F63EA8798C /* Pods-Kismat App-Kismat AppUITests.release.xcconfig */,
-				305465A42FE8AC505100BED8 /* Pods-Kismat AppTests.debug.xcconfig */,
-				6DA06AB2A8CD64B65BE2907E /* Pods-Kismat AppTests.release.xcconfig */,
-				5E414B42F4AF33345EA04C1E /* Pods-Kismmet.debug.xcconfig */,
-				A3A1751D0B752A19B89271A6 /* Pods-Kismmet.release.xcconfig */,
-				39279F63662C384CFC545C7A /* Pods-Kismmet-Kismat AppUITests.debug.xcconfig */,
-				08C4FE9D82AD9771979ECC0E /* Pods-Kismmet-Kismat AppUITests.release.xcconfig */,
+				C757DAA9BE02206D4F1CABDF /* Pods-Kismat AppTests.debug.xcconfig */,
+				B7669D4D6393279E6DE0483E /* Pods-Kismat AppTests.release.xcconfig */,
+				3C6F814DE66E1A8A76F4A30E /* Pods-Kismmet.debug.xcconfig */,
+				21EF0E1DD759770A00BF6822 /* Pods-Kismmet.release.xcconfig */,
+				46120C3CCC3AF3E53B771BEF /* Pods-Kismmet-Kismat AppUITests.debug.xcconfig */,
+				7555DB9248FAD126644258C0 /* Pods-Kismmet-Kismat AppUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -841,9 +833,9 @@
 			isa = PBXGroup;
 			children = (
 				2976102B29DDB85300B74050 /* StoreKit.framework */,
-				A94193A959EB0E87687CB2C2 /* Pods_Kismat_AppTests.framework */,
-				687C7776992CB341612EEA20 /* Pods_Kismmet.framework */,
-				70266F808B32622D84D283A9 /* Pods_Kismmet_Kismat_AppUITests.framework */,
+				CC2FD581D165EB7D803EA915 /* Pods_Kismat_AppTests.framework */,
+				02AFDF8360CC7F44FBCD302D /* Pods_Kismmet.framework */,
+				EE7F3123D72016F2EA0E83EA /* Pods_Kismmet_Kismat_AppUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -855,11 +847,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 299FDD332996796B0049741B /* Build configuration list for PBXNativeTarget "Kismmet" */;
 			buildPhases = (
-				92798B63DB5AE0499297F58C /* [CP] Check Pods Manifest.lock */,
+				49AB1368AD3EC2F7F24BCD8D /* [CP] Check Pods Manifest.lock */,
 				299FDD02299679690049741B /* Sources */,
 				299FDD03299679690049741B /* Frameworks */,
 				299FDD04299679690049741B /* Resources */,
-				7BF351D00239D5E5EFDEB0EB /* [CP] Embed Pods Frameworks */,
+				F680CF971CC4A3C896F4E100 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -874,7 +866,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 299FDD362996796B0049741B /* Build configuration list for PBXNativeTarget "Kismat AppTests" */;
 			buildPhases = (
-				56416F34C58CC85D3429750A /* [CP] Check Pods Manifest.lock */,
+				82E240F4E5DB4381056F909F /* [CP] Check Pods Manifest.lock */,
 				299FDD1B2996796B0049741B /* Sources */,
 				299FDD1C2996796B0049741B /* Frameworks */,
 				299FDD1D2996796B0049741B /* Resources */,
@@ -893,11 +885,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 299FDD392996796B0049741B /* Build configuration list for PBXNativeTarget "Kismat AppUITests" */;
 			buildPhases = (
-				DD0BDF321DFE5A0FDE97DF0C /* [CP] Check Pods Manifest.lock */,
+				BC3A7F7A062FDE5374C28BD5 /* [CP] Check Pods Manifest.lock */,
 				299FDD252996796B0049741B /* Sources */,
 				299FDD262996796B0049741B /* Frameworks */,
 				299FDD272996796B0049741B /* Resources */,
-				5D2B96F7FB03B98BDC5397B0 /* [CP] Embed Pods Frameworks */,
+				FBEB85985A6C3D9D63255BF3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -917,7 +909,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					299FDD05299679690049741B = {
 						CreatedOnToolsVersion = 14.2;
@@ -1005,63 +997,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		56416F34C58CC85D3429750A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Kismat AppTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5D2B96F7FB03B98BDC5397B0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7BF351D00239D5E5EFDEB0EB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Kismmet/Pods-Kismmet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Kismmet/Pods-Kismmet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kismmet/Pods-Kismmet-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		92798B63DB5AE0499297F58C /* [CP] Check Pods Manifest.lock */ = {
+		49AB1368AD3EC2F7F24BCD8D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1083,7 +1019,29 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DD0BDF321DFE5A0FDE97DF0C /* [CP] Check Pods Manifest.lock */ = {
+		82E240F4E5DB4381056F909F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Kismat AppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BC3A7F7A062FDE5374C28BD5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1103,6 +1061,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F680CF971CC4A3C896F4E100 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kismmet/Pods-Kismmet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kismmet/Pods-Kismmet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kismmet/Pods-Kismmet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FBEB85985A6C3D9D63255BF3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1278,6 +1270,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1338,6 +1331,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1358,14 +1352,15 @@
 		};
 		299FDD342996796B0049741B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E414B42F4AF33345EA04C1E /* Pods-Kismmet.debug.xcconfig */;
+			baseConfigurationReference = 3C6F814DE66E1A8A76F4A30E /* Pods-Kismmet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Kismat App/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
@@ -1397,14 +1392,15 @@
 		};
 		299FDD352996796B0049741B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A3A1751D0B752A19B89271A6 /* Pods-Kismmet.release.xcconfig */;
+			baseConfigurationReference = 21EF0E1DD759770A00BF6822 /* Pods-Kismmet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Kismat App/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
@@ -1436,7 +1432,7 @@
 		};
 		299FDD372996796B0049741B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 305465A42FE8AC505100BED8 /* Pods-Kismat AppTests.debug.xcconfig */;
+			baseConfigurationReference = C757DAA9BE02206D4F1CABDF /* Pods-Kismat AppTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1457,7 +1453,7 @@
 		};
 		299FDD382996796B0049741B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6DA06AB2A8CD64B65BE2907E /* Pods-Kismat AppTests.release.xcconfig */;
+			baseConfigurationReference = B7669D4D6393279E6DE0483E /* Pods-Kismat AppTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1478,7 +1474,7 @@
 		};
 		299FDD3A2996796B0049741B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39279F63662C384CFC545C7A /* Pods-Kismmet-Kismat AppUITests.debug.xcconfig */;
+			baseConfigurationReference = 46120C3CCC3AF3E53B771BEF /* Pods-Kismmet-Kismat AppUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1497,7 +1493,7 @@
 		};
 		299FDD3B2996796B0049741B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 08C4FE9D82AD9771979ECC0E /* Pods-Kismmet-Kismat AppUITests.release.xcconfig */;
+			baseConfigurationReference = 7555DB9248FAD126644258C0 /* Pods-Kismmet-Kismat AppUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
