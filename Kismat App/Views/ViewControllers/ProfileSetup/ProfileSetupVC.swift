@@ -171,7 +171,7 @@ class ProfileSetupVC: MainViewController  { //Birthday
         if sender.tag == 001 {
             msg = "Add an optional email address to your profile for convenient connections.\nMuch like you would on a business card.\nNote: It will be visible on your profile."
         } else if sender.tag == 002 {
-            msg = "The lock icon next to your phone number means that the number cannot be changed."
+            msg = "The lock icon next to your phone number means that the number cannot be changed.\nYour phone number is not visible to others."
         } else if sender.tag == 003 {
             msg = "Please note that your date of birth is private and will not be visible to other users on the app."
         }

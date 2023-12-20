@@ -22,9 +22,11 @@ class UserDBModel: Object {
     @objc dynamic var workAddress : String = ""
     @objc dynamic var workTitle : String = ""
     @objc dynamic var about : String = ""
+    @objc dynamic var status : String = ""
     @objc dynamic var proximity : Int = 0
     @objc dynamic var isProfileVisible : Bool = false
     @objc dynamic var isProfileUpdated : Bool = false
+    @objc dynamic var disappearingStatus : Bool = false
     @objc dynamic var isStarred : Bool = false
     @objc dynamic var tags : String = ""
     @objc dynamic var isActive : Bool = false

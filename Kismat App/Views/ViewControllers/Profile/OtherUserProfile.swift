@@ -79,6 +79,7 @@ class OtherUserProfile: MainViewController {
         otherProfileTV.register(UINib(nibName: "ProfileTVCell", bundle: nil), forCellReuseIdentifier: "ProfileTVCell")
         otherProfileTV.register(UINib(nibName: "TagsTVCell", bundle: nil), forCellReuseIdentifier: "TagsTVCell")
         otherProfileTV.register(UINib(nibName: "SocialAccTVCell", bundle: nil), forCellReuseIdentifier: "SocialAccTVCell")
+        otherProfileTV.register(UINib(nibName: "StatusTVCell", bundle: nil), forCellReuseIdentifier: "StatusTVCell")
         otherProfileTV.register(UINib(nibName: "BlockBtnTVCell", bundle: nil), forCellReuseIdentifier: "BlockBtnTVCell")
     }
     
@@ -264,10 +265,7 @@ class OtherUserProfile: MainViewController {
 extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if socialAccounts.isEmpty {
-            return 7
-        }
-        return socialAccounts.count + 8
+        return socialAccounts.count + 9
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -326,6 +324,19 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                     cell.aboutTxtView.text = userModel.about
                 return cell
             case 2:
+                let cell : StatusTVCell = tableView.dequeueReusableCell(withIdentifier: "StatusTVCell", for: indexPath) as! StatusTVCell
+                
+                if userModel.status != nil {
+                    cell.statusLbl.text = userModel.status.isEmpty ? "currently no active status..." : userModel.status
+                    cell.clockIV.isHidden = userModel.disappearingStatus
+                } else {
+                    cell.statusLbl.text = "currently no active status..."
+                    cell.clockIV.isHidden = true
+                }
+                
+                return cell
+                
+            case 3:
                 let cell : ProfileTVCell = tableView.dequeueReusableCell(withIdentifier: "ProfileTVCell", for: indexPath) as! ProfileTVCell
                 
                 cell.numberView.isHidden = true
@@ -334,12 +345,12 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 cell.generalTF.isUserInteractionEnabled = false
                 
                 return cell
-            case 3:
+            case 4:
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
                 cell.headerLbl.text = "Tags"
                 return cell
-            case 4:
+            case 5:
                 let cell : TagsTVCell = tableView.dequeueReusableCell(withIdentifier: "TagsTVCell", for: indexPath) as! TagsTVCell
 
                     if userModel.tags != "" {
@@ -372,7 +383,7 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                     }
                 }
                 return cell
-            case 5:
+            case 6: // social heading
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 if !socialAccounts.isEmpty {
                     cell.headerLblView.isHidden = false
@@ -383,13 +394,13 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 
                 return cell
                 
-            case socialAccounts.isEmpty ? 5 : socialAccounts.count + 6: // EmptyView
+            case socialAccounts.count + 7: // EmptyView
                 
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = true
                 return cell
                 
-            case socialAccounts.isEmpty ? 6 : socialAccounts.count + 7:
+            case socialAccounts.count + 8: // button
                 let cell : BlockBtnTVCell = tableView.dequeueReusableCell(withIdentifier: "BlockBtnTVCell", for: indexPath) as! BlockBtnTVCell
                 if isFromBlock {
                     cell.blockBtn.isHidden = true
@@ -400,26 +411,26 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 
             default:
                 let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
-                if socialAccounts[indexPath.row - 6].linkImage != "" {
-                    let imageUrl = URL(string: socialAccounts[indexPath.row - 6].linkImage)
+                if socialAccounts[indexPath.row - 7].linkImage != "" {
+                    let imageUrl = URL(string: socialAccounts[indexPath.row - 7].linkImage)
                     cell.socialImgView.sd_setImage(with: imageUrl , placeholderImage: UIImage()) { (image, error, imageCacheType, url) in }
                 } else {
                     //cell.profilePicBtn.setImage(img, for: .normal)
                 }
-                if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 6].linkType }).count > 0 {
+                if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 7].linkType }).count > 0 {
                     cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.medium
                 } else {
                     cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.regular
                 }
                 
-                cell.socialLbl.text = socialAccounts[indexPath.row - 6].linkType.capitalized
+                cell.socialLbl.text = socialAccounts[indexPath.row - 7].linkType.capitalized
                 cell.socialLbl.isUserInteractionEnabled = false
                 return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 4 {
+        if indexPath.row == 5 {
             
             var tagList = [String]()
                 if userModel.tags != "" {
@@ -436,13 +447,13 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 vc.userId = userModel.userId
                 vc.tagList = tagList
             }
-        } else if indexPath.row > 5 && indexPath.row < 14 {
-            if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 6].linkType }).count > 0 {
+        } else if indexPath.row > 6 && indexPath.row < socialAccounts.count + 7 {
+            if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 7].linkType }).count > 0 {
                 self.presentVC(id: "SocialLinks_VC",presentFullType: "not") { (vc:SocialLinks_VC) in
                     vc.isFromOther = true
                     vc.userId = userModel.userId
-                    vc.socialAccModel = socialAccModel.filter {$0.linkType == socialAccounts[indexPath.row - 6].linkType }
-                    vc.linkType = socialAccounts[indexPath.row - 6].linkType
+                    vc.socialAccModel = socialAccModel.filter {$0.linkType == socialAccounts[indexPath.row - 7].linkType }
+                    vc.linkType = socialAccounts[indexPath.row - 7].linkType
                 }
             } else {
                 AppFunctions.showSnackBar(str: "No social account found")

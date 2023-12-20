@@ -65,6 +65,7 @@ class ProfileVC: MainViewController {
         profileTV.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
         profileTV.register(UINib(nibName: "AboutTVCell", bundle: nil), forCellReuseIdentifier: "AboutTVCell")
         profileTV.register(UINib(nibName: "ProfileTVCell", bundle: nil), forCellReuseIdentifier: "ProfileTVCell")
+        profileTV.register(UINib(nibName: "StatusTVCell", bundle: nil), forCellReuseIdentifier: "StatusTVCell")
         profileTV.register(UINib(nibName: "MixHeaderTVCell", bundle: nil), forCellReuseIdentifier: "MixHeaderTVCell")
         profileTV.register(UINib(nibName: "TagsTVCell", bundle: nil), forCellReuseIdentifier: "TagsTVCell")
         profileTV.register(UINib(nibName: "SocialAccTVCell", bundle: nil), forCellReuseIdentifier: "SocialAccTVCell")
@@ -202,7 +203,7 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
         if tempSocialAccImgArray.isEmpty {
             return 5
         }
-        return tempSocialAccImgArray.count + 6
+        return tempSocialAccImgArray.count + 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -283,6 +284,21 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 
                 return cell
             case 2:
+                let cell : StatusTVCell = tableView.dequeueReusableCell(withIdentifier: "StatusTVCell", for: indexPath) as! StatusTVCell
+                
+                if isOtherProfile {
+                    cell.statusLbl.text = userModel.status.isEmpty ? "currently no active status..." : userModel.status
+                } else {
+                    if let userDb = userdbModel {
+                        if let user = userDb.first {
+                            cell.statusLbl.text = user.status.isEmpty ? "currently no active status..." : user.status
+                            cell.clockIV.isHidden = user.disappearingStatus
+                        }
+                    }
+                }
+                                
+                return cell
+            case 3:
                 let cell : ProfileTVCell = tableView.dequeueReusableCell(withIdentifier: "ProfileTVCell", for: indexPath) as! ProfileTVCell
                 
                 cell.numberView.isHidden = true
@@ -300,12 +316,12 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 cell.generalTF.isUserInteractionEnabled = false
                 
                 return cell
-            case 3:
+            case 4:
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
                 cell.headerLbl.text = "Tags"
                 return cell
-            case 4:
+            case 5:
                 let cell : TagsTVCell = tableView.dequeueReusableCell(withIdentifier: "TagsTVCell", for: indexPath) as! TagsTVCell
                 
                 if isOtherProfile {
@@ -376,7 +392,7 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 
                 
                 return cell
-            case 5:
+            case 6:
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
                 cell.headerLbl.text = "Social accounts"
@@ -385,16 +401,16 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
             default:
                 let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
 
-                if socialAccounts[indexPath.row - 6].linkImage != "" {
-                 let imageUrl = URL(string: socialAccounts[indexPath.row - 6].linkImage)
+                if socialAccounts[indexPath.row - 7].linkImage != "" {
+                 let imageUrl = URL(string: socialAccounts[indexPath.row - 7].linkImage)
                  cell.socialImgView.sd_setImage(with: imageUrl , placeholderImage: UIImage()) { (image, error, imageCacheType, url) in }
                  }
                 
                 
                 
-                cell.socialLbl.text = socialAccounts[indexPath.row - 6].linkType.capitalized
+                cell.socialLbl.text = socialAccounts[indexPath.row - 7].linkType.capitalized
                 
-                if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 6].linkType }).count > 0 {
+                if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 7].linkType }).count > 0 {
                     cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.medium
                 } else {
                     cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.regular
@@ -407,7 +423,7 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 4 {
+        if indexPath.row == 5 {
             
             var tagList = [String]()
             if isOtherProfile {
@@ -438,12 +454,12 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
             self.presentVC(id: "TagsView_VC",presentFullType: "not") { (vc:TagsView_VC) in
                 vc.tagList = tagList
             }
-        } else if indexPath.row > 5 {
+        } else if indexPath.row > 6 {
             
-            if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 6].linkType }).count > 0 {
+            if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 7].linkType }).count > 0 {
                 self.presentVC(id: "SocialLinks_VC",presentFullType: "not") { (vc:SocialLinks_VC) in
-                    vc.socialAccModel = socialAccModel.filter {$0.linkType == socialAccounts[indexPath.row - 6].linkType }
-                    vc.linkType = socialAccounts[indexPath.row - 6].linkType
+                    vc.socialAccModel = socialAccModel.filter {$0.linkType == socialAccounts[indexPath.row - 7].linkType }
+                    vc.linkType = socialAccounts[indexPath.row - 7].linkType
                 }
             } else {
                 AppFunctions.showSnackBar(str: "No social account found")

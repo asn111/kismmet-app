@@ -24,7 +24,8 @@ target 'Kismmet' do
   pod 'SwiftyStoreKit'
 
   pod 'GoogleSignIn'
-  
+  pod 'GoogleMaps'
+
   pod 'TransitionableTab', '~> 0.2.0'
   pod 'PKHUD'
   pod 'SDWebImage'

@@ -17,10 +17,11 @@ class EditProfileSetup: MainViewController { //Birthday
     var placeholderArray = ["","Full Name","Birthday"
                             ,"Public Email","Where do you work / study?","Title","Bio..",""]
     var dataArray = [String]()
-    var fullName = "", publicEmail = "", placeOfWork = "", workTitle = "" , dateOfBirth = "" , about = "", countryCode = "", phoneNum = "", countryName = "", profilePic = ""
+    var fullName = "", publicEmail = "", placeOfWork = "", workTitle = "" , dateOfBirth = "" , about = "", status = "", countryCode = "", phoneNum = "", countryName = "", profilePic = ""
     
     var proximity = 0
     var isProfileVisible = false
+    var disappearingStatus = false
     
     var updatedImagePicked : UIImage!
 
@@ -266,6 +267,8 @@ class EditProfileSetup: MainViewController { //Birthday
                 profileDict["workAdress"] = placeOfWork
                 profileDict["workTitle"] = workTitle
                 profileDict["about"] = about
+                profileDict["status"] = status
+                profileDict["disappearingStatus"] = disappearingStatus
                 profileDict["tags"] = tags.joined(separator: ",")
                 
                 let userModel = UserModel(fromDictionary: profileDict)
@@ -444,6 +447,8 @@ class EditProfileSetup: MainViewController { //Birthday
                                 self.workTitle = user!.workTitle
                                 self.placeOfWork = user!.workAddress
                                 self.about = user!.about
+                                self.status = user!.status
+                                self.disappearingStatus = user!.disappearingStatus
                                 self.countryCode = user!.countryCode
                                 self.countryName = user!.countryName
                                 self.phoneNum = user!.phone

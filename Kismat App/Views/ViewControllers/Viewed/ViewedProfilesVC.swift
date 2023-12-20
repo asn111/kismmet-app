@@ -50,6 +50,11 @@ class ViewedProfilesVC: MainViewController {
         viewedListTV.separatorStyle = .none
         viewedListTV.delegate = self
         viewedListTV.dataSource = self
+        
+        let tabBarHeight: CGFloat = self.tabBarController?.tabBar.frame.height ?? 0
+        let bottomSpace: CGFloat = 5  // Adjust the value as needed
+        viewedListTV.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tabBarHeight + bottomSpace, right: 0)
+        
         viewedListTV.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
         viewedListTV.register(UINib(nibName: "FeedItemsTVCell", bundle: nil), forCellReuseIdentifier: "FeedItemsTVCell")
         viewedListTV.register(UINib(nibName: "VisibilityOffTVCell", bundle: nil), forCellReuseIdentifier: "VisibilityOffTVCell")
@@ -205,6 +210,7 @@ extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
                 cell.searchContraint.constant = 10
                 
                 cell.searchTF.delegate = self
+                cell.searchTF.placeholder = "Search through users who viewed you.."
                 cell.searchTF.returnKeyType = .search
                 cell.searchTF.tag = 010
                 if searchString != "" {

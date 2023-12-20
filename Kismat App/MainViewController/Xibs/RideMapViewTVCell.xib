@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="221" id="KGk-i7-Jjw" customClass="RideMapViewTVCell" customModule="Kismmet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="435" height="221"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="435" height="221"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P2j-k6-fdl">
+                        <rect key="frame" x="0.0" y="0.0" width="435" height="220"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BvH-Zs-q4u" customClass="GMSMapView">
+                                <rect key="frame" x="20" y="20" width="395" height="180"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="H4p-Fo-ifP"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BvH-Zs-q4u" firstAttribute="leading" secondItem="P2j-k6-fdl" secondAttribute="leading" constant="20" symbolic="YES" id="19I-Ee-fqb"/>
+                            <constraint firstItem="BvH-Zs-q4u" firstAttribute="centerY" secondItem="P2j-k6-fdl" secondAttribute="centerY" id="TZw-g5-DoL"/>
+                            <constraint firstAttribute="bottom" secondItem="BvH-Zs-q4u" secondAttribute="bottom" constant="20" symbolic="YES" id="h3X-c6-2sL"/>
+                            <constraint firstAttribute="trailing" secondItem="BvH-Zs-q4u" secondAttribute="trailing" constant="20" symbolic="YES" id="it3-db-nMR"/>
+                            <constraint firstItem="BvH-Zs-q4u" firstAttribute="centerX" secondItem="P2j-k6-fdl" secondAttribute="centerX" id="qLS-ny-wya"/>
+                            <constraint firstAttribute="height" constant="220" id="r3G-y4-nZR"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="P2j-k6-fdl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="KOO-f5-H9G"/>
+                    <constraint firstAttribute="bottom" secondItem="P2j-k6-fdl" secondAttribute="bottom" id="ZJA-C7-hdV"/>
+                    <constraint firstItem="P2j-k6-fdl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="rOc-Ju-VbB"/>
+                    <constraint firstAttribute="trailing" secondItem="P2j-k6-fdl" secondAttribute="trailing" id="tWt-pF-nCz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="heightConst" destination="r3G-y4-nZR" id="wAb-gm-sqJ"/>
+                <outlet property="mapView" destination="BvH-Zs-q4u" id="4Nf-Ll-3dP"/>
+            </connections>
+            <point key="canvasLocation" x="221.01449275362322" y="102.79017857142857"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

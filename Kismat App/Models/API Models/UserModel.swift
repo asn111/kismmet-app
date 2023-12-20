@@ -48,9 +48,11 @@ class UserModel: NSObject, Codable {
     var workAddress : String!
     var workTitle : String!
     var about : String!
+    var status : String!
     var proximity : Int!
     var isProfileVisible : Bool!
     var isProfileUpdated : Bool!
+    var disappearingStatus : Bool!
     var isStarred : Bool!
     var tags : String!
     var isActive : Bool!
@@ -74,9 +76,11 @@ class UserModel: NSObject, Codable {
         workAddress = ""
         workTitle = ""
         about = ""
+        status = ""
         proximity = 0
         isProfileVisible = false
         isProfileUpdated = false
+        disappearingStatus = false
         isStarred = false
         tags = ""
         isActive = false
@@ -94,6 +98,8 @@ class UserModel: NSObject, Codable {
         workAddress = dictionary["workAdress"] as? String
         workTitle = dictionary["workTitle"] as? String
         about = dictionary["about"] as? String
+        status = dictionary["status"] as? String
+        disappearingStatus = dictionary["disappearingStatus"] as? Bool
         tags = dictionary["tags"] as? String
         
     }
@@ -112,9 +118,11 @@ class UserModel: NSObject, Codable {
         case workAddress = "workAddress"
         case workTitle = "workTitle"
         case about = "about"
+        case status = "status"
         case proximity = "proximity"
         case isProfileVisible = "isProfileVisible"
         case isProfileUpdated = "isProfileUpdated"
+        case disappearingStatus = "disappearingStatus"
         case isStarred = "isStarred"
         case tags = "tags"
         case isActive = "isActive"
@@ -138,6 +146,8 @@ class UserModel: NSObject, Codable {
         workAddress  = try values.decodeIfPresent(String.self, forKey: .workAddress)
         workTitle  = try values.decodeIfPresent(String.self, forKey: .workTitle)
         about  = try values.decodeIfPresent(String.self, forKey: .about)
+        status  = try values.decodeIfPresent(String.self, forKey: .status)
+        disappearingStatus  = try values.decodeIfPresent(Bool.self, forKey: .disappearingStatus)
         proximity  = try values.decodeIfPresent(Int.self, forKey: .proximity)
         isProfileVisible  = try values.decodeIfPresent(Bool.self, forKey: .isProfileVisible)
         isProfileUpdated  = try values.decodeIfPresent(Bool.self, forKey: .isProfileUpdated)

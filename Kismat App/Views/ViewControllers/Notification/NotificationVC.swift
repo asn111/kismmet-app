@@ -224,8 +224,15 @@ extension NotificationVC : UITableViewDelegate, UITableViewDataSource {
                     cell.notifView.backgroundColor = UIColor(named: "Cell BG Base Grey")
                     cell.notifView.shadowColor = UIColor(named: "Cell BG Base Grey")
                     
-                    cell.nameLbl.text = notif.userName != nil ? notif.userName : "---"
-                    cell.notifLbl.text = notif.notificationMessage != nil ? notif.notificationMessage : "---"
+                    if let text = notif.notificationMessage,
+                       let keywordRange = text.range(of: "recently", options: .caseInsensitive) {
+                        let firstPart = text[text.startIndex..<keywordRange.lowerBound]
+                        let secondPart = text[keywordRange.lowerBound..<text.endIndex]
+                        
+                        cell.nameLbl.text = String(firstPart)
+                        cell.notifLbl.text = String(secondPart)
+                    }
+
                     cell.timeLbl.text = notif.createdAt != nil ? convertDateFormat(inputDateString: notif.createdAt) : "---"
                     
                     if notif.profilePicture != nil && notif.profilePicture != "" {
@@ -251,8 +258,15 @@ extension NotificationVC : UITableViewDelegate, UITableViewDataSource {
                     cell.notifView.backgroundColor = UIColor(named: "Base White")
                     cell.notifView.shadowColor = UIColor.lightGray
                     
-                    cell.nameLbl.text = notif.userName != nil ? notif.userName : "---"
-                    cell.notifLbl.text = notif.notificationMessage != nil ? notif.notificationMessage : "---"
+                    if let text = notif.notificationMessage,
+                       let keywordRange = text.range(of: "recently", options: .caseInsensitive) {
+                        let firstPart = text[text.startIndex..<keywordRange.lowerBound]
+                        let secondPart = text[keywordRange.lowerBound..<text.endIndex]
+                        
+                        cell.nameLbl.text = String(firstPart)
+                        cell.notifLbl.text = String(secondPart)
+                    }
+                    
                     cell.timeLbl.text = notif.createdAt != nil ? convertDateFormat(inputDateString: notif.createdAt) : "---"
 
                     if notif.profilePicture != nil && notif.profilePicture != "" {

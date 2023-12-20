@@ -80,7 +80,7 @@ class MembershipVC: MainViewController {
 
         UIView.animate(withDuration: duration, animations: {
             self.planNameLbl.text = "KISMMET Premium"
-            self.featureLbl1.text = "Shadow mode"
+            self.featureLbl1.text = "Discover Shadow Mode\nGo to Settings > Preferences > Shadow Mode"
             self.featureLbl2.text = ""
             
             self.upgradeBtn.setTitle("Cancel Subscription", for: .normal)

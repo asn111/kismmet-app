@@ -7,26 +7,34 @@
 
 import Foundation
 import UIKit
+import MapKit
 import MultiSlider
 import RealmSwift
+import GoogleMaps
+import Combine
 
 class EditProfileSetupExt: MainViewController {
     
     @IBOutlet weak var profileExtTV: UITableView!
     
-    var placeholderArray = ["","","","","","","Public Email","Phone",""]
-    var dataArray = ["","","","","","","tamara@gmail.com","23456789",""]
+    var placeholderArray = ["hed","pxlbl","sldr","map","stts","t1","t2","t3","emp","Public Email","Phone","bt"]
+    var dataArray = ["","","","","","","","","","tamara@gmail.com","23456789",""]
     
     var isFromSetting = true
     var isProfileVisible = false
+    var isStatusDelete = false
     var isShadowMode = false
     var proximity = 5000
     var email = ""
     var countName = ""
     var phoneNum = ""
     var name = ""
+    var status = ""
 
+    var circle : GMSCircle?
+    
     var userdbModel = UserDBModel()
+    var location = CLLocation()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +50,9 @@ class EditProfileSetupExt: MainViewController {
         
         proximity = userdbModel.proximity
         isProfileVisible = userdbModel.isProfileVisible
+        isStatusDelete = userdbModel.isProfileVisible
+        status = userdbModel.status
+        isStatusDelete = userdbModel.disappearingStatus
         isShadowMode = userdbModel.shadowMode
         email = userdbModel.email
         countName = userdbModel.countryName
@@ -65,8 +76,26 @@ class EditProfileSetupExt: MainViewController {
 
         profileExtTV.register(UINib(nibName: "SocialAccTVCell", bundle: nil), forCellReuseIdentifier: "SocialAccTVCell")
         profileExtTV.register(UINib(nibName: "GeneralButtonTVCell", bundle: nil), forCellReuseIdentifier: "GeneralButtonTVCell")
+        
+        profileExtTV.register(UINib(nibName: "RideMapViewTVCell", bundle: nil), forCellReuseIdentifier: "RideMapViewTVCell")
+
+        profileExtTV.register(UINib(nibName: "GeneralTextviewTVCell", bundle: nil), forCellReuseIdentifier: "GeneralTextviewTVCell")
+
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        _ = generalPublisherLoc.subscribe(onNext: {[weak self] loc in
+            
+            
+            self?.location = loc
+            self?.profileExtTV.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .none)
+
+        }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
+        
+    }
+    
     
     @objc func picBtnPressed(sender:UIButton) {
         self.navigationController?.popViewController(animated: true)
@@ -79,6 +108,8 @@ class EditProfileSetupExt: MainViewController {
     func updateConfig() {
         let pram = ["proximity": "\(proximity)",
                     "shadowMode":"\(isShadowMode)",
+                    "status":"\(status)",
+                    "disappearingStatus":"\(isStatusDelete)",
                     "isProfileVisible":"\(isProfileVisible)"
         ]
         
@@ -93,17 +124,42 @@ class EditProfileSetupExt: MainViewController {
         }
     }
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "Add status here..." {
+            // Clear the text view
+            textView.text = ""
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        status = !textView.text!.isTFBlank ? textView.text! : ""
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        return self.textLimit(existingText: textView.text, newText: text, limit: 100)
+    }
+
+    private func textLimit(existingText: String?, newText: String, limit: Int) -> Bool {
+        let text = existingText ?? ""
+        let isAtLimit = text.count + newText.count <= limit
+
+        return isAtLimit
+    }
+
+    
     @objc func toolTipBtnPressed(sender:UIButton) {
         var msg = ""
         
         if sender.tag == 001 {
-            msg = "When you choose to turn off your profile visibility, your account becomes private, ensuring that you won't appear in other users' feeds.\nKeep in mind that while your profile is hidden, you won't have access to search and discover other users on the app."
+            msg = "Tool Tip for status info and disapearing status"
         } else if sender.tag == 002 {
+            msg = "When you choose to turn off your profile visibility, your account becomes private, ensuring that you won't appear in other users' feeds.\nKeep in mind that while your profile is hidden, you won't have access to search and discover other users on the app."
+        } else if sender.tag == 003 {
             msg = "Stay incognito with Shadow Mode, allowing you to discreetly browse profiles without leaving a trace on the “Viewed By” page.\nExclusive to premium users."
         } else if sender.tag == 004 {
             msg = "Please note that the email and phone number fields on this page are kept private and will not be visible to other users.\nThese fields serve solely for account verification purposes and will not be shared on your profile.\nTo enhance your networking experience, you can add a separate email address on your Edit Profile page."
-        } else if sender.tag == 003 {
-            msg = "The lock icon next to your phone number means that the number cannot be changed."
+        } else if sender.tag == 005 {
+            msg = "The lock icon next to your phone number means that the number cannot be changed.\nYour phone number is not visible to others."
         }
         
         AppFunctions.showToolTip(str: msg, btn: sender)
@@ -118,14 +174,21 @@ class EditProfileSetupExt: MainViewController {
             cell.proximeterLbl.text = "\(Int(round(slider.value[1]))) Meters"
             profileExtTV.rectForRow(at: IndexPath(row: 1, section: 0))
             proximity = Int(round(slider.value[1]))
+            
+            let mapCell : RideMapViewTVCell = profileExtTV.cellForRow(at: IndexPath(row: 3, section: 0)) as! RideMapViewTVCell
+            makeMapView(mapView: mapCell.mapView, radius: Double(proximity))
         }
     }
+
     
     @objc func toggleButtonPressed(_ sender: UISwitch) {
         let indexPath = IndexPath(row: sender.tag, section: 0)
         if let cell = profileExtTV.cellForRow(at: indexPath) as? MixHeaderTVCell {
             
-            if cell.toggleBtn.tag == 3 {
+            if cell.toggleBtn.tag == 5 {
+                isStatusDelete = cell.toggleBtn.isOn
+                //AppFunctions.setIsProfileVisble(value: cell.toggleBtn.isOn)
+            } else if cell.toggleBtn.tag == 6 {
                 isProfileVisible = cell.toggleBtn.isOn
                 //AppFunctions.setIsProfileVisble(value: cell.toggleBtn.isOn)
             } else {
@@ -147,6 +210,69 @@ class EditProfileSetupExt: MainViewController {
         
         return theDate
     }
+    
+    func makeMapView(mapView: GMSMapView, radius: Double) {
+        
+        if location.coordinate.latitude == 0.00 {
+            Logs.show(message: "No Location found")
+            return
+        }
+        
+        let pLat = location.coordinate.latitude
+        let pLong = location.coordinate.longitude
+        
+        let markerMyLoc : GMSMarker = GMSMarker()
+        let myLoc = CLLocationCoordinate2D(latitude: pLat, longitude: pLong)
+        let markerImage = UIImage(named: "pickup_icon")!.withRenderingMode(.alwaysOriginal)
+        let markerView = UIImageView(image: markerImage)
+        markerMyLoc.iconView = markerView
+        markerMyLoc.position = myLoc
+        /// uncomment this line below to show marker
+        /// markerMyLoc.map = mapView
+        
+        let bounds = getBounds(center: myLoc, radius: radius/2)
+        let update = GMSCameraUpdate.fit(bounds, withPadding: 50.0)
+        mapView.animate(with: update)
+        
+        // Remove old circle
+        circle?.map = nil
+        
+        // Create a circle
+        circle = GMSCircle()
+        circle!.position = CLLocationCoordinate2D(latitude: pLat, longitude: pLong)
+        circle!.radius = radius
+        circle!.fillColor = UIColor.blue.withAlphaComponent(0.1)
+        circle!.strokeColor = .blue.withAlphaComponent(0.5)
+        circle!.strokeWidth = 1
+        circle!.map = mapView
+        
+        mapView.isMyLocationEnabled = true
+        mapView.isTrafficEnabled = false
+        mapView.settings.compassButton = true
+        mapView.settings.myLocationButton = false
+        mapView.settings.setAllGesturesEnabled(true)
+        mapView.mapType = .normal
+        mapView.roundCorners(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 5)
+        
+        do {
+            if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
+                mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+                NSLog("Found style.json")
+            } else {
+                NSLog("Unable to find style.json")
+            }
+        } catch {
+            NSLog("One or more of the map styles failed to load. \(error)")
+        }
+    }
+
+    func getBounds(center: CLLocationCoordinate2D, radius: Double) -> GMSCoordinateBounds {
+        let region = MKCoordinateRegion(center: center, latitudinalMeters: radius * 2, longitudinalMeters: radius * 2)
+        let northEast = CLLocationCoordinate2D(latitude: region.center.latitude + (region.span.latitudeDelta / 2), longitude: region.center.longitude + (region.span.longitudeDelta / 2))
+        let southWest = CLLocationCoordinate2D(latitude: region.center.latitude - (region.span.latitudeDelta / 2), longitude: region.center.longitude - (region.span.longitudeDelta / 2))
+        return GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
+    }
+
     
 }
 //MARK: TableView Extention
@@ -171,8 +297,6 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
                 cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
 
-
-                
                 return cell
             case 1: // Proximity Lbl View
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
@@ -188,20 +312,51 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 cell.sliderValue = proximity
                 cell.slider.addTarget(self, action: #selector(sliderChanged(slider:)), for: .valueChanged) /// continuous changes
                 return cell
-            case 3: // Visibilty 1
+            case 3: // Map
+                let cell : RideMapViewTVCell = tableView.dequeueReusableCell(withIdentifier: "RideMapViewTVCell", for: indexPath) as! RideMapViewTVCell
+                if location.coordinate.latitude != 0.00 {
+                    makeMapView(mapView: cell.mapView, radius: Double(proximity))
+                    
+                    //let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+                    //cell.mapView.addGestureRecognizer(tap)
+                }
+                
+                return cell
+            case 4 : // Status
+                
+                let cell : GeneralTextviewTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralTextviewTVCell", for: indexPath) as! GeneralTextviewTVCell
+                
+                cell.generalTV.text = status.isEmpty ? "Add status here..." : status
+                        
+                cell.generalTV.delegate = self
+                cell.generalTV.textColor = UIColor(named: "Text grey")
+                
+                return cell
+            case 5: // status toggle
+                let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
+                cell.toggleBtnView.isHidden = false
+                cell.toggleLbl.text = "Remove status"
+                cell.toggleBtn.isOn = isStatusDelete
+                cell.toggleBtn.tag = indexPath.row
+                cell.toggleTooltipBtn.tag = 001
+                
+                cell.toggleTooltipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
+                cell.toggleBtn.addTarget(self, action: #selector(toggleButtonPressed(_:)), for: .valueChanged)
+                return cell
+            case 6: // Visibilty 1
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.toggleBtnView.isHidden = false
                 cell.toggleLbl.text = "Profile Visibility"
                 cell.toggleBtn.isOn = isProfileVisible
                 cell.toggleBtn.tag = indexPath.row
-                cell.toggleTooltipBtn.tag = 001
+                cell.toggleTooltipBtn.tag = 002
                 
                 cell.toggleTooltipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
                 cell.toggleBtn.addTarget(self, action: #selector(toggleButtonPressed(_:)), for: .valueChanged)
                 
                 
                 return cell
-            case 4: // Visibility 2
+            case 7: // Visibility 2
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.toggleBtnView.isHidden = false
                 cell.toggleLbl.text = "Shadow Mode"
@@ -209,7 +364,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 cell.toggleBtn.isEnabled = AppFunctions.isPremiumUser()
                 cell.toggleBtn.tag = indexPath.row
                 AppFunctions.setIsShadowMode(value: cell.toggleBtn.isOn)
-                cell.toggleTooltipBtn.tag = 002
+                cell.toggleTooltipBtn.tag = 003
                 
                 cell.toggleTooltipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
                 cell.toggleBtn.addTarget(self, action: #selector(toggleButtonPressed(_:)), for: .valueChanged)
@@ -242,7 +397,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                     cell.numberTF.text = phoneNum
                     cell.numberTF.placeholder = placeholderArray[indexPath.row]
                     AppFunctions.colorPlaceholder(tf: cell.numberTF, s: placeholderArray[indexPath.row])
-                    cell.lockTipBtn.tag = 003
+                    cell.lockTipBtn.tag = 004
                     
                     cell.lockTipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
                 } else {
@@ -254,7 +409,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                     cell.generalTF.placeholder = placeholderArray[indexPath.row]
                     AppFunctions.colorPlaceholder(tf: cell.generalTF, s: placeholderArray[indexPath.row])
                     
-                    cell.toolTipBtn.tag = 004
+                    cell.toolTipBtn.tag = 005
                     
                     cell.toolTipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
                     

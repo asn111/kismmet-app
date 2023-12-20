@@ -685,7 +685,8 @@ class APIService: NSObject {
     func updateSubscription(val: Int){
         
         if (self.isCheckReachable()) {
-            let pram: Parameters = ["subscriptionId": val]
+            let pram: Parameters = ["subscriptionId": val,
+                                    "subscriptionPlatform": "iOS"]
             
             AF.request("\(self.baseUrl)/api/Users/UpdateUserSubscription", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
                 .validate()

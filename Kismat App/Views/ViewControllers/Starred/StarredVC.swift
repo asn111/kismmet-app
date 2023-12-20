@@ -181,6 +181,7 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
                 cell.searchTF.tag = 010
                 
                 cell.swipeTxtLbl.text = "Swipe left or click the star to remove a user from list."
+                cell.searchTF.placeholder = "Search through users you starred.."
 
                 
                 cell.searchBtn.addTarget(self, action: #selector(searchBtnPressed(sender:)), for: .touchUpInside)

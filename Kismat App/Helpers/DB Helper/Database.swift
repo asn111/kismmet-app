@@ -38,6 +38,8 @@ class Database {
             if APIlist.workAddress != nil {userDB.workAddress = APIlist.workAddress}
             if APIlist.workTitle != nil {userDB.workTitle = APIlist.workTitle}
             if APIlist.about != nil {userDB.about = APIlist.about}
+            if APIlist.status != nil {userDB.status = APIlist.status}
+            if APIlist.disappearingStatus != nil {userDB.disappearingStatus = APIlist.disappearingStatus}
             if APIlist.proximity != nil {userDB.proximity = APIlist.proximity}
             if APIlist.isStarred != nil {userDB.isStarred = APIlist.isStarred}
             if APIlist.tags != nil {userDB.tags = APIlist.tags}

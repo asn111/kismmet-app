@@ -10,6 +10,7 @@ import CoreData
 import RxSwift
 import RealmSwift
 import Firebase
+import GoogleMaps
 import GoogleSignIn
 import AuthenticationServices
 
@@ -62,6 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func initializations() {
         
         //FirebaseApp.configure() //no GoogleService-Info.plist
+        GMSServices.provideAPIKey(googleMapAPIKey)
         registerNotification()
         UNUserNotificationCenter.current().delegate = self
 

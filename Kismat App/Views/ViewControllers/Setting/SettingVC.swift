@@ -56,6 +56,12 @@ class SettingVC: MainViewController {
         settingTV.separatorStyle = .none
         settingTV.delegate = self
         settingTV.dataSource = self
+        
+        let tabBarHeight: CGFloat = self.tabBarController?.tabBar.frame.height ?? 0
+        let bottomSpace: CGFloat = 5  // Adjust the value as needed
+        settingTV.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tabBarHeight + bottomSpace, right: 0)
+        
+        
         settingTV.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
         settingTV.register(UINib(nibName: "SettingTVCell", bundle: nil), forCellReuseIdentifier: "SettingTVCell")
     }
