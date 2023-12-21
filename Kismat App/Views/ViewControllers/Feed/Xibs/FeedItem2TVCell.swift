@@ -1,20 +1,14 @@
 //
-//  FeedItemsTVCell.swift
-//  Kismat App
+//  FeedItem2TVCell.swift
+//  Kismmet
 //
-//  Created by Ahsan Iqbal on 12/02/2023.
+//  Created by Ahsan Iqbal on 21/12/2023.
 //
 
 import UIKit
-import SDWebImage
 
-class FeedItemsTVCell: UITableViewCell {
+class FeedItem2TVCell: UITableViewCell {
 
-    @IBOutlet weak var statusView: RoundCornerView!
-    
-    @IBOutlet weak var mainViewHeightConst: NSLayoutConstraint!
-    @IBOutlet weak var statusLbl: fullyCustomLbl!
-    @IBOutlet weak var clockIV: UIImageView!
     @IBOutlet weak var blurView: RoundCornerView!
     @IBOutlet weak var nonBlurView: RoundCornerView!
     @IBOutlet weak var profilePicIV: RoundedImageView!
@@ -27,27 +21,14 @@ class FeedItemsTVCell: UITableViewCell {
     @IBOutlet weak var tagMoreLbl: fullyCustomLbl!
     @IBOutlet weak var professionLbl: fullyCustomLbl!
     
-    var isViewBHidden = false {
-        didSet {
-            statusView.isHidden = isViewBHidden
-        }
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-
     }
 
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        sd_cancelCurrentImageLoad()
-        profilePicIV.image = UIImage()
-        
-    }
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+
         // Configure the view for the selected state
     }
     

@@ -597,7 +597,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
                 cell.addBtn.isHidden = true
-                cell.headerLbl.text = "Link your social media accounts"
+                cell.headerLbl.text = "Link your social accounts"
                 cell.addBtn.isHidden = false
                 cell.addBtn.tag = indexPath.row
             
@@ -783,7 +783,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                     vc.canEdit = true
                 }
             } else {
-                AppFunctions.showSnackBar(str: "Please add Social account")
+                AppFunctions.showSnackBar(str: "Please add social account")
             }
         }
     }

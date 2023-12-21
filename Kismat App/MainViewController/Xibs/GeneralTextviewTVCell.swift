@@ -9,6 +9,8 @@ import UIKit
 
 class GeneralTextviewTVCell: UITableViewCell {
 
+    @IBOutlet weak var countLbl: fullyCustomLbl!
+    
     @IBOutlet weak var generalTV: FormTextView!
     
     override func awakeFromNib() {

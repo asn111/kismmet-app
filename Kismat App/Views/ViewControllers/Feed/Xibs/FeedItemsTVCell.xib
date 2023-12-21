@@ -20,9 +20,9 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="22m-mJ-RUv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="113"/>
+                        <rect key="frame" x="0.0" y="3" width="375" height="113"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3d2-gm-I7F" customClass="RoundCornerView" customModule="Kismmet" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3d2-gm-I7F" customClass="RoundCornerView" customModule="Kismmet" customModuleProvider="target">
                                 <rect key="frame" x="19" y="35" width="337" height="78"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="yQK-g4-Y4N">
@@ -101,7 +101,7 @@
                                 <rect key="frame" x="19" y="9" width="337" height="78"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="girl" translatesAutoresizingMaskIntoConstraints="NO" id="rdD-aP-nm5" customClass="RoundedImageView" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="7" width="60" height="60"/>
+                                        <rect key="frame" x="8" y="9" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="8tR-Hd-G39"/>
                                             <constraint firstAttribute="width" constant="60" id="WUM-Fl-PvA"/>
@@ -300,10 +300,10 @@
                                     <constraint firstItem="gAw-H9-ySR" firstAttribute="leading" secondItem="rdD-aP-nm5" secondAttribute="trailing" constant="8" symbolic="YES" id="WM2-iU-adY"/>
                                     <constraint firstAttribute="bottom" secondItem="J46-zJ-31Y" secondAttribute="bottom" constant="7" id="Wxp-U7-vZN"/>
                                     <constraint firstAttribute="leading" secondItem="Cmn-D6-cVd" secondAttribute="leading" id="bz8-tM-BbY"/>
-                                    <constraint firstAttribute="bottom" secondItem="rdD-aP-nm5" secondAttribute="bottom" constant="11" id="d4X-wC-ueb"/>
+                                    <constraint firstAttribute="bottom" secondItem="rdD-aP-nm5" secondAttribute="bottom" constant="9" id="d4X-wC-ueb"/>
                                     <constraint firstItem="rdD-aP-nm5" firstAttribute="leading" secondItem="Cmn-D6-cVd" secondAttribute="leading" constant="8" id="ftY-ua-SDz"/>
                                     <constraint firstItem="gAw-H9-ySR" firstAttribute="top" secondItem="Cmn-D6-cVd" secondAttribute="top" constant="8" id="kpJ-IK-9VY"/>
-                                    <constraint firstItem="rdD-aP-nm5" firstAttribute="top" secondItem="Cmn-D6-cVd" secondAttribute="top" constant="7" id="nR6-uY-fFx"/>
+                                    <constraint firstItem="rdD-aP-nm5" firstAttribute="top" secondItem="Cmn-D6-cVd" secondAttribute="top" constant="9" id="nR6-uY-fFx"/>
                                     <constraint firstItem="J46-zJ-31Y" firstAttribute="top" secondItem="0FG-gI-S06" secondAttribute="bottom" constant="7" id="quo-8V-QoZ"/>
                                     <constraint firstAttribute="bottom" secondItem="Cmn-D6-cVd" secondAttribute="bottom" id="v4W-cy-i5n"/>
                                     <constraint firstAttribute="height" constant="78" id="wom-6F-Id8"/>
@@ -342,8 +342,8 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="22m-mJ-RUv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="TfK-L5-hje"/>
-                    <constraint firstAttribute="bottom" secondItem="22m-mJ-RUv" secondAttribute="bottom" constant="7" id="qqT-Oh-uNX"/>
+                    <constraint firstItem="22m-mJ-RUv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="TfK-L5-hje"/>
+                    <constraint firstAttribute="bottom" secondItem="22m-mJ-RUv" secondAttribute="bottom" constant="4" id="qqT-Oh-uNX"/>
                     <constraint firstItem="22m-mJ-RUv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="rUw-i2-NzP"/>
                     <constraint firstAttribute="trailing" secondItem="22m-mJ-RUv" secondAttribute="trailing" id="t7P-mQ-dlh"/>
                 </constraints>
@@ -351,12 +351,16 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
+                <outlet property="clockIV" destination="Wgg-gv-h44" id="Isy-Lh-s1Z"/>
                 <outlet property="educationLbl" destination="0FG-gI-S06" id="vnS-Mi-B4P"/>
+                <outlet property="mainViewHeightConst" destination="uX0-76-WHs" id="Xd2-MD-Kqq"/>
                 <outlet property="nameLbl" destination="gAw-H9-ySR" id="du7-RQ-8VY"/>
                 <outlet property="nonBlurView" destination="Cmn-D6-cVd" id="IDq-qT-j5S"/>
                 <outlet property="professionLbl" destination="s8f-h1-ksg" id="H0y-4g-5Fk"/>
                 <outlet property="profilePicIV" destination="rdD-aP-nm5" id="vGw-Qz-cGn"/>
                 <outlet property="starLbl" destination="sDz-s6-jzy" id="g3z-SB-wFI"/>
+                <outlet property="statusLbl" destination="5Gg-ma-JlP" id="K9t-lS-emg"/>
+                <outlet property="statusView" destination="3d2-gm-I7F" id="ezd-3u-qVM"/>
                 <outlet property="tagLbl" destination="dQH-13-OzP" id="5aM-hC-b7Y"/>
                 <outlet property="tagMoreLbl" destination="TnH-JF-VfZ" id="fGb-sT-Qzi"/>
                 <outlet property="tagMoreView" destination="alr-5p-jbH" id="WPX-SU-gXc"/>
@@ -367,25 +371,25 @@
     </objects>
     <designables>
         <designable name="0FG-gI-S06">
-            <size key="intrinsicContentSize" width="211" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="122.66666666666667" height="12"/>
         </designable>
         <designable name="5Gg-ma-JlP">
-            <size key="intrinsicContentSize" width="458.66666666666669" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="329.33333333333331" height="14.333333333333334"/>
         </designable>
         <designable name="TnH-JF-VfZ">
-            <size key="intrinsicContentSize" width="53.666666666666664" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="37.666666666666664" height="14.333333333333334"/>
         </designable>
         <designable name="dQH-13-OzP">
-            <size key="intrinsicContentSize" width="104" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="72.666666666666671" height="14.333333333333334"/>
         </designable>
         <designable name="gAw-H9-ySR">
-            <size key="intrinsicContentSize" width="77.666666666666671" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="63" height="16.666666666666668"/>
         </designable>
         <designable name="rdD-aP-nm5">
             <size key="intrinsicContentSize" width="407" height="612"/>
         </designable>
         <designable name="s8f-h1-ksg">
-            <size key="intrinsicContentSize" width="139.66666666666666" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="115" height="16.666666666666668"/>
         </designable>
     </designables>
     <resources>

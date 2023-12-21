@@ -31,6 +31,8 @@ class EditProfileSetupExt: MainViewController {
     var name = ""
     var status = ""
 
+    var overlayView: UIView?
+
     var circle : GMSCircle?
     
     var userdbModel = UserDBModel()
@@ -136,8 +138,16 @@ class EditProfileSetupExt: MainViewController {
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        return self.textLimit(existingText: textView.text, newText: text, limit: 100)
+        let remainingCharacters = textLimit(existingText: textView.text, newText: text, limit: 100)
+        
+        // Update the UILabel in your UITableViewCell
+        let cell = profileExtTV.cellForRow(at: IndexPath(row: 4, section: 0)) as! GeneralTextviewTVCell
+        cell.countLbl.text = "\(100 - textView.text.count - 1) / 100 remaining"
+        
+        return remainingCharacters
     }
+
+
 
     private func textLimit(existingText: String?, newText: String, limit: Int) -> Bool {
         let text = existingText ?? ""
@@ -250,7 +260,7 @@ class EditProfileSetupExt: MainViewController {
         mapView.isTrafficEnabled = false
         mapView.settings.compassButton = true
         mapView.settings.myLocationButton = false
-        mapView.settings.setAllGesturesEnabled(true)
+        mapView.settings.setAllGesturesEnabled(false)
         mapView.mapType = .normal
         mapView.roundCorners(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 5)
         
@@ -271,6 +281,121 @@ class EditProfileSetupExt: MainViewController {
         let northEast = CLLocationCoordinate2D(latitude: region.center.latitude + (region.span.latitudeDelta / 2), longitude: region.center.longitude + (region.span.longitudeDelta / 2))
         let southWest = CLLocationCoordinate2D(latitude: region.center.latitude - (region.span.latitudeDelta / 2), longitude: region.center.longitude - (region.span.longitudeDelta / 2))
         return GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
+    }
+
+    func getCellForView(_ view: UIView) -> RideMapViewTVCell? {
+        var superView = view.superview
+        while superView != nil {
+            if let cell = superView as? RideMapViewTVCell {
+                return cell
+            }
+            superView = superView?.superview
+        }
+        return nil
+    }
+
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        guard let mapView = sender.view as? GMSMapView,
+              let cell = getCellForView(mapView),
+              let _ = profileExtTV.indexPath(for: cell) else { return }
+        
+        let cellFrameInSuperview = profileExtTV.convert(cell.frame, to: profileExtTV.superview)
+        
+        // Create an overlay view that covers the entire screen
+        overlayView = UIView(frame: self.view.bounds)
+        overlayView?.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        
+        let newView = UIView()
+        newView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width - 20, height: 450)
+        newView.center = overlayView!.center
+        newView.clipsToBounds = true
+        newView.layer.cornerRadius = 5
+        overlayView?.addSubview(newView)
+        
+        let newMapView = GMSMapView(frame: newView.bounds)
+        newMapView.camera = mapView.camera
+        
+        if location.coordinate.latitude == 0.00 {
+            Logs.show(message: "No Location found")
+            return
+        }
+        
+        let pLat = location.coordinate.latitude
+        let pLong = location.coordinate.longitude
+        
+        let markerMyLoc : GMSMarker = GMSMarker()
+        let myLoc = CLLocationCoordinate2D(latitude: pLat, longitude: pLong)
+        let markerImage = UIImage(named: "pickup_icon")!.withRenderingMode(.alwaysOriginal)
+        let markerView = UIImageView(image: markerImage)
+        markerMyLoc.iconView = markerView
+        markerMyLoc.position = myLoc
+        /// uncomment this line below to show marker
+        /// markerMyLoc.map = mapView
+        
+        let bounds = getBounds(center: myLoc, radius: Double(proximity)/2)
+        let update = GMSCameraUpdate.fit(bounds, withPadding: 50.0)
+        newMapView.animate(with: update)
+        
+        // Remove old circle
+        circle?.map = nil
+        
+        // Create a circle
+        circle = GMSCircle()
+        circle!.position = CLLocationCoordinate2D(latitude: pLat, longitude: pLong)
+        circle!.radius = Double(proximity)
+        circle!.fillColor = UIColor.blue.withAlphaComponent(0.1)
+        circle!.strokeColor = .blue.withAlphaComponent(0.5)
+        circle!.strokeWidth = 1
+        circle!.map = newMapView
+        
+        newMapView.isMyLocationEnabled = true
+        newMapView.isTrafficEnabled = false
+        newMapView.settings.compassButton = true
+        newMapView.settings.myLocationButton = true
+        newMapView.settings.setAllGesturesEnabled(true)
+        newMapView.mapType = .normal
+        newMapView.roundCorners(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 5)
+        
+        do {
+            if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
+                newMapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+                NSLog("Found style.json")
+            } else {
+                NSLog("Unable to find style.json")
+            }
+        } catch {
+            NSLog("One or more of the map styles failed to load. \(error)")
+        }
+        
+        newView.addSubview(newMapView)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleOverlayTap(_:)))
+        overlayView?.addGestureRecognizer(tapGestureRecognizer)
+        
+        view.addSubview(overlayView!)
+        
+        // Animate the map view to expand from the cell's frame to the center of the screen
+        overlayView?.alpha = 0
+        newMapView.frame = cellFrameInSuperview
+        UIView.animate(withDuration: 0.3) {
+            self.overlayView?.alpha = 1
+            newMapView.frame = newView.bounds
+        }
+    }
+
+    
+    @objc func handleOverlayTap(_ sender: UITapGestureRecognizer) {
+        guard let overlayView = overlayView else { return }
+        
+        // Animate the overlay view to fade out, then remove it
+        UIView.animate(withDuration: 0.3, animations: {
+            overlayView.alpha = 0
+        }) { _ in
+            overlayView.removeFromSuperview()
+            self.profileExtTV.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .none)
+            self.overlayView = nil
+        }
     }
 
     
@@ -317,8 +442,9 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 if location.coordinate.latitude != 0.00 {
                     makeMapView(mapView: cell.mapView, radius: Double(proximity))
                     
-                    //let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-                    //cell.mapView.addGestureRecognizer(tap)
+                    let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+                    cell.mapView.addGestureRecognizer(tap)
+
                 }
                 
                 return cell
@@ -327,7 +453,8 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 let cell : GeneralTextviewTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralTextviewTVCell", for: indexPath) as! GeneralTextviewTVCell
                 
                 cell.generalTV.text = status.isEmpty ? "Add status here..." : status
-                        
+                    
+                cell.countLbl.isHidden = false
                 cell.generalTV.delegate = self
                 cell.generalTV.textColor = UIColor(named: "Text grey")
                 

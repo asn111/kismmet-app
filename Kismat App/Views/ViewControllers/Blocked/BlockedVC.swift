@@ -40,7 +40,7 @@ class BlockedVC: MainViewController {
         blockedTV.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tabBarHeight + bottomSpace, right: 0)
         
         blockedTV.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
-        blockedTV.register(UINib(nibName: "FeedItemsTVCell", bundle: nil), forCellReuseIdentifier: "FeedItemsTVCell")
+        blockedTV.register(UINib(nibName: "FeedItem2TVCell", bundle: nil), forCellReuseIdentifier: "FeedItem2TVCell")
         blockedTV.register(UINib(nibName: "VisibilityOffTVCell", bundle: nil), forCellReuseIdentifier: "VisibilityOffTVCell")
 
     }
@@ -200,7 +200,7 @@ extension BlockedVC : UITableViewDelegate, UITableViewDataSource {
                 if users.isEmpty {
                     cell = tableView.dequeueReusableCell(withIdentifier: "VisibilityOffTVCell", for: indexPath) as! VisibilityOffTVCell
                 } else {
-                    cell = tableView.dequeueReusableCell(withIdentifier: "FeedItemsTVCell", for: indexPath) as! FeedItemsTVCell
+                    cell = tableView.dequeueReusableCell(withIdentifier: "FeedItem2TVCell", for: indexPath) as! FeedItem2TVCell
                 }
                 
                 if let visiblityCell = cell as? VisibilityOffTVCell {
@@ -210,7 +210,7 @@ extension BlockedVC : UITableViewDelegate, UITableViewDataSource {
                     visiblityCell.textLbl.text = "You currently have no blocked users."
                     
                     
-                } else if let feedCell = cell as? FeedItemsTVCell {
+                } else if let feedCell = cell as? FeedItem2TVCell {
                     
                     let user = users[indexPath.row - 1]
                     feedCell.nameLbl.text = user.userName

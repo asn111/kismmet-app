@@ -242,16 +242,21 @@ extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
                 
             default:
                 
-                
                 var cell = UITableViewCell()
+                var user = UserModel()
+                if users.count > 0 {
+                    user = users[indexPath.row - 1]
+                }
                 
                 if !AppFunctions.isProfileVisble(){
                     cell = tableView.dequeueReusableCell(withIdentifier: "VisibilityOffTVCell", for: indexPath) as! VisibilityOffTVCell
                 } else {
                     if users.isEmpty {
                         cell = tableView.dequeueReusableCell(withIdentifier: "VisibilityOffTVCell", for: indexPath) as! VisibilityOffTVCell
-                    } else {
+                    } else if user.status != nil {
                         cell = tableView.dequeueReusableCell(withIdentifier: "FeedItemsTVCell", for: indexPath) as! FeedItemsTVCell
+                    } else {
+                        cell = tableView.dequeueReusableCell(withIdentifier: "FeedItem2TVCell", for: indexPath) as! FeedItem2TVCell
                     }
                 }
                 
@@ -276,10 +281,8 @@ extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
                         visiblityCell.textLbl.text = "Your visibility is off, Please change your visibility to on to view people who have viewed profile."
                     }
                     
-                    
                 } else if let feedCell = cell as? FeedItemsTVCell {
-                                        
-                    let user = users[indexPath.row - 1]
+                    
                     feedCell.nameLbl.text = user.userName
                     feedCell.professionLbl.text = user.workTitle
                     feedCell.educationLbl.text = user.workAddress
@@ -309,9 +312,51 @@ extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
                     feedCell.starLbl.isUserInteractionEnabled = true
                     feedCell.starLbl.addGestureRecognizer(tap)
                     
+                    
+                    feedCell.isViewBHidden = false
+                    feedCell.statusLbl.text = user.status.isEmpty ? "currently no active status..." : user.status
+                    feedCell.clockIV.isHidden = user.disappearingStatus
+                    
+                    
+                    
+                } else if let feedCell2 = cell as? FeedItem2TVCell {
+                    
+                    feedCell2.nameLbl.text = user.userName
+                    feedCell2.professionLbl.text = user.workTitle
+                    feedCell2.educationLbl.text = user.workAddress
+                    feedCell2.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+                    
+                    if user.tags != nil && user.tags != "" {
+                        if !user.tags.contains(",") {
+                            feedCell2.tagLbl.text = user.tags
+                            feedCell2.tagMoreView.isHidden = true
+                        } else {
+                            feedCell2.tagMoreView.isHidden = false
+                            let split = user.tags.split(separator: ",")
+                            feedCell2.tagLbl.text = "\(split[0])"
+                            feedCell2.tagMoreLbl.text = "\(split.count - 1) more"
+                            
+                        }
+                    }
+                    
+                    if user.profilePicture != "" && user.profilePicture != nil {
+                        let imageUrl = URL(string: user.profilePicture)
+                        feedCell2.profilePicIV?.sd_setImage(with: imageUrl , placeholderImage: UIImage(named: "placeholder")) { (image, error, imageCacheType, url) in }
+                    } else {
+                        feedCell2.profilePicIV.image = UIImage(named: "placeholder")
+                    }
+                    
+                    let tap = UITapGestureRecognizer(target: self, action: #selector(starTapFunction(sender:)))
+                    feedCell2.starLbl.isUserInteractionEnabled = true
+                    feedCell2.starLbl.addGestureRecognizer(tap)
+                    
+                    
                 }
                 
+                
+                
                 return cell
+                
         }
     }
     

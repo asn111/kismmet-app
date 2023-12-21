@@ -212,11 +212,21 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
             default:
                 
                 var cell = UITableViewCell()
+                var user = UserModel()
+                if users.count > 0 {
+                    user = users[indexPath.row - 1]
+                }
                 
-                if users.isEmpty {
+                if !AppFunctions.isProfileVisble(){
                     cell = tableView.dequeueReusableCell(withIdentifier: "VisibilityOffTVCell", for: indexPath) as! VisibilityOffTVCell
                 } else {
-                    cell = tableView.dequeueReusableCell(withIdentifier: "FeedItemsTVCell", for: indexPath) as! FeedItemsTVCell
+                    if users.isEmpty {
+                        cell = tableView.dequeueReusableCell(withIdentifier: "VisibilityOffTVCell", for: indexPath) as! VisibilityOffTVCell
+                    } else if user.status != nil {
+                        cell = tableView.dequeueReusableCell(withIdentifier: "FeedItemsTVCell", for: indexPath) as! FeedItemsTVCell
+                    } else {
+                        cell = tableView.dequeueReusableCell(withIdentifier: "FeedItem2TVCell", for: indexPath) as! FeedItem2TVCell
+                    }
                 }
                 
                 if let visiblityCell = cell as? VisibilityOffTVCell {
@@ -226,9 +236,9 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
                     visiblityCell.textLbl.text = "At this time, there are no users that you have marked starred or matching your search criteria."
                     
                     
+                    
                 } else if let feedCell = cell as? FeedItemsTVCell {
                     
-                    let user = users[indexPath.row - 1]
                     feedCell.nameLbl.text = user.userName
                     feedCell.professionLbl.text = user.workTitle
                     feedCell.educationLbl.text = user.workAddress
@@ -253,10 +263,46 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
                     } else {
                         feedCell.profilePicIV.image = UIImage(named: "placeholder")
                     }
-
+                    
+                    feedCell.isViewBHidden = false
+                    feedCell.statusLbl.text = user.status.isEmpty ? "currently no active status..." : user.status
+                    feedCell.clockIV.isHidden = user.disappearingStatus
+                    
+                    
+                    
+                } else if let feedCell2 = cell as? FeedItem2TVCell {
+                    
+                    feedCell2.nameLbl.text = user.userName
+                    feedCell2.professionLbl.text = user.workTitle
+                    feedCell2.educationLbl.text = user.workAddress
+                    feedCell2.starLbl.image = UIImage(systemName: "star.fill")
+                    
+                    if user.tags != nil && user.tags != "" {
+                        if !user.tags.contains(",") {
+                            feedCell2.tagLbl.text = user.tags
+                            feedCell2.tagMoreView.isHidden = true
+                        } else {
+                            feedCell2.tagMoreView.isHidden = false
+                            let split = user.tags.split(separator: ",")
+                            feedCell2.tagLbl.text = "\(split[0])"
+                            feedCell2.tagMoreLbl.text = "\(split.count - 1) more"
+                            
+                        }
+                    }
+                    
+                    if user.profilePicture != "" && user.profilePicture != nil {
+                        let imageUrl = URL(string: user.profilePicture)
+                        feedCell2.profilePicIV?.sd_setImage(with: imageUrl , placeholderImage: UIImage(named: "placeholder")) { (image, error, imageCacheType, url) in }
+                    } else {
+                        feedCell2.profilePicIV.image = UIImage(named: "placeholder")
+                    }
+                    
                 }
                 
+                
+                
                 return cell
+                
         }
     }
     
