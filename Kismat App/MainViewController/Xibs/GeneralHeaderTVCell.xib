@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -254,47 +254,24 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cn8-Nl-EBJ">
                                 <rect key="frame" x="8" y="76" width="359" height="103"/>
                                 <subviews>
-                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ba0-Xg-o6E" customClass="RoundCornerView" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="287" y="33" width="64" height="26"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Icb-FA-TAT" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="64" height="26"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="26" id="nhg-iS-BmZ"/>
-                                                    <constraint firstAttribute="width" constant="64" id="o8J-5o-h8J"/>
-                                                </constraints>
-                                                <color key="tintColor" name="warning"/>
-                                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="star.fill" catalog="system"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="YES"/>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
-                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="4"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </button>
-                                        </subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vxe-SF-NZ5" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
+                                        <rect key="frame" x="323" y="20" width="26" height="26"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="Icb-FA-TAT" secondAttribute="bottom" id="GRa-fT-kZ3"/>
-                                            <constraint firstItem="Icb-FA-TAT" firstAttribute="leading" secondItem="Ba0-Xg-o6E" secondAttribute="leading" id="SGY-hI-sLm"/>
-                                            <constraint firstItem="Icb-FA-TAT" firstAttribute="top" secondItem="Ba0-Xg-o6E" secondAttribute="top" id="cdB-ry-Ddu"/>
-                                            <constraint firstAttribute="trailing" secondItem="Icb-FA-TAT" secondAttribute="trailing" id="pji-2I-n6U"/>
-                                            <constraint firstAttribute="width" constant="64" id="sOr-Bh-vBM"/>
-                                            <constraint firstAttribute="height" constant="26" id="upN-aO-DoG"/>
+                                            <constraint firstAttribute="width" constant="26" id="HZz-J9-40C"/>
+                                            <constraint firstAttribute="height" constant="26" id="Rsd-AZ-oXx"/>
                                         </constraints>
+                                        <color key="tintColor" name="warning"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="star.fill" catalog="system"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="8"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                    </view>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rice University, Houston TX" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzF-aI-iJF" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="98" y="45" width="253" height="17.666666666666671"/>
+                                        <rect key="frame" x="98" y="45" width="253" height="20.333333333333329"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="253" id="Zgs-uT-uNZ"/>
                                         </constraints>
@@ -312,7 +289,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Professor" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOG-bk-97u" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="98" y="60.66666666666665" width="253" height="17.666666666666664"/>
+                                        <rect key="frame" x="98" y="63.33333333333335" width="253" height="20.333333333333336"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="253" id="niB-xs-mxA"/>
                                         </constraints>
@@ -377,20 +354,19 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="Ba0-Xg-o6E" firstAttribute="leading" secondItem="dpP-cf-H6r" secondAttribute="trailing" constant="-29" id="3GD-UH-Emc"/>
                                     <constraint firstItem="nzF-aI-iJF" firstAttribute="top" secondItem="cn8-Nl-EBJ" secondAttribute="top" constant="45" id="4gZ-Ck-C2G"/>
                                     <constraint firstItem="dpP-cf-H6r" firstAttribute="leading" secondItem="bc3-O3-AQ1" secondAttribute="trailing" constant="15" id="4wQ-cl-FVk"/>
+                                    <constraint firstItem="vxe-SF-NZ5" firstAttribute="leading" secondItem="dpP-cf-H6r" secondAttribute="trailing" constant="7" id="AME-mo-fV4"/>
                                     <constraint firstItem="dpP-cf-H6r" firstAttribute="top" secondItem="cn8-Nl-EBJ" secondAttribute="top" constant="20" id="Gka-ED-7Xx"/>
                                     <constraint firstItem="HOG-bk-97u" firstAttribute="top" secondItem="nzF-aI-iJF" secondAttribute="bottom" constant="-2" id="HAY-KS-sQB"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ba0-Xg-o6E" secondAttribute="bottom" constant="44" id="JsG-hh-Kc8"/>
-                                    <constraint firstItem="Ba0-Xg-o6E" firstAttribute="top" secondItem="cn8-Nl-EBJ" secondAttribute="top" constant="33" id="JuP-UL-yJk"/>
                                     <constraint firstItem="HOG-bk-97u" firstAttribute="leading" secondItem="bc3-O3-AQ1" secondAttribute="trailing" constant="15" id="Mh7-qV-rLn"/>
+                                    <constraint firstItem="vxe-SF-NZ5" firstAttribute="top" secondItem="cn8-Nl-EBJ" secondAttribute="top" constant="20" symbolic="YES" id="PhS-Yv-buw"/>
                                     <constraint firstItem="bc3-O3-AQ1" firstAttribute="leading" secondItem="cn8-Nl-EBJ" secondAttribute="leading" constant="18" id="TMc-hz-qco"/>
                                     <constraint firstAttribute="bottom" secondItem="bc3-O3-AQ1" secondAttribute="bottom" constant="20" id="Wdl-1w-M5M"/>
                                     <constraint firstItem="bc3-O3-AQ1" firstAttribute="top" secondItem="cn8-Nl-EBJ" secondAttribute="top" constant="18" id="XDK-7Z-5lo"/>
                                     <constraint firstItem="nzF-aI-iJF" firstAttribute="leading" secondItem="bc3-O3-AQ1" secondAttribute="trailing" constant="15" id="eHu-Jk-dY9"/>
+                                    <constraint firstAttribute="trailing" secondItem="vxe-SF-NZ5" secondAttribute="trailing" constant="10" id="fQ5-3v-MMX"/>
                                     <constraint firstAttribute="height" constant="103" id="gcb-vs-XfG"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ba0-Xg-o6E" secondAttribute="trailing" constant="8" id="jmB-TO-4Zx"/>
                                     <constraint firstAttribute="width" constant="359" id="q11-r0-cBj"/>
                                 </constraints>
                             </view>
@@ -592,8 +568,7 @@
                 <outlet property="professionLbl" destination="HOG-bk-97u" id="r9f-EM-y21"/>
                 <outlet property="profilePicBtn" destination="bc3-O3-AQ1" id="JkI-ZV-GN9"/>
                 <outlet property="profileView" destination="cn8-Nl-EBJ" id="Z9o-6i-PeL"/>
-                <outlet property="ratingView" destination="Ba0-Xg-o6E" id="YMS-bZ-IIJ"/>
-                <outlet property="rattingBtn" destination="Icb-FA-TAT" id="1rz-JU-zVR"/>
+                <outlet property="rattingBtn" destination="vxe-SF-NZ5" id="dQv-A7-r9q"/>
                 <outlet property="searchBtn" destination="xIG-8U-5nc" id="UsV-3R-AUg"/>
                 <outlet property="searchContraint" destination="XdJ-1V-e88" id="SYI-gk-fBd"/>
                 <outlet property="searchTF" destination="Xet-Wr-pR1" id="m59-jb-5gp"/>
@@ -615,28 +590,25 @@
     </objects>
     <designables>
         <designable name="6BT-Eq-hcD">
-            <size key="intrinsicContentSize" width="128" height="36.666666666666664"/>
+            <size key="intrinsicContentSize" width="73.333333333333329" height="20.333333333333332"/>
         </designable>
         <designable name="A8B-bt-df2">
-            <size key="intrinsicContentSize" width="271.66666666666669" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="337.33333333333331" height="20.333333333333332"/>
         </designable>
         <designable name="Baj-Qv-s2c">
             <size key="intrinsicContentSize" width="162" height="152"/>
         </designable>
         <designable name="Cf5-Cq-dE3">
-            <size key="intrinsicContentSize" width="148.33333333333334" height="33"/>
+            <size key="intrinsicContentSize" width="81" height="20.333333333333332"/>
         </designable>
         <designable name="HOG-bk-97u">
-            <size key="intrinsicContentSize" width="70.333333333333329" height="17.666666666666668"/>
-        </designable>
-        <designable name="Icb-FA-TAT">
-            <size key="intrinsicContentSize" width="30" height="20.666666666666668"/>
+            <size key="intrinsicContentSize" width="73" height="20.333333333333332"/>
         </designable>
         <designable name="bc3-O3-AQ1">
             <size key="intrinsicContentSize" width="407" height="612"/>
         </designable>
         <designable name="cjy-qw-b2P">
-            <size key="intrinsicContentSize" width="19.666666666666668" height="19.333333333333332"/>
+            <size key="intrinsicContentSize" width="19.666666666666668" height="22"/>
         </designable>
         <designable name="dX8-SZ-fyC">
             <size key="intrinsicContentSize" width="48" height="48"/>
@@ -645,22 +617,22 @@
             <size key="intrinsicContentSize" width="54" height="54"/>
         </designable>
         <designable name="dpP-cf-H6r">
-            <size key="intrinsicContentSize" width="173" height="21.333333333333332"/>
+            <size key="intrinsicContentSize" width="151.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="j4f-gS-nOe">
-            <size key="intrinsicContentSize" width="285" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="362.33333333333331" height="20.333333333333332"/>
         </designable>
         <designable name="nax-I1-dp4">
             <size key="intrinsicContentSize" width="162" height="152"/>
         </designable>
         <designable name="nzF-aI-iJF">
-            <size key="intrinsicContentSize" width="203.33333333333334" height="17.666666666666668"/>
+            <size key="intrinsicContentSize" width="211" height="20.333333333333332"/>
         </designable>
         <designable name="pXu-df-J1k">
-            <size key="intrinsicContentSize" width="164" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="207.66666666666666" height="20.333333333333332"/>
         </designable>
         <designable name="v2n-8t-cBj">
-            <size key="intrinsicContentSize" width="237" height="23.666666666666668"/>
+            <size key="intrinsicContentSize" width="207.66666666666666" height="20.333333333333332"/>
         </designable>
     </designables>
     <resources>

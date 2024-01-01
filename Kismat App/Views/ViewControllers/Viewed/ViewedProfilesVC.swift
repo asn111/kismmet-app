@@ -57,6 +57,7 @@ class ViewedProfilesVC: MainViewController {
         
         viewedListTV.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
         viewedListTV.register(UINib(nibName: "FeedItemsTVCell", bundle: nil), forCellReuseIdentifier: "FeedItemsTVCell")
+        viewedListTV.register(UINib(nibName: "FeedItem2TVCell", bundle: nil), forCellReuseIdentifier: "FeedItem2TVCell")
         viewedListTV.register(UINib(nibName: "VisibilityOffTVCell", bundle: nil), forCellReuseIdentifier: "VisibilityOffTVCell")
 
     }
@@ -315,7 +316,7 @@ extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
                     
                     feedCell.isViewBHidden = false
                     feedCell.statusLbl.text = user.status.isEmpty ? "currently no active status..." : user.status
-                    feedCell.clockIV.isHidden = user.disappearingStatus
+                    feedCell.clockIV.isHidden = !user.disappearingStatus
                     
                     
                     

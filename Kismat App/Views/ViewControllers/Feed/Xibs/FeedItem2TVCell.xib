@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -89,11 +89,11 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Vca-51-Ogp">
-                                        <rect key="frame" x="304" y="19.333333333333336" width="25" height="24.666666666666664"/>
+                                        <rect key="frame" x="304" y="26.333333333333332" width="25" height="24.666666666666668"/>
                                         <color key="tintColor" name="warning"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="25" id="fXS-5l-xHe"/>
-                                            <constraint firstAttribute="height" constant="25" id="gbg-lx-ciq"/>
+                                            <constraint firstAttribute="height" constant="25" id="dAh-8A-09u"/>
+                                            <constraint firstAttribute="width" constant="25" id="x5w-Ga-A0s"/>
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="moH-ve-np3">
@@ -189,10 +189,9 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bachelor, Student " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLy-u7-xbI" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="204" y="48" width="125" height="21"/>
+                                        <rect key="frame" x="189.33333333333337" y="48" width="139.66666666666663" height="21"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="125" id="GbW-Ul-uYR"/>
-                                            <constraint firstAttribute="height" constant="21" id="qVW-tw-NVY"/>
+                                            <constraint firstAttribute="height" constant="21" id="vuj-kr-rQx"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -212,16 +211,18 @@
                                 <color key="backgroundColor" name="Base White"/>
                                 <constraints>
                                     <constraint firstItem="moH-ve-np3" firstAttribute="top" secondItem="0eO-wQ-6fx" secondAttribute="bottom" constant="7" id="01h-m7-veE"/>
-                                    <constraint firstItem="gLy-u7-xbI" firstAttribute="top" secondItem="0eO-wQ-6fx" secondAttribute="bottom" constant="8" id="0W3-Da-ymM"/>
+                                    <constraint firstItem="Vca-51-Ogp" firstAttribute="leading" secondItem="0eO-wQ-6fx" secondAttribute="trailing" constant="8" symbolic="YES" id="4N1-df-Nna"/>
                                     <constraint firstItem="F7S-op-5qg" firstAttribute="leading" secondItem="1RT-vZ-JaN" secondAttribute="leadingMargin" id="DTO-HT-6vv"/>
-                                    <constraint firstItem="F7S-op-5qg" firstAttribute="bottom" secondItem="gLy-u7-xbI" secondAttribute="bottom" id="Egd-Wi-ZQU"/>
-                                    <constraint firstItem="Vca-51-Ogp" firstAttribute="trailing" secondItem="gLy-u7-xbI" secondAttribute="trailing" id="JRH-IX-qdL"/>
-                                    <constraint firstItem="0eO-wQ-6fx" firstAttribute="firstBaseline" secondItem="Vca-51-Ogp" secondAttribute="firstBaseline" id="LDK-bH-KfG"/>
+                                    <constraint firstAttribute="trailing" secondItem="gLy-u7-xbI" secondAttribute="trailing" constant="8" id="Gmd-E9-4KR"/>
+                                    <constraint firstItem="gLy-u7-xbI" firstAttribute="top" secondItem="0eO-wQ-6fx" secondAttribute="bottom" constant="8" symbolic="YES" id="IRI-vY-fkc"/>
                                     <constraint firstItem="ejV-6Z-Jem" firstAttribute="leading" secondItem="F7S-op-5qg" secondAttribute="trailing" constant="8" symbolic="YES" id="LgF-Jk-Xc8"/>
-                                    <constraint firstItem="gLy-u7-xbI" firstAttribute="leading" secondItem="moH-ve-np3" secondAttribute="trailing" constant="3" id="NKl-2d-iOA"/>
+                                    <constraint firstAttribute="bottom" secondItem="Vca-51-Ogp" secondAttribute="bottom" constant="26.329999999999998" id="NPB-MR-eMF"/>
                                     <constraint firstItem="0eO-wQ-6fx" firstAttribute="leading" secondItem="F7S-op-5qg" secondAttribute="trailing" constant="8" symbolic="YES" id="crN-hP-k2E"/>
                                     <constraint firstItem="0eO-wQ-6fx" firstAttribute="top" secondItem="ejV-6Z-Jem" secondAttribute="bottom" constant="1" id="k8x-qQ-6ax"/>
+                                    <constraint firstAttribute="bottom" secondItem="gLy-u7-xbI" secondAttribute="bottom" constant="9" id="pFW-mF-sX5"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vca-51-Ogp" secondAttribute="trailing" constant="8" id="pfS-G4-MGm"/>
                                     <constraint firstItem="moH-ve-np3" firstAttribute="leading" secondItem="F7S-op-5qg" secondAttribute="trailing" constant="8" symbolic="YES" id="tUN-vc-ynO"/>
+                                    <constraint firstItem="Vca-51-Ogp" firstAttribute="top" secondItem="1RT-vZ-JaN" secondAttribute="top" constant="26.670000000000002" id="z4a-FC-Fpd"/>
                                     <constraint firstItem="F7S-op-5qg" firstAttribute="centerY" secondItem="1RT-vZ-JaN" secondAttribute="centerY" id="zby-OL-iiU"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -250,7 +251,6 @@
                             <constraint firstAttribute="height" constant="94" id="nzw-xi-L1i"/>
                             <constraint firstItem="1RT-vZ-JaN" firstAttribute="top" secondItem="n0f-FX-3Qg" secondAttribute="top" constant="8" id="pjL-Xn-shD"/>
                             <constraint firstAttribute="trailing" secondItem="1RT-vZ-JaN" secondAttribute="trailing" constant="19" id="sFQ-AC-i8x"/>
-                            <constraint firstAttribute="width" constant="375" id="uQ5-F1-HcS"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -281,22 +281,22 @@
     </objects>
     <designables>
         <designable name="0eO-wQ-6fx">
-            <size key="intrinsicContentSize" width="122.66666666666667" height="12"/>
+            <size key="intrinsicContentSize" width="211" height="20.333333333333332"/>
         </designable>
         <designable name="1rx-zU-ucu">
-            <size key="intrinsicContentSize" width="37.666666666666664" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="53.666666666666664" height="20.333333333333332"/>
         </designable>
         <designable name="F7S-op-5qg">
             <size key="intrinsicContentSize" width="407" height="612"/>
         </designable>
         <designable name="Xr0-6b-sUq">
-            <size key="intrinsicContentSize" width="72.666666666666671" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="104" height="20.333333333333332"/>
         </designable>
         <designable name="ejV-6Z-Jem">
-            <size key="intrinsicContentSize" width="63" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="77.666666666666671" height="20.333333333333332"/>
         </designable>
         <designable name="gLy-u7-xbI">
-            <size key="intrinsicContentSize" width="115" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="139.66666666666666" height="20.333333333333332"/>
         </designable>
     </designables>
     <resources>
@@ -318,7 +318,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

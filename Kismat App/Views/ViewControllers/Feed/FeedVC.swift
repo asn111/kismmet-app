@@ -191,7 +191,7 @@ class FeedVC: MainViewController {
     @objc
     func starTapFunction(sender:UITapGestureRecognizer) {
         if let image = sender.view {
-            if let cell = image.superview?.superview?.superview?.superview  as? FeedItemsTVCell {
+            if let cell = image.superview?.superview?.superview?.superview  as? FeedItem2TVCell {
                 guard let indexPath = self.feedTV.indexPath(for: cell) else {return}
                 print("index path =\(indexPath)")
                 if cell.starLbl.image == UIImage(systemName: "star.fill") {
@@ -430,7 +430,7 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                     
                     feedCell.isViewBHidden = false
                     feedCell.statusLbl.text = user.status.isEmpty ? "currently no active status..." : user.status
-                    feedCell.clockIV.isHidden = user.disappearingStatus
+                    feedCell.clockIV.isHidden = !user.disappearingStatus
                     
                     
                     

@@ -293,22 +293,29 @@ extension UITextField {
         last.addTarget(last, action: #selector(UIResponder.resignFirstResponder), for: .editingDidEndOnExit)
     }
     
-    /*func addDoneButtonToKeyboard(myAction:Selector?){
-        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
-        doneToolbar.barStyle = UIBarStyle.default
-        
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: myAction)
-        
-        var items = [UIBarButtonItem]()
-        items.append(flexSpace)
-        items.append(done)
-        
-        doneToolbar.items = items
-        doneToolbar.sizeToFit()
-        
-        self.inputAccessoryView = doneToolbar
-    }*/
+    fileprivate func setPasswordToggleImage(_ button: UIButton) {
+        if(isSecureTextEntry){
+            button.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
+        }else{
+            button.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+            
+        }
+    }
+    
+    func enablePasswordToggle(){
+        let button = UIButton(type: .custom)
+        setPasswordToggleImage(button)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
+        button.frame = CGRect(x: CGFloat(self.frame.size.width - 25), y: CGFloat(5), width: CGFloat(25), height: CGFloat(25))
+        button.tintColor = UIColor(named: "Secondary Grey")
+        button.addTarget(self, action: #selector(self.togglePasswordView), for: .touchUpInside)
+        self.rightView = button
+        self.rightViewMode = .always
+    }
+    @IBAction func togglePasswordView(_ sender: Any) {
+        self.isSecureTextEntry = !self.isSecureTextEntry
+        setPasswordToggleImage(sender as! UIButton)
+    }
     
 }
 
@@ -361,8 +368,9 @@ extension UITextView : UITextViewDelegate
         
         placeholderLabel.font = UIFont(name: "Roboto", size: 14)
         placeholderLabel.textColor = UIColor(named: "Text grey")
-        //placeholderLabel.tag = 100
-        
+        placeholderLabel.tag = 100
+        placeholderLabel.isHidden = !self.text.isEmpty
+
         placeholderLabel.isHidden = self.text.count > 0
         
         self.addSubview(placeholderLabel)

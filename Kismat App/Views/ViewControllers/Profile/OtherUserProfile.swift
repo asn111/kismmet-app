@@ -278,7 +278,7 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 cell.profileView.isHidden = false
                 cell.headerLogo.isHidden = false
                 cell.headerView.isHidden = false
-                cell.ratingView.isHidden = false
+                cell.rattingBtn.isHidden = false
 
                 cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
                 
@@ -328,7 +328,7 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 
                 if userModel.status != nil {
                     cell.statusLbl.text = userModel.status.isEmpty ? "currently no active status..." : userModel.status
-                    cell.clockIV.isHidden = userModel.disappearingStatus
+                    cell.clockIV.isHidden = !userModel.disappearingStatus
                 } else {
                     cell.statusLbl.text = "currently no active status..."
                     cell.clockIV.isHidden = true

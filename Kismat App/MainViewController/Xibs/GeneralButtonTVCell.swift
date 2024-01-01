@@ -11,6 +11,11 @@ class GeneralButtonTVCell: UITableViewCell {
 
     @IBOutlet weak var arrowView: RoundCornerView!
     @IBOutlet weak var genBtn: RoundCornerButton!
+    
+    @IBOutlet weak var genBtnView: UIView!
+    
+    @IBOutlet weak var newBtn: RoundCornerButton!
+    @IBOutlet weak var newBtnView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

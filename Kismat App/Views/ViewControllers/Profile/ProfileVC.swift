@@ -213,7 +213,7 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
                 cell.headerLogo.isHidden = true
                 cell.toolTipBtn.isHidden = true
-                cell.ratingView.isHidden = true
+                cell.rattingBtn.isHidden = true
                 cell.searchTFView.isHidden = true
                 cell.profileView.isHidden = false
                 cell.headerView.isHidden = false
@@ -292,7 +292,7 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                     if let userDb = userdbModel {
                         if let user = userDb.first {
                             cell.statusLbl.text = user.status.isEmpty ? "currently no active status..." : user.status
-                            cell.clockIV.isHidden = user.disappearingStatus
+                            cell.clockIV.isHidden = !user.disappearingStatus
                         }
                     }
                 }

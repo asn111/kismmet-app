@@ -11,6 +11,7 @@ import MultiSlider
 class MixHeaderTVCell: UITableViewCell {
 
 
+    @IBOutlet weak var readAllBtn: RoundCornerButton!
     @IBOutlet weak var toggleBtnView: UIView!
     @IBOutlet weak var toggleLbl: fullyCustomLbl!
     @IBOutlet weak var toggleTooltipBtn: RoundCornerButton!

@@ -75,7 +75,9 @@ class SignupVC: MainViewController {
         confirmPassword.delegate = self
         emailTF.addDoneButtonOnKeyboard()
         passwordTF.addDoneButtonOnKeyboard()
+        passwordTF.enablePasswordToggle()
         confirmPassword.addDoneButtonOnKeyboard()
+        confirmPassword.enablePasswordToggle()
         
         setupLbl()
         setupClickableLbls()

@@ -687,19 +687,18 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
             case placeholderArray.count + socialAccounts.count + 4: // Profile Btn
                 
                 let cell : GeneralButtonTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralButtonTVCell", for: indexPath) as! GeneralButtonTVCell
+
+                cell.genBtnView.isHidden = true
+                cell.newBtnView.isHidden = false
+                cell.newBtn.tag = indexPath.row
+                cell.newBtn.addTarget(self, action: #selector(genBtnPressedForProfile(sender:)), for: .touchUpInside)
                 
-                
-                cell.arrowView.isHidden = true
-                cell.genBtn.titleLabel?.font = UIFont(name: "Work Sans", size: 14)?.medium
-                cell.genBtn.setTitle("Preview profile", for: .normal)
-                cell.genBtn.backgroundColor = UIColor.clear
-                cell.genBtn.tintColor = UIColor(named: "Secondary Grey")
-                cell.genBtn.underline()
-                cell.genBtn.isWork = true
-                
-                cell.genBtn.tag = indexPath.row
-                cell.genBtn.removeTarget(nil, action: nil, for: .allEvents)
-                cell.genBtn.addTarget(self, action: #selector(genBtnPressedForProfile(sender:)), for: .touchUpInside)
+                cell.newBtn.titleLabel?.font = UIFont(name: "Work Sans", size: 14)?.medium
+                cell.newBtn.setTitle("Preview profile", for: .normal)
+                cell.newBtn.backgroundColor = UIColor.clear
+                cell.newBtn.tintColor = UIColor(named: "Secondary Grey")
+                cell.newBtn.underline()
+                cell.newBtn.isWork = true
                 
                 return cell
                 
@@ -707,15 +706,15 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
             case placeholderArray.count + socialAccounts.count + 5: // Done Btn
                 
                 let cell : GeneralButtonTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralButtonTVCell", for: indexPath) as! GeneralButtonTVCell
-                cell.genBtn.setTitle("Done", for: .normal)
-                cell.genBtn.backgroundColor = UIColor(named: "Secondary Grey")
-                cell.genBtn.tintColor = UIColor.white
-                cell.genBtn.isWork = false
-                cell.arrowView.isHidden = true
                 
+                cell.genBtnView.isHidden = false
+                cell.newBtnView.isHidden = true
                 cell.genBtn.tag = indexPath.row
-                cell.genBtn.removeTarget(nil, action: nil, for: .allEvents)
                 cell.genBtn.addTarget(self, action: #selector(genBtnPressedForDone(sender:)), for: .touchUpInside)
+                
+                cell.genBtn.setTitle("Done", for: .normal)
+                
+                cell.arrowView.isHidden = true
                 
                 return cell
                 

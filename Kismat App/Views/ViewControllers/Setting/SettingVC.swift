@@ -174,7 +174,7 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
                 cell.toolTipBtn.isHidden = true
                 cell.searchTFView.isHidden = true
                 cell.profileView.isHidden = false
-                cell.ratingView.isHidden = true
+                cell.rattingBtn.isHidden = true
                 cell.headerView.isHidden = false
                 
                 cell.picBtn.borderWidth = 0

@@ -55,6 +55,10 @@ class NotificationVC: MainViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @objc func genBtnPressed(sender:UIButton) {
+        updateNotif(id: 0)
+    }
+    
     @objc func notifBtnPressed(sender: UIButton) {
         
         if AppFunctions.isNotifEnable() {
@@ -214,7 +218,11 @@ extension NotificationVC : UITableViewDelegate, UITableViewDataSource {
                 if indexPath.row == 0 { // Subheader
                     let cell: MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                     cell.notifHeaderView.isHidden = false
+                    cell.readAllBtn.isHidden = false
                     cell.notifHeaderLbl.text = "New"
+                    cell.readAllBtn.underline()
+                    cell.readAllBtn.titleLabel?.addCharacterSpacing(kernValue: 0.0)
+                    cell.readAllBtn.addTarget(self, action: #selector(genBtnPressed(sender:)), for: .touchUpInside)
                     return cell
                 } else { // Unread notification cells
                     let cell: NotifTVCell = tableView.dequeueReusableCell(withIdentifier: "NotifTVCell", for: indexPath) as! NotifTVCell
@@ -248,7 +256,13 @@ extension NotificationVC : UITableViewDelegate, UITableViewDataSource {
                 if indexPath.row == 0 { // Subheader
                     let cell: MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                     cell.notifHeaderView.isHidden = false
-                    cell.notifHeaderLbl.text = readNotifList.count > 0 && unreadNotifList.count > 0 ? "Earlier" : "You haven't received any notifications yet."
+                    cell.readAllBtn.isHidden = true
+                    if readNotifList.isEmpty && unreadNotifList.isEmpty {
+                        cell.notifHeaderLbl.text = "You haven't received any notifications yet."
+                    } else {
+                        cell.notifHeaderLbl.text = !readNotifList.isEmpty ? "Earlier" : ""
+                    }
+
                     return cell
                 } else { // Read notification cells
                     let cell: NotifTVCell = tableView.dequeueReusableCell(withIdentifier: "NotifTVCell", for: indexPath) as! NotifTVCell

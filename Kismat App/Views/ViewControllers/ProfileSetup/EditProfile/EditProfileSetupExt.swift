@@ -127,9 +127,11 @@ class EditProfileSetupExt: MainViewController {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "Add status here..." {
+
+        if textView.text == "" {
             // Clear the text view
             textView.text = ""
+
         }
     }
     
@@ -140,11 +142,27 @@ class EditProfileSetupExt: MainViewController {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let remainingCharacters = textLimit(existingText: textView.text, newText: text, limit: 100)
         
-        // Update the UILabel in your UITableViewCell
-        let cell = profileExtTV.cellForRow(at: IndexPath(row: 4, section: 0)) as! GeneralTextviewTVCell
-        cell.countLbl.text = "\(100 - textView.text.count - 1) / 100 remaining"
-        
         return remainingCharacters
+    }
+
+    func textViewDidChange(_ textView: UITextView) {
+        let cell = profileExtTV.cellForRow(at: IndexPath(row: 4, section: 0)) as! GeneralTextviewTVCell
+        
+        if textView.text.count == 0 {
+            cell.countLbl.text = "100 / 100 remaining"
+            
+            // Show the placeholder label when the text is empty
+            if let placeholderLabel = textView.viewWithTag(100) as? UILabel {
+                placeholderLabel.isHidden = false
+            }
+        } else {
+            cell.countLbl.text = "\(100 - textView.text.count) / 100 remaining"
+            
+            // Hide the placeholder label when the text is not empty
+            if let placeholderLabel = textView.viewWithTag(100) as? UILabel {
+                placeholderLabel.isHidden = true
+            }
+        }
     }
 
 
@@ -173,21 +191,6 @@ class EditProfileSetupExt: MainViewController {
         }
         
         AppFunctions.showToolTip(str: msg, btn: sender)
-    }
-    
-    @objc func sliderChanged(slider: MultiSlider) {
-        print("thumb \(slider.draggedThumbIndex) moved")
-        print("now thumbs are at \(slider.value)")
-        
-        if slider.draggedThumbIndex == 1 {
-            let cell : MixHeaderTVCell = profileExtTV.cellForRow(at: IndexPath(row: 1, section: 0)) as! MixHeaderTVCell
-            cell.proximeterLbl.text = "\(Int(round(slider.value[1]))) Meters"
-            profileExtTV.rectForRow(at: IndexPath(row: 1, section: 0))
-            proximity = Int(round(slider.value[1]))
-            
-            let mapCell : RideMapViewTVCell = profileExtTV.cellForRow(at: IndexPath(row: 3, section: 0)) as! RideMapViewTVCell
-            makeMapView(mapView: mapCell.mapView, radius: Double(proximity))
-        }
     }
 
     
@@ -221,6 +224,44 @@ class EditProfileSetupExt: MainViewController {
         return theDate
     }
     
+    @objc func sliderChanged(slider: MultiSlider) {
+        print("thumb \(slider.draggedThumbIndex) moved")
+        print("now thumbs are at \(slider.value)")
+        
+        if slider.draggedThumbIndex == 1 {
+            let cell : MixHeaderTVCell = profileExtTV.cellForRow(at: IndexPath(row: 1, section: 0)) as! MixHeaderTVCell
+            cell.proximeterLbl.text = "\(Int(round(slider.value[1]))) Meters"
+            profileExtTV.rectForRow(at: IndexPath(row: 1, section: 0))
+            proximity = Int(round(slider.value[1]))
+            
+            let mapCell : RideMapViewTVCell = profileExtTV.cellForRow(at: IndexPath(row: 3, section: 0)) as! RideMapViewTVCell
+            updateMapView(mapView: mapCell.mapView, radius: Double(proximity))
+        }
+    }
+    
+    func updateMapView(mapView: GMSMapView, radius: Double) {
+        let pLat = location.coordinate.latitude
+        let pLong = location.coordinate.longitude
+        let myLoc = CLLocationCoordinate2D(latitude: pLat, longitude: pLong)
+        
+        let bounds = getBounds(center: myLoc, radius: radius/2)
+        let update = GMSCameraUpdate.fit(bounds, withPadding: 50.0)
+        mapView.animate(with: update)
+        
+        /// Remove old circle
+        circle?.map = nil
+        
+        /// Create a circle
+        circle = GMSCircle()
+        circle!.position = CLLocationCoordinate2D(latitude: pLat, longitude: pLong)
+        circle!.radius = radius
+        circle!.fillColor = UIColor.blue.withAlphaComponent(0.1)
+        circle!.strokeColor = .blue.withAlphaComponent(0.5)
+        circle!.strokeWidth = 1
+        circle!.map = mapView
+    }
+
+    
     func makeMapView(mapView: GMSMapView, radius: Double) {
         
         if location.coordinate.latitude == 0.00 {
@@ -238,16 +279,15 @@ class EditProfileSetupExt: MainViewController {
         markerMyLoc.iconView = markerView
         markerMyLoc.position = myLoc
         /// uncomment this line below to show marker
-        /// markerMyLoc.map = mapView
         
         let bounds = getBounds(center: myLoc, radius: radius/2)
         let update = GMSCameraUpdate.fit(bounds, withPadding: 50.0)
         mapView.animate(with: update)
         
-        // Remove old circle
+        /// Remove old circle
         circle?.map = nil
         
-        // Create a circle
+        /// Create a circle
         circle = GMSCircle()
         circle!.position = CLLocationCoordinate2D(latitude: pLat, longitude: pLong)
         circle!.radius = radius
@@ -452,8 +492,10 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 
                 let cell : GeneralTextviewTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralTextviewTVCell", for: indexPath) as! GeneralTextviewTVCell
                 
-                cell.generalTV.text = status.isEmpty ? "Add status here..." : status
-                    
+                cell.generalTV.text = status//.isEmpty ? "" : status
+                cell.generalTV.addPlaceholder("Add status here...")
+                cell.countLbl.text = "100 / 100 remaining"
+
                 cell.countLbl.isHidden = false
                 cell.generalTV.delegate = self
                 cell.generalTV.textColor = UIColor(named: "Text grey")

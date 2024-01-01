@@ -75,6 +75,7 @@ class SignInVC: MainViewController {
         passwordTF.delegate = self
         emailTF.addDoneButtonOnKeyboard()
         passwordTF.addDoneButtonOnKeyboard()
+        passwordTF.enablePasswordToggle()
 
         setupLbl()
         setupClickableLbls()

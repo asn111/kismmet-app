@@ -55,6 +55,7 @@ class StarredVC: MainViewController {
         starredTV.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tabBarHeight + bottomSpace, right: 0)
         starredTV.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
         starredTV.register(UINib(nibName: "FeedItemsTVCell", bundle: nil), forCellReuseIdentifier: "FeedItemsTVCell")
+        starredTV.register(UINib(nibName: "FeedItem2TVCell", bundle: nil), forCellReuseIdentifier: "FeedItem2TVCell")
         starredTV.register(UINib(nibName: "VisibilityOffTVCell", bundle: nil), forCellReuseIdentifier: "VisibilityOffTVCell")
 
     }
@@ -266,7 +267,7 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
                     
                     feedCell.isViewBHidden = false
                     feedCell.statusLbl.text = user.status.isEmpty ? "currently no active status..." : user.status
-                    feedCell.clockIV.isHidden = user.disappearingStatus
+                    feedCell.clockIV.isHidden = !user.disappearingStatus
                     
                     
                     
