@@ -296,6 +296,7 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                         }
                     }
                 }
+
                                 
                 return cell
             case 3:
@@ -423,7 +424,11 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 5 {
+        
+        if indexPath.row == 2 && !AppFunctions.isPremiumUser() {
+            AppFunctions.showSnackBar(str: "Buy premium")
+            
+        } else if indexPath.row == 5 {
             
             var tagList = [String]()
             if isOtherProfile {

@@ -86,6 +86,7 @@ let stripeKey = "stripeKey"
 let tagsArray = "tagsArray"
 let socialArray = "socialArray"
 let notif = "notif"
+let platForm = "platForm"
 
 class Logs {
     
@@ -207,6 +208,21 @@ class AppFunctions {
         }
         return token
     }
+    
+    open class func savePlatForm( name: String){
+        preferences.set(name, forKey: platForm)
+        preferences.synchronize()
+    }
+    open class func getplatForm() -> String{
+        var token = ""
+        if preferences.object(forKey: platForm) == nil {
+            Logs.show(message: "NIL getplatForm")
+        } else {
+            token = preferences.string(forKey: platForm)!
+        }
+        return token
+    }
+    
     
     open class func setIsLoggedIn(value: Bool){
         preferences.set(value, forKey: isLogin)

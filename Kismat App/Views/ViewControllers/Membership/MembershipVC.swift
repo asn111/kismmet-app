@@ -16,9 +16,14 @@ class MembershipVC: MainViewController {
     @IBAction func upgradeBtnPressed(_ sender: Any) {
         
         if AppFunctions.isPremiumUser() {
-            AppFunctions.setIsPremiumUser(value: false)
-            freePlan()
-            IAPManager.shared.showManageSubscriptions()
+            //AppFunctions.setIsPremiumUser(value: false)
+            //freePlan()
+            if AppFunctions.getplatForm() == "iOS" {
+                IAPManager.shared.showManageSubscriptions()
+            } else {
+                AppFunctions.showSnackBar(str: "This subscription is purchased on different platform other than Apple store and can not canceled in this app!")
+            }
+            
         } else {
             IAPManager.shared.fetchProducts()
         }

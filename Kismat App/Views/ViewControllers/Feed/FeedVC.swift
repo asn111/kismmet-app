@@ -219,6 +219,30 @@ class FeedVC: MainViewController {
         return true
     }
     
+    func showActionSheet() {
+        let alert = UIAlertController(title: "Title", message: "Please Select an Option", preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Deactivate", style: .default , handler:{ (UIAlertAction)in
+            print("User click Approve button")
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
+            print("User click Delete button")
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
+            print("User click Dismiss button")
+        }))
+        
+        
+        //uncomment for iPad Support
+        alert.popoverPresentationController?.sourceView = self.view
+        
+        self.present(alert, animated: true, completion: {
+            print("completion block")
+        })
+    }
+    
     //MARK: API METHODS
     
     func getProxUsers(load: Bool) {
@@ -505,7 +529,9 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             
-            let pram : [String : Any] = ["userId": users[indexPath.row - 1].userId ?? "",
+            showActionSheet()
+            
+            /*let pram : [String : Any] = ["userId": users[indexPath.row - 1].userId ?? "",
                                          "reason" : "",
                                          "isActive": false]
             
@@ -517,7 +543,7 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
             users.remove(at: indexPath.row - 1)
             tableView.performBatchUpdates({
                 tableView.deleteRows(at: [indexPath], with: .automatic)
-            }, completion: nil)
+            }, completion: nil)*/
             
         }
     }

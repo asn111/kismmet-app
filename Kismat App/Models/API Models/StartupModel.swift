@@ -10,6 +10,7 @@ import Foundation
 class StartupModel: NSObject, Codable {
     
     var subscription : String!
+    var subscriptionPlatform : String!
     var accountStatusId : Int!
     var profileCountForSubscription : Int!
     var isEmailVarified : Bool!
@@ -20,6 +21,7 @@ class StartupModel: NSObject, Codable {
     override init() {
         
         subscription = ""
+        subscriptionPlatform = ""
         accountStatusId = 0
         profileCountForSubscription = 0
         isEmailVarified = false
@@ -30,6 +32,7 @@ class StartupModel: NSObject, Codable {
     private enum CodingKeys: String, CodingKey {
         
         case subscription = "subscription"
+        case subscriptionPlatform = "subscriptionPlatform"
         case accountStatusId = "accountStatusId"
         case profileCountForSubscription = "profileCountForSubscription"
         case isEmailVarified = "isEmailVerified"
@@ -40,6 +43,7 @@ class StartupModel: NSObject, Codable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         subscription  = try values.decodeIfPresent(String.self, forKey: .subscription)
+        subscriptionPlatform  = try values.decodeIfPresent(String.self, forKey: .subscriptionPlatform)
         accountStatusId  = try values.decodeIfPresent(Int.self, forKey: .accountStatusId)
         profileCountForSubscription  = try values.decodeIfPresent(Int.self, forKey: .profileCountForSubscription)
         isEmailVarified  = try values.decodeIfPresent(Bool.self, forKey: .isEmailVarified)

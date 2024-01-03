@@ -96,6 +96,10 @@ class SplashVC: MainViewController {
                                 AppFunctions.saveMaxProfViewedCount(count: profCount)
                             }
                             
+                            if let sPlatForm = val.subscriptionPlatform {
+                                AppFunctions.savePlatForm(name: sPlatForm)
+                            }
+                            
                             if let accStatus = val.accountStatusId {
                                 if accStatus == deactivedAccountStatusId {
                                     AppFunctions.resetDefaults2()

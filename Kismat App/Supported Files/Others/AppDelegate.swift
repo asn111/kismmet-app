@@ -30,7 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ = SignalRManager.init()
         application.applicationIconBadgeNumber = 0
         if AppFunctions.isLoggedIn() {
-            IAPManager.shared.checkSubscriptionStatus()
+            if AppFunctions.getplatForm() == "iOS" {
+                IAPManager.shared.checkSubscriptionStatus()
+            }
             //APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
         }
     }

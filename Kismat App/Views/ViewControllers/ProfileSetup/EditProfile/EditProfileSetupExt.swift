@@ -492,9 +492,14 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 
                 let cell : GeneralTextviewTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralTextviewTVCell", for: indexPath) as! GeneralTextviewTVCell
                 
+                cell.generalTV.isEditable = AppFunctions.isPremiumUser()
+
                 cell.generalTV.text = status//.isEmpty ? "" : status
-                cell.generalTV.addPlaceholder("Add status here...")
-                cell.countLbl.text = "100 / 100 remaining"
+                if !status.isEmpty {
+                    cell.countLbl.text = "\(100 - status.count) / 100 remaining"
+                } else {
+                    cell.generalTV.addPlaceholder("Add status here...")
+                }
 
                 cell.countLbl.isHidden = false
                 cell.generalTV.delegate = self
@@ -504,8 +509,9 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
             case 5: // status toggle
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.toggleBtnView.isHidden = false
-                cell.toggleLbl.text = "Remove status"
+                cell.toggleLbl.text = "Disappear status"
                 cell.toggleBtn.isOn = isStatusDelete
+                cell.toggleBtn.isEnabled = AppFunctions.isPremiumUser()
                 cell.toggleBtn.tag = indexPath.row
                 cell.toggleTooltipBtn.tag = 001
                 
@@ -515,7 +521,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
             case 6: // Visibilty 1
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.toggleBtnView.isHidden = false
-                cell.toggleLbl.text = "Profile Visibility"
+                cell.toggleLbl.text = "Hide my profile"
                 cell.toggleBtn.isOn = isProfileVisible
                 cell.toggleBtn.tag = indexPath.row
                 cell.toggleTooltipBtn.tag = 002
@@ -584,6 +590,12 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                     
                 }
                 return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 4 && !AppFunctions.isPremiumUser() {
+            AppFunctions.showSnackBar(str: "Buy premium")
         }
     }
     

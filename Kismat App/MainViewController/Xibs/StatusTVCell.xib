@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -71,6 +71,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Lj0-au-gib" secondAttribute="trailing" constant="5" id="EOA-G5-C5B"/>
                                     <constraint firstAttribute="bottom" secondItem="Lj0-au-gib" secondAttribute="bottom" constant="27" id="H2z-Wn-YOH"/>
                                     <constraint firstItem="Lj0-au-gib" firstAttribute="top" secondItem="Dih-Dn-XTY" secondAttribute="top" constant="27.000000000000004" id="I6F-H9-8Fa"/>
+                                    <constraint firstAttribute="width" constant="339" id="VIM-jH-tvj"/>
                                     <constraint firstItem="hts-ky-42P" firstAttribute="leading" secondItem="Dih-Dn-XTY" secondAttribute="leading" constant="5" id="dOK-sm-Q8M"/>
                                     <constraint firstAttribute="bottom" secondItem="hts-ky-42P" secondAttribute="bottom" constant="27.333333333333329" id="e4f-Y5-Pbc"/>
                                     <constraint firstItem="hts-ky-42P" firstAttribute="top" secondItem="Dih-Dn-XTY" secondAttribute="top" constant="24.000000000000036" id="jcw-Ju-tee"/>

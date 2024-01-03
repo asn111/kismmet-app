@@ -195,13 +195,13 @@ extension NotificationVC : UITableViewDelegate, UITableViewDataSource {
                 cell.toolTipBtn.isHidden = true
                 cell.searchTFView.isHidden = true
                 cell.headerView.isHidden = false
-                if (AppFunctions.isShadowModeOn()){
+                /*if (AppFunctions.isShadowModeOn()){ // not usable anymore
                     cell.shadowLbl.isHidden = false
                     cell.notifBtn.isHidden = true
                 } else {
                     cell.shadowLbl.isHidden = true
                     cell.notifBtn.isHidden = false
-                }
+                }*/
                 
                 if AppFunctions.isNotifEnable() {
                     cell.notifBtn.setImage(UIImage(systemName: "bell.badge.fill"), for: .normal)
