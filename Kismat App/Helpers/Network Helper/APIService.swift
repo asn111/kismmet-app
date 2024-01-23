@@ -723,10 +723,10 @@ class APIService: NSObject {
         }
     }
     
-    func updateAccountStatus(val: Int) {
+    func updateAccountStatus(val: Int, userId: String = AppFunctions.getUserId()) {
         
         if (self.isCheckReachable()) {
-            let pram: Parameters = ["statusId": val]
+            let pram: Parameters = ["userId" : userId,"statusId": val]
             
             AF.request("\(self.baseUrl)/api/Users/UpdateUserAccountStatus", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
                 .validate()

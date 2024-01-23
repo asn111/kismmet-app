@@ -39,10 +39,10 @@
                                 <rect key="frame" x="17.666666666666657" y="6.6666666666666679" width="340" height="31.000000000000004"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Visibility" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLp-rH-ZeA" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="4" width="110" height="21"/>
+                                        <rect key="frame" x="8" y="4" width="147" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="37i-xG-rz5"/>
-                                            <constraint firstAttribute="width" constant="110" id="Vem-dr-aI3"/>
+                                            <constraint firstAttribute="width" constant="147" id="Vem-dr-aI3"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -59,7 +59,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Zd-77-ahs" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="117.99999999999999" y="7" width="15.000000000000014" height="15"/>
+                                        <rect key="frame" x="163" y="7" width="15" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="15" id="WrI-3q-KSO"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="ebN-XP-i1g"/>
@@ -93,7 +93,7 @@
                                 <constraints>
                                     <constraint firstItem="jLp-rH-ZeA" firstAttribute="leading" secondItem="Rtt-Zr-LA8" secondAttribute="leading" constant="8" id="8oS-4j-kCn"/>
                                     <constraint firstAttribute="trailing" secondItem="rgH-vW-BiW" secondAttribute="trailing" constant="8" id="9FQ-bf-Gmd"/>
-                                    <constraint firstItem="5Zd-77-ahs" firstAttribute="leading" secondItem="jLp-rH-ZeA" secondAttribute="trailing" id="A6c-HV-aPv"/>
+                                    <constraint firstItem="5Zd-77-ahs" firstAttribute="leading" secondItem="jLp-rH-ZeA" secondAttribute="trailing" constant="7.9999999999999716" id="A6c-HV-aPv"/>
                                     <constraint firstAttribute="bottom" secondItem="jLp-rH-ZeA" secondAttribute="bottom" constant="6" id="DHe-eJ-JWv"/>
                                     <constraint firstItem="jLp-rH-ZeA" firstAttribute="top" secondItem="Rtt-Zr-LA8" secondAttribute="top" constant="4" id="U9M-wk-Hdh"/>
                                     <constraint firstAttribute="bottom" secondItem="rgH-vW-BiW" secondAttribute="bottom" id="dmU-SH-cyR"/>
@@ -289,6 +289,9 @@
         </designable>
         <designable name="5Zd-77-ahs">
             <size key="intrinsicContentSize" width="48" height="48"/>
+        </designable>
+        <designable name="ba2-uk-kVn">
+            <size key="intrinsicContentSize" width="56" height="29"/>
         </designable>
         <designable name="cx2-Bl-JDe">
             <size key="intrinsicContentSize" width="14.333333333333334" height="22"/>

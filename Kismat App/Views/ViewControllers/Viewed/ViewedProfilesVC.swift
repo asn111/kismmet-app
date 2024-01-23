@@ -70,7 +70,7 @@ class ViewedProfilesVC: MainViewController {
     }
     
     @objc func toolBtnPressed(sender: UIButton) {
-        AppFunctions.showToolTip(str: "Unlock Kismmet: Find kindred spirits among your profile viewers and forge lasting friendships.", btn: sender)
+        AppFunctions.showToolTip(str: "Toggle off to go completely offline.\nOthers won't see you, and you won't see them.Toggle on to rejoin the community.", btn: sender)
     }
     
     @objc func searchBtnPressed(sender: UIButton) {
@@ -279,7 +279,7 @@ extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
                     } else {
                         visiblityCell.visibiltyView.isHidden = false
                         visiblityCell.updateBtn.isHidden = false
-                        visiblityCell.textLbl.text = "Your visibility is off, Please change your visibility to on to view people who have viewed profile."
+                        visiblityCell.textLbl.text = "You are completely offline... Toggle back to rejoin the community and interact with others"
                     }
                     
                 } else if let feedCell = cell as? FeedItemsTVCell {

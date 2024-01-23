@@ -41,6 +41,7 @@ class MembershipVC: MainViewController {
     @IBOutlet weak var featureLbl1: fullyCustomLbl!
     @IBOutlet weak var featureLbl2: fullyCustomLbl!
     
+    @IBOutlet weak var freeViewHeightConstr: NSLayoutConstraint!
     @IBOutlet weak var premiumPlanView: RoundCornerView!
     @IBOutlet weak var tryLbl: fullyCustomLbl!
     @IBOutlet weak var upgradeBtn: RoundCornerButton!
@@ -78,15 +79,57 @@ class MembershipVC: MainViewController {
     
     func premiumPlan() {
         let duration = 0.3
-        let newHeight: CGFloat = 100
+        let newHeight: CGFloat = 300
         
         // Update the frame of the view with the new size
         self.currentPlanHeightConst.constant = newHeight
 
         UIView.animate(withDuration: duration, animations: {
-            self.planNameLbl.text = "KISMMET Premium"
-            self.featureLbl1.text = "Discover Shadow Mode\nGo to Settings > Preferences > Shadow Mode"
-            self.featureLbl2.text = ""
+            
+            let shadowModeText = "Discover Shadow Mode :\nGo to Settings > Preferences > Shadow Mode"
+            let statusText = "Broadcast a status :\nKismmet members can see 50 characters on your profile card in the main feed and 100 characters in your full profile.\nGo to Settings > Preferences > Type up a status where it says “Add status here…”\nSet your status to disappear after 24hrs :\nUse this feature for urgent or timed statuses!\nGo to Settings > Preferences > Disappearing Status"
+            
+            // Create a NSMutableAttributedString for semi-bold and underline
+            let shadowModeAttributedString = NSMutableAttributedString(string: shadowModeText)
+            let statusAttributedString = NSMutableAttributedString(string: statusText)
+            
+            // Define attributes for semi-bold and underline text
+            let semiBoldUnderlineAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 12, weight: .medium),
+                .underlineStyle: NSUnderlineStyle.single.rawValue
+            ]
+            
+            // Define attributes for italic text
+            let italicAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.italicSystemFont(ofSize: 12).light
+            ]
+            
+            // Define paragraph style for half-line spacing
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.paragraphSpacingBefore = UIFont.systemFont(ofSize: 12).lineHeight * 0.5
+            
+            // Apply semi-bold and underline attributes to specific ranges
+            shadowModeAttributedString.addAttributes(semiBoldUnderlineAttributes, range: (shadowModeText as NSString).range(of: "Discover Shadow Mode :"))
+            statusAttributedString.addAttributes(semiBoldUnderlineAttributes, range: (statusText as NSString).range(of: "Broadcast a status :"))
+            statusAttributedString.addAttributes(semiBoldUnderlineAttributes, range: (statusText as NSString).range(of: "Set your status to disappear after 24hrs :"))
+            
+            // Apply italic attributes to specific ranges
+            shadowModeAttributedString.addAttributes(italicAttributes, range: (shadowModeText as NSString).range(of: "Go to Settings > Preferences > Shadow Mode"))
+            statusAttributedString.addAttributes(italicAttributes, range: (statusText as NSString).range(of: "Go to Settings > Preferences > Type up a status where it says “Add status here…”"))
+            statusAttributedString.addAttributes(italicAttributes, range: (statusText as NSString).range(of: "Go to Settings > Preferences > Disappearing Status"))
+            
+            // Apply paragraph style to the rest of the text
+            let fullRange = NSRange(location: 0, length: shadowModeAttributedString.length)
+            shadowModeAttributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: fullRange)
+            let fullStatusRange = NSRange(location: 0, length: statusAttributedString.length)
+            statusAttributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: fullStatusRange)
+            
+            
+            // Assign attributed strings to UILabels
+            self.planNameLbl.text = "Welcome to Kismmet Premium!"
+            self.featureLbl1.attributedText = shadowModeAttributedString
+            self.featureLbl2.attributedText = statusAttributedString
+            
             
             self.upgradeBtn.setTitle("Cancel Subscription", for: .normal)
             
@@ -99,14 +142,14 @@ class MembershipVC: MainViewController {
     
     func freePlan() {
         let duration = 0.3
-        let newHeight: CGFloat = 87
+        let newHeight: CGFloat = 90
         
         // Update the frame of the view with the new size
         self.currentPlanHeightConst.constant = newHeight
         
         UIView.animate(withDuration: duration, animations: {
             self.planNameLbl.text = "Free Plan"
-            self.featureLbl1.text = "Discover up to unlimited profiles per month"
+            self.featureLbl1.text = "Unlimited profile views per month"
             self.featureLbl2.text = ""
             
             self.upgradeBtn.setTitle("Upgrade Subscription", for: .normal)

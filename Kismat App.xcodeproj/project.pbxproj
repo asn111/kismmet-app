@@ -63,6 +63,7 @@
 		29846D3E29A154FF00393EB3 /* ChangePassVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29846D3D29A154FF00393EB3 /* ChangePassVC.swift */; };
 		29846D4129A15B0F00393EB3 /* AccountStatusVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29846D4029A15B0F00393EB3 /* AccountStatusVC.swift */; };
 		29846D4329A1676000393EB3 /* ImportantDialogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29846D4229A1676000393EB3 /* ImportantDialogVC.swift */; };
+		2992FEDF2B5FAFDB00DCCDB7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2992FEDE2B5FAFDB00DCCDB7 /* GoogleService-Info.plist */; };
 		29985F30299808FD001F769B /* RoundedTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29985F2F299808FD001F769B /* RoundedTabBarController.swift */; };
 		29985F33299819B6001F769B /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29985F32299819B6001F769B /* FeedVC.swift */; };
 		29985F3729981ADE001F769B /* GeneralHeaderTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29985F3529981ADE001F769B /* GeneralHeaderTVCell.swift */; };
@@ -204,6 +205,7 @@
 		29846D3D29A154FF00393EB3 /* ChangePassVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassVC.swift; sourceTree = "<group>"; };
 		29846D4029A15B0F00393EB3 /* AccountStatusVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountStatusVC.swift; sourceTree = "<group>"; };
 		29846D4229A1676000393EB3 /* ImportantDialogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportantDialogVC.swift; sourceTree = "<group>"; };
+		2992FEDE2B5FAFDB00DCCDB7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		29985F2F299808FD001F769B /* RoundedTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTabBarController.swift; sourceTree = "<group>"; };
 		29985F32299819B6001F769B /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		29985F3529981ADE001F769B /* GeneralHeaderTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralHeaderTVCell.swift; sourceTree = "<group>"; };
@@ -550,6 +552,7 @@
 				2965E2A62A24B5C5002962C3 /* Kismat App.entitlements */,
 				299FDD152996796A0049741B /* Assets.xcassets */,
 				299FDD1A2996796A0049741B /* Info.plist */,
+				2992FEDE2B5FAFDB00DCCDB7 /* GoogleService-Info.plist */,
 				299FDD3C29967D1D0049741B /* Supported Files */,
 				299FDD6D29967DC80049741B /* Helpers */,
 				299FDD8029967E160049741B /* Models */,
@@ -1004,6 +1007,7 @@
 				299FDD9B2996C8ED0049741B /* Roboto-Medium.ttf in Resources */,
 				299FDD912996C2630049741B /* Work Sans Bold.ttf in Resources */,
 				29516CE92B341593003E14EE /* FeedItem2TVCell.xib in Resources */,
+				2992FEDF2B5FAFDB00DCCDB7 /* GoogleService-Info.plist in Resources */,
 				2940B900299D634300D3F863 /* ImageViewTVCell.xib in Resources */,
 				29985F3C2998339E001F769B /* FeedItemsTVCell.xib in Resources */,
 				299FDD992996C8ED0049741B /* Roboto-Light.ttf in Resources */,
@@ -1426,7 +1430,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1466,7 +1470,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;

@@ -371,25 +371,25 @@
     </objects>
     <designables>
         <designable name="0FG-gI-S06">
-            <size key="intrinsicContentSize" width="122.66666666666667" height="12"/>
+            <size key="intrinsicContentSize" width="211" height="20.333333333333332"/>
         </designable>
         <designable name="5Gg-ma-JlP">
-            <size key="intrinsicContentSize" width="329.33333333333331" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="458.66666666666669" height="20.333333333333332"/>
         </designable>
         <designable name="TnH-JF-VfZ">
-            <size key="intrinsicContentSize" width="37.666666666666664" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="53.666666666666664" height="20.333333333333332"/>
         </designable>
         <designable name="dQH-13-OzP">
-            <size key="intrinsicContentSize" width="72.666666666666671" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="104" height="20.333333333333332"/>
         </designable>
         <designable name="gAw-H9-ySR">
-            <size key="intrinsicContentSize" width="63" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="77.666666666666671" height="20.333333333333332"/>
         </designable>
         <designable name="rdD-aP-nm5">
             <size key="intrinsicContentSize" width="407" height="612"/>
         </designable>
         <designable name="s8f-h1-ksg">
-            <size key="intrinsicContentSize" width="115" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="139.66666666666666" height="20.333333333333332"/>
         </designable>
     </designables>
     <resources>

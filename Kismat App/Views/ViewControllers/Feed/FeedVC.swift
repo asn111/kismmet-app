@@ -164,7 +164,7 @@ class FeedVC: MainViewController {
             }
             
         } else if sender.tag == 005 {
-            msg = "Turning off your profile visibility will make your account private, which means you won't appear in other people's feeds. However, please note that you also won't be able to search for other people on the app when your profile visibility is off."
+            msg = "Toggle off to go completely offline.\nOthers won't see you, and you won't see them.Toggle on to rejoin the community."
         }
         
         AppFunctions.showToolTip(str: msg, btn: sender)
@@ -193,7 +193,17 @@ class FeedVC: MainViewController {
         if let image = sender.view {
             if let cell = image.superview?.superview?.superview?.superview  as? FeedItem2TVCell {
                 guard let indexPath = self.feedTV.indexPath(for: cell) else {return}
-                print("index path =\(indexPath)")
+                print("index path = \(indexPath)")
+                if cell.starLbl.image == UIImage(systemName: "star.fill") {
+                    cell.starLbl.image = UIImage(systemName: "star")
+                    ApiService.markStarUser(val: users[indexPath.row - 1].userId)
+                } else {
+                    cell.starLbl.image = UIImage(systemName: "star.fill")
+                    ApiService.markStarUser(val: users[indexPath.row - 1].userId)
+                }
+            } else if let cell = image.superview?.superview?.superview?.superview  as? FeedItemsTVCell {
+                guard let indexPath = self.feedTV.indexPath(for: cell) else {return}
+                print("index path Else = \(indexPath)")
                 if cell.starLbl.image == UIImage(systemName: "star.fill") {
                     cell.starLbl.image = UIImage(systemName: "star")
                     ApiService.markStarUser(val: users[indexPath.row - 1].userId)
@@ -219,15 +229,37 @@ class FeedVC: MainViewController {
         return true
     }
     
-    func showActionSheet() {
+    func showActionSheet(userId: String, indexPath : IndexPath) {
         let alert = UIAlertController(title: "Title", message: "Please Select an Option", preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Deactivate", style: .default , handler:{ (UIAlertAction)in
             print("User click Approve button")
+            ApiService.updateAccountStatus(val: deactivedAccountStatusId, userId: userId)
+            
+            if self.users[indexPath.row - 1].userId == self.users.last?.userId {
+                self.tabBarController?.selectedIndex = 2
+                return
+            }
+            self.users.remove(at: indexPath.row - 1)
+            self.feedTV.performBatchUpdates({
+                self.feedTV.deleteRows(at: [indexPath], with: .automatic)
+            }, completion: nil)
+            
         }))
         
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive , handler:{ (UIAlertAction)in
             print("User click Delete button")
+            ApiService.updateAccountStatus(val: deletedAccountStatusId, userId: userId)
+            
+            if self.users[indexPath.row - 1].userId == self.users.last?.userId {
+                self.tabBarController?.selectedIndex = 2
+                return
+            }
+            self.users.remove(at: indexPath.row - 1)
+            self.feedTV.performBatchUpdates({
+                self.feedTV.deleteRows(at: [indexPath], with: .automatic)
+            }, completion: nil)
+
         }))
         
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
@@ -240,6 +272,7 @@ class FeedVC: MainViewController {
         
         self.present(alert, animated: true, completion: {
             print("completion block")
+            
         })
     }
     
@@ -415,7 +448,7 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                     } else {
                         visiblityCell.visibiltyView.isHidden = false
                         visiblityCell.updateBtn.isHidden = false
-                        visiblityCell.textLbl.text = "Your visibility is off, Please change your visibility to on to view people in your chosen proximity."
+                        visiblityCell.textLbl.text = "You are completely offline... Toggle back to rejoin the community and interact with others"
                     }
                     
                     
@@ -529,7 +562,7 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             
-            showActionSheet()
+            showActionSheet(userId: users[indexPath.row - 1].userId ?? "", indexPath: indexPath)
             
             /*let pram : [String : Any] = ["userId": users[indexPath.row - 1].userId ?? "",
                                          "reason" : "",

@@ -426,7 +426,7 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == 2 && !AppFunctions.isPremiumUser() {
-            AppFunctions.showSnackBar(str: "Buy premium")
+            AppFunctions.showSnackBar(str: "Upgrade to premium to broadcast a status.")
             
         } else if indexPath.row == 5 {
             

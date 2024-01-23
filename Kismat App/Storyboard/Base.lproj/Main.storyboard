@@ -1820,7 +1820,7 @@ this email.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Free Plan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIQ-VS-jss" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                                <rect key="frame" x="50" y="30" width="267" height="21"/>
+                                                <rect key="frame" x="50" y="33" width="267" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="d88-93-ELC"/>
                                                     <constraint firstAttribute="width" constant="267" id="wMf-Gr-LeQ"/>
@@ -1840,7 +1840,7 @@ this email.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover and connect with unlimited users per month." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxZ-YY-3L0" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                                <rect key="frame" x="50" y="48" width="267" height="42"/>
+                                                <rect key="frame" x="50" y="50" width="267" height="42"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="42" id="3qh-C5-2Sm"/>
                                                     <constraint firstAttribute="width" constant="267" id="d4u-9U-12u"/>
@@ -1860,10 +1860,10 @@ this email.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can view 15 profiles per month." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OZM-Ne-b6O" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                                <rect key="frame" x="50" y="87" width="267" height="36"/>
+                                                <rect key="frame" x="50" y="93" width="267" height="200"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="267" id="12o-gk-QUk"/>
-                                                    <constraint firstAttribute="height" constant="36" id="u7V-jo-oIx"/>
+                                                    <constraint firstAttribute="height" constant="200" id="u7V-jo-oIx"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -1884,14 +1884,14 @@ this email.</string>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="325" id="5r0-tR-lJ0"/>
                                             <constraint firstItem="nIQ-VS-jss" firstAttribute="leading" secondItem="xbv-4R-o9Y" secondAttribute="trailing" constant="12" id="6i7-A1-Vuv"/>
-                                            <constraint firstItem="OZM-Ne-b6O" firstAttribute="top" secondItem="JxZ-YY-3L0" secondAttribute="bottom" constant="-3" id="8aT-wi-2lE"/>
+                                            <constraint firstItem="OZM-Ne-b6O" firstAttribute="top" secondItem="JxZ-YY-3L0" secondAttribute="bottom" constant="1" id="8aT-wi-2lE"/>
                                             <constraint firstItem="xbv-4R-o9Y" firstAttribute="leading" secondItem="Xj8-DJ-5BY" secondAttribute="leading" constant="8" id="DGr-fK-CpV"/>
                                             <constraint firstItem="xbv-4R-o9Y" firstAttribute="top" secondItem="Xj8-DJ-5BY" secondAttribute="top" constant="29" id="POb-DX-tHB"/>
                                             <constraint firstItem="JxZ-YY-3L0" firstAttribute="leading" secondItem="xbv-4R-o9Y" secondAttribute="trailing" constant="12" id="XEF-eE-Rya"/>
-                                            <constraint firstItem="nIQ-VS-jss" firstAttribute="top" secondItem="Xj8-DJ-5BY" secondAttribute="top" constant="30" id="ae8-2W-1BC"/>
+                                            <constraint firstItem="nIQ-VS-jss" firstAttribute="top" secondItem="Xj8-DJ-5BY" secondAttribute="top" constant="33" id="ae8-2W-1BC"/>
                                             <constraint firstAttribute="trailing" secondItem="OZM-Ne-b6O" secondAttribute="trailing" constant="8" id="mBZ-ON-5aM"/>
                                             <constraint firstAttribute="height" constant="143" id="rBW-lR-XrF"/>
-                                            <constraint firstItem="JxZ-YY-3L0" firstAttribute="top" secondItem="nIQ-VS-jss" secondAttribute="bottom" constant="-3" id="rdb-RA-onK"/>
+                                            <constraint firstItem="JxZ-YY-3L0" firstAttribute="top" secondItem="nIQ-VS-jss" secondAttribute="bottom" constant="-4" id="rdb-RA-onK"/>
                                             <constraint firstItem="OZM-Ne-b6O" firstAttribute="leading" secondItem="Xj8-DJ-5BY" secondAttribute="leading" constant="50" id="sHA-Db-H34"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -1952,10 +1952,10 @@ this email.</string>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xxm-9G-y2P" customClass="RoundCornerView" customModule="Kismmet" customModuleProvider="target">
                                         <rect key="frame" x="34" y="385" width="325" height="217"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="With Shadow Mode enabled, you won't be visible in other users;" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f47-es-wTH" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                                <rect key="frame" x="70" y="55" width="185" height="39"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• View and star profiles discreetly with Shadow Mode" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f47-es-wTH" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                                                <rect key="frame" x="48" y="58" width="207" height="39"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="185" id="Ibp-PF-9U3"/>
+                                                    <constraint firstAttribute="width" constant="207" id="Ibp-PF-9U3"/>
                                                     <constraint firstAttribute="height" constant="39" id="msX-4M-uVb"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1971,7 +1971,7 @@ this email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kismmet Premium - Discover Shadow Mode &amp; Stay Low-Key!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWN-4Z-XWq" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Premium Plan" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWN-4Z-XWq" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
                                                 <rect key="frame" x="48" y="8" width="230" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="230" id="8YE-sX-DfI"/>
@@ -2011,7 +2011,7 @@ this email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whs-bR-EUC" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whs-bR-EUC" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
                                                 <rect key="frame" x="48" y="66" width="16" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="16" id="HjR-dm-d1n"/>
@@ -2049,13 +2049,13 @@ this email.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="99t-PE-CtL" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                                <rect key="frame" x="70" y="92" width="185" height="59"/>
+                                                <rect key="frame" x="48" y="72" width="207" height="100"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="185" id="6wm-aT-0om"/>
-                                                    <constraint firstAttribute="height" constant="59" id="hso-lD-FbP"/>
+                                                    <constraint firstAttribute="width" constant="207" id="6wm-aT-0om"/>
+                                                    <constraint firstAttribute="height" constant="100" id="hso-lD-FbP"/>
                                                 </constraints>
-                                                <string key="text">• Notifications page when you  Star them or View their profile
-• Viewed By</string>
+                                                <string key="text">• Broadcast a status in the main feed and on your profile!
+• Set your status to automatically disappear after 24hrs</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2069,7 +2069,7 @@ this email.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your presence remains confidential!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ia-Ba-2Di" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ia-Ba-2Di" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
                                                 <rect key="frame" x="48" y="141" width="207" height="46"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="46" id="0P3-kq-ZJv"/>
@@ -2110,19 +2110,19 @@ this email.</string>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="99t-PE-CtL" secondAttribute="trailing" constant="70" id="0PG-V8-Boi"/>
                                             <constraint firstAttribute="width" constant="325" id="6nR-79-ee5"/>
-                                            <constraint firstItem="f47-es-wTH" firstAttribute="top" secondItem="iWN-4Z-XWq" secondAttribute="bottom" constant="2" id="E2j-sF-t0d"/>
+                                            <constraint firstItem="f47-es-wTH" firstAttribute="top" secondItem="iWN-4Z-XWq" secondAttribute="bottom" constant="5" id="E2j-sF-t0d"/>
                                             <constraint firstItem="0cv-9P-qTb" firstAttribute="leading" secondItem="xxm-9G-y2P" secondAttribute="leading" constant="48" id="FSG-0e-OD9"/>
                                             <constraint firstAttribute="trailing" secondItem="iWN-4Z-XWq" secondAttribute="trailing" constant="47" id="GBc-cK-6dw"/>
                                             <constraint firstAttribute="bottom" secondItem="Hvi-f8-508" secondAttribute="bottom" constant="5" id="IsG-3d-OUc"/>
                                             <constraint firstAttribute="height" constant="217" id="OcZ-em-U2Y"/>
-                                            <constraint firstItem="99t-PE-CtL" firstAttribute="top" secondItem="f47-es-wTH" secondAttribute="bottom" constant="-2" id="QLy-V2-OrJ"/>
+                                            <constraint firstItem="99t-PE-CtL" firstAttribute="top" secondItem="f47-es-wTH" secondAttribute="bottom" constant="-25" id="QLy-V2-OrJ"/>
                                             <constraint firstAttribute="bottom" secondItem="uF1-P3-XVr" secondAttribute="bottom" constant="5" id="SN5-3i-hAQ"/>
-                                            <constraint firstItem="uF1-P3-XVr" firstAttribute="top" secondItem="f47-es-wTH" secondAttribute="bottom" constant="88" id="U9l-dh-xi6"/>
+                                            <constraint firstItem="uF1-P3-XVr" firstAttribute="top" secondItem="f47-es-wTH" secondAttribute="bottom" constant="85" id="U9l-dh-xi6"/>
                                             <constraint firstItem="uF1-P3-XVr" firstAttribute="leading" secondItem="Hvi-f8-508" secondAttribute="trailing" id="Yzu-by-PcY"/>
                                             <constraint firstItem="whs-bR-EUC" firstAttribute="top" secondItem="iWN-4Z-XWq" secondAttribute="bottom" constant="13" id="cLz-PT-wiw"/>
                                             <constraint firstItem="Hvi-f8-508" firstAttribute="leading" secondItem="xxm-9G-y2P" secondAttribute="leading" constant="92" id="dIU-m4-Su3"/>
-                                            <constraint firstItem="99t-PE-CtL" firstAttribute="leading" secondItem="0cv-9P-qTb" secondAttribute="trailing" constant="6" id="g4K-Kg-3FI"/>
-                                            <constraint firstItem="f47-es-wTH" firstAttribute="leading" secondItem="whs-bR-EUC" secondAttribute="trailing" constant="6" id="gc8-eT-TG1"/>
+                                            <constraint firstItem="99t-PE-CtL" firstAttribute="leading" secondItem="0cv-9P-qTb" secondAttribute="trailing" constant="-16" id="g4K-Kg-3FI"/>
+                                            <constraint firstItem="f47-es-wTH" firstAttribute="leading" secondItem="whs-bR-EUC" secondAttribute="trailing" constant="-16" id="gc8-eT-TG1"/>
                                             <constraint firstItem="whs-bR-EUC" firstAttribute="leading" secondItem="xxm-9G-y2P" secondAttribute="leading" constant="48" id="idO-mG-Uns"/>
                                             <constraint firstItem="uF1-P3-XVr" firstAttribute="top" secondItem="8Ia-Ba-2Di" secondAttribute="bottom" constant="-5" id="igE-i5-083"/>
                                             <constraint firstItem="0cv-9P-qTb" firstAttribute="top" secondItem="whs-bR-EUC" secondAttribute="bottom" constant="24" id="uwv-2I-8Dd"/>
@@ -2174,7 +2174,7 @@ this email.</string>
                                     <action selector="upgradeBtnPressed:" destination="ewU-MZ-Hda" eventType="touchUpInside" id="K2M-aa-AJl"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Experience KISMMET Premium" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fde-X5-2WN" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover Kismmet Premium" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fde-X5-2WN" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
                                 <rect key="frame" x="56" y="342" width="280" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="7Md-oh-oF5"/>
@@ -4893,9 +4893,7 @@ Thank you</string>
         <designable name="7oT-HV-MaA">
             <size key="intrinsicContentSize" width="147.33333333333334" height="20.333333333333332"/>
         </designable>
-        <designable name="8Ia-Ba-2Di">
-            <size key="intrinsicContentSize" width="272" height="20.333333333333332"/>
-        </designable>
+        <designable name="8Ia-Ba-2Di"/>
         <designable name="8b6-LU-FPq">
             <size key="intrinsicContentSize" width="26" height="13.666666666666666"/>
         </designable>
@@ -4903,7 +4901,7 @@ Thank you</string>
             <size key="intrinsicContentSize" width="37.333333333333336" height="13.666666666666666"/>
         </designable>
         <designable name="99t-PE-CtL">
-            <size key="intrinsicContentSize" width="463.33333333333331" height="40.666666666666664"/>
+            <size key="intrinsicContentSize" width="431" height="40.666666666666664"/>
         </designable>
         <designable name="9Lg-cq-Nv0">
             <size key="intrinsicContentSize" width="148.66666666666666" height="20.333333333333332"/>
@@ -4936,7 +4934,7 @@ Thank you</string>
             <size key="intrinsicContentSize" width="123" height="30"/>
         </designable>
         <designable name="Fde-X5-2WN">
-            <size key="intrinsicContentSize" width="234.66666666666666" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="209.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="Fkw-EZ-gfF">
             <size key="intrinsicContentSize" width="29.333333333333332" height="13.666666666666666"/>
@@ -5072,7 +5070,7 @@ Thank you</string>
             <size key="intrinsicContentSize" width="350.66666666666669" height="20.333333333333332"/>
         </designable>
         <designable name="f47-es-wTH">
-            <size key="intrinsicContentSize" width="485" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="403.66666666666669" height="20.333333333333332"/>
         </designable>
         <designable name="fHp-u4-Vaf">
             <size key="intrinsicContentSize" width="48" height="30"/>
@@ -5093,7 +5091,7 @@ Thank you</string>
             <size key="intrinsicContentSize" width="115.33333333333333" height="20.333333333333332"/>
         </designable>
         <designable name="iWN-4Z-XWq">
-            <size key="intrinsicContentSize" width="463.66666666666669" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="104.66666666666667" height="20.333333333333332"/>
         </designable>
         <designable name="icL-Ol-Qai">
             <size key="intrinsicContentSize" width="47" height="30"/>

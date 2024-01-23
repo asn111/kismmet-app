@@ -179,9 +179,11 @@ class EditProfileSetupExt: MainViewController {
         var msg = ""
         
         if sender.tag == 001 {
-            msg = "Tool Tip for status info and disapearing status"
+            msg = "Activate Disappearing Status to automatically remove your status after 24hrs.\nKeep toggle off, and your status will stay until you choose to delete or update it."
+        } else if sender.tag == 010 {
+            msg = "Upgrade to premium to broadcast a status."
         } else if sender.tag == 002 {
-            msg = "When you choose to turn off your profile visibility, your account becomes private, ensuring that you won't appear in other users' feeds.\nKeep in mind that while your profile is hidden, you won't have access to search and discover other users on the app."
+            msg = "Toggle off to go completely offline.\nOthers won't see you, and you won't see them.Toggle on to rejoin the community."
         } else if sender.tag == 003 {
             msg = "Stay incognito with Shadow Mode, allowing you to discreetly browse profiles without leaving a trace on the “Viewed By” page.\nExclusive to premium users."
         } else if sender.tag == 004 {
@@ -509,11 +511,15 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
             case 5: // status toggle
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.toggleBtnView.isHidden = false
-                cell.toggleLbl.text = "Disappear status"
+                cell.toggleLbl.text = "Disappearing status"
                 cell.toggleBtn.isOn = isStatusDelete
                 cell.toggleBtn.isEnabled = AppFunctions.isPremiumUser()
                 cell.toggleBtn.tag = indexPath.row
-                cell.toggleTooltipBtn.tag = 001
+                if AppFunctions.isPremiumUser() {
+                    cell.toggleTooltipBtn.tag = 001
+                } else {
+                    cell.toggleTooltipBtn.tag = 010
+                }
                 
                 cell.toggleTooltipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
                 cell.toggleBtn.addTarget(self, action: #selector(toggleButtonPressed(_:)), for: .valueChanged)
@@ -521,7 +527,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
             case 6: // Visibilty 1
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.toggleBtnView.isHidden = false
-                cell.toggleLbl.text = "Hide my profile"
+                cell.toggleLbl.text = "Online Presence"
                 cell.toggleBtn.isOn = isProfileVisible
                 cell.toggleBtn.tag = indexPath.row
                 cell.toggleTooltipBtn.tag = 002
@@ -595,7 +601,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 4 && !AppFunctions.isPremiumUser() {
-            AppFunctions.showSnackBar(str: "Buy premium")
+            AppFunctions.showSnackBar(str: "Upgrade to premium to broadcast a status.")
         }
     }
     

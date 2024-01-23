@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func initializations() {
         
-        //FirebaseApp.configure() //no GoogleService-Info.plist
+        FirebaseApp.configure()
         GMSServices.provideAPIKey(googleMapAPIKey)
         registerNotification()
         UNUserNotificationCenter.current().delegate = self
