@@ -181,7 +181,7 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
                 if let userDb = userdbModel {
                     if let user = userDb.first {
                         cell.nameLbl.text = user.userName
-                        cell.educationLbl.text = user.publicEmail
+                        cell.educationLbl.text = user.email
                         cell.professionLbl.text = "\(user.countryCode)\(user.phone)"
                         
                         if user.profilePicture != "" {

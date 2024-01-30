@@ -118,11 +118,12 @@ class EditProfileSetupExt: MainViewController {
         Logs.show(message: "PRAM: \(pram)")
         
         SignalRService.connection.invoke(method: "UpdateUserConfigurations", pram) {  error in            Logs.show(message: "\(pram)")
-            self.navigationController?.popViewController(animated: true)
             if let e = error {
                 Logs.show(message: "Error: \(e)")
+                AppFunctions.showSnackBar(str: "Error in updating values")
                 return
             }
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -185,14 +186,18 @@ class EditProfileSetupExt: MainViewController {
         } else if sender.tag == 002 {
             msg = "Toggle off to go completely offline.\nOthers won't see you, and you won't see them.Toggle on to rejoin the community."
         } else if sender.tag == 003 {
-            msg = "Stay incognito with Shadow Mode, allowing you to discreetly browse profiles without leaving a trace on the “Viewed By” page.\nExclusive to premium users."
+            msg = "Stay incognito with Shadow Mode, allowing you to discreetly browse profiles without leaving a trace on the “Viewed By” page.\nExclusive to premium users, or the notifications page."
         } else if sender.tag == 004 {
             msg = "Please note that the email and phone number fields on this page are kept private and will not be visible to other users.\nThese fields serve solely for account verification purposes and will not be shared on your profile.\nTo enhance your networking experience, you can add a separate email address on your Edit Profile page."
         } else if sender.tag == 005 {
             msg = "The lock icon next to your phone number means that the number cannot be changed.\nYour phone number is not visible to others."
         }
         
-        AppFunctions.showToolTip(str: msg, btn: sender)
+        if sender.tag == 004 {
+            AppFunctions.showToolTip(str: msg, btn: sender, arrowPos: "right")
+        } else {
+            AppFunctions.showToolTip(str: msg, btn: sender)
+        }
     }
 
     

@@ -438,7 +438,7 @@ class AppFunctions {
     open class func resetDefaults() {
         let dictionary = preferences.dictionaryRepresentation()
         dictionary.keys.forEach { key in
-            if key == devTokenString || key == isFirstDownload {
+            if key == devTokenString {
                 
             } else {
                 preferences.removeObject(forKey: key)
@@ -612,7 +612,7 @@ class AppFunctions {
     }
     
     //MARK: Show ToolTip
-    open class func showToolTip(str: String, btn: UIButton) {
+    open class func showToolTip(str: String, btn: UIButton, arrowPos: String = "top") {
         
         let preference = ToolTipPreferences()
         preference.drawing.bubble.color = UIColor(red: 0.937, green: 0.964, blue: 1.000, alpha: 1.000)
@@ -624,7 +624,11 @@ class AppFunctions {
         preference.drawing.arrow.tipCornerRadius = 5
         preference.drawing.message.color = UIColor(named: "Text grey") ?? UIColor.lightGray
         preference.drawing.message.font = UIFont(name: "Roboto", size: 12)!.bold
-        btn.showToolTip(identifier: "", message: str, arrowPosition: .top, preferences: preference, delegate: nil)
+        if arrowPos == "top" {
+            btn.showToolTip(identifier: "", message: str, arrowPosition: .top, preferences: preference, delegate: nil)
+        } else {
+            btn.showToolTip(identifier: "", message: str, arrowPosition: .right, preferences: preference, delegate: nil)
+        }
     }
     
     

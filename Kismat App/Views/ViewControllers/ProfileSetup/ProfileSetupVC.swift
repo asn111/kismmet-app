@@ -17,6 +17,8 @@ class ProfileSetupVC: MainViewController  { //Birthday
     weak var activeTextField: UITextField?
     weak var activeTextView: UITextView?
     
+    var limitExceed = false
+    
     var updatedImagePicked : UIImage!
     var profileDict = [String: Any]()
     var fullName = "", publicEmail = "", placeOfWork = "", workTitle = "" , dateOfBirth = "", countryCode = "", countryName = "", phoneNum = "" , about = "", profilePic = ""
@@ -123,7 +125,10 @@ class ProfileSetupVC: MainViewController  { //Birthday
     @objc func genBtnPressed(sender:UIButton) {
         self.view.endEditing(true)
         
-
+        if limitExceed {
+            AppFunctions.showSnackBar(str: "Maximum character limit exceeded for your bio!\nPlease keep it under 4000")
+            return
+        }
         Logs.show(message: "\(fullName), \(publicEmail), \(countryCode), \(dateOfBirth), \(phoneNum), \(placeOfWork), \(workTitle), \(about)")
         if fullName != "" && publicEmail != "" && countryCode != "" && phoneNum != "" && dateOfBirth != "" && placeOfWork != "" && workTitle != "" {
             
@@ -179,6 +184,18 @@ class ProfileSetupVC: MainViewController  { //Birthday
         AppFunctions.showToolTip(str: msg, btn: sender)
     }
 
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let currentText = textView.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: text)
+        if updatedText.count > 4000 {
+            // Log message or take action when limit is exceeded
+            limitExceed = true
+            return false
+        }
+        limitExceed = false
+        return true
+    }
     
     @objc func textFieldDidChangeSelection(_ textField: UITextField) {
         
@@ -263,8 +280,8 @@ class ProfileSetupVC: MainViewController  { //Birthday
             } else {
                 // Fallback on earlier versions
             }
-            picker.minimumDate = Calendar.current.date(byAdding: .year, value: -70, to: Date())
-            picker.maximumDate = Calendar.current.date(byAdding: .year, value: -18, to: Date())
+            picker.minimumDate = Calendar.current.date(byAdding: .year, value: -100, to: Date())
+            picker.maximumDate = Calendar.current.date(byAdding: .year, value: -17, to: Date())
             
             if dateOfBirth != "" {
                 picker.date = convertToDate(dateStr: dateOfBirth)

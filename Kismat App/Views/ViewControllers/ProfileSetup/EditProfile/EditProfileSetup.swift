@@ -22,6 +22,7 @@ class EditProfileSetup: MainViewController { //Birthday
     var proximity = 0
     var isProfileVisible = false
     var disappearingStatus = false
+    var limitExceed = false
     
     var updatedImagePicked : UIImage!
 
@@ -301,7 +302,21 @@ class EditProfileSetup: MainViewController { //Birthday
         dataArray[6] = about
         activeTextView = nil
     }
-    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let currentText = textView.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: text)
+        
+        if updatedText.count > 4000 {
+            // Log message or take action when limit is exceeded
+            limitExceed = true
+            return false
+        }
+        
+        limitExceed = false
+        return true
+    }
+
     
     @objc func textFieldDidChangeSelection(_ textField: UITextField) {
         
@@ -354,8 +369,8 @@ class EditProfileSetup: MainViewController { //Birthday
             } else {
                 // Fallback on earlier versions
             }
-            picker.minimumDate = Calendar.current.date(byAdding: .year, value: -70, to: Date())
-            picker.maximumDate = Calendar.current.date(byAdding: .year, value: -18, to: Date())
+            picker.minimumDate = Calendar.current.date(byAdding: .year, value: -100, to: Date())
+            picker.maximumDate = Calendar.current.date(byAdding: .year, value: -17, to: Date())
             
             if dateOfBirth != "" {
                 picker.date = convertToDate(dateStr: dateOfBirth)
@@ -504,7 +519,11 @@ class EditProfileSetup: MainViewController { //Birthday
         if updatedImagePicked != nil {
             profilePic = AppFunctions.convertImageToBase64(image: updatedImagePicked)
         }
-        
+        if limitExceed {
+            AppFunctions.showSnackBar(str: "Maximum character limit exceeded for your bio!\nPlease keep it under 4000")
+            return
+        }
+        // somewhere here add check for limit for bio
         profileDict["fullName"] = fullName
         profileDict["profilePicture"] = profilePic
         profileDict["publicEmail"] = publicEmail
