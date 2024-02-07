@@ -57,7 +57,7 @@ class SplashVC: MainViewController {
         
         APIService
             .singelton
-            .startUpCall()
+            .startUpCall(vc: self)
             .subscribe({[weak self] model in
                 guard let self = self else {return}
                 switch model {

@@ -128,9 +128,19 @@ class ViewedProfilesVC: MainViewController {
     @objc
     func starTapFunction(sender:UITapGestureRecognizer) {
         if let image = sender.view {
-            if let cell = image.superview?.superview?.superview?.superview  as? FeedItemsTVCell {
+            if let cell = image.superview?.superview?.superview?.superview  as? FeedItem2TVCell {
                 guard let indexPath = self.viewedListTV.indexPath(for: cell) else {return}
-                print("index path =\(indexPath)")
+                print("index path = \(indexPath)")
+                if cell.starLbl.image == UIImage(systemName: "star.fill") {
+                    cell.starLbl.image = UIImage(systemName: "star")
+                    ApiService.markStarUser(val: users[indexPath.row - 1].userId)
+                } else {
+                    cell.starLbl.image = UIImage(systemName: "star.fill")
+                    ApiService.markStarUser(val: users[indexPath.row - 1].userId)
+                }
+            } else if let cell = image.superview?.superview?.superview?.superview  as? FeedItemsTVCell {
+                guard let indexPath = self.viewedListTV.indexPath(for: cell) else {return}
+                print("index path Else = \(indexPath)")
                 if cell.starLbl.image == UIImage(systemName: "star.fill") {
                     cell.starLbl.image = UIImage(systemName: "star")
                     ApiService.markStarUser(val: users[indexPath.row - 1].userId)

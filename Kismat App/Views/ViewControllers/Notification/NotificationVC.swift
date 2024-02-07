@@ -77,18 +77,45 @@ class NotificationVC: MainViewController {
 //MARK: API METHODS
     
     func updateNotif(id: Int) {
+        self.showPKHUD(WithMessage: "Signing up")
+
         let pram = ["notificationId": "\(id)",
                     "isRead":"\(true)"
         ]
-        
         Logs.show(message: "PRAM: \(pram)")
+        
+        APIService
+            .singelton
+            .readNotification(pram: pram)
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        Logs.show(message: "MARKED: 👉🏻 \(val)")
+                        if val {
+                            self.hidePKHUD()
+                            self.getNotifs()
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+        
+        /*
         SignalRService.connection.invoke(method: "UpdateUserNotificationStatus", pram) {  error in            Logs.show(message: "\(pram)")
             if let e = error {
                 Logs.show(message: "Error: \(e)")
                 return
             }
             self.getNotifs()
-        }
+        }*/
     }
     
     func getNotifs() {

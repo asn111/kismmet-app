@@ -117,14 +117,38 @@ class EditProfileSetupExt: MainViewController {
         
         Logs.show(message: "PRAM: \(pram)")
         
-        SignalRService.connection.invoke(method: "UpdateUserConfigurations", pram) {  error in            Logs.show(message: "\(pram)")
+        APIService
+            .singelton
+            .updatePreff(pram: pram)
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        Logs.show(message: "MARKED: 👉🏻 \(val)")
+                        if val {
+                            self.hidePKHUD()
+                            self.navigationController?.popViewController(animated: true)
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+        
+        /*SignalRService.connection.invoke(method: "UpdateUserConfigurations", pram) {  error in            Logs.show(message: "\(pram)")
             if let e = error {
                 Logs.show(message: "Error: \(e)")
                 AppFunctions.showSnackBar(str: "Error in updating values")
                 return
             }
             self.navigationController?.popViewController(animated: true)
-        }
+        }*/
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {

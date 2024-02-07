@@ -108,8 +108,8 @@ class SignupVC: MainViewController {
         googleLbl.addGestureRecognizer(tap)
         
         let tap2 = UITapGestureRecognizer(target: self, action: #selector(appleTapFunction(sender:)))
-        appleLbl.isUserInteractionEnabled = true
-        appleLbl.addGestureRecognizer(tap2)
+        //appleLbl.isUserInteractionEnabled = true
+        //appleLbl.addGestureRecognizer(tap2)
     }
     
     //MARK: objc Functions
@@ -301,7 +301,7 @@ class SignupVC: MainViewController {
         
         APIService
             .singelton
-            .startUpCall()
+            .startUpCall(vc: self)
             .subscribe({[weak self] model in
                 guard let self = self else {return}
                 switch model {
