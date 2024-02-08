@@ -142,7 +142,7 @@ class MembershipVC: MainViewController {
     
     func freePlan() {
         let duration = 0.3
-        let newHeight: CGFloat = 90
+        let newHeight: CGFloat = 100
         
         // Update the frame of the view with the new size
         self.currentPlanHeightConst.constant = newHeight

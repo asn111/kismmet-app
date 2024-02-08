@@ -234,7 +234,7 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
                 } else {
                     if users.isEmpty {
                         cell = tableView.dequeueReusableCell(withIdentifier: "VisibilityOffTVCell", for: indexPath) as! VisibilityOffTVCell
-                    } else if user.status != nil {
+                    } else if user.status != nil && user.status != "" {
                         cell = tableView.dequeueReusableCell(withIdentifier: "FeedItemsTVCell", for: indexPath) as! FeedItemsTVCell
                     } else {
                         cell = tableView.dequeueReusableCell(withIdentifier: "FeedItem2TVCell", for: indexPath) as! FeedItem2TVCell

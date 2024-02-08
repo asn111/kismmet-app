@@ -43,7 +43,7 @@
                                         </constraints>
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="bold"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is where status will read. This is where status will read..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gg-ma-JlP" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gg-ma-JlP" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
                                         <rect key="frame" x="20" y="55" width="297" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="EcX-fy-9C9"/>
@@ -373,9 +373,7 @@
         <designable name="0FG-gI-S06">
             <size key="intrinsicContentSize" width="211" height="20.333333333333332"/>
         </designable>
-        <designable name="5Gg-ma-JlP">
-            <size key="intrinsicContentSize" width="458.66666666666669" height="20.333333333333332"/>
-        </designable>
+        <designable name="5Gg-ma-JlP"/>
         <designable name="TnH-JF-VfZ">
             <size key="intrinsicContentSize" width="53.666666666666664" height="20.333333333333332"/>
         </designable>

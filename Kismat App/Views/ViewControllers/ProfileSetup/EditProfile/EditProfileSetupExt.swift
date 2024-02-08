@@ -210,7 +210,8 @@ class EditProfileSetupExt: MainViewController {
         } else if sender.tag == 002 {
             msg = "Toggle off to go completely offline.\nOthers won't see you, and you won't see them.Toggle on to rejoin the community."
         } else if sender.tag == 003 {
-            msg = "Stay incognito with Shadow Mode, allowing you to discreetly browse profiles without leaving a trace on the “Viewed By” page.\nExclusive to premium users, or the notifications page."
+            msg = "Stay incognito with Shadow Mode!\nAllowing you to discreetly browse and star profiles without leaving a trace on the other member’s “Viewed By” and “Notifications” page.\nExclusive to premium members!"
+            
         } else if sender.tag == 004 {
             msg = "Please note that the email and phone number fields on this page are kept private and will not be visible to other users.\nThese fields serve solely for account verification purposes and will not be shared on your profile.\nTo enhance your networking experience, you can add a separate email address on your Edit Profile page."
         } else if sender.tag == 005 {
@@ -530,6 +531,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                     cell.countLbl.text = "\(100 - status.count) / 100 remaining"
                 } else {
                     cell.generalTV.addPlaceholder("Add status here...")
+                    cell.countLbl.text = "100 / 100 remaining"
                 }
 
                 cell.countLbl.isHidden = false
