@@ -79,15 +79,6 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
         }
 
         
-        
-        // --Navigation--
-        self.navigationController?.isNavigationBarHidden = true
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
-        
-        // --AppUIMode--(Dark Or Light)
-        overrideUserInterfaceStyle = .light
-        
         loading
             .bind(to: self.rx.isAnimating).disposed(by: dispose_Bag)
         
@@ -110,7 +101,17 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
             }
         }
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // --Navigation--
+        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        
+        // --AppUIMode--(Dark Or Light)
+        overrideUserInterfaceStyle = .light
+    }
+
     // --StatusBarMode--(Dark Or Light)
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .darkContent

@@ -38,7 +38,7 @@ class FeedVC: MainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+
         if DBService.fetchloggedInUser().count > 0 {
             self.userdbModel = DBService.fetchloggedInUser().first!
         }

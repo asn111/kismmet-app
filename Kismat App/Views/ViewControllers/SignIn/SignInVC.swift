@@ -165,8 +165,8 @@ class SignInVC: MainViewController {
         isKeyBoardShown = false
         view.endEditing(true)
     }
-    @objc private func keyboardWillShow(notification: NSNotification) {
-        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size else {
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             return
         }
         
@@ -177,10 +177,10 @@ class SignInVC: MainViewController {
         
         if let activeView = activeView {
             let frameInWindow = activeView.superview?.convert(activeView.frame, to: nil)
-            let bottomOfTextField = frameInWindow?.maxY ?? 0
+            let bottomOfTextField = frameInWindow?.maxY ??  0
             let topOfKeyboard = UIScreen.main.bounds.height - keyboardSize.height
             
-            if bottomOfTextField > topOfKeyboard {
+            if bottomOfTextField > topOfKeyboard && self.view.frame.origin.y >=  0 {
                 self.view.frame.origin.y -= bottomOfTextField - topOfKeyboard
             }
         }
