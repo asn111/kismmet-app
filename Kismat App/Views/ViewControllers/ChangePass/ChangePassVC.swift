@@ -70,7 +70,7 @@ class ChangePassVC: MainViewController {
                 // Passwords match
                 newPassword = newPass
             } else {
-                AppFunctions.showSnackBar(str: "Passwords dosen't match")
+                AppFunctions.showSnackBar(str: "Passwords do not match")
                 self.hidePKHUD()
                 return
             }

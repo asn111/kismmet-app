@@ -269,6 +269,10 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
                         }
                     }
                     
+                    let tap = UITapGestureRecognizer(target: self, action: #selector(starTapFunction(sender:)))
+                    feedCell.starLbl.isUserInteractionEnabled = true
+                    feedCell.starLbl.addGestureRecognizer(tap)
+                    
                     if user.profilePicture != "" && user.profilePicture != nil {
                         let imageUrl = URL(string: user.profilePicture)
                         feedCell.profilePicIV?.sd_setImage(with: imageUrl , placeholderImage: UIImage(named: "placeholder")) { (image, error, imageCacheType, url) in }
@@ -301,6 +305,10 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
                             
                         }
                     }
+                    
+                    let tap = UITapGestureRecognizer(target: self, action: #selector(starTapFunction(sender:)))
+                    feedCell2.starLbl.isUserInteractionEnabled = true
+                    feedCell2.starLbl.addGestureRecognizer(tap)
                     
                     if user.profilePicture != "" && user.profilePicture != nil {
                         let imageUrl = URL(string: user.profilePicture)

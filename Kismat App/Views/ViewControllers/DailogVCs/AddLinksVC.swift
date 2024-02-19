@@ -13,7 +13,13 @@ class AddLinksVC: MainViewController {
 
     
     @IBAction func nameToolTip(_ sender: Any) {
-        let msg = "Choose a name for your link that will be shown next to the icon on your profile. Use your username or something that helps others recognize you easily."
+        var msg = ""
+        if accountType == "tags" {
+            msg = "Please enter and save one interest-tag at a time.\nNo # hashtag is required before the word/words.\nMax 30 characters per tag."
+        } else {
+            msg = "Choose a name for your link that will be shown next to the icon on your profile. Use your username or something that helps others recognize you easily."
+        }
+        
         AppFunctions.showToolTip(str: msg, btn: sender as! UIButton)
 
     }
@@ -127,15 +133,20 @@ class AddLinksVC: MainViewController {
             generalPublisher.onNext("socialAdded")
         }
     }
-    
+
+
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if accountType != "tags" {
             return true
         }
         let currentText = textField.text ?? ""
+        let updatedText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        
+        return updatedText.count <= 30
+        /*let currentText = textField.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
-        return !updatedText.contains(" ")
+        return !updatedText.contains(" ")*/
     }
     
     func createNonDisappearingPlaceholder(for textField: UITextField, placeholderText: String, font: UIFont, color: UIColor) {

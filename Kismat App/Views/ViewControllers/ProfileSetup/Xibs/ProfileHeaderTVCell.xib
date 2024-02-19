@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -179,19 +179,19 @@
     </objects>
     <designables>
         <designable name="0Md-QD-M9M">
-            <size key="intrinsicContentSize" width="54" height="31"/>
+            <size key="intrinsicContentSize" width="56" height="34"/>
         </designable>
         <designable name="4Er-cy-xq2">
-            <size key="intrinsicContentSize" width="19.666666666666668" height="19"/>
+            <size key="intrinsicContentSize" width="19.666666666666668" height="22"/>
         </designable>
         <designable name="mWm-hV-jnf">
-            <size key="intrinsicContentSize" width="147" height="36.666666666666664"/>
+            <size key="intrinsicContentSize" width="83" height="20.333333333333332"/>
         </designable>
         <designable name="r6s-s1-rdI">
             <size key="intrinsicContentSize" width="512" height="512"/>
         </designable>
         <designable name="zmD-Ff-vUG">
-            <size key="intrinsicContentSize" width="128" height="12"/>
+            <size key="intrinsicContentSize" width="192.33333333333334" height="20.333333333333332"/>
         </designable>
     </designables>
     <resources>

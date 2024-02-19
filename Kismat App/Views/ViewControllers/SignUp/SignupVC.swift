@@ -13,6 +13,10 @@ class SignupVC: MainViewController {
     
     @IBAction func signUpBtnPressed(_ sender: Any) {
         if email != "" && password != "" {
+            if password == "notMatched" {
+                AppFunctions.showSnackBar(str: "Passwords do not match")
+                return
+            }
             isKeyBoardShown = false
             view.endEditing(true)
             userSignup()
@@ -157,7 +161,7 @@ class SignupVC: MainViewController {
         } else if textField == passwordTF {
             tempPass = !textField.text!.isTFBlank ? textField.text! : ""
         } else if textField == confirmPassword {
-            password = textField.text!.caseInsensitiveCompare(tempPass) == .orderedSame ? textField.text! : ""
+            password = textField.text!.caseInsensitiveCompare(tempPass) == .orderedSame ? textField.text! : "notMatched"
         }
     }
     
