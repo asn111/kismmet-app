@@ -14,6 +14,17 @@ target 'Kismmet' do
   
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
+  pod 'Firebase/Auth'
+  
+  pod 'GoogleSignIn'
+  pod 'GoogleMaps'
+  pod 'FacebookLogin'
+  pod 'TwitterKit'
+  pod 'OAuthSwift', '~> 2.2.0'
+  pod 'SnapSDK', :subspecs => ['SCSDKLoginKit']
+  pod 'TikTokOpenSDKCore'
+  pod 'TikTokOpenAuthSDK'
+
   
   pod 'SwiftSignalRClient'
   pod 'Alamofire'
@@ -22,9 +33,6 @@ target 'Kismmet' do
   #pod "RxRealm"
   pod 'Siren'
   pod 'SwiftyStoreKit'
-
-  pod 'GoogleSignIn'
-  pod 'GoogleMaps'
 
   pod 'TransitionableTab', '~> 0.2.0'
   pod 'PKHUD'

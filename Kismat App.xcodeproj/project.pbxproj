@@ -886,6 +886,8 @@
 			dependencies = (
 			);
 			name = Kismmet;
+			packageProductDependencies = (
+			);
 			productName = "Kismat App";
 			productReference = 299FDD06299679690049741B /* Kismmet.app */;
 			productType = "com.apple.product-type.application";
@@ -962,6 +964,8 @@
 				Base,
 			);
 			mainGroup = 299FDCFD299679690049741B;
+			packageReferences = (
+			);
 			productRefGroup = 299FDD07299679690049741B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

@@ -13,6 +13,11 @@ import Firebase
 import GoogleMaps
 import GoogleSignIn
 import AuthenticationServices
+import TwitterKit
+import OAuthSwift
+import SCSDKLoginKit
+import TikTokOpenSDKCore
+import FacebookCore
 
 
 @main
@@ -22,6 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        ApplicationDelegate.shared.application(
+            application,
+            didFinishLaunchingWithOptions: launchOptions
+        )
         initializations()
         return true
     }
@@ -31,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.applicationIconBadgeNumber = 0
         if AppFunctions.isLoggedIn() {
             if AppFunctions.getplatForm() == "iOS" {
-                IAPManager.shared.checkSubscriptionStatus()
+                //IAPManager.shared.checkSubscriptionStatus()
             }
             //APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
         }
@@ -49,14 +58,74 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         var handled: Bool
         
+        // Check for Twitter login callback first
+        handled = TWTRTwitter.sharedInstance().application(app, open: url, options: options)
+        if handled {
+            return true
+        }
+        
+        // Check for SnapChat login callback first
+        handled = SCSDKLoginClient.application(app, open: url, options: options)
+        if handled {
+            return true
+        }
+        
+        // Check for Google Sign-In callback
         handled = GIDSignIn.sharedInstance.handle(url)
         if handled {
             return true
         }
         
+        // Check for Tiktok login callback first
+        if (TikTokURLHandler.handleOpenURL(url)) {
+            return true
+        }
+        
+        // Check for LinkedIn Sign-In callback
+        if url.host == "oauth-callback" || url.host == "reddit" {
+            OAuthSwift.handle(url: url)
+            return true
+        }
+        
+        handled = ApplicationDelegate.shared.application(
+            app,
+            open: url,
+            sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+            annotation: options[UIApplication.OpenURLOptionsKey.annotation]
+        )
+        if handled {
+            return true
+        }
         // Handle other custom URL types.
         
         // If not handled by this app, return false.
+        return false
+    }
+    
+    
+    func application(_ application: UIApplication,
+                     continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+              let url = userActivity.webpageURL,
+              let components = URLComponents(url: url,
+                                             resolvingAgainstBaseURL: true) else {
+            return false
+        }
+        
+        if (TikTokURLHandler.handleOpenURL(userActivity.webpageURL)) {
+            return true
+        }
+        
+        
+        return false
+    }
+    
+    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
+        if (TikTokURLHandler.handleOpenURL(url)) {
+            return true
+        }
         return false
     }
     
@@ -64,6 +133,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func initializations() {
         
+        TWTRTwitter.sharedInstance().start(withConsumerKey: "VXGiMTFw760lgQvi6j1rRaEg2", consumerSecret: "g06mHiA1kZYVDhGWxneQLJtw1iaQzbwTJHUoOZr24pJ5SiyDNj") // asniqbal
+
+        //Tikok
+        //TikTokOpenSDK.initializeApp(withClientId: "YOUR_CLIENT_KEY", clientSecret: "YOUR_CLIENT_SECRET")
+
         FirebaseApp.configure()
         GMSServices.provideAPIKey(googleMapAPIKey)
         registerNotification()
@@ -87,6 +161,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Logs.show(message: "MIGRATION: \(config)")
         ///Migration
     }
+
     
     func sendLocation() {
         let pram = ["lat": "",

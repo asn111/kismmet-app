@@ -211,7 +211,7 @@ class EditProfileSetup: MainViewController { //Birthday
         AppFunctions.setTagsArray(value: arr)
         self.tags.removeAll()
         self.tags = AppFunctions.getTagsArray()
-        profileTV.reloadRows(at: [IndexPath(row: placeholderArray.count + socialAccounts.count + 2, section: 0)], with: .fade)
+        profileTV.reloadRows(at: [IndexPath(row: placeholderArray.count + socialAccounts.count + 2, section: 0),IndexPath(row: placeholderArray.count + socialAccounts.count + 1, section: 0)], with: .fade)
     }
     
     @objc func addBtnPressed(sender:UIButton) {

@@ -2,7 +2,109 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>codenablers.Kismat-App</string>
+	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>codenablers.Kismat-App</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>kismmet</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string></string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.464505001033-pk77rgck0i7702u259nmv6n18sp8l331</string>
+			</array>
+		</dict>
+		<dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>fb1783818315462293</string>
+            </array>
+        </dict>
+        <dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>https://www.kismmet.com/insta/callback</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>twitterkit-VXGiMTFw760lgQvi6j1rRaEg2</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>https://www.kismmet.com/auth/linkedin/callback</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>https://www.kismmet.com/tiktok/callback</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>1783818315462293</string>
+    <key>FacebookClientToken</key>
+    <string>55fa72660cf6ef6e1cd0ec15ade697b2</string>
+	<key>FacebookDisplayName</key>
+	<string>Kismmet</string>
+	<key>GIDClientID</key>
+	<string>464505001033-pk77rgck0i7702u259nmv6n18sp8l331.apps.googleusercontent.com</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>snapchat</string>
+		<string>itms-apps</string>
+		<string>bitmoji-sdk</string>
+		<string>fbapi</string>
+        <string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>twitterauth</string>
+		<string>tiktokopensdk</string>
+		<string>snssdk1180</string>
+		<string>snssdk1233</string>
+	</array>
+	<key>TikTokClientKey</key>
+	<string>awaye1bd3cns9y0f</string>
+	<key>SCSDKClientId</key>
+	<string>a9c8d560-b2e4-4864-b9b5-f0b741d0cb92</string>
+	<key>SCSDKRedirectUrl</key>
+	<string>kismmet://snap-kit/oauth2</string>
+	<key>SCSDKScopes</key>
+	<array>
+		<string>https://auth.snapchat.com/oauth2/api/user.display_name</string>
+		<string>https://auth.snapchat.com/oauth2/api/user.external_id</string>
+		<string>https://auth.snapchat.com/oauth2/api/user.bitmoji.avatar</string>
+	</array>
+	<key>SnapKitAutoInit</key>
 	<false/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
@@ -27,25 +129,9 @@
 		<string>processing</string>
 		<string>remote-notification</string>
 	</array>
-    <key>BGTaskSchedulerPermittedIdentifiers</key>
-    <array>
-        <string>codenablers.Kismat-App</string>
-    </array>
-
 	<key>baseURL</key>
 	<string>$(baseURL)</string>
 	<key>protocol</key>
 	<string>$(protocol)</string>
-    <key>GIDClientID</key>
-    <string>464505001033-pk77rgck0i7702u259nmv6n18sp8l331.apps.googleusercontent.com</string>
-    <key>CFBundleURLTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>com.googleusercontent.apps.464505001033-pk77rgck0i7702u259nmv6n18sp8l331</string>
-            </array>
-        </dict>
-    </array>
 </dict>
 </plist>
