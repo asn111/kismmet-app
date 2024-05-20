@@ -74,7 +74,7 @@ class EditProfileSetup: MainViewController { //Birthday
                 Logs.show(message: val)
                 if AppFunctions.getTagsArray().count > 0 {
                     self?.tags = AppFunctions.getTagsArray()
-                    self?.profileTV.reloadRows(at: [IndexPath(row: (self?.placeholderArray.count)! + (self?.socialAccounts.count)! + 2, section: 0)], with: .fade)
+                    self?.profileTV.reloadRows(at: [IndexPath(row: 9, section: 0)], with: .fade)
                 }
                 
             } else if val.contains("socialAdded") {
@@ -211,11 +211,11 @@ class EditProfileSetup: MainViewController { //Birthday
         AppFunctions.setTagsArray(value: arr)
         self.tags.removeAll()
         self.tags = AppFunctions.getTagsArray()
-        profileTV.reloadRows(at: [IndexPath(row: placeholderArray.count + socialAccounts.count + 2, section: 0)], with: .fade)
+        profileTV.reloadRows(at: [IndexPath(row: 8, section: 0),IndexPath(row: 9, section: 0)], with: .fade)
     }
     
     @objc func addBtnPressed(sender:UIButton) {
-        if sender.tag > 12 {
+        //if sender.tag > 7 {
             let arr = AppFunctions.getTagsArray()
             if arr.count >= 5 {
                 AppFunctions.showSnackBar(str: "Maximum tags added, remove to add new")
@@ -224,10 +224,10 @@ class EditProfileSetup: MainViewController { //Birthday
             self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
                 vc.accountType = "tags"
             }
-        } else if sender.tag == 7 {
+        /*} else if sender.tag == 7 {
             self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
             }
-        }
+        }*/
     }
     
     
@@ -570,7 +570,7 @@ class EditProfileSetup: MainViewController { //Birthday
 extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return placeholderArray.count + socialAccounts.count + 6
+        return placeholderArray.count + 5 //socialAccounts.count + 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -611,7 +611,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 
                 return cell
                 
-            case placeholderArray.count - 1 : // Social Accounts Heading
+            /*case placeholderArray.count - 1 : // Social Accounts Heading
                 
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
@@ -622,15 +622,15 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
             
                 cell.addBtn.addTarget(self, action: #selector(addBtnPressed(sender:)), for: .touchUpInside)
                 
-                return cell
+                return cell*/
                 
-            case (placeholderArray.count + socialAccounts.count + 1) - 1: // EmptyView
+            case placeholderArray.count - 1 : //socialAccounts.count + 1) - 1: // EmptyView
                 
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = true
                 return cell
                 
-            case placeholderArray.count + socialAccounts.count + 1: // Tags Heading
+            case placeholderArray.count : //socialAccounts.count + 1: // Tags Heading
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
                 cell.headerLbl.text = "Tags"
@@ -646,7 +646,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 cell.addBtn.addTarget(self, action: #selector(addBtnPressed(sender:)), for: .touchUpInside)
                 return cell
                 
-            case placeholderArray.count + socialAccounts.count + 2 : // Tags view Btn
+            case placeholderArray.count + 1 ://ocialAccounts.count + 2 : // Tags view Btn
                 let cell : TagsTVCell = tableView.dequeueReusableCell(withIdentifier: "TagsTVCell", for: indexPath) as! TagsTVCell
                 
                 cell.isForEditing = true
@@ -695,7 +695,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 
                 return cell
                 
-            case placeholderArray.count + socialAccounts.count + 3 : // Tags Count view
+            case placeholderArray.count + 2://socialAccounts.count + 3 : // Tags Count view
                 
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.notifHeaderView.isHidden = false
@@ -703,7 +703,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 
                 return cell
                 
-            case placeholderArray.count + socialAccounts.count + 4: // Profile Btn
+            case placeholderArray.count + 3://socialAccounts.count + 4: // Profile Btn
                 
                 let cell : GeneralButtonTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralButtonTVCell", for: indexPath) as! GeneralButtonTVCell
 
@@ -722,7 +722,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 return cell
                 
                 
-            case placeholderArray.count + socialAccounts.count + 5: // Done Btn
+            case placeholderArray.count + 4://socialAccounts.count + 5: // Done Btn
                 
                 let cell : GeneralButtonTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralButtonTVCell", for: indexPath) as! GeneralButtonTVCell
                 
@@ -738,7 +738,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 return cell
                 
             default:
-                if indexPath.row <= placeholderArray.count - 1 {
+                //if indexPath.row <= placeholderArray.count - 1 {
                     let cell : ProfileTVCell = tableView.dequeueReusableCell(withIdentifier: "ProfileTVCell", for: indexPath) as! ProfileTVCell
                     
                     cell.numberView.isHidden = true
@@ -767,7 +767,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                     
                     return cell
                     
-                } else {
+                /*} else {
                     
                     let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
                     
@@ -785,7 +785,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                     cell.socialLbl.text = socialAccounts[(indexPath.row - placeholderArray.count)].linkType
                     
                     return cell
-                }
+                }*/
         }
     }
     
@@ -793,7 +793,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
         
         Logs.show(message: "INDEX: \(indexPath.row)")
 
-        if indexPath.row > placeholderArray.count - 1 && indexPath.row < (placeholderArray.count + socialAccounts.count + 1) - 1{
+        /*if indexPath.row > placeholderArray.count - 1 && indexPath.row < (placeholderArray.count + socialAccounts.count + 1) - 1{
             if socialAccModel.filter({$0.linkType == socialAccounts[(indexPath.row - placeholderArray.count)].linkType }).count > 0 {
                 self.presentVC(id: "SocialLinks_VC",presentFullType: "not") { (vc:SocialLinks_VC) in
                     vc.socialAccModel = socialAccModel.filter {$0.linkType == socialAccounts[(indexPath.row - placeholderArray.count)].linkType }
@@ -803,17 +803,17 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
             } else {
                 AppFunctions.showSnackBar(str: "Please add social account")
             }
-        }
+        }*/
     }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if indexPath.row == (placeholderArray.count + socialAccounts.count + 1) - 1 {
+        if indexPath.row == (placeholderArray.count) {//+ socialAccounts.count + 1) - 1 {
             return 20.0 // empty view
-        } else if indexPath.row == placeholderArray.count + socialAccounts.count + 3 {
+        } else if indexPath.row == placeholderArray.count + 2 {//+ socialAccounts.count + 3 {
             return 30.0 // empty view
-        } else if indexPath.row == placeholderArray.count + socialAccounts.count + 4 {
+        } else if indexPath.row == placeholderArray.count + 3 {//socialAccounts.count + 4 {
             return 30.0 // profile btn
         } else {
             return UITableView.automaticDimension

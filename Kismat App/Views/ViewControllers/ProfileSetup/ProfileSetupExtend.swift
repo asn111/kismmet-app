@@ -94,7 +94,7 @@ class ProfileSetupExtend: MainViewController {
         AppFunctions.setTagsArray(value: arr)
         self.tags.removeAll()
         self.tags = AppFunctions.getTagsArray()
-        profileExtTV.reloadRows(at: [IndexPath(row: socialAccounts.count + 8, section: 0)], with: .fade)
+        profileExtTV.reloadRows(at: [IndexPath(row: socialAccounts.count + 8, section: 0),IndexPath(row: socialAccounts.count + 7, section: 0)], with: .fade)
     }
     
     @objc func addBtnPressed(sender:UIButton) {

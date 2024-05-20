@@ -12,6 +12,37 @@ import DropDown
 class AddLinksVC: MainViewController {
 
     
+    @IBOutlet weak var saveBtn: RoundCornerButton!
+    @IBOutlet weak var cancelBtn: RoundCornerButton!
+    @IBOutlet weak var selectedlink: UIView!
+    @IBOutlet weak var mainViewHightConst: NSLayoutConstraint!
+    
+    private let containerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+    
+    private let label: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Roboto", size: 16)?.medium
+        label.textAlignment = .left
+        label.textColor = UIColor(named: "Text grey")
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    
+    
     @IBAction func nameToolTip(_ sender: Any) {
         var msg = ""
         if accountType == "tags" {
@@ -37,7 +68,11 @@ class AddLinksVC: MainViewController {
     }
     
     @IBAction func cancelBtnPressed(_ sender: Any) {
-        self.dismiss(animated: true)
+        if accountType == "tags" {
+            self.dismiss(animated: true)
+        } else {
+            self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        }
     }
     @IBAction func saveBtnPressed(_ sender: Any) {
         if accountType == "tags" {
@@ -59,8 +94,10 @@ class AddLinksVC: MainViewController {
     }
     
     @IBOutlet weak var mainView: RoundCornerView!
-    @IBOutlet weak var saveBtnTopConst: NSLayoutConstraint!
-    @IBOutlet weak var cancelBtnTopConst: NSLayoutConstraint!
+    @IBOutlet weak var cancelBottomConst: NSLayoutConstraint!
+    @IBOutlet weak var saveBottomConst: NSLayoutConstraint!
+    @IBOutlet weak var headingTopConst: NSLayoutConstraint!
+    @IBOutlet weak var headingLblHeightConst: NSLayoutConstraint!
     @IBOutlet weak var headingLbl: fullyCustomLbl!
     @IBOutlet weak var addAccView: RoundCornerView!
     @IBOutlet weak var accountTypeView: RoundCornerView!
@@ -79,6 +116,7 @@ class AddLinksVC: MainViewController {
 
     var socialAccName = [String()] //["LinkedIn","Twitter","Instagram","Snapchat","Website"]
     var socialAccounts = [SocialAccDBModel()]
+    var socialLink = SocialAccDBModel()
 
     
     override func viewDidLoad() {
@@ -87,7 +125,9 @@ class AddLinksVC: MainViewController {
         socialAccounts = Array(DBService.fetchSocialAccList())
         socialAccName = socialAccounts.compactMap { $0.linkType }
         
-        setupDropDown()
+        //setupDropDown()
+        
+        
         self.view.addBlurEffect(style: .extraLight, cornerRadius: 0, alpha: 0.5)
         
         self.view.bringSubviewToFront(mainView)
@@ -95,10 +135,37 @@ class AddLinksVC: MainViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
         self.view.addGestureRecognizer(tap)
         
+       
+        
         addAccName.delegate = self
         addAccLink.delegate = self
         addAccName.addDoneButtonOnKeyboard()
         addAccLink.addDoneButtonOnKeyboard()
+        
+        selectedlink.addSubview(containerView)
+        containerView.addSubview(imageView)
+        containerView.addSubview(label)
+        
+        let imageUrl = URL(string: socialLink.linkImage)
+        imageView.sd_setImage(with: imageUrl, placeholderImage: UIImage()) { (image, error, imageCacheType, url) in
+            if let image = image {
+                self.imageView.image = image
+            }
+        }
+        
+        label.text = "@"+socialLink.linkType
+        linkId = socialLink.linkTypeId
+        
+        configureConstraints()
+
+        
+        if socialLink.linkType == "Website" {
+            self.addAccName.placeholder = "Name your website link"
+            self.addAccLink.placeholder = "Enter your website’s full URL"
+        } else {
+            self.addAccName.placeholder = "Name it"
+            self.addAccLink.placeholder = "Link it"
+        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -108,12 +175,19 @@ class AddLinksVC: MainViewController {
             addAccName.delegate = self
             createNonDisappearingPlaceholder(for: addAccName, placeholderText: "#", font: UIFont.systemFont(ofSize: 16), color: UIColor(named: "Secondary Grey")!)
 
-            adAccLink.isHidden = true
             headingLbl.text = "Find people with similar interests by searching tags in the feed. Choose 5 tags that represent you, your hobbies, and your passions."
+            headingLbl.numberOfLines = 0
             addAccName.placeholder = "Enter tag here"
             accountTypeView.isHidden = true
-            saveBtnTopConst.constant = 120
-            cancelBtnTopConst.constant = 120
+            adAccLink.isHidden = true
+            saveBottomConst.constant = 50
+            cancelBottomConst.constant = 50
+            headingLblHeightConst.constant = 52
+            headingTopConst.constant = 12
+
+            selectedlink.isHidden = true
+            
+                        
             view.setNeedsLayout()
         }
 
@@ -132,6 +206,39 @@ class AddLinksVC: MainViewController {
         } else {
             generalPublisher.onNext("socialAdded")
         }
+    }
+
+    
+    private func configureConstraints() {
+        NSLayoutConstraint.activate([
+            // Container View Constraints
+            containerView.topAnchor.constraint(equalTo: selectedlink.topAnchor, constant: 5), // Padding
+            containerView.bottomAnchor.constraint(equalTo: selectedlink.bottomAnchor, constant: -5), // Padding
+            
+            // Image View Constraints
+            imageView.leadingAnchor.constraint(equalTo: selectedlink.leadingAnchor, constant: 10), // Padding
+            imageView.centerYAnchor.constraint(equalTo: selectedlink.centerYAnchor),
+            imageView.heightAnchor.constraint(equalTo: selectedlink.heightAnchor, multiplier: 0.7),
+            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 1.0), // Assuming a square image, adjust the multiplier as needed
+            
+            // Label Constraints
+            label.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8), // Adjust constant for spacing
+            label.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
+            label.trailingAnchor.constraint(equalTo: selectedlink.trailingAnchor, constant: -10), // Adjust for padding
+            label.heightAnchor.constraint(equalTo: selectedlink.heightAnchor, multiplier: 0.7) // Adjust multiplier as needed
+        ])
+        
+        // Set the width of selectedlink based on the intrinsic content size of the label plus the width of the imageView and padding
+        let labelWidth = socialLink.linkType.size(withAttributes: [NSAttributedString.Key.font : UIFont(name: "Roboto", size: 14)?.regular as Any]).width
+        let totalWidth = labelWidth + imageView.frame.size.width + 60 + 25 // 18 for spacing between imageView and label, 25 for extra padding
+        selectedlink.widthAnchor.constraint(equalToConstant: totalWidth).isActive = true
+        
+        // Apply rounded corners and border to the contentView
+        selectedlink.layer.cornerRadius = 14 // Adjust for desired roundness
+        selectedlink.layer.borderWidth = 1.2
+        selectedlink.addShadow()
+        selectedlink.layer.borderColor = UIColor(named: "Secondary Grey")?.cgColor
+        selectedlink.clipsToBounds = true
     }
 
 
@@ -158,6 +265,7 @@ class AddLinksVC: MainViewController {
         textField.leftView = placeholderLabel
         textField.leftViewMode = .always
     }
+    
     
     func setupDropDown() {
         
@@ -284,3 +392,24 @@ class AddLinksVC: MainViewController {
     }
     
 }
+
+/*extension AddLinksVC : UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return socialAccounts.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SocialLinkCell", for: indexPath) as! SocialLinkCell
+        let socialLink = socialAccounts[indexPath.item]
+        cell.configure(with: socialLink.linkImage, text: socialLink.linkType)
+        return cell
+    }
+    
+}
+
+extension SocialLinkVC: UICollectionViewDelegateFlowLayout {
+ func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+ return CGSize(width: socialAccounts[indexPath.item].linkType.size(withAttributes: [NSAttributedString.Key.font : UIFont(name: "Roboto", size: 14)?.regular as Any]).width + 25, height: 30)
+ }
+ 
+ }*/

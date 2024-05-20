@@ -137,6 +137,11 @@ extension UIView {
         self.layer.add(slideInFromLeftTransition, forKey: "slideInFromBottomTransition")
     }
     
+    func addShadow() {
+        self.layer.shadowColor = UIColor(named: "Secondary Grey")?.withAlphaComponent(0.5).cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 3)
+        self.layer.shadowOpacity = 1
+    }
 }
 
 

@@ -7,6 +7,7 @@
 
 import UIKit
 import UIMultiPicker
+import CDAlertView
 
 class SocialLinks_VC: MainViewController {
 
@@ -81,9 +82,8 @@ class SocialLinks_VC: MainViewController {
     @objc func removeBtnPressed(sender:UIButton) {
         let index = sender.tag
         if canEdit {
-            ApiService.deleteSocialLink(val: socialAccModel[index].socialAccountId)
-            socialAccModel.remove(at: index)
-            socialLinksTV.reloadData()
+            //add alert here
+            showAlert(index: index)
         } else {
             
             let alert = UIAlertController(title: "Select Option", message: "Please Select an Option", preferredStyle: .actionSheet)
@@ -118,6 +118,35 @@ class SocialLinks_VC: MainViewController {
             //setupMultiPickerView()
         }
         
+    }
+    
+    func showAlert(index: Int){
+        let message = "Alert!"
+        let alert = CDAlertView(title: message, message: "Are you sure you want to remove account?", type: .warning)
+        let action = CDAlertViewAction(title: "Remove",
+                                       handler: {[weak self] action in
+            let accountId = self?.socialAccModel[index].socialAccountId ?? -1 // Assuming -1 is an acceptable fallback
+            ApiService.deleteSocialLink(val: accountId)
+            self?.socialAccModel.remove(at: index)
+            self?.socialLinksTV.reloadData()
+            generalPublisher.onNext("socialDeleted")
+            return true
+        })
+        let cancel = CDAlertViewAction(title: "Cancel",
+                                       handler: { action in
+            print("CANCEL PRESSED")
+            return true
+        })
+        alert.isTextFieldHidden = true
+        alert.add(action: action)
+        alert.add(action: cancel)
+        alert.hideAnimations = { (center, transform, alpha) in
+            transform = .identity
+            alpha = 0
+        }
+        alert.show() { (alert) in
+            print("completed")
+        }
     }
     
     func share(message: String, link: String, sender: UIButton) {
@@ -210,23 +239,59 @@ extension SocialLinks_VC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch linkType {
-            case "LinkedIn":
-                AppFunctions.openLinkedIn(userName: socialAccModel[indexPath.row].linkUrl)
-            case "Twitter":
-                AppFunctions.openTwitter(userName: socialAccModel[indexPath.row].linkUrl)
-            case "Instagram":
-                AppFunctions.openInstagram(userName: socialAccModel[indexPath.row].linkUrl)
-            case "Snapchat":
-                AppFunctions.openSnapchat(userName: socialAccModel[indexPath.row].linkUrl)
-            case "Facebook":
-                AppFunctions.openFacebook(userName: socialAccModel[indexPath.row].linkUrl)
-            case "Reddit":
-                AppFunctions.openRedditProfile(userName: socialAccModel[indexPath.row].linkUrl)
-            case "Website":
-                AppFunctions.openWebLink(link: socialAccModel[indexPath.row].linkUrl, vc: self)
-            default:
-                print("default")
+        
+        if let urlString = socialAccModel[indexPath.row].linkUrl,
+           let url = URL(string: urlString),
+           UIApplication.shared.canOpenURL(url) {
+            // Opens the URL in browser
+            UIApplication.shared.open(url)
+        } else {
+            switch linkType {
+                case "LinkedIn":
+                    AppFunctions.openLinkedIn(userName: socialAccModel[indexPath.row].linkUrl)
+                case "Twitter":
+                    AppFunctions.openTwitter(userName: socialAccModel[indexPath.row].linkUrl)
+                case "Instagram":
+                    AppFunctions.openInstagram(userName: socialAccModel[indexPath.row].linkUrl)
+                case "Snapchat":
+                    AppFunctions.openSnapchat(userName: socialAccModel[indexPath.row].linkUrl)
+                case "Facebook":
+                    AppFunctions.openFacebook(userName: socialAccModel[indexPath.row].linkUrl)
+                case "Reddit":
+                    AppFunctions.openRedditProfile(userName: socialAccModel[indexPath.row].linkUrl)
+                case "TikTok":
+                    AppFunctions.openTikTok(userName: socialAccModel[indexPath.row].linkUrl)
+                case "YouTube":
+                    AppFunctions.openYouTube(channelName: socialAccModel[indexPath.row].linkUrl)
+                case "Twitch":
+                    AppFunctions.openTwitch(userName: socialAccModel[indexPath.row].linkUrl)
+                case "Kickstarter":
+                    AppFunctions.openKickstarter(userName: socialAccModel[indexPath.row].linkUrl)
+                case "Venmo":
+                    AppFunctions.openVenmo(userName: socialAccModel[indexPath.row].linkUrl)
+                case "Shopify":
+                    AppFunctions.openShopify(storeName: socialAccModel[indexPath.row].linkUrl)
+                case "Discord":
+                    AppFunctions.openDiscord(userName: socialAccModel[indexPath.row].linkUrl)
+                case "PayPal":
+                    AppFunctions.openPaypal(userName: socialAccModel[indexPath.row].linkUrl)
+                case "Tumblr":
+                    AppFunctions.openTumblr(userName: socialAccModel[indexPath.row].linkUrl)
+                case "SoundCloud":
+                    AppFunctions.openSoundCloud(userName: socialAccModel[indexPath.row].linkUrl)
+                case "Quora":
+                    AppFunctions.openQuora(userName: socialAccModel[indexPath.row].linkUrl)
+                case "Spotify":
+                    AppFunctions.openSpotify(userName: socialAccModel[indexPath.row].linkUrl)
+                case "Pinterest":
+                    AppFunctions.openPinterest(userName: socialAccModel[indexPath.row].linkUrl)
+                case "WeChat":
+                    AppFunctions.openWeChat(userName: socialAccModel[indexPath.row].linkUrl)
+                case "Website":
+                    AppFunctions.openWebLink(link: socialAccModel[indexPath.row].linkUrl, vc: self)
+                default:
+                    print("default")
+            }
         }
     }
     

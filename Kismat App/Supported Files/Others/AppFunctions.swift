@@ -495,6 +495,18 @@ class AppFunctions {
     }
     
     //MARK: Open app functions
+    
+    open class func openLinkIfValid(_ urlString: String) {
+        // Check if the string is a valid URL
+        guard let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) else {
+            AppFunctions.showSnackBar(str: "Invalid link provided")
+            return
+        }
+        
+        // Open the URL in the default web browser
+        UIApplication.shared.open(url)
+    }
+    
     open class func openSnapchat(userName: String) {
         
         let application = UIApplication.shared
@@ -598,6 +610,188 @@ class AppFunctions {
         } else { showSnackBar(str: "Invalid link provided") }
         
        
+    }
+    
+    open class func openTikTok(userName: String) {
+        let application = UIApplication.shared
+        if let appURL = URL(string: "tiktok://user/profile/\(userName)") {
+            if application.canOpenURL(appURL) {
+                application.open(appURL)
+            } else {
+                if let webURL = URL(string: "https://www.tiktok.com/@\(userName)") {
+                    application.open(webURL)
+                } else { showSnackBar(str: "Invalid link provided") }
+            }
+        } else { showSnackBar(str: "Invalid link provided") }
+    }
+    
+    open class func openYouTube(channelName: String) {
+        let application = UIApplication.shared
+        if let appURL = URL(string: "youtube://\(channelName)") {
+            if application.canOpenURL(appURL) {
+                application.open(appURL)
+            } else {
+                if let webURL = URL(string: "https://www.youtube.com/user/\(channelName)") {
+                    application.open(webURL)
+                } else { showSnackBar(str: "Invalid link provided") }
+            }
+        } else { showSnackBar(str: "Invalid link provided") }
+    }
+    
+    open class func openTwitch(userName: String) {
+        let application = UIApplication.shared
+        if let appURL = URL(string: "twitch://user/\(userName)") {
+            if application.canOpenURL(appURL) {
+                application.open(appURL)
+            } else {
+                if let webURL = URL(string: "https://www.twitch.tv/\(userName)") {
+                    application.open(webURL)
+                } else { showSnackBar(str: "Invalid link provided") }
+            }
+        } else { showSnackBar(str: "Invalid link provided") }
+    }
+    
+    open class func openKickstarter(userName: String) {
+        let application = UIApplication.shared
+        if let appURL = URL(string: "kickstarter://user/\(userName)") {
+            if application.canOpenURL(appURL) {
+                application.open(appURL)
+            } else {
+                if let webURL = URL(string: "https://www.kickstarter.com/profile/\(userName)") {
+                    application.open(webURL)
+                } else { showSnackBar(str: "Invalid link provided") }
+            }
+        } else { showSnackBar(str: "Invalid link provided") }
+    }
+    
+    open class func openVenmo(userName: String) {
+        let application = UIApplication.shared
+        if let appURL = URL(string: "venmo://users/\(userName)") {
+            if application.canOpenURL(appURL) {
+                application.open(appURL)
+            } else {
+                if let webURL = URL(string: "https://venmo.com/\(userName)") {
+                    application.open(webURL)
+                } else { showSnackBar(str: "Invalid link provided") }
+            }
+        } else { showSnackBar(str: "Invalid link provided") }
+    }
+    
+    open class func openShopify(storeName: String) {
+        let application = UIApplication.shared
+        if let appURL = URL(string: "shopify://store/\(storeName)") {
+            if application.canOpenURL(appURL) {
+                application.open(appURL)
+            } else {
+                if let webURL = URL(string: "https://\(storeName).myshopify.com") {
+                    application.open(webURL)
+                } else { showSnackBar(str: "Invalid link provided") }
+            }
+        } else { showSnackBar(str: "Invalid link provided") }
+    }
+    
+    open class func openDiscord(userName: String) {
+        let application = UIApplication.shared
+        if let appURL = URL(string: "discord://user/\(userName)") {
+            if application.canOpenURL(appURL) {
+                application.open(appURL)
+            } else {
+                if let webURL = URL(string: "https://discord.com/users/\(userName)") {
+                    application.open(webURL)
+                } else { showSnackBar(str: "Invalid link provided") }
+            }
+        } else { showSnackBar(str: "Invalid link provided") }
+    }
+    
+    open class func openPaypal(userName: String) {
+        let application = UIApplication.shared
+        if let appURL = URL(string: "paypal://send?recipient=\(userName)") {
+            if application.canOpenURL(appURL) {
+                application.open(appURL)
+            } else {
+                if let webURL = URL(string: "https://www.paypal.me/\(userName)") {
+                    application.open(webURL)
+                } else { showSnackBar(str: "Invalid link provided") }
+            }
+        } else { showSnackBar(str: "Invalid link provided") }
+    }
+    
+    open class func openTumblr(userName: String) {
+        let application = UIApplication.shared
+        if let appURL = URL(string: "tumblr://x-callback-url/blog?blogName=\(userName)") {
+            if application.canOpenURL(appURL) {
+                application.open(appURL)
+            } else {
+                if let webURL = URL(string: "https://\(userName).tumblr.com") {
+                    application.open(webURL)
+                } else { showSnackBar(str: "Invalid link provided") }
+            }
+        } else { showSnackBar(str: "Invalid link provided") }
+    }
+    
+    open class func openSoundCloud(userName: String) {
+        let application = UIApplication.shared
+        if let appURL = URL(string: "soundcloud://users/\(userName)") {
+            if application.canOpenURL(appURL) {
+                application.open(appURL)
+            } else {
+                if let webURL = URL(string: "https://soundcloud.com/\(userName)") {
+                    application.open(webURL)
+                } else { showSnackBar(str: "Invalid link provided") }
+            }
+        } else { showSnackBar(str: "Invalid link provided") }
+    }
+    
+    open class func openQuora(userName: String) {
+        let application = UIApplication.shared
+        if let appURL = URL(string: "quora://profile/\(userName)") {
+            if application.canOpenURL(appURL) {
+                application.open(appURL)
+            } else {
+                if let webURL = URL(string: "https://www.quora.com/profile/\(userName)") {
+                    application.open(webURL)
+                } else { showSnackBar(str: "Invalid link provided") }
+            }
+        } else { showSnackBar(str: "Invalid link provided") }
+    }
+    
+    open class func openSpotify(userName: String) {
+        let application = UIApplication.shared
+        if let appURL = URL(string: "spotify://user/\(userName)") {
+            if application.canOpenURL(appURL) {
+                application.open(appURL)
+            } else {
+                if let webURL = URL(string: "https://open.spotify.com/user/\(userName)") {
+                    application.open(webURL)
+                } else { showSnackBar(str: "Invalid link provided") }
+            }
+        } else { showSnackBar(str: "Invalid link provided") }
+    }
+    
+    open class func openPinterest(userName: String) {
+        let application = UIApplication.shared
+        if let appURL = URL(string: "pinterest://user/\(userName)") {
+            if application.canOpenURL(appURL) {
+                application.open(appURL)
+            } else {
+                if let webURL = URL(string: "https://www.pinterest.com/\(userName)") {
+                    application.open(webURL)
+                } else { showSnackBar(str: "Invalid link provided") }
+            }
+        } else { showSnackBar(str: "Invalid link provided") }
+    }
+    
+    open class func openWeChat(userName: String) {
+        let application = UIApplication.shared
+        if let appURL = URL(string: "weixin://contacts/profile/\(userName)") {
+            if application.canOpenURL(appURL) {
+                application.open(appURL)
+            } else {
+                if let webURL = URL(string: "https://www.wechat.com/\(userName)") {
+                    application.open(webURL)
+                } else { showSnackBar(str: "Invalid link provided") }
+            }
+        } else { showSnackBar(str: "Invalid link provided") }
     }
     
     open class func openWebLink(link: String, vc: UIViewController) {

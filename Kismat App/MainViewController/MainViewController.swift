@@ -11,6 +11,7 @@ import Combine
 import Alamofire
 import SwiftSignalRClient
 import CoreLocation
+import SDWebImage
 
 
 class MainViewController: UIViewController, UIViewControllerTransitioningDelegate, UITextFieldDelegate, UITextViewDelegate, UIGestureRecognizerDelegate, HubConnectionDelegate, UIPopoverPresentationControllerDelegate {
@@ -30,6 +31,13 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
         super.viewDidLoad()
         
         setupCustomView()
+        
+        // Clear memory cache
+        SDImageCache.shared.clearMemory()
+        
+        /// this will clear cache and downloads every time
+        /// Clear disk cache
+        //SDImageCache.shared.clearDisk(onCompletion: nil)
         
         if APIService.singelton.isCheckReachable() {
             internetView.isHidden = true

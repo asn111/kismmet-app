@@ -26,7 +26,7 @@ class SignalRManager: NSObject {
         let baseUrl = "https://api.kismmet.com"
 
         connection = HubConnectionBuilder(url: URL(string: baseUrl + "/kismmetHub")!)
-            .withLogging(minLogLevel: .debug)
+            .withLogging(minLogLevel: .error)
             .withAutoReconnect()
             .withHubConnectionDelegate(delegate: chatHubConnectionDelegate!)
             .withHttpConnectionOptions(configureHttpOptions: { httpConOpt in

@@ -10,7 +10,7 @@ target 'Kismmet' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxDataSources'
-  pod 'RxSwiftExt'
+  pod 'RxSwiftExt'
   
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
