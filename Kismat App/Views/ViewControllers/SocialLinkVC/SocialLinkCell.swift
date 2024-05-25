@@ -78,7 +78,7 @@ class SocialLinkCell: UICollectionViewCell {
         // Apply rounded corners and border to the contentView
         contentView.layer.cornerRadius = 14 // Adjust for desired roundness
         contentView.layer.borderWidth = 0.7
-        contentView.addShadow()
+        contentView.backgroundColor = .white
         //contentView.backgroundColor = UIColor(named: "Secondary Grey")?.withAlphaComponent(0.3)
         contentView.layer.borderColor = UIColor(named: "Text grey")?.cgColor
         contentView.clipsToBounds = true

@@ -805,6 +805,32 @@ class AppFunctions {
 
     }
     
+    open class func openPatreon(userName: String) {
+        let application = UIApplication.shared
+        if let appURL = NSURL(string: "patreon://user?userName=\(userName)") {
+            if application.canOpenURL(appURL as URL) {
+                application.open(appURL as URL)
+            } else {
+                if let webURL = NSURL(string: "https://www.patreon.com/\(userName)") {
+                    application.open(webURL as URL)
+                } else { showSnackBar(str: "Invalid link provided") }
+            }
+        } else { showSnackBar(str: "Invalid link provided") }
+    }
+    
+    open class func openCashApp(userName: String) {
+        let application = UIApplication.shared
+        if let appURL = NSURL(string: "cashapp://$\(userName)") {
+            if application.canOpenURL(appURL as URL) {
+                application.open(appURL as URL)
+            } else {
+                if let webURL = NSURL(string: "https://cash.app/$\(userName)") {
+                    application.open(webURL as URL)
+                } else { showSnackBar(str: "Invalid link provided") }
+            }
+        } else { showSnackBar(str: "Invalid link provided") }
+    }
+    
     //MARK: Show ToolTip
     open class func showToolTip(str: String, btn: UIButton, arrowPos: String = "top") {
         

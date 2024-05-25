@@ -72,6 +72,25 @@ class SocialLinkVC: MainViewController {
                     case .next(let val):
                         if val.userId != "" {
                             self.socialAccModel = val.socialAccounts
+                            
+                            let linkTypesInSocialAccModel = Set(socialAccModel.map { $0.linkType })
+
+                            socialAccounts.sort { (account1, account2) -> Bool in
+                                // Check if either account has a linkType present in socialAccModel
+                                let isAccount1Matched = linkTypesInSocialAccModel.contains(account1.linkType)
+                                let isAccount2Matched = linkTypesInSocialAccModel.contains(account2.linkType)
+                                
+                                // Move matched accounts to the front
+                                if isAccount1Matched && !isAccount2Matched {
+                                    return true
+                                } else if !isAccount1Matched && isAccount2Matched {
+                                    return false
+                                } else {
+                                    // Keep original order for unmatched or both matched/unmatched pairs
+                                    return false
+                                }
+                            }
+                            
                             self.socialAccTV.reloadData()
                         } else {
                             self.hidePKHUD()

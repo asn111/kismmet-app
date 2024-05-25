@@ -122,7 +122,7 @@ class SocialLinks_VC: MainViewController {
     
     func showAlert(index: Int){
         let message = "Alert!"
-        let alert = CDAlertView(title: message, message: "Are you sure you want to remove account?", type: .warning)
+        let alert = CDAlertView(title: message, message: "Are you sure you want to remove link?", type: .warning)
         let action = CDAlertViewAction(title: "Remove",
                                        handler: {[weak self] action in
             let accountId = self?.socialAccModel[index].socialAccountId ?? -1 // Assuming -1 is an acceptable fallback
@@ -287,6 +287,10 @@ extension SocialLinks_VC : UITableViewDelegate, UITableViewDataSource {
                     AppFunctions.openPinterest(userName: socialAccModel[indexPath.row].linkUrl)
                 case "WeChat":
                     AppFunctions.openWeChat(userName: socialAccModel[indexPath.row].linkUrl)
+                case "Cash App":
+                    AppFunctions.openCashApp(userName: socialAccModel[indexPath.row].linkUrl)
+                case "Patreon":
+                    AppFunctions.openPatreon(userName: socialAccModel[indexPath.row].linkUrl)
                 case "Website":
                     AppFunctions.openWebLink(link: socialAccModel[indexPath.row].linkUrl, vc: self)
                 default:
