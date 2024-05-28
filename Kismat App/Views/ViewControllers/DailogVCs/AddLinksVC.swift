@@ -153,7 +153,7 @@ class AddLinksVC: MainViewController {
             }
         }
         
-        label.text = "@"+socialLink.linkType
+        label.text = socialLink.linkType
         linkId = socialLink.linkTypeId
         
         configureConstraints()
@@ -230,7 +230,7 @@ class AddLinksVC: MainViewController {
         
         // Set the width of selectedlink based on the intrinsic content size of the label plus the width of the imageView and padding
         let labelWidth = socialLink.linkType.size(withAttributes: [NSAttributedString.Key.font : UIFont(name: "Roboto", size: 14)?.regular as Any]).width
-        let totalWidth = labelWidth + imageView.frame.size.width + 60 + 25 // 18 for spacing between imageView and label, 25 for extra padding
+        let totalWidth = labelWidth + imageView.frame.size.width + 60 + 10
         selectedlink.widthAnchor.constraint(equalToConstant: totalWidth).isActive = true
         
         // Apply rounded corners and border to the contentView

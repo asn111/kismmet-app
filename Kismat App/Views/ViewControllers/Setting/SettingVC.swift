@@ -15,7 +15,7 @@ class SettingVC: MainViewController {
     
     @IBOutlet weak var settingTV: UITableView!
     
-    var lblTxt = ["","","Edit Profile","Preferences","Social Links","Notifications","Change Password","Membership","Privacy Policy","Terms of Services","About Kismmet","Account Status","Support","How to Kismmet","Blocked Users","Logout"]
+    var lblTxt = ["","Edit Profile","Preferences","Social Links","Notifications","Change Password","Membership","Privacy Policy","Terms of Services","About Kismmet","Account Status","Support","How to Kismmet","Blocked Users","Logout"]
     
     var userdbModel : Results<UserDBModel>!
     var img = UIImage(named: "placeholder")
@@ -218,44 +218,44 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
-            case 2:
+            case 1:
                 self.pushVC(id: "EditProfileSetup") { (vc:EditProfileSetup) in }
-            case 3:
+            case 2:
                 self.pushVC(id: "EditProfileSetupExt") { (vc:EditProfileSetupExt) in
                     vc.isFromSetting = true
                 }
-            case 4:
+            case 3:
                 self.pushVC(id: "SocialLinkVC") { (vc:SocialLinkVC) in }
-            case 5:
+            case 4:
                 self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
-            case 6:
+            case 5:
                 self.pushVC(id: "ChangePassVC") { (vc:ChangePassVC) in }
-            case 7:
+            case 6:
                 self.pushVC(id: "MembershipVC") { (vc:MembershipVC) in }
-            case 8:
+            case 7:
                 if let privacyPolicyURL = URL(string: "https://www.kismmet.com/privacypolicy") {
                     let safariVC = SFSafariViewController(url: privacyPolicyURL)
                     present(safariVC, animated: true)
                 } ///pp
-            case 9:
+            case 8:
                 if let tosUrl = URL(string: "https://www.kismmet.com/termsofservices") {
                     let safariVC = SFSafariViewController(url: tosUrl)
                     present(safariVC, animated: true)
                 } ///tos
-            case 10:
+            case 9:
                 if let privacyPolicyURL = URL(string: "https://www.kismmet.com/") {
                     let safariVC = SFSafariViewController(url: privacyPolicyURL)
                     present(safariVC, animated: true)
                 } ///about
-            case 11:
+            case 10:
                 self.pushVC(id: "AccountStatusVC") { (vc:AccountStatusVC) in }
-            case 12:
+            case 11:
                 self.pushVC(id: "SupportPageVC") { (vc:SupportPageVC) in } ///support
-            case 13:
+            case 12:
                 self.pushVC(id: "HowToUseVC") { (vc:HowToUseVC) in }///howToUse
-            case 14:
+            case 13:
                 self.pushVC(id: "BlockedVC") { (vc:BlockedVC) in }
-            case 15:
+            case 14:
                 showAlert()
             default:
                 print("")
