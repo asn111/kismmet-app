@@ -25,8 +25,8 @@ class APIService: NSObject {
     private override init() {
         super.init()
         
-        //baseUrl = "https://api.kismmet.com"
-        baseUrl = "http://devapi.kismmet.com"
+        baseUrl = "https://api.kismmet.com"
+        //baseUrl = "http://devapi.kismmet.com"
         Logs.show(message: "SERVER: \(baseUrl)")
         
         self.startMonitoring()

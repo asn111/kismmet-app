@@ -306,15 +306,18 @@ class FeedVC: MainViewController {
                             self.hidePKHUD()
                             self.users.removeAll()
                             self.feedTV.reloadData()
+                            self.stopRefresher()
                         }
                     case .error(let error):
                         print(error)
                         self.hidePKHUD()
                         self.users.removeAll()
                         self.feedTV.reloadData()
+                        self.stopRefresher()
                     case .completed:
                         print("completed")
                         self.hidePKHUD()
+                        self.stopRefresher()
                 }
             })
             .disposed(by: dispose_Bag)

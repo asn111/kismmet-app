@@ -1007,7 +1007,7 @@ this email.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qG-Fq-dO6" customClass="RoundCornerView" customModule="Kismmet" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="518" width="393" height="334"/>
+                                <rect key="frame" x="0.0" y="492" width="393" height="360"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hzv-hu-A8p" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
                                         <rect key="frame" x="203" y="258" width="170" height="56"/>
@@ -1314,15 +1314,15 @@ this email.</string>
                                     <constraint firstItem="eku-i5-B1A" firstAttribute="top" secondItem="1qG-Fq-dO6" secondAttribute="top" constant="8" id="Lhz-he-DJk"/>
                                     <constraint firstAttribute="trailing" secondItem="6h3-s9-8KE" secondAttribute="trailing" constant="20" symbolic="YES" id="Nb1-2K-gdv"/>
                                     <constraint firstItem="Cxs-Rj-zIi" firstAttribute="top" secondItem="MDZ-WK-eaA" secondAttribute="bottom" constant="11" id="XEY-VB-uZH"/>
-                                    <constraint firstAttribute="bottom" secondItem="KaR-Mc-BMB" secondAttribute="bottom" constant="20" id="Xcm-qQ-nEm"/>
+                                    <constraint firstAttribute="bottom" secondItem="KaR-Mc-BMB" secondAttribute="bottom" constant="46" id="Xcm-qQ-nEm"/>
                                     <constraint firstItem="KaR-Mc-BMB" firstAttribute="width" secondItem="hzv-hu-A8p" secondAttribute="width" id="Xpr-z6-rPB"/>
                                     <constraint firstItem="s2d-eg-MkL" firstAttribute="leading" secondItem="1qG-Fq-dO6" secondAttribute="leading" constant="20" symbolic="YES" id="YLO-6Q-bPf"/>
-                                    <constraint firstAttribute="bottom" secondItem="hzv-hu-A8p" secondAttribute="bottom" constant="20" id="ZQY-xb-CSk"/>
+                                    <constraint firstAttribute="bottom" secondItem="hzv-hu-A8p" secondAttribute="bottom" constant="46" id="ZQY-xb-CSk"/>
                                     <constraint firstItem="eku-i5-B1A" firstAttribute="leading" secondItem="1qG-Fq-dO6" secondAttribute="leading" constant="21" id="naY-nX-HEN"/>
                                     <constraint firstItem="KaR-Mc-BMB" firstAttribute="leading" secondItem="1qG-Fq-dO6" secondAttribute="leading" constant="20" symbolic="YES" id="pYB-aM-VaP"/>
                                     <constraint firstItem="6h3-s9-8KE" firstAttribute="top" secondItem="s2d-eg-MkL" secondAttribute="bottom" constant="154" id="q6j-oh-aST"/>
                                     <constraint firstItem="6h3-s9-8KE" firstAttribute="leading" secondItem="1qG-Fq-dO6" secondAttribute="leading" constant="20" symbolic="YES" id="qrQ-ge-kSr"/>
-                                    <constraint firstAttribute="height" constant="334" id="x2L-sE-RA1"/>
+                                    <constraint firstAttribute="height" constant="360" id="x2L-sE-RA1"/>
                                     <constraint firstItem="MDZ-WK-eaA" firstAttribute="leading" secondItem="1qG-Fq-dO6" secondAttribute="leading" constant="20" symbolic="YES" id="xYz-Un-6W7"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -5540,10 +5540,10 @@ Thank you!</string>
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray3Color">
-            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

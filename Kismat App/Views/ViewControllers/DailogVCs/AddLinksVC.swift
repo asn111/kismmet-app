@@ -60,7 +60,9 @@ class AddLinksVC: MainViewController {
     }
     
     @IBAction func linkToolTip(_ sender: Any) {
-        AppFunctions.openWebLink(link: "https://www.kismmet.com/howtolink", vc: self)
+        //AppFunctions.openWebLink(link: "https://www.kismmet.com/howtolink", vc: self)
+        let msg = "Go to the app/website/social account of \(socialLink.linkType) that you would like to link.\nCopy the link for the profile you would like to attach.\nPaste it in the ‘Link it’ section!"
+        AppFunctions.showToolTip(str: msg, btn: sender as! UIButton)
     }
     
     @IBAction func dropDownBtnPressed(_ sender: Any) {

@@ -17,6 +17,9 @@ class StarredVC: MainViewController {
     
     var users = [UserModel]()
     var searchString = ""
+    
+    private let refresher = UIRefreshControl()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +61,25 @@ class StarredVC: MainViewController {
         starredTV.register(UINib(nibName: "FeedItem2TVCell", bundle: nil), forCellReuseIdentifier: "FeedItem2TVCell")
         starredTV.register(UINib(nibName: "VisibilityOffTVCell", bundle: nil), forCellReuseIdentifier: "VisibilityOffTVCell")
 
+        
+        starredTV.alwaysBounceVertical = true
+        refresher.addTarget(self, action: #selector(didPullToRefresh(_:)), for: .valueChanged)
+        starredTV.alwaysBounceVertical = true
+        starredTV.refreshControl = refresher // iOS 10
+        starredTV.addSubview(refresher)
+    }
+    
+    @objc
+    private func didPullToRefresh(_ sender: Any) {
+        // Do you your api calls in here, and then a
+        self.showPKHUD(WithMessage: "")
+        starredTV.refreshControl?.beginRefreshing()
+        getStarUsers(load: false)
+    }
+    
+    func stopRefresher() {
+        self.hidePKHUD()
+        starredTV.refreshControl?.endRefreshing()
     }
     
     @objc func picBtnPressed(sender: UIButton) {
@@ -145,18 +167,22 @@ class StarredVC: MainViewController {
                             self.users = val
                             self.starredTV.reloadData()
                             self.hidePKHUD()
+                            self.stopRefresher()
                         } else {
                             self.users.removeAll()
                             self.hidePKHUD()
                             self.starredTV.reloadData()
+                            self.stopRefresher()
                         }
                     case .error(let error):
                         self.hidePKHUD()
                         self.users.removeAll()
                         self.starredTV.reloadData()
+                        self.stopRefresher()
                     case .completed:
                         print("completed")
                         self.hidePKHUD()
+                        self.stopRefresher()
                 }
             })
             .disposed(by: dispose_Bag)
