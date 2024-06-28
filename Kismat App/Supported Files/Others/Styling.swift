@@ -510,6 +510,17 @@ class FormTextView: UITextView {
     }
     
     @IBInspectable
+    var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+            //clipsToBounds = true // Ensure the content is clipped to the rounded corners
+        }
+    }
+    
+    @IBInspectable
     var shadowRadius: CGFloat {
         get {
             return layer.shadowRadius
@@ -652,6 +663,17 @@ class FormTextField: UITextField {
     @IBInspectable var txtSize: CGFloat = 13.0 {
         didSet {
             self.font!.withSize(txtSize)
+        }
+    }
+    
+    @IBInspectable
+    var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+            clipsToBounds = true // Ensure the content is clipped to the rounded corners
         }
     }
     

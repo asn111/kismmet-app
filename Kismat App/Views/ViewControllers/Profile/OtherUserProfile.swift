@@ -51,6 +51,7 @@ class OtherUserProfile: MainViewController {
         
         tempSocialAccImgArray = socialAccounts.compactMap { $0.linkType }
         
+        Logs.show(message: "User ID: \(userModel)")
         
         if markView {
             ApiService.markViewedUser(val: userModel.userId)
@@ -184,6 +185,13 @@ class OtherUserProfile: MainViewController {
     @objc func picBtnPressed(sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
         
+    }
+    
+    @objc func sendContactRocket(sender: UIButton) {
+        
+        self.presentVC(id: "SendReqVC", presentFullType: "over" ) { (vc:SendReqVC) in
+            vc.userModel = userModel
+        }
     }
     
     @objc
@@ -338,6 +346,20 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 
                 cell.notifBtn.isHidden = true
 
+                cell.rocketBtn.isHidden = false
+
+                if userModel.userContacts == nil {
+                    cell.rocketBtn.tintColor = UIColor(named: "Secondary Grey")
+                    cell.rocketBtn.addTarget(self, action: #selector(sendContactRocket(sender:)), for: .touchUpInside)
+                } else {
+                    if userModel.userContacts.contactStatus == "Pending" {
+                        cell.rocketBtn.tintColor = UIColor(named: "warning")
+                    } else if userModel.userContacts.contactStatus == "Accepted" {
+                        cell.rocketBtn.tintColor = UIColor(named: "Success")
+                    } else {
+                        cell.rocketBtn.tintColor = UIColor(named: "Secondary Grey")
+                    }
+                }
                     
                 return cell
             case 1:

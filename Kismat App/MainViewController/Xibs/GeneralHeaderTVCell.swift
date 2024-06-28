@@ -9,6 +9,7 @@ import UIKit
 
 class GeneralHeaderTVCell: UITableViewCell {
 
+    @IBOutlet weak var rocketBtn: UIButton!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var welcomeView: UIView!
     @IBOutlet weak var profileView: UIView!

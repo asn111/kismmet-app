@@ -240,7 +240,11 @@ extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
                 cell.headerLbl.text = "VIEWED BY"
                 cell.searchView.isHidden = false
                 cell.headerView.isHidden = false
-                
+                cell.swipeTxtLbl.isHidden = false
+
+                cell.swipeTxtLbl.text = "Who's Interested!"
+
+                //Seen Your Profile
                 cell.toolTipBtn.isHidden = true
                 cell.searchContraint.constant = 10
                 

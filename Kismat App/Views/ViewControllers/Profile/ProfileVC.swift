@@ -286,7 +286,6 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                     }
                 }
                 
-
                 return cell
             case 1:
                 let cell : AboutTVCell = tableView.dequeueReusableCell(withIdentifier: "AboutTVCell", for: indexPath) as! AboutTVCell

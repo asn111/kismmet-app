@@ -83,11 +83,13 @@ class StarredVC: MainViewController {
     }
     
     @objc func picBtnPressed(sender: UIButton) {
-        self.tabBarController?.selectedIndex = 2
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func notifBtnPressed(sender: UIButton) {
-        self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
+        self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
+            vc.selectedIndex = 2
+        }
     }
     
     @objc func toolBtnPressed(sender: UIButton) {
@@ -231,6 +233,9 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
                     cell.searchTF.text = ""
                 }
 
+                cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
+                cell.notifBtn.setImage(UIImage(named: "wifi man grey"), for: .normal)
+                
                 cell.toolTipBtn.addTarget(self, action: #selector(toolBtnPressed(sender:)), for: .touchUpInside)
                 cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)

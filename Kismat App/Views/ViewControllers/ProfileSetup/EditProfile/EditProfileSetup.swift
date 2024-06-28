@@ -611,19 +611,6 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 
                 return cell
                 
-            /*case placeholderArray.count - 1 : // Social Accounts Heading
-                
-                let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
-                cell.headerLblView.isHidden = false
-                cell.addBtn.isHidden = true
-                cell.headerLbl.text = "Link your social accounts"
-                cell.addBtn.isHidden = false
-                cell.addBtn.tag = indexPath.row
-            
-                cell.addBtn.addTarget(self, action: #selector(addBtnPressed(sender:)), for: .touchUpInside)
-                
-                return cell*/
-                
             case placeholderArray.count - 1 : //socialAccounts.count + 1) - 1: // EmptyView
                 
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell

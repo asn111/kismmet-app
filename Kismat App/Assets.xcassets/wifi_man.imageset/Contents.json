@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "wifi_man.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

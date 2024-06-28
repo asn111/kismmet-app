@@ -36,9 +36,13 @@ class RoundedTabBarController: UITabBarController {
         tabBar.layer.insertSublayer(layer, at: 0)
         
         if let items = tabBar.items {
-            items.forEach { item in
-
-                item.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 15, right: 0)
+            for (index, item) in items.enumerated() {
+                
+                if index == 1 { //|| index == 2 {
+                    item.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 15, right: 0)
+ 
+                }
+                
             }
         }
         
