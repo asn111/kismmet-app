@@ -108,7 +108,7 @@ class ProfileSetupExtend: MainViewController {
                 vc.accountType = "tags"
             }
         } else if sender.tag == 5 {
-            self.presentVC(id: "AddLinksVC", presentFullType: "over" ) { (vc:AddLinksVC) in
+            self.presentVC(id: "SocialAccVC", presentFullType: "over" ) { (vc:SocialAccVC) in
             }
         }
     }
@@ -264,6 +264,19 @@ class ProfileSetupExtend: MainViewController {
                                 }
                             } else {
                                 self.socialAccModel = val.socialAccounts
+                                var indexPathsToReload: [IndexPath] = []
+                                
+                                let startIndex = 6
+                                let endIndex = 6 + self.socialAccounts.count
+                                
+                                // Generate index paths for the specified range and add them to the array
+                                for i in startIndex...endIndex {
+                                    let indexPath = IndexPath(row: i, section: 0) // Assuming all rows are in section 0
+                                    indexPathsToReload.append(indexPath)
+                                }
+                                
+                                // Reload the specified rows with animation
+                                profileExtTV.reloadRows(at: indexPathsToReload, with:.none)
                             }
                         } else {
                             self.hidePKHUD()
@@ -365,6 +378,12 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
                 cell.proximeterLbl.isHidden = false
+                
+                cell.sliderView.isHidden = true
+                cell.toggleBtnView.isHidden = true
+                cell.notifHeaderLbl.isHidden = true
+                
+                
                 cell.headerLbl.text = "Set Proximity"
                 cell.proximeterLbl.text = "\(cell.maxValue) Meters"
                 
@@ -372,18 +391,29 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
             case 2: // Slider
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.sliderView.isHidden = false
+                
+                cell.headerLblView.isHidden = true
+                cell.toggleBtnView.isHidden = true
+                cell.notifHeaderLbl.isHidden = true
+                
                 cell.sliderValue = cell.maxValue
                 cell.slider.addTarget(self, action: #selector(sliderChanged(slider:)), for: .valueChanged) /// continuous changes
                 return cell
             case 3: // Visibilty 1
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.toggleBtnView.isHidden = false
+                
+                cell.sliderView.isHidden = true
+                cell.headerLblView.isHidden = true
+                cell.notifHeaderLbl.isHidden = true
+                
                 cell.toggleLbl.text = "Profile Visibility"
                 cell.toggleBtn.isOn = true
+                cell.toggleBtn.isEnabled = true
                 cell.toggleBtn.tag = indexPath.row
                 isProfileVisible = cell.toggleBtn.isOn
                 cell.toggleTooltipBtn.tag = 001
-                
+                                
                 cell.toggleTooltipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
                 cell.toggleBtn.addTarget(self, action: #selector(toggleButtonPressed(_:)), for: .valueChanged)
 
@@ -391,6 +421,11 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
             case 4: // Shadow mode 2
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.toggleBtnView.isHidden = false
+                
+                cell.sliderView.isHidden = true
+                cell.headerLblView.isHidden = true
+                cell.notifHeaderLbl.isHidden = true
+                
                 cell.toggleLbl.text = "Shadow Mode"
                 cell.toggleBtn.isOn = false
                 cell.toggleBtn.isEnabled = false
@@ -405,6 +440,11 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
             case 5: // Social Accounts Heading
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
+                
+                cell.sliderView.isHidden = true
+                cell.toggleBtnView.isHidden = true
+                cell.notifHeaderLbl.isHidden = true
+                
                 cell.addBtn.isHidden = true
                 cell.headerLbl.text = "Link your social accounts"
                 cell.addBtn.isHidden = false
@@ -417,11 +457,21 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
             case socialAccounts.count + 6: // EmptyView
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 
+                cell.sliderView.isHidden = true
+                cell.toggleBtnView.isHidden = true
+                cell.headerLblView.isHidden = true
+                cell.notifHeaderLbl.isHidden = true
+                
                 return cell
                 
             case socialAccounts.count + 7: // Tags Heading
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
+                
+                cell.sliderView.isHidden = true
+                cell.toggleBtnView.isHidden = true
+                cell.notifHeaderLbl.isHidden = true
+                
                 cell.headerLbl.text = "Tags"
                 cell.addBtn.isHidden = false
                 cell.addBtn.tag = indexPath.row
@@ -485,6 +535,11 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
             case socialAccounts.count + 9: // Tags count
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.notifHeaderView.isHidden = false
+                
+                cell.sliderView.isHidden = true
+                cell.toggleBtnView.isHidden = true
+                cell.notifHeaderLbl.isHidden = true
+                
                 cell.notifHeaderLbl.text = "Highlight your interests and personality with up to five tags."
                 
                 return cell

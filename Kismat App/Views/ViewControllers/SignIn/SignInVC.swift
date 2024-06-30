@@ -8,6 +8,7 @@
 import UIKit
 import GoogleSignIn
 import AuthenticationServices
+import SafariServices
 
 
 class SignInVC: MainViewController {
@@ -47,6 +48,7 @@ class SignInVC: MainViewController {
         }
     }
     
+    @IBOutlet weak var tcNppLbl: fullyCustomLbl!
     @IBOutlet weak var appleLbl: fullyCustomLbl!
     @IBAction func appleSignInPressed(_ sender: Any) {
         handleAppleIdRequest()
@@ -78,6 +80,7 @@ class SignInVC: MainViewController {
         passwordTF.enablePasswordToggle()
 
         setupLbl()
+        setupTCnPP()
         setupClickableLbls()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -99,6 +102,73 @@ class SignInVC: MainViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
         signUpLbl.addGestureRecognizer(tapGesture)
         signUpLbl.isUserInteractionEnabled = true
+    }
+    
+    func setupTCnPP() {
+        let text = "By signing up, you agree to our Terms & Conditions and Privacy Policy"
+        let attributedText = NSMutableAttributedString(string: text)
+        
+        // Apply global styling
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        attributedText.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedText.length))
+        
+        // Styling for "Terms & Conditions"
+        let termsRange = (text as NSString).range(of: "Terms & Conditions")
+        attributedText.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Roboto", size: 14)!.medium, range: termsRange)
+        attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexFromString: "4E6E81"), range: termsRange)
+        attributedText.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.thick.rawValue, range: termsRange)
+        
+        // Styling for "Privacy Policy"
+        let policyRange = (text as NSString).range(of: "Privacy Policy")
+        attributedText.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Roboto", size: 14)!.medium, range: policyRange)
+        attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexFromString: "4E6E81"), range: policyRange)
+        attributedText.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.thick.rawValue, range: policyRange)
+        
+        tcNppLbl.attributedText = attributedText
+        
+        // Add tap gesture recognizer
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTCnPPTap))
+        tcNppLbl.addGestureRecognizer(tapGesture)
+        tcNppLbl.isUserInteractionEnabled = true
+    }
+    
+    @objc func handleTCnPPTap(_ gesture: UITapGestureRecognizer) {
+        guard let attributedText = tcNppLbl.attributedText else { return }
+        let location = gesture.location(in: tcNppLbl)
+        
+        // Calculate the text container size based on the label's frame
+        let textContainerSize = CGSize(width: tcNppLbl.frame.width, height: CGFloat.greatestFiniteMagnitude)
+        let textContainer = NSTextContainer(size: textContainerSize)
+        let layoutManager = NSLayoutManager()
+        layoutManager.addTextContainer(textContainer)
+        
+        // Create a text storage object and add the layout manager
+        let textStorage = NSTextStorage(attributedString: attributedText)
+        textStorage.addLayoutManager(layoutManager)
+        
+        // Calculate the character index at the tap location
+        let characterIndex = layoutManager.characterIndex(for: location, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
+        
+        // Define ranges for "Terms & Conditions" and "Privacy Policy"
+        let termsRange = (attributedText.string as NSString).range(of: "Terms & Conditions")
+        let policyRange = (attributedText.string as NSString).range(of: "Privacy Policy")
+        
+        // Check if the tap occurred within these ranges
+        if NSLocationInRange(characterIndex, termsRange) {
+            if let tosUrl = URL(string: "https://www.kismmet.com/termsofservices") {
+                let safariVC = SFSafariViewController(url: tosUrl)
+                present(safariVC, animated: true)
+            }
+            // Handle Terms & Conditions tap
+        } else if NSLocationInRange(characterIndex, policyRange) {
+            print("Privacy Policy tapped")
+            if let privacyPolicyURL = URL(string: "https://www.kismmet.com/privacypolicy") {
+                let safariVC = SFSafariViewController(url: privacyPolicyURL)
+                present(safariVC, animated: true)
+            }
+            // Handle Privacy Policy tap
+        }
     }
     
     func setupClickableLbls() {

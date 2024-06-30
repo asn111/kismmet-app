@@ -23,10 +23,6 @@
 		29350A2729D1C51200F19BD5 /* ViewedByMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29350A2629D1C51200F19BD5 /* ViewedByMe.swift */; };
 		29350A2929D3A78800F19BD5 /* ProfileSetupExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29350A2829D3A78800F19BD5 /* ProfileSetupExtentions.swift */; };
 		2938E73E2A02CD7D00C21AEA /* SocialLinks VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2938E73D2A02CD7D00C21AEA /* SocialLinks VC.swift */; };
-		293F2A232C2876DC00097946 /* TabsHeaderTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F2A212C2876DC00097946 /* TabsHeaderTVCell.swift */; };
-		293F2A242C2876DC00097946 /* TabsHeaderTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 293F2A222C2876DC00097946 /* TabsHeaderTVCell.xib */; };
-		293F2A282C2AB53D00097946 /* SendReqVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F2A272C2AB53D00097946 /* SendReqVC.swift */; };
-		293F2A2A2C2AFDBC00097946 /* ReqSentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293F2A292C2AFDBC00097946 /* ReqSentVC.swift */; };
 		2940575F2B32D8930036699F /* StatusTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2940575D2B32D8920036699F /* StatusTVCell.swift */; };
 		294057602B32D8930036699F /* StatusTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2940575E2B32D8920036699F /* StatusTVCell.xib */; };
 		2940B8FF299D634300D3F863 /* ImageViewTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2940B8FD299D634300D3F863 /* ImageViewTVCell.swift */; };
@@ -60,7 +56,6 @@
 		296D76922A1CF0A0005A3A99 /* hashTagsTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 296D76902A1CF0A0005A3A99 /* hashTagsTVCell.xib */; };
 		2976102C29DDB85300B74050 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2976102B29DDB85300B74050 /* StoreKit.framework */; };
 		2976102F29DDBF0700B74050 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2976102E29DDBF0700B74050 /* IAPManager.swift */; };
-		297665B52C21870900866FD6 /* ReqConVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297665B42C21870900866FD6 /* ReqConVC.swift */; };
 		2976D89D2A2FD0D800A855F1 /* CodeVerification_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2976D89C2A2FD0D800A855F1 /* CodeVerification_VC.swift */; };
 		2977B7F7299B81D600A0670C /* MixHeaderTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2977B7F5299B81D600A0670C /* MixHeaderTVCell.swift */; };
 		2977B7F8299B81D600A0670C /* MixHeaderTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2977B7F6299B81D600A0670C /* MixHeaderTVCell.xib */; };
@@ -172,10 +167,6 @@
 		29350A2629D1C51200F19BD5 /* ViewedByMe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewedByMe.swift; sourceTree = "<group>"; };
 		29350A2829D3A78800F19BD5 /* ProfileSetupExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupExtentions.swift; sourceTree = "<group>"; };
 		2938E73D2A02CD7D00C21AEA /* SocialLinks VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SocialLinks VC.swift"; sourceTree = "<group>"; };
-		293F2A212C2876DC00097946 /* TabsHeaderTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsHeaderTVCell.swift; sourceTree = "<group>"; };
-		293F2A222C2876DC00097946 /* TabsHeaderTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabsHeaderTVCell.xib; sourceTree = "<group>"; };
-		293F2A272C2AB53D00097946 /* SendReqVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendReqVC.swift; sourceTree = "<group>"; };
-		293F2A292C2AFDBC00097946 /* ReqSentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReqSentVC.swift; sourceTree = "<group>"; };
 		2940575D2B32D8920036699F /* StatusTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTVCell.swift; sourceTree = "<group>"; };
 		2940575E2B32D8920036699F /* StatusTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusTVCell.xib; sourceTree = "<group>"; };
 		2940B8FD299D634300D3F863 /* ImageViewTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewTVCell.swift; sourceTree = "<group>"; };
@@ -210,7 +201,6 @@
 		296D76902A1CF0A0005A3A99 /* hashTagsTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = hashTagsTVCell.xib; sourceTree = "<group>"; };
 		2976102B29DDB85300B74050 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2976102E29DDBF0700B74050 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
-		297665B42C21870900866FD6 /* ReqConVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReqConVC.swift; sourceTree = "<group>"; };
 		2976D89C2A2FD0D800A855F1 /* CodeVerification_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeVerification_VC.swift; sourceTree = "<group>"; };
 		2977B7F5299B81D600A0670C /* MixHeaderTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixHeaderTVCell.swift; sourceTree = "<group>"; };
 		2977B7F6299B81D600A0670C /* MixHeaderTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MixHeaderTVCell.xib; sourceTree = "<group>"; };
@@ -378,15 +368,6 @@
 			path = SocialLinksView;
 			sourceTree = "<group>";
 		};
-		293F2A202C28764300097946 /* Xibs */ = {
-			isa = PBXGroup;
-			children = (
-				293F2A212C2876DC00097946 /* TabsHeaderTVCell.swift */,
-				293F2A222C2876DC00097946 /* TabsHeaderTVCell.xib */,
-			);
-			path = Xibs;
-			sourceTree = "<group>";
-		};
 		29473E53299C663200859D8A /* Notification */ = {
 			isa = PBXGroup;
 			children = (
@@ -477,15 +458,6 @@
 			path = InAppPurchases;
 			sourceTree = "<group>";
 		};
-		297665B32C2186E000866FD6 /* ReqConVC */ = {
-			isa = PBXGroup;
-			children = (
-				297665B42C21870900866FD6 /* ReqConVC.swift */,
-				293F2A202C28764300097946 /* Xibs */,
-			);
-			path = ReqConVC;
-			sourceTree = "<group>";
-		};
 		2976D89B2A2FD0B000A855F1 /* Code Verification */ = {
 			isa = PBXGroup;
 			children = (
@@ -556,8 +528,6 @@
 				29846D4229A1676000393EB3 /* ImportantDialogVC.swift */,
 				294DD5222A94976E004A7F22 /* PopupVC.swift */,
 				292B1FFC2A9E930800435223 /* ReportDialogVC.swift */,
-				293F2A272C2AB53D00097946 /* SendReqVC.swift */,
-				293F2A292C2AFDBC00097946 /* ReqSentVC.swift */,
 			);
 			path = DailogVCs;
 			sourceTree = "<group>";
@@ -749,7 +719,6 @@
 		299FDD82299684E50049741B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				297665B32C2186E000866FD6 /* ReqConVC */,
 				294F834C2BF0F06100BBDA5E /* SocialLinkVC */,
 				2905272A2A9B3EAF002A3FF4 /* HowToUse */,
 				290527272A9B39B6002A3FF4 /* SupportPage */,
@@ -1057,7 +1026,6 @@
 				29516CE92B341593003E14EE /* FeedItem2TVCell.xib in Resources */,
 				2992FEDF2B5FAFDB00DCCDB7 /* GoogleService-Info.plist in Resources */,
 				2940B900299D634300D3F863 /* ImageViewTVCell.xib in Resources */,
-				293F2A242C2876DC00097946 /* TabsHeaderTVCell.xib in Resources */,
 				29985F3C2998339E001F769B /* FeedItemsTVCell.xib in Resources */,
 				299FDD992996C8ED0049741B /* Roboto-Light.ttf in Resources */,
 				29473E5A299C694A00859D8A /* NotifTVCell.xib in Resources */,
@@ -1259,7 +1227,6 @@
 				299FDD5929967D1D0049741B /* loadingView.swift in Sources */,
 				295E75C92BF33E3400768646 /* SocialAccVC.swift in Sources */,
 				294A79B4299AEB5100089161 /* SocialAccTVCell.swift in Sources */,
-				293F2A232C2876DC00097946 /* TabsHeaderTVCell.swift in Sources */,
 				292B22E42A1CC01100D43783 /* TagsView VC.swift in Sources */,
 				299FDD5529967D1D0049741B /* ReactiveExtensiones.swift in Sources */,
 				29350A2929D3A78800F19BD5 /* ProfileSetupExtentions.swift in Sources */,
@@ -1267,7 +1234,6 @@
 				299FDD5F29967D1D0049741B /* Floater Styling.swift in Sources */,
 				29350A1F29D0C89C00F19BD5 /* SocialAccModel.swift in Sources */,
 				29473E5D299CBFA400859D8A /* ProfileSetupExtend.swift in Sources */,
-				293F2A282C2AB53D00097946 /* SendReqVC.swift in Sources */,
 				29350A1A29D0C43B00F19BD5 /* UserModel.swift in Sources */,
 				297B15C62B31A78000A3B8D7 /* RideMapViewTVCell.swift in Sources */,
 				2938E73E2A02CD7D00C21AEA /* SocialLinks VC.swift in Sources */,
@@ -1280,14 +1246,12 @@
 				299FDD14299679690049741B /* Kismat_App.xcdatamodeld in Sources */,
 				29BE184C29FA6E68000EAC0E /* EnlargedIV VC.swift in Sources */,
 				299FDD5C29967D1D0049741B /* SampleFile.swift in Sources */,
-				293F2A2A2C2AFDBC00097946 /* ReqSentVC.swift in Sources */,
 				299FDD5A29967D1D0049741B /* Extentions.swift in Sources */,
 				29350A1729CF489300F19BD5 /* SignalR Manager.swift in Sources */,
 				299FDD5D29967D1D0049741B /* ImagePicker.swift in Sources */,
 				29985F3B2998339E001F769B /* FeedItemsTVCell.swift in Sources */,
 				299FDD7F29967DC90049741B /* APIService.swift in Sources */,
 				29350A1C29D0C6A900F19BD5 /* SocialAccType.swift in Sources */,
-				297665B52C21870900866FD6 /* ReqConVC.swift in Sources */,
 				299FDD862996852D0049741B /* SplashVC.swift in Sources */,
 				299FDD9E2996D0250049741B /* SignInVC.swift in Sources */,
 				29473E59299C694A00859D8A /* NotifTVCell.swift in Sources */,
@@ -1486,7 +1450,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1509,7 +1473,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.9;
+				MARKETING_VERSION = 1.0.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "codenablers.Kismat-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1526,7 +1490,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1549,7 +1513,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.9;
+				MARKETING_VERSION = 1.0.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "codenablers.Kismat-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

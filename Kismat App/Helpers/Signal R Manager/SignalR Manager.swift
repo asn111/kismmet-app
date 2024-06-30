@@ -22,10 +22,6 @@ class SignalRManager: NSObject {
     //MARK: Initialization
     
     func initializeSignalR() {
-        
-        //let baseUrl = "https://api.kismmet.com"
-        let baseUrl = "http://devapi.kismmet.com"
-
 
         connection = HubConnectionBuilder(url: URL(string: baseUrl + "/kismmetHub")!)
             .withLogging(minLogLevel: .error)

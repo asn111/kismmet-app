@@ -601,6 +601,7 @@ this email.</string>
                         <outlet property="googleLbl" destination="J7M-Vd-ctI" id="TBi-7y-laD"/>
                         <outlet property="loginLbl" destination="b3O-xc-bXC" id="abB-4g-PEg"/>
                         <outlet property="passwordTF" destination="D0O-Hf-zFJ" id="Rgv-gI-7Hm"/>
+                        <outlet property="tcNppLbl" destination="vdO-D0-c2r" id="xZY-1u-LvO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="shj-9N-b5w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -702,8 +703,14 @@ this email.</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iqf-KA-I2Z">
                                 <rect key="frame" x="16" y="778" width="361" height="40"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2023 - All rights reserved" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sux-1S-tdw" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="21" y="0.0" width="320" height="40"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9FA-dp-o1x" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                                        <rect key="frame" x="20.666666666666657" y="0.0" width="320" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="320" id="aIH-AX-xcJ"/>
+                                            <constraint firstAttribute="height" constant="40" id="gjD-kQ-CJG"/>
+                                        </constraints>
+                                        <string key="text">By signing up, you agree to our  Terms &amp; Conditions 
+and Privacy Policy</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -716,11 +723,9 @@ this email.</string>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Sux-1S-tdw" secondAttribute="trailing" constant="20" id="ce2-zc-afS"/>
-                                    <constraint firstAttribute="bottom" secondItem="Sux-1S-tdw" secondAttribute="bottom" id="dD3-4i-spa"/>
+                                    <constraint firstItem="9FA-dp-o1x" firstAttribute="centerX" secondItem="Iqf-KA-I2Z" secondAttribute="centerX" id="fBg-2O-a3J"/>
                                     <constraint firstAttribute="height" constant="40" id="iO5-Fh-znX"/>
-                                    <constraint firstItem="Sux-1S-tdw" firstAttribute="leading" secondItem="Iqf-KA-I2Z" secondAttribute="leading" constant="21" id="n44-7P-IYo"/>
-                                    <constraint firstItem="Sux-1S-tdw" firstAttribute="top" secondItem="Iqf-KA-I2Z" secondAttribute="top" id="tsb-nq-cNa"/>
+                                    <constraint firstItem="9FA-dp-o1x" firstAttribute="centerY" secondItem="Iqf-KA-I2Z" secondAttribute="centerY" id="pJV-ua-k7V"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z2H-xn-w0Y">
@@ -992,6 +997,7 @@ this email.</string>
                         <outlet property="googleLbl" destination="kUb-na-hEH" id="YJ6-en-YG6"/>
                         <outlet property="passwordTF" destination="xnB-yp-Wkb" id="qOe-Li-4hh"/>
                         <outlet property="signUpLbl" destination="5w6-ZN-cHD" id="dMG-A3-Ceu"/>
+                        <outlet property="tcNppLbl" destination="9FA-dp-o1x" id="ijB-G5-lyo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ket-9J-bq0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -5584,6 +5590,9 @@ Thank you!</string>
         <designable name="99t-PE-CtL">
             <size key="intrinsicContentSize" width="431" height="101.66666666666667"/>
         </designable>
+        <designable name="9FA-dp-o1x">
+            <size key="intrinsicContentSize" width="397.66666666666669" height="40.666666666666664"/>
+        </designable>
         <designable name="9Lg-cq-Nv0">
             <size key="intrinsicContentSize" width="148.66666666666666" height="20.333333333333332"/>
         </designable>
@@ -5701,9 +5710,6 @@ Thank you!</string>
         </designable>
         <designable name="SX3-BL-EzL">
             <size key="intrinsicContentSize" width="48" height="30"/>
-        </designable>
-        <designable name="Sux-1S-tdw">
-            <size key="intrinsicContentSize" width="194" height="20.333333333333332"/>
         </designable>
         <designable name="URV-RO-AMo">
             <size key="intrinsicContentSize" width="146" height="20.333333333333332"/>
