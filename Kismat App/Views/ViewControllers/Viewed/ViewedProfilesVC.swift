@@ -244,6 +244,10 @@ extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
                 cell.toolTipBtn.isHidden = true
                 cell.searchContraint.constant = 10
                 
+                cell.swipeTxtLbl.isHidden = false
+                cell.swipeTxtLbl.text = "Who's Interested!"
+
+                
                 cell.searchTF.delegate = self
                 cell.searchTF.placeholder = "Search through users who viewed you.."
                 cell.searchTF.returnKeyType = .search
