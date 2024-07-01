@@ -621,8 +621,12 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
                 cell.headerLbl.text = "Tags"
+                
+                cell.notifHeaderView.isHidden = true
+                cell.toggleBtnView.isHidden = true
+                cell.sliderView.isHidden = true
+                
                 cell.addBtn.isHidden = false
-                cell.notifHeaderLbl.isHidden = true
                 cell.addBtn.tag = indexPath.row
                 if tags.count == 5 {
                     cell.addBtn.isHidden = true
@@ -686,6 +690,9 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.notifHeaderView.isHidden = false
+                cell.headerLblView.isHidden = true
+                cell.toggleBtnView.isHidden = true
+                cell.sliderView.isHidden = true
                 cell.notifHeaderLbl.text = "Highlight your interests and personality with up to five tags."
                 
                 return cell

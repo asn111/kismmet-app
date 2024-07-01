@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FLAnimatedImage
 
 class ReqSentVC: MainViewController {
 
@@ -28,12 +29,34 @@ class ReqSentVC: MainViewController {
         
     }
     
+    @IBOutlet weak var gifIV: FLAnimatedImageView!
+    
     @IBOutlet weak var starBtn: UIButton!
+    
     var userId = ""
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if let imageData = gifImageToData(imageName: "rocketLaunch") {
+            let gifImage = FLAnimatedImage(animatedGIFData: imageData)
+            gifIV.animatedImage = gifImage
+            gifIV.layer.cornerRadius = 10
+            
+            print("Image data loaded successfully")
+        }
+    }
+
+    
+    func gifImageToData(imageName: String, ofType type: String = "gif") -> Data? {
+        guard let imagePath = Bundle.main.path(forResource: imageName, ofType: type),
+              let imageData = try? Data(contentsOf: URL(fileURLWithPath: imagePath)) else {
+            print("GIF file not found or could not be loaded")
+            return nil
+        }
+        
+        return imageData
     }
 
 }

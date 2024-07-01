@@ -15,6 +15,10 @@ class TabsHeaderTVCell: UITableViewCell {
     @IBOutlet weak var reqBtn: UIButton!
     @IBOutlet weak var conBtn: UIButton!
     
+    @IBOutlet weak var settingsLbl: fullyCustomLbl!
+    @IBOutlet weak var searchTF: UITextField!
+    @IBOutlet weak var searchBtn: UIButton!
+    @IBOutlet weak var searchView: RoundCornerView!
     @IBOutlet weak var headerLbl: fullyCustomLbl!
     @IBOutlet weak var btnsImg: UIImageView!
     

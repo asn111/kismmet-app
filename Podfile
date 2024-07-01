@@ -10,7 +10,7 @@ target 'Kismmet' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxDataSources'
-  pod 'RxSwiftExt'
+  pod 'RxSwiftExt'
   
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
@@ -40,6 +40,8 @@ target 'Kismmet' do
   pod 'DropDown'
   pod 'MKToolTip'
   pod 'TransitionableTab', '~> 0.2.0'
+  pod 'FLAnimatedImage'
+
   
   pod 'MessageKit', '~> 3.0.0'
   pod 'Cosmos', '~> 23.0'

@@ -48,8 +48,8 @@ var isFromProfile = false
 //GOOGLE CLIENT ID 464505001033-pk77rgck0i7702u259nmv6n18sp8l331.apps.googleusercontent.com
 let googleMapAPIKey = "AIzaSyDoOfDrlLrIeWHeM2hBJEETh9ErGgKnoTQ"
 
-let baseUrl = "https://api.kismmet.com"
-//let baseUrl = "http://devapi.kismmet.com"
+//let baseUrl = "https://api.kismmet.com"
+let baseUrl = "http://devapi.kismmet.com"
 
 //MARK: rx Publishers
 

@@ -70,6 +70,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.10)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesSwift (~> 2.1)
+  - FLAnimatedImage (1.0.17)
   - FSCalendar (2.8.4)
   - GoogleAppMeasurement (10.15.0):
     - GoogleAppMeasurement/AdIdSupport (= 10.15.0)
@@ -257,6 +258,7 @@ DEPENDENCIES:
   - DropDown
   - Firebase/Analytics
   - Firebase/Crashlytics
+  - FLAnimatedImage
   - FSCalendar
   - GoogleMaps
   - GoogleSignIn
@@ -300,6 +302,7 @@ SPEC REPOS:
     - FirebaseCrashlytics
     - FirebaseInstallations
     - FirebaseSessions
+    - FLAnimatedImage
     - FSCalendar
     - GoogleAppMeasurement
     - GoogleDataTransport
@@ -355,6 +358,7 @@ SPEC CHECKSUMS:
   FirebaseCrashlytics: a83f26fb922a3fe181eb738fb4dcf0c92bba6455
   FirebaseInstallations: cae95cab0f965ce05b805189de1d4c70b11c76fb
   FirebaseSessions: ee59a7811bef4c15f65ef6472f3210faa293f9c8
+  FLAnimatedImage: bbf914596368867157cc71b38a8ec834b3eeb32b
   FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
   GoogleAppMeasurement: 722db6550d1e6d552b08398b69a975ac61039338
   GoogleDataTransport: 54dee9d48d14580407f8f5fbf2f496e92437a2f2
@@ -392,6 +396,6 @@ SPEC CHECKSUMS:
   TransitionableTab: 54a5d0af475033bdb83959fde4e5d6201af7e2ab
   UIMultiPicker: 29bf824c5251822ca4040b933f6204e617e6ba3f
 
-PODFILE CHECKSUM: 40b7976cafff56447b435f5358652e6559f8f45e
+PODFILE CHECKSUM: 1678d915d6f1e777632ffbb9d991739ca41f58c4
 
 COCOAPODS: 1.13.0

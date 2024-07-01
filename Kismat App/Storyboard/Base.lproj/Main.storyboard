@@ -5316,7 +5316,7 @@ Thank you!</string>
                                     </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="awD-SJ-GEn" customClass="FormTextView" customModule="Kismmet" customModuleProvider="target">
                                         <rect key="frame" x="25" y="192" width="343" height="132"/>
-                                        <color key="backgroundColor" name="Base Grey"/>
+                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="132" id="Feb-MH-Wvt"/>
                                             <constraint firstAttribute="width" constant="343" id="Gfu-bI-eA2"/>
@@ -5332,7 +5332,7 @@ Thank you!</string>
                                                 <real key="value" value="16"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                <real key="value" value="3"/>
+                                                <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
                                                 <real key="value" value="3"/>
@@ -5341,7 +5341,7 @@ Thank you!</string>
                                                 <size key="value" width="0.29999999999999999" height="1.3"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                <color key="value" systemColor="systemGray2Color"/>
+                                                <color key="value" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="8"/>
@@ -5381,9 +5381,6 @@ Thank you!</string>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="crossBtn"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="13"/>
-                                            </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
                                                 <color key="value" name="Base White"/>
                                             </userDefinedRuntimeAttribute>
@@ -5394,7 +5391,7 @@ Thank you!</string>
                                         </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderTxt" translatesAutoresizingMaskIntoConstraints="NO" id="Uai-Zk-Hfj">
-                                        <rect key="frame" x="27" y="195" width="316" height="63"/>
+                                        <rect key="frame" x="32" y="195" width="316" height="63"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="316" id="Y3e-c2-WGT"/>
                                             <constraint firstAttribute="height" constant="63" id="bdW-Kl-xM6"/>
@@ -5410,7 +5407,7 @@ Thank you!</string>
                                     <constraint firstItem="Uai-Zk-Hfj" firstAttribute="top" secondItem="aVo-v5-EFK" secondAttribute="bottom" constant="32" id="G4D-fc-RCD"/>
                                     <constraint firstAttribute="trailing" secondItem="aVo-v5-EFK" secondAttribute="trailing" constant="22" id="XZR-ic-hJe"/>
                                     <constraint firstAttribute="height" constant="545" id="Xgs-rh-JGE"/>
-                                    <constraint firstItem="Uai-Zk-Hfj" firstAttribute="leading" secondItem="Fiw-iU-UrB" secondAttribute="leading" constant="27" id="aSl-vG-U1h"/>
+                                    <constraint firstItem="Uai-Zk-Hfj" firstAttribute="leading" secondItem="Fiw-iU-UrB" secondAttribute="leading" constant="32" id="aSl-vG-U1h"/>
                                     <constraint firstItem="aVo-v5-EFK" firstAttribute="top" secondItem="DhG-93-gLb" secondAttribute="bottom" constant="16" id="cDV-8m-cve"/>
                                     <constraint firstItem="gu3-Xb-UMo" firstAttribute="top" secondItem="awD-SJ-GEn" secondAttribute="bottom" constant="45" id="e29-aE-Eh7"/>
                                     <constraint firstItem="DhG-93-gLb" firstAttribute="top" secondItem="Fiw-iU-UrB" secondAttribute="top" constant="18" id="eWG-s4-WoW"/>
@@ -5418,7 +5415,7 @@ Thank you!</string>
                                     <constraint firstItem="awD-SJ-GEn" firstAttribute="leading" secondItem="Fiw-iU-UrB" secondAttribute="leading" constant="25" id="r1u-sw-kMt"/>
                                     <constraint firstAttribute="bottom" secondItem="gu3-Xb-UMo" secondAttribute="bottom" constant="120" id="rsz-XL-jQR"/>
                                     <constraint firstItem="awD-SJ-GEn" firstAttribute="top" secondItem="aVo-v5-EFK" secondAttribute="bottom" constant="29" id="vz2-fv-qm5"/>
-                                    <constraint firstAttribute="trailing" secondItem="Uai-Zk-Hfj" secondAttribute="trailing" constant="50" id="wcK-d9-SFF"/>
+                                    <constraint firstAttribute="trailing" secondItem="Uai-Zk-Hfj" secondAttribute="trailing" constant="45" id="wcK-d9-SFF"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="topLimitedCornerRadius">
@@ -5459,9 +5456,26 @@ Thank you!</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dy2-MS-dhZ" customClass="RoundCornerView" customModule="Kismmet" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="244" width="393" height="608"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sentImg" translatesAutoresizingMaskIntoConstraints="NO" id="r2m-Gg-WXu">
-                                        <rect key="frame" x="4" y="6" width="385" height="548"/>
-                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sent!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lX6-5H-JX8" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                                        <rect key="frame" x="26" y="18" width="90" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="90" id="WVg-PP-egt"/>
+                                            <constraint firstAttribute="height" constant="32" id="u2a-md-qtg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                                <color key="value" name="Text grey"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="bl"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                <real key="value" value="18"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="40E-jP-4sd" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
                                         <rect key="frame" x="349" y="18" width="26" height="26"/>
                                         <color key="backgroundColor" name="Base White"/>
@@ -5473,9 +5487,6 @@ Thank you!</string>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="crossBtn"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="13"/>
-                                            </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
                                                 <color key="value" name="Base White"/>
                                             </userDefinedRuntimeAttribute>
@@ -5485,33 +5496,96 @@ Thank you!</string>
                                             <action selector="crossBtnPressed:" destination="YaT-gi-3vd" eventType="touchUpInside" id="MUy-1K-KAR"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q2I-Yq-Iua">
-                                        <rect key="frame" x="344" y="519" width="35" height="35"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0PI-bj-uvj" customClass="RoundCornerView" customModule="Kismmet" customModuleProvider="target">
+                                        <rect key="frame" x="26" y="294" width="341" height="272"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjC-1w-gi1" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                                                <rect key="frame" x="9" y="13" width="323" height="244"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="323" id="XOy-yM-9ch"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="244" id="gTm-oQ-mkm"/>
+                                                    <constraint firstAttribute="height" constant="244" id="gjE-42-gAG"/>
+                                                </constraints>
+                                                <string key="text">Congrats on being brave!
+
+Please kindly be patient and remember to 
+be respectful of any decision to connect or  of a polite decline.
+
+Thank you!
+
+
+
+
+Star user for future highlights</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                                        <color key="value" name="Text grey"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                        <real key="value" value="14"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q2I-Yq-Iua">
+                                                <rect key="frame" x="288" y="214" width="35" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="35" id="bNG-gh-KEi"/>
+                                                    <constraint firstAttribute="height" constant="35" id="lPM-fM-jsc"/>
+                                                </constraints>
+                                                <color key="tintColor" name="warning"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" image="star" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="bold"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="starBtnPressed:" destination="fnt-u5-x60" eventType="touchUpInside" id="yHy-D7-EFx"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="VTN-2g-dVO"/>
-                                            <constraint firstAttribute="width" constant="35" id="a99-Eo-Lu1"/>
+                                            <constraint firstAttribute="trailing" secondItem="gjC-1w-gi1" secondAttribute="trailing" constant="9" id="05A-Lm-BRV"/>
+                                            <constraint firstItem="gjC-1w-gi1" firstAttribute="leading" secondItem="0PI-bj-uvj" secondAttribute="leading" constant="9" id="CtC-ep-Bf2"/>
+                                            <constraint firstAttribute="trailing" secondItem="q2I-Yq-Iua" secondAttribute="trailing" constant="18" id="Lo4-Ms-Lsl"/>
+                                            <constraint firstAttribute="width" constant="341" id="Qgm-Yd-WhV"/>
+                                            <constraint firstAttribute="bottom" secondItem="q2I-Yq-Iua" secondAttribute="bottom" constant="23" id="fEX-xo-7xU"/>
+                                            <constraint firstAttribute="height" constant="272" id="i9i-C4-5zW"/>
+                                            <constraint firstItem="gjC-1w-gi1" firstAttribute="top" secondItem="0PI-bj-uvj" secondAttribute="top" constant="13" id="zvb-sQ-WfV"/>
                                         </constraints>
-                                        <color key="tintColor" name="warning"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="star" catalog="system">
-                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="bold"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="starBtnPressed:" destination="fnt-u5-x60" eventType="touchUpInside" id="yHy-D7-EFx"/>
-                                        </connections>
-                                    </button>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" systemColor="systemGray3Color"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="97p-RC-NMB" customClass="FLAnimatedImageView">
+                                        <rect key="frame" x="97" y="63" width="200" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="7ex-kp-eFP"/>
+                                            <constraint firstAttribute="width" constant="200" id="K0e-Hq-tgT"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="r2m-Gg-WXu" firstAttribute="leading" secondItem="Dy2-MS-dhZ" secondAttribute="leading" constant="4" id="6iB-9u-2j2"/>
-                                    <constraint firstAttribute="bottom" secondItem="q2I-Yq-Iua" secondAttribute="bottom" constant="54" id="MU2-n1-Zys"/>
+                                    <constraint firstItem="lX6-5H-JX8" firstAttribute="top" secondItem="Dy2-MS-dhZ" secondAttribute="top" constant="18" id="1rI-bD-bt4"/>
+                                    <constraint firstItem="lX6-5H-JX8" firstAttribute="leading" secondItem="Dy2-MS-dhZ" secondAttribute="leading" constant="26" id="2TN-OU-zlp"/>
+                                    <constraint firstItem="97p-RC-NMB" firstAttribute="top" secondItem="lX6-5H-JX8" secondAttribute="bottom" constant="13" id="4md-ZS-zzC"/>
+                                    <constraint firstAttribute="trailing" secondItem="0PI-bj-uvj" secondAttribute="trailing" constant="26" id="7bW-Xn-wEP"/>
+                                    <constraint firstItem="0PI-bj-uvj" firstAttribute="leading" secondItem="Dy2-MS-dhZ" secondAttribute="leading" constant="26" id="Ye5-Rb-BJP"/>
                                     <constraint firstAttribute="trailing" secondItem="40E-jP-4sd" secondAttribute="trailing" constant="18" id="bKI-dj-Hac"/>
-                                    <constraint firstItem="r2m-Gg-WXu" firstAttribute="top" secondItem="Dy2-MS-dhZ" secondAttribute="top" constant="6" id="cHN-ex-a0w"/>
-                                    <constraint firstAttribute="bottom" secondItem="r2m-Gg-WXu" secondAttribute="bottom" constant="54" id="dhb-36-AOH"/>
                                     <constraint firstAttribute="height" constant="608" id="dyH-wS-bUy"/>
+                                    <constraint firstItem="97p-RC-NMB" firstAttribute="leading" secondItem="Dy2-MS-dhZ" secondAttribute="leading" constant="97" id="m8K-bg-QI3"/>
                                     <constraint firstItem="40E-jP-4sd" firstAttribute="top" secondItem="Dy2-MS-dhZ" secondAttribute="top" constant="18" id="mI1-mY-Usw"/>
-                                    <constraint firstAttribute="trailing" secondItem="q2I-Yq-Iua" secondAttribute="trailing" constant="14" id="qUc-1Q-1di"/>
-                                    <constraint firstAttribute="trailing" secondItem="r2m-Gg-WXu" secondAttribute="trailing" constant="4" id="rdp-Xj-k9Z"/>
+                                    <constraint firstAttribute="trailing" secondItem="97p-RC-NMB" secondAttribute="trailing" constant="96" id="qqb-bX-hyH"/>
+                                    <constraint firstItem="0PI-bj-uvj" firstAttribute="top" secondItem="97p-RC-NMB" secondAttribute="bottom" constant="31" id="tQ1-8v-E70"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="topLimitedCornerRadius">
@@ -5529,6 +5603,7 @@ Thank you!</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="gifIV" destination="97p-RC-NMB" id="i9b-Bh-ipo"/>
                         <outlet property="starBtn" destination="q2I-Yq-Iua" id="etk-G8-rUb"/>
                     </connections>
                 </viewController>
@@ -5784,6 +5859,9 @@ Thank you!</string>
         <designable name="g1M-LC-Jgo">
             <size key="intrinsicContentSize" width="125.66666666666667" height="20.333333333333332"/>
         </designable>
+        <designable name="gjC-1w-gi1">
+            <size key="intrinsicContentSize" width="329.66666666666669" height="243.66666666666666"/>
+        </designable>
         <designable name="gu3-Xb-UMo">
             <size key="intrinsicContentSize" width="36" height="30"/>
         </designable>
@@ -5810,6 +5888,9 @@ Thank you!</string>
         </designable>
         <designable name="kUb-na-hEH">
             <size key="intrinsicContentSize" width="148" height="20"/>
+        </designable>
+        <designable name="lX6-5H-JX8">
+            <size key="intrinsicContentSize" width="40" height="20.333333333333332"/>
         </designable>
         <designable name="lhD-Tf-j08">
             <size key="intrinsicContentSize" width="194" height="20.333333333333332"/>
@@ -5891,9 +5972,8 @@ Thank you!</string>
         <image name="logo name" width="3289" height="512"/>
         <image name="mail.and.text.magnifyingglass.rtl" catalog="system" width="128" height="90"/>
         <image name="person.circle.fill" catalog="system" width="128" height="123"/>
-        <image name="placeholderTxt" width="279" height="49"/>
+        <image name="placeholderTxt" width="279" height="44"/>
         <image name="rocket" width="32" height="32"/>
-        <image name="sentImg" width="335" height="446"/>
         <image name="sign-in-with-appple copy2" width="424" height="76"/>
         <image name="sign-in-with-appple2" width="424" height="76"/>
         <image name="star" catalog="system" width="128" height="116"/>
@@ -5906,9 +5986,6 @@ Thank you!</string>
         <image name="xmark.circle" catalog="system" width="128" height="123"/>
         <namedColor name="BG Base White">
             <color red="0.9570000171661377" green="0.9570000171661377" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Base Grey">
-            <color red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Base White">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -5943,14 +6020,14 @@ Thank you!</string>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemGray3Color">
             <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

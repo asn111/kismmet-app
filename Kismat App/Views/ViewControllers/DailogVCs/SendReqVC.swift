@@ -15,6 +15,9 @@ class SendReqVC: MainViewController {
     
     @IBAction func sendBtnPressed(_ sender: Any) {
         sendReq()
+        /*self.presentVC(id: "ReqSentVC", presentFullType: "over" ) { (vc:ReqSentVC) in
+            vc.userId = self.userModel.userId
+        }*/
     }
     
     @IBOutlet weak var placeholderIV: UIImageView!
@@ -30,6 +33,7 @@ class SendReqVC: MainViewController {
     
     var sentMsg = ""
     var limitExceed = false
+    var isKeyBoardShown = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,8 +53,63 @@ class SendReqVC: MainViewController {
         
         msgTextView.delegate = self
         msgTextView.textColor = UIColor(named: "Text grey")
+        msgTextView.inputAccessoryView = createToolbar()
+
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    @objc func action() {
+        isKeyBoardShown = false
+        view.endEditing(true)
+    }
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        
+        let frameInWindow = view.superview?.convert(msgTextView.frame, to: nil)
+        let bottomOfTextField = frameInWindow?.maxY ??  0
+        let topOfKeyboard = UIScreen.main.bounds.height/2 - keyboardSize.height
+        
+        if bottomOfTextField > topOfKeyboard && self.view.frame.origin.y >=  0 {
+            self.view.frame.origin.y -= bottomOfTextField - topOfKeyboard
+            placeholderIV.isHidden = true
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        isKeyBoardShown = false
+        if msgTextView.text == "" {
+            placeholderIV.isHidden = false
+        } else {
+            placeholderIV.isHidden = true
+        }
+        self.view.frame.origin.y = 0
+    }
+    
+    func createToolbar() -> UIToolbar {
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
+        toolbar.barStyle = .default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem:.flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style:.done, target: self, action: #selector(doneButtonTapped))
+        
+        toolbar.setItems([flexSpace, doneButton], animated: false)
+        toolbar.sizeToFit()
+        
+        return toolbar
+    }
+    
+    @objc func doneButtonTapped() {
+        if msgTextView.text == "" {
+            placeholderIV.isHidden = false
+        } else {
+            placeholderIV.isHidden = true
+        }
+        msgTextView.resignFirstResponder()
+    }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == "" {

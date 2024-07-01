@@ -50,6 +50,8 @@ class Body : NSObject, Codable {
     var startUp : StartupModel!
     var userNotifications : [NotificationModel]!
     var reportReasons : [ReportReasonsModel]!
+    var contactUsers : [UserModel]!
+    var requestUsers : [UserModel]!
 
     override init() {
         token = ""
@@ -63,6 +65,8 @@ class Body : NSObject, Codable {
         startUp = StartupModel()
         userNotifications = [NotificationModel]()
         reportReasons = [ReportReasonsModel]()
+        contactUsers = [UserModel]()
+        requestUsers = [UserModel]()
     }
     
     private enum CodingKeys: String, CodingKey {
@@ -77,6 +81,8 @@ class Body : NSObject, Codable {
         case startUp = "startUp"
         case userNotifications = "userNotifications"
         case reportReasons = "reportReasons"
+        case contactUsers = "userContacts"
+        //case requestUsers = "reportReasons"
 
     }
     
@@ -94,6 +100,8 @@ class Body : NSObject, Codable {
         startUp  = try values.decodeIfPresent(StartupModel.self, forKey: .startUp)
         userNotifications  = try values.decodeIfPresent([NotificationModel].self, forKey: .userNotifications)
         reportReasons  = try values.decodeIfPresent([ReportReasonsModel].self, forKey: .reportReasons)
+        contactUsers  = try values.decodeIfPresent([UserModel].self, forKey: .contactUsers)
+        //requestUsers  = try values.decodeIfPresent([UserModel].self, forKey: .requestUsers)
 
     }
 }
