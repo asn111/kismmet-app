@@ -56,6 +56,8 @@
 		296D76922A1CF0A0005A3A99 /* hashTagsTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 296D76902A1CF0A0005A3A99 /* hashTagsTVCell.xib */; };
 		29748F412C32F9D500DB89E9 /* rocketLaunch.gif in Resources */ = {isa = PBXBuildFile; fileRef = 29748F402C32F9D500DB89E9 /* rocketLaunch.gif */; };
 		29748F432C33CFD300DB89E9 /* ConnectedUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29748F422C33CFD200DB89E9 /* ConnectedUserProfile.swift */; };
+		29748F452C33F42600DB89E9 /* ReqAcceptVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29748F442C33F42600DB89E9 /* ReqAcceptVC.swift */; };
+		29748F472C33FFF000DB89E9 /* DenyConfirmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29748F462C33FFF000DB89E9 /* DenyConfirmVC.swift */; };
 		2976102C29DDB85300B74050 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2976102B29DDB85300B74050 /* StoreKit.framework */; };
 		2976102F29DDBF0700B74050 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2976102E29DDBF0700B74050 /* IAPManager.swift */; };
 		2976D89D2A2FD0D800A855F1 /* CodeVerification_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2976D89C2A2FD0D800A855F1 /* CodeVerification_VC.swift */; };
@@ -208,6 +210,8 @@
 		296D76902A1CF0A0005A3A99 /* hashTagsTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = hashTagsTVCell.xib; sourceTree = "<group>"; };
 		29748F402C32F9D500DB89E9 /* rocketLaunch.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = rocketLaunch.gif; sourceTree = "<group>"; };
 		29748F422C33CFD200DB89E9 /* ConnectedUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedUserProfile.swift; sourceTree = "<group>"; };
+		29748F442C33F42600DB89E9 /* ReqAcceptVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReqAcceptVC.swift; sourceTree = "<group>"; };
+		29748F462C33FFF000DB89E9 /* DenyConfirmVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenyConfirmVC.swift; sourceTree = "<group>"; };
 		2976102B29DDB85300B74050 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2976102E29DDBF0700B74050 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		2976D89C2A2FD0D800A855F1 /* CodeVerification_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeVerification_VC.swift; sourceTree = "<group>"; };
@@ -571,6 +575,8 @@
 				29846D4229A1676000393EB3 /* ImportantDialogVC.swift */,
 				294DD5222A94976E004A7F22 /* PopupVC.swift */,
 				292B1FFC2A9E930800435223 /* ReportDialogVC.swift */,
+				29748F442C33F42600DB89E9 /* ReqAcceptVC.swift */,
+				29748F462C33FFF000DB89E9 /* DenyConfirmVC.swift */,
 			);
 			path = DailogVCs;
 			sourceTree = "<group>";
@@ -1290,6 +1296,7 @@
 				299FDD5E29967D1D0049741B /* AppFunctions.swift in Sources */,
 				29FD316629A5FD9400BDBD9C /* EditProfileSetup.swift in Sources */,
 				299FDD5829967D1D0049741B /* LoadingViewable.swift in Sources */,
+				29748F472C33FFF000DB89E9 /* DenyConfirmVC.swift in Sources */,
 				29350A2129D0CC4100F19BD5 /* UserDBModel.swift in Sources */,
 				294A79A8299ADD4200089161 /* SettingTVCell.swift in Sources */,
 				29985F3729981ADE001F769B /* GeneralHeaderTVCell.swift in Sources */,
@@ -1302,6 +1309,7 @@
 				29748F432C33CFD300DB89E9 /* ConnectedUserProfile.swift in Sources */,
 				29985F3B2998339E001F769B /* FeedItemsTVCell.swift in Sources */,
 				299FDD7F29967DC90049741B /* APIService.swift in Sources */,
+				29748F452C33F42600DB89E9 /* ReqAcceptVC.swift in Sources */,
 				29350A1C29D0C6A900F19BD5 /* SocialAccType.swift in Sources */,
 				299FDD862996852D0049741B /* SplashVC.swift in Sources */,
 				299FDD9E2996D0250049741B /* SignInVC.swift in Sources */,

@@ -333,8 +333,6 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                 
             }
             
-            
-            
             return cell
             
             
@@ -350,7 +348,9 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                     vc.userId = users[indexPath.row - 1].userId
                 }
             } else {
-                
+                self.presentVC(id: "ReqAcceptVC", presentFullType: "over" ) { (vc:ReqAcceptVC) in
+                    vc.userModel = users[indexPath.row - 1]
+                }
             }
         }
     }

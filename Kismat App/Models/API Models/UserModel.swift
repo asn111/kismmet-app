@@ -36,6 +36,7 @@ class ProximityUsersModel: NSObject, Codable {
 
 class UserModel: NSObject, Codable {
     
+    var contactId : Int!
     var userId : String!
     var userName : String!
     var profilePicture : String!
@@ -62,11 +63,13 @@ class UserModel: NSObject, Codable {
     var socialAccounts : [SocialAccModel]!
     var contactInformationsSharedByUser : [ContactInformations]!
     var contactInformationsSharedByOther : [ContactInformations]!
+    var contactInformationsShared : [ContactInformations]!
     var userContacts : UserContacts!
 
 
     override init() {
         
+        contactId = 0
         userId = ""
         userName = ""
         profilePicture = ""
@@ -93,6 +96,7 @@ class UserModel: NSObject, Codable {
         socialAccounts = [SocialAccModel]()
         contactInformationsSharedByUser = [ContactInformations]()
         contactInformationsSharedByOther = [ContactInformations]()
+        contactInformationsShared = [ContactInformations]()
         userContacts = UserContacts()
         
     }
@@ -112,6 +116,7 @@ class UserModel: NSObject, Codable {
     
     private enum CodingKeys: String, CodingKey {
         
+        case contactId = "contactId"
         case userId = "userId"
         case userName = "userName"
         case profilePicture = "profilePicture"
@@ -139,10 +144,12 @@ class UserModel: NSObject, Codable {
         case userContacts = "userContacts"
         case contactInformationsSharedByUser = "contactInformationsSharedByUser"
         case contactInformationsSharedByOther = "contactInformationsSharedByOther"
+        case contactInformationsShared = "contactInformationsShared"
     }
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
 
+        contactId  = try values.decodeIfPresent(Int.self, forKey: .contactId)
         userId  = try values.decodeIfPresent(String.self, forKey: .userId)
         userName  = try values.decodeIfPresent(String.self, forKey: .userName)
         profilePicture  = try values.decodeIfPresent(String.self, forKey: .profilePicture)
@@ -169,6 +176,7 @@ class UserModel: NSObject, Codable {
         socialAccounts  = try values.decodeIfPresent([SocialAccModel].self, forKey: .socialAccounts)
         contactInformationsSharedByUser  = try values.decodeIfPresent([ContactInformations].self, forKey: .contactInformationsSharedByUser)
         contactInformationsSharedByOther  = try values.decodeIfPresent([ContactInformations].self, forKey: .contactInformationsSharedByOther)
+        contactInformationsShared  = try values.decodeIfPresent([ContactInformations].self, forKey: .contactInformationsShared)
         userContacts = try values.decodeIfPresent(UserContacts.self, forKey: .userContacts)
     }
 }
