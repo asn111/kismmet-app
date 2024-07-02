@@ -14,6 +14,8 @@ class ReqConVC: MainViewController {
     
     var users = [UserModel]()
     private let refresher = UIRefreshControl()
+    
+    var selectedUsertype = "req"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,7 +87,11 @@ class ReqConVC: MainViewController {
         // Do you your api calls in here, and then a
         self.showPKHUD(WithMessage: "")
         reqTV.refreshControl?.beginRefreshing()
-        getReqUsers(load: false)
+        if selectedUsertype == "con" {
+            getContUsers(load: false)
+        } else {
+            getReqUsers(load: false)
+        }
     }
     func stopRefresher() {
         self.hidePKHUD()
@@ -208,6 +214,7 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                 
                 self.getReqUsers(load: false)
                 cell.headerLbl.text = "REQUESTS"
+                self.selectedUsertype = "req"
                 UIView.transition(with: cell.btnsImg,
                                   duration: 0.1, // Adjust the duration as needed
                                   options:.transitionCrossDissolve,
@@ -218,6 +225,7 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
             cell.onConBtnTap = {
                 self.getContUsers(load: false)
                 cell.headerLbl.text = "CONTACTS"
+                self.selectedUsertype = "con"
                 UIView.transition(with: cell.btnsImg,
                                   duration: 0.1, // Adjust the duration as needed
                                   options:.transitionCrossDissolve,
@@ -334,6 +342,18 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if !users.isEmpty {
+            if selectedUsertype == "con" {
+                self.pushVC(id: "ConnectedUserProfile") { (vc:ConnectedUserProfile) in
+                    vc.userModel = users[indexPath.row - 1]
+                    vc.userId = users[indexPath.row - 1].userId
+                }
+            } else {
+                
+            }
+        }
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension

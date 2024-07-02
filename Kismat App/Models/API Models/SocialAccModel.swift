@@ -46,3 +46,31 @@ class SocialAccModel: NSObject, Codable {
         linkImage  = try values.decodeIfPresent(String.self, forKey: .linkImage)
     }
 }
+
+
+class ContactTypesModel: NSObject, Codable {
+    
+    var contactTypeId : Int!
+    var contactType : String!
+    
+    override init() {
+        
+        contactTypeId = 0
+        contactType = ""
+        
+    }
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case contactTypeId = "contactTypeId"
+        case contactType = "contactType"
+    
+    }
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        contactTypeId  = try values.decodeIfPresent(Int.self, forKey: .contactTypeId)
+        contactType  = try values.decodeIfPresent(String.self, forKey: .contactType)
+
+    }
+}

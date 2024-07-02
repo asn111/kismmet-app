@@ -1531,6 +1531,56 @@ class APIService: NSObject {
         }
     }
     
+    //MARK: Get Social Accounts List
+    func getConnectAccTypes() -> Observable<[ContactTypesModel]> {
+        
+        return Observable.create{[weak self] observer -> Disposable in
+            if (self?.isCheckReachable())! {
+                
+                AF.request("\(baseUrl)/api/UserContacts/GetContactTypes", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                    .validate()
+                    .responseData{ response in
+                        Logs.show(message: "URL: \(response.debugDescription)")
+                        guard let data = response.data else {
+                            observer.onError(response.error!)
+                            AppFunctions.showSnackBar(str: "Server Request Error")
+                            Logs.show(message: "Error on Response.data\(response.error!)")
+                            return
+                        }
+                        switch response.result {
+                            case .success:
+                                do {
+                                    let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    Logs.show(message: "SUCCESS IN \(#function)")
+                                    observer.onNext(genResponse.body.contactTypes)
+                                    observer.onCompleted()
+                                } catch {
+                                    observer.onError(error)
+                                    AppFunctions.showSnackBar(str: "Server Parsing Error")
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                }
+                            case .failure(let error):
+                                do {
+                                    let responce = try JSONDecoder().decode(GeneralResponse.self, from: data)
+                                    observer.onError(error)
+                                    Logs.show(message: "S:: \(responce.errorMessage ?? "")")
+                                    AppFunctions.showSnackBar(str: responce.message)
+                                }catch {
+                                    Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")
+                                    AppFunctions.showSnackBar(str: "Server Request Error")
+                                    observer.onError(error)
+                                }
+                        }
+                    }
+            } else {
+                observer.onNext([ContactTypesModel()])
+                observer.onCompleted()
+                AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
+            }
+            return Disposables.create()
+        }
+    }
+    
     //MARK: Get Report Reason List
     func getReportReasons() -> Observable<[ReportReasonsModel]> {
         

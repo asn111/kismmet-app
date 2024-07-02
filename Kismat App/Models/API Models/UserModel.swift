@@ -60,6 +60,8 @@ class UserModel: NSObject, Codable {
     var accountStatus : String!
     var subscription : String!
     var socialAccounts : [SocialAccModel]!
+    var contactInformationsSharedByUser : [ContactInformations]!
+    var contactInformationsSharedByOther : [ContactInformations]!
     var userContacts : UserContacts!
 
 
@@ -89,6 +91,8 @@ class UserModel: NSObject, Codable {
         accountStatus = ""
         subscription = ""
         socialAccounts = [SocialAccModel]()
+        contactInformationsSharedByUser = [ContactInformations]()
+        contactInformationsSharedByOther = [ContactInformations]()
         userContacts = UserContacts()
         
     }
@@ -133,6 +137,8 @@ class UserModel: NSObject, Codable {
         case subscription = "subscription"
         case socialAccounts = "socialAccounts"
         case userContacts = "userContacts"
+        case contactInformationsSharedByUser = "contactInformationsSharedByUser"
+        case contactInformationsSharedByOther = "contactInformationsSharedByOther"
     }
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -161,6 +167,8 @@ class UserModel: NSObject, Codable {
         accountStatus  = try values.decodeIfPresent(String.self, forKey: .accountStatus)
         subscription  = try values.decodeIfPresent(String.self, forKey: .subscription)
         socialAccounts  = try values.decodeIfPresent([SocialAccModel].self, forKey: .socialAccounts)
+        contactInformationsSharedByUser  = try values.decodeIfPresent([ContactInformations].self, forKey: .contactInformationsSharedByUser)
+        contactInformationsSharedByOther  = try values.decodeIfPresent([ContactInformations].self, forKey: .contactInformationsSharedByOther)
         userContacts = try values.decodeIfPresent(UserContacts.self, forKey: .userContacts)
     }
 }
@@ -169,4 +177,11 @@ class UserContacts: NSObject, Codable {
     
     var contactStatusId : Int!
     var contactStatus : String!
+}
+
+class ContactInformations: NSObject, Codable {
+    
+    var contactTypeId : Int!
+    var contactType : String!
+    var value : String!
 }

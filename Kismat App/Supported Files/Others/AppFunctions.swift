@@ -833,6 +833,40 @@ class AppFunctions {
         } else { showSnackBar(str: "Invalid link provided") }
     }
     
+    open class func openWhatsApp(phoneNumber: String) {
+        guard let url = URL(string: "whatsapp://send?phone=\(phoneNumber)") else {
+            showSnackBar(str: "Invalid phone number")
+            return
+        }
+        
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        } else {
+            // Fallback to WhatsApp website if app isn't installed
+            let webURL = URL(string: "https://wa.me/\(phoneNumber)")
+            UIApplication.shared.open(webURL!)
+        }
+    }
+    
+    open class func openiMessage(phoneNumber: String) {
+        guard let url = URL(string: "sms:\(phoneNumber)") else {
+            showSnackBar(str: "Invalid phone number")
+            return
+        }
+        
+        UIApplication.shared.open(url)
+    }
+
+    open class func initiateCall(phoneNumber: String) {
+        guard let url = URL(string: "tel:\(phoneNumber)") else {
+            showSnackBar(str: "Invalid phone number")
+            return
+        }
+        
+        UIApplication.shared.open(url)
+    }
+
+    
     //MARK: Show ToolTip
     open class func showToolTip(str: String, btn: UIButton, arrowPos: String = "top") {
         

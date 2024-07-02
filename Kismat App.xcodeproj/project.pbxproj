@@ -55,6 +55,7 @@
 		296D76912A1CF0A0005A3A99 /* hashTagsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D768F2A1CF0A0005A3A99 /* hashTagsTVCell.swift */; };
 		296D76922A1CF0A0005A3A99 /* hashTagsTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 296D76902A1CF0A0005A3A99 /* hashTagsTVCell.xib */; };
 		29748F412C32F9D500DB89E9 /* rocketLaunch.gif in Resources */ = {isa = PBXBuildFile; fileRef = 29748F402C32F9D500DB89E9 /* rocketLaunch.gif */; };
+		29748F432C33CFD300DB89E9 /* ConnectedUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29748F422C33CFD200DB89E9 /* ConnectedUserProfile.swift */; };
 		2976102C29DDB85300B74050 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2976102B29DDB85300B74050 /* StoreKit.framework */; };
 		2976102F29DDBF0700B74050 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2976102E29DDBF0700B74050 /* IAPManager.swift */; };
 		2976D89D2A2FD0D800A855F1 /* CodeVerification_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2976D89C2A2FD0D800A855F1 /* CodeVerification_VC.swift */; };
@@ -206,6 +207,7 @@
 		296D768F2A1CF0A0005A3A99 /* hashTagsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hashTagsTVCell.swift; sourceTree = "<group>"; };
 		296D76902A1CF0A0005A3A99 /* hashTagsTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = hashTagsTVCell.xib; sourceTree = "<group>"; };
 		29748F402C32F9D500DB89E9 /* rocketLaunch.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = rocketLaunch.gif; sourceTree = "<group>"; };
+		29748F422C33CFD200DB89E9 /* ConnectedUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedUserProfile.swift; sourceTree = "<group>"; };
 		2976102B29DDB85300B74050 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2976102E29DDBF0700B74050 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		2976D89C2A2FD0D800A855F1 /* CodeVerification_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeVerification_VC.swift; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 			children = (
 				294A79AB299AE89E00089161 /* ProfileVC.swift */,
 				29350A2429D1C0D100F19BD5 /* OtherUserProfile.swift */,
+				29748F422C33CFD200DB89E9 /* ConnectedUserProfile.swift */,
 				294A79AD299AEB1100089161 /* Xibs */,
 			);
 			path = Profile;
@@ -1296,6 +1299,7 @@
 				299FDD5A29967D1D0049741B /* Extentions.swift in Sources */,
 				29350A1729CF489300F19BD5 /* SignalR Manager.swift in Sources */,
 				299FDD5D29967D1D0049741B /* ImagePicker.swift in Sources */,
+				29748F432C33CFD300DB89E9 /* ConnectedUserProfile.swift in Sources */,
 				29985F3B2998339E001F769B /* FeedItemsTVCell.swift in Sources */,
 				299FDD7F29967DC90049741B /* APIService.swift in Sources */,
 				29350A1C29D0C6A900F19BD5 /* SocialAccType.swift in Sources */,
