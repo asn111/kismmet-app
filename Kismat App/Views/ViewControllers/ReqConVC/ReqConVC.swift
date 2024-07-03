@@ -240,6 +240,10 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                                   completion: nil)
             }
             
+           
+            cell.settingsLbl.attributedText = NSAttributedString(string: "Settings", attributes:
+                                                                    [.underlineStyle: NSUnderlineStyle.single.rawValue, .font: UIFont(name: "Roboto", size: 14)!.bold, .foregroundColor: UIColor(hexFromString: "4E6E81")])
+            
             let tap = UITapGestureRecognizer(target: self, action: #selector(settingsTap(sender:)))
             cell.settingsLbl.isUserInteractionEnabled = true
             cell.settingsLbl.addGestureRecognizer(tap)
