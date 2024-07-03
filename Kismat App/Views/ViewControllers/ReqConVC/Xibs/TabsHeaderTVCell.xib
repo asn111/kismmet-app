@@ -114,7 +114,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOp-pE-AC1">
                                 <rect key="frame" x="0.0" y="81" width="417" height="52"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reqSelected" translatesAutoresizingMaskIntoConstraints="NO" id="jVp-Jj-MUG">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="conSelected" translatesAutoresizingMaskIntoConstraints="NO" id="jVp-Jj-MUG">
                                         <rect key="frame" x="0.0" y="0.0" width="417" height="52"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pw8-Ur-Foh">
@@ -285,20 +285,20 @@
     </objects>
     <designables>
         <designable name="4IN-oq-2Gx">
-            <size key="intrinsicContentSize" width="86" height="21"/>
+            <size key="intrinsicContentSize" width="86" height="20.333333333333332"/>
         </designable>
         <designable name="amq-6n-jaK">
             <size key="intrinsicContentSize" width="162" height="152"/>
         </designable>
         <designable name="gjT-fS-ZUo">
-            <size key="intrinsicContentSize" width="63" height="21"/>
+            <size key="intrinsicContentSize" width="63" height="20.333333333333332"/>
         </designable>
     </designables>
     <resources>
         <image name="bell.badge.fill" catalog="system" width="117" height="128"/>
+        <image name="conSelected" width="401" height="38"/>
         <image name="logo name" width="3289" height="512"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
-        <image name="reqSelected" width="401" height="38"/>
         <image name="wifi man grey" width="162" height="152"/>
         <namedColor name="Secondary Grey">
             <color red="0.3059999942779541" green="0.4309999942779541" blue="0.50599998235702515" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

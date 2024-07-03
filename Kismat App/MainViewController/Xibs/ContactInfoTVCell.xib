@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="65" id="KGk-i7-Jjw" customClass="ContactInfoTVCell" customModule="Kismmet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="417" height="65"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="417" height="65"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UMD-Sd-NkD">
+                        <rect key="frame" x="0.0" y="0.0" width="417" height="65"/>
+                        <subviews>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please choose one or more ways to reach out!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gY-nL-Qmu" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                                <rect key="frame" x="42" y="2.6666666666666643" width="329" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="2g8-rn-2XY"/>
+                                    <constraint firstAttribute="width" constant="329" id="t3c-b7-ie0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                        <color key="value" name="Text grey"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                        <real key="value" value="14"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9zC-Kp-NHp" customClass="RoundCornerView" customModule="Kismmet" customModuleProvider="target">
+                                <rect key="frame" x="29" y="2" width="353" height="60"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LinkedIn" translatesAutoresizingMaskIntoConstraints="NO" id="lCZ-i9-LFY">
+                                        <rect key="frame" x="8" y="17" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="Hfz-01-DYp"/>
+                                            <constraint firstAttribute="width" constant="25" id="uAU-4h-UsF"/>
+                                        </constraints>
+                                    </imageView>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dcz-Qh-U6B" customClass="DropDownTF" customModule="iOSDropDown">
+                                        <rect key="frame" x="41" y="5" width="259" height="50"/>
+                                        <color key="backgroundColor" name="Cell BG Base Grey"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="PUi-Rc-lYO"/>
+                                            <constraint firstAttribute="width" constant="259" id="dtH-dl-OnP"/>
+                                        </constraints>
+                                        <color key="textColor" name="Text grey"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="name"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderRadious">
+                                                <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.66666666669999997" green="0.078431372550000003" blue="0.54117647059999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Le-Ke-D7a">
+                                        <rect key="frame" x="305" y="10" width="40" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Ft8-Pf-oSc"/>
+                                            <constraint firstAttribute="width" constant="40" id="YIm-zv-JUS"/>
+                                        </constraints>
+                                        <color key="tintColor" systemColor="systemGray2Color"/>
+                                        <inset key="contentEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="checkmark.circle.fill" catalog="system">
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="semibold"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="5Le-Ke-D7a" firstAttribute="leading" secondItem="dcz-Qh-U6B" secondAttribute="trailing" constant="5" id="8bm-Jz-q3J"/>
+                                    <constraint firstItem="dcz-Qh-U6B" firstAttribute="leading" secondItem="lCZ-i9-LFY" secondAttribute="trailing" constant="8" symbolic="YES" id="CUf-KC-Kdb"/>
+                                    <constraint firstAttribute="trailing" secondItem="5Le-Ke-D7a" secondAttribute="trailing" constant="8" id="Jme-Wr-kha"/>
+                                    <constraint firstAttribute="height" constant="60" id="P6Z-8r-Jl5"/>
+                                    <constraint firstItem="lCZ-i9-LFY" firstAttribute="leading" secondItem="9zC-Kp-NHp" secondAttribute="leading" constant="8" id="Poi-NI-HHo"/>
+                                    <constraint firstItem="dcz-Qh-U6B" firstAttribute="top" secondItem="9zC-Kp-NHp" secondAttribute="top" constant="5" id="SB8-ww-V8m"/>
+                                    <constraint firstAttribute="bottom" secondItem="lCZ-i9-LFY" secondAttribute="bottom" constant="18" id="Ze0-zM-SSs"/>
+                                    <constraint firstAttribute="bottom" secondItem="dcz-Qh-U6B" secondAttribute="bottom" constant="5" id="f69-HC-Ove"/>
+                                    <constraint firstAttribute="bottom" secondItem="5Le-Ke-D7a" secondAttribute="bottom" constant="10" id="s3K-qB-Fk2"/>
+                                    <constraint firstItem="5Le-Ke-D7a" firstAttribute="top" secondItem="9zC-Kp-NHp" secondAttribute="top" constant="10" id="y8S-ir-EQZ"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" name="Cell BG Base Grey"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="0.29999999999999999" height="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="1.3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="1.3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2gY-nL-Qmu" firstAttribute="centerY" secondItem="UMD-Sd-NkD" secondAttribute="centerY" id="GRR-E0-x91"/>
+                            <constraint firstAttribute="trailing" secondItem="9zC-Kp-NHp" secondAttribute="trailing" constant="35" id="O4l-B0-Ely"/>
+                            <constraint firstItem="9zC-Kp-NHp" firstAttribute="leading" secondItem="UMD-Sd-NkD" secondAttribute="leading" constant="29" id="bTG-Hg-ifn"/>
+                            <constraint firstItem="2gY-nL-Qmu" firstAttribute="centerX" secondItem="UMD-Sd-NkD" secondAttribute="centerX" constant="-2" id="dVp-Vp-Le3"/>
+                            <constraint firstItem="9zC-Kp-NHp" firstAttribute="top" secondItem="UMD-Sd-NkD" secondAttribute="top" constant="2" id="jFB-Ew-AL8"/>
+                            <constraint firstAttribute="bottom" secondItem="9zC-Kp-NHp" secondAttribute="bottom" constant="3" id="ppM-R5-qmp"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="UMD-Sd-NkD" secondAttribute="trailing" id="JGm-rv-crW"/>
+                    <constraint firstItem="UMD-Sd-NkD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="QKx-ff-eXa"/>
+                    <constraint firstAttribute="bottom" secondItem="UMD-Sd-NkD" secondAttribute="bottom" id="Urf-wX-Ig1"/>
+                    <constraint firstItem="UMD-Sd-NkD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="nnj-GZ-ajZ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="chkBtn" destination="5Le-Ke-D7a" id="g9c-C5-ifS"/>
+                <outlet property="contactTF" destination="dcz-Qh-U6B" id="YOY-B6-di8"/>
+                <outlet property="socialPicIV" destination="lCZ-i9-LFY" id="f7h-v9-X87"/>
+                <outlet property="textLbl" destination="2gY-nL-Qmu" id="95j-m7-IrT"/>
+                <outlet property="tfView" destination="9zC-Kp-NHp" id="Ije-Xj-qil"/>
+            </connections>
+            <point key="canvasLocation" x="142.74809160305344" y="27.112676056338028"/>
+        </tableViewCell>
+    </objects>
+    <designables>
+        <designable name="2gY-nL-Qmu">
+            <size key="intrinsicContentSize" width="349.66666666666669" height="20.333333333333332"/>
+        </designable>
+    </designables>
+    <resources>
+        <image name="LinkedIn" width="512" height="512"/>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
+        <namedColor name="Cell BG Base Grey">
+            <color red="0.20800000429153442" green="0.31000000238418579" blue="0.35699999332427979" alpha="0.10499999672174454" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text grey">
+            <color red="0.20800000429153442" green="0.31000000238418579" blue="0.35699999332427979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

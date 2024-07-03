@@ -56,6 +56,13 @@ class ReqConVC: MainViewController {
     }
     
     @objc
+    func settingsTap(sender:UITapGestureRecognizer) {
+        self.pushVC(id: "ContactInformainVC") { (vc:ContactInformainVC) in
+            vc.isSetting = true
+        }
+    }
+    
+    @objc
     func starTapFunction(sender:UITapGestureRecognizer) {
         if let image = sender.view {
             if let cell = image.superview?.superview?.superview?.superview  as? FeedItem2TVCell {
@@ -218,7 +225,7 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                 UIView.transition(with: cell.btnsImg,
                                   duration: 0.1, // Adjust the duration as needed
                                   options:.transitionCrossDissolve,
-                                  animations: { cell.btnsImg.image = UIImage(named: "reqSelected") },
+                                  animations: { cell.btnsImg.image = UIImage(named: "conSelected") },
                                   completion: nil)
             }
             
@@ -229,9 +236,13 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                 UIView.transition(with: cell.btnsImg,
                                   duration: 0.1, // Adjust the duration as needed
                                   options:.transitionCrossDissolve,
-                                  animations: { cell.btnsImg.image = UIImage(named: "conSelected") },
+                                  animations: { cell.btnsImg.image = UIImage(named: "reqSelected") },
                                   completion: nil)
             }
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(settingsTap(sender:)))
+            cell.settingsLbl.isUserInteractionEnabled = true
+            cell.settingsLbl.addGestureRecognizer(tap)
             
             
             return cell
@@ -256,7 +267,11 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                 
                 visiblityCell.visibiltyView.isHidden = true
                 visiblityCell.updateBtn.isHidden = true
-                visiblityCell.textLbl.text = "At this time, there are no users within your proximity range or matching your search criteria."
+                if selectedUsertype == "req" {
+                    visiblityCell.textLbl.text = "At this time, there are no users in your requests."
+                } else {
+                    visiblityCell.textLbl.text = "At this time, there are no users in your contacts."
+                }
                 
                 
             } else if let feedCell = cell as? FeedItemsTVCell {
@@ -278,12 +293,30 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                     }
                 }
                 
+                feedCell.profilePicIV.borderWidth = 3
+                
+                if user.contactStatus == "Pending" {
+                    feedCell.profilePicIV.borderColor = UIColor(named: "warning")
+                } else if user.contactStatus == "Accepted" {
+                    feedCell.profilePicIV.borderColor = UIColor(named: "Success")
+                } else {
+                    //feedCell.profilePicIV.borderColor = UIColor(named: "Secondary Grey")
+                    feedCell.profilePicIV.borderWidth = 0
+                }
                 
                 if user.profilePicture != "" && user.profilePicture != nil {
                     let imageUrl = URL(string: user.profilePicture)
                     feedCell.profilePicIV?.sd_setImage(with: imageUrl , placeholderImage: UIImage(named: "placeholder")) { (image, error, imageCacheType, url) in }
                 } else {
                     feedCell.profilePicIV.image = UIImage(named: "placeholder")
+                }
+                
+                if user.isRead {
+                    feedCell.nonBlurView.backgroundColor = UIColor(named: "Base White")
+                    feedCell.nonBlurView.shadowColor = UIColor.systemGray2
+                } else {
+                    feedCell.nonBlurView.backgroundColor = UIColor(named: "Cell BG Base Grey")
+                    feedCell.nonBlurView.shadowColor = UIColor(named: "Cell BG Base Grey")
                 }
                 
                 feedCell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
@@ -317,6 +350,24 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                     }
                 }
                 
+                if user.isRead {
+                    feedCell2.nonBlurView.backgroundColor = UIColor(named: "Base White")
+                    feedCell2.nonBlurView.shadowColor = UIColor.systemGray2
+                } else {
+                    feedCell2.nonBlurView.backgroundColor = UIColor(named: "Cell BG Base Grey")
+                    feedCell2.nonBlurView.shadowColor = UIColor(named: "Cell BG Base Grey")
+                }
+                
+                feedCell2.profilePicIV.borderWidth = 3
+
+                if user.contactStatus == "Pending" {
+                    feedCell2.profilePicIV.borderColor = UIColor(named: "warning")
+                } else if user.contactStatus == "Accepted" {
+                    feedCell2.profilePicIV.borderColor = UIColor(named: "Success")
+                } else {
+                    //feedCell2.profilePicIV.borderColor = UIColor(named: "Secondary Grey")
+                    feedCell2.profilePicIV.borderWidth = 0
+                }
                 
                 if user.profilePicture != "" && user.profilePicture != nil {
                     let imageUrl = URL(string: user.profilePicture)
@@ -341,15 +392,17 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if !users.isEmpty {
-            if selectedUsertype == "con" {
-                self.pushVC(id: "ConnectedUserProfile") { (vc:ConnectedUserProfile) in
-                    vc.userModel = users[indexPath.row - 1]
-                    vc.userId = users[indexPath.row - 1].userId
-                }
-            } else {
-                self.presentVC(id: "ReqAcceptVC", presentFullType: "over" ) { (vc:ReqAcceptVC) in
-                    vc.userModel = users[indexPath.row - 1]
+        if indexPath.row > 0 {
+            if !users.isEmpty {
+                if selectedUsertype == "con" {
+                    self.pushVC(id: "ConnectedUserProfile") { (vc:ConnectedUserProfile) in
+                        vc.userModel = users[indexPath.row - 1]
+                        vc.userId = users[indexPath.row - 1].userId
+                    }
+                } else {
+                    self.presentVC(id: "ReqAcceptVC", presentFullType: "over" ) { (vc:ReqAcceptVC) in
+                        vc.userModel = users[indexPath.row - 1]
+                    }
                 }
             }
         }

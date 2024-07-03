@@ -50,6 +50,7 @@ class UserModel: NSObject, Codable {
     var workTitle : String!
     var about : String!
     var status : String!
+    var contactStatus : String!
     var proximity : Int!
     var isProfileVisible : Bool!
     var isProfileUpdated : Bool!
@@ -57,6 +58,7 @@ class UserModel: NSObject, Codable {
     var isStarred : Bool!
     var tags : String!
     var isActive : Bool!
+    var isRead : Bool!
     var shadowMode : Bool!
     var accountStatus : String!
     var subscription : String!
@@ -83,11 +85,13 @@ class UserModel: NSObject, Codable {
         workTitle = ""
         about = ""
         status = ""
+        contactStatus = ""
         proximity = 0
         isProfileVisible = false
         isProfileUpdated = false
         disappearingStatus = false
         isStarred = false
+        isRead = false
         tags = ""
         isActive = false
         shadowMode = false
@@ -130,11 +134,13 @@ class UserModel: NSObject, Codable {
         case workTitle = "workTitle"
         case about = "about"
         case status = "status"
+        case contactStatus = "contactStatus"
         case proximity = "proximity"
         case isProfileVisible = "isProfileVisible"
         case isProfileUpdated = "isProfileUpdated"
         case disappearingStatus = "disappearingStatus"
         case isStarred = "isStarred"
+        case isRead = "isRead"
         case tags = "tags"
         case isActive = "isActive"
         case shadowMode = "shadowMode"
@@ -163,11 +169,13 @@ class UserModel: NSObject, Codable {
         workTitle  = try values.decodeIfPresent(String.self, forKey: .workTitle)
         about  = try values.decodeIfPresent(String.self, forKey: .about)
         status  = try values.decodeIfPresent(String.self, forKey: .status)
+        contactStatus  = try values.decodeIfPresent(String.self, forKey: .contactStatus)
         disappearingStatus  = try values.decodeIfPresent(Bool.self, forKey: .disappearingStatus)
         proximity  = try values.decodeIfPresent(Int.self, forKey: .proximity)
         isProfileVisible  = try values.decodeIfPresent(Bool.self, forKey: .isProfileVisible)
         isProfileUpdated  = try values.decodeIfPresent(Bool.self, forKey: .isProfileUpdated)
         isStarred  = try values.decodeIfPresent(Bool.self, forKey: .isStarred)
+        isRead  = try values.decodeIfPresent(Bool.self, forKey: .isRead)
         tags  = try values.decodeIfPresent(String.self, forKey: .tags)
         isActive  = try values.decodeIfPresent(Bool.self, forKey: .isActive)
         shadowMode  = try values.decodeIfPresent(Bool.self, forKey: .shadowMode)

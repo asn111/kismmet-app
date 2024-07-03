@@ -28,9 +28,11 @@ class ConnectedUserProfile: MainViewController {
     var socialAccImgArray = [UIImage(named: "LinkedIn"),UIImage(named: "Twitter"),UIImage(named: "Instagram"),UIImage(named: "Snapchat"),UIImage(named: "Website")]
     var img = UIImage(named: "placeholder")
     
-    var socialAccounts = [ContactTypesModel()]
+    //var socialAccounts = [ContactTypesModel()]
     
     var isFromBlock = false
+    
+    var isFromReq = false
     
     var markView = false
     var userModel = UserModel()
@@ -44,17 +46,20 @@ class ConnectedUserProfile: MainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //setupSocialArray()
-        getConnectAcc()
         getReasons()
         
         
         Logs.show(message: "User ID: \(String(describing: userModel.userId))")
         Logs.show(message: "User: \(userModel)")
         
+        if userModel.contactInformationsSharedByOther != nil {
+            socialAccModel = userModel.contactInformationsSharedByOther
+
+        }
         
-        socialAccModel = userModel.contactInformationsSharedByOther
-        
+        if !userModel.isRead {
+            readThisProfile()
+        }
         registerCells()
         
         
@@ -77,9 +82,8 @@ class ConnectedUserProfile: MainViewController {
         otherProfileTV.register(UINib(nibName: "AboutTVCell", bundle: nil), forCellReuseIdentifier: "AboutTVCell")
         otherProfileTV.register(UINib(nibName: "MixHeaderTVCell", bundle: nil), forCellReuseIdentifier: "MixHeaderTVCell")
         otherProfileTV.register(UINib(nibName: "ProfileTVCell", bundle: nil), forCellReuseIdentifier: "ProfileTVCell")
-        otherProfileTV.register(UINib(nibName: "TagsTVCell", bundle: nil), forCellReuseIdentifier: "TagsTVCell")
         otherProfileTV.register(UINib(nibName: "SocialAccTVCell", bundle: nil), forCellReuseIdentifier: "SocialAccTVCell")
-        otherProfileTV.register(UINib(nibName: "StatusTVCell", bundle: nil), forCellReuseIdentifier: "StatusTVCell")
+        otherProfileTV.register(UINib(nibName: "GeneralButtonTVCell", bundle: nil), forCellReuseIdentifier: "GeneralButtonTVCell")
         otherProfileTV.register(UINib(nibName: "BlockBtnTVCell", bundle: nil), forCellReuseIdentifier: "BlockBtnTVCell")
     }
     
@@ -161,7 +165,11 @@ class ConnectedUserProfile: MainViewController {
     }
     
     @objc func picBtnPressed(sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        if isFromReq {
+            self.dismiss(animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
         
     }
     
@@ -169,6 +177,21 @@ class ConnectedUserProfile: MainViewController {
         
         self.presentVC(id: "SendReqVC", presentFullType: "over" ) { (vc:SendReqVC) in
             vc.userModel = userModel
+        }
+    }
+    
+    func readThisProfile() {
+        
+        let pram = ["contactId": "\(userModel.contactId ?? 0)",
+                    "isRead":"\(true)"
+        ]
+        
+        SignalRService.connection.invoke(method: "ReadContactRequest", pram) {  error in
+            if let e = error {
+                Logs.show(message: "Error: \(e)")
+                AppFunctions.showSnackBar(str: "Error in updating values")
+                return
+            }
         }
     }
     
@@ -200,6 +223,12 @@ class ConnectedUserProfile: MainViewController {
         showAlert()
     }
     
+    @objc func genBtnPressedForProfile(sender:UIButton) {
+        self.pushVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
+            vc.userId = userModel.userId
+            //vc.markView = true
+        }
+    }
     
     //MARK: API METHODS
     
@@ -217,53 +246,6 @@ class ConnectedUserProfile: MainViewController {
                         if val.count > 0 {
                             self.reasonsList = val
                             self.reasonsListName = self.reasonsList.map({$0.reason})
-                        } else {
-                            self.hidePKHUD()
-                        }
-                    case .error(let error):
-                        print(error)
-                        self.hidePKHUD()
-                    case .completed:
-                        print("completed")
-                        self.hidePKHUD()
-                }
-            })
-            .disposed(by: dispose_Bag)
-    }
-
-    func getConnectAcc() {
-        
-        
-        APIService
-            .singelton
-            .getConnectAccTypes()
-            .subscribe({[weak self] model in
-                guard let self = self else {return}
-                switch model {
-                    case .next(let val):
-                        if val.count > 0 {
-                            self.socialAccounts = val
-                            
-                            let linkTypesInSocialAccModel = Set(socialAccModel.map { $0.contactType })
-                            
-                            socialAccounts.sort { (account1, account2) -> Bool in
-                                // Check if either account has a linkType present in socialAccModel
-                                let isAccount1Matched = linkTypesInSocialAccModel.contains(account1.contactType)
-                                let isAccount2Matched = linkTypesInSocialAccModel.contains(account2.contactType)
-                                
-                                // Move matched accounts to the front
-                                if isAccount1Matched && !isAccount2Matched {
-                                    return true
-                                } else if !isAccount1Matched && isAccount2Matched {
-                                    return false
-                                } else {
-                                    // Keep original order for unmatched or both matched/unmatched pairs
-                                    return false
-                                }
-                            }
-                            
-                            self.otherProfileTV.reloadData()
-                            
                         } else {
                             self.hidePKHUD()
                         }
@@ -319,7 +301,7 @@ class ConnectedUserProfile: MainViewController {
 extension ConnectedUserProfile : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return socialAccounts.count + 8
+        return socialAccModel.count + 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -378,7 +360,8 @@ extension ConnectedUserProfile : UITableViewDelegate, UITableViewDataSource {
                 return cell
             case 1:
                 let cell : AboutTVCell = tableView.dequeueReusableCell(withIdentifier: "AboutTVCell", for: indexPath) as! AboutTVCell
-                cell.aboutTxtView.text = userModel.about
+                cell.bioLbl.text = "Notes"
+                cell.aboutTxtView.text = "User notes will show here..."//userModel.about
                 return cell
                 
             case 2:
@@ -390,61 +373,40 @@ extension ConnectedUserProfile : UITableViewDelegate, UITableViewDataSource {
                 cell.generalTF.isUserInteractionEnabled = false
                 
                 return cell
-            case 3:
+            case 3: // social heading
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
-                cell.headerLblView.isHidden = false
-                cell.headerLbl.text = "Tags"
-                return cell
-            case 4:
-                let cell : TagsTVCell = tableView.dequeueReusableCell(withIdentifier: "TagsTVCell", for: indexPath) as! TagsTVCell
-                
-                if userModel.tags != "" {
-                    if !userModel.tags.contains(",") {
-                        cell.tagLbl1.text = userModel.tags
-                        cell.tagView1.isHidden = false
-                    } else {
-                        let split = userModel.tags.split(separator: ",")
-                        for i in 0...split.count - 1 {
-                            switch i {
-                                case 0:
-                                    cell.tagLbl1.text = "\(split[i])"
-                                    cell.tagView1.isHidden = false
-                                case 1:
-                                    cell.tagLbl2.text = "\(split[i])"
-                                    cell.tagView2.isHidden = false
-                                case 2:
-                                    cell.tagLbl3.text = "\(split[i])"
-                                    cell.tagView3.isHidden = false
-                                case 3:
-                                    cell.tagLbl4.text = "\(split[i])"
-                                    cell.tagView4.isHidden = false
-                                case 4:
-                                    cell.tagLbl5.text = "\(split[i])"
-                                    cell.tagView5.isHidden = false
-                                default:
-                                    print("default")
-                            }
-                        }
-                    }
-                }
-                return cell
-            case 5: // social heading
-                let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
-                if !socialAccounts.isEmpty {
+                if !socialAccModel.isEmpty {
                     cell.headerLblView.isHidden = false
-                    cell.headerLbl.text = "Social accounts"
+                    cell.headerLbl.text = "Contact info shared"
                 } else {
                     cell.headerLblView.isHidden = true
                 }
                 return cell
                 
-            case socialAccounts.count + 6: // EmptyView
+            case socialAccModel.count + 4: // EmptyView
                 
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = true
                 return cell
                 
-            case socialAccounts.count + 7: // button
+            case socialAccModel.count + 5: // button
+                let cell : GeneralButtonTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralButtonTVCell", for: indexPath) as! GeneralButtonTVCell
+                
+                cell.genBtnView.isHidden = true
+                cell.newBtnView.isHidden = false
+                cell.newBtn.tag = indexPath.row
+                cell.newBtn.addTarget(self, action: #selector(genBtnPressedForProfile(sender:)), for: .touchUpInside)
+                
+                cell.newBtn.titleLabel?.font = UIFont(name: "Work Sans", size: 14)?.regular
+                cell.newBtn.setTitle("View full profile", for: .normal)
+                cell.newBtn.backgroundColor = UIColor.clear
+                cell.newBtn.tintColor = UIColor(named: "Secondary Grey")
+                cell.newBtn.underline()
+                cell.newBtn.isWork = true
+                
+                return cell
+                
+            case socialAccModel.count + 6: // button
                 let cell : BlockBtnTVCell = tableView.dequeueReusableCell(withIdentifier: "BlockBtnTVCell", for: indexPath) as! BlockBtnTVCell
                 if isFromBlock {
                     cell.blockBtn.isHidden = true
@@ -456,7 +418,7 @@ extension ConnectedUserProfile : UITableViewDelegate, UITableViewDataSource {
             default:
                 let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
                 
-                switch socialAccounts[indexPath.row - 6].contactTypeId {
+                switch socialAccModel[indexPath.row - 4].contactTypeId {
                     case 1:
                         cell.socialImgView.image = UIImage(named: "LinkedIn")
                     case 2:
@@ -473,40 +435,25 @@ extension ConnectedUserProfile : UITableViewDelegate, UITableViewDataSource {
                         print("default")
                 }
                 
-                if socialAccModel.filter({$0.contactType == socialAccounts[indexPath.row - 6].contactType }).count > 0 {
+                cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.medium
+                
+                /*if socialAccModel.filter({$0.contactType == socialAccounts[indexPath.row - 6].contactType }).count > 0 {
                     cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.medium
                 } else {
                     cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.regular
-                }
+                }*/
                 
-                cell.socialLbl.text = socialAccounts[indexPath.row - 6].contactType.capitalized
+                cell.socialLbl.text = socialAccModel[indexPath.row - 4].contactType.capitalized
                 cell.socialLbl.isUserInteractionEnabled = false
                 return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 5 {
-            
-            var tagList = [String]()
-            if userModel.tags != "" {
-                if !userModel.tags.contains(",") {
-                    tagList.append(userModel.tags)
-                } else {
-                    let split = userModel.tags.split(separator: ",")
-                    tagList = split.map { String($0) } // Convert Substring to String
-                }
-            }
-            
-            self.presentVC(id: "TagsView_VC",presentFullType: "not") { (vc:TagsView_VC) in
-                vc.isFromOther = true
-                vc.userId = userModel.userId
-                vc.tagList = tagList
-            }
-        } else if indexPath.row > 5 && indexPath.row < socialAccounts.count + 6 {
-            if socialAccModel.filter({$0.contactType == socialAccounts[indexPath.row - 6].contactType }).count > 0 {
-                let link = socialAccModel[indexPath.row - 6]
-                switch socialAccModel[indexPath.row - 6].contactTypeId {
+        if indexPath.row > 3 && indexPath.row < socialAccModel.count + 4 && !isFromReq {
+            //if socialAccModel.filter({$0.contactType == socialAccounts[indexPath.row - 6].contactType }).count > 0 {
+                let link = socialAccModel[indexPath.row - 4]
+                switch socialAccModel[indexPath.row - 4].contactTypeId {
                     case 1:
                         AppFunctions.openLinkedIn(userName: link.value)
                     case 2:
@@ -529,9 +476,9 @@ extension ConnectedUserProfile : UITableViewDelegate, UITableViewDataSource {
                     vc.socialAccModel = socialAccModel.filter {$0.linkType == socialAccounts[indexPath.row - 7].linkType }
                     vc.linkType = socialAccounts[indexPath.row - 7].linkType
                 }*/
-            } else {
-                AppFunctions.showSnackBar(str: "No social account found")
-            }
+            //} else {
+            //    AppFunctions.showSnackBar(str: "No social account found")
+            //}
         }
     }
     

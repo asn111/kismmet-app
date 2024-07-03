@@ -8,15 +8,18 @@
 import UIKit
 
 class DenyConfirmVC: MainViewController {
-
-    
     
     @IBAction func closeBtnPressed(_ sender: Any) {
         self.dismiss(animated: true)
     }
     
     @IBAction func mainActionBtnPressed(_ sender: Any) {
-        denyContact()
+        if contactId > 0 {
+            denyContact()
+        } else {
+            AppFunctions.showSnackBar(str: "Information saved successfully")
+            self.dismiss(animated: true)
+        }
     }
     
     @IBAction func skipBtnPressed(_ sender: Any) {
@@ -25,12 +28,28 @@ class DenyConfirmVC: MainViewController {
     
     @IBOutlet weak var headingLbl: fullyCustomLbl!
     
+    @IBOutlet weak var mainActionBtn: RoundCornerButton!
+    
+    @IBOutlet weak var skipBtn: RoundCornerButton!
     @IBOutlet weak var textLbl: fullyCustomLbl!
     
     var contactId = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if contactId > 0 {
+            mainActionBtn.setTitle("Deny", for: .normal)
+            mainActionBtn.backgroundColor = UIColor(named: "warning")
+            headingLbl.text = "Deny!"
+            textLbl.text = "Are you sure you’d like to decline?\n\nNo worries if yes, the other person will not be notified."
+        } else {
+            mainActionBtn.setTitle("Yes", for: .normal)
+            mainActionBtn.backgroundColor = UIColor(named: "Success")
+            skipBtn.isHidden = false
+            headingLbl.text = "Save Contact Info"
+            textLbl.text = "Do you want to save this information for the future connections?"
+        }
     }
 
     
@@ -65,4 +84,6 @@ class DenyConfirmVC: MainViewController {
             })
             .disposed(by: dispose_Bag)
     }
+    
+
 }

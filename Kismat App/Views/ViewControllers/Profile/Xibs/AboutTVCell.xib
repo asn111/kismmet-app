@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -117,13 +117,14 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="aboutTxtView" destination="F68-w9-xdi" id="qvt-M1-QB9"/>
+                <outlet property="bioLbl" destination="gEd-wu-Vd8" id="ZSw-KF-4HQ"/>
             </connections>
             <point key="canvasLocation" x="52.671755725190835" y="46.478873239436624"/>
         </tableViewCell>
     </objects>
     <designables>
         <designable name="gEd-wu-Vd8">
-            <size key="intrinsicContentSize" width="39.666666666666664" height="21"/>
+            <size key="intrinsicContentSize" width="33.333333333333336" height="20.333333333333332"/>
         </designable>
     </designables>
     <resources>

@@ -5842,8 +5842,54 @@ Star user for future highlights</string>
                                             <action selector="crossBtnPressed:" destination="YaT-gi-3vd" eventType="touchUpInside" id="mkN-I5-c45"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fk1-mJ-G7X" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
+                                        <rect key="frame" x="111" y="362" width="170" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="170" id="E31-b8-LpQ"/>
+                                            <constraint firstAttribute="height" constant="32" id="t5P-Ee-M07"/>
+                                        </constraints>
+                                        <color key="tintColor" systemColor="linkColor"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="View Profile">
+                                                    <attributes>
+                                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <font key="NSFont" size="14" name="Roboto-MediumItalic"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="View Profile">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.30588235294117649" green="0.43137254901960786" blue="0.50588235294117645" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" size="14" name="Roboto-Medium"/>
+                                                        <font key="NSOriginalFont" size="14" name="Roboto-Medium"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        <integer key="NSUnderline" value="1"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="skipBtnPressed:" destination="3jd-Sy-7yg" eventType="touchUpInside" id="aX7-Rl-c9B"/>
+                                            <action selector="viewProfileBtnPressed:" destination="Syi-pm-VFg" eventType="touchUpInside" id="1vV-2R-QUx"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xuc-nl-UNn" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="201" y="387" width="170" height="56"/>
+                                        <rect key="frame" x="201" y="412" width="170" height="56"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="56" id="O6W-hd-6jg"/>
                                             <constraint firstAttribute="width" constant="170" id="SoO-U6-KpA"/>
@@ -5865,7 +5911,7 @@ Star user for future highlights</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CDc-j6-oyF" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="23" y="387" width="170" height="56"/>
+                                        <rect key="frame" x="23" y="412" width="170" height="56"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="170" id="SpA-VQ-CtC"/>
                                             <constraint firstAttribute="height" constant="56" id="YN9-id-gOV"/>
@@ -5977,14 +6023,18 @@ Star user for future highlights</string>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="uT1-zU-85a" secondAttribute="trailing" constant="18" id="18b-4a-V9t"/>
-                                    <constraint firstAttribute="bottom" secondItem="CDc-j6-oyF" secondAttribute="bottom" constant="102" id="4HJ-3F-mnQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="CDc-j6-oyF" secondAttribute="bottom" constant="77" id="4HJ-3F-mnQ"/>
                                     <constraint firstItem="xU6-Nm-cBl" firstAttribute="leading" secondItem="zS7-2m-t0r" secondAttribute="leading" constant="21" id="CVO-9f-w5V"/>
+                                    <constraint firstItem="Xuc-nl-UNn" firstAttribute="top" secondItem="fk1-mJ-G7X" secondAttribute="bottom" constant="18" id="MgX-rn-LV9"/>
                                     <constraint firstAttribute="trailing" secondItem="Xuc-nl-UNn" secondAttribute="trailing" constant="22" id="Ml8-AE-TMS"/>
                                     <constraint firstItem="Xuc-nl-UNn" firstAttribute="leading" secondItem="CDc-j6-oyF" secondAttribute="trailing" constant="8" symbolic="YES" id="QG0-7y-7K9"/>
-                                    <constraint firstAttribute="bottom" secondItem="Xuc-nl-UNn" secondAttribute="bottom" constant="102" id="YWE-cq-nPi"/>
+                                    <constraint firstItem="fk1-mJ-G7X" firstAttribute="leading" secondItem="zS7-2m-t0r" secondAttribute="leading" constant="111" id="X1H-7R-Dqf"/>
+                                    <constraint firstAttribute="bottom" secondItem="Xuc-nl-UNn" secondAttribute="bottom" constant="77" id="YWE-cq-nPi"/>
+                                    <constraint firstAttribute="trailing" secondItem="fk1-mJ-G7X" secondAttribute="trailing" constant="112" id="Ytq-nV-d6f"/>
                                     <constraint firstItem="xU6-Nm-cBl" firstAttribute="top" secondItem="uT1-zU-85a" secondAttribute="bottom" constant="16" id="c8L-ne-jpb"/>
                                     <constraint firstItem="tpW-6O-QAj" firstAttribute="leading" secondItem="zS7-2m-t0r" secondAttribute="leading" constant="23" id="eYO-Mj-up3"/>
                                     <constraint firstAttribute="trailing" secondItem="tpW-6O-QAj" secondAttribute="trailing" constant="22" id="fkO-5V-hJ4"/>
+                                    <constraint firstItem="fk1-mJ-G7X" firstAttribute="top" secondItem="tpW-6O-QAj" secondAttribute="bottom" constant="13" id="imW-fI-SxQ"/>
                                     <constraint firstItem="CDc-j6-oyF" firstAttribute="leading" secondItem="zS7-2m-t0r" secondAttribute="leading" constant="23" id="mRq-JD-Nno"/>
                                     <constraint firstAttribute="height" constant="545" id="rKi-YU-Flo"/>
                                     <constraint firstItem="tpW-6O-QAj" firstAttribute="top" secondItem="xU6-Nm-cBl" secondAttribute="bottom" constant="45" id="t7q-7r-hJQ"/>
@@ -6016,7 +6066,7 @@ Star user for future highlights</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wrs-63-QLK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="876" y="3468"/>
+            <point key="canvasLocation" x="875.57251908396938" y="3467.605633802817"/>
         </scene>
         <!--Deny ConfirmVC-->
         <scene sceneID="XXL-fd-omd">
@@ -6075,15 +6125,17 @@ No worries if yes, the other person will not be notified.</string>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3gV-oF-dTG" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
                                         <rect key="frame" x="112" y="280" width="170" height="56"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" name="Text grey"/>
+                                        <color key="tintColor" name="Secondary Grey"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal">
                                             <attributedString key="attributedTitle">
                                                 <fragment content="Skip">
                                                     <attributes>
-                                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                        <font key="NSFont" size="12" name="Roboto-MediumItalic"/>
+                                                        <color key="NSColor" red="0.30588235294117649" green="0.43137254901960786" blue="0.50588235294117645" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" size="14" name="Roboto-Medium"/>
+                                                        <font key="NSOriginalFont" size="12" name="Roboto-Medium"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        <integer key="NSUnderline" value="1"/>
                                                     </attributes>
                                                 </fragment>
                                             </attributedString>
@@ -6169,12 +6221,47 @@ No worries if yes, the other person will not be notified.</string>
                     </view>
                     <connections>
                         <outlet property="headingLbl" destination="9lW-sQ-WVN" id="o1u-by-1Ok"/>
+                        <outlet property="mainActionBtn" destination="JtN-qf-DUp" id="tVp-Sw-Mn8"/>
+                        <outlet property="skipBtn" destination="3gV-oF-dTG" id="OWj-G2-fYZ"/>
                         <outlet property="textLbl" destination="EYa-F4-atl" id="Ph9-Bc-X2R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jnD-xK-ubq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1626.7175572519084" y="3467.605633802817"/>
+        </scene>
+        <!--Contact InformainVC-->
+        <scene sceneID="Nww-It-bhg">
+            <objects>
+                <viewController storyboardIdentifier="ContactInformainVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ccr-Nt-BFT" customClass="ContactInformainVC" customModule="Kismmet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MLG-nO-6go">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="iSh-L2-LIW">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="5gf-9F-hfT"/>
+                        <color key="backgroundColor" name="BG Base White"/>
+                        <constraints>
+                            <constraint firstItem="iSh-L2-LIW" firstAttribute="leading" secondItem="5gf-9F-hfT" secondAttribute="leading" id="4jp-Oc-ajF"/>
+                            <constraint firstItem="iSh-L2-LIW" firstAttribute="top" secondItem="MLG-nO-6go" secondAttribute="top" id="6Ey-oM-g04"/>
+                            <constraint firstItem="iSh-L2-LIW" firstAttribute="trailing" secondItem="5gf-9F-hfT" secondAttribute="trailing" id="WHg-A5-rCJ"/>
+                            <constraint firstAttribute="bottom" secondItem="iSh-L2-LIW" secondAttribute="bottom" id="bvd-Nq-OwA"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" id="lFG-aM-9D6">
+                        <imageReference key="image" image="gearshape.fill" catalog="system" symbolScale="medium"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="contactTV" destination="iSh-L2-LIW" id="xB4-Zt-Pa8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="giy-pr-mZD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2360" y="3468"/>
         </scene>
     </scenes>
     <designables>
@@ -6194,7 +6281,7 @@ No worries if yes, the other person will not be notified.</string>
             <size key="intrinsicContentSize" width="66" height="12"/>
         </designable>
         <designable name="3gV-oF-dTG">
-            <size key="intrinsicContentSize" width="30" height="26"/>
+            <size key="intrinsicContentSize" width="30" height="28.333333333333332"/>
         </designable>
         <designable name="40E-jP-4sd">
             <size key="intrinsicContentSize" width="20" height="22"/>
@@ -6445,6 +6532,9 @@ No worries if yes, the other person will not be notified.</string>
         <designable name="fgq-iC-cP8">
             <size key="intrinsicContentSize" width="20" height="22"/>
         </designable>
+        <designable name="fk1-mJ-G7X">
+            <size key="intrinsicContentSize" width="97" height="30.333333333333332"/>
+        </designable>
         <designable name="g1M-LC-Jgo">
             <size key="intrinsicContentSize" width="125.66666666666667" height="20.333333333333332"/>
         </designable>
@@ -6620,6 +6710,9 @@ No worries if yes, the other person will not be notified.</string>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -13,8 +13,18 @@ class ReqAcceptVC: MainViewController {
         self.dismiss(animated: true)
     }
     
+    
+    @IBAction func viewProfileBtnPressed(_ sender: Any) {
+        self.presentVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
+            vc.userId = userModel.userId
+            vc.isFromReq = true
+        }
+    }
+    
     @IBAction func accpetBtnPressed(_ sender: Any) {
-        
+        self.presentVC(id: "ContactInformainVC", presentFullType: "over" ) { (vc:ContactInformainVC) in
+            //vc.contactId = userModel.contactId
+        }
     }
     
     @IBAction func denyBtnPressed(_ sender: Any) {
@@ -45,6 +55,8 @@ class ReqAcceptVC: MainViewController {
         let contact = userModel.contactInformationsShared.filter{$0.contactTypeId == 6}
         if !contact.isEmpty {
             msgTextView.text = contact.first?.value
+        } else {
+            msgTextView.text = "Default display message here."
         }
         
         if userModel.profilePicture != "" && userModel.profilePicture != nil {
@@ -53,6 +65,25 @@ class ReqAcceptVC: MainViewController {
         } else {
             profilePicIV.setImage(img, for: .normal)
         }
+        
+        if !userModel.isRead {
+            readThisProfile()
+        }
     }
     
+    
+    func readThisProfile() {
+        
+        let pram = ["contactId": "\(userModel.contactId ?? 0)",
+                    "isRead":"\(true)"
+        ]
+        
+        SignalRService.connection.invoke(method: "ReadContactRequest", pram) {  error in
+            if let e = error {
+                Logs.show(message: "Error: \(e)")
+                AppFunctions.showSnackBar(str: "Error in updating values")
+                return
+            }
+        }
+    }
 }

@@ -23,19 +23,18 @@ class OtherUserProfile: MainViewController {
     @IBOutlet weak var otherProfileTV: UITableView!
     @IBOutlet weak var multiPickerView: UIMultiPicker!
     
-    var socialAccArray = [String]()
-    //var socialAccArray = ["Tamara Pensiero","@tamaraapp","@tamara","@tamarasnap","My Website"]
-    var socialAccImgArray = [UIImage(named: "LinkedIn"),UIImage(named: "Twitter"),UIImage(named: "Instagram"),UIImage(named: "Snapchat"),UIImage(named: "Website")]
     var img = UIImage(named: "placeholder")
 
-    var tempSocialAccImgArray = [String()]
     var socialAccounts = [SocialAccDBModel()]
 
     var isFromBlock = false
     
-    var markView = false
+    //var markView = false
     var userModel = UserModel()
+    var userId = ""
     var socialAccModel = [SocialAccModel]()
+    
+    var isFromReq = false
     
     var reasonsList = [ReportReasonsModel]()
     var reasonsListName = [String]()
@@ -44,35 +43,32 @@ class OtherUserProfile: MainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //setupSocialArray()
+        userProfile(id: userId)
+
         getReasons()
         
         socialAccounts = Array(DBService.fetchSocialAccList())
         
-        tempSocialAccImgArray = socialAccounts.compactMap { $0.linkType }
         
-        Logs.show(message: "User ID: \(userModel)")
+        Logs.show(message: "User ID: \(userId)")
         
-        if markView {
+        /*if markView {
             ApiService.markViewedUser(val: userModel.userId)
-        }
+        }*/
         
         socialAccModel = userModel.socialAccounts
         
         let linkTypesInSocialAccModel = Set(socialAccModel.map { $0.linkType })
         
         socialAccounts.sort { (account1, account2) -> Bool in
-            // Check if either account has a linkType present in socialAccModel
             let isAccount1Matched = linkTypesInSocialAccModel.contains(account1.linkType)
             let isAccount2Matched = linkTypesInSocialAccModel.contains(account2.linkType)
             
-            // Move matched accounts to the front
             if isAccount1Matched && !isAccount2Matched {
                 return true
             } else if !isAccount1Matched && isAccount2Matched {
                 return false
             } else {
-                // Keep original order for unmatched or both matched/unmatched pairs
                 return false
             }
         }
@@ -142,11 +138,7 @@ class OtherUserProfile: MainViewController {
             self?.userReport()
             return true
         })
-//        let cancel = CDAlertViewAction(title: "Cancel",
-//                                       handler: { action in
-//            print("CANCEL PRESSED")
-//            return true
-//        })
+
         alert.isTextFieldHidden = true
         alert.canHideWhenTapBack = true
         alert.add(action: action)
@@ -183,8 +175,12 @@ class OtherUserProfile: MainViewController {
     }
     
     @objc func picBtnPressed(sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
         
+        if isFromReq {
+            self.dismiss(animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @objc func sendContactRocket(sender: UIButton) {
@@ -224,6 +220,34 @@ class OtherUserProfile: MainViewController {
     
     
     //MARK: API METHODS
+    
+    func userProfile(id: String) {
+        self.showPKHUD(WithMessage: "fetching notification")
+        
+        APIService
+            .singelton
+            .getUserById(userId: id, isOtherUser: true)
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        if val.userId != "" {
+                            self.userModel = val
+                            self.otherProfileTV.reloadData()
+                            self.hidePKHUD()
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
     
     func getReasons() {
         

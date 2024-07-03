@@ -249,7 +249,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="uni-Xu-GDz" firstAttribute="leading" secondItem="J46-zJ-31Y" secondAttribute="leading" id="1SJ-yW-sNd"/>
                                             <constraint firstAttribute="trailing" secondItem="uni-Xu-GDz" secondAttribute="trailing" constant="63" id="78s-Ck-F1s"/>
@@ -407,9 +407,6 @@
         <namedColor name="warning">
             <color red="1" green="0.80800002813339233" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

@@ -254,7 +254,7 @@ extension BlockedVC : UITableViewDelegate, UITableViewDataSource {
                 //AppFunctions.showSnackBar(str: "You have reached your profile views limit.")
             if !users.isEmpty {
                 self.pushVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
-                    vc.userModel = users[indexPath.row - 1]
+                    vc.userId = users[indexPath.row - 1].userId
                     vc.isFromBlock = true
                 }
             }

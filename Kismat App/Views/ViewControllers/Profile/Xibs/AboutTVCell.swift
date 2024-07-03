@@ -11,6 +11,7 @@ class AboutTVCell: UITableViewCell {
 
     @IBOutlet weak var aboutTxtView: FormTextView!
     
+    @IBOutlet weak var bioLbl: fullyCustomLbl!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

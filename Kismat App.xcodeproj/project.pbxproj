@@ -58,6 +58,9 @@
 		29748F432C33CFD300DB89E9 /* ConnectedUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29748F422C33CFD200DB89E9 /* ConnectedUserProfile.swift */; };
 		29748F452C33F42600DB89E9 /* ReqAcceptVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29748F442C33F42600DB89E9 /* ReqAcceptVC.swift */; };
 		29748F472C33FFF000DB89E9 /* DenyConfirmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29748F462C33FFF000DB89E9 /* DenyConfirmVC.swift */; };
+		29748F4A2C340CC500DB89E9 /* ContactInformainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29748F492C340CC500DB89E9 /* ContactInformainVC.swift */; };
+		29748F4D2C342AD800DB89E9 /* ContactInfoTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29748F4B2C342AD800DB89E9 /* ContactInfoTVCell.swift */; };
+		29748F4E2C342AD800DB89E9 /* ContactInfoTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29748F4C2C342AD800DB89E9 /* ContactInfoTVCell.xib */; };
 		2976102C29DDB85300B74050 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2976102B29DDB85300B74050 /* StoreKit.framework */; };
 		2976102F29DDBF0700B74050 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2976102E29DDBF0700B74050 /* IAPManager.swift */; };
 		2976D89D2A2FD0D800A855F1 /* CodeVerification_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2976D89C2A2FD0D800A855F1 /* CodeVerification_VC.swift */; };
@@ -131,6 +134,7 @@
 		29BE184C29FA6E68000EAC0E /* EnlargedIV VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BE184B29FA6E68000EAC0E /* EnlargedIV VC.swift */; };
 		29BE184F29FA8573000EAC0E /* BlockBtnTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BE184D29FA8573000EAC0E /* BlockBtnTVCell.swift */; };
 		29BE185029FA8573000EAC0E /* BlockBtnTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29BE184E29FA8573000EAC0E /* BlockBtnTVCell.xib */; };
+		29EE7DB92C358F1200A1E877 /* iOSDropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 29EE7DB82C358F1200A1E877 /* iOSDropDown */; };
 		29F5290329970DA500FE2EBA /* GeneralTextviewTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F5290129970DA500FE2EBA /* GeneralTextviewTVCell.swift */; };
 		29F5290429970DA500FE2EBA /* GeneralTextviewTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29F5290229970DA500FE2EBA /* GeneralTextviewTVCell.xib */; };
 		29FD316629A5FD9400BDBD9C /* EditProfileSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD316529A5FD9400BDBD9C /* EditProfileSetup.swift */; };
@@ -212,6 +216,9 @@
 		29748F422C33CFD200DB89E9 /* ConnectedUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedUserProfile.swift; sourceTree = "<group>"; };
 		29748F442C33F42600DB89E9 /* ReqAcceptVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReqAcceptVC.swift; sourceTree = "<group>"; };
 		29748F462C33FFF000DB89E9 /* DenyConfirmVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenyConfirmVC.swift; sourceTree = "<group>"; };
+		29748F492C340CC500DB89E9 /* ContactInformainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInformainVC.swift; sourceTree = "<group>"; };
+		29748F4B2C342AD800DB89E9 /* ContactInfoTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoTVCell.swift; sourceTree = "<group>"; };
+		29748F4C2C342AD800DB89E9 /* ContactInfoTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactInfoTVCell.xib; sourceTree = "<group>"; };
 		2976102B29DDB85300B74050 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2976102E29DDBF0700B74050 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		2976D89C2A2FD0D800A855F1 /* CodeVerification_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeVerification_VC.swift; sourceTree = "<group>"; };
@@ -289,6 +296,7 @@
 		29BE184B29FA6E68000EAC0E /* EnlargedIV VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnlargedIV VC.swift"; sourceTree = "<group>"; };
 		29BE184D29FA8573000EAC0E /* BlockBtnTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockBtnTVCell.swift; sourceTree = "<group>"; };
 		29BE184E29FA8573000EAC0E /* BlockBtnTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlockBtnTVCell.xib; sourceTree = "<group>"; };
+		29EE7DB52C358E5000A1E877 /* iOSDropDownF */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = iOSDropDownF; path = ../../../../../Downloads/iOSDropDownF; sourceTree = "<group>"; };
 		29F5290129970DA500FE2EBA /* GeneralTextviewTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTextviewTVCell.swift; sourceTree = "<group>"; };
 		29F5290229970DA500FE2EBA /* GeneralTextviewTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralTextviewTVCell.xib; sourceTree = "<group>"; };
 		29FD316529A5FD9400BDBD9C /* EditProfileSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileSetup.swift; sourceTree = "<group>"; };
@@ -307,6 +315,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29EE7DB92C358F1200A1E877 /* iOSDropDown in Frameworks */,
 				2976102C29DDB85300B74050 /* StoreKit.framework in Frameworks */,
 				318C545CCB22AF74965369E3 /* Pods_Kismmet.framework in Frameworks */,
 			);
@@ -472,9 +481,18 @@
 		29748F3F2C32F9BE00DB89E9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				29EE7DB52C358E5000A1E877 /* iOSDropDownF */,
 				29748F402C32F9D500DB89E9 /* rocketLaunch.gif */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		29748F482C340C8800DB89E9 /* ReqSetting */ = {
+			isa = PBXGroup;
+			children = (
+				29748F492C340CC500DB89E9 /* ContactInformainVC.swift */,
+			);
+			path = ReqSetting;
 			sourceTree = "<group>";
 		};
 		2976102D29DDBEF400B74050 /* InAppPurchases */ = {
@@ -569,13 +587,10 @@
 		299E03C929A135970064A5E3 /* DailogVCs */ = {
 			isa = PBXGroup;
 			children = (
-				297A98302C31493F00B47152 /* ReqSentVC.swift */,
-				297A98312C31493F00B47152 /* SendReqVC.swift */,
 				299E03CA29A135C60064A5E3 /* AddLinksVC.swift */,
 				29846D4229A1676000393EB3 /* ImportantDialogVC.swift */,
 				294DD5222A94976E004A7F22 /* PopupVC.swift */,
 				292B1FFC2A9E930800435223 /* ReportDialogVC.swift */,
-				29748F442C33F42600DB89E9 /* ReqAcceptVC.swift */,
 				29748F462C33FFF000DB89E9 /* DenyConfirmVC.swift */,
 			);
 			path = DailogVCs;
@@ -769,6 +784,10 @@
 		299FDD82299684E50049741B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				29EE7DB32C3533B700A1E877 /* ReqAcceptVC */,
+				29EE7DB22C3533AB00A1E877 /* SendReqVC */,
+				29EE7DB12C35339900A1E877 /* ReqSentVC */,
+				29748F482C340C8800DB89E9 /* ReqSetting */,
 				297A98342C3161D100B47152 /* ReqConVC */,
 				294F834C2BF0F06100BBDA5E /* SocialLinkVC */,
 				2905272A2A9B3EAF002A3FF4 /* HowToUse */,
@@ -902,6 +921,8 @@
 				29BE184E29FA8573000EAC0E /* BlockBtnTVCell.xib */,
 				2940575D2B32D8920036699F /* StatusTVCell.swift */,
 				2940575E2B32D8920036699F /* StatusTVCell.xib */,
+				29748F4B2C342AD800DB89E9 /* ContactInfoTVCell.swift */,
+				29748F4C2C342AD800DB89E9 /* ContactInfoTVCell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -912,6 +933,30 @@
 				29BE184B29FA6E68000EAC0E /* EnlargedIV VC.swift */,
 			);
 			path = EnlargedIV;
+			sourceTree = "<group>";
+		};
+		29EE7DB12C35339900A1E877 /* ReqSentVC */ = {
+			isa = PBXGroup;
+			children = (
+				297A98302C31493F00B47152 /* ReqSentVC.swift */,
+			);
+			path = ReqSentVC;
+			sourceTree = "<group>";
+		};
+		29EE7DB22C3533AB00A1E877 /* SendReqVC */ = {
+			isa = PBXGroup;
+			children = (
+				297A98312C31493F00B47152 /* SendReqVC.swift */,
+			);
+			path = SendReqVC;
+			sourceTree = "<group>";
+		};
+		29EE7DB32C3533B700A1E877 /* ReqAcceptVC */ = {
+			isa = PBXGroup;
+			children = (
+				29748F442C33F42600DB89E9 /* ReqAcceptVC.swift */,
+			);
+			path = ReqAcceptVC;
 			sourceTree = "<group>";
 		};
 		29FD316429A5FD6A00BDBD9C /* EditProfile */ = {
@@ -954,6 +999,9 @@
 			dependencies = (
 			);
 			name = Kismmet;
+			packageProductDependencies = (
+				29EE7DB82C358F1200A1E877 /* iOSDropDown */,
+			);
 			productName = "Kismat App";
 			productReference = 299FDD06299679690049741B /* Kismmet.app */;
 			productType = "com.apple.product-type.application";
@@ -1053,6 +1101,7 @@
 				296D76922A1CF0A0005A3A99 /* hashTagsTVCell.xib in Resources */,
 				299FDD9A2996C8ED0049741B /* Roboto-Bold.ttf in Resources */,
 				294A79B1299AEB2E00089161 /* AboutTVCell.xib in Resources */,
+				29748F4E2C342AD800DB89E9 /* ContactInfoTVCell.xib in Resources */,
 				297B15C72B31A78000A3B8D7 /* RideMapViewTVCell.xib in Resources */,
 				294A79B5299AEB5100089161 /* SocialAccTVCell.xib in Resources */,
 				299FDDAA2996E85C0049741B /* ProfileTVCell.xib in Resources */,
@@ -1253,6 +1302,7 @@
 				29985F33299819B6001F769B /* FeedVC.swift in Sources */,
 				2977B7F7299B81D600A0670C /* MixHeaderTVCell.swift in Sources */,
 				29846D4129A15B0F00393EB3 /* AccountStatusVC.swift in Sources */,
+				29748F4D2C342AD800DB89E9 /* ContactInfoTVCell.swift in Sources */,
 				29846D3E29A154FF00393EB3 /* ChangePassVC.swift in Sources */,
 				299FDDAE2996EB7E0049741B /* GeneralButtonTVCell.swift in Sources */,
 				294F834E2BF0F09400BBDA5E /* SocialLinkVC.swift in Sources */,
@@ -1263,6 +1313,7 @@
 				299FDD6B29967D670049741B /* MainViewController.swift in Sources */,
 				2964617129EEC913003FD692 /* BlockedVC.swift in Sources */,
 				2965E2A52A24ADF7002962C3 /* NotificationModel.swift in Sources */,
+				29748F4A2C340CC500DB89E9 /* ContactInformainVC.swift in Sources */,
 				29473E51299C634A00859D8A /* TagsTVCell.swift in Sources */,
 				296D76912A1CF0A0005A3A99 /* hashTagsTVCell.swift in Sources */,
 				29516CE82B341593003E14EE /* FeedItem2TVCell.swift in Sources */,
@@ -1702,6 +1753,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		29EE7DB82C358F1200A1E877 /* iOSDropDown */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = iOSDropDown;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		299FDD12299679690049741B /* Kismat_App.xcdatamodeld */ = {

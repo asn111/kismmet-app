@@ -48,6 +48,12 @@ class SignalRManager: NSObject {
             let value = try argumentExtractor.getArgument(type: String.self)
             Logs.show(message: ">>> SignalRException : \(value) |...|")
         })
+        
+        connection.on(method: "ContactRequestRead", callback: { argumentExtractor in
+            
+            let value = try argumentExtractor.getArgument(type: String.self)
+            Logs.show(message: ">>> ContactRequestRead : \(value) |...|")
+        })
     }
     
     func stopConnection() {
