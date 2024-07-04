@@ -54,6 +54,12 @@ class SignalRManager: NSObject {
             let value = try argumentExtractor.getArgument(type: String.self)
             Logs.show(message: ">>> ContactRequestRead : \(value) |...|")
         })
+        
+        connection.on(method: "UserLocationUpdated", callback: { argumentExtractor in
+            
+            let value = try argumentExtractor.getArgument(type: String.self)
+            Logs.show(message: ">>> UserLocationUpdated : \(value) |...|")
+        })
     }
     
     func stopConnection() {

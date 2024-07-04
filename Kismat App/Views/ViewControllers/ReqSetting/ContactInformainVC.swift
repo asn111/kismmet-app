@@ -16,7 +16,8 @@ class ContactInformainVC: MainViewController {
     var isSetting = false
     var userdbModel : Results<UserDBModel>!
     var img = UIImage(named: "placeholder")
-    
+    weak var activeTextField: UITextField?
+
     var ConnectedAccount = [ContactTypesModel]()
     var socialAccounts = [SocialAccModel]()
 
@@ -30,6 +31,9 @@ class ContactInformainVC: MainViewController {
             self.userdbModel = DBService.fetchloggedInUser()
         }
         registerCells()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     func registerCells() {
@@ -49,6 +53,67 @@ class ContactInformainVC: MainViewController {
         contactTV.register(UINib(nibName: "GeneralButtonTVCell", bundle: nil), forCellReuseIdentifier: "GeneralButtonTVCell")
         
     }
+    
+    //MARK: OBJC Methods
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size else {
+            return
+        }
+        
+        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+        contactTV.contentInset = contentInsets
+        contactTV.scrollIndicatorInsets = contentInsets
+        
+        var activeView: UIView?
+        if let activeTextField = activeTextField {
+            activeView = activeTextField
+        }
+        
+        if let activeView = activeView {
+            let rect = contactTV.convert(activeView.bounds, from: activeView)
+            let offsetY = rect.maxY - (contactTV.bounds.height - keyboardSize.height)
+            if offsetY > 0 {
+                contactTV.setContentOffset(CGPoint(x: 0, y: offsetY), animated: true)
+            }
+        }
+    }
+    
+    
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        contactTV.contentInset = .zero
+    }
+    
+    @objc func textFieldDidChangeSelection(_ textField: UITextField) {
+        
+        activeTextField = textField
+        
+        Logs.show(message: "TFmsg: \(textField.text ?? "")")
+        /*if textField.tag == 1 {
+            fullName = !textField.text!.isTFBlank ? textField.text! : ""
+        } else if textField.tag == 2 {
+            publicEmail = !textField.text!.isTFBlank ? textField.text! : ""
+        } else if textField.tag == 3 {
+            phoneNum = textField.text!.isValidPhoneNumber ? textField.text! : ""
+        } else if textField.tag == 5 {
+            placeOfWork = !textField.text!.isTFBlank ? textField.text! : ""
+        } else if textField.tag == 6 {
+            workTitle = !textField.text!.isTFBlank ? textField.text! : ""
+        }*/
+        
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        //let isTextFieldBlank = textField.text?.isTFBlank ?? true
+        //textField.backgroundColor = isTextFieldBlank ? UIColor.red : UIColor.clear
+        activeTextField = nil
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
+    }
+    
     
     @objc func picBtnPressed(sender: UIButton) {
         if isSetting {
@@ -251,8 +316,10 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                 cell.tfView.isHidden = false
                 cell.chkBtn.tag = indexPath.row
                 
+                cell.contactTF.selectedRowColor = UIColor(named: "warning")!
                 
-                cell.contactTF.checkMarkEnabled = false
+                cell.contactTF.delegate = self
+                cell.contactTF.checkMarkEnabled = true
                 cell.contactTF.semanticContentAttribute = .forceLeftToRight
                 //cell.contactTF.textAlignment = .left
                 cell.contactTF.updatePadding(top: 0, left: 10, bottom: 0, right: 10)
@@ -260,9 +327,12 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                 cell.contactTF.arrowColor = .clear
                 cell.contactTF.font = UIFont(name: "Roboto", size: 14)?.medium
                 
+                
                 cell.contactTF.didSelect { selectedText, index, id in
                     //cell.contactTF.text = "Selected String: \(selectedText) \n index: \(index) \n Id: \(id)"
                 }
+                
+                cell.contactTF.tag = indexPath.row
                 
                 var socialObjArr = [SocialAccModel]()
                 

@@ -296,7 +296,7 @@
 		29BE184B29FA6E68000EAC0E /* EnlargedIV VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnlargedIV VC.swift"; sourceTree = "<group>"; };
 		29BE184D29FA8573000EAC0E /* BlockBtnTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockBtnTVCell.swift; sourceTree = "<group>"; };
 		29BE184E29FA8573000EAC0E /* BlockBtnTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlockBtnTVCell.xib; sourceTree = "<group>"; };
-		29EE7DB52C358E5000A1E877 /* iOSDropDownF */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = iOSDropDownF; path = ../../../../../Downloads/iOSDropDownF; sourceTree = "<group>"; };
+		29EE7DBD2C368DE800A1E877 /* iOSDropDownF */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = iOSDropDownF; path = ../../../../../Downloads/iOSDropDownF; sourceTree = "<group>"; };
 		29F5290129970DA500FE2EBA /* GeneralTextviewTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTextviewTVCell.swift; sourceTree = "<group>"; };
 		29F5290229970DA500FE2EBA /* GeneralTextviewTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralTextviewTVCell.xib; sourceTree = "<group>"; };
 		29FD316529A5FD9400BDBD9C /* EditProfileSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileSetup.swift; sourceTree = "<group>"; };
@@ -481,7 +481,7 @@
 		29748F3F2C32F9BE00DB89E9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				29EE7DB52C358E5000A1E877 /* iOSDropDownF */,
+				29EE7DBD2C368DE800A1E877 /* iOSDropDownF */,
 				29748F402C32F9D500DB89E9 /* rocketLaunch.gif */,
 			);
 			path = Resources;
