@@ -273,6 +273,22 @@ class SignInVC: MainViewController {
     
     //MARK: API Functions
     
+    func sendLocationOnLogin() {
+        let lat = initalLatitude
+        let long = initalLongitude
+        
+        let pram = ["lat": "\(lat)",
+                    "long":"\(long)"
+        ]
+        SignalRService.connection.invoke(method: "UpdateUserLocation", pram) {  error in
+            Logs.show(message: "\(pram)")
+            if let e = error {
+                Logs.show(message: "Error: \(e)")
+                return
+            }
+        }
+    }
+    
     func userLogin() {
         self.showPKHUD(WithMessage: "Logging In")
         
@@ -292,9 +308,18 @@ class SignInVC: MainViewController {
                     case .next(let val):
                         Logs.show(message: "MARKED: 👉🏻 \(val)")
                         if val {
-                            self.startUpCall()
-                            self.userProfile()
-                            self.getSocialAccounts()
+                            
+                            SignalRService.chatHubConnectionDelegate = self
+                            SignalRService.initializeSignalR()
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                self.sendLocationOnLogin()
+                                self.startUpCall()
+                                self.userProfile()
+                                self.getSocialAccounts()
+                            }
+                            
+                           
                         } else {
                             self.hidePKHUD()
                         }
@@ -310,7 +335,7 @@ class SignInVC: MainViewController {
     }
     
     func userSocialLogin(token: String, provider: String) {
-        self.showPKHUD(WithMessage: "Logging In")
+        //self.showPKHUD(WithMessage: "Logging In")
         
         let pram : [String : Any] = ["provider": provider,
                                      "token": token,
@@ -329,6 +354,12 @@ class SignInVC: MainViewController {
                         Logs.show(message: "MARKED: 👉🏻 \(val)")
                         if val {
                             if AppFunctions.IsProfileUpdated() {
+                                
+                                SignalRService.chatHubConnectionDelegate = self
+                                SignalRService.initializeSignalR()
+                                
+                                sendLocationOnLogin()
+                                
                                 self.startUpCall()
                                 self.userProfile()
                                 self.getSocialAccounts()
@@ -451,7 +482,7 @@ class SignInVC: MainViewController {
                 switch model {
                     case .next(let val):
                         if val {
-                            
+                            self.hidePKHUD()
                         } else {
                             self.hidePKHUD()
                         }

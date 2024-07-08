@@ -29,6 +29,8 @@ class OtherUserProfile: MainViewController {
 
     var isFromBlock = false
     
+    var overlayView: UIView?
+
     //var markView = false
     var userModel = UserModel()
     var userId = ""
@@ -52,26 +54,10 @@ class OtherUserProfile: MainViewController {
         
         Logs.show(message: "User ID: \(userId)")
         
-        /*if markView {
-            ApiService.markViewedUser(val: userModel.userId)
-        }*/
+        //if markView {
+            ApiService.markViewedUser(val: userId)
+        //}
         
-        socialAccModel = userModel.socialAccounts
-        
-        let linkTypesInSocialAccModel = Set(socialAccModel.map { $0.linkType })
-        
-        socialAccounts.sort { (account1, account2) -> Bool in
-            let isAccount1Matched = linkTypesInSocialAccModel.contains(account1.linkType)
-            let isAccount2Matched = linkTypesInSocialAccModel.contains(account2.linkType)
-            
-            if isAccount1Matched && !isAccount2Matched {
-                return true
-            } else if !isAccount1Matched && isAccount2Matched {
-                return false
-            } else {
-                return false
-            }
-        }
         
         registerCells()
 
@@ -218,6 +204,18 @@ class OtherUserProfile: MainViewController {
         showAlert()
     }
     
+    @objc func handleOverlayTap(_ sender: UITapGestureRecognizer) {
+        guard let overlayView = overlayView else { return }
+        
+        // Animate the overlay view to fade out, then remove it
+        UIView.animate(withDuration: 0.3, animations: {
+            overlayView.alpha = 0
+        }) { _ in
+            overlayView.removeFromSuperview()
+            self.overlayView = nil
+        }
+    }
+    
     
     //MARK: API METHODS
     
@@ -233,6 +231,26 @@ class OtherUserProfile: MainViewController {
                     case .next(let val):
                         if val.userId != "" {
                             self.userModel = val
+                            
+                            if userModel.socialAccounts != nil {
+                                socialAccModel = userModel.socialAccounts
+                            }
+                            
+                            let linkTypesInSocialAccModel = Set(socialAccModel.map { $0.linkType })
+                            
+                            socialAccounts.sort { (account1, account2) -> Bool in
+                                let isAccount1Matched = linkTypesInSocialAccModel.contains(account1.linkType)
+                                let isAccount2Matched = linkTypesInSocialAccModel.contains(account2.linkType)
+                                
+                                if isAccount1Matched && !isAccount2Matched {
+                                    return true
+                                } else if !isAccount1Matched && isAccount2Matched {
+                                    return false
+                                } else {
+                                    return false
+                                }
+                            }
+                            
                             self.otherProfileTV.reloadData()
                             self.hidePKHUD()
                         } else {
@@ -389,6 +407,8 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
             case 1:
                 let cell : AboutTVCell = tableView.dequeueReusableCell(withIdentifier: "AboutTVCell", for: indexPath) as! AboutTVCell
                     cell.aboutTxtView.text = userModel.about
+                
+
                 return cell
             case 2:
                 let cell : StatusTVCell = tableView.dequeueReusableCell(withIdentifier: "StatusTVCell", for: indexPath) as! StatusTVCell
@@ -495,9 +515,63 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 return cell
         }
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 5 {
+        if indexPath.row == 1 {
+            
+            guard let cell = tableView.cellForRow(at: indexPath) as? AboutTVCell,
+                  let textView = cell.aboutTxtView else { return }
+            
+            let clonedTextView = UITextView(frame: textView.frame)
+            clonedTextView.text = textView.text
+            clonedTextView.font = textView.font
+            clonedTextView.textColor = textView.textColor
+            clonedTextView.backgroundColor = UIColor.systemGray4
+            clonedTextView.clipsToBounds = true
+            clonedTextView.layer.cornerRadius = 6
+            clonedTextView.isUserInteractionEnabled = false
+            clonedTextView.isEditable = false
+            
+            // Create an overlay view that covers the entire screen
+            overlayView = UIView(frame: self.view.bounds)
+            overlayView?.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+            
+            let newView = UIView()
+            newView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: 350)
+            newView.center = overlayView!.center
+            newView.backgroundColor = UIColor.systemGray4
+            newView.clipsToBounds = true
+            newView.layer.cornerRadius = 5
+            newView.isUserInteractionEnabled = false
+            
+            overlayView?.addSubview(newView)
+            
+            // Ensure the cloned UITextView fits within the newView
+            clonedTextView.translatesAutoresizingMaskIntoConstraints = false
+            newView.addSubview(clonedTextView)
+            
+            // Set constraints to position the cloned UITextView within the newView
+            NSLayoutConstraint.activate([
+                clonedTextView.leadingAnchor.constraint(equalTo: newView.leadingAnchor, constant: 20),
+                clonedTextView.trailingAnchor.constraint(equalTo: newView.trailingAnchor, constant: -20),
+                clonedTextView.topAnchor.constraint(equalTo: newView.topAnchor, constant: 20),
+                clonedTextView.bottomAnchor.constraint(equalTo: newView.bottomAnchor, constant: -20)
+            ])
+            
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleOverlayTap(_:)))
+            overlayView?.addGestureRecognizer(tapGestureRecognizer)
+            
+            overlayView?.bringSubviewToFront(newView)
+            
+            view.addSubview(overlayView!)
+            
+            // Animate the overlay view to expand from the cell's frame to the center of the screen
+            overlayView?.alpha = 0
+            UIView.animate(withDuration: 0.3) {
+                self.overlayView?.alpha = 1
+            }
+            
+        } else  if indexPath.row == 5 {
             
             var tagList = [String]()
                 if userModel.tags != "" {

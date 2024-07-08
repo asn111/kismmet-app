@@ -135,13 +135,16 @@
 		29BE184F29FA8573000EAC0E /* BlockBtnTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BE184D29FA8573000EAC0E /* BlockBtnTVCell.swift */; };
 		29BE185029FA8573000EAC0E /* BlockBtnTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29BE184E29FA8573000EAC0E /* BlockBtnTVCell.xib */; };
 		29EE7DB92C358F1200A1E877 /* iOSDropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 29EE7DB82C358F1200A1E877 /* iOSDropDown */; };
+		29EE7DBF2C37E65E00A1E877 /* ContactsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE7DBE2C37E65E00A1E877 /* ContactsModel.swift */; };
+		29EE7DC22C39249800A1E877 /* ContactTextViewTVcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE7DC02C39249700A1E877 /* ContactTextViewTVcell.swift */; };
+		29EE7DC32C39249800A1E877 /* ContactTextViewTVcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29EE7DC12C39249700A1E877 /* ContactTextViewTVcell.xib */; };
 		29F5290329970DA500FE2EBA /* GeneralTextviewTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F5290129970DA500FE2EBA /* GeneralTextviewTVCell.swift */; };
 		29F5290429970DA500FE2EBA /* GeneralTextviewTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29F5290229970DA500FE2EBA /* GeneralTextviewTVCell.xib */; };
 		29FD316629A5FD9400BDBD9C /* EditProfileSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD316529A5FD9400BDBD9C /* EditProfileSetup.swift */; };
 		29FD316829A5FDAD00BDBD9C /* EditProfileSetupExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FD316729A5FDAD00BDBD9C /* EditProfileSetupExt.swift */; };
-		318C545CCB22AF74965369E3 /* Pods_Kismmet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AFDF8360CC7F44FBCD302D /* Pods_Kismmet.framework */; };
-		62A705649DA7278A6BD53BC5 /* Pods_Kismmet_Kismat_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE7F3123D72016F2EA0E83EA /* Pods_Kismmet_Kismat_AppUITests.framework */; };
-		9F04C89C4F94911557F6C696 /* Pods_Kismat_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC2FD581D165EB7D803EA915 /* Pods_Kismat_AppTests.framework */; };
+		3AC35410A767468A11338445 /* Pods_Kismat_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08A6B60A6EB4005063B2E4BF /* Pods_Kismat_AppTests.framework */; };
+		C7D736DAF3056F4B96144C10 /* Pods_Kismmet_Kismat_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E87D0E7FF13BEF5D568F4E15 /* Pods_Kismmet_Kismat_AppUITests.framework */; };
+		D3CAFE378456A85D2513585B /* Pods_Kismmet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AABE986D07B2FE952E8EAF16 /* Pods_Kismmet.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,8 +165,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02AFDF8360CC7F44FBCD302D /* Pods_Kismmet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kismmet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		21EF0E1DD759770A00BF6822 /* Pods-Kismmet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismmet.release.xcconfig"; path = "Target Support Files/Pods-Kismmet/Pods-Kismmet.release.xcconfig"; sourceTree = "<group>"; };
+		08A6B60A6EB4005063B2E4BF /* Pods_Kismat_AppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kismat_AppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E85605F2259D65136410947 /* Pods-Kismmet-Kismat AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismmet-Kismat AppUITests.release.xcconfig"; path = "Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		290527282A9B3A59002A3FF4 /* SupportPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportPageVC.swift; sourceTree = "<group>"; };
 		2905272B2A9B3EF1002A3FF4 /* HowToUseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUseVC.swift; sourceTree = "<group>"; };
 		29219B6F29ED952000B47D40 /* VisibilityOffTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisibilityOffTVCell.swift; sourceTree = "<group>"; };
@@ -297,17 +300,20 @@
 		29BE184D29FA8573000EAC0E /* BlockBtnTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockBtnTVCell.swift; sourceTree = "<group>"; };
 		29BE184E29FA8573000EAC0E /* BlockBtnTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlockBtnTVCell.xib; sourceTree = "<group>"; };
 		29EE7DBD2C368DE800A1E877 /* iOSDropDownF */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = iOSDropDownF; path = ../../../../../Downloads/iOSDropDownF; sourceTree = "<group>"; };
+		29EE7DBE2C37E65E00A1E877 /* ContactsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsModel.swift; sourceTree = "<group>"; };
+		29EE7DC02C39249700A1E877 /* ContactTextViewTVcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTextViewTVcell.swift; sourceTree = "<group>"; };
+		29EE7DC12C39249700A1E877 /* ContactTextViewTVcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactTextViewTVcell.xib; sourceTree = "<group>"; };
 		29F5290129970DA500FE2EBA /* GeneralTextviewTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTextviewTVCell.swift; sourceTree = "<group>"; };
 		29F5290229970DA500FE2EBA /* GeneralTextviewTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralTextviewTVCell.xib; sourceTree = "<group>"; };
 		29FD316529A5FD9400BDBD9C /* EditProfileSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileSetup.swift; sourceTree = "<group>"; };
 		29FD316729A5FDAD00BDBD9C /* EditProfileSetupExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileSetupExt.swift; sourceTree = "<group>"; };
-		3C6F814DE66E1A8A76F4A30E /* Pods-Kismmet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismmet.debug.xcconfig"; path = "Target Support Files/Pods-Kismmet/Pods-Kismmet.debug.xcconfig"; sourceTree = "<group>"; };
-		46120C3CCC3AF3E53B771BEF /* Pods-Kismmet-Kismat AppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismmet-Kismat AppUITests.debug.xcconfig"; path = "Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		7555DB9248FAD126644258C0 /* Pods-Kismmet-Kismat AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismmet-Kismat AppUITests.release.xcconfig"; path = "Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests.release.xcconfig"; sourceTree = "<group>"; };
-		B7669D4D6393279E6DE0483E /* Pods-Kismat AppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat AppTests.release.xcconfig"; path = "Target Support Files/Pods-Kismat AppTests/Pods-Kismat AppTests.release.xcconfig"; sourceTree = "<group>"; };
-		C757DAA9BE02206D4F1CABDF /* Pods-Kismat AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat AppTests.debug.xcconfig"; path = "Target Support Files/Pods-Kismat AppTests/Pods-Kismat AppTests.debug.xcconfig"; sourceTree = "<group>"; };
-		CC2FD581D165EB7D803EA915 /* Pods_Kismat_AppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kismat_AppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EE7F3123D72016F2EA0E83EA /* Pods_Kismmet_Kismat_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kismmet_Kismat_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7336C86F58BF9892B7E55F0C /* Pods-Kismmet-Kismat AppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismmet-Kismat AppUITests.debug.xcconfig"; path = "Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		95BD256B8096041581A0578D /* Pods-Kismat AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat AppTests.debug.xcconfig"; path = "Target Support Files/Pods-Kismat AppTests/Pods-Kismat AppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A47696ECD3B64495D459EDB4 /* Pods-Kismat AppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismat AppTests.release.xcconfig"; path = "Target Support Files/Pods-Kismat AppTests/Pods-Kismat AppTests.release.xcconfig"; sourceTree = "<group>"; };
+		AABE986D07B2FE952E8EAF16 /* Pods_Kismmet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kismmet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B41FCE3BD1AB69B7055DF942 /* Pods-Kismmet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismmet.release.xcconfig"; path = "Target Support Files/Pods-Kismmet/Pods-Kismmet.release.xcconfig"; sourceTree = "<group>"; };
+		B91F82AC5B73E68802BFD2DC /* Pods-Kismmet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kismmet.debug.xcconfig"; path = "Target Support Files/Pods-Kismmet/Pods-Kismmet.debug.xcconfig"; sourceTree = "<group>"; };
+		E87D0E7FF13BEF5D568F4E15 /* Pods_Kismmet_Kismat_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kismmet_Kismat_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,7 +323,7 @@
 			files = (
 				29EE7DB92C358F1200A1E877 /* iOSDropDown in Frameworks */,
 				2976102C29DDB85300B74050 /* StoreKit.framework in Frameworks */,
-				318C545CCB22AF74965369E3 /* Pods_Kismmet.framework in Frameworks */,
+				D3CAFE378456A85D2513585B /* Pods_Kismmet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,7 +331,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F04C89C4F94911557F6C696 /* Pods_Kismat_AppTests.framework in Frameworks */,
+				3AC35410A767468A11338445 /* Pods_Kismat_AppTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,7 +339,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62A705649DA7278A6BD53BC5 /* Pods_Kismmet_Kismat_AppUITests.framework in Frameworks */,
+				C7D736DAF3056F4B96144C10 /* Pods_Kismmet_Kismat_AppUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,12 +349,12 @@
 		0834C4864B1B722675325DAE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C757DAA9BE02206D4F1CABDF /* Pods-Kismat AppTests.debug.xcconfig */,
-				B7669D4D6393279E6DE0483E /* Pods-Kismat AppTests.release.xcconfig */,
-				3C6F814DE66E1A8A76F4A30E /* Pods-Kismmet.debug.xcconfig */,
-				21EF0E1DD759770A00BF6822 /* Pods-Kismmet.release.xcconfig */,
-				46120C3CCC3AF3E53B771BEF /* Pods-Kismmet-Kismat AppUITests.debug.xcconfig */,
-				7555DB9248FAD126644258C0 /* Pods-Kismmet-Kismat AppUITests.release.xcconfig */,
+				95BD256B8096041581A0578D /* Pods-Kismat AppTests.debug.xcconfig */,
+				A47696ECD3B64495D459EDB4 /* Pods-Kismat AppTests.release.xcconfig */,
+				B91F82AC5B73E68802BFD2DC /* Pods-Kismmet.debug.xcconfig */,
+				B41FCE3BD1AB69B7055DF942 /* Pods-Kismmet.release.xcconfig */,
+				7336C86F58BF9892B7E55F0C /* Pods-Kismmet-Kismat AppUITests.debug.xcconfig */,
+				0E85605F2259D65136410947 /* Pods-Kismmet-Kismat AppUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -545,6 +551,14 @@
 			path = AccountStatus;
 			sourceTree = "<group>";
 		};
+		298B1C562C3C10E800E5144A /* ReqDenyVC */ = {
+			isa = PBXGroup;
+			children = (
+				29748F462C33FFF000DB89E9 /* DenyConfirmVC.swift */,
+			);
+			path = ReqDenyVC;
+			sourceTree = "<group>";
+		};
 		29985F31299819A1001F769B /* Feed */ = {
 			isa = PBXGroup;
 			children = (
@@ -591,7 +605,6 @@
 				29846D4229A1676000393EB3 /* ImportantDialogVC.swift */,
 				294DD5222A94976E004A7F22 /* PopupVC.swift */,
 				292B1FFC2A9E930800435223 /* ReportDialogVC.swift */,
-				29748F462C33FFF000DB89E9 /* DenyConfirmVC.swift */,
 			);
 			path = DailogVCs;
 			sourceTree = "<group>";
@@ -784,6 +797,7 @@
 		299FDD82299684E50049741B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				298B1C562C3C10E800E5144A /* ReqDenyVC */,
 				29EE7DB32C3533B700A1E877 /* ReqAcceptVC */,
 				29EE7DB22C3533AB00A1E877 /* SendReqVC */,
 				29EE7DB12C35339900A1E877 /* ReqSentVC */,
@@ -840,6 +854,7 @@
 				29BAD3BB29F1B18B00F16C2B /* StartupModel.swift */,
 				2965E2A42A24ADF7002962C3 /* NotificationModel.swift */,
 				294DD5242A94A445004A7F22 /* ReportReasons.swift */,
+				29EE7DBE2C37E65E00A1E877 /* ContactsModel.swift */,
 			);
 			path = "API Models";
 			sourceTree = "<group>";
@@ -923,6 +938,8 @@
 				2940575E2B32D8920036699F /* StatusTVCell.xib */,
 				29748F4B2C342AD800DB89E9 /* ContactInfoTVCell.swift */,
 				29748F4C2C342AD800DB89E9 /* ContactInfoTVCell.xib */,
+				29EE7DC02C39249700A1E877 /* ContactTextViewTVcell.swift */,
+				29EE7DC12C39249700A1E877 /* ContactTextViewTVcell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -973,9 +990,9 @@
 			isa = PBXGroup;
 			children = (
 				2976102B29DDB85300B74050 /* StoreKit.framework */,
-				CC2FD581D165EB7D803EA915 /* Pods_Kismat_AppTests.framework */,
-				02AFDF8360CC7F44FBCD302D /* Pods_Kismmet.framework */,
-				EE7F3123D72016F2EA0E83EA /* Pods_Kismmet_Kismat_AppUITests.framework */,
+				08A6B60A6EB4005063B2E4BF /* Pods_Kismat_AppTests.framework */,
+				AABE986D07B2FE952E8EAF16 /* Pods_Kismmet.framework */,
+				E87D0E7FF13BEF5D568F4E15 /* Pods_Kismmet_Kismat_AppUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -987,12 +1004,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 299FDD332996796B0049741B /* Build configuration list for PBXNativeTarget "Kismmet" */;
 			buildPhases = (
-				49AB1368AD3EC2F7F24BCD8D /* [CP] Check Pods Manifest.lock */,
+				B76DF433D7431019B5BD3CE3 /* [CP] Check Pods Manifest.lock */,
 				299FDD02299679690049741B /* Sources */,
 				299FDD03299679690049741B /* Frameworks */,
 				299FDD04299679690049741B /* Resources */,
-				F680CF971CC4A3C896F4E100 /* [CP] Embed Pods Frameworks */,
-				422C1B2E1048F7FCD4DF7E90 /* [CP] Copy Pods Resources */,
+				B1FFCD6B9C9029A82BE88470 /* [CP] Embed Pods Frameworks */,
+				81DC55F1EAA03C08D140B05E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1010,7 +1027,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 299FDD362996796B0049741B /* Build configuration list for PBXNativeTarget "Kismat AppTests" */;
 			buildPhases = (
-				82E240F4E5DB4381056F909F /* [CP] Check Pods Manifest.lock */,
+				C4EDD3EFA6E67B4FCF8FD08D /* [CP] Check Pods Manifest.lock */,
 				299FDD1B2996796B0049741B /* Sources */,
 				299FDD1C2996796B0049741B /* Frameworks */,
 				299FDD1D2996796B0049741B /* Resources */,
@@ -1029,12 +1046,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 299FDD392996796B0049741B /* Build configuration list for PBXNativeTarget "Kismat AppUITests" */;
 			buildPhases = (
-				BC3A7F7A062FDE5374C28BD5 /* [CP] Check Pods Manifest.lock */,
+				B845F185D67C9E60AE073944 /* [CP] Check Pods Manifest.lock */,
 				299FDD252996796B0049741B /* Sources */,
 				299FDD262996796B0049741B /* Frameworks */,
 				299FDD272996796B0049741B /* Resources */,
-				FBEB85985A6C3D9D63255BF3 /* [CP] Embed Pods Frameworks */,
-				92A736C92122E8347BF2042A /* [CP] Copy Pods Resources */,
+				5C3555EAA3808E716203A767 /* [CP] Embed Pods Frameworks */,
+				97156EAFA24E97E514F4F3E9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1096,6 +1113,7 @@
 			files = (
 				29473E52299C634A00859D8A /* TagsTVCell.xib in Resources */,
 				299FDD192996796A0049741B /* LaunchScreen.storyboard in Resources */,
+				29EE7DC32C39249800A1E877 /* ContactTextViewTVcell.xib in Resources */,
 				299FDD972996C8ED0049741B /* Roboto-Regular.ttf in Resources */,
 				29BE185029FA8573000EAC0E /* BlockBtnTVCell.xib in Resources */,
 				296D76922A1CF0A0005A3A99 /* hashTagsTVCell.xib in Resources */,
@@ -1151,7 +1169,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		422C1B2E1048F7FCD4DF7E90 /* [CP] Copy Pods Resources */ = {
+		5C3555EAA3808E716203A767 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		81DC55F1EAA03C08D140B05E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1168,7 +1203,41 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kismmet/Pods-Kismmet-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		49AB1368AD3EC2F7F24BCD8D /* [CP] Check Pods Manifest.lock */ = {
+		97156EAFA24E97E514F4F3E9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B1FFCD6B9C9029A82BE88470 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kismmet/Pods-Kismmet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kismmet/Pods-Kismmet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kismmet/Pods-Kismmet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B76DF433D7431019B5BD3CE3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1190,46 +1259,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		82E240F4E5DB4381056F909F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Kismat AppTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		92A736C92122E8347BF2042A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BC3A7F7A062FDE5374C28BD5 /* [CP] Check Pods Manifest.lock */ = {
+		B845F185D67C9E60AE073944 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1251,38 +1281,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F680CF971CC4A3C896F4E100 /* [CP] Embed Pods Frameworks */ = {
+		C4EDD3EFA6E67B4FCF8FD08D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Kismmet/Pods-Kismmet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Kismmet/Pods-Kismmet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Kismat AppTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kismmet/Pods-Kismmet-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FBEB85985A6C3D9D63255BF3 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kismmet-Kismat AppUITests/Pods-Kismmet-Kismat AppUITests-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1348,6 +1366,7 @@
 				29FD316629A5FD9400BDBD9C /* EditProfileSetup.swift in Sources */,
 				299FDD5829967D1D0049741B /* LoadingViewable.swift in Sources */,
 				29748F472C33FFF000DB89E9 /* DenyConfirmVC.swift in Sources */,
+				29EE7DC22C39249800A1E877 /* ContactTextViewTVcell.swift in Sources */,
 				29350A2129D0CC4100F19BD5 /* UserDBModel.swift in Sources */,
 				294A79A8299ADD4200089161 /* SettingTVCell.swift in Sources */,
 				29985F3729981ADE001F769B /* GeneralHeaderTVCell.swift in Sources */,
@@ -1368,6 +1387,7 @@
 				29F5290329970DA500FE2EBA /* GeneralTextviewTVCell.swift in Sources */,
 				299FDD5629967D1D0049741B /* AnimateloadingView.swift in Sources */,
 				299FDD8C2996B20A0049741B /* SignupVC.swift in Sources */,
+				29EE7DBF2C37E65E00A1E877 /* ContactsModel.swift in Sources */,
 				2940575F2B32D8930036699F /* StatusTVCell.swift in Sources */,
 				292B1FFD2A9E930900435223 /* ReportDialogVC.swift in Sources */,
 				29350A2329D1A08800F19BD5 /* UserSocialAccDBModel.swift in Sources */,
@@ -1555,13 +1575,13 @@
 		};
 		299FDD342996796B0049741B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C6F814DE66E1A8A76F4A30E /* Pods-Kismmet.debug.xcconfig */;
+			baseConfigurationReference = B91F82AC5B73E68802BFD2DC /* Pods-Kismmet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1584,7 +1604,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.10;
+				MARKETING_VERSION = 1.0.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "codenablers.Kismat-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1595,13 +1615,13 @@
 		};
 		299FDD352996796B0049741B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21EF0E1DD759770A00BF6822 /* Pods-Kismmet.release.xcconfig */;
+			baseConfigurationReference = B41FCE3BD1AB69B7055DF942 /* Pods-Kismmet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1624,7 +1644,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.10;
+				MARKETING_VERSION = 1.0.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "codenablers.Kismat-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1635,7 +1655,7 @@
 		};
 		299FDD372996796B0049741B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C757DAA9BE02206D4F1CABDF /* Pods-Kismat AppTests.debug.xcconfig */;
+			baseConfigurationReference = 95BD256B8096041581A0578D /* Pods-Kismat AppTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1656,7 +1676,7 @@
 		};
 		299FDD382996796B0049741B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B7669D4D6393279E6DE0483E /* Pods-Kismat AppTests.release.xcconfig */;
+			baseConfigurationReference = A47696ECD3B64495D459EDB4 /* Pods-Kismat AppTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1677,7 +1697,7 @@
 		};
 		299FDD3A2996796B0049741B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46120C3CCC3AF3E53B771BEF /* Pods-Kismmet-Kismat AppUITests.debug.xcconfig */;
+			baseConfigurationReference = 7336C86F58BF9892B7E55F0C /* Pods-Kismmet-Kismat AppUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1696,7 +1716,7 @@
 		};
 		299FDD3B2996796B0049741B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7555DB9248FAD126644258C0 /* Pods-Kismmet-Kismat AppUITests.release.xcconfig */;
+			baseConfigurationReference = 0E85605F2259D65136410947 /* Pods-Kismmet-Kismat AppUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

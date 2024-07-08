@@ -30,7 +30,8 @@ class ProfileVC: MainViewController {
     var userdbModel : Results<UserDBModel>!
     var socialAccModel = [SocialAccModel]()
     
-    
+    var overlayView: UIView?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -136,6 +137,18 @@ class ProfileVC: MainViewController {
         attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexFromString: "4E6E81") , range: highlightRange)
         
         return attributedText
+    }
+    
+    @objc func handleOverlayTap(_ sender: UITapGestureRecognizer) {
+        guard let overlayView = overlayView else { return }
+        
+        // Animate the overlay view to fade out, then remove it
+        UIView.animate(withDuration: 0.3, animations: {
+            overlayView.alpha = 0
+        }) { _ in
+            overlayView.removeFromSuperview()
+            self.overlayView = nil
+        }
     }
 
     //MARK: API METHODS
@@ -443,7 +456,61 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.row == 2 && !AppFunctions.isPremiumUser() {
+        if indexPath.row == 1 {
+            
+            guard let cell = tableView.cellForRow(at: indexPath) as? AboutTVCell,
+                  let textView = cell.aboutTxtView else { return }
+            
+            let clonedTextView = UITextView(frame: textView.frame)
+            clonedTextView.text = textView.text
+            clonedTextView.font = textView.font
+            clonedTextView.textColor = textView.textColor
+            clonedTextView.backgroundColor = UIColor.systemGray4
+            clonedTextView.clipsToBounds = true
+            clonedTextView.layer.cornerRadius = 6
+            clonedTextView.isUserInteractionEnabled = false
+            clonedTextView.isEditable = false
+            
+            // Create an overlay view that covers the entire screen
+            overlayView = UIView(frame: self.view.bounds)
+            overlayView?.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+            
+            let newView = UIView()
+            newView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: 350)
+            newView.center = overlayView!.center
+            newView.backgroundColor = UIColor.systemGray4
+            newView.clipsToBounds = true
+            newView.layer.cornerRadius = 5
+            newView.isUserInteractionEnabled = false
+            
+            overlayView?.addSubview(newView)
+            
+            // Ensure the cloned UITextView fits within the newView
+            clonedTextView.translatesAutoresizingMaskIntoConstraints = false
+            newView.addSubview(clonedTextView)
+            
+            // Set constraints to position the cloned UITextView within the newView
+            NSLayoutConstraint.activate([
+                clonedTextView.leadingAnchor.constraint(equalTo: newView.leadingAnchor, constant: 20),
+                clonedTextView.trailingAnchor.constraint(equalTo: newView.trailingAnchor, constant: -20),
+                clonedTextView.topAnchor.constraint(equalTo: newView.topAnchor, constant: 20),
+                clonedTextView.bottomAnchor.constraint(equalTo: newView.bottomAnchor, constant: -20)
+            ])
+            
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleOverlayTap(_:)))
+            overlayView?.addGestureRecognizer(tapGestureRecognizer)
+            
+            overlayView?.bringSubviewToFront(newView)
+            
+            view.addSubview(overlayView!)
+            
+            // Animate the overlay view to expand from the cell's frame to the center of the screen
+            overlayView?.alpha = 0
+            UIView.animate(withDuration: 0.3) {
+                self.overlayView?.alpha = 1
+            }
+            
+        } else  if indexPath.row == 2 && !AppFunctions.isPremiumUser() {
             AppFunctions.showSnackBar(str: "Upgrade to premium to broadcast a status.")
             
         } else if indexPath.row == 5 {

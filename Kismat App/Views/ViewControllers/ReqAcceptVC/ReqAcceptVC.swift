@@ -23,7 +23,7 @@ class ReqAcceptVC: MainViewController {
     
     @IBAction func accpetBtnPressed(_ sender: Any) {
         self.presentVC(id: "ContactInformainVC", presentFullType: "over" ) { (vc:ContactInformainVC) in
-            //vc.contactId = userModel.contactId
+            vc.contactId = userModel.contactId
         }
     }
     
@@ -53,10 +53,10 @@ class ReqAcceptVC: MainViewController {
         workLocLbl.text = userModel.workAddress
         
         let contact = userModel.contactInformationsShared.filter{$0.contactTypeId == 6}
-        if !contact.isEmpty {
-            msgTextView.text = contact.first?.value
+        if let msg = userModel.message, !userModel.message.isEmpty {
+            msgTextView.text = msg //userModel.message ?? ""
         } else {
-            msgTextView.text = "Default display message here."
+            msgTextView.text = "Default introductory message will display here."
         }
         
         if userModel.profilePicture != "" && userModel.profilePicture != nil {
@@ -71,6 +71,11 @@ class ReqAcceptVC: MainViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        generalPublisher.onNext("roloadList")
+    }
     
     func readThisProfile() {
         

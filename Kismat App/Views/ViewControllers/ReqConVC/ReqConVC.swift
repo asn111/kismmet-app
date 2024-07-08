@@ -16,12 +16,38 @@ class ReqConVC: MainViewController {
     private let refresher = UIRefreshControl()
     
     var selectedUsertype = "req"
+    var searchString = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         getReqUsers(load: false)
         registerCells()
+        
+        _ = generalPublisher.subscribe(onNext: {[weak self] val in
+            
+            if val == "roloadList" {
+                if self?.selectedUsertype == "con" {
+                    self?.getContUsers(load: false)
+                } else {
+                    self?.getReqUsers(load: false)
+                }
+            }
+            
+        }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        getMyContacts()
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        searchString = ""
     }
     
     func registerCells() {
@@ -46,6 +72,42 @@ class ReqConVC: MainViewController {
         reqTV.register(UINib(nibName: "FeedItem2TVCell", bundle: nil), forCellReuseIdentifier: "FeedItem2TVCell")
         reqTV.register(UINib(nibName: "VisibilityOffTVCell", bundle: nil), forCellReuseIdentifier: "VisibilityOffTVCell")
 
+    }
+    
+    @objc func searchBtnPressed(sender: UIButton) {
+        if searchString != "" {
+            searchString = ""
+            if selectedUsertype == "con" {
+                getContUsers(load: true)
+            } else {
+                getReqUsers(load: true)
+            }
+            return
+        }
+        if selectedUsertype == "con" {
+            getContUsers(load: true)
+        } else {
+            getReqUsers(load: true)
+        }
+    }
+    
+    
+    @objc func textFieldDidChangeSelection(_ textField: UITextField) {
+        searchString = !textField.text!.isTFBlank ? textField.text! : ""
+    }
+    
+    @objc func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.returnKeyType = .search
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if selectedUsertype == "con" {
+            getContUsers(load: false)
+        } else {
+            getReqUsers(load: false)
+        }
+        return true
     }
     
     @objc func picBtnPressed(sender: UIButton) {
@@ -113,7 +175,7 @@ class ReqConVC: MainViewController {
             self.showPKHUD(WithMessage: "Fetching...")
         }
         
-        let pram : [String : Any] = ["searchString": "", "contactStatus": 0]
+        let pram : [String : Any] = ["searchString": searchString, "contactStatus": 0]
         Logs.show(message: "SKILLS PRAM: \(pram)")
         
         APIService
@@ -123,8 +185,6 @@ class ReqConVC: MainViewController {
                 guard let self = self else {return}
                 switch model {
                     case .next(let val):
-                        self.hidePKHUD()
-                        self.stopRefresher()
                         if val.count > 0 {
                             self.users.removeAll()
                             self.users = val
@@ -159,7 +219,7 @@ class ReqConVC: MainViewController {
             self.showPKHUD(WithMessage: "Fetching...")
         }
         
-        let pram : [String : Any] = ["searchString": "", "contactStatus": 0]
+        let pram : [String : Any] = ["searchString": searchString, "contactStatus": 0]
         Logs.show(message: "SKILLS PRAM: \(pram)")
         
         APIService
@@ -196,6 +256,40 @@ class ReqConVC: MainViewController {
             })
             .disposed(by: dispose_Bag)
     }
+    
+    func getMyContacts() {
+        
+        
+        APIService
+            .singelton
+            .getConnectedContactsAccTypes()
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        if val.count > 0 {
+                            if val.isEmpty {
+                                val.forEach { contact in
+                                    if contact.isShared {
+                                        AppFunctions.setSelectedCheckValue(value: contact.contactTypeId)
+                                    }
+                                }
+                            }
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
+    
+    
 }
 
 //MARK: TableView Extention
@@ -248,6 +342,18 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
             cell.settingsLbl.isUserInteractionEnabled = true
             cell.settingsLbl.addGestureRecognizer(tap)
             
+            cell.searchBtn.addTarget(self, action: #selector(searchBtnPressed(sender:)), for: .touchUpInside)
+
+            cell.searchTF.delegate = self
+            cell.searchTF.placeholder = selectedUsertype == "con" ? "Search through your contacts" : "Search through your requests"
+            cell.searchTF.returnKeyType = .search
+            cell.searchTF.tag = 010
+            if searchString != "" {
+                cell.searchBtn.setImage(UIImage(systemName: "x.circle"), for: .normal)
+            } else {
+                cell.searchBtn.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+                cell.searchTF.text = ""
+            }
             
             return cell
             
@@ -304,8 +410,8 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                 } else if user.contactStatus == "Accepted" {
                     feedCell.profilePicIV.borderColor = UIColor(named: "Success")
                 } else {
-                    //feedCell.profilePicIV.borderColor = UIColor(named: "Secondary Grey")
-                    feedCell.profilePicIV.borderWidth = 0
+                    feedCell.profilePicIV.borderColor = UIColor(named: "Secondary Grey")
+                    //feedCell.profilePicIV.borderWidth = 0
                 }
                 
                 if user.profilePicture != "" && user.profilePicture != nil {
@@ -369,8 +475,8 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                 } else if user.contactStatus == "Accepted" {
                     feedCell2.profilePicIV.borderColor = UIColor(named: "Success")
                 } else {
-                    //feedCell2.profilePicIV.borderColor = UIColor(named: "Secondary Grey")
-                    feedCell2.profilePicIV.borderWidth = 0
+                    feedCell2.profilePicIV.borderColor = UIColor(named: "Secondary Grey")
+                    //feedCell2.profilePicIV.borderWidth = 0
                 }
                 
                 if user.profilePicture != "" && user.profilePicture != nil {
@@ -404,8 +510,20 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                         vc.userId = users[indexPath.row - 1].userId
                     }
                 } else {
-                    self.presentVC(id: "ReqAcceptVC", presentFullType: "over" ) { (vc:ReqAcceptVC) in
-                        vc.userModel = users[indexPath.row - 1]
+                    if users[indexPath.row - 1].contactStatus == "Pending" {
+                        self.presentVC(id: "ReqAcceptVC", presentFullType: "over" ) { (vc:ReqAcceptVC) in
+                            vc.userModel = users[indexPath.row - 1]
+                        }
+                    } else if users[indexPath.row - 1].contactStatus != "Denied" {
+                        self.pushVC(id: "ConnectedUserProfile") { (vc:ConnectedUserProfile) in
+                            vc.userModel = users[indexPath.row - 1]
+                            vc.userId = users[indexPath.row - 1].userId
+                        }
+                    } else {
+                        self.presentVC(id: "OtherUserProfile", presentFullType: "over" ) { (vc:OtherUserProfile) in
+                            vc.userModel = users[indexPath.row - 1]
+                            vc.isFromReq = true
+                        }
                     }
                 }
             }

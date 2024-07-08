@@ -14,6 +14,7 @@ class ContactInfoTVCell: UITableViewCell {
     @IBOutlet weak var tfView: RoundCornerView!
     @IBOutlet weak var textLbl: fullyCustomLbl!
     @IBOutlet weak var chkBtn: UIButton!
+    @IBOutlet weak var toolTipBtn: RoundCornerButton!
     @IBOutlet weak var socialPicIV: UIImageView!
    
     @IBOutlet weak var contactTF: DropDownTF!

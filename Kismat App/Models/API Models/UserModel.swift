@@ -61,6 +61,7 @@ class UserModel: NSObject, Codable {
     var isRead : Bool!
     var shadowMode : Bool!
     var accountStatus : String!
+    var message : String!
     var subscription : String!
     var socialAccounts : [SocialAccModel]!
     var contactInformationsSharedByUser : [ContactInformations]!
@@ -96,6 +97,7 @@ class UserModel: NSObject, Codable {
         isActive = false
         shadowMode = false
         accountStatus = ""
+        message = ""
         subscription = ""
         socialAccounts = [SocialAccModel]()
         contactInformationsSharedByUser = [ContactInformations]()
@@ -145,6 +147,7 @@ class UserModel: NSObject, Codable {
         case isActive = "isActive"
         case shadowMode = "shadowMode"
         case accountStatus = "accountStatus"
+        case message = "message"
         case subscription = "subscription"
         case socialAccounts = "socialAccounts"
         case userContacts = "userContacts"
@@ -180,6 +183,7 @@ class UserModel: NSObject, Codable {
         isActive  = try values.decodeIfPresent(Bool.self, forKey: .isActive)
         shadowMode  = try values.decodeIfPresent(Bool.self, forKey: .shadowMode)
         accountStatus  = try values.decodeIfPresent(String.self, forKey: .accountStatus)
+        message  = try values.decodeIfPresent(String.self, forKey: .message)
         subscription  = try values.decodeIfPresent(String.self, forKey: .subscription)
         socialAccounts  = try values.decodeIfPresent([SocialAccModel].self, forKey: .socialAccounts)
         contactInformationsSharedByUser  = try values.decodeIfPresent([ContactInformations].self, forKey: .contactInformationsSharedByUser)

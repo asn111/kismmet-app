@@ -44,6 +44,8 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         guard let location = locations.last else { return }
         //self.lastLocation = location
         generalPublisherLoc.onNext(location)
+        initalLatitude = location.coordinate.latitude
+        initalLongitude = location.coordinate.longitude
         Logs.show(message: " --------- \(location) --------- ")
     }
 

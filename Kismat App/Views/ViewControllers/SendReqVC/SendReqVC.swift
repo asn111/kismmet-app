@@ -153,7 +153,7 @@ class SendReqVC: MainViewController {
         
         self.showPKHUD(WithMessage: "Fetching...")
         
-        let pram : [String : Any] = ["userId": userModel.userId ?? "", "text": sentMsg]
+        let pram : [String : Any] = ["userId": userModel.userId ?? "", "message": sentMsg]
         Logs.show(message: "SKILLS PRAM: \(pram)")
         
         APIService

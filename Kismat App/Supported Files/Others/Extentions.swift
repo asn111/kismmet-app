@@ -366,21 +366,25 @@ extension UITextView : UITextViewDelegate
     
     /// Adds a placeholder UILabel to this UITextView
     func addPlaceholder(_ placeholderText: String, size: CGFloat) {
-        let placeholderLabel = UILabel()
-        
-        placeholderLabel.text = placeholderText
-        placeholderLabel.sizeToFit()
-        
-        placeholderLabel.font = UIFont(name: "Roboto", size: size)?.bold
-        placeholderLabel.textColor = UIColor(named: "Text grey")
-        placeholderLabel.tag = 100
-        placeholderLabel.isHidden = !self.text.isEmpty
-        placeholderLabel.numberOfLines = 0
-        placeholderLabel.isHidden = self.text.count > 0
-        
-        self.addSubview(placeholderLabel)
-        self.resizePlaceholder()
-        self.delegate = self
+        guard let existingPlaceholder = self.viewWithTag(100) as? UILabel else {
+            // If no placeholder label exists, create and configure it
+            let placeholderLabel = UILabel()
+            
+            placeholderLabel.text = placeholderText
+            placeholderLabel.sizeToFit()
+            
+            placeholderLabel.font = UIFont(name: "Roboto", size: size)?.regular
+            placeholderLabel.textColor = UIColor(named: "Text grey")
+            placeholderLabel.tag = 100
+            placeholderLabel.isHidden = !self.text.isEmpty
+            placeholderLabel.numberOfLines = 0
+            
+            self.addSubview(placeholderLabel)
+            self.resizePlaceholder() // Assuming this method adjusts the layout based on the placeholder
+            self.delegate = self // Ensure this line is appropriate for your use case
+            
+            return
+        }
     }
 }
 

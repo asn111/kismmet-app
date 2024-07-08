@@ -69,8 +69,10 @@ class IAPManager: NSObject {
                                         // Update the app state to reflect that the user is subscribed
                                     case .expired(let expiryDate):
                                         Logs.show(message: "Subscription expired on \(expiryDate)")
-                                        ApiService.updateSubscription(val: freeSubscriptionId)
-                                        AppFunctions.setIsPremiumUser(value: false)
+                                        if AppFunctions.isLoggedIn() {
+                                            ApiService.updateSubscription(val: freeSubscriptionId)
+                                            AppFunctions.setIsPremiumUser(value: false)
+                                        }
                                         // Update the app state to reflect that the user is not subscribed
                                     case .notPurchased:
                                         Logs.show(message: "The user has never purchased this subscription")
@@ -171,8 +173,10 @@ extension IAPManager: SKProductsRequestDelegate, SKPaymentTransactionObserver {
             Logs.show(message: "appStoreReceiptURL: \(url)")
             generalPublisher.onNext("purchased")
 
-            ApiService.updateSubscription(val: premiumSubscriptionId)
-            AppFunctions.setIsPremiumUser(value: true)
+            if AppFunctions.isLoggedIn() {
+                ApiService.updateSubscription(val: freeSubscriptionId)
+                AppFunctions.setIsPremiumUser(value: true)
+            }
         }
         Logs.show(message: "transaction Successful: \(transaction)")
         // Finish the transaction

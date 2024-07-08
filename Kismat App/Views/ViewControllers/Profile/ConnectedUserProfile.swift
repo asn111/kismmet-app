@@ -301,7 +301,7 @@ class ConnectedUserProfile: MainViewController {
 extension ConnectedUserProfile : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return socialAccModel.count + 7
+        return socialAccModel.count + 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -359,9 +359,20 @@ extension ConnectedUserProfile : UITableViewDelegate, UITableViewDataSource {
                 
                 return cell
             case 1:
-                let cell : AboutTVCell = tableView.dequeueReusableCell(withIdentifier: "AboutTVCell", for: indexPath) as! AboutTVCell
-                cell.bioLbl.text = "Notes"
-                cell.aboutTxtView.text = "User notes will show here..."//userModel.about
+                let cell : GeneralButtonTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralButtonTVCell", for: indexPath) as! GeneralButtonTVCell
+                
+                cell.genBtnView.isHidden = true
+                cell.newBtnView.isHidden = false
+                cell.newBtn.tag = indexPath.row
+                cell.newBtn.addTarget(self, action: #selector(genBtnPressedForProfile(sender:)), for: .touchUpInside)
+                
+                cell.newBtn.titleLabel?.font = UIFont(name: "Work Sans", size: 14)?.regular
+                cell.newBtn.setTitle("View full profile", for: .normal)
+                cell.newBtn.backgroundColor = UIColor.clear
+                cell.newBtn.tintColor = UIColor(named: "Secondary Grey")
+                cell.newBtn.underline()
+                cell.newBtn.isWork = true
+                
                 return cell
                 
             case 2:
@@ -389,7 +400,7 @@ extension ConnectedUserProfile : UITableViewDelegate, UITableViewDataSource {
                 cell.headerLblView.isHidden = true
                 return cell
                 
-            case socialAccModel.count + 5: // button
+            /*case socialAccModel.count + 4: // button
                 let cell : GeneralButtonTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralButtonTVCell", for: indexPath) as! GeneralButtonTVCell
                 
                 cell.genBtnView.isHidden = true
@@ -404,9 +415,9 @@ extension ConnectedUserProfile : UITableViewDelegate, UITableViewDataSource {
                 cell.newBtn.underline()
                 cell.newBtn.isWork = true
                 
-                return cell
+                return cell*/
                 
-            case socialAccModel.count + 6: // button
+            case socialAccModel.count + 5: // button
                 let cell : BlockBtnTVCell = tableView.dequeueReusableCell(withIdentifier: "BlockBtnTVCell", for: indexPath) as! BlockBtnTVCell
                 if isFromBlock {
                     cell.blockBtn.isHidden = true
@@ -416,41 +427,61 @@ extension ConnectedUserProfile : UITableViewDelegate, UITableViewDataSource {
                 return cell
                 
             default:
-                let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
                 
-                switch socialAccModel[indexPath.row - 4].contactTypeId {
-                    case 1:
-                        cell.socialImgView.image = UIImage(named: "LinkedIn")
-                    case 2:
-                        cell.socialImgView.image = UIImage(named: "whatsapp")
-                    case 3:
-                        cell.socialImgView.image = UIImage(named: "WeChat")
-                    case 4:
-                        cell.socialImgView.image = UIImage(named: "phone")
-                    case 5:
-                        cell.socialImgView.image = UIImage(named: "Instagram")
-                    case 6:
-                        cell.socialImgView.image = UIImage(named: "message")
-                    default:
-                        print("default")
-                }
-                
-                cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.medium
-                
-                /*if socialAccModel.filter({$0.contactType == socialAccounts[indexPath.row - 6].contactType }).count > 0 {
-                    cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.medium
+                if socialAccModel[indexPath.row - 4].contactTypeId == 6 {
+                    
+                    if socialAccModel[indexPath.row - 4].value.isEmpty {
+                        
+                        let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
+                        cell.headerLblView.isHidden = true
+                        return cell
+                        
+                    } else {
+                        
+                        let cell : AboutTVCell = tableView.dequeueReusableCell(withIdentifier: "AboutTVCell", for: indexPath) as! AboutTVCell
+                        cell.bioLbl.isHidden = true
+                        cell.aboutTxtView.text = socialAccModel[indexPath.row - 4].value.capitalized //"User notes will show here..."//userModel.about
+                        return cell
+                        
+                    }
+                    
                 } else {
-                    cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.regular
-                }*/
-                
-                cell.socialLbl.text = socialAccModel[indexPath.row - 4].contactType.capitalized
-                cell.socialLbl.isUserInteractionEnabled = false
-                return cell
+                    let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
+                    
+                    switch socialAccModel[indexPath.row - 4].contactTypeId {
+                        case 1:
+                            cell.socialImgView.image = UIImage(named: "LinkedIn")
+                        case 2:
+                            cell.socialImgView.image = UIImage(named: "whatsapp")
+                        case 3:
+                            cell.socialImgView.image = UIImage(named: "WeChat")
+                        case 4:
+                            cell.socialImgView.image = UIImage(named: "phone")
+                        case 5:
+                            cell.socialImgView.image = UIImage(named: "Instagram")
+                        //case 6:
+                            //cell.socialImgView.image = UIImage(named: "message")
+                        default:
+                            print("default")
+                    }
+                    
+                    cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.medium
+                    
+                    /*if socialAccModel.filter({$0.contactType == socialAccounts[indexPath.row - 6].contactType }).count > 0 {
+                     cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.medium
+                     } else {
+                     cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.regular
+                     }*/
+                    
+                    cell.socialLbl.text = socialAccModel[indexPath.row - 4].contactType.capitalized
+                    cell.socialLbl.isUserInteractionEnabled = false
+                    return cell
+                }
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row > 3 && indexPath.row < socialAccModel.count + 4 && !isFromReq {
+        if indexPath.row > 3 && indexPath.row < socialAccModel.count + 4 {
             //if socialAccModel.filter({$0.contactType == socialAccounts[indexPath.row - 6].contactType }).count > 0 {
                 let link = socialAccModel[indexPath.row - 4]
                 switch socialAccModel[indexPath.row - 4].contactTypeId {
@@ -464,8 +495,8 @@ extension ConnectedUserProfile : UITableViewDelegate, UITableViewDataSource {
                         AppFunctions.initiateCall(phoneNumber: link.value)
                     case 5:
                         AppFunctions.openInstagram(userName: link.value)
-                    case 6:
-                        AppFunctions.openiMessage(phoneNumber: link.value)
+                    //case 6:
+                        //AppFunctions.openiMessage(phoneNumber: link.value)
                     default:
                         print("default")
                 }

@@ -46,7 +46,6 @@ class EditProfileSetup: MainViewController { //Birthday
     
     var isfromExtProf = true
     
-    var overlayView: UIView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -431,81 +430,6 @@ class EditProfileSetup: MainViewController { //Birthday
         }
         cell.generalTF.resignFirstResponder() // 2.5
     }
-
-    
-    @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        guard let textView = sender.view as? UITextView,
-              let cell = getCellForView(textView),
-              let indexPath = profileTV.indexPath(for: cell) else { return }
-        
-        textView.backgroundColor = UIColor(named: "Cell BG Base Grey")
-        textView.clipsToBounds = true
-        textView.layer.cornerRadius = 6
-        textView.isUserInteractionEnabled = true
-        
-        // Create an overlay view that covers the entire screen
-        overlayView = UIView(frame: self.view.bounds)
-        overlayView?.backgroundColor = UIColor.black.withAlphaComponent(0.4)
-        
-        let newView = UIView()
-        newView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width - 20, height: 450)
-        newView.center = overlayView!.center
-        textView.backgroundColor = UIColor(named: "Base Grey")
-        newView.clipsToBounds = true
-        newView.layer.cornerRadius = 5
-        newView.bringSubviewToFront(textView)
-        
-        newView.isUserInteractionEnabled = true
-
-        overlayView?.addSubview(newView)
-        
-        // Ensure the UITextView fits within the newView
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        newView.addSubview(textView)
-        
-        // Set constraints to position the UITextView within the newView
-        NSLayoutConstraint.activate([
-            textView.leadingAnchor.constraint(equalTo: newView.leadingAnchor, constant: 10),
-            textView.trailingAnchor.constraint(equalTo: newView.trailingAnchor, constant: -10),
-            textView.topAnchor.constraint(equalTo: newView.topAnchor, constant: 10),
-            textView.bottomAnchor.constraint(equalTo: newView.bottomAnchor, constant: -10)
-        ])
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleOverlayTap(_:)))
-        overlayView?.addGestureRecognizer(tapGestureRecognizer)
-        
-        overlayView?.bringSubviewToFront(newView)
-        
-        view.addSubview(overlayView!)
-        
-        // Animate the overlay view to expand from the cell's frame to the center of the screen
-        overlayView?.alpha = 0
-        UIView.animate(withDuration: 0.3) {
-            self.overlayView?.alpha = 1
-        }
-    }
-
-
-    @objc func handleOverlayTap(_ sender: UITapGestureRecognizer) {
-        guard let overlayView = overlayView else { return }
-        
-        // Animate the overlay view to fade out, then remove it
-        UIView.animate(withDuration: 0.3, animations: {
-            overlayView.alpha = 0
-        }) { _ in
-            overlayView.removeFromSuperview()
-            self.overlayView = nil
-        }
-    }
-
-    func getCellForView(_ view: UIView) -> GeneralTextviewTVCell? {
-        var superview = view.superview
-        while superview != nil && !(superview is GeneralTextviewTVCell) {
-            superview = superview?.superview
-        }
-        return superview as? GeneralTextviewTVCell
-    }
-
     
     
     //MARK: API METHODS
@@ -685,9 +609,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 }
                 cell.generalTV.delegate = self
                 cell.generalTV.textColor = UIColor(named: "Text grey")
-                
-                let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-                cell.generalTV.addGestureRecognizer(tap)
+
                 
                 return cell
                 

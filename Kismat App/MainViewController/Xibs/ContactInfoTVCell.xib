@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -22,11 +23,27 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UMD-Sd-NkD">
                         <rect key="frame" x="0.0" y="0.0" width="417" height="65"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cV1-eL-Ofh" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
+                                <rect key="frame" x="343" y="23" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="ePE-Kx-QR4"/>
+                                    <constraint firstAttribute="width" constant="20" id="jOQ-MI-7Cb"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="tooltip_icon" symbolScale="medium"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please choose one or more ways to reach out!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gY-nL-Qmu" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                <rect key="frame" x="42" y="2.6666666666666643" width="329" height="60"/>
+                                <rect key="frame" x="42" y="2.6666666666666643" width="285" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="2g8-rn-2XY"/>
-                                    <constraint firstAttribute="width" constant="329" id="t3c-b7-ie0"/>
+                                    <constraint firstAttribute="width" constant="285" id="t3c-b7-ie0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -129,10 +146,14 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="2gY-nL-Qmu" firstAttribute="centerY" secondItem="UMD-Sd-NkD" secondAttribute="centerY" id="GRR-E0-x91"/>
+                            <constraint firstAttribute="bottom" secondItem="cV1-eL-Ofh" secondAttribute="bottom" constant="22" id="IiS-so-UFn"/>
                             <constraint firstAttribute="trailing" secondItem="9zC-Kp-NHp" secondAttribute="trailing" constant="35" id="O4l-B0-Ely"/>
                             <constraint firstItem="9zC-Kp-NHp" firstAttribute="leading" secondItem="UMD-Sd-NkD" secondAttribute="leading" constant="29" id="bTG-Hg-ifn"/>
-                            <constraint firstItem="2gY-nL-Qmu" firstAttribute="centerX" secondItem="UMD-Sd-NkD" secondAttribute="centerX" constant="-2" id="dVp-Vp-Le3"/>
+                            <constraint firstItem="2gY-nL-Qmu" firstAttribute="centerX" secondItem="UMD-Sd-NkD" secondAttribute="centerX" constant="-24" id="dVp-Vp-Le3"/>
+                            <constraint firstAttribute="trailing" secondItem="cV1-eL-Ofh" secondAttribute="trailing" constant="54" id="eAc-BJ-CTm"/>
+                            <constraint firstItem="cV1-eL-Ofh" firstAttribute="leading" secondItem="2gY-nL-Qmu" secondAttribute="trailing" constant="16" id="gLv-CP-qQl"/>
                             <constraint firstItem="9zC-Kp-NHp" firstAttribute="top" secondItem="UMD-Sd-NkD" secondAttribute="top" constant="2" id="jFB-Ew-AL8"/>
+                            <constraint firstItem="cV1-eL-Ofh" firstAttribute="top" secondItem="UMD-Sd-NkD" secondAttribute="top" constant="23" id="lIx-YP-vKe"/>
                             <constraint firstAttribute="bottom" secondItem="9zC-Kp-NHp" secondAttribute="bottom" constant="3" id="ppM-R5-qmp"/>
                         </constraints>
                     </view>
@@ -153,6 +174,7 @@
                 <outlet property="socialPicIV" destination="lCZ-i9-LFY" id="f7h-v9-X87"/>
                 <outlet property="textLbl" destination="2gY-nL-Qmu" id="95j-m7-IrT"/>
                 <outlet property="tfView" destination="9zC-Kp-NHp" id="Ije-Xj-qil"/>
+                <outlet property="toolTipBtn" destination="cV1-eL-Ofh" id="BJZ-36-Blj"/>
             </connections>
             <point key="canvasLocation" x="142.74809160305344" y="27.112676056338028"/>
         </tableViewCell>
@@ -161,10 +183,14 @@
         <designable name="2gY-nL-Qmu">
             <size key="intrinsicContentSize" width="349.66666666666669" height="20.333333333333332"/>
         </designable>
+        <designable name="cV1-eL-Ofh">
+            <size key="intrinsicContentSize" width="48" height="48"/>
+        </designable>
     </designables>
     <resources>
         <image name="LinkedIn" width="512" height="512"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="tooltip_icon" width="48" height="48"/>
         <namedColor name="Cell BG Base Grey">
             <color red="0.20800000429153442" green="0.31000000238418579" blue="0.35699999332427979" alpha="0.10499999672174454" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

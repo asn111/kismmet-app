@@ -34,6 +34,10 @@ let deactivedAccountStatusId = 2
 let deletedAccountStatusId = 3
 
 
+var initalLatitude = 0.0
+var initalLongitude = 0.0
+
+
 var dict : [String:Any] = [String:Any]()
 
 var selectedStartDate = ""
@@ -86,6 +90,7 @@ let isPaymentSaved = "isPaymentSaved"
 let isProfileUpdated = "isProfileUpdated"
 let stripeKey = "stripeKey"
 let tagsArray = "tagsArray"
+let selectedCheck = "selectedCheck"
 let socialArray = "socialArray"
 let notif = "notif"
 let platForm = "platForm"
@@ -421,6 +426,34 @@ class AppFunctions {
             Logs.show(message: "NIL isPremiumUser")
         } else {
             value = preferences.bool(forKey: premiumUser)
+        }
+        return value
+    }
+    
+    open class func setSelectedCheckValue(value: Int) {
+        // Fetch the existing array from UserDefaults
+        var selectedChecks = getSelectedCheckArray()
+        
+        // Check if the value already exists in the array
+        if let index = selectedChecks.firstIndex(of: value) {
+            // If the value exists, remove it from the array
+            selectedChecks.remove(at: index)
+        } else {
+            // If the value does not exist, append it to the array
+            selectedChecks.append(value)
+        }
+        
+        // Save the updated array back to UserDefaults
+        preferences.set(selectedChecks, forKey: selectedCheck)
+        preferences.synchronize()
+    }
+
+    open class func getSelectedCheckArray() -> [Int]{
+        var value = [Int]()
+        if preferences.object(forKey: selectedCheck) == nil {
+            Logs.show(message: "NIL getSelectedCheckArray")
+        } else {
+            value = (preferences.array(forKey: selectedCheck) as? [Int])!
         }
         return value
     }

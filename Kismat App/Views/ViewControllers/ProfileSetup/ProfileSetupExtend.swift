@@ -189,6 +189,22 @@ class ProfileSetupExtend: MainViewController {
     
     //MARK: API Functions
     
+    func sendLocationOnLogin() {
+        let lat = initalLatitude
+        let long = initalLongitude
+        
+        let pram = ["lat": "\(lat)",
+                    "long":"\(long)"
+        ]
+        SignalRService.connection.invoke(method: "UpdateUserLocation", pram) {  error in
+            Logs.show(message: "\(pram)")
+            if let e = error {
+                Logs.show(message: "Error: \(e)")
+                return
+            }
+        }
+    }
+    
     func userProfileUpdate() {
         self.showPKHUD(WithMessage: "Signing up")
         
@@ -203,8 +219,17 @@ class ProfileSetupExtend: MainViewController {
                     case .next(let val):
                         Logs.show(message: "MARKED: 👉🏻 \(val)")
                         if val {
-                            self.startUpCall()
-                            self.userProfile(fromUpdate: true)
+                            
+                            SignalRService.chatHubConnectionDelegate = self
+                            SignalRService.initializeSignalR()
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                self.sendLocationOnLogin()
+                                
+                                self.startUpCall()
+                                self.userProfile(fromUpdate: true)
+                            }
+                            
                         } else {
                             self.hidePKHUD()
                         }
