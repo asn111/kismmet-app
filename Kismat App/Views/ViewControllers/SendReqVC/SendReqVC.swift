@@ -169,6 +169,7 @@ class SendReqVC: MainViewController {
                             
                             self.presentVC(id: "ReqSentVC", presentFullType: "over" ) { (vc:ReqSentVC) in
                                 vc.userId = self.userModel.userId
+                                vc.isStarred = self.userModel.isStarred
                             }
                         } else {
                             self.hidePKHUD()

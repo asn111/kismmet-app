@@ -37,14 +37,41 @@ class SplashVC: MainViewController {
         
         if AppFunctions.isLoggedIn() {
             
-            self.startUpCall()
-            self.getSocialAccounts()
-            APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
+            SignalRService.chatHubConnectionDelegate = self
+            SignalRService.initializeSignalR()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.sendLocationOnLogin()
+                self.startUpCall()
+                self.getSocialAccounts()
+                
+                APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
+
+            }
+            
+            //self.startUpCall()
+            //self.getSocialAccounts()
 
         } else {
             //btnView.isHidden = false
             sBtn.isHidden = false
             lBtn.isHidden = false
+        }
+    }
+    
+    func sendLocationOnLogin() {
+        let lat = initalLatitude
+        let long = initalLongitude
+        
+        let pram = ["lat": "\(lat)",
+                    "long":"\(long)"
+        ]
+        SignalRService.connection.invoke(method: "UpdateUserLocation", pram) {  error in
+            Logs.show(message: "\(pram)")
+            if let e = error {
+                Logs.show(message: "Error: \(e)")
+                return
+            }
         }
     }
     

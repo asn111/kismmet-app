@@ -60,6 +60,14 @@ class OtherUserProfile: MainViewController {
         
         
         registerCells()
+        
+        _ = generalPublisher.subscribe(onNext: {[weak self] val in
+            
+            if val == "exitView" {
+                self?.navigationController?.popViewController(animated: true)
+            }
+            
+        }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
 
         
     }

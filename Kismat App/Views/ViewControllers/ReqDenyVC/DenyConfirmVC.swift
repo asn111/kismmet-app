@@ -10,11 +10,20 @@ import UIKit
 class DenyConfirmVC: MainViewController {
     
     @IBAction func closeBtnPressed(_ sender: Any) {
-        AppFunctions.removeFromDefaults(key: selectedCheck)
-        orignalSelectedCheckArray.forEach { id in
-            AppFunctions.setSelectedCheckValue(value: id)
+        
+        if contactId > 0 {
+            self.dismiss(animated: true)
+        } else {
+            
+            AppFunctions.removeFromDefaults(key: selectedCheck)
+            orignalSelectedCheckArray.forEach { id in
+                AppFunctions.setSelectedCheckValue(value: id)
+            }
+            self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+            
         }
-        self.dismiss(animated: true)
+        
+
     }
     
     @IBAction func mainActionBtnPressed(_ sender: Any) {
@@ -33,7 +42,7 @@ class DenyConfirmVC: MainViewController {
             AppFunctions.setSelectedCheckValue(value: id)
         }
         
-        self.dismiss(animated: true)
+        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     @IBOutlet weak var headingLbl: fullyCustomLbl!

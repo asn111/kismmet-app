@@ -15,7 +15,7 @@ class SettingVC: MainViewController {
     
     @IBOutlet weak var settingTV: UITableView!
     
-    var lblTxt = ["","Edit Profile","Preferences","Starred User","Social Links","Notifications","Change Password","Membership","Privacy Policy","Terms of Services","About Kismmet","Account Status","Support","How to Kismmet","Blocked Users","Logout"]
+    var lblTxt = ["","Edit Profile","Preferences","Starred Users","Social Links","Notifications","Change Password","Membership","Privacy Policy","Terms of Services","About Kismmet","Account Status","Support","How to Kismmet","Blocked Users","Logout"]
     
     var userdbModel : Results<UserDBModel>!
     var img = UIImage(named: "placeholder")

@@ -34,11 +34,18 @@ class ReqSentVC: MainViewController {
     @IBOutlet weak var starBtn: UIButton!
     
     var userId = ""
+    var isStarred = false
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if isStarred {
+            starBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        } else {
+            starBtn.setImage(UIImage(systemName: "star"), for: .normal)
+        }
+        
         if let imageData = gifImageToData(imageName: "rocketLaunch") {
             let gifImage = FLAnimatedImage(animatedGIFData: imageData)
             gifIV.animatedImage = gifImage
@@ -46,6 +53,15 @@ class ReqSentVC: MainViewController {
             
             print("Image data loaded successfully")
         }
+        
+        
+        
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        generalPublisher.onNext("exitView")
     }
 
     

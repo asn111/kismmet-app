@@ -268,13 +268,11 @@ class ReqConVC: MainViewController {
                 switch model {
                     case .next(let val):
                         if val.count > 0 {
-                            if val.isEmpty {
                                 val.forEach { contact in
                                     if contact.isShared {
                                         AppFunctions.setSelectedCheckValue(value: contact.contactTypeId)
                                     }
                                 }
-                            }
                         } else {
                             self.hidePKHUD()
                         }

@@ -52,11 +52,13 @@ class ContactTypesModel: NSObject, Codable {
     
     var contactTypeId : Int!
     var contactType : String!
+    var icon : String!
     
     override init() {
         
         contactTypeId = 0
         contactType = ""
+        icon = ""
         
     }
     
@@ -64,6 +66,7 @@ class ContactTypesModel: NSObject, Codable {
         
         case contactTypeId = "contactTypeId"
         case contactType = "contactType"
+        case icon = "icon"
     
     }
     required init(from decoder: Decoder) throws {
@@ -71,6 +74,7 @@ class ContactTypesModel: NSObject, Codable {
         
         contactTypeId  = try values.decodeIfPresent(Int.self, forKey: .contactTypeId)
         contactType  = try values.decodeIfPresent(String.self, forKey: .contactType)
+        icon  = try values.decodeIfPresent(String.self, forKey: .icon)
 
     }
 }

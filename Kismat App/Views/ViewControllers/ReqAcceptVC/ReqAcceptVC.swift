@@ -69,6 +69,15 @@ class ReqAcceptVC: MainViewController {
         if !userModel.isRead {
             readThisProfile()
         }
+        
+        _ = generalPublisher.subscribe(onNext: {[weak self] val in
+            
+            if val == "exitView" {
+                self?.dismiss(animated: true)
+            }
+            
+        }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
