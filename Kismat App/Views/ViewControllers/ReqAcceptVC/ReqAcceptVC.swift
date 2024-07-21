@@ -13,6 +13,11 @@ class ReqAcceptVC: MainViewController {
         self.dismiss(animated: true)
     }
     
+    @IBAction func contactBtnPressed(_ sender: Any) {
+        self.presentVC(id: "ContactListVC", presentFullType: "over" ) { (vc:ContactListVC) in
+            vc.userModel = userModel
+        }
+    }
     
     @IBAction func viewProfileBtnPressed(_ sender: Any) {
         self.presentVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
@@ -52,7 +57,7 @@ class ReqAcceptVC: MainViewController {
         proffLbl.text = userModel.workTitle
         workLocLbl.text = userModel.workAddress
         
-        let contact = userModel.contactInformationsShared.filter{$0.contactTypeId == 6}
+        //let contact = userModel.contactInformationsSharedByOther.filter{$0.contactTypeId == 6}
         if let msg = userModel.message, !userModel.message.isEmpty {
             msgTextView.text = msg //userModel.message ?? ""
         } else {

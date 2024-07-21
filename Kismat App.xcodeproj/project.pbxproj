@@ -71,6 +71,7 @@
 		297A98392C3161D100B47152 /* TabsHeaderTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297A98362C3161D100B47152 /* TabsHeaderTVCell.swift */; };
 		297A983A2C3161D100B47152 /* TabsHeaderTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297A98372C3161D100B47152 /* TabsHeaderTVCell.xib */; };
 		297A983B2C3161D100B47152 /* ReqConVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297A98382C3161D100B47152 /* ReqConVC.swift */; };
+		297AD3C52C45B55800D3CE55 /* ContactListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297AD3C42C45B55800D3CE55 /* ContactListVC.swift */; };
 		297B15C62B31A78000A3B8D7 /* RideMapViewTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297B15C42B31A77F00A3B8D7 /* RideMapViewTVCell.swift */; };
 		297B15C72B31A78000A3B8D7 /* RideMapViewTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297B15C52B31A78000A3B8D7 /* RideMapViewTVCell.xib */; };
 		297B15C92B31B83E00A3B8D7 /* style1.json in Resources */ = {isa = PBXBuildFile; fileRef = 297B15C82B31B83E00A3B8D7 /* style1.json */; };
@@ -232,6 +233,7 @@
 		297A98362C3161D100B47152 /* TabsHeaderTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabsHeaderTVCell.swift; sourceTree = "<group>"; };
 		297A98372C3161D100B47152 /* TabsHeaderTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabsHeaderTVCell.xib; sourceTree = "<group>"; };
 		297A98382C3161D100B47152 /* ReqConVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReqConVC.swift; sourceTree = "<group>"; };
+		297AD3C42C45B55800D3CE55 /* ContactListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListVC.swift; sourceTree = "<group>"; };
 		297B15C42B31A77F00A3B8D7 /* RideMapViewTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideMapViewTVCell.swift; sourceTree = "<group>"; };
 		297B15C52B31A78000A3B8D7 /* RideMapViewTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RideMapViewTVCell.xib; sourceTree = "<group>"; };
 		297B15C82B31B83E00A3B8D7 /* style1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = style1.json; sourceTree = "<group>"; };
@@ -497,6 +499,7 @@
 			isa = PBXGroup;
 			children = (
 				29748F492C340CC500DB89E9 /* ContactInformainVC.swift */,
+				297AD3C32C450EBF00D3CE55 /* Xibs */,
 			);
 			path = ReqSetting;
 			sourceTree = "<group>";
@@ -531,6 +534,17 @@
 			children = (
 				297A98362C3161D100B47152 /* TabsHeaderTVCell.swift */,
 				297A98372C3161D100B47152 /* TabsHeaderTVCell.xib */,
+			);
+			path = Xibs;
+			sourceTree = "<group>";
+		};
+		297AD3C32C450EBF00D3CE55 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				29748F4B2C342AD800DB89E9 /* ContactInfoTVCell.swift */,
+				29748F4C2C342AD800DB89E9 /* ContactInfoTVCell.xib */,
+				29EE7DC02C39249700A1E877 /* ContactTextViewTVcell.swift */,
+				29EE7DC12C39249700A1E877 /* ContactTextViewTVcell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -936,10 +950,6 @@
 				29BE184E29FA8573000EAC0E /* BlockBtnTVCell.xib */,
 				2940575D2B32D8920036699F /* StatusTVCell.swift */,
 				2940575E2B32D8920036699F /* StatusTVCell.xib */,
-				29748F4B2C342AD800DB89E9 /* ContactInfoTVCell.swift */,
-				29748F4C2C342AD800DB89E9 /* ContactInfoTVCell.xib */,
-				29EE7DC02C39249700A1E877 /* ContactTextViewTVcell.swift */,
-				29EE7DC12C39249700A1E877 /* ContactTextViewTVcell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -972,6 +982,7 @@
 			isa = PBXGroup;
 			children = (
 				29748F442C33F42600DB89E9 /* ReqAcceptVC.swift */,
+				297AD3C42C45B55800D3CE55 /* ContactListVC.swift */,
 			);
 			path = ReqAcceptVC;
 			sourceTree = "<group>";
@@ -1390,6 +1401,7 @@
 				29EE7DBF2C37E65E00A1E877 /* ContactsModel.swift in Sources */,
 				2940575F2B32D8930036699F /* StatusTVCell.swift in Sources */,
 				292B1FFD2A9E930900435223 /* ReportDialogVC.swift in Sources */,
+				297AD3C52C45B55800D3CE55 /* ContactListVC.swift in Sources */,
 				29350A2329D1A08800F19BD5 /* UserSocialAccDBModel.swift in Sources */,
 				299FDD7D29967DC90049741B /* Database.swift in Sources */,
 				299E03CE29A141450064A5E3 /* MembershipVC.swift in Sources */,
@@ -1581,7 +1593,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1621,7 +1633,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi man" translatesAutoresizingMaskIntoConstraints="NO" id="1wX-4B-FEg">
-                                <rect key="frame" x="87" y="379" width="306" height="473"/>
+                                <rect key="frame" x="87" y="379" width="394" height="474"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="306" id="V5H-Vm-1tU"/>
-                                    <constraint firstAttribute="height" constant="473" id="kjy-fy-UQh"/>
+                                    <constraint firstAttribute="width" constant="394" id="V5H-Vm-1tU"/>
+                                    <constraint firstAttribute="height" constant="474" id="kjy-fy-UQh"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo name" translatesAutoresizingMaskIntoConstraints="NO" id="cQk-oC-PSp">
@@ -43,11 +43,11 @@
                         <color key="backgroundColor" name="Primary Yellow"/>
                         <constraints>
                             <constraint firstItem="8HV-yW-m96" firstAttribute="top" secondItem="cQk-oC-PSp" secondAttribute="bottom" constant="11" id="3N9-rD-hhI"/>
-                            <constraint firstItem="1wX-4B-FEg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="93A-dm-HV8"/>
+                            <constraint firstItem="1wX-4B-FEg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="88" id="93A-dm-HV8"/>
                             <constraint firstItem="8HV-yW-m96" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="J58-hD-zgB"/>
                             <constraint firstItem="8HV-yW-m96" firstAttribute="top" secondItem="cQk-oC-PSp" secondAttribute="bottom" constant="11" id="PUg-zj-jUg"/>
                             <constraint firstItem="cQk-oC-PSp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="ZPw-0W-xk6"/>
-                            <constraint firstAttribute="bottom" secondItem="1wX-4B-FEg" secondAttribute="bottom" id="dDp-YS-der"/>
+                            <constraint firstAttribute="bottom" secondItem="1wX-4B-FEg" secondAttribute="bottom" constant="-1" id="dDp-YS-der"/>
                             <constraint firstItem="cQk-oC-PSp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="wkC-cB-CUg"/>
                         </constraints>
                     </view>
@@ -60,9 +60,9 @@
     <resources>
         <image name="logo name" width="3289" height="512"/>
         <image name="sub logo text" width="3270" height="512"/>
-        <image name="wifi man" width="332" height="512"/>
+        <image name="wifi man" width="826" height="1024"/>
         <namedColor name="Primary Yellow">
-            <color red="1" green="0.72156862745098038" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.72200000286102295" blue="0.27799999713897705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

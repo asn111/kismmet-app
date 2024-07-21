@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -34,7 +39,7 @@
                                         <color key="tintColor" name="Secondary Grey"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal">
-                                            <imageReference key="image" image="wifi man grey" symbolScale="medium"/>
+                                            <imageReference key="image" image="wifi man grey 2" symbolScale="medium"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="regular"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -140,6 +145,19 @@
                                             <constraint firstAttribute="height" constant="30" id="Nmi-le-WFl"/>
                                         </constraints>
                                     </imageView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05M-7P-ld3">
+                                        <rect key="frame" x="311" y="15" width="40" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="BJh-rL-rtC"/>
+                                            <constraint firstAttribute="width" constant="40" id="Jwn-zs-hKe"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                        <color key="tintColor" name="Text grey"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Skip">
+                                            <color key="titleColor" name="Text grey"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -147,6 +165,7 @@
                                     <constraint firstItem="nax-I1-dp4" firstAttribute="leading" secondItem="gT6-92-Go5" secondAttribute="leading" constant="8" id="5Et-yY-ins"/>
                                     <constraint firstItem="ooM-Y7-C6j" firstAttribute="centerX" secondItem="gT6-92-Go5" secondAttribute="centerX" id="7ll-so-wwE"/>
                                     <constraint firstItem="6BT-Eq-hcD" firstAttribute="centerX" secondItem="gT6-92-Go5" secondAttribute="centerX" id="8iu-h4-V23"/>
+                                    <constraint firstAttribute="trailing" secondItem="05M-7P-ld3" secondAttribute="trailing" constant="8" id="F90-9B-gID"/>
                                     <constraint firstItem="v2n-8t-cBj" firstAttribute="centerX" secondItem="gT6-92-Go5" secondAttribute="centerX" id="Ffm-5O-FnH"/>
                                     <constraint firstItem="j4f-gS-nOe" firstAttribute="leading" secondItem="gT6-92-Go5" secondAttribute="leading" constant="8" id="Gaj-1s-zSc"/>
                                     <constraint firstAttribute="bottom" secondItem="RN4-MZ-r6J" secondAttribute="bottom" constant="26" id="If6-t7-aPr"/>
@@ -154,9 +173,11 @@
                                     <constraint firstItem="ooM-Y7-C6j" firstAttribute="centerY" secondItem="gT6-92-Go5" secondAttribute="centerY" constant="-8" id="Qv8-S1-Vjd"/>
                                     <constraint firstItem="RN4-MZ-r6J" firstAttribute="top" secondItem="gT6-92-Go5" secondAttribute="top" constant="10" id="Yvg-yi-xet"/>
                                     <constraint firstAttribute="height" constant="66" id="e3g-tr-5EW"/>
+                                    <constraint firstItem="j4f-gS-nOe" firstAttribute="top" secondItem="05M-7P-ld3" secondAttribute="bottom" constant="11" id="mGo-4X-BxC"/>
                                     <constraint firstAttribute="trailing" secondItem="RN4-MZ-r6J" secondAttribute="trailing" constant="8" id="mXb-4x-ojj"/>
                                     <constraint firstItem="j4f-gS-nOe" firstAttribute="top" secondItem="6BT-Eq-hcD" secondAttribute="bottom" constant="5" id="qyU-WZ-RNo"/>
                                     <constraint firstItem="6BT-Eq-hcD" firstAttribute="centerY" secondItem="gT6-92-Go5" secondAttribute="centerY" constant="-8" id="rZO-Fu-qxj"/>
+                                    <constraint firstItem="05M-7P-ld3" firstAttribute="top" secondItem="gT6-92-Go5" secondAttribute="top" constant="15" id="u4a-jn-Qi2"/>
                                     <constraint firstAttribute="width" constant="359" id="z8u-yt-aX4"/>
                                     <constraint firstAttribute="trailing" secondItem="j4f-gS-nOe" secondAttribute="trailing" constant="8" id="zet-Kk-xgf"/>
                                 </constraints>
@@ -197,7 +218,7 @@
                                         <color key="tintColor" name="Secondary Grey"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal">
-                                            <imageReference key="image" image="wifi man grey" symbolScale="medium"/>
+                                            <imageReference key="image" image="wifi man grey 2" symbolScale="medium"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="regular"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -597,6 +618,7 @@
                 <outlet property="searchTFView" destination="sja-AP-Tc4" id="ELW-Ro-pSa"/>
                 <outlet property="searchView" destination="TDA-ZG-dfd" id="ihD-JV-emC"/>
                 <outlet property="shadowLbl" destination="j4f-gS-nOe" id="uns-3c-Q2T"/>
+                <outlet property="skipBtn" destination="05M-7P-ld3" id="GOA-ks-Eng"/>
                 <outlet property="swipeTxtLbl" destination="A8B-bt-df2" id="plB-4W-MEu"/>
                 <outlet property="toolTipBtn" destination="dX8-SZ-fyC" id="alY-DK-CNl"/>
                 <outlet property="viewCountsLbl" destination="pXu-df-J1k" id="YjA-1D-4FB"/>
@@ -666,7 +688,7 @@
         <image name="rocket" width="32" height="32"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="tooltip_icon" width="48" height="48"/>
-        <image name="wifi man grey" width="162" height="152"/>
+        <image name="wifi man grey 2" width="162" height="152"/>
         <namedColor name="Danger">
             <color red="0.92500001192092896" green="0.30199998617172241" blue="0.30199998617172241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

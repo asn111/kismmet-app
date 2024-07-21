@@ -447,6 +447,21 @@ class AppFunctions {
         preferences.set(selectedChecks, forKey: selectedCheck)
         preferences.synchronize()
     }
+    
+    open class func setSelectedCheckArrValues(values: [Int]) {
+        // Fetch the existing array from UserDefaults
+        var selectedChecks = getSelectedCheckArray()
+        
+        // Remove all existing values
+        selectedChecks.removeAll()
+        
+        // Add the new values to the array
+        selectedChecks.append(contentsOf: values)
+        
+        // Save the updated array back to UserDefaults
+        preferences.set(selectedChecks, forKey: "selectedCheck")
+        preferences.synchronize()
+    }
 
     open class func getSelectedCheckArray() -> [Int]{
         var value = [Int]()

@@ -27,6 +27,12 @@ class ContactInformainVC: MainViewController {
     var socialAccounts = [SocialAccModel]()
     
     var contactId = 0
+    var isOwnInfo = false
+    
+    var isStarred = false
+    var sentMsg = ""
+    var userdId = ""
+    
     
     var linkedInContactValue = ""
     var whatsAppContactValue = ""
@@ -231,21 +237,25 @@ class ContactInformainVC: MainViewController {
             
             let contactTypeId = contactAccounts.filter { $0.contactType == contactType }.first?.contactTypeId ?? 0
             
-            var entry: [String: Any] = [
-                "contactTypeId": contactTypeId,
-                "value": contactValues[index]
-            ]
-            
-            if includeIsShared {
-                let isShared = AppFunctions.getSelectedCheckArray().contains(contactTypeId) ? true : false
-                entry["isShared"] = isShared
+            // Only proceed if the contactTypeId is in the selected array
+            if AppFunctions.getSelectedCheckArray().contains(contactTypeId) {
+                var entry: [String: Any] = [
+                    "contactTypeId": contactTypeId,
+                    "value": contactValues[index]
+                ]
+                
+                if includeIsShared {
+                    let isShared = AppFunctions.getSelectedCheckArray().contains(contactTypeId) ? true : false
+                    entry["isShared"] = isShared
+                }
+                
+                entries.append(entry)
             }
-            
-            entries.append(entry)
         }
         
         return entries
     }
+
 
 
     func checkForChanges() -> Bool {
@@ -280,6 +290,10 @@ class ContactInformainVC: MainViewController {
         } else {
             self.dismiss(animated: true)
         }
+    }
+    
+    @objc func skipBtnPressed(sender: UIButton) {
+        sendReq()
     }
     
     @objc func checkBtnPressed(sender: UIButton) {
@@ -337,6 +351,8 @@ class ContactInformainVC: MainViewController {
         Logs.show(message: "\nlinkedIn: \(linkedInContactValue)\n whatsapp: \(whatsAppContactValue)\n wechat: \(wechatContactValue)\n direct: \(directContactValue)\n insta: \(instagramContactValue)\n kismmetMsg: \(kismmetMsgContactValue)")
         if isSetting {
            addContacts()
+        } else if isOwnInfo {
+            sendReq()
         } else {
             if AppFunctions.getSelectedCheckArray().isEmpty {
                 AppFunctions.showSnackBar(str: "Please select at least one contact to reach you back.")
@@ -395,13 +411,11 @@ class ContactInformainVC: MainViewController {
                             self.connectedContactAccount = val
                             if !self.connectedContactAccount.isEmpty {
 
-                                /*connectedContactAccount.forEach { contact in
-                                    if contact.isShared {
-                                        AppFunctions.setSelectedCheckValue(value: contact.contactTypeId)
-                                    }
-                                }
+                                let selectedContacts = val.filter { $0.isShared && $0.contactTypeId != nil }
+                                let contactTypeIds = selectedContacts.compactMap { $0.contactTypeId }
+                                AppFunctions.setSelectedCheckArrValues(values: contactTypeIds)
                                 
-                                baselineSelectedCheckArray = AppFunctions.getSelectedCheckArray()*/
+                                baselineSelectedCheckArray = AppFunctions.getSelectedCheckArray()
                                 
                                 if let linkedin = extractValue(forID: 1, from: self.connectedContactAccount) {
                                     let socialAcc = SocialAccModel()
@@ -604,6 +618,58 @@ class ContactInformainVC: MainViewController {
             .disposed(by: dispose_Bag)
     }
     
+    func sendReq(isSkip: Bool = false) {
+        
+        self.showPKHUD(WithMessage: "Fetching...")
+        
+        var pram : [String: Any]
+        
+        if isSkip {
+            pram = ["userId":userdId,
+                    "message":sentMsg]
+        } else {
+            let contactTypes = ["LinkedIn", "WhatsApp", "WeChat", "Text/Call", "Instagram", "Other"]
+            let contactValues = [linkedInContactValue, whatsAppContactValue, wechatContactValue, directContactValue, instagramContactValue, kismmetMsgContactValue]
+            
+            let filteredContacts = createContactEntries(for: contactTypes, contactValues: contactValues, includeIsShared: false)
+            
+            pram = ["contactInformations": filteredContacts,
+                    "userId":userdId,
+                    "message":sentMsg]
+        }
+        
+        Logs.show(message: "SKILLS PRAM: \(pram)")
+        
+        APIService
+            .singelton
+            .sendUserContactRequest(pram: pram)
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        if val {
+                            self.hidePKHUD()
+                            //AppFunctions.showSnackBar(str: "Your contact request is sent")
+                            
+                            self.presentVC(id: "ReqSentVC", presentFullType: "over" ) { (vc:ReqSentVC) in
+                                vc.userId = self.userdId
+                                vc.isStarred = self.isStarred
+                            }
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
+
+    
 }
 extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
     
@@ -649,8 +715,12 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                 
                 cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
+                cell.skipBtn.addTarget(self, action: #selector(skipBtnPressed(sender:)), for: .touchUpInside)
                 cell.notifBtn.isHidden = true
-                
+
+                if isOwnInfo {
+                    cell.skipBtn.isHidden = false
+                }
                 
                 return cell
             case 1:
@@ -699,6 +769,8 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                 
                 if isSetting {
                     cell.genBtn.setTitle("Save", for: .normal)
+                } else if isOwnInfo {
+                    cell.genBtn.setTitle("Send", for: .normal)
                 } else {
                     cell.genBtn.setTitle("Accept", for: .normal)
                 }
@@ -727,15 +799,9 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                     cell.generalTV.textColor = UIColor(named: "Text grey")
                     cell.chkBtn.tag = contactAccounts[indexPath.row - 2].contactTypeId
 
-                    if !AppFunctions.getSelectedCheckArray().isEmpty {
-                        let selectedIds = AppFunctions.getSelectedCheckArray()
-                        let currentContactTypeId = contactAccounts[indexPath.row - 2].contactTypeId
-                        
-                        if selectedIds.contains(currentContactTypeId!) {
-                            cell.chkBtn.tintColor = UIColor(named: "Success")
-                        } else {
-                            cell.chkBtn.tintColor = UIColor.systemGray2
-                        }
+                    let selectedIds = AppFunctions.getSelectedCheckArray()
+                    if selectedIds.contains(contactAccounts[indexPath.row - 2].contactTypeId) {
+                        cell.chkBtn.tintColor = UIColor(named: "Success")
                     } else {
                         cell.chkBtn.tintColor = UIColor.systemGray2
                     }
@@ -793,8 +859,14 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                         }
                     }
                     
+                    let selectedIds = AppFunctions.getSelectedCheckArray()
+                    if selectedIds.contains(contactAccounts[indexPath.row - 2].contactTypeId) {
+                        cell.chkBtn.tintColor = UIColor(named: "Success")
+                    } else {
+                        cell.chkBtn.tintColor = UIColor.systemGray2
+                    }
                     
-                    if !AppFunctions.getSelectedCheckArray().isEmpty {
+                    /*if !AppFunctions.getSelectedCheckArray().isEmpty {
                         let selectedIds = AppFunctions.getSelectedCheckArray()
                         let currentContactTypeId = contactAccounts[indexPath.row - 2].contactTypeId
                         
@@ -805,7 +877,7 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                         }
                     } else {
                         cell.chkBtn.tintColor = UIColor.systemGray2
-                    }
+                    }*/
                     
                     var socialObjArr = [SocialAccModel]()
                     

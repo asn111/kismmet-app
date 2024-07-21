@@ -18,11 +18,11 @@ class ReqSentVC: MainViewController {
 
         if starBtn.currentImage == UIImage(systemName: "star") {
             ApiService.markStarUser(val: userId)
-            AppFunctions.showSnackBar(str: "User has been starred")
+            //AppFunctions.showSnackBar(str: "User has been starred")
             starBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
         } else {
             ApiService.markStarUser(val: userId)
-            AppFunctions.showSnackBar(str: "User has been unstarred")
+            //AppFunctions.showSnackBar(str: "User has been unstarred")
             starBtn.setImage(UIImage(systemName: "star"), for: .normal)
         }
         
@@ -61,7 +61,7 @@ class ReqSentVC: MainViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        generalPublisher.onNext("exitView")
+        //generalPublisher.onNext("exitView")
     }
 
     

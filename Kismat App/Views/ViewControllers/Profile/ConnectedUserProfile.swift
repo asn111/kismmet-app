@@ -52,9 +52,14 @@ class ConnectedUserProfile: MainViewController {
         Logs.show(message: "User ID: \(String(describing: userModel.userId))")
         Logs.show(message: "User: \(userModel)")
         
-        if userModel.contactInformationsSharedByOther != nil {
-            socialAccModel = userModel.contactInformationsSharedByOther
-
+        if isFromReq {
+            if userModel.contactInformationsSharedByUser != nil {
+                socialAccModel = userModel.contactInformationsSharedByUser
+            }
+        } else {
+            if userModel.contactInformationsSharedByOther != nil {
+                socialAccModel = userModel.contactInformationsSharedByOther
+            }
         }
         
         if !userModel.isRead {
@@ -165,12 +170,7 @@ class ConnectedUserProfile: MainViewController {
     }
     
     @objc func picBtnPressed(sender: UIButton) {
-        if isFromReq {
-            self.dismiss(animated: true)
-        } else {
-            self.navigationController?.popViewController(animated: true)
-        }
-        
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func sendContactRocket(sender: UIButton) {
@@ -451,13 +451,13 @@ extension ConnectedUserProfile : UITableViewDelegate, UITableViewDataSource {
                     switch socialAccModel[indexPath.row - 4].contactTypeId {
                         case 1:
                             cell.socialImgView.image = UIImage(named: "LinkedIn")
-                        case 2:
+                        case 4:
                             cell.socialImgView.image = UIImage(named: "whatsapp")
                         case 3:
                             cell.socialImgView.image = UIImage(named: "WeChat")
-                        case 4:
-                            cell.socialImgView.image = UIImage(named: "phone")
                         case 5:
+                            cell.socialImgView.image = UIImage(named: "phone")
+                        case 2:
                             cell.socialImgView.image = UIImage(named: "Instagram")
                         //case 6:
                             //cell.socialImgView.image = UIImage(named: "message")

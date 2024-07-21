@@ -22,8 +22,6 @@ class DenyConfirmVC: MainViewController {
             self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
             
         }
-        
-
     }
     
     @IBAction func mainActionBtnPressed(_ sender: Any) {

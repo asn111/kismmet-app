@@ -64,7 +64,8 @@ class OtherUserProfile: MainViewController {
         _ = generalPublisher.subscribe(onNext: {[weak self] val in
             
             if val == "exitView" {
-                self?.navigationController?.popViewController(animated: true)
+                //self?.navigationController?.popViewController(animated: true)
+                self?.userProfile(id: self?.userId ?? "")
             }
             
         }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
@@ -408,6 +409,7 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                         cell.rocketBtn.tintColor = UIColor(named: "Success")
                     } else {
                         cell.rocketBtn.tintColor = UIColor(named: "Secondary Grey")
+                        cell.rocketBtn.addTarget(self, action: #selector(sendContactRocket(sender:)), for: .touchUpInside)
                     }
                 }
                     

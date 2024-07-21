@@ -41,7 +41,6 @@ class ReqConVC: MainViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        getMyContacts()
 
     }
     
@@ -257,37 +256,6 @@ class ReqConVC: MainViewController {
             .disposed(by: dispose_Bag)
     }
     
-    func getMyContacts() {
-        
-        
-        APIService
-            .singelton
-            .getConnectedContactsAccTypes()
-            .subscribe({[weak self] model in
-                guard let self = self else {return}
-                switch model {
-                    case .next(let val):
-                        if val.count > 0 {
-                                val.forEach { contact in
-                                    if contact.isShared {
-                                        AppFunctions.setSelectedCheckValue(value: contact.contactTypeId)
-                                    }
-                                }
-                        } else {
-                            self.hidePKHUD()
-                        }
-                    case .error(let error):
-                        print(error)
-                        self.hidePKHUD()
-                    case .completed:
-                        print("completed")
-                        self.hidePKHUD()
-                }
-            })
-            .disposed(by: dispose_Bag)
-    }
-    
-    
 }
 
 //MARK: TableView Extention
@@ -317,7 +285,7 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                 UIView.transition(with: cell.btnsImg,
                                   duration: 0.1, // Adjust the duration as needed
                                   options:.transitionCrossDissolve,
-                                  animations: { cell.btnsImg.image = UIImage(named: "conSelected") },
+                                  animations: { cell.btnsImg.image = UIImage(named: "reqSelected") },
                                   completion: nil)
             }
             
@@ -328,7 +296,7 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                 UIView.transition(with: cell.btnsImg,
                                   duration: 0.1, // Adjust the duration as needed
                                   options:.transitionCrossDissolve,
-                                  animations: { cell.btnsImg.image = UIImage(named: "reqSelected") },
+                                  animations: { cell.btnsImg.image = UIImage(named: "conSelected") },
                                   completion: nil)
             }
             
@@ -516,6 +484,7 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                         self.pushVC(id: "ConnectedUserProfile") { (vc:ConnectedUserProfile) in
                             vc.userModel = users[indexPath.row - 1]
                             vc.userId = users[indexPath.row - 1].userId
+                            vc.isFromReq = true
                         }
                     } else {
                         self.presentVC(id: "OtherUserProfile", presentFullType: "over" ) { (vc:OtherUserProfile) in
