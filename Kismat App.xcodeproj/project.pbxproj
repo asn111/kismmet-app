@@ -22,6 +22,8 @@
 		29350A2529D1C0D100F19BD5 /* OtherUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29350A2429D1C0D100F19BD5 /* OtherUserProfile.swift */; };
 		29350A2729D1C51200F19BD5 /* ViewedByMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29350A2629D1C51200F19BD5 /* ViewedByMe.swift */; };
 		29350A2929D3A78800F19BD5 /* ProfileSetupExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29350A2829D3A78800F19BD5 /* ProfileSetupExtentions.swift */; };
+		293564852C5100E700568D73 /* oval_Sketch.gif in Resources */ = {isa = PBXBuildFile; fileRef = 293564842C5100E600568D73 /* oval_Sketch.gif */; };
+		293564872C5105E900568D73 /* circle_Sketch.gif in Resources */ = {isa = PBXBuildFile; fileRef = 293564862C5105E800568D73 /* circle_Sketch.gif */; };
 		2938E73E2A02CD7D00C21AEA /* SocialLinks VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2938E73D2A02CD7D00C21AEA /* SocialLinks VC.swift */; };
 		2940575F2B32D8930036699F /* StatusTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2940575D2B32D8920036699F /* StatusTVCell.swift */; };
 		294057602B32D8930036699F /* StatusTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2940575E2B32D8920036699F /* StatusTVCell.xib */; };
@@ -183,6 +185,8 @@
 		29350A2429D1C0D100F19BD5 /* OtherUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserProfile.swift; sourceTree = "<group>"; };
 		29350A2629D1C51200F19BD5 /* ViewedByMe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewedByMe.swift; sourceTree = "<group>"; };
 		29350A2829D3A78800F19BD5 /* ProfileSetupExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupExtentions.swift; sourceTree = "<group>"; };
+		293564842C5100E600568D73 /* oval_Sketch.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = oval_Sketch.gif; sourceTree = "<group>"; };
+		293564862C5105E800568D73 /* circle_Sketch.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = circle_Sketch.gif; sourceTree = "<group>"; };
 		2938E73D2A02CD7D00C21AEA /* SocialLinks VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SocialLinks VC.swift"; sourceTree = "<group>"; };
 		2940575D2B32D8920036699F /* StatusTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTVCell.swift; sourceTree = "<group>"; };
 		2940575E2B32D8920036699F /* StatusTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusTVCell.xib; sourceTree = "<group>"; };
@@ -489,6 +493,8 @@
 		29748F3F2C32F9BE00DB89E9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				293564862C5105E800568D73 /* circle_Sketch.gif */,
+				293564842C5100E600568D73 /* oval_Sketch.gif */,
 				29EE7DBD2C368DE800A1E877 /* iOSDropDownF */,
 				29748F402C32F9D500DB89E9 /* rocketLaunch.gif */,
 			);
@@ -1145,6 +1151,8 @@
 				299FDD982996C8ED0049741B /* Roboto-Black.ttf in Resources */,
 				29748F412C32F9D500DB89E9 /* rocketLaunch.gif in Resources */,
 				299FDD162996796A0049741B /* Assets.xcassets in Resources */,
+				293564852C5100E700568D73 /* oval_Sketch.gif in Resources */,
+				293564872C5105E900568D73 /* circle_Sketch.gif in Resources */,
 				29985F3829981ADE001F769B /* GeneralHeaderTVCell.xib in Resources */,
 				2964617329EECC55003FD692 /* SuezOne-Regular.ttf in Resources */,
 				29F5290429970DA500FE2EBA /* GeneralTextviewTVCell.xib in Resources */,
@@ -1593,7 +1601,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1633,7 +1641,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;

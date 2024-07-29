@@ -17,7 +17,7 @@ class ContactInfoTVCell: UITableViewCell {
     @IBOutlet weak var toolTipBtn: RoundCornerButton!
     @IBOutlet weak var socialPicIV: UIImageView!
    
-    @IBOutlet weak var contactTF: DropDownTF!
+    @IBOutlet weak var contactTF: FormTextField!
     
     override func awakeFromNib() {
         super.awakeFromNib()

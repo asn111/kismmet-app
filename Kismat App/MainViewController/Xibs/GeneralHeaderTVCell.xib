@@ -89,7 +89,7 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="bl"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                <real key="value" value="28"/>
+                                                <real key="value" value="26"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isFontSuezOne" value="YES"/>
                                         </userDefinedRuntimeAttributes>

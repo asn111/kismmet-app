@@ -13,6 +13,7 @@ import PKHUD
 //import RxRealm
 import RxSwift
 import RxCocoa
+import FLAnimatedImage
 
 
 //MARK: Public Extention, NSObject
@@ -366,26 +367,42 @@ extension UITextView : UITextViewDelegate
     
     /// Adds a placeholder UILabel to this UITextView
     func addPlaceholder(_ placeholderText: String, size: CGFloat) {
+        if !self.text.isEmpty {
+            // If text exists, remove the placeholder label if it exists
+            if let existingPlaceholder = self.viewWithTag(100) as? UILabel {
+                existingPlaceholder.removeFromSuperview()
+            }
+            return
+        }
+        
         guard let existingPlaceholder = self.viewWithTag(100) as? UILabel else {
             // If no placeholder label exists, create and configure it
             let placeholderLabel = UILabel()
             
             placeholderLabel.text = placeholderText
-            placeholderLabel.sizeToFit()
-            
             placeholderLabel.font = UIFont(name: "Roboto", size: size)?.regular
             placeholderLabel.textColor = UIColor(named: "Text grey")
             placeholderLabel.tag = 100
-            placeholderLabel.isHidden = !self.text.isEmpty
             placeholderLabel.numberOfLines = 0
+            placeholderLabel.lineBreakMode = .byWordWrapping
+            
+            // Configure placeholder label frame
+            placeholderLabel.frame = CGRect(x: 5, y: 0, width: self.frame.size.width - 10, height: self.frame.size.height - 16)
+            placeholderLabel.isHidden = !self.text.isEmpty
             
             self.addSubview(placeholderLabel)
             self.resizePlaceholder() // Assuming this method adjusts the layout based on the placeholder
+            
             self.delegate = self // Ensure this line is appropriate for your use case
             
             return
         }
+        
+        // Update existing placeholder text if it exists
+        existingPlaceholder.text = placeholderText
+        existingPlaceholder.isHidden = !self.text.isEmpty
     }
+
 }
 
 //MARK: String
@@ -787,6 +804,57 @@ extension UIButton {
         attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(location: 0, length: text.count))
         self.setAttributedTitle(attributedString, for: .normal)
     }
+    
+   
+    func showGifAnimation(imageName: String, duration: TimeInterval = 5.0) {
+        guard let imageData = gifImageToData(imageName: imageName) else {
+            print("Could not load GIF data")
+            return
+        }
+        
+        let gifImageView = FLAnimatedImageView()
+        let gifImage = FLAnimatedImage(animatedGIFData: imageData)
+        gifImageView.animatedImage = gifImage
+        
+        // Calculate the new frame
+        let extraSize: CGFloat = 35 // Adjust this value to increase/decrease the extra size
+        let newWidth = self.bounds.width + extraSize
+        let newHeight = self.bounds.height + extraSize
+        let newX = self.bounds.midX - newWidth / 2
+        let newY = self.bounds.midY - newHeight / 2
+        gifImageView.frame = CGRect(x: newX, y: newY, width: newWidth, height: newHeight)
+        
+        
+        gifImageView.contentMode = .scaleAspectFit
+        gifImageView.backgroundColor = .clear
+        
+        self.addSubview(gifImageView)
+
+        // Add bouncing animation to the button
+        let bounceAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
+        bounceAnimation.values = [1.0, 1.2, 0.8, 1.1, 0.9, 1.0]
+        bounceAnimation.keyTimes = [0, 0.2, 0.4, 0.6, 0.8, 1]
+        bounceAnimation.duration = 0.6
+        bounceAnimation.repeatCount = Float(duration / bounceAnimation.duration)
+        self.layer.add(bounceAnimation, forKey: "bounce")
+        
+        // Remove gifImageView after duration
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+            gifImageView.removeFromSuperview()
+            self.layer.removeAnimation(forKey: "bounce")
+        }
+    }
+    
+    private func gifImageToData(imageName: String, ofType type: String = "gif") -> Data? {
+        guard let imagePath = Bundle.main.path(forResource: imageName, ofType: type),
+              let imageData = try? Data(contentsOf: URL(fileURLWithPath: imagePath)) else {
+            print("GIF file not found or could not be loaded")
+            return nil
+        }
+        
+        return imageData
+    }
+    
 }
 
 

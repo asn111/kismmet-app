@@ -68,7 +68,7 @@
                                             <constraint firstAttribute="width" constant="25" id="uAU-4h-UsF"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dcz-Qh-U6B" customClass="DropDownTF" customModule="iOSDropDown">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dcz-Qh-U6B" customClass="FormTextField" customModule="Kismmet" customModuleProvider="target">
                                         <rect key="frame" x="41" y="5" width="259" height="50"/>
                                         <color key="backgroundColor" name="Cell BG Base Grey"/>
                                         <constraints>
@@ -129,7 +129,7 @@
                                         <real key="value" value="6"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                        <color key="value" name="Cell BG Base Grey"/>
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
                                         <size key="value" width="0.29999999999999999" height="5"/>
@@ -169,9 +169,9 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
-                <outlet property="chkBtn" destination="5Le-Ke-D7a" id="g9c-C5-ifS"/>
-                <outlet property="contactTF" destination="dcz-Qh-U6B" id="YOY-B6-di8"/>
-                <outlet property="socialPicIV" destination="lCZ-i9-LFY" id="f7h-v9-X87"/>
+                <outlet property="chkBtn" destination="5Le-Ke-D7a" id="Slb-ux-9CL"/>
+                <outlet property="contactTF" destination="dcz-Qh-U6B" id="wRT-Pq-gl5"/>
+                <outlet property="socialPicIV" destination="lCZ-i9-LFY" id="Mxi-1x-FbJ"/>
                 <outlet property="textLbl" destination="2gY-nL-Qmu" id="95j-m7-IrT"/>
                 <outlet property="tfView" destination="9zC-Kp-NHp" id="Ije-Xj-qil"/>
                 <outlet property="toolTipBtn" destination="cV1-eL-Ofh" id="BJZ-36-Blj"/>
@@ -181,7 +181,7 @@
     </objects>
     <designables>
         <designable name="2gY-nL-Qmu">
-            <size key="intrinsicContentSize" width="290.66666666666669" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="293.33333333333331" height="16.333333333333332"/>
         </designable>
         <designable name="cV1-eL-Ofh">
             <size key="intrinsicContentSize" width="48" height="48"/>
@@ -198,7 +198,7 @@
             <color red="0.20800000429153442" green="0.31000000238418579" blue="0.35699999332427979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

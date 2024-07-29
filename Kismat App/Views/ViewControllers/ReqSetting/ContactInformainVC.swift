@@ -15,6 +15,12 @@ class ContactInformainVC: MainViewController {
     
     @IBOutlet weak var contactTV: UITableView!
     
+    var dropdownTableView: UITableView!
+    var dropdownData: [String] = ["Option 1", "Option 2", "Option 3"]
+    var dropdownDataId: [Int] = [Int]()
+    var activeTextFieldDD: UITextField?
+    var activeCell: ContactInfoTVCell?
+    
     var isSetting = false
     var userdbModel : Results<UserDBModel>!
     var img = UIImage(named: "placeholder")
@@ -25,6 +31,8 @@ class ContactInformainVC: MainViewController {
     var contactAccounts = [ContactTypesModel]()
     var connectedContactAccount = [ContactsModel]()
     var socialAccounts = [SocialAccModel]()
+    
+    var selectedTag = -1
     
     var contactId = 0
     var isOwnInfo = false
@@ -96,6 +104,13 @@ class ContactInformainVC: MainViewController {
         contactTV.register(UINib(nibName: "ContactTextViewTVcell", bundle: nil), forCellReuseIdentifier: "ContactTextViewTVcell")
         contactTV.register(UINib(nibName: "GeneralButtonTVCell", bundle: nil), forCellReuseIdentifier: "GeneralButtonTVCell")
         
+        // Initialize dropdown table view
+        dropdownTableView = UITableView()
+        dropdownTableView.dataSource = self
+        dropdownTableView.delegate = self
+        dropdownTableView.isHidden = true
+        view.addSubview(dropdownTableView)
+        
     }
     
     func extractValue(forID id: Int, from objects: [ContactsModel]) -> String? {
@@ -115,15 +130,8 @@ class ContactInformainVC: MainViewController {
         
         var activeView: UIView?
         if let activeTextField = activeTextField {
-//            if let ddTf = activeTextField as? DropDownTF {
-//                ddTf.touchAction()
-//            }
             activeView = activeTextField
-        } else if let activeTextView = activeTextView {
-            activeView = activeTextView
         }
-        
-        
         
         if let activeView = activeView {
             let rect = contactTV.convert(activeView.bounds, from: activeView)
@@ -134,13 +142,72 @@ class ContactInformainVC: MainViewController {
         }
     }
     
-    
     @objc private func keyboardWillHide(notification: NSNotification) {
-
-        
         contactTV.contentInset = .zero
+        contactTV.scrollIndicatorInsets = .zero
     }
 
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        var socialObjArr = [SocialAccModel]()
+        selectedTag = textField.tag
+
+        if textField.tag == 1 {
+            
+            dropdownData.removeAll()
+            dropdownDataId.removeAll()
+            socialObjArr = socialAccounts.filter {$0.linkType == "LinkedIn"}
+            dropdownData = socialObjArr.compactMap {$0.linkTitle}
+            dropdownDataId = socialObjArr.compactMap {$0.socialAccountId}
+
+            if !dropdownData.isEmpty {
+                activeTextFieldDD = textField
+                let cell = contactTV.cellForRow(at: IndexPath(row: textField.tag, section: 0)) as? ContactInfoTVCell
+                activeCell = cell
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.showDropdown(for: textField)
+                    
+                }
+            }
+            
+        } else if textField.tag == 2 {
+            
+            dropdownData.removeAll()
+            dropdownDataId.removeAll()
+            socialObjArr = socialAccounts.filter {$0.linkType == "Instagram"}
+            dropdownData = socialObjArr.compactMap {$0.linkTitle}
+            dropdownDataId = socialObjArr.compactMap {$0.socialAccountId}
+
+            if !dropdownData.isEmpty {
+                activeTextFieldDD = textField
+                let cell = contactTV.cellForRow(at: IndexPath(row: textField.tag, section: 0)) as? ContactInfoTVCell
+                activeCell = cell
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.showDropdown(for: textField)
+                    
+                }
+            }
+        } else if textField.tag == 3 {
+            
+            dropdownData.removeAll()
+            dropdownDataId.removeAll()
+            socialObjArr = socialAccounts.filter {$0.linkType == "weChat"}
+            dropdownData = socialObjArr.compactMap {$0.linkTitle}
+            dropdownDataId = socialObjArr.compactMap {$0.socialAccountId}
+
+            if !dropdownData.isEmpty {
+                
+                activeTextFieldDD = textField
+                let cell = contactTV.cellForRow(at: IndexPath(row: textField.tag, section: 0)) as? ContactInfoTVCell
+                activeCell = cell
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.showDropdown(for: textField)
+                    
+                }
+            }
+        }
+        
+    }
     
     @objc func textFieldDidChangeSelection(_ textField: UITextField) {
         
@@ -167,6 +234,8 @@ class ContactInformainVC: MainViewController {
         //let isTextFieldBlank = textField.text?.isTFBlank ?? true
         //textField.backgroundColor = isTextFieldBlank ? UIColor.red : UIColor.clear
         activeTextField = nil
+        hideDropdown()
+
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -174,6 +243,18 @@ class ContactInformainVC: MainViewController {
         return false
     }
 
+    // MARK: - Dropdown Handling
+    
+    func showDropdown(for textField: UITextField) {
+        dropdownTableView.reloadData()
+        let frame = textField.convert(textField.bounds, to: view)
+        dropdownTableView.frame = CGRect(x: frame.origin.x, y: frame.origin.y + frame.height, width: frame.width, height: 120)
+        dropdownTableView.isHidden = false
+    }
+    
+    func hideDropdown() {
+        dropdownTableView.isHidden = true
+    }
     
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -210,7 +291,8 @@ class ContactInformainVC: MainViewController {
             }
         } else {
             cell.countLbl.text = "\(100 - textView.text.count) / 100 remaining"
-            
+            kismmetMsgContactValue = !textView.text!.isTFBlank ? textView.text! : ""
+
             // Hide the placeholder label when the text is not empty
             if let placeholderLabel = textView.viewWithTag(100) as? UILabel {
                 placeholderLabel.isHidden = true
@@ -528,7 +610,7 @@ class ContactInformainVC: MainViewController {
         
         self.showPKHUD(WithMessage: "Fetching...")
         
-        let contactTypes = ["LinkedIn", "WhatsApp", "WeChat", "Text/Call", "Instagram", "Other"]
+        let contactTypes = contactAccounts.map { $0.contactType ?? "" } //["LinkedIn", "WhatsApp", "WeChat", "Text/Call", "Instagram", "Other"]
         let contactValues = [linkedInContactValue, whatsAppContactValue, wechatContactValue, directContactValue, instagramContactValue, kismmetMsgContactValue]
         
         let filteredContacts = createContactEntries(for: contactTypes, contactValues: contactValues, includeIsShared: true)
@@ -567,7 +649,7 @@ class ContactInformainVC: MainViewController {
         
         self.showPKHUD(WithMessage: "Fetching...")
         
-        let contactTypes = ["LinkedIn", "WhatsApp", "WeChat", "Text/Call", "Instagram", "Other"]
+        let contactTypes = contactAccounts.map { $0.contactType ?? "" }  //["LinkedIn", "WhatsApp", "WeChat", "Text/Call", "Instagram", "Other"]
         let contactValues = [linkedInContactValue, whatsAppContactValue, wechatContactValue, directContactValue, instagramContactValue, kismmetMsgContactValue]
         
         let filteredContacts = createContactEntries(for: contactTypes, contactValues: contactValues, includeIsShared: false)
@@ -674,325 +756,355 @@ class ContactInformainVC: MainViewController {
 extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contactAccounts.count + 4
+        if tableView == contactTV {
+            return contactAccounts.count + 4
+        } else {
+            return dropdownData.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch indexPath.row {
-            case 0:
-                let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
-                
-                cell.headerLbl.isHidden = false
-                if isSetting {
-                    cell.headerLbl.text = "CONTACT SETTING"
-                } else {
-                    cell.headerLbl.text = "MY INFO"
-                }
-                cell.toolTipBtn.isHidden = true
-                cell.searchTFView.isHidden = true
-                cell.profileView.isHidden = false
-                cell.rattingBtn.isHidden = true
-                cell.headerView.isHidden = false
-                
-                cell.picBtn.borderWidth = 0
-                if let userDb = userdbModel {
-                    if let user = userDb.first {
-                        cell.nameLbl.text = user.userName
-                        cell.educationLbl.text = user.email
-                        cell.professionLbl.text = "\(user.countryCode)\(user.phone)"
-                        
-                        if user.profilePicture != "" {
-                            let imageUrl = URL(string: user.profilePicture)
-                            cell.profilePicBtn?.sd_setImage(with: imageUrl, for: .normal , placeholderImage: img) { (image, error, imageCacheType, url) in }
-                        } else {
-                            cell.profilePicBtn.setImage(img, for: .normal)
+        if tableView == contactTV {
+            
+            switch indexPath.row {
+                case 0:
+                    let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
+                    
+                    cell.headerLbl.isHidden = false
+                    if isSetting {
+                        cell.headerLbl.text = "CONTACT SETTINGS"
+                    } else {
+                        cell.headerLbl.text = "MY INFO"
+                    }
+                    cell.toolTipBtn.isHidden = true
+                    cell.searchTFView.isHidden = true
+                    cell.profileView.isHidden = false
+                    cell.rattingBtn.isHidden = true
+                    cell.headerView.isHidden = false
+                    
+                    cell.picBtn.borderWidth = 0
+                    if let userDb = userdbModel {
+                        if let user = userDb.first {
+                            cell.nameLbl.text = user.userName
+                            cell.educationLbl.text = user.email
+                            cell.professionLbl.text = "\(user.countryCode)\(user.phone)"
+                            
+                            if user.profilePicture != "" {
+                                let imageUrl = URL(string: user.profilePicture)
+                                cell.profilePicBtn?.sd_setImage(with: imageUrl, for: .normal , placeholderImage: img) { (image, error, imageCacheType, url) in }
+                            } else {
+                                cell.profilePicBtn.setImage(img, for: .normal)
+                            }
+                            
                         }
                         
                     }
                     
-                }
-                
-                cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
-                cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
-                cell.skipBtn.addTarget(self, action: #selector(skipBtnPressed(sender:)), for: .touchUpInside)
-                cell.notifBtn.isHidden = true
-
-                if isOwnInfo {
-                    cell.skipBtn.isHidden = false
-                }
-                
-                return cell
-            case 1:
-                let cell : ContactInfoTVCell = tableView.dequeueReusableCell(withIdentifier: "ContactInfoTVCell", for: indexPath) as! ContactInfoTVCell
-                
-                cell.textLbl.isHidden = false
-                cell.toolTipBtn.isHidden = false
-                cell.tfView.isHidden = true
-                if let userDb = userdbModel {
-                    if let user = userDb.first {
-                        
-                        if isSetting {
-                            
-                            cell.textLbl.attributedText = NSAttributedString(string: "Contact Info you want to share", attributes:
-                                                                                    [.font: UIFont(name: "Roboto", size: 14)!.bold, .foregroundColor: UIColor(hexFromString: "4E6E81")])
-                            
-                        } else {
-                            let text = "Please choose one or more ways for \(user.userName.trimmingCharacters(in: CharacterSet.whitespaces)) to reach out!"
-                            let attributedText = NSMutableAttributedString(string: text)
-                            
-                            // Apply global styling
-                            let paragraphStyle = NSMutableParagraphStyle()
-                            paragraphStyle.alignment = .left
-                            attributedText.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedText.length))
-                            
-                            // Styling for "Terms & Conditions"
-                            let termsRange = (text as NSString).range(of: "\(user.userName.trimmingCharacters(in: CharacterSet.whitespaces))")
-                            attributedText.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Roboto", size: 14)!.bold, range: termsRange)
-                            attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexFromString: "4E6E81"), range: termsRange)
-                            
-                            cell.textLbl.attributedText = attributedText
-                        }
-                        
-                    }
-                }
-
-                return cell
-            case contactAccounts.count + 2:
-                
-                let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
-                cell.headerLblView.isHidden = true
-                return cell
-                
-            case contactAccounts.count + 3:
-                let cell : GeneralButtonTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralButtonTVCell", for: indexPath) as! GeneralButtonTVCell
-                
-                if isSetting {
-                    cell.genBtn.setTitle("Save", for: .normal)
-                } else if isOwnInfo {
-                    cell.genBtn.setTitle("Send", for: .normal)
-                } else {
-                    cell.genBtn.setTitle("Accept", for: .normal)
-                }
-                cell.genBtn.backgroundColor = UIColor(named: "Success")
-                
-                cell.genBtn.addTarget(self, action: #selector(genBtnPressed(sender:)), for: .touchUpInside)
-                return cell
-            default:
-                
-                if contactAccounts[indexPath.row - 2].contactTypeId == 6 {
+                    cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
+                    cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
+                    cell.skipBtn.addTarget(self, action: #selector(skipBtnPressed(sender:)), for: .touchUpInside)
+                    cell.notifBtn.isHidden = true
                     
-                    let cell : ContactTextViewTVcell = tableView.dequeueReusableCell(withIdentifier: "ContactTextViewTVcell", for: indexPath) as! ContactTextViewTVcell
-                                        
-                    if !kismmetMsgContactValue.isEmpty {
-                        cell.countLbl.text = "\(100 - kismmetMsgContactValue.count) / 100 remaining"
-                        cell.generalTV.text = kismmetMsgContactValue//.isEmpty ? "" : status
-                    } else {
-                        cell.generalTV.addPlaceholder(contactAccounts[indexPath.row - 2].contactType, size: 14)
-                        cell.countLbl.text = "100 / 100 remaining"
-                    }
-                    
-                    //cell.socialPicIV.image = UIImage(named: "message")
-                    cell.generalTV.tag = contactAccounts[indexPath.row - 2].contactTypeId
-                    cell.countLbl.isHidden = false
-                    cell.generalTV.delegate = self
-                    cell.generalTV.textColor = UIColor(named: "Text grey")
-                    cell.chkBtn.tag = contactAccounts[indexPath.row - 2].contactTypeId
-
-                    let selectedIds = AppFunctions.getSelectedCheckArray()
-                    if selectedIds.contains(contactAccounts[indexPath.row - 2].contactTypeId) {
-                        cell.chkBtn.tintColor = UIColor(named: "Success")
-                    } else {
-                        cell.chkBtn.tintColor = UIColor.systemGray2
-                    }
-                    
-                    cell.chkBtn.addTarget(self, action: #selector(checkBtnPressed(sender:)), for: .touchUpInside)
-
-                    if contactAccounts[indexPath.row - 2].icon != nil && contactAccounts[indexPath.row - 2].icon != "" {
-                        let imageUrl = URL(string: contactAccounts[indexPath.row - 2].icon)
-                        cell.socialPicIV?.sd_setImage(with: imageUrl , placeholderImage: UIImage(named: "placeholder")) { (image, error, imageCacheType, url) in }
-                    } else {
-                        cell.socialPicIV.image = UIImage(named: "placeholder")
+                    if isOwnInfo {
+                        cell.skipBtn.isHidden = false
                     }
                     
                     return cell
-                    
-                } else {
+                case 1:
                     let cell : ContactInfoTVCell = tableView.dequeueReusableCell(withIdentifier: "ContactInfoTVCell", for: indexPath) as! ContactInfoTVCell
-
-                    cell.textLbl.isHidden = true
-                    cell.toolTipBtn.isHidden = true
-                    cell.tfView.isHidden = false
-                    cell.chkBtn.tag = contactAccounts[indexPath.row - 2].contactTypeId
                     
-                    cell.contactTF.selectedRowColor = UIColor(named: "warning")!
-                    
-                    cell.contactTF.handleKeyboard = true
-                    cell.contactTF.isSearchEnable = true
-                    
-                    cell.contactTF.delegate = self
-                    cell.contactTF.checkMarkEnabled = true
-                    cell.contactTF.semanticContentAttribute = .forceLeftToRight
-                    cell.contactTF.updatePadding(top: 0, left: 10, bottom: 0, right: 10)
-                    cell.contactTF.textColor = UIColor(named: "Text grey")
-                    
-                    cell.contactTF.arrowSize = 8
-
-                    cell.contactTF.font = UIFont(name: "Roboto", size: 14)?.bold
-                    cell.contactTF.tag = contactAccounts[indexPath.row - 2].contactTypeId
-                    
-                    
-                    //let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-                    //cell.contactTF.addGestureRecognizer(tapGesture)
-                    
-                    cell.contactTF.didSelect { [self] selectedText, index, id in
-                        //cell.contactTF.text = "Selected String: \(selectedText) \n index: \(index) \n Id: \(id)"
-                        Logs.show(message: "Selected String: \(selectedText) \n index: \(index) \n Id: \(id) \n tag: \(cell.contactTF.tag)")
-                        //selectedContactValue =
-                        
-                        if cell.contactTF.tag == 1 {
-                            linkedInContactValue = socialAccounts.filter {$0.socialAccountId == id}.first?.linkUrl ?? ""
-                        } else if cell.contactTF.tag == 2 {
-                            instagramContactValue = socialAccounts.filter {$0.socialAccountId == id}.first?.linkUrl ?? ""
-                        } else if cell.contactTF.tag == 3 {
-                            wechatContactValue = socialAccounts.filter {$0.socialAccountId == id}.first?.linkUrl ?? ""
+                    cell.textLbl.isHidden = false
+                    cell.toolTipBtn.isHidden = false
+                    cell.tfView.isHidden = true
+                    if let userDb = userdbModel {
+                        if let user = userDb.first {
+                            
+                            if isSetting {
+                                
+                                cell.textLbl.attributedText = NSAttributedString(string: "Contact Info you want to share", attributes:
+                                                                                    [.font: UIFont(name: "Roboto", size: 14)!.bold, .foregroundColor: UIColor(hexFromString: "4E6E81")])
+                                
+                            } else {
+                                let text = "Please choose one or more ways for \(user.userName.trimmingCharacters(in: CharacterSet.whitespaces)) to reach out!"
+                                let attributedText = NSMutableAttributedString(string: text)
+                                
+                                // Apply global styling
+                                let paragraphStyle = NSMutableParagraphStyle()
+                                paragraphStyle.alignment = .left
+                                attributedText.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedText.length))
+                                
+                                // Styling for "Terms & Conditions"
+                                let termsRange = (text as NSString).range(of: "\(user.userName.trimmingCharacters(in: CharacterSet.whitespaces))")
+                                attributedText.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Roboto", size: 14)!.bold, range: termsRange)
+                                attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexFromString: "4E6E81"), range: termsRange)
+                                
+                                cell.textLbl.attributedText = attributedText
+                            }
+                            
                         }
                     }
                     
-                    let selectedIds = AppFunctions.getSelectedCheckArray()
-                    if selectedIds.contains(contactAccounts[indexPath.row - 2].contactTypeId) {
-                        cell.chkBtn.tintColor = UIColor(named: "Success")
-                    } else {
-                        cell.chkBtn.tintColor = UIColor.systemGray2
-                    }
+                    return cell
+                case contactAccounts.count + 2:
                     
-                    /*if !AppFunctions.getSelectedCheckArray().isEmpty {
-                        let selectedIds = AppFunctions.getSelectedCheckArray()
-                        let currentContactTypeId = contactAccounts[indexPath.row - 2].contactTypeId
+                    let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
+                    cell.headerLblView.isHidden = true
+                    return cell
+                    
+                case contactAccounts.count + 3:
+                    let cell : GeneralButtonTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralButtonTVCell", for: indexPath) as! GeneralButtonTVCell
+                    
+                    if isSetting {
+                        cell.genBtn.setTitle("Save", for: .normal)
+                    } else if isOwnInfo {
+                        cell.genBtn.setTitle("Send", for: .normal)
+                    } else {
+                        cell.genBtn.setTitle("Accept", for: .normal)
+                    }
+                    cell.genBtn.backgroundColor = UIColor(named: "Success")
+                    
+                    cell.genBtn.addTarget(self, action: #selector(genBtnPressed(sender:)), for: .touchUpInside)
+                    return cell
+                default:
+                    
+                    if contactAccounts[indexPath.row - 2].contactTypeId == 6 {
                         
-                        if selectedIds.contains(currentContactTypeId!) {
+                        let cell : ContactTextViewTVcell = tableView.dequeueReusableCell(withIdentifier: "ContactTextViewTVcell", for: indexPath) as! ContactTextViewTVcell
+                        
+                        cell.generalTV.text = kismmetMsgContactValue//.isEmpty ? "" : status
+                        
+                        if !kismmetMsgContactValue.isEmpty {
+                            cell.countLbl.text = "\(100 - kismmetMsgContactValue.count) / 100 remaining"
+                        } else {
+                            cell.generalTV.addPlaceholder(contactAccounts[indexPath.row - 2].contactType, size: 14)
+                            cell.countLbl.text = "100 / 100 remaining"
+                        }
+                        
+                        //cell.socialPicIV.image = UIImage(named: "message")
+                        cell.generalTV.tag = contactAccounts[indexPath.row - 2].contactTypeId
+                        cell.countLbl.isHidden = false
+                        cell.generalTV.delegate = self
+                        cell.generalTV.textColor = UIColor(named: "Text grey")
+                        cell.chkBtn.tag = contactAccounts[indexPath.row - 2].contactTypeId
+                        
+                        let selectedIds = AppFunctions.getSelectedCheckArray()
+                        if selectedIds.contains(contactAccounts[indexPath.row - 2].contactTypeId) {
                             cell.chkBtn.tintColor = UIColor(named: "Success")
                         } else {
                             cell.chkBtn.tintColor = UIColor.systemGray2
                         }
+                        
+                        cell.chkBtn.addTarget(self, action: #selector(checkBtnPressed(sender:)), for: .touchUpInside)
+                        
+                        if contactAccounts[indexPath.row - 2].icon != nil && contactAccounts[indexPath.row - 2].icon != "" {
+                            let imageUrl = URL(string: contactAccounts[indexPath.row - 2].icon)
+                            cell.socialPicIV?.sd_setImage(with: imageUrl , placeholderImage: UIImage(named: "placeholder")) { (image, error, imageCacheType, url) in }
+                        } else {
+                            cell.socialPicIV.image = UIImage(named: "placeholder")
+                        }
+                        
+                        return cell
+                        
                     } else {
-                        cell.chkBtn.tintColor = UIColor.systemGray2
-                    }*/
-                    
-                    var socialObjArr = [SocialAccModel]()
-                    
-                    switch contactAccounts[indexPath.row - 2].contactTypeId {
-                        case 1:
-                            //cell.socialPicIV.image = UIImage(named: "LinkedIn")
-                            cell.contactTF.keyboardType = .default
-                            
-                            socialObjArr = socialAccounts.filter {$0.linkType == "LinkedIn"}
-                            cell.contactTF.optionArray = socialObjArr.compactMap {$0.linkTitle}
-                            cell.contactTF.optionIds = socialObjArr.compactMap {$0.socialAccountId}
-                            
-                            cell.contactTF.arrowColor = UIColor(named: "Text grey")!
-                            cell.contactTF.arrowSize = 8
-                            
-                            if linkedInContactValue.isEmpty {
-                                if socialObjArr.count <= 1 {
-                                    cell.contactTF.text = socialObjArr.first?.linkUrl
-                                    linkedInContactValue = socialObjArr.first?.linkUrl ?? ""
-                                }
-                            } else {
-                                cell.contactTF.text = linkedInContactValue
-                            }
-                            
-                        case 2:
-                            
-                            cell.contactTF.keyboardType = .default
-                            
-                            socialObjArr = socialAccounts.filter {$0.linkType == "Instagram"}
-                            cell.contactTF.optionArray = socialObjArr.compactMap {$0.linkTitle}
-                            cell.contactTF.optionIds = socialObjArr.compactMap {$0.socialAccountId}
-                            
-                            cell.contactTF.arrowColor = UIColor(named: "Text grey")!
-                            
-                            if instagramContactValue.isEmpty {
-                                if socialObjArr.count <= 1 {
-                                    cell.contactTF.text = socialObjArr.first?.linkUrl
-                                    instagramContactValue = socialObjArr.first?.linkUrl ?? ""
-                                }
-                            } else {
-                                cell.contactTF.text = instagramContactValue
-                            }
-                            
-                        case 3:
-                            //cell.socialPicIV.image = UIImage(named: "WeChat")
-                            cell.contactTF.keyboardType = .phonePad
-                            
-                            socialObjArr = socialAccounts.filter {$0.linkType == "WeChat"}
-                            cell.contactTF.optionArray = socialObjArr.compactMap {$0.linkTitle}
-                            cell.contactTF.optionIds = socialObjArr.compactMap {$0.socialAccountId}
-                            
-                            cell.contactTF.arrowColor = UIColor(named: "Text grey")!
-                            
-                            if wechatContactValue.isEmpty {
-                                if socialObjArr.count <= 1 {
-                                    cell.contactTF.text = socialObjArr.first?.linkUrl
-                                    wechatContactValue = socialObjArr.first?.linkUrl ?? ""
-                                }
-                            } else {
-                                cell.contactTF.text = wechatContactValue
-                            }
-                        case 4:
-                            
-                            //cell.socialPicIV.image = UIImage(named: "whatsapp")
-                            cell.contactTF.keyboardType = .phonePad
-                            
-                            cell.contactTF.arrowColor = .clear
-                            
-                            if !whatsAppContactValue.isEmpty {
-                                cell.contactTF.text = whatsAppContactValue
-                            } else {
-                                cell.contactTF.text = ""
-                            }
-                           
-                        case 5:
-                            //cell.socialPicIV.image = UIImage(named: "Instagram")
-                            //cell.socialPicIV.image = UIImage(named: "phone")
-                            cell.contactTF.keyboardType = .phonePad
-                            
-                            cell.contactTF.arrowColor = .clear
-                            
-                            if !directContactValue.isEmpty {
-                                cell.contactTF.text = directContactValue
-                            } else {
-                                cell.contactTF.text = ""
-                            }
+                        let cell : ContactInfoTVCell = tableView.dequeueReusableCell(withIdentifier: "ContactInfoTVCell", for: indexPath) as! ContactInfoTVCell
+                        
+                        cell.textLbl.isHidden = true
+                        cell.toolTipBtn.isHidden = true
+                        cell.tfView.isHidden = false
+                        cell.chkBtn.tag = contactAccounts[indexPath.row - 2].contactTypeId
+                        cell.contactTF.delegate = self
 
-                        default:
-                            print("default")
+                        /*cell.contactTF.selectedRowColor = UIColor(named: "warning")!
+                        
+                        cell.contactTF.handleKeyboard = true
+                        cell.contactTF.isSearchEnable = true
+                        
+                        cell.contactTF.checkMarkEnabled = true
+                        cell.contactTF.semanticContentAttribute = .forceLeftToRight
+                        cell.contactTF.updatePadding(top: 0, left: 10, bottom: 0, right: 10)
+                        cell.contactTF.textColor = UIColor(named: "Text grey")
+                        
+                        cell.contactTF.arrowSize = 8*/
+                        
+                        cell.contactTF.font = UIFont(name: "Roboto", size: 14)?.bold
+                        cell.contactTF.tag = contactAccounts[indexPath.row - 2].contactTypeId
+                        
+                        
+                        //let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+                        //cell.contactTF.addGestureRecognizer(tapGesture)
+                        
+                        /*cell.contactTF.didSelect { [self] selectedText, index, id in
+                            //cell.contactTF.text = "Selected String: \(selectedText) \n index: \(index) \n Id: \(id)"
+                            Logs.show(message: "Selected String: \(selectedText) \n index: \(index) \n Id: \(id) \n tag: \(cell.contactTF.tag)")
+                            //selectedContactValue =
+                            
+                            
+                        }*/
+                        
+                        let selectedIds = AppFunctions.getSelectedCheckArray()
+                        if selectedIds.contains(contactAccounts[indexPath.row - 2].contactTypeId) {
+                            cell.chkBtn.tintColor = UIColor(named: "Success")
+                        } else {
+                            cell.chkBtn.tintColor = UIColor.systemGray2
+                        }
+                        
+                        /*if !AppFunctions.getSelectedCheckArray().isEmpty {
+                         let selectedIds = AppFunctions.getSelectedCheckArray()
+                         let currentContactTypeId = contactAccounts[indexPath.row - 2].contactTypeId
+                         
+                         if selectedIds.contains(currentContactTypeId!) {
+                         cell.chkBtn.tintColor = UIColor(named: "Success")
+                         } else {
+                         cell.chkBtn.tintColor = UIColor.systemGray2
+                         }
+                         } else {
+                         cell.chkBtn.tintColor = UIColor.systemGray2
+                         }*/
+                        
+                        var socialObjArr = [SocialAccModel]()
+                        
+                        switch contactAccounts[indexPath.row - 2].contactTypeId {
+                            case 1:
+                                //cell.socialPicIV.image = UIImage(named: "LinkedIn")
+                                cell.contactTF.keyboardType = .default
+                                
+                                socialObjArr = socialAccounts.filter {$0.linkType == "LinkedIn"}
+                                /*cell.contactTF.optionArray = socialObjArr.compactMap {$0.linkTitle}
+                                cell.contactTF.optionIds = socialObjArr.compactMap {$0.socialAccountId}
+                                
+                                cell.contactTF.arrowColor = UIColor(named: "Text grey")!
+                                cell.contactTF.arrowSize = 8*/
+                                
+                                if linkedInContactValue.isEmpty {
+                                    if socialObjArr.count <= 1 {
+                                        cell.contactTF.text = socialObjArr.first?.linkUrl
+                                        linkedInContactValue = socialObjArr.first?.linkUrl ?? ""
+                                    }
+                                } else {
+                                    cell.contactTF.text = linkedInContactValue
+                                }
+                                
+                            case 2:
+                                
+                                cell.contactTF.keyboardType = .default
+                                
+                                socialObjArr = socialAccounts.filter {$0.linkType == "Instagram"}
+                                /*cell.contactTF.optionArray = socialObjArr.compactMap {$0.linkTitle}
+                                cell.contactTF.optionIds = socialObjArr.compactMap {$0.socialAccountId}
+                                
+                                cell.contactTF.arrowColor = UIColor(named: "Text grey")!*/
+                                
+                                if instagramContactValue.isEmpty {
+                                    if socialObjArr.count <= 1 {
+                                        cell.contactTF.text = socialObjArr.first?.linkUrl
+                                        instagramContactValue = socialObjArr.first?.linkUrl ?? ""
+                                    }
+                                } else {
+                                    cell.contactTF.text = instagramContactValue
+                                }
+                                
+                            case 3:
+                                //cell.socialPicIV.image = UIImage(named: "WeChat")
+                                cell.contactTF.keyboardType = .phonePad
+                                
+                                socialObjArr = socialAccounts.filter {$0.linkType == "WeChat"}
+                                /*cell.contactTF.optionArray = socialObjArr.compactMap {$0.linkTitle}
+                                cell.contactTF.optionIds = socialObjArr.compactMap {$0.socialAccountId}
+                                
+                                cell.contactTF.arrowColor = UIColor(named: "Text grey")!*/
+                                
+                                if wechatContactValue.isEmpty {
+                                    if socialObjArr.count <= 1 {
+                                        cell.contactTF.text = socialObjArr.first?.linkUrl
+                                        wechatContactValue = socialObjArr.first?.linkUrl ?? ""
+                                    }
+                                } else {
+                                    cell.contactTF.text = wechatContactValue
+                                }
+                            case 4:
+                                
+                                //cell.socialPicIV.image = UIImage(named: "whatsapp")
+                                cell.contactTF.keyboardType = .phonePad
+                                
+                                //cell.contactTF.arrowColor = .clear
+                                
+                                if !whatsAppContactValue.isEmpty {
+                                    cell.contactTF.text = whatsAppContactValue
+                                } else {
+                                    cell.contactTF.text = ""
+                                }
+                                
+                            case 5:
+                                //cell.socialPicIV.image = UIImage(named: "Instagram")
+                                //cell.socialPicIV.image = UIImage(named: "phone")
+                                cell.contactTF.keyboardType = .phonePad
+                                
+                                //cell.contactTF.arrowColor = .clear
+                                
+                                if !directContactValue.isEmpty {
+                                    cell.contactTF.text = directContactValue
+                                } else {
+                                    cell.contactTF.text = ""
+                                }
+                                
+                            default:
+                                print("default")
+                        }
+                        
+                        cell.chkBtn.addTarget(self, action: #selector(checkBtnPressed(sender:)), for: .touchUpInside)
+                        
+                        if contactAccounts[indexPath.row - 2].icon != nil && contactAccounts[indexPath.row - 2].icon != "" {
+                            let imageUrl = URL(string: contactAccounts[indexPath.row - 2].icon)
+                            cell.socialPicIV?.sd_setImage(with: imageUrl , placeholderImage: UIImage(named: "placeholder")) { (image, error, imageCacheType, url) in }
+                        } else {
+                            cell.socialPicIV.image = UIImage(named: "placeholder")
+                        }
+                        
+                        cell.contactTF.placeholder = contactAccounts[indexPath.row - 2].contactType
+                        AppFunctions.colorPlaceholder(tf: cell.contactTF, s: contactAccounts[indexPath.row - 2].contactType)
+                        
+                        return cell
                     }
                     
-                    cell.chkBtn.addTarget(self, action: #selector(checkBtnPressed(sender:)), for: .touchUpInside)
+            }
+        } else {
+            let cell = UITableViewCell(style: .default, reuseIdentifier: "DropdownCell")
+            cell.textLabel?.text = dropdownData[indexPath.row]
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == dropdownTableView {
+            
 
-                    if contactAccounts[indexPath.row - 2].icon != nil && contactAccounts[indexPath.row - 2].icon != "" {
-                        let imageUrl = URL(string: contactAccounts[indexPath.row - 2].icon)
-                        cell.socialPicIV?.sd_setImage(with: imageUrl , placeholderImage: UIImage(named: "placeholder")) { (image, error, imageCacheType, url) in }
-                    } else {
-                        cell.socialPicIV.image = UIImage(named: "placeholder")
-                    }
-                    
-                    cell.contactTF.placeholder = contactAccounts[indexPath.row - 2].contactType
-                    AppFunctions.colorPlaceholder(tf: cell.contactTF, s: contactAccounts[indexPath.row - 2].contactType)
-                    return cell
-                }
-                
+            activeTextFieldDD?.text = dropdownData[indexPath.row]
+            
+            var ddSelectedId = dropdownDataId[indexPath.row]
+            
+            if selectedTag == 1 {
+                linkedInContactValue = socialAccounts.filter {$0.socialAccountId == ddSelectedId}.first?.linkUrl ?? ""
+            } else if selectedTag == 2 {
+                instagramContactValue = socialAccounts.filter {$0.socialAccountId == ddSelectedId}.first?.linkUrl ?? ""
+            } else if selectedTag == 3 {
+                wechatContactValue = socialAccounts.filter {$0.socialAccountId == ddSelectedId}.first?.linkUrl ?? ""
+            }
+            hideDropdown()
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        if indexPath.row == contactAccounts.count + 2 {
-            return 20
+        if tableView == contactTV {
+            
+            if indexPath.row == contactAccounts.count + 2 {
+                return 20
+            } else {
+                return UITableView.automaticDimension
+            }
         } else {
             return UITableView.automaticDimension
         }
-
     }
 }
+

@@ -53,7 +53,7 @@ var isFromProfile = false
 let googleMapAPIKey = "AIzaSyDoOfDrlLrIeWHeM2hBJEETh9ErGgKnoTQ"
 
 //let baseUrl = "https://api.kismmet.com"
-let baseUrl = "http://devapi.kismmet.com"
+let baseUrl = "http://54.226.245.172"
 
 //MARK: rx Publishers
 

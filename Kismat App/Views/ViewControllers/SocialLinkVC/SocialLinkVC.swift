@@ -24,6 +24,8 @@ class SocialLinkVC: MainViewController {
     var socialAccounts = [SocialAccDBModel()]
     var socialAccModel = [SocialAccModel]()
     
+    var doAnimate = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -127,6 +129,12 @@ extension SocialLinkVC : UITableViewDelegate, UITableViewDataSource {
             
             cell.addBtn.addTarget(self, action: #selector(addBtnPressed(sender:)), for: .touchUpInside)
             
+            if doAnimate {
+                cell.addBtn.showGifAnimation(imageName: "oval_Sketch")
+                doAnimate = false
+            }
+
+            
             return cell
         } else {
             
@@ -161,7 +169,9 @@ extension SocialLinkVC : UITableViewDelegate, UITableViewDataSource {
                     vc.canEdit = true
                 }
             } else {
-                AppFunctions.showSnackBar(str: "Please add social account")
+                doAnimate = true
+                tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+                AppFunctions.showSnackBar(str: "Please add social account\nUsing the plus button.")
             }
         }
     }

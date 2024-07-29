@@ -447,11 +447,11 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                     if users.isEmpty && AppFunctions.isProfileVisble() {
                         visiblityCell.visibiltyView.isHidden = true
                         visiblityCell.updateBtn.isHidden = true
-                        visiblityCell.textLbl.text = "At this time, there are no users within your proximity range or matching your search criteria."
+                        visiblityCell.textLbl.text = "Refresh & Connect!\n \nYou may be the only one in your area at this moment!\nPlease be patient as we are growing the network! 🙂"
                     } else {
                         visiblityCell.visibiltyView.isHidden = false
                         visiblityCell.updateBtn.isHidden = false
-                        visiblityCell.textLbl.text = "You are completely offline... Toggle back to rejoin the community and interact with others"
+                        visiblityCell.textLbl.text = "You are completely offline... \nToggle back to rejoin the community and interact with others"
                     }
                     
                     

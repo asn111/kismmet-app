@@ -195,8 +195,11 @@ class UserModel: NSObject, Codable {
 
 class UserContacts: NSObject, Codable {
     
+    var id : Int!
     var contactStatusId : Int!
     var contactStatus : String!
+    var isSentByCurrentUsers : Bool!
+
 }
 
 class ContactInformations: NSObject, Codable {

@@ -28,6 +28,8 @@ class OtherUserProfile: MainViewController {
     var socialAccounts = [SocialAccDBModel()]
 
     var isFromBlock = false
+    var canCancelReq = false
+    var contactId = 0
     
     var overlayView: UIView?
 
@@ -112,6 +114,30 @@ class OtherUserProfile: MainViewController {
         }
     }
 
+    func showAlertCancel(){
+        let message = "Alert!"
+        let alert = CDAlertView(title: message, message: "Are you sure you want to undo this sent request?", type: .warning)
+        let action = CDAlertViewAction(title: "Undo",
+                                       handler: {[weak self] action in
+            self?.deleteContact()
+            return true
+        })
+        let cancel = CDAlertViewAction(title: "Cancel",
+                                       handler: { action in
+            print("CANCEL PRESSED")
+            return true
+        })
+        alert.isTextFieldHidden = true
+        alert.add(action: action)
+        alert.add(action: cancel)
+        alert.hideAnimations = { (center, transform, alpha) in
+            transform = .identity
+            alpha = 0
+        }
+        alert.show() { (alert) in
+            print("completed")
+        }
+    }
     
     func showAlert(){
         let message = "Alert!"
@@ -180,8 +206,12 @@ class OtherUserProfile: MainViewController {
     
     @objc func sendContactRocket(sender: UIButton) {
         
-        self.presentVC(id: "SendReqVC", presentFullType: "over" ) { (vc:SendReqVC) in
-            vc.userModel = userModel
+        if canCancelReq {
+            showAlertCancel()
+        } else {
+            self.presentVC(id: "SendReqVC", presentFullType: "over" ) { (vc:SendReqVC) in
+                vc.userModel = userModel
+            }
         }
     }
     
@@ -229,7 +259,7 @@ class OtherUserProfile: MainViewController {
     //MARK: API METHODS
     
     func userProfile(id: String) {
-        self.showPKHUD(WithMessage: "fetching notification")
+        //self.showPKHUD(WithMessage: "fetching notification")
         
         APIService
             .singelton
@@ -339,6 +369,40 @@ class OtherUserProfile: MainViewController {
             .disposed(by: dispose_Bag)
     }
     
+    func deleteContact() {
+        self.showPKHUD(WithMessage: "")
+        
+        let pram : [String : Any] = [ "contactId": contactId ]
+        
+        Logs.show(message: "SKILLS PRAM: \(pram)")
+        
+        APIService
+            .singelton
+            .deleteContactReq(pram: pram)
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        Logs.show(message: "MARKED: 👉🏻 \(val)")
+                        if val {
+                            self.userProfile(id: userId)
+                            self.canCancelReq = false
+                            AppFunctions.showSnackBar(str: "Your contact request is Canceled.")
+                            self.hidePKHUD()
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
+    
     
 }
 //MARK: TableView Extention
@@ -404,6 +468,12 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                     cell.rocketBtn.addTarget(self, action: #selector(sendContactRocket(sender:)), for: .touchUpInside)
                 } else {
                     if userModel.userContacts.contactStatus == "Pending" {
+                        if let isSent = userModel.userContacts.isSentByCurrentUsers {
+                            if userModel.userContacts.isSentByCurrentUsers {
+                                canCancelReq = true
+                                contactId = userModel.userContacts.id
+                            }
+                        }
                         cell.rocketBtn.tintColor = UIColor(named: "warning")
                     } else if userModel.userContacts.contactStatus == "Accepted" {
                         cell.rocketBtn.tintColor = UIColor(named: "Success")
@@ -412,6 +482,8 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                         cell.rocketBtn.addTarget(self, action: #selector(sendContactRocket(sender:)), for: .touchUpInside)
                     }
                 }
+                
+                
                     
                 return cell
             case 1:

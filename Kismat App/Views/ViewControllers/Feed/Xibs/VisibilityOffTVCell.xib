@@ -27,9 +27,9 @@
                                 <rect key="frame" x="8" y="92" width="358" height="160"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are completely offline... Toggle back to rejoin the community and interact with others" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNv-Qs-WlO" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="42" y="8" width="290" height="40"/>
+                                        <rect key="frame" x="42" y="8" width="290" height="82"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="tP4-Mc-FfA"/>
+                                            <constraint firstAttribute="height" constant="82" id="tP4-Mc-FfA"/>
                                             <constraint firstAttribute="width" constant="290" id="tek-H3-5xg"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -46,7 +46,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jze-9x-2KB">
-                                        <rect key="frame" x="19" y="14.999999999999998" width="20" height="18.666666666666664"/>
+                                        <rect key="frame" x="16" y="40" width="20" height="18.666666666666657"/>
                                         <color key="tintColor" name="Danger"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="QCg-TW-H41"/>
@@ -58,21 +58,21 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="uNv-Qs-WlO" secondAttribute="trailing" constant="26" id="6w0-l3-th6"/>
                                     <constraint firstItem="uNv-Qs-WlO" firstAttribute="top" secondItem="n2W-ra-OcS" secondAttribute="top" constant="8" id="Z9a-Ur-Z5A"/>
-                                    <constraint firstItem="uNv-Qs-WlO" firstAttribute="leading" secondItem="jze-9x-2KB" secondAttribute="trailing" constant="3" id="ZHX-kg-wxl"/>
-                                    <constraint firstItem="jze-9x-2KB" firstAttribute="top" secondItem="n2W-ra-OcS" secondAttribute="top" constant="14.000000000000002" id="hxL-Ot-6Gi"/>
-                                    <constraint firstItem="jze-9x-2KB" firstAttribute="leading" secondItem="n2W-ra-OcS" secondAttribute="leading" constant="19" id="kJ2-Wk-1pu"/>
+                                    <constraint firstItem="uNv-Qs-WlO" firstAttribute="leading" secondItem="jze-9x-2KB" secondAttribute="trailing" constant="6" id="ZHX-kg-wxl"/>
+                                    <constraint firstItem="jze-9x-2KB" firstAttribute="top" secondItem="n2W-ra-OcS" secondAttribute="top" constant="39" id="hxL-Ot-6Gi"/>
+                                    <constraint firstItem="jze-9x-2KB" firstAttribute="leading" secondItem="n2W-ra-OcS" secondAttribute="leading" constant="16" id="kJ2-Wk-1pu"/>
                                     <constraint firstAttribute="height" constant="160" id="n1K-6R-Bmc"/>
                                     <constraint firstAttribute="width" constant="358" id="wKf-zr-VeK"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jch-K8-tMu">
-                                <rect key="frame" x="17" y="157" width="340" height="30"/>
+                                <rect key="frame" x="17" y="172" width="340" height="30"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Online Presence" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8m-ky-2YE" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online Presence" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8m-ky-2YE" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
                                         <rect key="frame" x="8" y="4" width="130" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="R5G-Sh-4JL"/>
-                                            <constraint firstAttribute="width" constant="110" id="je1-Ej-I4v"/>
+                                            <constraint firstAttribute="width" constant="130" id="je1-Ej-I4v"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -88,7 +88,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pFp-fk-tBI" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pFp-fk-tBI" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
                                         <rect key="frame" x="138" y="7" width="15" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="15" id="Bon-36-bxn"/>
@@ -161,11 +161,11 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Jch-K8-tMu" firstAttribute="leading" secondItem="7ex-uM-Nej" secondAttribute="leading" constant="17" id="09D-uJ-4Mt"/>
-                            <constraint firstItem="wVb-Po-o6r" firstAttribute="top" secondItem="Jch-K8-tMu" secondAttribute="bottom" constant="23" id="JoM-bD-LY9"/>
+                            <constraint firstItem="wVb-Po-o6r" firstAttribute="top" secondItem="Jch-K8-tMu" secondAttribute="bottom" constant="8" id="JoM-bD-LY9"/>
                             <constraint firstItem="wVb-Po-o6r" firstAttribute="leading" secondItem="7ex-uM-Nej" secondAttribute="leading" constant="137" id="QIw-nP-MuM"/>
                             <constraint firstAttribute="trailing" secondItem="n2W-ra-OcS" secondAttribute="trailing" constant="8" id="RXu-QZ-9KU"/>
                             <constraint firstItem="n2W-ra-OcS" firstAttribute="leading" secondItem="7ex-uM-Nej" secondAttribute="leading" constant="8" id="bAL-DC-OgZ"/>
-                            <constraint firstItem="Jch-K8-tMu" firstAttribute="top" secondItem="7ex-uM-Nej" secondAttribute="top" constant="157" id="bjR-6N-6bW"/>
+                            <constraint firstItem="Jch-K8-tMu" firstAttribute="top" secondItem="7ex-uM-Nej" secondAttribute="top" constant="172" id="bjR-6N-6bW"/>
                             <constraint firstAttribute="trailing" secondItem="Jch-K8-tMu" secondAttribute="trailing" constant="17" id="c9N-y2-YXL"/>
                             <constraint firstAttribute="bottom" secondItem="wVb-Po-o6r" secondAttribute="bottom" constant="20" symbolic="YES" id="chY-Qp-TcX"/>
                             <constraint firstAttribute="bottom" secondItem="n2W-ra-OcS" secondAttribute="bottom" constant="8" id="eKP-MS-KZr"/>
