@@ -15,7 +15,22 @@ class SettingVC: MainViewController {
     
     @IBOutlet weak var settingTV: UITableView!
     
-    var lblTxt = ["","Edit Profile","Preferences","Starred Users","Social Links","Notifications","Change Password","Membership","Privacy Policy","Terms of Services","About Kismmet","Account Status","Support","How to Kismmet","Blocked Users","Logout"]
+    var sectionHeading = ["","Account","Features","Notifications","Help & Support",""]
+    
+    var accSecTxt = ["Edit Profile","Preferences","Change Password","Membership","Account Status"]
+    var accSecImg = ["person.circle.fill","slider.horizontal.3","rectangle.and.pencil.and.ellipsis","creditcard","checkmark.seal"]
+    
+    var featuresSecTxt = ["Social Links","Starred Users","Blocked Users"]
+    var featuresSecImg = ["link.circle","star.fill","minus.circle"]
+    
+    var notifSecTxt = ["Notifications"]
+    var notifSecImg = ["bell.badge.fill"]
+    
+    var helpNsupportTxt = ["Privacy Policy","Terms of Services","About Kismmet","Support","How to Kismmet"]
+    var helpNsupportImg = ["newspaper.fill","book.pages","exclamationmark.circle.fill","person.2.badge.gearshape.fill","apps.iphone"]
+    
+    var logoutTxt = ["Logout"]
+    var logoutImg = ["rectangle.portrait.and.arrow.forward"]
     
     var userdbModel : Results<UserDBModel>!
     var img = UIImage(named: "placeholder")
@@ -159,109 +174,254 @@ class SettingVC: MainViewController {
 //MARK: TableView Extention
 extension SettingVC : UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        sectionHeading.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return lblTxt.count
+        
+        switch section {
+            case 0:
+                return 1
+            case 1:
+                return accSecTxt.count
+            case 2:
+                return featuresSecTxt.count
+            case 3:
+                return notifSecTxt.count
+            case 4:
+                return helpNsupportTxt.count
+            case 5:
+                return logoutTxt.count
+            default:
+                return 0
+        }
+        //return lblTxt.count
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+        let headerView = UIView()
+        
+        // code for adding centered title
+        headerView.backgroundColor = UIColor.clear
+        
+        let headerLabel = fullyCustomLbl(frame: CGRect(x: 18, y: 0, width: tableView.bounds.size.width, height: 28))
+        headerLabel.font = UIFont(name: "Roboto", size: 16)?.regular
+        headerLabel.textColor = UIColor(named: "Text grey")
+        headerLabel.text = sectionHeading[section]
+        headerLabel.textAlignment = .left
+        
+        // Vertically center the label within the header view
+        let headerViewHeight = headerView.frame.size.height
+        let labelHeight = headerLabel.frame.size.height
+        let labelYPosition = (headerViewHeight - labelHeight) / 2
+        
+        headerLabel.frame = CGRect(x: 18, y: labelYPosition + 2, width: tableView.bounds.size.width, height: 28)
+        
+        headerView.addSubview(headerLabel)
+
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch indexPath.row {
-            case 0:
-                let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
-                
-                cell.headerLbl.isHidden = false
-                cell.headerLbl.text = "SETTINGS"
-                cell.toolTipBtn.isHidden = true
-                cell.searchTFView.isHidden = true
-                cell.profileView.isHidden = false
-                cell.rattingBtn.isHidden = true
-                cell.headerView.isHidden = false
-                
-                cell.picBtn.borderWidth = 0
-                if let userDb = userdbModel {
-                    if let user = userDb.first {
-                        cell.nameLbl.text = user.userName
-                        cell.educationLbl.text = user.email
-                        cell.professionLbl.text = "\(user.countryCode)\(user.phone)"
-                        
-                        if user.profilePicture != "" {
-                            let imageUrl = URL(string: user.profilePicture)
-                            cell.profilePicBtn?.sd_setImage(with: imageUrl, for: .normal , placeholderImage: img) { (image, error, imageCacheType, url) in }
-                        } else {
-                            cell.profilePicBtn.setImage(img, for: .normal)
-                        }
-                        
+        if indexPath.section == 0 {
+            let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
+            
+            cell.headerLbl.isHidden = false
+            cell.headerLbl.text = "SETTINGS"
+            cell.toolTipBtn.isHidden = true
+            cell.searchTFView.isHidden = true
+            cell.profileView.isHidden = false
+            cell.rattingBtn.isHidden = true
+            cell.headerView.isHidden = false
+            
+            cell.picBtn.borderWidth = 0
+            if let userDb = userdbModel {
+                if let user = userDb.first {
+                    cell.nameLbl.text = user.userName
+                    cell.educationLbl.text = user.email
+                    cell.professionLbl.text = "\(user.countryCode)\(user.phone)"
+                    
+                    if user.profilePicture != "" {
+                        let imageUrl = URL(string: user.profilePicture)
+                        cell.profilePicBtn?.sd_setImage(with: imageUrl, for: .normal , placeholderImage: img) { (image, error, imageCacheType, url) in }
+                    } else {
+                        cell.profilePicBtn.setImage(img, for: .normal)
                     }
                     
                 }
                 
-                cell.profilePicBtn.addTarget(self, action: #selector(profilePicBtnPressed(sender:)), for: .touchUpInside)
-                cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
-                cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
+            }
+            
+            cell.profilePicBtn.addTarget(self, action: #selector(profilePicBtnPressed(sender:)), for: .touchUpInside)
+            cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
+            cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
+            
+            if AppFunctions.isNotifNotCheck() {
+                cell.notifBtn.tintColor = UIColor(named:"Danger")
+            } else if AppFunctions.isShadowModeOn() {
+                cell.notifBtn.tintColor = UIColor(named: "Primary Yellow")
+            } else {
+                cell.notifBtn.tintColor = UIColor(named: "Text grey")
+            }
+            
+            return cell
+        } else {
+            
+            let cell : SettingTVCell = tableView.dequeueReusableCell(withIdentifier: "SettingTVCell", for: indexPath) as! SettingTVCell
+            
+            switch indexPath.section {
+                case 1:
+                    cell.txtLbl.text = accSecTxt[indexPath.row]
+                    cell.ivIcon.image = UIImage(systemName: accSecImg[indexPath.row])
+                    
+                    if indexPath.row == 0 {
+                        cell.mainView.topLimitedCornerRadius = 8
+                    } else if indexPath.row == accSecTxt.count - 1 {
+                        cell.mainView.botLimitedCornerRadius = 8
+                    } else {
+                        cell.mainView.cornerRadius = 0
+                    }
+                    
+                case 2:
+                    cell.txtLbl.text = featuresSecTxt[indexPath.row]
+                    cell.ivIcon.image = UIImage(systemName: featuresSecImg[indexPath.row])
 
-                if AppFunctions.isNotifNotCheck() {
-                    cell.notifBtn.tintColor = UIColor(named:"Danger")
-                } else if AppFunctions.isShadowModeOn() {
-                    cell.notifBtn.tintColor = UIColor(named: "Primary Yellow")
-                } else {
-                    cell.notifBtn.tintColor = UIColor(named: "Text grey")
-                }
-                
-                return cell
-                
-            default:
-                let cell : SettingTVCell = tableView.dequeueReusableCell(withIdentifier: "SettingTVCell", for: indexPath) as! SettingTVCell
-                cell.txtLbl.text = lblTxt[indexPath.row]
-                return cell
+                    if indexPath.row == 0 {
+                        cell.mainView.topLimitedCornerRadius = 8
+                    } else if indexPath.row == featuresSecTxt.count - 1 {
+                        cell.mainView.botLimitedCornerRadius = 8
+                    } else {
+                        cell.mainView.cornerRadius = 0
+                    }
+                    
+                case 3:
+                    cell.txtLbl.text = notifSecTxt[indexPath.row]
+                    cell.mainView.cornerRadius = 8
+                    cell.ivIcon.image = UIImage(systemName: notifSecImg[indexPath.row])
+
+                    /*if indexPath.row == 0 {
+                        cell.mainView.topLimitedCornerRadius = 8
+                    } else if indexPath.row == notifSecTxt.count - 1 {
+                        cell.mainView.botLimitedCornerRadius = 8
+                    } else {
+                        cell.mainView.cornerRadius = 0
+                    }*/
+                    
+                case 4:
+                    cell.txtLbl.text = helpNsupportTxt[indexPath.row]
+                    cell.ivIcon.image = UIImage(systemName: helpNsupportImg[indexPath.row])
+
+                    if indexPath.row == 0 {
+                        cell.mainView.topLimitedCornerRadius = 8
+                    } else if indexPath.row == helpNsupportTxt.count - 1 {
+                        cell.mainView.botLimitedCornerRadius = 8
+                    } else {
+                        cell.mainView.cornerRadius = 0
+                    }
+                    
+                case 5:
+                    cell.txtLbl.text = logoutTxt[indexPath.row]
+                    cell.mainView.cornerRadius = 8
+                    cell.ivIcon.image = UIImage(systemName: logoutImg[indexPath.row])
+
+                    /*if indexPath.row == 0 {
+                        cell.mainView.topLimitedCornerRadius = 8
+                    } else if indexPath.row == logoutTxt.count - 1 {
+                        cell.mainView.botLimitedCornerRadius = 8
+                    } else {
+                        cell.mainView.cornerRadius = 0
+                    }*/
+                    
+                default:
+                    print("")
+            }
+            
+            return cell
         }
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
+        
+        switch indexPath.section {
             case 1:
-                self.pushVC(id: "EditProfileSetup") { (vc:EditProfileSetup) in }
+                switch indexPath.row {
+                    case 0:
+                        self.pushVC(id: "EditProfileSetup") { (vc:EditProfileSetup) in }
+                    case 1:
+                        self.pushVC(id: "EditProfileSetupExt") { (vc:EditProfileSetupExt) in
+                            vc.isFromSetting = true
+                        }
+                    case 2:
+                        self.pushVC(id: "ChangePassVC") { (vc:ChangePassVC) in }
+                    case 3:
+                        self.pushVC(id: "MembershipVC") { (vc:MembershipVC) in }
+                    case 4:
+                        self.pushVC(id: "AccountStatusVC") { (vc:AccountStatusVC) in }
+                    default:
+                        print("")
+                }
             case 2:
-                self.pushVC(id: "EditProfileSetupExt") { (vc:EditProfileSetupExt) in
-                    vc.isFromSetting = true
+                switch indexPath.row {
+                    case 0:
+                        self.pushVC(id: "SocialLinkVC") { (vc:SocialLinkVC) in }
+                    case 1:
+                        self.pushVC(id: "StarredVC") { (vc:StarredVC) in }
+                    case 2:
+                        self.pushVC(id: "BlockedVC") { (vc:BlockedVC) in }
+                    default:
+                        print("")
                 }
             case 3:
-                self.pushVC(id: "StarredVC") { (vc:StarredVC) in }
+                switch indexPath.row {
+                    case 0:
+                        self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
+                    default:
+                        print("")
+                }
             case 4:
-                self.pushVC(id: "SocialLinkVC") { (vc:SocialLinkVC) in }
+                switch indexPath.row {
+                    case 0:
+                        if let privacyPolicyURL = URL(string: "https://www.kismmet.com/privacypolicy") {
+                            let safariVC = SFSafariViewController(url: privacyPolicyURL)
+                            present(safariVC, animated: true)
+                        } ///pp
+                    case 1:
+                        if let tosUrl = URL(string: "https://www.kismmet.com/termsofservices") {
+                            let safariVC = SFSafariViewController(url: tosUrl)
+                            present(safariVC, animated: true)
+                        } ///tos
+                    case 2:
+                        if let privacyPolicyURL = URL(string: "https://www.kismmet.com/") {
+                            let safariVC = SFSafariViewController(url: privacyPolicyURL)
+                            present(safariVC, animated: true)
+                        } ///about
+                    case 3:
+                        self.pushVC(id: "SupportPageVC") { (vc:SupportPageVC) in } ///support
+                    case 4:
+                        self.pushVC(id: "HowToUseVC") { (vc:HowToUseVC) in }///howToUse
+                    default:
+                        print("")
+                }
             case 5:
-                self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
-            case 6:
-                self.pushVC(id: "ChangePassVC") { (vc:ChangePassVC) in }
-            case 7:
-                self.pushVC(id: "MembershipVC") { (vc:MembershipVC) in }
-            case 8:
-                if let privacyPolicyURL = URL(string: "https://www.kismmet.com/privacypolicy") {
-                    let safariVC = SFSafariViewController(url: privacyPolicyURL)
-                    present(safariVC, animated: true)
-                } ///pp
-            case 9:
-                if let tosUrl = URL(string: "https://www.kismmet.com/termsofservices") {
-                    let safariVC = SFSafariViewController(url: tosUrl)
-                    present(safariVC, animated: true)
-                } ///tos
-            case 10:
-                if let privacyPolicyURL = URL(string: "https://www.kismmet.com/") {
-                    let safariVC = SFSafariViewController(url: privacyPolicyURL)
-                    present(safariVC, animated: true)
-                } ///about
-            case 11:
-                self.pushVC(id: "AccountStatusVC") { (vc:AccountStatusVC) in }
-            case 12:
-                self.pushVC(id: "SupportPageVC") { (vc:SupportPageVC) in } ///support
-            case 13:
-                self.pushVC(id: "HowToUseVC") { (vc:HowToUseVC) in }///howToUse
-            case 14:
-                self.pushVC(id: "BlockedVC") { (vc:BlockedVC) in }
-            case 15:
-                showAlert()
+                switch indexPath.row {
+                    case 0:
+                        showAlert()
+                    default:
+                        print("")
+                }
+                
             default:
                 print("")
         }
+        
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 { return 0 }
+        return 30 // Adjust height as needed
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

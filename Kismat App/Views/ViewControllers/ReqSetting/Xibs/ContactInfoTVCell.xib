@@ -186,6 +186,9 @@
         <designable name="cV1-eL-Ofh">
             <size key="intrinsicContentSize" width="48" height="48"/>
         </designable>
+        <designable name="dcz-Qh-U6B">
+            <size key="intrinsicContentSize" width="60.666666666666664" height="22"/>
+        </designable>
     </designables>
     <resources>
         <image name="LinkedIn" width="512" height="512"/>

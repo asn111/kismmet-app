@@ -9,6 +9,8 @@ import UIKit
 
 class SettingTVCell: UITableViewCell {
 
+    @IBOutlet weak var ivIcon: UIImageView!
+    @IBOutlet weak var mainView: RoundCornerView!
     @IBOutlet weak var txtLbl: fullyCustomLbl!
     override func awakeFromNib() {
         super.awakeFromNib()
