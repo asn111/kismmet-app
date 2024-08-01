@@ -120,19 +120,14 @@ class RoundCornerView : UIView {
     @IBInspectable
     public var topLimitedCornerRadius: CGFloat = 0.0 {
         didSet {
-            self.clipsToBounds = true
-            self.layer.cornerRadius = topLimitedCornerRadius
-            self.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-            //self.roundCorners(corners: [.topLeft,.topRight], radius: limitedCornerRadius)
+            updateCornerRadius()
         }
     }
     
     @IBInspectable
     public var botLimitedCornerRadius: CGFloat = 0.0 {
         didSet {
-            self.clipsToBounds = true
-            self.layer.cornerRadius = botLimitedCornerRadius
-            self.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+            updateCornerRadius()
         }
     }
     
@@ -236,6 +231,18 @@ class RoundCornerView : UIView {
         }
         layer.addSublayer(dashBorder)
         self.dashBorder = dashBorder
+    }
+    
+    private func updateCornerRadius() {
+        self.clipsToBounds = true
+        self.layer.cornerRadius = topLimitedCornerRadius > 0 ? topLimitedCornerRadius : botLimitedCornerRadius
+        if topLimitedCornerRadius > 0 {
+            self.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        } else if botLimitedCornerRadius > 0 {
+            self.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        } else {
+            self.layer.maskedCorners = []
+        }
     }
 
 }

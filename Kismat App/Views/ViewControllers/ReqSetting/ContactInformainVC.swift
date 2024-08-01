@@ -33,6 +33,7 @@ class ContactInformainVC: MainViewController {
     var socialAccounts = [SocialAccModel]()
     
     var selectedTag = -1
+    var keyBoardHeight = 300.0
     
     var contactId = 0
     var isOwnInfo = false
@@ -124,6 +125,7 @@ class ContactInformainVC: MainViewController {
             return
         }
         
+        keyBoardHeight = keyboardSize.height
         let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
         contactTV.contentInset = contentInsets
         contactTV.scrollIndicatorInsets = contentInsets
@@ -131,6 +133,8 @@ class ContactInformainVC: MainViewController {
         var activeView: UIView?
         if let activeTextField = activeTextField {
             activeView = activeTextField
+        } else if let activeTextView = activeTextView {
+            activeView = activeTextView
         }
         
         if let activeView = activeView {
@@ -140,6 +144,7 @@ class ContactInformainVC: MainViewController {
                 contactTV.setContentOffset(CGPoint(x: 0, y: offsetY), animated: true)
             }
         }
+
     }
     
     @objc private func keyboardWillHide(notification: NSNotification) {
@@ -191,7 +196,7 @@ class ContactInformainVC: MainViewController {
             
             dropdownData.removeAll()
             dropdownDataId.removeAll()
-            socialObjArr = socialAccounts.filter {$0.linkType == "weChat"}
+            socialObjArr = socialAccounts.filter {$0.linkType == "WeChat"}
             dropdownData = socialObjArr.compactMap {$0.linkTitle}
             dropdownDataId = socialObjArr.compactMap {$0.socialAccountId}
 
@@ -247,12 +252,30 @@ class ContactInformainVC: MainViewController {
     
     func showDropdown(for textField: UITextField) {
         dropdownTableView.reloadData()
+        
+        
         let frame = textField.convert(textField.bounds, to: view)
-        dropdownTableView.frame = CGRect(x: frame.origin.x, y: frame.origin.y + frame.height, width: frame.width, height: 120)
+        let keyboardHeight: CGFloat = keyBoardHeight // Adjust this based on your keyboard height (you can use actual keyboard notifications to get the height)
+        let screenHeight = UIScreen.main.bounds.height
+        let dropdownHeight: CGFloat = 105
+        
+        let spaceBelowTextField = screenHeight - frame.origin.y - frame.height - keyboardHeight
+        
+        if spaceBelowTextField < dropdownHeight {
+            // If there isn't enough space below the text field, show the dropdown above it
+            dropdownTableView.frame = CGRect(x: frame.origin.x, y: frame.origin.y - dropdownHeight, width: frame.width, height: dropdownHeight)
+        } else {
+            // If there is enough space below the text field, show the dropdown below it
+            dropdownTableView.frame = CGRect(x: frame.origin.x, y: frame.origin.y + frame.height, width: frame.width, height: dropdownHeight)
+        }
+        
         dropdownTableView.isHidden = false
     }
+
+
     
     func hideDropdown() {
+        view.endEditing(true)  // This should remove focus and dismiss the keyboard
         dropdownTableView.isHidden = true
     }
     
@@ -260,16 +283,16 @@ class ContactInformainVC: MainViewController {
     func textViewDidBeginEditing(_ textView: UITextView) {
         activeTextView = textView
 
-        if textView.text == "" {
-            // Clear the text view
-            textView.text = ""
-            
+        if let placeholderLabel = textView.viewWithTag(100) as? UILabel {
+            placeholderLabel.isHidden = !textView.text.isEmpty
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         activeTextView = nil
-
+        if let placeholderLabel = textView.viewWithTag(100) as? UILabel {
+            placeholderLabel.isHidden = !textView.text.isEmpty
+        }
         kismmetMsgContactValue = !textView.text!.isTFBlank ? textView.text! : ""
     }
     
@@ -281,9 +304,14 @@ class ContactInformainVC: MainViewController {
     
     func textViewDidChange(_ textView: UITextView) {
         let cell = contactTV.cellForRow(at: IndexPath(row: textView.tag + 1, section: 0)) as! ContactTextViewTVcell
-        
-        if textView.text.count == 0 {
-            cell.countLbl.text = "100 / 100 remaining"
+
+        if let placeholderLabel = textView.viewWithTag(100) as? UILabel {
+            placeholderLabel.isHidden = !textView.text.isEmpty
+            cell.countLbl.text = textView.text.isEmpty ? "100 / 100 remaining" : "\(100 - textView.text.count) / 100 remaining"
+        }
+        kismmetMsgContactValue = !textView.text!.isTFBlank ? textView.text! : ""
+
+        /*if textView.text.count == 0 {
             
             // Show the placeholder label when the text is empty
             if let placeholderLabel = textView.viewWithTag(100) as? UILabel {
@@ -291,13 +319,12 @@ class ContactInformainVC: MainViewController {
             }
         } else {
             cell.countLbl.text = "\(100 - textView.text.count) / 100 remaining"
-            kismmetMsgContactValue = !textView.text!.isTFBlank ? textView.text! : ""
 
             // Hide the placeholder label when the text is not empty
             if let placeholderLabel = textView.viewWithTag(100) as? UILabel {
                 placeholderLabel.isHidden = true
             }
-        }
+        }*/
     }
     
     
@@ -319,20 +346,22 @@ class ContactInformainVC: MainViewController {
             
             let contactTypeId = contactAccounts.filter { $0.contactType == contactType }.first?.contactTypeId ?? 0
             
-            // Only proceed if the contactTypeId is in the selected array
-            if AppFunctions.getSelectedCheckArray().contains(contactTypeId) {
+            // Add contact value to entries if contactTypeId is present in getSelectedCheckArray
                 var entry: [String: Any] = [
                     "contactTypeId": contactTypeId,
                     "value": contactValues[index]
                 ]
                 
+                // Add isShared field based on the includeIsShared flag
                 if includeIsShared {
                     let isShared = AppFunctions.getSelectedCheckArray().contains(contactTypeId) ? true : false
+                    entry["isShared"] = isShared
+                } else if AppFunctions.getSelectedCheckArray().contains(contactTypeId) {
+                    let isShared = true // Set isShared to true if contactTypeId is in the array
                     entry["isShared"] = isShared
                 }
                 
                 entries.append(entry)
-            }
         }
         
         return entries
@@ -710,7 +739,7 @@ class ContactInformainVC: MainViewController {
             pram = ["userId":userdId,
                     "message":sentMsg]
         } else {
-            let contactTypes = ["LinkedIn", "WhatsApp", "WeChat", "Text/Call", "Instagram", "Other"]
+            let contactTypes = contactAccounts.map { $0.contactType ?? "" }
             let contactValues = [linkedInContactValue, whatsAppContactValue, wechatContactValue, directContactValue, instagramContactValue, kismmetMsgContactValue]
             
             let filteredContacts = createContactEntries(for: contactTypes, contactValues: contactValues, includeIsShared: false)
@@ -872,13 +901,16 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                         
                         let cell : ContactTextViewTVcell = tableView.dequeueReusableCell(withIdentifier: "ContactTextViewTVcell", for: indexPath) as! ContactTextViewTVcell
                         
-                        cell.generalTV.text = kismmetMsgContactValue//.isEmpty ? "" : status
-                        
-                        if !kismmetMsgContactValue.isEmpty {
-                            cell.countLbl.text = "\(100 - kismmetMsgContactValue.count) / 100 remaining"
-                        } else {
+                        if kismmetMsgContactValue.isEmpty {
                             cell.generalTV.addPlaceholder(contactAccounts[indexPath.row - 2].contactType, size: 14)
                             cell.countLbl.text = "100 / 100 remaining"
+                        } else {
+                            cell.generalTV.text = kismmetMsgContactValue
+                            cell.countLbl.text = "\(100 - kismmetMsgContactValue.count) / 100 remaining"
+                            // Hide placeholder if text is set
+                            if let placeholderLabel = cell.generalTV.viewWithTag(100) as? UILabel {
+                                placeholderLabel.isHidden = !cell.generalTV.text.isEmpty
+                            }
                         }
                         
                         //cell.socialPicIV.image = UIImage(named: "message")
@@ -897,14 +929,15 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                         
                         cell.chkBtn.addTarget(self, action: #selector(checkBtnPressed(sender:)), for: .touchUpInside)
                         
-                        if contactAccounts[indexPath.row - 2].icon != nil && contactAccounts[indexPath.row - 2].icon != "" {
-                            let imageUrl = URL(string: contactAccounts[indexPath.row - 2].icon)
-                            cell.socialPicIV?.sd_setImage(with: imageUrl , placeholderImage: UIImage(named: "placeholder")) { (image, error, imageCacheType, url) in }
+                        if let icon = contactAccounts[indexPath.row - 2].icon, !icon.isEmpty {
+                            let imageUrl = URL(string: icon)
+                            cell.socialPicIV?.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "placeholder")) { (image, error, imageCacheType, url) in }
                         } else {
                             cell.socialPicIV.image = UIImage(named: "placeholder")
                         }
                         
                         return cell
+
                         
                     } else {
                         let cell : ContactInfoTVCell = tableView.dequeueReusableCell(withIdentifier: "ContactInfoTVCell", for: indexPath) as! ContactInfoTVCell
@@ -915,32 +948,9 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                         cell.chkBtn.tag = contactAccounts[indexPath.row - 2].contactTypeId
                         cell.contactTF.delegate = self
 
-                        /*cell.contactTF.selectedRowColor = UIColor(named: "warning")!
-                        
-                        cell.contactTF.handleKeyboard = true
-                        cell.contactTF.isSearchEnable = true
-                        
-                        cell.contactTF.checkMarkEnabled = true
-                        cell.contactTF.semanticContentAttribute = .forceLeftToRight
-                        cell.contactTF.updatePadding(top: 0, left: 10, bottom: 0, right: 10)
-                        cell.contactTF.textColor = UIColor(named: "Text grey")
-                        
-                        cell.contactTF.arrowSize = 8*/
-                        
+
                         cell.contactTF.font = UIFont(name: "Roboto", size: 14)?.bold
                         cell.contactTF.tag = contactAccounts[indexPath.row - 2].contactTypeId
-                        
-                        
-                        //let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-                        //cell.contactTF.addGestureRecognizer(tapGesture)
-                        
-                        /*cell.contactTF.didSelect { [self] selectedText, index, id in
-                            //cell.contactTF.text = "Selected String: \(selectedText) \n index: \(index) \n Id: \(id)"
-                            Logs.show(message: "Selected String: \(selectedText) \n index: \(index) \n Id: \(id) \n tag: \(cell.contactTF.tag)")
-                            //selectedContactValue =
-                            
-                            
-                        }*/
                         
                         let selectedIds = AppFunctions.getSelectedCheckArray()
                         if selectedIds.contains(contactAccounts[indexPath.row - 2].contactTypeId) {
@@ -949,32 +959,15 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                             cell.chkBtn.tintColor = UIColor.systemGray2
                         }
                         
-                        /*if !AppFunctions.getSelectedCheckArray().isEmpty {
-                         let selectedIds = AppFunctions.getSelectedCheckArray()
-                         let currentContactTypeId = contactAccounts[indexPath.row - 2].contactTypeId
-                         
-                         if selectedIds.contains(currentContactTypeId!) {
-                         cell.chkBtn.tintColor = UIColor(named: "Success")
-                         } else {
-                         cell.chkBtn.tintColor = UIColor.systemGray2
-                         }
-                         } else {
-                         cell.chkBtn.tintColor = UIColor.systemGray2
-                         }*/
                         
                         var socialObjArr = [SocialAccModel]()
                         
                         switch contactAccounts[indexPath.row - 2].contactTypeId {
                             case 1:
-                                //cell.socialPicIV.image = UIImage(named: "LinkedIn")
                                 cell.contactTF.keyboardType = .default
                                 
                                 socialObjArr = socialAccounts.filter {$0.linkType == "LinkedIn"}
-                                /*cell.contactTF.optionArray = socialObjArr.compactMap {$0.linkTitle}
-                                cell.contactTF.optionIds = socialObjArr.compactMap {$0.socialAccountId}
                                 
-                                cell.contactTF.arrowColor = UIColor(named: "Text grey")!
-                                cell.contactTF.arrowSize = 8*/
                                 
                                 if linkedInContactValue.isEmpty {
                                     if socialObjArr.count <= 1 {
@@ -990,10 +983,7 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                                 cell.contactTF.keyboardType = .default
                                 
                                 socialObjArr = socialAccounts.filter {$0.linkType == "Instagram"}
-                                /*cell.contactTF.optionArray = socialObjArr.compactMap {$0.linkTitle}
-                                cell.contactTF.optionIds = socialObjArr.compactMap {$0.socialAccountId}
                                 
-                                cell.contactTF.arrowColor = UIColor(named: "Text grey")!*/
                                 
                                 if instagramContactValue.isEmpty {
                                     if socialObjArr.count <= 1 {
@@ -1005,14 +995,9 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                                 }
                                 
                             case 3:
-                                //cell.socialPicIV.image = UIImage(named: "WeChat")
                                 cell.contactTF.keyboardType = .phonePad
                                 
                                 socialObjArr = socialAccounts.filter {$0.linkType == "WeChat"}
-                                /*cell.contactTF.optionArray = socialObjArr.compactMap {$0.linkTitle}
-                                cell.contactTF.optionIds = socialObjArr.compactMap {$0.socialAccountId}
-                                
-                                cell.contactTF.arrowColor = UIColor(named: "Text grey")!*/
                                 
                                 if wechatContactValue.isEmpty {
                                     if socialObjArr.count <= 1 {
@@ -1024,10 +1009,8 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                                 }
                             case 4:
                                 
-                                //cell.socialPicIV.image = UIImage(named: "whatsapp")
                                 cell.contactTF.keyboardType = .phonePad
                                 
-                                //cell.contactTF.arrowColor = .clear
                                 
                                 if !whatsAppContactValue.isEmpty {
                                     cell.contactTF.text = whatsAppContactValue
@@ -1036,11 +1019,9 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                                 }
                                 
                             case 5:
-                                //cell.socialPicIV.image = UIImage(named: "Instagram")
-                                //cell.socialPicIV.image = UIImage(named: "phone")
+                                
                                 cell.contactTF.keyboardType = .phonePad
                                 
-                                //cell.contactTF.arrowColor = .clear
                                 
                                 if !directContactValue.isEmpty {
                                     cell.contactTF.text = directContactValue
@@ -1071,6 +1052,41 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
         } else {
             let cell = UITableViewCell(style: .default, reuseIdentifier: "DropdownCell")
             cell.textLabel?.text = dropdownData[indexPath.row]
+            
+            // Set the background color to light gray
+            cell.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
+            
+            // Set border properties
+            cell.layer.borderWidth = 1.0
+            cell.layer.borderColor = UIColor.lightGray.cgColor
+            
+            // Reset corner radius
+            cell.layer.cornerRadius = 0
+            cell.layer.maskedCorners = []
+            
+            let numberOfRowsInSection = tableView.numberOfRows(inSection: indexPath.section)
+            
+            if numberOfRowsInSection == 1 {
+                // Apply both top and bottom corner radii if the section has only one row
+                cell.layer.cornerRadius = 8
+                cell.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+            } else {
+                // Apply top corner radius
+                if indexPath.row == 0 {
+                    cell.layer.cornerRadius = 8
+                    cell.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+                }
+                
+                // Apply bottom corner radius
+                if indexPath.row == numberOfRowsInSection - 1 {
+                    cell.layer.cornerRadius = 8
+                    cell.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+                }
+            }
+            
+            // Ensure the border and corners are applied correctly
+            cell.clipsToBounds = true
+            
             return cell
         }
     }
@@ -1081,7 +1097,7 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
 
             activeTextFieldDD?.text = dropdownData[indexPath.row]
             
-            var ddSelectedId = dropdownDataId[indexPath.row]
+            let ddSelectedId = dropdownDataId[indexPath.row]
             
             if selectedTag == 1 {
                 linkedInContactValue = socialAccounts.filter {$0.socialAccountId == ddSelectedId}.first?.linkUrl ?? ""

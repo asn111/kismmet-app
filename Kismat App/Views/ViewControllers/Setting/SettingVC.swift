@@ -21,7 +21,7 @@ class SettingVC: MainViewController {
     var accSecImg = ["person.circle.fill","slider.horizontal.3","rectangle.and.pencil.and.ellipsis","creditcard","checkmark.seal"]
     
     var featuresSecTxt = ["Social Links","Starred Users","Blocked Users"]
-    var featuresSecImg = ["link.circle","star.fill","minus.circle"]
+    var featuresSecImg = ["link","star.fill","minus.circle"]
     
     var notifSecTxt = ["Notifications"]
     var notifSecImg = ["bell.badge.fill"]
@@ -271,8 +271,54 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
         } else {
             
             let cell : SettingTVCell = tableView.dequeueReusableCell(withIdentifier: "SettingTVCell", for: indexPath) as! SettingTVCell
-            
+                        
             switch indexPath.section {
+                case 1:
+                    cell.txtLbl.text = accSecTxt[indexPath.row]
+                    cell.ivIcon.image = UIImage(systemName: accSecImg[indexPath.row])
+                case 2:
+                    cell.txtLbl.text = featuresSecTxt[indexPath.row]
+                    cell.ivIcon.image = UIImage(systemName: featuresSecImg[indexPath.row])
+                case 3:
+                    cell.txtLbl.text = notifSecTxt[indexPath.row]
+                    cell.ivIcon.image = UIImage(systemName: notifSecImg[indexPath.row])
+                case 4:
+                    cell.txtLbl.text = helpNsupportTxt[indexPath.row]
+                    cell.ivIcon.image = UIImage(systemName: helpNsupportImg[indexPath.row])
+                case 5:
+                    cell.txtLbl.text = logoutTxt[indexPath.row]
+                    cell.ivIcon.image = UIImage(systemName: logoutImg[indexPath.row])
+                default:
+                    break
+            }
+            
+            // Reset corner radius
+            cell.mainView.layer.cornerRadius = 0
+            cell.mainView.layer.maskedCorners = []
+            
+            let numberOfRowsInSection = tableView.numberOfRows(inSection: indexPath.section)
+            
+            if numberOfRowsInSection == 1 {
+                // Apply both top and bottom corner radii if the section has only one row
+                cell.mainView.layer.cornerRadius = 8
+                cell.mainView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+            } else {
+                // Apply top corner radius
+                if indexPath.row == 0 {
+                    cell.mainView.layer.cornerRadius = 8
+                    cell.mainView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+                }
+                
+                // Apply bottom corner radius
+                if indexPath.row == numberOfRowsInSection - 1 {
+                    cell.mainView.layer.cornerRadius = 8
+                    cell.mainView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+                }
+            }
+            
+            return cell
+            
+            /*switch indexPath.section {
                 case 1:
                     cell.txtLbl.text = accSecTxt[indexPath.row]
                     cell.ivIcon.image = UIImage(systemName: accSecImg[indexPath.row])
@@ -282,7 +328,7 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
                     } else if indexPath.row == accSecTxt.count - 1 {
                         cell.mainView.botLimitedCornerRadius = 8
                     } else {
-                        cell.mainView.cornerRadius = 0
+                        //cell.mainView.cornerRadius = 0
                     }
                     
                 case 2:
@@ -294,20 +340,20 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
                     } else if indexPath.row == featuresSecTxt.count - 1 {
                         cell.mainView.botLimitedCornerRadius = 8
                     } else {
-                        cell.mainView.cornerRadius = 0
+                        //cell.mainView.cornerRadius = 0
                     }
                     
                 case 3:
                     cell.txtLbl.text = notifSecTxt[indexPath.row]
-                    cell.mainView.cornerRadius = 8
                     cell.ivIcon.image = UIImage(systemName: notifSecImg[indexPath.row])
+                    cell.mainView.cornerRadius = 8
 
                     /*if indexPath.row == 0 {
                         cell.mainView.topLimitedCornerRadius = 8
                     } else if indexPath.row == notifSecTxt.count - 1 {
                         cell.mainView.botLimitedCornerRadius = 8
                     } else {
-                        cell.mainView.cornerRadius = 0
+                        //cell.mainView.cornerRadius = 0
                     }*/
                     
                 case 4:
@@ -319,27 +365,27 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
                     } else if indexPath.row == helpNsupportTxt.count - 1 {
                         cell.mainView.botLimitedCornerRadius = 8
                     } else {
-                        cell.mainView.cornerRadius = 0
+                        //cell.mainView.cornerRadius = 0
                     }
                     
                 case 5:
                     cell.txtLbl.text = logoutTxt[indexPath.row]
-                    cell.mainView.cornerRadius = 8
                     cell.ivIcon.image = UIImage(systemName: logoutImg[indexPath.row])
+                    cell.mainView.cornerRadius = 8
 
                     /*if indexPath.row == 0 {
                         cell.mainView.topLimitedCornerRadius = 8
                     } else if indexPath.row == logoutTxt.count - 1 {
                         cell.mainView.botLimitedCornerRadius = 8
                     } else {
-                        cell.mainView.cornerRadius = 0
+                        //cell.mainView.cornerRadius = 0
                     }*/
                     
                 default:
                     print("")
             }
             
-            return cell
+            return cell*/
         }
         
     }

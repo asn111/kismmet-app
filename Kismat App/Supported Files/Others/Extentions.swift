@@ -353,54 +353,39 @@ extension UITextView : UITextViewDelegate
     }
     
     
-    /// Resize the placeholder UILabel to make sure it's in the same position as the UITextView text
-    private func resizePlaceholder() {
-        if let placeholderLabel = self.viewWithTag(100) as! UILabel? {
-            let labelX = self.textContainer.lineFragmentPadding
-            let labelY = self.textContainerInset.top - 2
-            let labelWidth = self.frame.width - (labelX * 2)
-            let labelHeight = placeholderLabel.frame.height
+    func addPlaceholder(_ placeholderText: String, size: CGFloat) {
+        // Remove existing placeholder if it exists
+        if let existingPlaceholder = self.viewWithTag(100) as? UILabel {
+            existingPlaceholder.removeFromSuperview()
+        }
+        
+        let placeholderLabel = UILabel()
+        
+        placeholderLabel.text = placeholderText
+        placeholderLabel.font = UIFont(name: "Roboto", size: size)
+        placeholderLabel.textColor = UIColor(named: "Text grey")
+        placeholderLabel.tag = 100
+        placeholderLabel.numberOfLines = 0
+        placeholderLabel.lineBreakMode = .byWordWrapping
+        
+        // Configure placeholder label frame
+        placeholderLabel.frame = CGRect(x: 5, y: 0, width: self.frame.size.width - 10, height: self.frame.size.height - 16)
+        placeholderLabel.isHidden = !self.text.isEmpty
+        
+        self.addSubview(placeholderLabel)
+        self.resizePlaceholder() // Assuming this method adjusts the layout based on the placeholder
+    }
+    
+    // Implement resizePlaceholder if needed
+    func resizePlaceholder() {
+        if let placeholderLabel = self.viewWithTag(100) as? UILabel {
+            let labelX = self.textContainerInset.left + 5
+            let labelY = self.textContainerInset.top
+            let labelWidth = self.frame.width - (self.textContainerInset.left + self.textContainerInset.right + 10)
+            let labelHeight = placeholderLabel.sizeThatFits(CGSize(width: labelWidth, height: CGFloat.greatestFiniteMagnitude)).height
             
             placeholderLabel.frame = CGRect(x: labelX, y: labelY, width: labelWidth, height: labelHeight)
         }
-    }
-    
-    /// Adds a placeholder UILabel to this UITextView
-    func addPlaceholder(_ placeholderText: String, size: CGFloat) {
-        if !self.text.isEmpty {
-            // If text exists, remove the placeholder label if it exists
-            if let existingPlaceholder = self.viewWithTag(100) as? UILabel {
-                existingPlaceholder.removeFromSuperview()
-            }
-            return
-        }
-        
-        guard let existingPlaceholder = self.viewWithTag(100) as? UILabel else {
-            // If no placeholder label exists, create and configure it
-            let placeholderLabel = UILabel()
-            
-            placeholderLabel.text = placeholderText
-            placeholderLabel.font = UIFont(name: "Roboto", size: size)?.regular
-            placeholderLabel.textColor = UIColor(named: "Text grey")
-            placeholderLabel.tag = 100
-            placeholderLabel.numberOfLines = 0
-            placeholderLabel.lineBreakMode = .byWordWrapping
-            
-            // Configure placeholder label frame
-            placeholderLabel.frame = CGRect(x: 5, y: 0, width: self.frame.size.width - 10, height: self.frame.size.height - 16)
-            placeholderLabel.isHidden = !self.text.isEmpty
-            
-            self.addSubview(placeholderLabel)
-            self.resizePlaceholder() // Assuming this method adjusts the layout based on the placeholder
-            
-            self.delegate = self // Ensure this line is appropriate for your use case
-            
-            return
-        }
-        
-        // Update existing placeholder text if it exists
-        existingPlaceholder.text = placeholderText
-        existingPlaceholder.isHidden = !self.text.isEmpty
     }
 
 }
