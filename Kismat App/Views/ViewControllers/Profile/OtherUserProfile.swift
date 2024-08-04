@@ -31,6 +31,8 @@ class OtherUserProfile: MainViewController {
     var canCancelReq = false
     var contactId = 0
     
+    var starValue = false
+
     var overlayView: UIView?
 
     //var markView = false
@@ -73,6 +75,9 @@ class OtherUserProfile: MainViewController {
         }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
 
         
+//        if userModel.isStarred != nil {
+//            starValue = userModel.isStarred
+//        }
     }
     
     func registerCells() {
@@ -216,16 +221,35 @@ class OtherUserProfile: MainViewController {
     }
     
     @objc
-    func starTapFunction(sender:UIButton) {
+    func starTapFunction(sender: UIButton) {
         
-        let cell = otherProfileTV.cellForRow(at: IndexPath(row: sender.tag, section: 0)) as? GeneralHeaderTVCell
+        markUserStar(userId: userModel.userId)
+
+        /*let cell = otherProfileTV.cellForRow(at: IndexPath(row: sender.tag - 1 , section: 0)) as? GeneralHeaderTVCell
         
-        if cell?.rattingBtn.imageView?.image == UIImage(systemName: "star.fill") {
+        
+        // Safely unwrap the current image and compare its name
+        if let currentImage = cell?.rattingBtn.imageView?.image, currentImage.isEqual(UIImage(systemName: "star.fill")) {
             cell?.rattingBtn.setImage(UIImage(systemName: "star"), for: .normal)
-            ApiService.markStarUser(val: userModel.userId)
+            markUserStar(userId: userModel.userId)
         } else {
             cell?.rattingBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
-            ApiService.markStarUser(val: userModel.userId)
+        }*/
+    }
+
+    
+    func markUserStar(userId: String) {
+        TimeTracker.shared.startTracking(for: "markUserStar")
+        
+        let pram = ["userId": "\(userId)"]
+        Logs.show(message: "PRAM: \(pram)")
+        SignalRService.connection.invoke(method: "StarUser", pram) {  error in
+            Logs.show(message: "\(pram)")
+            if let e = error {
+                Logs.show(message: "Error: \(e)")
+                return
+            }
+            TimeTracker.shared.stopTracking(for: "markUserStar")
         }
     }
     

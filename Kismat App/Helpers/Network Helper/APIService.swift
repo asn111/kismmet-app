@@ -905,7 +905,8 @@ class APIService: NSObject {
     
     //MARK: Star user
     func markStarUser(val: String){
-        
+        TimeTracker.shared.startTracking(for: "markStarUser")
+
         if (self.isCheckReachable()) {
             let pram: Parameters = ["userId": val]
             
@@ -924,6 +925,7 @@ class APIService: NSObject {
                                 let genResponse = try JSONDecoder().decode(GeneralResponse.self, from: data)
                                 //AppFunctions.showSnackBar(str: genResponse.message)
                                 Logs.show(message: "SUCCESS IN \(#function)")
+                                TimeTracker.shared.stopTracking(for: "markStarUser")
                             } catch {
                                 AppFunctions.showSnackBar(str: "Server Parsing Error")
                                 Logs.show(isLogTrue: true, message: "Error on observer.onError - \(error)")

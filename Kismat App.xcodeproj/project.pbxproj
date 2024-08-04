@@ -137,6 +137,7 @@
 		29BE184C29FA6E68000EAC0E /* EnlargedIV VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BE184B29FA6E68000EAC0E /* EnlargedIV VC.swift */; };
 		29BE184F29FA8573000EAC0E /* BlockBtnTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BE184D29FA8573000EAC0E /* BlockBtnTVCell.swift */; };
 		29BE185029FA8573000EAC0E /* BlockBtnTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29BE184E29FA8573000EAC0E /* BlockBtnTVCell.xib */; };
+		29D47D3E2C5F862A00CBFB6B /* TimeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D47D3D2C5F862A00CBFB6B /* TimeTracker.swift */; };
 		29EE7DB92C358F1200A1E877 /* iOSDropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 29EE7DB82C358F1200A1E877 /* iOSDropDown */; };
 		29EE7DBF2C37E65E00A1E877 /* ContactsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE7DBE2C37E65E00A1E877 /* ContactsModel.swift */; };
 		29EE7DC22C39249800A1E877 /* ContactTextViewTVcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE7DC02C39249700A1E877 /* ContactTextViewTVcell.swift */; };
@@ -305,6 +306,7 @@
 		29BE184B29FA6E68000EAC0E /* EnlargedIV VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnlargedIV VC.swift"; sourceTree = "<group>"; };
 		29BE184D29FA8573000EAC0E /* BlockBtnTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockBtnTVCell.swift; sourceTree = "<group>"; };
 		29BE184E29FA8573000EAC0E /* BlockBtnTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlockBtnTVCell.xib; sourceTree = "<group>"; };
+		29D47D3D2C5F862A00CBFB6B /* TimeTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTracker.swift; sourceTree = "<group>"; };
 		29EE7DBD2C368DE800A1E877 /* iOSDropDownF */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = iOSDropDownF; path = ../../../../../Downloads/iOSDropDownF; sourceTree = "<group>"; };
 		29EE7DBE2C37E65E00A1E877 /* ContactsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsModel.swift; sourceTree = "<group>"; };
 		29EE7DC02C39249700A1E877 /* ContactTextViewTVcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTextViewTVcell.swift; sourceTree = "<group>"; };
@@ -728,6 +730,7 @@
 				299FDD4729967D1D0049741B /* ImagePicker.swift */,
 				299FDD4829967D1D0049741B /* AppFunctions.swift */,
 				299FDD4929967D1D0049741B /* Floater Styling.swift */,
+				29D47D3D2C5F862A00CBFB6B /* TimeTracker.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -1360,6 +1363,7 @@
 				29FD316829A5FDAD00BDBD9C /* EditProfileSetupExt.swift in Sources */,
 				294DD5232A94976E004A7F22 /* PopupVC.swift in Sources */,
 				2976D89D2A2FD0D800A855F1 /* CodeVerification_VC.swift in Sources */,
+				29D47D3E2C5F862A00CBFB6B /* TimeTracker.swift in Sources */,
 				290527292A9B3A59002A3FF4 /* SupportPageVC.swift in Sources */,
 				294A79B0299AEB2E00089161 /* AboutTVCell.swift in Sources */,
 				2940B8FF299D634300D3F863 /* ImageViewTVCell.swift in Sources */,
@@ -1601,7 +1605,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1641,7 +1645,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;

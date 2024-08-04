@@ -9,6 +9,17 @@ import UIKit
 
 class GeneralHeaderTVCell: UITableViewCell {
 
+    
+    
+    @IBAction func rattingBtnPressed(_ sender: Any) {
+        if let currentImage = rattingBtn.imageView?.image, currentImage.isEqual(UIImage(systemName: "star.fill")) {
+            rattingBtn.setImage(UIImage(systemName: "star"), for: .normal)
+        } else {
+            rattingBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        }
+        
+    }
+    
     @IBOutlet weak var rocketBtn: UIButton!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var welcomeView: UIView!

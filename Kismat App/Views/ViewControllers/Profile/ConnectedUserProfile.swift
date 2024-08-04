@@ -197,15 +197,30 @@ class ConnectedUserProfile: MainViewController {
     
     @objc
     func starTapFunction(sender:UIButton) {
+        markUserStar(userId: userModel.userId)
+
+//        let cell = otherProfileTV.cellForRow(at: IndexPath(row: sender.tag, section: 0)) as? GeneralHeaderTVCell
+//        
+//        if cell?.rattingBtn.imageView?.image == UIImage(systemName: "star.fill") {
+//            cell?.rattingBtn.setImage(UIImage(systemName: "star"), for: .normal)
+//        } else {
+//            cell?.rattingBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
+//            markUserStar(userId: userModel.userId)
+//        }
+    }
+    
+    func markUserStar(userId: String) {
+        TimeTracker.shared.startTracking(for: "markUserStar")
         
-        let cell = otherProfileTV.cellForRow(at: IndexPath(row: sender.tag, section: 0)) as? GeneralHeaderTVCell
-        
-        if cell?.rattingBtn.imageView?.image == UIImage(systemName: "star.fill") {
-            cell?.rattingBtn.setImage(UIImage(systemName: "star"), for: .normal)
-            ApiService.markStarUser(val: userModel.userId)
-        } else {
-            cell?.rattingBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
-            ApiService.markStarUser(val: userModel.userId)
+        let pram = ["userId": "\(userId)"]
+        Logs.show(message: "PRAM: \(pram)")
+        SignalRService.connection.invoke(method: "StarUser", pram) {  error in
+            Logs.show(message: "\(pram)")
+            if let e = error {
+                Logs.show(message: "Error: \(e)")
+                return
+            }
+            TimeTracker.shared.stopTracking(for: "markUserStar")
         }
     }
     
@@ -353,7 +368,7 @@ extension ConnectedUserProfile : UITableViewDelegate, UITableViewDataSource {
                 
                 cell.notifBtn.isHidden = true
                 
-                cell.rocketBtn.isHidden = false
+                cell.rocketBtn.isHidden = true
                 cell.rocketBtn.tintColor = UIColor(named: "Success")
 
                 
@@ -484,23 +499,23 @@ extension ConnectedUserProfile : UITableViewDelegate, UITableViewDataSource {
         if indexPath.row > 3 && indexPath.row < socialAccModel.count + 4 {
             //if socialAccModel.filter({$0.contactType == socialAccounts[indexPath.row - 6].contactType }).count > 0 {
                 let link = socialAccModel[indexPath.row - 4]
-                switch socialAccModel[indexPath.row - 4].contactTypeId {
-                    case 1:
-                        AppFunctions.openLinkedIn(userName: link.value)
-                    case 2:
-                        AppFunctions.openWhatsApp(phoneNumber: link.value)
-                    case 3:
-                        AppFunctions.openWeChat(userName: link.value)
-                    case 4:
-                        AppFunctions.initiateCall(phoneNumber: link.value)
-                    case 5:
-                        AppFunctions.openInstagram(userName: link.value)
+            switch socialAccModel[indexPath.row - 4].contactTypeId {
+                case 1:
+                    AppFunctions.openLinkedIn(userName: link.value)
+                case 4:
+                    AppFunctions.openWhatsApp(phoneNumber: link.value)
+                case 3:
+                    AppFunctions.openWeChat(userName: link.value)
+                case 5:
+                    AppFunctions.initiateCall(phoneNumber: link.value)
+                case 2:
+                    AppFunctions.openInstagram(userName: link.value)
                     //case 6:
-                        //AppFunctions.openiMessage(phoneNumber: link.value)
-                    default:
-                        print("default")
-                }
-                
+                    //cell.socialImgView.image = UIImage(named: "message")
+                default:
+                    print("default")
+            }
+            
                 /*self.presentVC(id: "SocialLinks_VC",presentFullType: "not") { (vc:SocialLinks_VC) in
                     vc.isFromOther = true
                     vc.userId = userModel.userId

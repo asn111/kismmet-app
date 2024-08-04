@@ -100,12 +100,30 @@ class ViewedByMeVC: MainViewController {
                 print("index path =\(indexPath)")
                 if cell.starLbl.image == UIImage(systemName: "star.fill") {
                     cell.starLbl.image = UIImage(systemName: "star")
-                    ApiService.markStarUser(val: users[indexPath.row - 1].userId)
+                    //ApiService.markStarUser(val: users[indexPath.row - 1].userId)
+                    markUserStar(userId: users[indexPath.row - 1].userId)
                 } else {
                     cell.starLbl.image = UIImage(systemName: "star.fill")
-                    ApiService.markStarUser(val: users[indexPath.row - 1].userId)
+                    markUserStar(userId: users[indexPath.row - 1].userId)
+                    //ApiService.markStarUser(val: users[indexPath.row - 1].userId)
                 }
             }
+        }
+    }
+    
+    
+    func markUserStar(userId: String) {
+        TimeTracker.shared.startTracking(for: "markUserStar")
+        
+        let pram = ["userId": "\(userId)"]
+        Logs.show(message: "PRAM: \(pram)")
+        SignalRService.connection.invoke(method: "StarUser", pram) {  error in
+            Logs.show(message: "\(pram)")
+            if let e = error {
+                Logs.show(message: "Error: \(e)")
+                return
+            }
+            TimeTracker.shared.stopTracking(for: "markUserStar")
         }
     }
     

@@ -335,7 +335,7 @@ class CustomToggleButton: UISwitch {
 @IBDesignable
 class RoundCornerButton : UIButton {
    
-    let rippleTouchController = MDCRippleTouchController()
+    //let rippleTouchController = MDCRippleTouchController()
     var isWork = true
     
     @IBInspectable var dashWidth: CGFloat = 0
@@ -464,7 +464,7 @@ class RoundCornerButton : UIButton {
     }
     
     func setupView () {
-        rippleTouchController.addRipple(to: self)
+        //rippleTouchController.addRipple(to: self)
         self.backgroundColor = bgColor
         self.adjustsImageWhenHighlighted = false
         self.layer.cornerRadius = cornerRadius

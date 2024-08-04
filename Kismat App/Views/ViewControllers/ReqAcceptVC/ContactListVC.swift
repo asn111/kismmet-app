@@ -126,6 +126,12 @@ extension ContactListVC : UITableViewDelegate, UITableViewDataSource {
             }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row > 0 {
+            AppFunctions.showSnackBar(str: "You can view contact information once accepted")
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
