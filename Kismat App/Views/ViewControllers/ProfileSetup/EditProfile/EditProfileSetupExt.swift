@@ -17,8 +17,9 @@ class EditProfileSetupExt: MainViewController {
     
     @IBOutlet weak var profileExtTV: UITableView!
     
-    var placeholderArray = ["hed","pxlbl","sldr","map","stts","t1","t2","t3","emp","Public Email","Phone","bt"]
-    var dataArray = ["","","","","","","","","","tamara@gmail.com","23456789",""]
+    //var placeholderArray = ["hed","pxlbl","sldr","map","stts","t1","t2","t3","emp","Public Email","Phone","bt"]
+    var placeholderArray = ["hed","pxlbl","sldr","maph","map","sttsh","stts","t1","t2","t3","emp","Public Email","Phone","bt"]
+
     
     var isFromSetting = true
     var isProfileVisible = false
@@ -92,7 +93,7 @@ class EditProfileSetupExt: MainViewController {
             
             
             self?.location = loc
-            self?.profileExtTV.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .none)
+            self?.profileExtTV.reloadRows(at: [IndexPath(row: 4, section: 0)], with: .none)
 
         }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
         
@@ -230,10 +231,10 @@ class EditProfileSetupExt: MainViewController {
         let indexPath = IndexPath(row: sender.tag, section: 0)
         if let cell = profileExtTV.cellForRow(at: indexPath) as? MixHeaderTVCell {
             
-            if cell.toggleBtn.tag == 5 {
+            if cell.toggleBtn.tag == 7 {
                 isStatusDelete = cell.toggleBtn.isOn
                 //AppFunctions.setIsProfileVisble(value: cell.toggleBtn.isOn)
-            } else if cell.toggleBtn.tag == 6 {
+            } else if cell.toggleBtn.tag == 8 {
                 isProfileVisible = cell.toggleBtn.isOn
                 //AppFunctions.setIsProfileVisble(value: cell.toggleBtn.isOn)
             } else {
@@ -266,7 +267,7 @@ class EditProfileSetupExt: MainViewController {
             profileExtTV.rectForRow(at: IndexPath(row: 1, section: 0))
             proximity = Int(round(slider.value[1]))
             
-            let mapCell : RideMapViewTVCell = profileExtTV.cellForRow(at: IndexPath(row: 3, section: 0)) as! RideMapViewTVCell
+            let mapCell : RideMapViewTVCell = profileExtTV.cellForRow(at: IndexPath(row: 4, section: 0)) as! RideMapViewTVCell
             updateMapView(mapView: mapCell.mapView, radius: Double(proximity))
         }
     }
@@ -465,7 +466,7 @@ class EditProfileSetupExt: MainViewController {
             overlayView.alpha = 0
         }) { _ in
             overlayView.removeFromSuperview()
-            self.profileExtTV.reloadRows(at: [IndexPath(row: 3, section: 0)], with: .none)
+            self.profileExtTV.reloadRows(at: [IndexPath(row: 4, section: 0)], with: .none)
             self.overlayView = nil
         }
     }
@@ -509,7 +510,14 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 cell.sliderValue = proximity
                 cell.slider.addTarget(self, action: #selector(sliderChanged(slider:)), for: .valueChanged) /// continuous changes
                 return cell
-            case 3: // Map
+            case 3: // map heading
+                let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
+                cell.headerLblView.isHidden = false
+                cell.addBtn.isHidden = true
+                cell.headerLbl.text = "Tap map to visualize your radius"
+                
+                return cell
+            case 4: // Map
                 let cell : RideMapViewTVCell = tableView.dequeueReusableCell(withIdentifier: "RideMapViewTVCell", for: indexPath) as! RideMapViewTVCell
                 if location.coordinate.latitude != 0.00 {
                     makeMapView(mapView: cell.mapView, radius: Double(proximity))
@@ -520,7 +528,14 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 }
                 
                 return cell
-            case 4 : // Status
+            case 5: // Status heading
+                let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
+                cell.headerLblView.isHidden = false
+                cell.addBtn.isHidden = true
+                cell.headerLbl.text = "What's on your mind? Broadcast a status"
+                
+                return cell
+            case 6 : // Status
                 
                 let cell : GeneralTextviewTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralTextviewTVCell", for: indexPath) as! GeneralTextviewTVCell
                 
@@ -539,7 +554,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 cell.generalTV.textColor = UIColor(named: "Text grey")
                 
                 return cell
-            case 5: // status toggle
+            case 7: // status toggle
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.toggleBtnView.isHidden = false
                 cell.toggleLbl.text = "Disappearing status"
@@ -555,7 +570,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 cell.toggleTooltipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
                 cell.toggleBtn.addTarget(self, action: #selector(toggleButtonPressed(_:)), for: .valueChanged)
                 return cell
-            case 6: // Visibilty 1
+            case 8: // Visibilty 1
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.toggleBtnView.isHidden = false
                 cell.toggleLbl.text = "Online Presence"
@@ -568,7 +583,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 
                 
                 return cell
-            case 7: // Visibility 2
+            case 9: // Visibility 2
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.toggleBtnView.isHidden = false
                 cell.toggleLbl.text = "Shadow Mode"

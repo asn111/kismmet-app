@@ -414,36 +414,42 @@ class ContactInformainVC: MainViewController {
         switch sender.tag {
             case 1:
                 if linkedInContactValue.isEmpty {
+                    AppFunctions.showSnackBar(str: "Add information to enable checkbox")
                     return
                 }
                 AppFunctions.setSelectedCheckValue(value: sender.tag)
                 contactTV.reloadRows(at: [IndexPath(row: sender.tag + 1, section: 0)], with: .none)
             case 2:
                 if instagramContactValue.isEmpty {
+                    AppFunctions.showSnackBar(str: "Add information to enable checkbox")
                     return
                 }
                 AppFunctions.setSelectedCheckValue(value: sender.tag)
                 contactTV.reloadRows(at: [IndexPath(row: sender.tag + 1, section: 0)], with: .none)
             case 3:
                 if wechatContactValue.isEmpty {
+                    AppFunctions.showSnackBar(str: "Add information to enable checkbox")
                     return
                 }
                 AppFunctions.setSelectedCheckValue(value: sender.tag)
                 contactTV.reloadRows(at: [IndexPath(row: sender.tag + 1, section: 0)], with: .none)
             case 4:
                 if whatsAppContactValue.isEmpty {
+                    AppFunctions.showSnackBar(str: "Add information to enable checkbox")
                     return
                 }
                 AppFunctions.setSelectedCheckValue(value: sender.tag)
                 contactTV.reloadRows(at: [IndexPath(row: sender.tag + 1, section: 0)], with: .none)
             case 5:
                 if directContactValue.isEmpty {
+                    AppFunctions.showSnackBar(str: "Add information to enable checkbox")
                     return
                 }
                 AppFunctions.setSelectedCheckValue(value: sender.tag)
                 contactTV.reloadRows(at: [IndexPath(row: sender.tag + 1, section: 0)], with: .none)
             case 6:
                 if kismmetMsgContactValue.isEmpty {
+                    AppFunctions.showSnackBar(str: "Add information to enable checkbox")
                     return
                 }
                 AppFunctions.setSelectedCheckValue(value: sender.tag)
@@ -851,8 +857,32 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                             
                             if isSetting {
                                 
-                                cell.textLbl.attributedText = NSAttributedString(string: "Contact Info you want to share", attributes:
-                                                                                    [.font: UIFont(name: "Roboto", size: 14)!.bold, .foregroundColor: UIColor(hexFromString: "4E6E81")])
+                                let mainText = "Contact Info you want to share\n"
+                                let secondaryText = "Select the checkboxes for the information to share."
+                                
+                                // Attributes for the main text
+                                let mainAttributes: [NSAttributedString.Key: Any] = [
+                                    .font: UIFont(name: "Roboto", size: 14)!.bold,
+                                    .foregroundColor: UIColor(hexFromString: "4E6E81")
+                                ]
+                                
+                                // Attributes for the secondary text
+                                let secondaryAttributes: [NSAttributedString.Key: Any] = [
+                                    .font: UIFont(name: "Roboto", size: 11)!.light,
+                                    .foregroundColor: UIColor(hexFromString: "EB4D4D")
+                                ]
+                                
+                                let mainAttributedString = NSAttributedString(string: mainText, attributes: mainAttributes)
+                                let secondaryAttributedString = NSAttributedString(string: secondaryText, attributes: secondaryAttributes)
+                                
+                                // Combine the two attributed strings
+                                let combinedAttributedString = NSMutableAttributedString()
+                                combinedAttributedString.append(mainAttributedString)
+                                combinedAttributedString.append(secondaryAttributedString)
+                                
+                                // Assign to the label
+                                cell.textLbl.attributedText = combinedAttributedString
+
                                 
                             } else {
                                 let text = "Please choose one or more ways for \(user.userName.trimmingCharacters(in: CharacterSet.whitespaces)) to reach out!"
@@ -863,14 +893,25 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                                 paragraphStyle.alignment = .left
                                 attributedText.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedText.length))
                                 
-                                // Styling for "Terms & Conditions"
-                                let termsRange = (text as NSString).range(of: "\(user.userName.trimmingCharacters(in: CharacterSet.whitespaces))")
-                                attributedText.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Roboto", size: 14)!.bold, range: termsRange)
-                                attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexFromString: "4E6E81"), range: termsRange)
+                                // Styling for the user's name
+                                let userNameRange = (text as NSString).range(of: "\(user.userName.trimmingCharacters(in: CharacterSet.whitespaces))")
+                                attributedText.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Roboto", size: 14)!.bold, range: userNameRange)
+                                attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexFromString: "4E6E81"), range: userNameRange)
                                 
+                                // Secondary text and its attributes
+                                let secondaryText = "\nSelect the checkboxes for the information to send."
+                                let secondaryAttributes: [NSAttributedString.Key: Any] = [
+                                    .font: UIFont(name: "Roboto", size: 11)!.light,
+                                    .foregroundColor: UIColor(hexFromString: "EB4D4D")
+                                ]
+                                
+                                let secondaryAttributedString = NSAttributedString(string: secondaryText, attributes: secondaryAttributes)
+                                attributedText.append(secondaryAttributedString)
+                                
+                                // Assign to the label
                                 cell.textLbl.attributedText = attributedText
+
                             }
-                            
                         }
                     }
                     
@@ -923,8 +964,10 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                         let selectedIds = AppFunctions.getSelectedCheckArray()
                         if selectedIds.contains(contactAccounts[indexPath.row - 2].contactTypeId) {
                             cell.chkBtn.tintColor = UIColor(named: "Success")
+                            cell.chkBtn.setImage(UIImage(systemName: "checkmark.square.fill"), for: .normal)
                         } else {
                             cell.chkBtn.tintColor = UIColor.systemGray2
+                            cell.chkBtn.setImage(UIImage(systemName: "square"), for: .normal)
                         }
                         
                         cell.chkBtn.addTarget(self, action: #selector(checkBtnPressed(sender:)), for: .touchUpInside)
@@ -955,8 +998,10 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                         let selectedIds = AppFunctions.getSelectedCheckArray()
                         if selectedIds.contains(contactAccounts[indexPath.row - 2].contactTypeId) {
                             cell.chkBtn.tintColor = UIColor(named: "Success")
+                            cell.chkBtn.setImage(UIImage(systemName: "checkmark.square.fill"), for: .normal)
                         } else {
                             cell.chkBtn.tintColor = UIColor.systemGray2
+                            cell.chkBtn.setImage(UIImage(systemName: "square"), for: .normal)
                         }
                         
                         

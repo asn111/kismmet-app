@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "rockett.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
