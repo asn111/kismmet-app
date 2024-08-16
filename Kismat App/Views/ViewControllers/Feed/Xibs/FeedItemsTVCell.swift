@@ -10,6 +10,18 @@ import SDWebImage
 
 class FeedItemsTVCell: UITableViewCell {
 
+    @IBAction func starBtnPressed(_ sender: Any) {
+        
+//        if let currentImage = starBtn.imageView?.image, currentImage.isEqual(UIImage(systemName: "star.fill")) {
+//            starBtn.setImage(UIImage(systemName: "star"), for: .normal)
+//        } else {
+//            starBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
+//        }
+    }
+    
+    
+    @IBOutlet weak var starBtn: UIButton!
+    
     @IBOutlet weak var statusView: RoundCornerView!
     
     @IBOutlet weak var mainViewHeightConst: NSLayoutConstraint!

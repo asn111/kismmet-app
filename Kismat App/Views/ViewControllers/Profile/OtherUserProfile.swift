@@ -28,7 +28,8 @@ class OtherUserProfile: MainViewController {
     var socialAccounts = [SocialAccDBModel()]
 
     var isFromBlock = false
-    var canCancelReq = false
+    
+    var canCancelReq = ""
     var contactId = 0
     
     var starValue = false
@@ -74,10 +75,7 @@ class OtherUserProfile: MainViewController {
             
         }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
 
-        
-//        if userModel.isStarred != nil {
-//            starValue = userModel.isStarred
-//        }
+      
     }
     
     func registerCells() {
@@ -119,12 +117,19 @@ class OtherUserProfile: MainViewController {
         }
     }
 
-    func showAlertCancel(){
-        let message = "Alert!"
-        let alert = CDAlertView(title: message, message: "Are you sure you want to undo this sent request?", type: .warning)
-        let action = CDAlertViewAction(title: "Undo",
+    func showAlertCancel(undo: Bool){
+        var message = ""
+        
+        if undo {
+            message = "Are you sure you want to undo this sent request?"
+        } else {
+            message = "Are you sure you want to disconnect this contact?"
+        }
+        
+        let alert = CDAlertView(title: "Alert!", message: message, type: .warning)
+        let action = CDAlertViewAction(title: undo ? "Undo" : "Disconnect",
                                        handler: {[weak self] action in
-            self?.deleteContact()
+            self?.deleteContact(isNavigateToFeed: !undo)
             return true
         })
         let cancel = CDAlertViewAction(title: "Cancel",
@@ -211,20 +216,38 @@ class OtherUserProfile: MainViewController {
     
     @objc func sendContactRocket(sender: UIButton) {
         
-        if canCancelReq {
+        switch canCancelReq {
+            case "":
+                self.presentVC(id: "SendReqVC", presentFullType: "over" ) { (vc:SendReqVC) in
+                    vc.userModel = userModel
+                }
+            case "cancel":
+                showAlertCancel(undo: true)
+            case "already":
+                self.dismiss(animated: true)
+            case "discon":
+                showAlertCancel(undo: false)
+            case "a/d":
+                self.presentVC(id: "ReqAcceptVC", presentFullType: "over" ) { (vc:ReqAcceptVC) in
+                    vc.userModel = userModel
+                }
+            default:
+                break
+        }
+        
+        /*if canCancelReq {
             showAlertCancel()
         } else {
             self.presentVC(id: "SendReqVC", presentFullType: "over" ) { (vc:SendReqVC) in
                 vc.userModel = userModel
             }
-        }
+        }*/
     }
     
     @objc
     func starTapFunction(sender: UIButton) {
         
         markUserStar(userId: userModel.userId)
-
         /*let cell = otherProfileTV.cellForRow(at: IndexPath(row: sender.tag - 1 , section: 0)) as? GeneralHeaderTVCell
         
         
@@ -249,7 +272,6 @@ class OtherUserProfile: MainViewController {
                 Logs.show(message: "Error: \(e)")
                 return
             }
-            TimeTracker.shared.stopTracking(for: "markUserStar")
         }
     }
     
@@ -313,8 +335,9 @@ class OtherUserProfile: MainViewController {
                                     return false
                                 }
                             }
-                            
+                            self.canCancelReq = ""
                             self.otherProfileTV.reloadData()
+                            TimeTracker.shared.stopTracking(for: "markUserStar")
                             self.hidePKHUD()
                         } else {
                             self.hidePKHUD()
@@ -393,7 +416,7 @@ class OtherUserProfile: MainViewController {
             .disposed(by: dispose_Bag)
     }
     
-    func deleteContact() {
+    func deleteContact(isNavigateToFeed : Bool = false ) {
         self.showPKHUD(WithMessage: "")
         
         let pram : [String : Any] = [ "contactId": contactId ]
@@ -409,10 +432,19 @@ class OtherUserProfile: MainViewController {
                     case .next(let val):
                         Logs.show(message: "MARKED: 👉🏻 \(val)")
                         if val {
-                            self.userProfile(id: userId)
-                            self.canCancelReq = false
-                            AppFunctions.showSnackBar(str: "Your contact request is Canceled.")
-                            self.hidePKHUD()
+                            if isNavigateToFeed {
+                                AppFunctions.showSnackBar(str: "Contact reset")
+                                self.hidePKHUD()
+                                self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
+                                    vc.selectedIndex = 2
+                                }
+                            } else {
+                                self.userProfile(id: userId)
+                                self.canCancelReq = ""
+                                AppFunctions.showSnackBar(str: "Contact reset")
+                                self.hidePKHUD()
+                            }
+                            
                         } else {
                             self.hidePKHUD()
                         }
@@ -488,21 +520,45 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 cell.rocketBtn.isHidden = false
 
                 if userModel.userContacts == nil {
-                    cell.rocketBtn.tintColor = UIColor(named: "Secondary Grey")
+                    cell.rocketBtn.setTitle("Request ", for: .normal)
+                    cell.rocketBtn.backgroundColor = UIColor(named: "Secondary Grey")
+                    cell.rocketBtn.layer.borderColor = UIColor.lightGray.cgColor
+                    cell.rocketBtn.layer.borderWidth = 1
                     cell.rocketBtn.addTarget(self, action: #selector(sendContactRocket(sender:)), for: .touchUpInside)
                 } else {
                     if userModel.userContacts.contactStatus == "Pending" {
-                        if let isSent = userModel.userContacts.isSentByCurrentUsers {
-                            if userModel.userContacts.isSentByCurrentUsers {
-                                canCancelReq = true
-                                contactId = userModel.userContacts.id
+                        if let userContact = userModel.userContacts {
+                            if userContact.isSentByCurrentUsers {
+                                canCancelReq = "cancel"
+                                contactId = userContact.id
+                                cell.rocketBtn.setTitle("Pending ", for: .normal)
+                                
+                            } else {
+                                cell.rocketBtn.setTitle("Accept/Decline ", for: .normal)
+                                if isFromReq {
+                                    canCancelReq = "already"
+                                } else {
+                                    canCancelReq = "a/d"
+                                }
                             }
                         }
-                        cell.rocketBtn.tintColor = UIColor(named: "warning")
+                        cell.rocketBtn.layer.borderColor = UIColor.lightGray.cgColor
+                        cell.rocketBtn.layer.borderWidth = 1
+                        cell.rocketBtn.backgroundColor = UIColor(named: "warning")
                     } else if userModel.userContacts.contactStatus == "Accepted" {
-                        cell.rocketBtn.tintColor = UIColor(named: "Success")
+                        cell.rocketBtn.setTitle("Connected ", for: .normal)
+                        cell.rocketBtn.backgroundColor = UIColor(named: "Success")
+                        cell.rocketBtn.layer.borderColor = UIColor.lightGray.cgColor
+                        cell.rocketBtn.layer.borderWidth = 1
+                        canCancelReq = "discon"
+                        if let userContact = userModel.userContacts {
+                            contactId = userContact.id
+                        }
                     } else {
-                        cell.rocketBtn.tintColor = UIColor(named: "Secondary Grey")
+                        cell.rocketBtn.setTitle("Request ", for: .normal)
+                        cell.rocketBtn.backgroundColor = UIColor(named: "Secondary Grey")
+                        cell.rocketBtn.layer.borderColor = UIColor.lightGray.cgColor
+                        cell.rocketBtn.layer.borderWidth = 1
                         cell.rocketBtn.addTarget(self, action: #selector(sendContactRocket(sender:)), for: .touchUpInside)
                     }
                 }

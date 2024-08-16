@@ -20,6 +20,8 @@ class FeedVC: MainViewController {
     var users = [UserModel]()
     var userdbModel = UserDBModel()
 
+    var localStarredStatus: [String: Bool] = [:] // Key: userId, Value: isStarred
+
     //var viewedCount = 0
     var searchString = ""
     
@@ -188,7 +190,7 @@ class FeedVC: MainViewController {
         }
     }
     
-    @objc
+    /*@objc
     func starTapFunction(sender:UITapGestureRecognizer) {
         if let image = sender.view {
             if let cell = image.superview?.superview?.superview?.superview  as? FeedItem2TVCell {
@@ -219,6 +221,27 @@ class FeedVC: MainViewController {
                 }
             }
         }
+    }*/
+    
+    @objc
+    func starTapFunction(sender: UIButton) {
+        let index = sender.tag
+        let user = users[index - 1]
+        
+        let currentStatus = (localStarredStatus[user.userId] ?? user.isStarred) ?? false
+        let newStatus = !currentStatus
+        
+        // Update local state
+        localStarredStatus[user.userId] = newStatus
+        
+        // Update UI immediately
+        sender.setImage(UIImage(systemName: newStatus ? "star.fill" : "star"), for: .normal)
+        
+        // Perform the server update
+        markUserStar(userId: user.userId)
+        
+        // Optional: Reload the specific row to ensure consistency
+        feedTV.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
     }
     
     func markUserStar(userId: String) {
@@ -503,11 +526,21 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                         feedCell.profilePicIV.image = UIImage(named: "placeholder")
                     }
                     
-                    feedCell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+//                    feedCell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+//                    
+//                    let tap = UITapGestureRecognizer(target: self, action: #selector(starTapFunction(sender:)))
+//                    feedCell.starLbl.isUserInteractionEnabled = true
+//                    feedCell.starLbl.addGestureRecognizer(tap)
                     
-                    let tap = UITapGestureRecognizer(target: self, action: #selector(starTapFunction(sender:)))
-                    feedCell.starLbl.isUserInteractionEnabled = true
-                    feedCell.starLbl.addGestureRecognizer(tap)
+                    
+                    
+                    let isStarred = localStarredStatus[user.userId] ?? user.isStarred
+                    
+                    let imageName = isStarred ?? false ? "star.fill" : "star"
+                    feedCell.starBtn.setImage(UIImage(systemName: imageName), for: .normal)
+                    
+                    feedCell.starBtn.tag = indexPath.row
+                    feedCell.starBtn.addTarget(self, action: #selector(starTapFunction(sender:)), for: .touchUpInside)
                     
                     feedCell.isViewBHidden = false
                     feedCell.statusLbl.text = user.status.isEmpty ? "currently no active status..." : user.status
@@ -542,11 +575,19 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                         feedCell2.profilePicIV.image = UIImage(named: "placeholder")
                     }
                     
-                    feedCell2.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+                    let isStarred = localStarredStatus[user.userId] ?? user.isStarred
                     
-                    let tap = UITapGestureRecognizer(target: self, action: #selector(starTapFunction(sender:)))
-                    feedCell2.starLbl.isUserInteractionEnabled = true
-                    feedCell2.starLbl.addGestureRecognizer(tap)
+                    let imageName = isStarred ?? false ? "star.fill" : "star"
+                    feedCell2.starBtn.setImage(UIImage(systemName: imageName), for: .normal)
+                    
+                    feedCell2.starBtn.tag = indexPath.row
+                    feedCell2.starBtn.addTarget(self, action: #selector(starTapFunction(sender:)), for: .touchUpInside)
+                    
+//                    feedCell2.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+//                    
+//                    let tap = UITapGestureRecognizer(target: self, action: #selector(starTapFunction(sender:)))
+//                    feedCell2.starLbl.isUserInteractionEnabled = true
+//                    feedCell2.starLbl.addGestureRecognizer(tap)
                     
                 }
             

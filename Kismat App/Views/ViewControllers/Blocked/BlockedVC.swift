@@ -15,6 +15,8 @@ class BlockedVC: MainViewController {
     
     var users = [UserModel]()
     
+    var localStarredStatus: [String: Bool] = [:] // Key: userId, Value: isStarred
+
     var searchString = ""
     
     override func viewDidLoad() {
@@ -85,21 +87,24 @@ class BlockedVC: MainViewController {
     }
     
     @objc
-    func starTapFunction(sender:UITapGestureRecognizer) {
-        if let image = sender.view {
-            if let cell = image.superview?.superview?.superview?.superview  as? FeedItemsTVCell {
-                guard let indexPath = self.blockedTV.indexPath(for: cell) else {return}
-                print("index path =\(indexPath)")
-                if cell.starLbl.image == UIImage(systemName: "star.fill") {
-                    cell.starLbl.image = UIImage(systemName: "star")
-                    markUserStar(userId: users[indexPath.row - 1].userId)
-                } else {
-                    cell.starLbl.image = UIImage(systemName: "star.fill")
-                    markUserStar(userId: users[indexPath.row - 1].userId)
-                    AppFunctions.showSnackBar(str: "You can view this user in Starred List after unblocking this user.")
-                }
-            }
-        }
+    func starTapFunction(sender: UIButton) {
+        let index = sender.tag
+        let user = users[index - 1]
+        
+        let currentStatus = (localStarredStatus[user.userId] ?? user.isStarred) ?? false
+        let newStatus = !currentStatus
+        
+        // Update local state
+        localStarredStatus[user.userId] = newStatus
+        
+        // Update UI immediately
+        sender.setImage(UIImage(systemName: newStatus ? "star.fill" : "star"), for: .normal)
+        
+        // Perform the server update
+        markUserStar(userId: user.userId)
+        
+        // Optional: Reload the specific row to ensure consistency
+        blockedTV.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
     }
     
     func markUserStar(userId: String) {
@@ -254,9 +259,16 @@ extension BlockedVC : UITableViewDelegate, UITableViewDataSource {
                         feedCell.profilePicIV.image = UIImage(named: "placeholder")
                     }
                     
-                    let tap = UITapGestureRecognizer(target: self, action: #selector(starTapFunction(sender:)))
-                    feedCell.starLbl.isUserInteractionEnabled = true
-                    feedCell.starLbl.addGestureRecognizer(tap)
+//                    let tap = UITapGestureRecognizer(target: self, action: #selector(starTapFunction(sender:)))
+//                    feedCell.starLbl.isUserInteractionEnabled = true
+//                    feedCell.starLbl.addGestureRecognizer(tap)
+                    let isStarred = localStarredStatus[user.userId] ?? user.isStarred
+                    
+                    let imageName = isStarred ?? false ? "star.fill" : "star"
+                    feedCell.starBtn.setImage(UIImage(systemName: imageName), for: .normal)
+                    
+                    feedCell.starBtn.tag = indexPath.row
+                    feedCell.starBtn.addTarget(self, action: #selector(starTapFunction(sender:)), for: .touchUpInside)
                 }
                 
                 return cell

@@ -198,7 +198,11 @@ class UserContacts: NSObject, Codable {
     var id : Int!
     var contactStatusId : Int!
     var contactStatus : String!
+    var message : String!
     var isSentByCurrentUsers : Bool!
+    var isRead : Bool!
+    var contactInformationsSharedByUser : [ContactInformations]!
+    var contactInformationsSharedByOther : [ContactInformations]!
 
 }
 

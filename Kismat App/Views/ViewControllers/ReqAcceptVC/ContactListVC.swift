@@ -47,6 +47,15 @@ class ContactListVC: MainViewController {
             if let lastContact = socialAccModel.last, lastContact.contactTypeId == 6 {
                 socialAccModel.removeLast()
             }
+        } else {
+            if let userContacts = userModel.userContacts {
+                if userContacts.contactInformationsSharedByUser != nil {
+                    socialAccModel = userContacts.contactInformationsSharedByUser
+                    if let lastContact = socialAccModel.last, lastContact.contactTypeId == 6 {
+                        socialAccModel.removeLast()
+                    }
+                }
+            }
         }
         
     }

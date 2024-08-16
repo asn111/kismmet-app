@@ -84,6 +84,7 @@ class DenyConfirmVC: MainViewController {
         super.viewWillDisappear(animated)
         
         generalPublisher.onNext("roloadList")
+        generalPublisher.onNext("exitView")
     }
 
     func createContactEntry(for contactType: String, contactValue: String, includeIsShared: Bool) -> [String: Any] {

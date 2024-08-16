@@ -15,6 +15,9 @@ class ReqConVC: MainViewController {
     var users = [UserModel]()
     private let refresher = UIRefreshControl()
     
+    var localStarredStatus: [String: Bool] = [:] // Key: userId, Value: isStarred
+
+    
     var selectedUsertype = "req"
     var searchString = ""
 
@@ -41,7 +44,11 @@ class ReqConVC: MainViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-
+        if self.selectedUsertype == "con" {
+            self.getContUsers(load: false)
+        } else {
+            self.getReqUsers(load: false)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -124,17 +131,48 @@ class ReqConVC: MainViewController {
     }
     
     @objc
-    func starTapFunction(sender:UITapGestureRecognizer) {
-        if let image = sender.view {
+    func starTapFunction(sender: UIButton) {
+        let index = sender.tag
+        let user = users[index - 1]
+        
+        let currentStatus = (localStarredStatus[user.userId] ?? user.isStarred) ?? false
+        let newStatus = !currentStatus
+        
+        // Update local state
+        localStarredStatus[user.userId] = newStatus
+        
+        // Update UI immediately
+        sender.setImage(UIImage(systemName: newStatus ? "star.fill" : "star"), for: .normal)
+        
+        // Perform the server update
+        markUserStar(userId: user.userId)
+        
+        // Optional: Reload the specific row to ensure consistency
+        reqTV.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
+    }
+
+    
+    /*@objc
+    func starTapFunction(sender:UIButton) {
+        
+        markUserStar(userId: users[sender.tag - 1].userId)
+        let generator = UIImpactFeedbackGenerator(style: .heavy)
+        generator.impactOccurred()
+        
+        /*if let image = sender.view {
             if let cell = image.superview?.superview?.superview?.superview  as? FeedItem2TVCell {
                 guard let indexPath = self.reqTV.indexPath(for: cell) else {return}
                 print("index path = \(indexPath)")
-                if cell.starLbl.image == UIImage(systemName: "star.fill") {
+                if cell.starLbl.image?.isEqual(UIImage(systemName: "star.fill")) == true {
                     cell.starLbl.image = UIImage(systemName: "star")
                     markUserStar(userId: users[indexPath.row - 1].userId)
+                    let generator = UIImpactFeedbackGenerator(style: .heavy)
+                    generator.impactOccurred()
                 } else {
                     cell.starLbl.image = UIImage(systemName: "star.fill")
                     markUserStar(userId: users[indexPath.row - 1].userId)
+                    let generator = UIImpactFeedbackGenerator(style: .heavy)
+                    generator.impactOccurred()
                 }
             } else if let cell = image.superview?.superview?.superview?.superview  as? FeedItemsTVCell {
                 guard let indexPath = self.reqTV.indexPath(for: cell) else {return}
@@ -142,13 +180,17 @@ class ReqConVC: MainViewController {
                 if cell.starLbl.image == UIImage(systemName: "star.fill") {
                     cell.starLbl.image = UIImage(systemName: "star")
                     markUserStar(userId: users[indexPath.row - 1].userId)
+                    let generator = UIImpactFeedbackGenerator(style: .heavy)
+                    generator.impactOccurred()
                 } else {
                     cell.starLbl.image = UIImage(systemName: "star.fill")
                     markUserStar(userId: users[indexPath.row - 1].userId)
+                    let generator = UIImpactFeedbackGenerator(style: .heavy)
+                    generator.impactOccurred()
                 }
             }
-        }
-    }
+        }*/
+    }*/
     
     func markUserStar(userId: String) {
         TimeTracker.shared.startTracking(for: "markUserStar")
@@ -295,7 +337,7 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
             cell.onReqBtnTap = {
                 
                 self.getReqUsers(load: false)
-                cell.headerLbl.text = "REQUESTS"
+                cell.headerLbl.text = "CONTACTS"
                 self.selectedUsertype = "req"
                 UIView.transition(with: cell.btnsImg,
                                   duration: 0.1, // Adjust the duration as needed
@@ -409,12 +451,28 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                     feedCell.nonBlurView.backgroundColor = UIColor(named: "Cell BG Base Grey")
                     feedCell.nonBlurView.shadowColor = UIColor(named: "Cell BG Base Grey")
                 }
+//                
+//                if user.isStarred != nil {
+//                    if user.isStarred {
+//                        feedCell.starBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
+//                    } else {
+//                        feedCell.starBtn.setImage(UIImage(systemName: "star"), for: .normal)
+//                    }
+//                }
                 
-                feedCell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
                 
-                let tap = UITapGestureRecognizer(target: self, action: #selector(starTapFunction(sender:)))
-                feedCell.starLbl.isUserInteractionEnabled = true
-                feedCell.starLbl.addGestureRecognizer(tap)
+                let isStarred = localStarredStatus[user.userId] ?? user.isStarred
+                
+                let imageName = isStarred ?? false ? "star.fill" : "star"
+                feedCell.starBtn.setImage(UIImage(systemName: imageName), for: .normal)
+                
+                feedCell.starBtn.tag = indexPath.row
+                feedCell.starBtn.addTarget(self, action: #selector(starTapFunction(sender:)), for: .touchUpInside)
+//                feedCell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+//                
+//                let tap = UITapGestureRecognizer(target: self, action: #selector(starTapFunction(sender:)))
+//                feedCell.starLbl.isUserInteractionEnabled = true
+//                feedCell.starLbl.addGestureRecognizer(tap)
                 
                 feedCell.isViewBHidden = false
                 feedCell.statusLbl.text = user.status.isEmpty ? "currently no active status..." : user.status
@@ -467,11 +525,27 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                     feedCell2.profilePicIV.image = UIImage(named: "placeholder")
                 }
                 
-                feedCell2.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+//                if user.isStarred != nil {
+//                    if user.isStarred {
+//                        feedCell2.starBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
+//                    } else {
+//                        feedCell2.starBtn.setImage(UIImage(systemName: "star"), for: .normal)
+//                    }
+//                }
                 
-                let tap = UITapGestureRecognizer(target: self, action: #selector(starTapFunction(sender:)))
-                feedCell2.starLbl.isUserInteractionEnabled = true
-                feedCell2.starLbl.addGestureRecognizer(tap)
+                let isStarred = localStarredStatus[user.userId] ?? user.isStarred
+                
+                let imageName = isStarred ?? false ? "star.fill" : "star"
+                feedCell2.starBtn.setImage(UIImage(systemName: imageName), for: .normal)
+
+                feedCell2.starBtn.tag = indexPath.row
+                feedCell2.starBtn.addTarget(self, action: #selector(starTapFunction(sender:)), for: .touchUpInside)
+
+                //feedCell2.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+                
+                //let tap = UITapGestureRecognizer(target: self, action: #selector(starTapFunction(sender:)))
+                //feedCell2.starLbl.isUserInteractionEnabled = true
+                //feedCell2.starLbl.addGestureRecognizer(tap)
                 
             }
             

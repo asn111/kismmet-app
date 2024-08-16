@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import iOSDropDown
 
 class ContactInfoTVCell: UITableViewCell {
 

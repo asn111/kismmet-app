@@ -8,7 +8,6 @@
 import UIKit
 import RealmSwift
 import Alamofire
-import iOSDropDown
 
 class ContactInformainVC: MainViewController {
 
@@ -224,14 +223,19 @@ class ContactInformainVC: MainViewController {
         } else if textField.tag == 2 {
             instagramContactValue = !textField.text!.isTFBlank ? textField.text! : ""
         } else if textField.tag == 3 {
-            wechatContactValue = textField.text!.isValidPhoneNumber ? textField.text! : ""
+            wechatContactValue = !textField.text!.isTFBlank ? textField.text! : ""
         } else if textField.tag == 4 {
-            whatsAppContactValue = textField.text!.isValidPhoneNumber ? textField.text! : ""
+            whatsAppContactValue = !textField.text!.isTFBlank ? textField.text! : ""
         } else if textField.tag == 5 {
             directContactValue = !textField.text!.isTFBlank ? textField.text! : ""
         } /*else if textField.tag == 6 {
             kismmetMsgContactValue = !textField.text!.isTFBlank ? textField.text! : ""
         }*/
+        if textField.text!.isEmpty {
+            let cell = contactTV.cellForRow(at: IndexPath(row: textField.tag + 1, section: 0)) as? ContactInfoTVCell
+            cell?.chkBtn.tintColor = UIColor.systemGray2
+            cell?.chkBtn.setImage(UIImage(systemName: "square"), for: .normal)
+        }
         
     }
     
@@ -292,6 +296,11 @@ class ContactInformainVC: MainViewController {
         activeTextView = nil
         if let placeholderLabel = textView.viewWithTag(100) as? UILabel {
             placeholderLabel.isHidden = !textView.text.isEmpty
+            if textView.text!.isEmpty {
+                let cell = contactTV.cellForRow(at: IndexPath(row: textView.tag + 1, section: 0)) as? ContactTextViewTVcell
+                cell?.chkBtn.tintColor = UIColor.systemGray2
+                cell?.chkBtn.setImage(UIImage(systemName: "square"), for: .normal)
+            }
         }
         kismmetMsgContactValue = !textView.text!.isTFBlank ? textView.text! : ""
     }
@@ -308,6 +317,11 @@ class ContactInformainVC: MainViewController {
         if let placeholderLabel = textView.viewWithTag(100) as? UILabel {
             placeholderLabel.isHidden = !textView.text.isEmpty
             cell.countLbl.text = textView.text.isEmpty ? "100 / 100 remaining" : "\(100 - textView.text.count) / 100 remaining"
+            if textView.text!.isEmpty {
+                let cell = contactTV.cellForRow(at: IndexPath(row: textView.tag + 1, section: 0)) as? ContactTextViewTVcell
+                cell?.chkBtn.tintColor = UIColor.systemGray2
+                cell?.chkBtn.setImage(UIImage(systemName: "square"), for: .normal)
+            }
         }
         kismmetMsgContactValue = !textView.text!.isTFBlank ? textView.text! : ""
 
@@ -404,7 +418,7 @@ class ContactInformainVC: MainViewController {
     }
     
     @objc func skipBtnPressed(sender: UIButton) {
-        sendReq()
+        sendReq(isSkip: true)
     }
     
     @objc func checkBtnPressed(sender: UIButton) {
@@ -479,6 +493,12 @@ class ContactInformainVC: MainViewController {
                         
         }
         
+    }
+    
+    @objc func toolBtnPressed(sender: UIButton) {
+        var msg = "Share your existing social media contacts, add new ones, and save everything for quick access later."
+        
+        AppFunctions.showToolTip(str: msg, btn: sender)
     }
     
     //MARK: API METHODS
@@ -646,7 +666,7 @@ class ContactInformainVC: MainViewController {
         self.showPKHUD(WithMessage: "Fetching...")
         
         let contactTypes = contactAccounts.map { $0.contactType ?? "" } //["LinkedIn", "WhatsApp", "WeChat", "Text/Call", "Instagram", "Other"]
-        let contactValues = [linkedInContactValue, whatsAppContactValue, wechatContactValue, directContactValue, instagramContactValue, kismmetMsgContactValue]
+        let contactValues = [linkedInContactValue, instagramContactValue, wechatContactValue, whatsAppContactValue, directContactValue, kismmetMsgContactValue]
         
         let filteredContacts = createContactEntries(for: contactTypes, contactValues: contactValues, includeIsShared: true)
         
@@ -685,8 +705,8 @@ class ContactInformainVC: MainViewController {
         self.showPKHUD(WithMessage: "Fetching...")
         
         let contactTypes = contactAccounts.map { $0.contactType ?? "" }  //["LinkedIn", "WhatsApp", "WeChat", "Text/Call", "Instagram", "Other"]
-        let contactValues = [linkedInContactValue, whatsAppContactValue, wechatContactValue, directContactValue, instagramContactValue, kismmetMsgContactValue]
-        
+        let contactValues = [linkedInContactValue, instagramContactValue, wechatContactValue, whatsAppContactValue, directContactValue, kismmetMsgContactValue]
+
         let filteredContacts = createContactEntries(for: contactTypes, contactValues: contactValues, includeIsShared: false)
         
         let pram : [String: Any] = ["contactInformations": filteredContacts,
@@ -746,8 +766,8 @@ class ContactInformainVC: MainViewController {
                     "message":sentMsg]
         } else {
             let contactTypes = contactAccounts.map { $0.contactType ?? "" }
-            let contactValues = [linkedInContactValue, whatsAppContactValue, wechatContactValue, directContactValue, instagramContactValue, kismmetMsgContactValue]
-            
+            let contactValues = [linkedInContactValue, instagramContactValue, wechatContactValue, whatsAppContactValue, directContactValue, kismmetMsgContactValue]
+
             let filteredContacts = createContactEntries(for: contactTypes, contactValues: contactValues, includeIsShared: false)
             
             pram = ["contactInformations": filteredContacts,
@@ -852,6 +872,10 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                     cell.textLbl.isHidden = false
                     cell.toolTipBtn.isHidden = false
                     cell.tfView.isHidden = true
+                    
+                    cell.toolTipBtn.addTarget(self, action: #selector(toolBtnPressed(sender:)), for: .touchUpInside)
+
+                    
                     if let userDb = userdbModel {
                         if let user = userDb.first {
                             

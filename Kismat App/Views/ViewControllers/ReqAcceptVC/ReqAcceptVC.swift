@@ -14,12 +14,33 @@ class ReqAcceptVC: MainViewController {
     }
     
     @IBAction func contactBtnPressed(_ sender: Any) {
-        self.presentVC(id: "ContactListVC", presentFullType: "over" ) { (vc:ContactListVC) in
-            vc.userModel = userModel
+        
+        if userModel.contactInformationsSharedByUser != nil {
+            if userModel.contactInformationsSharedByUser.count > 0 {
+                self.presentVC(id: "ContactListVC", presentFullType: "over" ) { (vc:ContactListVC) in
+                    vc.userModel = userModel
+                }
+            } else {
+                AppFunctions.showSnackBar(str: "This user has not shared any contact information yet.")
+            }
+        } else if let userContacts = userModel.userContacts {
+            if userContacts.contactInformationsSharedByUser != nil {
+                if userContacts.contactInformationsSharedByUser.count > 0 {
+                    self.presentVC(id: "ContactListVC", presentFullType: "over" ) { (vc:ContactListVC) in
+                        vc.userModel = userModel
+                    }
+                } else {
+                    AppFunctions.showSnackBar(str: "This user has not shared any contact information yet.")
+                }
+            }
+        } else {
+            AppFunctions.showSnackBar(str: "This user has not shared any contact information yet.")
         }
+        
     }
     
     @IBAction func viewProfileBtnPressed(_ sender: Any) {
+        
         self.presentVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
             vc.userId = userModel.userId
             vc.isFromReq = true
@@ -27,16 +48,31 @@ class ReqAcceptVC: MainViewController {
     }
     
     @IBAction func accpetBtnPressed(_ sender: Any) {
-        self.presentVC(id: "ContactInformainVC", presentFullType: "over" ) { (vc:ContactInformainVC) in
-            vc.contactId = userModel.contactId
+        if let contactId = userModel.contactId {
+            self.presentVC(id: "ContactInformainVC", presentFullType: "over" ) { (vc:ContactInformainVC) in
+                vc.contactId = userModel.contactId
+            }
+        } else if let userContact = userModel.userContacts {
+            if let contactId = userContact.id {
+                self.presentVC(id: "ContactInformainVC", presentFullType: "over" ) { (vc:ContactInformainVC) in
+                    vc.contactId = contactId
+                }
+            }
         }
     }
     
     @IBAction func denyBtnPressed(_ sender: Any) {
-        self.presentVC(id: "DenyConfirmVC", presentFullType: "over" ) { (vc:DenyConfirmVC) in
-            vc.contactId = userModel.contactId
+        if let contactId = userModel.contactId {
+            self.presentVC(id: "DenyConfirmVC", presentFullType: "over" ) { (vc:DenyConfirmVC) in
+                vc.contactId = userModel.contactId
+            }
+        } else if let userContact = userModel.userContacts {
+            if let contactId = userContact.id {
+                self.presentVC(id: "DenyConfirmVC", presentFullType: "over" ) { (vc:DenyConfirmVC) in
+                    vc.contactId = contactId
+                }
+            }
         }
-        
     }
     
     @IBOutlet weak var profilePicIV: RoundCornerButton!
@@ -44,6 +80,7 @@ class ReqAcceptVC: MainViewController {
     @IBOutlet weak var workLocLbl: fullyCustomLbl!
     @IBOutlet weak var proffLbl: fullyCustomLbl!
     
+    @IBOutlet weak var viewProfileBtn: RoundCornerButton!
     @IBOutlet weak var msgTextView: FormTextView!
     
     
@@ -60,8 +97,12 @@ class ReqAcceptVC: MainViewController {
         //let contact = userModel.contactInformationsSharedByOther.filter{$0.contactTypeId == 6}
         if let msg = userModel.message, !userModel.message.isEmpty {
             msgTextView.text = msg //userModel.message ?? ""
+        } else if let userContacts = userModel.userContacts {
+            if let msg = userContacts.message {
+                msgTextView.text = msg
+            }
         } else {
-            msgTextView.text = "Default introductory message will display here."
+            msgTextView.text = "See who's interested in connecting with you! Check out the shared contacts and start building new connections online."
         }
         
         if userModel.profilePicture != "" && userModel.profilePicture != nil {
@@ -71,8 +112,20 @@ class ReqAcceptVC: MainViewController {
             profilePicIV.setImage(img, for: .normal)
         }
         
-        if !userModel.isRead {
-            readThisProfile()
+        if let read = userModel.isRead {
+            viewProfileBtn.isHidden = false
+            if !read {
+                readThisProfile()
+            }
+        } else {
+            viewProfileBtn.isHidden = true
+            if let userContacts = userModel.userContacts {
+                if let read = userContacts.isRead {
+                    if !read {
+                        readThisProfile()
+                    }
+                }
+            }
         }
         
         _ = generalPublisher.subscribe(onNext: {[weak self] val in

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -163,12 +163,12 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="sDz-s6-jzy">
-                                        <rect key="frame" x="304" y="18.666666666666668" width="25" height="24.666666666666661"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sDz-s6-jzy">
+                                        <rect key="frame" x="289" y="12.000000000000004" width="40" height="45.333333333333343"/>
                                         <color key="tintColor" name="warning"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="25" id="5gY-fR-AX7"/>
-                                            <constraint firstAttribute="height" constant="25" id="aFa-sk-hd2"/>
+                                            <constraint firstAttribute="width" constant="40" id="5gY-fR-AX7"/>
+                                            <constraint firstAttribute="height" constant="45.333333333333329" id="aFa-sk-hd2"/>
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J46-zJ-31Y">
@@ -283,17 +283,33 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IQY-9F-eD0">
+                                        <rect key="frame" x="290" y="12" width="40" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="RcJ-gB-8PI"/>
+                                            <constraint firstAttribute="height" constant="45" id="dMW-60-t0N"/>
+                                        </constraints>
+                                        <color key="tintColor" name="warning"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="star" catalog="system"/>
+                                        <connections>
+                                            <action selector="starBtnPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="vRb-OI-Puk"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" name="Base White"/>
                                 <constraints>
                                     <constraint firstAttribute="top" secondItem="Cmn-D6-cVd" secondAttribute="top" id="1Z9-ZX-RVN"/>
                                     <constraint firstAttribute="trailing" secondItem="s8f-h1-ksg" secondAttribute="trailing" constant="8" id="3zS-RU-ekS"/>
-                                    <constraint firstItem="sDz-s6-jzy" firstAttribute="top" secondItem="Cmn-D6-cVd" secondAttribute="top" constant="19.000000000000004" id="4yc-OI-8uk"/>
+                                    <constraint firstItem="sDz-s6-jzy" firstAttribute="top" secondItem="Cmn-D6-cVd" secondAttribute="top" constant="11.999999999999989" id="4yc-OI-8uk"/>
                                     <constraint firstItem="J46-zJ-31Y" firstAttribute="leading" secondItem="rdD-aP-nm5" secondAttribute="trailing" constant="8" symbolic="YES" id="7ZW-yk-VbC"/>
+                                    <constraint firstAttribute="bottom" secondItem="IQY-9F-eD0" secondAttribute="bottom" constant="21" id="FWQ-Sv-eYE"/>
+                                    <constraint firstItem="IQY-9F-eD0" firstAttribute="leading" secondItem="J46-zJ-31Y" secondAttribute="trailing" constant="89" id="Fjq-LM-Ykl"/>
                                     <constraint firstItem="0FG-gI-S06" firstAttribute="top" secondItem="gAw-H9-ySR" secondAttribute="bottom" constant="1" id="Frq-n1-WZH"/>
                                     <constraint firstItem="s8f-h1-ksg" firstAttribute="top" secondItem="0FG-gI-S06" secondAttribute="bottom" constant="8" id="HcR-fy-CQO"/>
                                     <constraint firstItem="s8f-h1-ksg" firstAttribute="leading" secondItem="J46-zJ-31Y" secondAttribute="trailing" constant="3" id="Jvh-s8-DQv"/>
                                     <constraint firstItem="0FG-gI-S06" firstAttribute="leading" secondItem="rdD-aP-nm5" secondAttribute="trailing" constant="8" symbolic="YES" id="QAz-Ky-zs4"/>
+                                    <constraint firstItem="IQY-9F-eD0" firstAttribute="top" secondItem="Cmn-D6-cVd" secondAttribute="top" constant="12" id="RHJ-LE-ydO"/>
                                     <constraint firstAttribute="trailing" secondItem="sDz-s6-jzy" secondAttribute="trailing" constant="8" id="VL1-sa-b0p"/>
                                     <constraint firstAttribute="trailing" secondItem="Cmn-D6-cVd" secondAttribute="trailing" id="VNa-OE-ltC"/>
                                     <constraint firstAttribute="bottom" secondItem="s8f-h1-ksg" secondAttribute="bottom" constant="9" id="VlR-ZV-0ny"/>
@@ -304,6 +320,7 @@
                                     <constraint firstItem="rdD-aP-nm5" firstAttribute="leading" secondItem="Cmn-D6-cVd" secondAttribute="leading" constant="8" id="ftY-ua-SDz"/>
                                     <constraint firstItem="gAw-H9-ySR" firstAttribute="top" secondItem="Cmn-D6-cVd" secondAttribute="top" constant="8" id="kpJ-IK-9VY"/>
                                     <constraint firstItem="rdD-aP-nm5" firstAttribute="top" secondItem="Cmn-D6-cVd" secondAttribute="top" constant="9" id="nR6-uY-fFx"/>
+                                    <constraint firstAttribute="trailing" secondItem="IQY-9F-eD0" secondAttribute="trailing" constant="7" id="opE-uL-VSg"/>
                                     <constraint firstItem="J46-zJ-31Y" firstAttribute="top" secondItem="0FG-gI-S06" secondAttribute="bottom" constant="7" id="quo-8V-QoZ"/>
                                     <constraint firstAttribute="bottom" secondItem="Cmn-D6-cVd" secondAttribute="bottom" id="v4W-cy-i5n"/>
                                     <constraint firstAttribute="height" constant="78" id="wom-6F-Id8"/>
@@ -325,6 +342,11 @@
                                         <color key="value" systemColor="systemGray2Color"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="sDz-s6-jzy"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -358,6 +380,7 @@
                 <outlet property="nonBlurView" destination="Cmn-D6-cVd" id="IDq-qT-j5S"/>
                 <outlet property="professionLbl" destination="s8f-h1-ksg" id="H0y-4g-5Fk"/>
                 <outlet property="profilePicIV" destination="rdD-aP-nm5" id="vGw-Qz-cGn"/>
+                <outlet property="starBtn" destination="IQY-9F-eD0" id="xMV-hp-7FC"/>
                 <outlet property="starLbl" destination="sDz-s6-jzy" id="g3z-SB-wFI"/>
                 <outlet property="statusLbl" destination="5Gg-ma-JlP" id="K9t-lS-emg"/>
                 <outlet property="statusView" destination="3d2-gm-I7F" id="ezd-3u-qVM"/>
@@ -371,29 +394,29 @@
     </objects>
     <designables>
         <designable name="0FG-gI-S06">
-            <size key="intrinsicContentSize" width="211" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="122.66666666666667" height="12"/>
         </designable>
         <designable name="5Gg-ma-JlP"/>
         <designable name="TnH-JF-VfZ">
-            <size key="intrinsicContentSize" width="53.666666666666664" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="37.666666666666664" height="14.333333333333334"/>
         </designable>
         <designable name="dQH-13-OzP">
-            <size key="intrinsicContentSize" width="104" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="72.666666666666671" height="14.333333333333334"/>
         </designable>
         <designable name="gAw-H9-ySR">
-            <size key="intrinsicContentSize" width="77.666666666666671" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="63" height="16.666666666666668"/>
         </designable>
         <designable name="rdD-aP-nm5">
             <size key="intrinsicContentSize" width="407" height="612"/>
         </designable>
         <designable name="s8f-h1-ksg">
-            <size key="intrinsicContentSize" width="139.66666666666666" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="115" height="16.666666666666668"/>
         </designable>
     </designables>
     <resources>
         <image name="clock.fill" catalog="system" width="128" height="123"/>
         <image name="girl" width="407" height="612"/>
-        <image name="star.fill" catalog="system" width="128" height="116"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <image name="wifi" catalog="system" width="128" height="90"/>
         <namedColor name="Base White">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -408,7 +431,7 @@
             <color red="1" green="0.80800002813339233" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -138,7 +138,6 @@
 		29BE184F29FA8573000EAC0E /* BlockBtnTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BE184D29FA8573000EAC0E /* BlockBtnTVCell.swift */; };
 		29BE185029FA8573000EAC0E /* BlockBtnTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29BE184E29FA8573000EAC0E /* BlockBtnTVCell.xib */; };
 		29D47D3E2C5F862A00CBFB6B /* TimeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D47D3D2C5F862A00CBFB6B /* TimeTracker.swift */; };
-		29EE7DB92C358F1200A1E877 /* iOSDropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 29EE7DB82C358F1200A1E877 /* iOSDropDown */; };
 		29EE7DBF2C37E65E00A1E877 /* ContactsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE7DBE2C37E65E00A1E877 /* ContactsModel.swift */; };
 		29EE7DC22C39249800A1E877 /* ContactTextViewTVcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE7DC02C39249700A1E877 /* ContactTextViewTVcell.swift */; };
 		29EE7DC32C39249800A1E877 /* ContactTextViewTVcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29EE7DC12C39249700A1E877 /* ContactTextViewTVcell.xib */; };
@@ -307,7 +306,6 @@
 		29BE184D29FA8573000EAC0E /* BlockBtnTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockBtnTVCell.swift; sourceTree = "<group>"; };
 		29BE184E29FA8573000EAC0E /* BlockBtnTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlockBtnTVCell.xib; sourceTree = "<group>"; };
 		29D47D3D2C5F862A00CBFB6B /* TimeTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTracker.swift; sourceTree = "<group>"; };
-		29EE7DBD2C368DE800A1E877 /* iOSDropDownF */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = iOSDropDownF; path = ../../../../../Downloads/iOSDropDownF; sourceTree = "<group>"; };
 		29EE7DBE2C37E65E00A1E877 /* ContactsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsModel.swift; sourceTree = "<group>"; };
 		29EE7DC02C39249700A1E877 /* ContactTextViewTVcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTextViewTVcell.swift; sourceTree = "<group>"; };
 		29EE7DC12C39249700A1E877 /* ContactTextViewTVcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactTextViewTVcell.xib; sourceTree = "<group>"; };
@@ -329,7 +327,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29EE7DB92C358F1200A1E877 /* iOSDropDown in Frameworks */,
 				2976102C29DDB85300B74050 /* StoreKit.framework in Frameworks */,
 				D3CAFE378456A85D2513585B /* Pods_Kismmet.framework in Frameworks */,
 			);
@@ -497,7 +494,6 @@
 			children = (
 				293564862C5105E800568D73 /* circle_Sketch.gif */,
 				293564842C5100E600568D73 /* oval_Sketch.gif */,
-				29EE7DBD2C368DE800A1E877 /* iOSDropDownF */,
 				29748F402C32F9D500DB89E9 /* rocketLaunch.gif */,
 			);
 			path = Resources;
@@ -1037,7 +1033,6 @@
 			);
 			name = Kismmet;
 			packageProductDependencies = (
-				29EE7DB82C358F1200A1E877 /* iOSDropDown */,
 			);
 			productName = "Kismat App";
 			productReference = 299FDD06299679690049741B /* Kismmet.app */;
@@ -1605,7 +1600,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1645,7 +1640,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1797,13 +1792,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		29EE7DB82C358F1200A1E877 /* iOSDropDown */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = iOSDropDown;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		299FDD12299679690049741B /* Kismat_App.xcdatamodeld */ = {

@@ -52,21 +52,15 @@ class ConnectedUserProfile: MainViewController {
         Logs.show(message: "User ID: \(String(describing: userModel.userId))")
         Logs.show(message: "User: \(userModel)")
         
-        if isFromReq {
-            if userModel.contactInformationsSharedByUser != nil {
-                socialAccModel = userModel.contactInformationsSharedByUser
-            }
-        } else {
-            if userModel.contactInformationsSharedByOther != nil {
-                socialAccModel = userModel.contactInformationsSharedByOther
-            }
-        }
-        
-        if !userModel.isRead {
-            readThisProfile()
-        }
         registerCells()
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        userProfile(id: userId)
         
     }
     
@@ -310,6 +304,48 @@ class ConnectedUserProfile: MainViewController {
             .disposed(by: dispose_Bag)
     }
     
+    
+    func userProfile(id: String) {
+        
+        APIService
+            .singelton
+            .getUserById(userId: id, isOtherUser: true)
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        if val.userId != "" {
+                            self.userModel = val
+                            
+                            if isFromReq {
+                                if let userContacts = userModel.userContacts {
+                                    if let contacts = userContacts.contactInformationsSharedByUser {
+                                        socialAccModel = contacts
+                                    }
+                                }
+                            } else {
+                                if let userContacts = userModel.userContacts {
+                                    if let contacts = userContacts.contactInformationsSharedByOther {
+                                        socialAccModel = contacts
+                                    }
+                                }
+                            }
+                            
+                            self.otherProfileTV.reloadData()
+                            self.hidePKHUD()
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
     
 }
 //MARK: TableView Extention

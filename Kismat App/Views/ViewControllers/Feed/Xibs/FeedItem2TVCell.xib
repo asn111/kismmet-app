@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -88,12 +88,12 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                         </userDefinedRuntimeAttributes>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Vca-51-Ogp">
-                                        <rect key="frame" x="304" y="26.333333333333332" width="25" height="24.666666666666668"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vca-51-Ogp">
+                                        <rect key="frame" x="294" y="12.666666666666668" width="40" height="45.333333333333329"/>
                                         <color key="tintColor" name="warning"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="dAh-8A-09u"/>
-                                            <constraint firstAttribute="width" constant="25" id="x5w-Ga-A0s"/>
+                                            <constraint firstAttribute="height" constant="45.333333333333329" id="dAh-8A-09u"/>
+                                            <constraint firstAttribute="width" constant="40" id="x5w-Ga-A0s"/>
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="moH-ve-np3">
@@ -207,23 +207,40 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djt-58-Hxo">
+                                        <rect key="frame" x="289" y="12" width="40" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="3jb-OI-cra"/>
+                                            <constraint firstAttribute="height" constant="45" id="E5f-uh-fZq"/>
+                                        </constraints>
+                                        <color key="tintColor" name="warning"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="star" catalog="system"/>
+                                        <connections>
+                                            <action selector="starBtnPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bls-Iq-B7B"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" name="Base White"/>
                                 <constraints>
                                     <constraint firstItem="moH-ve-np3" firstAttribute="top" secondItem="0eO-wQ-6fx" secondAttribute="bottom" constant="7" id="01h-m7-veE"/>
-                                    <constraint firstItem="Vca-51-Ogp" firstAttribute="leading" secondItem="0eO-wQ-6fx" secondAttribute="trailing" constant="8" symbolic="YES" id="4N1-df-Nna"/>
+                                    <constraint firstItem="Vca-51-Ogp" firstAttribute="leading" secondItem="0eO-wQ-6fx" secondAttribute="trailing" constant="-2" id="4N1-df-Nna"/>
+                                    <constraint firstAttribute="bottom" secondItem="djt-58-Hxo" secondAttribute="bottom" constant="21" id="7mE-o9-quf"/>
+                                    <constraint firstItem="djt-58-Hxo" firstAttribute="leading" secondItem="moH-ve-np3" secondAttribute="trailing" constant="88" id="ApU-Oh-8dX"/>
                                     <constraint firstItem="F7S-op-5qg" firstAttribute="leading" secondItem="1RT-vZ-JaN" secondAttribute="leadingMargin" id="DTO-HT-6vv"/>
                                     <constraint firstAttribute="trailing" secondItem="gLy-u7-xbI" secondAttribute="trailing" constant="8" id="Gmd-E9-4KR"/>
                                     <constraint firstItem="gLy-u7-xbI" firstAttribute="top" secondItem="0eO-wQ-6fx" secondAttribute="bottom" constant="8" symbolic="YES" id="IRI-vY-fkc"/>
                                     <constraint firstItem="ejV-6Z-Jem" firstAttribute="leading" secondItem="F7S-op-5qg" secondAttribute="trailing" constant="8" symbolic="YES" id="LgF-Jk-Xc8"/>
-                                    <constraint firstAttribute="bottom" secondItem="Vca-51-Ogp" secondAttribute="bottom" constant="26.329999999999998" id="NPB-MR-eMF"/>
+                                    <constraint firstAttribute="bottom" secondItem="Vca-51-Ogp" secondAttribute="bottom" constant="20.000000000000014" id="NPB-MR-eMF"/>
+                                    <constraint firstAttribute="trailing" secondItem="djt-58-Hxo" secondAttribute="trailing" constant="8" id="TTO-YL-JAx"/>
                                     <constraint firstItem="gLy-u7-xbI" firstAttribute="leading" secondItem="moH-ve-np3" secondAttribute="trailing" constant="8" symbolic="YES" id="UQA-KV-xmH"/>
                                     <constraint firstItem="0eO-wQ-6fx" firstAttribute="leading" secondItem="F7S-op-5qg" secondAttribute="trailing" constant="8" symbolic="YES" id="crN-hP-k2E"/>
                                     <constraint firstItem="0eO-wQ-6fx" firstAttribute="top" secondItem="ejV-6Z-Jem" secondAttribute="bottom" constant="1" id="k8x-qQ-6ax"/>
                                     <constraint firstAttribute="bottom" secondItem="gLy-u7-xbI" secondAttribute="bottom" constant="9" id="pFW-mF-sX5"/>
-                                    <constraint firstAttribute="trailing" secondItem="Vca-51-Ogp" secondAttribute="trailing" constant="8" id="pfS-G4-MGm"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vca-51-Ogp" secondAttribute="trailing" constant="3" id="pfS-G4-MGm"/>
+                                    <constraint firstItem="djt-58-Hxo" firstAttribute="top" secondItem="1RT-vZ-JaN" secondAttribute="top" constant="12" id="r6C-he-uMR"/>
                                     <constraint firstItem="moH-ve-np3" firstAttribute="leading" secondItem="F7S-op-5qg" secondAttribute="trailing" constant="8" symbolic="YES" id="tUN-vc-ynO"/>
-                                    <constraint firstItem="Vca-51-Ogp" firstAttribute="top" secondItem="1RT-vZ-JaN" secondAttribute="top" constant="26.670000000000002" id="z4a-FC-Fpd"/>
+                                    <constraint firstItem="Vca-51-Ogp" firstAttribute="top" secondItem="1RT-vZ-JaN" secondAttribute="top" constant="12.666666666666661" id="z4a-FC-Fpd"/>
                                     <constraint firstItem="F7S-op-5qg" firstAttribute="centerY" secondItem="1RT-vZ-JaN" secondAttribute="centerY" id="zby-OL-iiU"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -243,6 +260,11 @@
                                         <color key="value" systemColor="systemGray2Color"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="Vca-51-Ogp"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -271,6 +293,7 @@
                 <outlet property="nonBlurView" destination="1RT-vZ-JaN" id="UCO-Ir-ph2"/>
                 <outlet property="professionLbl" destination="gLy-u7-xbI" id="JOc-MD-kR4"/>
                 <outlet property="profilePicIV" destination="F7S-op-5qg" id="dzq-Qy-RZQ"/>
+                <outlet property="starBtn" destination="djt-58-Hxo" id="8FI-hV-0eC"/>
                 <outlet property="starLbl" destination="Vca-51-Ogp" id="Alj-rB-pE9"/>
                 <outlet property="tagLbl" destination="Xr0-6b-sUq" id="F9g-sP-c6j"/>
                 <outlet property="tagMoreLbl" destination="1rx-zU-ucu" id="Urw-OP-Fgp"/>
@@ -302,7 +325,7 @@
     </designables>
     <resources>
         <image name="girl" width="407" height="612"/>
-        <image name="star.fill" catalog="system" width="128" height="116"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <namedColor name="Base White">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -316,7 +339,7 @@
             <color red="1" green="0.80800002813339233" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

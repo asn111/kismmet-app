@@ -275,21 +275,25 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cn8-Nl-EBJ">
                                 <rect key="frame" x="8" y="76" width="359" height="103"/>
                                 <subviews>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4HY-Nn-Tv9">
-                                        <rect key="frame" x="326" y="63" width="20" height="20"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4HY-Nn-Tv9">
+                                        <rect key="frame" x="247" y="68" width="99" height="25"/>
+                                        <color key="backgroundColor" name="Secondary Grey"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="xXb-rF-O69"/>
-                                            <constraint firstAttribute="width" constant="20" id="yJE-JP-I02"/>
+                                            <constraint firstAttribute="height" constant="25" id="xXb-rF-O69"/>
                                         </constraints>
-                                        <color key="tintColor" name="Secondary Grey"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="rocket">
+                                        <state key="normal" title="Request " image="rocket_3">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="thin"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
                                                 <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
@@ -313,7 +317,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rice University, Houston TX" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzF-aI-iJF" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="98" y="45" width="253" height="20.333333333333329"/>
+                                        <rect key="frame" x="98" y="47" width="253" height="20.333333333333329"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="253" id="Zgs-uT-uNZ"/>
                                         </constraints>
@@ -331,9 +335,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Professor" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOG-bk-97u" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="98" y="63.33333333333335" width="253" height="20.333333333333336"/>
+                                        <rect key="frame" x="98" y="61" width="146" height="38"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="253" id="niB-xs-mxA"/>
+                                            <constraint firstAttribute="height" constant="38" id="9yl-1a-pYr"/>
+                                            <constraint firstAttribute="width" constant="146" id="niB-xs-mxA"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -396,15 +401,15 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="nzF-aI-iJF" firstAttribute="top" secondItem="cn8-Nl-EBJ" secondAttribute="top" constant="45" id="4gZ-Ck-C2G"/>
+                                    <constraint firstItem="nzF-aI-iJF" firstAttribute="top" secondItem="cn8-Nl-EBJ" secondAttribute="top" constant="47" id="4gZ-Ck-C2G"/>
                                     <constraint firstItem="dpP-cf-H6r" firstAttribute="leading" secondItem="bc3-O3-AQ1" secondAttribute="trailing" constant="15" id="4wQ-cl-FVk"/>
                                     <constraint firstItem="vxe-SF-NZ5" firstAttribute="leading" secondItem="dpP-cf-H6r" secondAttribute="trailing" constant="7" id="AME-mo-fV4"/>
                                     <constraint firstItem="dpP-cf-H6r" firstAttribute="top" secondItem="cn8-Nl-EBJ" secondAttribute="top" constant="20" id="Gka-ED-7Xx"/>
-                                    <constraint firstItem="HOG-bk-97u" firstAttribute="top" secondItem="nzF-aI-iJF" secondAttribute="bottom" constant="-2" id="HAY-KS-sQB"/>
-                                    <constraint firstAttribute="bottom" secondItem="4HY-Nn-Tv9" secondAttribute="bottom" constant="20" symbolic="YES" id="KYf-H3-rbs"/>
+                                    <constraint firstItem="HOG-bk-97u" firstAttribute="top" secondItem="nzF-aI-iJF" secondAttribute="bottom" constant="-6.3333333333333286" id="HAY-KS-sQB"/>
+                                    <constraint firstAttribute="bottom" secondItem="4HY-Nn-Tv9" secondAttribute="bottom" constant="10" id="KYf-H3-rbs"/>
                                     <constraint firstItem="HOG-bk-97u" firstAttribute="leading" secondItem="bc3-O3-AQ1" secondAttribute="trailing" constant="15" id="Mh7-qV-rLn"/>
                                     <constraint firstItem="vxe-SF-NZ5" firstAttribute="top" secondItem="cn8-Nl-EBJ" secondAttribute="top" constant="20" symbolic="YES" id="PhS-Yv-buw"/>
-                                    <constraint firstItem="4HY-Nn-Tv9" firstAttribute="top" secondItem="vxe-SF-NZ5" secondAttribute="bottom" constant="17" id="So9-Ee-A9R"/>
+                                    <constraint firstItem="4HY-Nn-Tv9" firstAttribute="top" secondItem="vxe-SF-NZ5" secondAttribute="bottom" constant="22" id="So9-Ee-A9R"/>
                                     <constraint firstItem="bc3-O3-AQ1" firstAttribute="leading" secondItem="cn8-Nl-EBJ" secondAttribute="leading" constant="18" id="TMc-hz-qco"/>
                                     <constraint firstAttribute="bottom" secondItem="bc3-O3-AQ1" secondAttribute="bottom" constant="20" id="Wdl-1w-M5M"/>
                                     <constraint firstItem="bc3-O3-AQ1" firstAttribute="top" secondItem="cn8-Nl-EBJ" secondAttribute="top" constant="18" id="XDK-7Z-5lo"/>
@@ -688,12 +693,12 @@
         <image name="logo name" width="3289" height="512"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="power.circle.fill" catalog="system" width="128" height="123"/>
-        <image name="rocket" width="32" height="32"/>
+        <image name="rocket_3" width="20" height="20"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="tooltip_icon" width="48" height="48"/>
         <image name="wifi man grey 2" width="162" height="152"/>
         <namedColor name="Danger">
-            <color red="0.92500001192092896" green="0.30199998617172241" blue="0.30199998617172241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.92156862745098034" green="0.30196078431372547" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Secondary Grey">
             <color red="0.3059999942779541" green="0.4309999942779541" blue="0.50599998235702515" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

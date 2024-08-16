@@ -19,6 +19,8 @@ class ViewedProfilesVC: MainViewController {
     var userdbModel = UserDBModel()
     var searchString = ""
 
+    var localStarredStatus: [String: Bool] = [:] // Key: userId, Value: isStarred
+
     var isProfileVisible = false
     var isShadowMode = false
     var proximity = 150
@@ -146,30 +148,24 @@ class ViewedProfilesVC: MainViewController {
     }
     
     @objc
-    func starTapFunction(sender:UITapGestureRecognizer) {
-        if let image = sender.view {
-            if let cell = image.superview?.superview?.superview?.superview  as? FeedItem2TVCell {
-                guard let indexPath = self.viewedListTV.indexPath(for: cell) else {return}
-                print("index path = \(indexPath)")
-                if cell.starLbl.image == UIImage(systemName: "star.fill") {
-                    cell.starLbl.image = UIImage(systemName: "star")
-                    markUserStar(userId: users[indexPath.row - 1].userId)
-                } else {
-                    cell.starLbl.image = UIImage(systemName: "star.fill")
-                    markUserStar(userId: users[indexPath.row - 1].userId)
-                }
-            } else if let cell = image.superview?.superview?.superview?.superview  as? FeedItemsTVCell {
-                guard let indexPath = self.viewedListTV.indexPath(for: cell) else {return}
-                print("index path Else = \(indexPath)")
-                if cell.starLbl.image == UIImage(systemName: "star.fill") {
-                    cell.starLbl.image = UIImage(systemName: "star")
-                    markUserStar(userId: users[indexPath.row - 1].userId)
-                } else {
-                    cell.starLbl.image = UIImage(systemName: "star.fill")
-                    markUserStar(userId: users[indexPath.row - 1].userId)
-                }
-            }
-        }
+    func starTapFunction(sender: UIButton) {
+        let index = sender.tag
+        let user = users[index - 1]
+        
+        let currentStatus = (localStarredStatus[user.userId] ?? user.isStarred) ?? false
+        let newStatus = !currentStatus
+        
+        // Update local state
+        localStarredStatus[user.userId] = newStatus
+        
+        // Update UI immediately
+        sender.setImage(UIImage(systemName: newStatus ? "star.fill" : "star"), for: .normal)
+        
+        // Perform the server update
+        markUserStar(userId: user.userId)
+        
+        // Optional: Reload the specific row to ensure consistency
+        viewedListTV.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
     }
     
     func markUserStar(userId: String) {
@@ -366,10 +362,17 @@ extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
                         feedCell.profilePicIV.image = UIImage(named: "placeholder")
                     }
                     
-                    let tap = UITapGestureRecognizer(target: self, action: #selector(starTapFunction(sender:)))
-                    feedCell.starLbl.isUserInteractionEnabled = true
-                    feedCell.starLbl.addGestureRecognizer(tap)
+//                    let tap = UITapGestureRecognizer(target: self, action: #selector(starTapFunction(sender:)))
+//                    feedCell.starLbl.isUserInteractionEnabled = true
+//                    feedCell.starLbl.addGestureRecognizer(tap)
+//                    
+                    let isStarred = localStarredStatus[user.userId] ?? user.isStarred
                     
+                    let imageName = isStarred ?? false ? "star.fill" : "star"
+                    feedCell.starBtn.setImage(UIImage(systemName: imageName), for: .normal)
+                    
+                    feedCell.starBtn.tag = indexPath.row
+                    feedCell.starBtn.addTarget(self, action: #selector(starTapFunction(sender:)), for: .touchUpInside)
                     
                     feedCell.isViewBHidden = false
                     feedCell.statusLbl.text = user.status.isEmpty ? "currently no active status..." : user.status
@@ -404,9 +407,17 @@ extension ViewedProfilesVC : UITableViewDelegate, UITableViewDataSource {
                         feedCell2.profilePicIV.image = UIImage(named: "placeholder")
                     }
                     
-                    let tap = UITapGestureRecognizer(target: self, action: #selector(starTapFunction(sender:)))
-                    feedCell2.starLbl.isUserInteractionEnabled = true
-                    feedCell2.starLbl.addGestureRecognizer(tap)
+//                    let tap = UITapGestureRecognizer(target: self, action: #selector(starTapFunction(sender:)))
+//                    feedCell2.starLbl.isUserInteractionEnabled = true
+//                    feedCell2.starLbl.addGestureRecognizer(tap)
+                    
+                    let isStarred = localStarredStatus[user.userId] ?? user.isStarred
+                    
+                    let imageName = isStarred ?? false ? "star.fill" : "star"
+                    feedCell2.starBtn.setImage(UIImage(systemName: imageName), for: .normal)
+                    
+                    feedCell2.starBtn.tag = indexPath.row
+                    feedCell2.starBtn.addTarget(self, action: #selector(starTapFunction(sender:)), for: .touchUpInside)
                     
                     
                 }
