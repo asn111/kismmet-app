@@ -138,11 +138,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="417" height="52"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pw8-Ur-Foh">
-                                        <rect key="frame" x="36" y="9" width="160" height="38"/>
+                                        <rect key="frame" x="24" y="15" width="111" height="32"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="38" id="00h-Wq-yju"/>
-                                            <constraint firstAttribute="width" constant="160" id="1LL-dd-dNS"/>
+                                            <constraint firstAttribute="height" constant="32" id="00h-Wq-yju"/>
+                                            <constraint firstAttribute="width" constant="111" id="1LL-dd-dNS"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
@@ -152,11 +152,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOV-Cp-Toq">
-                                        <rect key="frame" x="212" y="10" width="157" height="38"/>
+                                        <rect key="frame" x="151" y="14" width="115" height="34"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="38" id="6al-zq-gbZ"/>
-                                            <constraint firstAttribute="width" constant="157" id="8rL-2S-GHY"/>
+                                            <constraint firstAttribute="height" constant="34" id="6al-zq-gbZ"/>
+                                            <constraint firstAttribute="width" constant="115" id="8rL-2S-GHY"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
@@ -165,19 +165,36 @@
                                             <action selector="conBtnPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xFf-AK-Qgk"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ioj-Q2-zBw">
+                                        <rect key="frame" x="286" y="13" width="115" height="34"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="115" id="OKU-vv-VeQ"/>
+                                            <constraint firstAttribute="height" constant="34" id="d0l-sZ-tty"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain"/>
+                                        <connections>
+                                            <action selector="chatBtnPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xB8-xg-zp1"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="Ioj-Q2-zBw" firstAttribute="leading" secondItem="aOV-Cp-Toq" secondAttribute="trailing" constant="20" id="2as-og-OOv"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ioj-Q2-zBw" secondAttribute="bottom" constant="5" id="HIj-sz-LhQ"/>
+                                    <constraint firstItem="Ioj-Q2-zBw" firstAttribute="top" secondItem="dOp-pE-AC1" secondAttribute="top" constant="13" id="HZ7-xG-ppc"/>
                                     <constraint firstAttribute="bottom" secondItem="Pw8-Ur-Foh" secondAttribute="bottom" constant="5" id="Sjz-H6-fXg"/>
                                     <constraint firstAttribute="bottom" secondItem="aOV-Cp-Toq" secondAttribute="bottom" constant="4" id="XfK-DL-aEu"/>
                                     <constraint firstItem="jVp-Jj-MUG" firstAttribute="top" secondItem="dOp-pE-AC1" secondAttribute="top" id="a3e-Hf-qjQ"/>
                                     <constraint firstAttribute="trailing" secondItem="jVp-Jj-MUG" secondAttribute="trailing" id="eTI-II-95P"/>
                                     <constraint firstItem="jVp-Jj-MUG" firstAttribute="leading" secondItem="dOp-pE-AC1" secondAttribute="leading" id="gfe-Yv-1qC"/>
-                                    <constraint firstItem="Pw8-Ur-Foh" firstAttribute="top" secondItem="dOp-pE-AC1" secondAttribute="top" constant="9" id="iqY-9Y-0lO"/>
-                                    <constraint firstItem="Pw8-Ur-Foh" firstAttribute="leading" secondItem="dOp-pE-AC1" secondAttribute="leading" constant="36" id="p2V-zL-KCc"/>
-                                    <constraint firstItem="aOV-Cp-Toq" firstAttribute="top" secondItem="dOp-pE-AC1" secondAttribute="top" constant="10" id="vgc-Qf-451"/>
+                                    <constraint firstItem="Pw8-Ur-Foh" firstAttribute="top" secondItem="dOp-pE-AC1" secondAttribute="top" constant="15" id="iqY-9Y-0lO"/>
+                                    <constraint firstItem="Pw8-Ur-Foh" firstAttribute="leading" secondItem="dOp-pE-AC1" secondAttribute="leading" constant="24" id="p2V-zL-KCc"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ioj-Q2-zBw" secondAttribute="trailing" constant="16" id="vWr-ta-XSA"/>
+                                    <constraint firstItem="aOV-Cp-Toq" firstAttribute="top" secondItem="dOp-pE-AC1" secondAttribute="top" constant="14" id="vgc-Qf-451"/>
                                     <constraint firstAttribute="bottom" secondItem="jVp-Jj-MUG" secondAttribute="bottom" id="wtU-FI-od8"/>
-                                    <constraint firstAttribute="trailing" secondItem="aOV-Cp-Toq" secondAttribute="trailing" constant="48" id="yYh-MM-llY"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BMV-bh-sqL" customClass="RoundCornerView" customModule="Kismmet" customModuleProvider="target">
@@ -307,13 +324,13 @@
     </objects>
     <designables>
         <designable name="4IN-oq-2Gx">
-            <size key="intrinsicContentSize" width="148.33333333333334" height="36.666666666666664"/>
+            <size key="intrinsicContentSize" width="88.333333333333329" height="20.333333333333332"/>
         </designable>
         <designable name="amq-6n-jaK">
             <size key="intrinsicContentSize" width="162" height="152"/>
         </designable>
         <designable name="gjT-fS-ZUo">
-            <size key="intrinsicContentSize" width="53.666666666666664" height="15.333333333333334"/>
+            <size key="intrinsicContentSize" width="52" height="16.666666666666668"/>
         </designable>
     </designables>
     <resources>
@@ -321,7 +338,7 @@
         <image name="ellipsis.message.fill" catalog="system" width="128" height="114"/>
         <image name="logo name" width="3289" height="512"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
-        <image name="reqSelected" width="401" height="43"/>
+        <image name="reqSelected" width="392" height="37"/>
         <image name="wifi man grey 2" width="162" height="152"/>
         <namedColor name="Secondary Grey">
             <color red="0.3059999942779541" green="0.4309999942779541" blue="0.50599998235702515" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -31,8 +31,12 @@ class TabsHeaderTVCell: UITableViewCell {
         onConBtnTap?()
     }
     
+    @IBAction func chatBtnPressed(_ sender: Any) {
+        onChatBtnTap?()
+    }
     var onReqBtnTap: (() -> Void)?
     var onConBtnTap: (() -> Void)?
+    var onChatBtnTap: (() -> Void)?
 
     
     override func awakeFromNib() {
