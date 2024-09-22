@@ -60,6 +60,20 @@ class SignalRManager: NSObject {
             let value = try argumentExtractor.getArgument(type: String.self)
             Logs.show(message: ">>> UserLocationUpdated : \(value) |...|")
         })
+        
+        connection.on(method: "NewMessageReceived", callback: { argumentExtractor in
+            
+            let value = try argumentExtractor.getArgument(type: ChatModel.self)
+            generalPublisherChat.onNext(value)
+            Logs.show(message: ">>> NewMessageReceived : \(value) |...|")
+        })
+        
+        connection.on(method: "MessageSent", callback: { argumentExtractor in
+            
+            let value = try argumentExtractor.getArgument(type: ChatModel.self)
+            generalPublisherChat.onNext(value)
+            Logs.show(message: ">>> MessageSent : \(value) |...|")
+        })
     }
     
     func stopConnection() {

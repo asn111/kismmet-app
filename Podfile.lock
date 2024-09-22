@@ -140,6 +140,7 @@ PODS:
     - GTMSessionFetcher/Core (< 4.0, >= 3.3)
   - GTMSessionFetcher/Core (3.5.0)
   - InputBarAccessoryView (4.2.2)
+  - IQKeyboardManagerSwift (7.1.1)
   - MaterialComponents/AnimationTiming (124.2.0)
   - MaterialComponents/Availability (124.2.0)
   - MaterialComponents/Buttons (124.2.0):
@@ -272,6 +273,7 @@ DEPENDENCIES:
   - FSCalendar
   - GoogleMaps
   - GoogleSignIn
+  - IQKeyboardManagerSwift
   - MaterialComponents/Ripple
   - MaterialComponents/Snackbar
   - MessageKit (~> 3.0.0)
@@ -322,6 +324,7 @@ SPEC REPOS:
     - GTMAppAuth
     - GTMSessionFetcher
     - InputBarAccessoryView
+    - IQKeyboardManagerSwift
     - MaterialComponents
     - MDFInternationalization
     - MDFTextAccessibility
@@ -378,6 +381,7 @@ SPEC CHECKSUMS:
   GTMAppAuth: f69bd07d68cd3b766125f7e072c45d7340dea0de
   GTMSessionFetcher: 5aea5ba6bd522a239e236100971f10cb71b96ab6
   InputBarAccessoryView: 2b937602598e2fab3149f37f51dd7ad795653812
+  IQKeyboardManagerSwift: d7f3d3a562c237a0e7335e657cd598c452f57f1b
   MaterialComponents: 1a9b2d9d45b1601ae544de85089adc4c464306d4
   MDFInternationalization: d697c55307816222a55685c4ccb1044ffb030c12
   MDFTextAccessibility: f4bb4cc2194286651b59a215fdeaa0e05dc90ba5
@@ -406,6 +410,6 @@ SPEC CHECKSUMS:
   TransitionableTab: 54a5d0af475033bdb83959fde4e5d6201af7e2ab
   UIMultiPicker: 29bf824c5251822ca4040b933f6204e617e6ba3f
 
-PODFILE CHECKSUM: 45d08fe38cda9c33ae8e321d5c1249ce4e8e8d51
+PODFILE CHECKSUM: 256b09ff99dfc26a3db8b1d86a9ff4ae5ec121c8
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.15.2

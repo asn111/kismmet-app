@@ -19,7 +19,9 @@ class FeedItem2TVCell: UITableViewCell {
         
     }
     
+    @IBOutlet weak var firstTagView: RoundCornerView!
     
+    @IBOutlet weak var noteIcon: UIImageView!
     @IBOutlet weak var starBtn: UIButton!
     @IBOutlet weak var blurView: RoundCornerView!
     @IBOutlet weak var nonBlurView: RoundCornerView!
@@ -32,6 +34,8 @@ class FeedItem2TVCell: UITableViewCell {
     @IBOutlet weak var tagMoreView: RoundCornerView!
     @IBOutlet weak var tagMoreLbl: fullyCustomLbl!
     @IBOutlet weak var professionLbl: fullyCustomLbl!
+    
+    @IBOutlet weak var tagsWidthConst: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()

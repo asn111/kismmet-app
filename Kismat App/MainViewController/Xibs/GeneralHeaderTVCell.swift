@@ -20,6 +20,8 @@ class GeneralHeaderTVCell: UITableViewCell {
         
     }
     
+    @IBOutlet weak var chatBtn: UIButton!
+    
     @IBOutlet weak var rocketBtn: UIButton!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var welcomeView: UIView!

@@ -76,8 +76,13 @@ class ReqConVC: MainViewController {
         reqTV.register(UINib(nibName: "TabsHeaderTVCell", bundle: nil), forCellReuseIdentifier: "TabsHeaderTVCell")
         reqTV.register(UINib(nibName: "FeedItemsTVCell", bundle: nil), forCellReuseIdentifier: "FeedItemsTVCell")
         reqTV.register(UINib(nibName: "FeedItem2TVCell", bundle: nil), forCellReuseIdentifier: "FeedItem2TVCell")
+        reqTV.register(UINib(nibName: "ChatUsersTVCell", bundle: nil), forCellReuseIdentifier: "ChatUsersTVCell")
         reqTV.register(UINib(nibName: "VisibilityOffTVCell", bundle: nil), forCellReuseIdentifier: "VisibilityOffTVCell")
 
+    }
+    
+    @objc func chatBtnPressed(sender: UIButton) {
+        self.pushVC(id: "MessageListViewController") { (vc:MessageListViewController) in }
     }
     
     @objc func searchBtnPressed(sender: UIButton) {
@@ -366,6 +371,7 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
             cell.settingsLbl.addGestureRecognizer(tap)
             
             cell.searchBtn.addTarget(self, action: #selector(searchBtnPressed(sender:)), for: .touchUpInside)
+            cell.chatBtn.addTarget(self, action: #selector(chatBtnPressed(sender:)), for: .touchUpInside)
 
             cell.searchTF.delegate = self
             cell.searchTF.placeholder = selectedUsertype == "con" ? "Search through your contacts" : "Search through your requests"
@@ -390,9 +396,9 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
             
             if users.isEmpty {
                 cell = tableView.dequeueReusableCell(withIdentifier: "VisibilityOffTVCell", for: indexPath) as! VisibilityOffTVCell
-            } else if user.status != nil && user.status != "" {
-                cell = tableView.dequeueReusableCell(withIdentifier: "FeedItemsTVCell", for: indexPath) as! FeedItemsTVCell
-            } else {
+            } /*else if selectedUsertype == "con" {
+                cell = tableView.dequeueReusableCell(withIdentifier: "ChatUsersTVCell", for: indexPath) as! ChatUsersTVCell
+            }*/ else {
                 cell = tableView.dequeueReusableCell(withIdentifier: "FeedItem2TVCell", for: indexPath) as! FeedItem2TVCell
             }
             
@@ -407,97 +413,35 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                 }
                 
                 
-            } else if let feedCell = cell as? FeedItemsTVCell {
+            } /*else if let chatCell = cell as? ChatUsersTVCell {
                 
-                feedCell.nameLbl.text = user.userName
-                feedCell.professionLbl.text = user.workTitle
-                feedCell.educationLbl.text = user.workAddress
+                chatCell.nameLbl.text = "Ahsan Iqbal"
                 
-                if user.tags != nil && user.tags != "" {
-                    if !user.tags.contains(",") {
-                        feedCell.tagLbl.text = user.tags
-                        feedCell.tagMoreView.isHidden = true
-                    } else {
-                        feedCell.tagMoreView.isHidden = false
-                        let split = user.tags.split(separator: ",")
-                        feedCell.tagLbl.text = "\(split[0])"
-                        feedCell.tagMoreLbl.text = "\(split.count - 1) more"
-                        
-                    }
-                }
-                
-                feedCell.profilePicIV.borderWidth = 3
-                
-                if user.contactStatus == "Pending" {
-                    feedCell.profilePicIV.borderColor = UIColor(named: "warning")
-                } else if user.contactStatus == "Accepted" {
-                    feedCell.profilePicIV.borderColor = UIColor(named: "Success")
-                } else {
-                    feedCell.profilePicIV.borderColor = UIColor(named: "Secondary Grey")
-                    //feedCell.profilePicIV.borderWidth = 0
-                }
-                
-                if user.profilePicture != "" && user.profilePicture != nil {
-                    let imageUrl = URL(string: user.profilePicture)
-                    feedCell.profilePicIV?.sd_setImage(with: imageUrl , placeholderImage: UIImage(named: "placeholder")) { (image, error, imageCacheType, url) in }
-                } else {
-                    feedCell.profilePicIV.image = UIImage(named: "placeholder")
-                }
-                
-                if user.isRead {
-                    feedCell.nonBlurView.backgroundColor = UIColor(named: "Base White")
-                    feedCell.nonBlurView.shadowColor = UIColor.systemGray2
-                } else {
-                    feedCell.nonBlurView.backgroundColor = UIColor(named: "Cell BG Base Grey")
-                    feedCell.nonBlurView.shadowColor = UIColor(named: "Cell BG Base Grey")
-                }
-//                
-//                if user.isStarred != nil {
-//                    if user.isStarred {
-//                        feedCell.starBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
-//                    } else {
-//                        feedCell.starBtn.setImage(UIImage(systemName: "star"), for: .normal)
-//                    }
-//                }
-                
-                
-                let isStarred = localStarredStatus[user.userId] ?? user.isStarred
-                
-                let imageName = isStarred ?? false ? "star.fill" : "star"
-                feedCell.starBtn.setImage(UIImage(systemName: imageName), for: .normal)
-                
-                feedCell.starBtn.tag = indexPath.row
-                feedCell.starBtn.addTarget(self, action: #selector(starTapFunction(sender:)), for: .touchUpInside)
-//                feedCell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
-//                
-//                let tap = UITapGestureRecognizer(target: self, action: #selector(starTapFunction(sender:)))
-//                feedCell.starLbl.isUserInteractionEnabled = true
-//                feedCell.starLbl.addGestureRecognizer(tap)
-                
-                feedCell.isViewBHidden = false
-                feedCell.statusLbl.text = user.status.isEmpty ? "currently no active status..." : user.status
-                feedCell.clockIV.isHidden = !user.disappearingStatus
-                
-                
-                
-            } else if let feedCell2 = cell as? FeedItem2TVCell {
+            }*/ else if let feedCell2 = cell as? FeedItem2TVCell {
                 
                 feedCell2.nameLbl.text = user.userName
                 feedCell2.professionLbl.text = user.workTitle
                 feedCell2.educationLbl.text = user.workAddress
                 
+                feedCell2.noteIcon.isHidden = false
+                
                 if user.tags != nil && user.tags != "" {
                     if !user.tags.contains(",") {
                         feedCell2.tagLbl.text = user.tags
                         feedCell2.tagMoreView.isHidden = true
+                        
+                        feedCell2.tagsWidthConst.constant = feedCell2.firstTagView.frame.width + 20
                     } else {
                         feedCell2.tagMoreView.isHidden = false
                         let split = user.tags.split(separator: ",")
                         feedCell2.tagLbl.text = "\(split[0])"
                         feedCell2.tagMoreLbl.text = "\(split.count - 1) more"
                         
+                        feedCell2.tagsWidthConst.constant = 125
+                        
                     }
                 }
+
                 
                 if user.isRead {
                     feedCell2.nonBlurView.backgroundColor = UIColor(named: "Base White")
@@ -560,10 +504,31 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
         if indexPath.row > 0 {
             if !users.isEmpty {
                 if selectedUsertype == "con" {
-                    self.pushVC(id: "ConnectedUserProfile") { (vc:ConnectedUserProfile) in
+                    //self.pushVC(id: "MessageListViewController") { (vc:MessageListViewController) in }
+
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    if let vc = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
+                        let user = users[indexPath.row - 1]
+                        
+                        vc.userId = user.userId
+                        //vc.chatId = user.chatId
+                        //vc.isOnline = user.isOnline
+                        vc.userName = user.userName
+                        vc.userProfilePic = user.profilePicture
+                        
+                        let transition = CATransition()
+                        transition.duration = 0.5
+                        transition.subtype = CATransitionSubtype.fromRight
+                        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.default)
+                        transition.type = CATransitionType.fade
+                        self.navigationController?.view.layer.add(transition, forKey: nil)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    
+                    /*self.pushVC(id: "ConnectedUserProfile") { (vc:ConnectedUserProfile) in
                         vc.userModel = users[indexPath.row - 1]
                         vc.userId = users[indexPath.row - 1].userId
-                    }
+                    }*/
                 } else {
                     if users[indexPath.row - 1].contactStatus == "Pending" {
                         self.presentVC(id: "ReqAcceptVC", presentFullType: "over" ) { (vc:ReqAcceptVC) in

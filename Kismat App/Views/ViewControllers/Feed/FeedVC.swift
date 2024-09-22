@@ -223,6 +223,10 @@ class FeedVC: MainViewController {
         }
     }*/
     
+    @objc func chatBtnPressed(sender: UIButton) {
+        self.pushVC(id: "MessageListViewController") { (vc:MessageListViewController) in }
+    }
+    
     @objc
     func starTapFunction(sender: UIButton) {
         let index = sender.tag
@@ -419,7 +423,8 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
 
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
                 
-                
+                cell.chatBtn.addTarget(self, action: #selector(chatBtnPressed(sender:)), for: .touchUpInside)
+
                 
                 
                 if AppFunctions.isPremiumUser() {
@@ -558,15 +563,20 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                         if !user.tags.contains(",") {
                             feedCell2.tagLbl.text = user.tags
                             feedCell2.tagMoreView.isHidden = true
+                            
+                            //feedCell2.tagsWidthConst.constant = feedCell2.firstTagView.frame.width + 20
                         } else {
                             feedCell2.tagMoreView.isHidden = false
                             let split = user.tags.split(separator: ",")
                             feedCell2.tagLbl.text = "\(split[0])"
                             feedCell2.tagMoreLbl.text = "\(split.count - 1) more"
                             
+                           // feedCell2.tagsWidthConst.constant = 125
+                            
                         }
                     }
-                    
+
+                    feedCell2.noteIcon.isHidden = true
                     
                     if user.profilePicture != "" && user.profilePicture != nil {
                         let imageUrl = URL(string: user.profilePicture)

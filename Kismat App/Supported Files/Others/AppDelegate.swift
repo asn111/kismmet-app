@@ -30,8 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ = SignalRManager.init()
         application.applicationIconBadgeNumber = 0
         if AppFunctions.isLoggedIn() {
-            if AppFunctions.getplatForm() == "iOS" {
-                IAPManager.shared.checkSubscriptionStatus()
+            if AppFunctions.getplatForm() == "iOS" && !UIDevice.modelName.lowercased().contains("arm64".lowercased()) {                IAPManager.shared.checkSubscriptionStatus()
             }
             //APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
         }
@@ -73,7 +72,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppFunctions.removeFromDefaults(key: socialArray)
         
         if AppFunctions.isLoggedIn() {
-            IAPManager.shared.checkSubscriptionStatus()
+            if AppFunctions.getplatForm() == "iOS" && !UIDevice.modelName.lowercased().contains("arm64".lowercased()) {
+                IAPManager.shared.checkSubscriptionStatus()
+            }
             APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
         }
         

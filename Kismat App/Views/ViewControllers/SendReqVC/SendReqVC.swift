@@ -14,14 +14,14 @@ class SendReqVC: MainViewController {
     }
     
     @IBAction func sendBtnPressed(_ sender: Any) {
-        self.presentVC(id: "ContactInformainVC", presentFullType: "over" ) { (vc:ContactInformainVC) in
+        /*self.presentVC(id: "ContactInformainVC", presentFullType: "over" ) { (vc:ContactInformainVC) in
             //vc.contactId = userModel.contactId
             vc.isOwnInfo = true
             vc.sentMsg = sentMsg
             vc.userdId = userModel.userId
             vc.isStarred = userModel.isStarred
-        }
-        //sendReq()
+        }*/
+        sendReq()
         /*self.presentVC(id: "ReqSentVC", presentFullType: "over" ) { (vc:ReqSentVC) in
             vc.userId = self.userModel.userId
         }*/
@@ -168,5 +168,44 @@ class SendReqVC: MainViewController {
     
     //MARK: API METHODS
     
+    func sendReq() {
+        
+        self.showPKHUD(WithMessage: "Fetching...")
+        
+        var pram : [String: Any]
+        
+        pram = ["userId": self.userModel.userId as Any,
+                "message": sentMsg]
+        
+        Logs.show(message: "SKILLS PRAM: \(pram)")
+        
+        APIService
+            .singelton
+            .sendUserContactRequest(pram: pram)
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        if val {
+                            self.hidePKHUD()
+                            //AppFunctions.showSnackBar(str: "Your contact request is sent")
+                            
+                            self.presentVC(id: "ReqSentVC", presentFullType: "over" ) { (vc:ReqSentVC) in
+                                vc.userId = self.userModel.userId
+                            }
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
+
     
 }

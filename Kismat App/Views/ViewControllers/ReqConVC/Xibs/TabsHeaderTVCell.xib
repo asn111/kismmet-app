@@ -17,19 +17,31 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="233" id="KGk-i7-Jjw" customClass="TabsHeaderTVCell" customModule="Kismmet" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="417" height="233"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="205" id="KGk-i7-Jjw" customClass="TabsHeaderTVCell" customModule="Kismmet" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="417" height="205"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="417" height="233"/>
+                <rect key="frame" x="0.0" y="0.0" width="417" height="205"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYS-4N-m42">
-                        <rect key="frame" x="0.0" y="0.0" width="417" height="230"/>
+                        <rect key="frame" x="0.0" y="0.0" width="417" height="203"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eaf-aD-Gjo">
                                 <rect key="frame" x="8" y="18" width="401" height="66"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yuc-ta-9cO">
+                                        <rect key="frame" x="333" y="10" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="GXa-nf-7O3"/>
+                                            <constraint firstAttribute="height" constant="30" id="lzk-7a-wKM"/>
+                                        </constraints>
+                                        <color key="tintColor" name="Secondary Grey"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="ellipsis.message.fill" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="semibold"/>
+                                        </state>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amq-6n-jaK" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
                                         <rect key="frame" x="8" y="10" width="30" height="30"/>
                                         <constraints>
@@ -113,6 +125,9 @@
                                     <constraint firstItem="nXB-LI-QkM" firstAttribute="centerX" secondItem="Eaf-aD-Gjo" secondAttribute="centerX" id="VWg-xK-Fv1"/>
                                     <constraint firstAttribute="bottom" secondItem="D2h-CL-I8s" secondAttribute="bottom" constant="26" id="aZn-X9-l2U"/>
                                     <constraint firstItem="amq-6n-jaK" firstAttribute="leading" secondItem="Eaf-aD-Gjo" secondAttribute="leading" constant="8" id="hW9-08-uKh"/>
+                                    <constraint firstItem="D2h-CL-I8s" firstAttribute="leading" secondItem="Yuc-ta-9cO" secondAttribute="trailing" id="jkH-pR-osY"/>
+                                    <constraint firstAttribute="bottom" secondItem="Yuc-ta-9cO" secondAttribute="bottom" constant="26" id="pjI-cp-CwJ"/>
+                                    <constraint firstItem="Yuc-ta-9cO" firstAttribute="top" secondItem="Eaf-aD-Gjo" secondAttribute="top" constant="10" id="q3M-T5-MGl"/>
                                     <constraint firstAttribute="width" constant="401" id="q62-hM-P1b"/>
                                 </constraints>
                             </view>
@@ -166,7 +181,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BMV-bh-sqL" customClass="RoundCornerView" customModule="Kismmet" customModuleProvider="target">
-                                <rect key="frame" x="21" y="174" width="375" height="42"/>
+                                <rect key="frame" x="21" y="145" width="375" height="42"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Db8-Xx-spS">
                                         <rect key="frame" x="349" y="14" width="15" height="15"/>
@@ -226,7 +241,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjT-fS-ZUo" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjT-fS-ZUo" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
                                 <rect key="frame" x="156" y="141" width="104" height="21"/>
                                 <color key="tintColor" name="Secondary Grey"/>
                                 <constraints>
@@ -247,15 +262,15 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="BMV-bh-sqL" secondAttribute="bottom" constant="14" id="C4i-f7-Z0s"/>
+                            <constraint firstAttribute="bottom" secondItem="BMV-bh-sqL" secondAttribute="bottom" constant="16" id="C4i-f7-Z0s"/>
                             <constraint firstAttribute="trailing" secondItem="BMV-bh-sqL" secondAttribute="trailing" constant="21" id="Nni-Vl-JkH"/>
                             <constraint firstAttribute="trailing" secondItem="gjT-fS-ZUo" secondAttribute="trailing" constant="157" id="S11-mt-3Tv"/>
                             <constraint firstAttribute="trailing" secondItem="Eaf-aD-Gjo" secondAttribute="trailing" constant="8" id="Skh-BT-Kyy"/>
                             <constraint firstItem="Eaf-aD-Gjo" firstAttribute="leading" secondItem="aYS-4N-m42" secondAttribute="leading" constant="8" id="Wh3-uN-Pzj"/>
                             <constraint firstItem="gjT-fS-ZUo" firstAttribute="top" secondItem="dOp-pE-AC1" secondAttribute="bottom" constant="8" symbolic="YES" id="Z6o-np-Fiw"/>
-                            <constraint firstAttribute="height" constant="230" id="Zui-8T-Sja"/>
+                            <constraint firstAttribute="height" constant="203" id="Zui-8T-Sja"/>
                             <constraint firstItem="gjT-fS-ZUo" firstAttribute="leading" secondItem="aYS-4N-m42" secondAttribute="leading" constant="156" id="ee1-xv-tBN"/>
-                            <constraint firstItem="BMV-bh-sqL" firstAttribute="top" secondItem="gjT-fS-ZUo" secondAttribute="bottom" constant="12" id="h8J-pH-IhX"/>
+                            <constraint firstItem="BMV-bh-sqL" firstAttribute="top" secondItem="dOp-pE-AC1" secondAttribute="bottom" constant="12" id="j7H-19-oNL"/>
                             <constraint firstItem="dOp-pE-AC1" firstAttribute="leading" secondItem="aYS-4N-m42" secondAttribute="leading" id="jhP-HF-SeH"/>
                             <constraint firstItem="BMV-bh-sqL" firstAttribute="leading" secondItem="aYS-4N-m42" secondAttribute="leading" constant="21" id="keT-Gq-lzr"/>
                             <constraint firstItem="dOp-pE-AC1" firstAttribute="top" secondItem="Eaf-aD-Gjo" secondAttribute="bottom" constant="-3" id="uEw-Cx-Add"/>
@@ -267,7 +282,7 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="aYS-4N-m42" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="0TE-n8-XkA"/>
-                    <constraint firstAttribute="bottom" secondItem="aYS-4N-m42" secondAttribute="bottom" constant="3" id="LR7-Kq-f03"/>
+                    <constraint firstAttribute="bottom" secondItem="aYS-4N-m42" secondAttribute="bottom" constant="2" id="LR7-Kq-f03"/>
                     <constraint firstAttribute="trailing" secondItem="aYS-4N-m42" secondAttribute="trailing" id="hNp-Si-Zbm"/>
                     <constraint firstItem="aYS-4N-m42" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="of4-hI-Bi2"/>
                 </constraints>
@@ -276,6 +291,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="btnsImg" destination="jVp-Jj-MUG" id="DEd-vw-PbG"/>
+                <outlet property="chatBtn" destination="Yuc-ta-9cO" id="zuk-hb-lfV"/>
                 <outlet property="conBtn" destination="aOV-Cp-Toq" id="B4Q-cl-iLR"/>
                 <outlet property="headerLbl" destination="4IN-oq-2Gx" id="uDt-O2-ZKi"/>
                 <outlet property="notifbtn" destination="D2h-CL-I8s" id="og2-9g-c4c"/>
@@ -286,22 +302,23 @@
                 <outlet property="settingsLbl" destination="gjT-fS-ZUo" id="H6p-bE-udg"/>
                 <outlet property="wifiManBtn" destination="amq-6n-jaK" id="0Qn-88-1rt"/>
             </connections>
-            <point key="canvasLocation" x="-27.209302325581394" y="53.755364806866957"/>
+            <point key="canvasLocation" x="-27.209302325581394" y="44.742489270386272"/>
         </tableViewCell>
     </objects>
     <designables>
         <designable name="4IN-oq-2Gx">
-            <size key="intrinsicContentSize" width="88.333333333333329" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="148.33333333333334" height="36.666666666666664"/>
         </designable>
         <designable name="amq-6n-jaK">
             <size key="intrinsicContentSize" width="162" height="152"/>
         </designable>
         <designable name="gjT-fS-ZUo">
-            <size key="intrinsicContentSize" width="52" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="53.666666666666664" height="15.333333333333334"/>
         </designable>
     </designables>
     <resources>
         <image name="bell.badge.fill" catalog="system" width="117" height="128"/>
+        <image name="ellipsis.message.fill" catalog="system" width="128" height="114"/>
         <image name="logo name" width="3289" height="512"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="reqSelected" width="401" height="43"/>

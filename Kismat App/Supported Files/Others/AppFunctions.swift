@@ -55,12 +55,17 @@ let googleMapAPIKey = "AIzaSyDoOfDrlLrIeWHeM2hBJEETh9ErGgKnoTQ"
 //let baseUrl = "https://api.kismmet.com"
 let baseUrl = "http://54.226.245.172"
 
+func RGBA(_ r:CGFloat, g:CGFloat, b:CGFloat, a:CGFloat) -> UIColor {
+    return UIColor(red: (r/255.0), green: (g/255.0), blue: (b/255.0), alpha: a)
+}
+
 //MARK: rx Publishers
 
 public let loading: PublishSubject<Bool> = PublishSubject()
 let generalPublisher: PublishSubject<String> = PublishSubject()
 let generalPublisherLoc: PublishSubject<CLLocation> = PublishSubject()
 let generalPublisherCountry: PublishSubject<Country> = PublishSubject()
+let generalPublisherChat: PublishSubject<ChatModel> = PublishSubject()
 let productPublisher: PublishSubject<[String: SKProduct]> = PublishSubject()
 
 

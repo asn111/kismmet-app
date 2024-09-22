@@ -10,6 +10,7 @@ import UIKit
 class TabsHeaderTVCell: UITableViewCell {
 
     
+    @IBOutlet weak var chatBtn: UIButton!
     @IBOutlet weak var notifbtn: UIButton!
     @IBOutlet weak var wifiManBtn: RoundCornerButton!
     @IBOutlet weak var reqBtn: UIButton!

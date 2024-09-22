@@ -48,7 +48,8 @@ class ReqAcceptVC: MainViewController {
     }
     
     @IBAction func accpetBtnPressed(_ sender: Any) {
-        if let contactId = userModel.contactId {
+        updateContactStatus()
+        /*if let contactId = userModel.contactId {
             self.presentVC(id: "ContactInformainVC", presentFullType: "over" ) { (vc:ContactInformainVC) in
                 vc.contactId = userModel.contactId
             }
@@ -58,7 +59,7 @@ class ReqAcceptVC: MainViewController {
                     vc.contactId = contactId
                 }
             }
-        }
+        }*/
     }
     
     @IBAction func denyBtnPressed(_ sender: Any) {
@@ -157,5 +158,39 @@ class ReqAcceptVC: MainViewController {
                 return
             }
         }
+    }
+    
+    func updateContactStatus() {
+        
+        self.showPKHUD(WithMessage: "Fetching...")
+        
+        let pram : [String: Any] = ["contactId": userModel.contactId as Any,
+                                    "status": 2 ]
+        Logs.show(message: "SKILLS PRAM: \(pram)")
+        
+        APIService
+            .singelton
+            .updateContactStatus(pram: pram)
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        if val {
+                            self.hidePKHUD()
+                            AppFunctions.showSnackBar(str: "Request accepted")
+                            self.dismiss(animated: true, completion: nil)
+                            
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
     }
 }

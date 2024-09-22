@@ -662,3 +662,22 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+/* if messageType == .recieved {
+    // Received bubble: Rounded corners + tail on the top-left
+    bezierPath.move(to: CGPoint(x: tailWidth + cornerRadius, y: height))
+    bezierPath.addLine(to: CGPoint(x: width - cornerRadius, y: height))
+    bezierPath.addQuadCurve(to: CGPoint(x: width, y: height - cornerRadius), controlPoint: CGPoint(x: width, y: height))
+    bezierPath.addLine(to: CGPoint(x: width, y: cornerRadius))
+    bezierPath.addQuadCurve(to: CGPoint(x: width - cornerRadius, y: 0), controlPoint: CGPoint(x: width, y: 0))
+    bezierPath.addLine(to: CGPoint(x: tailWidth + cornerRadius, y: 0))
+    bezierPath.addQuadCurve(to: CGPoint(x: tailWidth, y: cornerRadius), controlPoint: CGPoint(x: tailWidth, y: 0))
+    
+    // Sharp tail on the top-left
+    bezierPath.addLine(to: CGPoint(x: 0, y: tailHeight / 2))
+    bezierPath.addLine(to: CGPoint(x: tailWidth, y: tailHeight))
+    
+    // Finish the bubble shape
+    bezierPath.addLine(to: CGPoint(x: tailWidth, y: height - cornerRadius))
+    bezierPath.addQuadCurve(to: CGPoint(x: tailWidth + cornerRadius, y: height), controlPoint: CGPoint(x: tailWidth, y: height))
+    
+    } */

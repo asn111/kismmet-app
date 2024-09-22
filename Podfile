@@ -36,6 +36,8 @@ target 'Kismmet' do
   pod 'MultiSlider'
   pod 'FSCalendar'
   pod 'UIMultiPicker'
+  pod 'IQKeyboardManagerSwift'
+
   #pod 'iOSDropDown'#, :path => '../' #should be added to text field
   
   pod 'DropDown' # can be added to any view

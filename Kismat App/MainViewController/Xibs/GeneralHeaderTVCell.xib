@@ -71,6 +71,18 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="semibold"/>
                                         </state>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RTS-hv-L0Q">
+                                        <rect key="frame" x="286" y="10" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="DSZ-fp-WR4"/>
+                                            <constraint firstAttribute="width" constant="30" id="h0Q-pA-S3n"/>
+                                        </constraints>
+                                        <color key="tintColor" name="Secondary Grey"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="ellipsis.message.fill" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="semibold"/>
+                                        </state>
+                                    </button>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STARRED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6BT-Eq-hcD" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
                                         <rect key="frame" x="46" y="9" width="267" height="32"/>
                                         <constraints>
@@ -165,14 +177,17 @@
                                     <constraint firstItem="nax-I1-dp4" firstAttribute="leading" secondItem="gT6-92-Go5" secondAttribute="leading" constant="8" id="5Et-yY-ins"/>
                                     <constraint firstItem="ooM-Y7-C6j" firstAttribute="centerX" secondItem="gT6-92-Go5" secondAttribute="centerX" id="7ll-so-wwE"/>
                                     <constraint firstItem="6BT-Eq-hcD" firstAttribute="centerX" secondItem="gT6-92-Go5" secondAttribute="centerX" id="8iu-h4-V23"/>
+                                    <constraint firstItem="RTS-hv-L0Q" firstAttribute="top" secondItem="gT6-92-Go5" secondAttribute="top" constant="10" id="DM7-ec-7AA"/>
                                     <constraint firstAttribute="trailing" secondItem="05M-7P-ld3" secondAttribute="trailing" constant="8" id="F90-9B-gID"/>
                                     <constraint firstItem="v2n-8t-cBj" firstAttribute="centerX" secondItem="gT6-92-Go5" secondAttribute="centerX" id="Ffm-5O-FnH"/>
                                     <constraint firstItem="j4f-gS-nOe" firstAttribute="leading" secondItem="gT6-92-Go5" secondAttribute="leading" constant="8" id="Gaj-1s-zSc"/>
                                     <constraint firstAttribute="bottom" secondItem="RN4-MZ-r6J" secondAttribute="bottom" constant="26" id="If6-t7-aPr"/>
                                     <constraint firstItem="v2n-8t-cBj" firstAttribute="centerY" secondItem="gT6-92-Go5" secondAttribute="centerY" constant="-8" id="M1t-BG-i4Q"/>
+                                    <constraint firstItem="j4f-gS-nOe" firstAttribute="top" secondItem="RTS-hv-L0Q" secondAttribute="bottom" constant="6" id="Pxm-Jm-rRs"/>
                                     <constraint firstItem="ooM-Y7-C6j" firstAttribute="centerY" secondItem="gT6-92-Go5" secondAttribute="centerY" constant="-8" id="Qv8-S1-Vjd"/>
                                     <constraint firstItem="RN4-MZ-r6J" firstAttribute="top" secondItem="gT6-92-Go5" secondAttribute="top" constant="10" id="Yvg-yi-xet"/>
                                     <constraint firstAttribute="height" constant="66" id="e3g-tr-5EW"/>
+                                    <constraint firstItem="RN4-MZ-r6J" firstAttribute="leading" secondItem="RTS-hv-L0Q" secondAttribute="trailing" constant="5" id="lA0-Zk-Ra2"/>
                                     <constraint firstItem="j4f-gS-nOe" firstAttribute="top" secondItem="05M-7P-ld3" secondAttribute="bottom" constant="11" id="mGo-4X-BxC"/>
                                     <constraint firstAttribute="trailing" secondItem="RN4-MZ-r6J" secondAttribute="trailing" constant="8" id="mXb-4x-ojj"/>
                                     <constraint firstItem="j4f-gS-nOe" firstAttribute="top" secondItem="6BT-Eq-hcD" secondAttribute="bottom" constant="5" id="qyU-WZ-RNo"/>
@@ -608,6 +623,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
+                <outlet property="chatBtn" destination="RTS-hv-L0Q" id="Hun-q0-bKX"/>
                 <outlet property="educationLbl" destination="nzF-aI-iJF" id="GLZ-BE-kuq"/>
                 <outlet property="headerLbl" destination="6BT-Eq-hcD" id="fZ0-Yd-K16"/>
                 <outlet property="headerLogo" destination="ooM-Y7-C6j" id="kNX-XF-afw"/>
@@ -689,6 +705,7 @@
     </designables>
     <resources>
         <image name="bell.badge.fill" catalog="system" width="117" height="128"/>
+        <image name="ellipsis.message.fill" catalog="system" width="128" height="114"/>
         <image name="girl" width="407" height="612"/>
         <image name="logo name" width="3289" height="512"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
