@@ -545,7 +545,8 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 if !status.isEmpty {
                     cell.countLbl.text = "\(100 - status.count) / 100 remaining"
                 } else {
-                    cell.generalTV.addPlaceholder("Add status here...", size: 14)
+                    cell.generalTV.addPlaceholder("Broadcast a status", size: 14, iconImage: UIImage(systemName: "megaphone.fill"))
+
                     cell.countLbl.text = "100 / 100 remaining"
                 }
 

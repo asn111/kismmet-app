@@ -352,6 +352,66 @@ extension UITextView : UITextViewDelegate
         }
     }
     
+    func addPlaceholder(_ placeholderText: String, size: CGFloat, iconImage: UIImage?) {
+        // Remove existing placeholder if it exists
+        if let existingPlaceholder = self.viewWithTag(100) as? UILabel {
+            existingPlaceholder.removeFromSuperview()
+        }
+        if let existingIcon = self.viewWithTag(101) as? UIImageView {
+            existingIcon.removeFromSuperview()
+        }
+        
+        // Create placeholder label
+        let placeholderLabel = UILabel()
+        placeholderLabel.text = placeholderText
+        placeholderLabel.font = UIFont(name: "Roboto", size: size)
+        placeholderLabel.textColor = UIColor(named: "Text grey")
+        placeholderLabel.tag = 100
+        placeholderLabel.numberOfLines = 0
+        placeholderLabel.lineBreakMode = .byWordWrapping
+        placeholderLabel.isHidden = !self.text.isEmpty
+        
+        // Create image view for the icon
+        let iconImageView = UIImageView()
+        iconImageView.image = iconImage
+        iconImageView.tag = 101
+        iconImageView.tintColor = UIColor(named: "warning")
+        iconImageView.contentMode = .scaleAspectFit
+        iconImageView.frame = CGRect(x: 0, y: 0, width: 17, height: 17)
+        iconImageView.isHidden = placeholderLabel.isHidden
+        
+        // Configure the placeholder label frame
+        placeholderLabel.frame = CGRect(x: 5, y: 0, width: self.frame.size.width - 10, height: self.frame.size.height - 16)
+        
+        // Add both label and image view to the text view
+        self.addSubview(placeholderLabel)
+        self.addSubview(iconImageView)
+        
+        // Call resizePlaceholder to set their positions correctly
+        self.resizePlaceholderWI()
+    }
+    
+    // Resize placeholder and icon positions
+    func resizePlaceholderWI() {
+        if let placeholderLabel = self.viewWithTag(100) as? UILabel,
+            let iconImageView = self.viewWithTag(101) as? UIImageView {
+            
+            // Calculate the label's frame
+            let labelX = self.textContainerInset.left + 5
+            let labelY = self.textContainerInset.top
+            let labelWidth = placeholderLabel.sizeThatFits(CGSize(width: self.frame.width - (self.textContainerInset.left + self.textContainerInset.right + 10) - 22, height: CGFloat.greatestFiniteMagnitude)).width
+            let labelHeight = placeholderLabel.sizeThatFits(CGSize(width: labelWidth, height: CGFloat.greatestFiniteMagnitude)).height
+            placeholderLabel.frame = CGRect(x: labelX, y: labelY, width: labelWidth, height: labelHeight)
+            
+            // Set the icon position right after the label
+            iconImageView.frame = CGRect(x: labelX + labelWidth + 5, y: labelY, width: 17, height: 17)
+            
+            // Sync the visibility of the icon with the placeholder label
+            let isHidden = !self.text.isEmpty
+            placeholderLabel.isHidden = isHidden
+            iconImageView.isHidden = isHidden
+        }
+    }
     
     func addPlaceholder(_ placeholderText: String, size: CGFloat) {
         // Remove existing placeholder if it exists
