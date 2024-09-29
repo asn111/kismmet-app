@@ -23,7 +23,10 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
     var locationManager = LocationManager()
     var cancellable: AnyCancellable? = nil
     var lastLocation : CLLocation?
-    
+    var floatingActionButton: UIButton?
+
+    var fabTapAction: (() -> Void)?
+
     private var timer: Timer?
 
     
@@ -31,7 +34,8 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
         super.viewDidLoad()
         
         setupCustomView()
-        
+        setupFloatingActionButton()
+
         // Clear memory cache
         SDImageCache.shared.clearMemory()
         
@@ -118,6 +122,9 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
         
         // --AppUIMode--(Dark Or Light)
         overrideUserInterfaceStyle = .light
+        
+        floatingActionButton?.isHidden = !shouldShowFloatingActionButton()
+
     }
 
     // --StatusBarMode--(Dark Or Light)
@@ -129,6 +136,40 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
         NotificationCenter.default.removeObserver(self)
     }
 
+    func setupFloatingActionButton() {
+        floatingActionButton = UIButton()
+        
+        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 22, weight: .heavy, scale: .medium)
+        let systemImage = UIImage(systemName: "plus.message", withConfiguration: imageConfiguration)
+        
+        floatingActionButton?.setImage(systemImage, for: .normal)
+        floatingActionButton?.backgroundColor = UIColor(named: "Success")
+        floatingActionButton?.tintColor = .white
+        floatingActionButton?.layer.cornerRadius = 8
+        floatingActionButton?.contentMode = .scaleAspectFill
+        
+        floatingActionButton?.addTarget(self, action: #selector(fabTapped), for: .touchUpInside)
+        
+        if let fab = floatingActionButton {
+            view.addSubview(fab)
+            fab.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                fab.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+                fab.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+                fab.widthAnchor.constraint(equalToConstant: 50),
+                fab.heightAnchor.constraint(equalToConstant: 50)
+            ])
+        }
+    }
+    
+    func shouldShowFloatingActionButton() -> Bool {
+        return false
+    }
+    
+    func showHideFabBtn(shouldShow: Bool) {
+        floatingActionButton?.isHidden = !shouldShow
+    }
+    
     func setupCustomView() {
         internetView.frame = CGRect(x: 0, y: self.view.bounds.height - 38, width: self.view.bounds.width, height: 50.0)
         internetView.backgroundColor = UIColor(named: "Purple")
@@ -144,6 +185,10 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
         
         internetView.addSubview(internetLbl)
         internetView.bringSubviewToFront(internetLbl)
+    }
+    
+    @objc func fabTapped() {
+        fabTapAction!()
     }
     
     //MARK: SignalR Delegate Methods

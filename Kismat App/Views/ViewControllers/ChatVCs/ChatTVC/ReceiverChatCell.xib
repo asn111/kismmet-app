@@ -26,8 +26,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ps-h8-jCq">
                         <rect key="frame" x="0.0" y="0.0" width="374" height="98"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thursday 12:25am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWO-Ra-umB">
-                                <rect key="frame" x="89.5" y="68" width="92" height="13"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thursday 12:25am" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWO-Ra-umB">
+                                <rect key="frame" x="87" y="68" width="92" height="13"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="13" id="bsk-O1-94s"/>
                                     <constraint firstAttribute="width" constant="92" id="iWg-Bl-dQJ"/>
@@ -36,11 +36,11 @@
                                 <color key="textColor" red="0.58431372549019611" green="0.58431372549019611" blue="0.58431372549019611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6lh-Bm-jX8" customClass="ChatView" customModule="Kismmet" customModuleProvider="target">
-                                <rect key="frame" x="65" y="26" width="107.5" height="41"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6lh-Bm-jX8" customClass="ChatView" customModule="Kismmet" customModuleProvider="target">
+                                <rect key="frame" x="65" y="26" width="115" height="41"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="How are you?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdC-ys-xJk" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="11" y="12" width="79.5" height="15.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" ambiguous="YES" text="How are you?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdC-ys-xJk" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                                        <rect key="frame" x="11" y="12" width="87" height="15.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -60,8 +60,8 @@
                                     <constraint firstItem="rdC-ys-xJk" firstAttribute="leading" secondItem="6lh-Bm-jX8" secondAttribute="leading" constant="11" id="qN3-Hq-nTY"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zoya Grey" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ttD-pl-JDG" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                <rect key="frame" x="64" y="11" width="45.5" height="12"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Zoya Grey" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ttD-pl-JDG" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                                <rect key="frame" x="64" y="11" width="78" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -108,7 +108,7 @@
                             <constraint firstAttribute="bottom" secondItem="6lh-Bm-jX8" secondAttribute="bottom" constant="25" id="HdS-Pe-i2y"/>
                             <constraint firstAttribute="bottom" secondItem="kWO-Ra-umB" secondAttribute="bottom" constant="17" id="M1n-5i-TzJ"/>
                             <constraint firstItem="B0R-o0-u2E" firstAttribute="leading" secondItem="7ps-h8-jCq" secondAttribute="leading" constant="23" id="cwy-7G-jpu"/>
-                            <constraint firstItem="kWO-Ra-umB" firstAttribute="trailing" secondItem="6lh-Bm-jX8" secondAttribute="trailing" constant="9" id="fuc-AF-NnD"/>
+                            <constraint firstItem="kWO-Ra-umB" firstAttribute="trailing" secondItem="6lh-Bm-jX8" secondAttribute="trailing" constant="-1" id="fuc-AF-NnD"/>
                             <constraint firstItem="6lh-Bm-jX8" firstAttribute="leading" secondItem="7ps-h8-jCq" secondAttribute="leading" constant="65" id="hxy-uK-cSi"/>
                             <constraint firstItem="ttD-pl-JDG" firstAttribute="leading" secondItem="B0R-o0-u2E" secondAttribute="trailing" constant="8" symbolic="YES" id="jdy-z3-Xvl"/>
                             <constraint firstItem="ttD-pl-JDG" firstAttribute="top" secondItem="7ps-h8-jCq" secondAttribute="top" constant="11" id="nNR-fK-aim"/>
@@ -145,10 +145,10 @@
             <size key="intrinsicContentSize" width="407" height="612"/>
         </designable>
         <designable name="rdC-ys-xJk">
-            <size key="intrinsicContentSize" width="79.5" height="15.5"/>
+            <size key="intrinsicContentSize" width="87" height="16.5"/>
         </designable>
         <designable name="ttD-pl-JDG">
-            <size key="intrinsicContentSize" width="45.5" height="12"/>
+            <size key="intrinsicContentSize" width="78" height="20.5"/>
         </designable>
     </designables>
     <resources>

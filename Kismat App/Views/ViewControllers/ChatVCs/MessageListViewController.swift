@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftDate
 
 class MessageListViewController: MainViewController {
 
@@ -87,6 +88,19 @@ class MessageListViewController: MainViewController {
         return true
     }
     
+    func fancyStyleDate(dateStr: String) -> DateInRegion {
+        
+        let currentRegion = Region.current
+        
+        let locale = currentRegion.locale
+        let timeZone = currentRegion.timeZone
+        
+        let region = Region(calendar: Calendars.gregorian, zone: timeZone, locale: locale)
+        let date = DateInRegion(dateStr, format: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", region: region)!
+        
+        return date
+    }
+    
     func getChatUsers() {
         
         APIService
@@ -139,7 +153,7 @@ extension MessageListViewController: UITableViewDelegate,UITableViewDataSource {
             cell.swipeTxtLbl.text = "Please swipe left to remove from chat list."
             
             cell.searchTF.delegate = self
-            cell.searchTF.placeholder = "Search through your chat users.."
+            cell.searchTF.placeholder = "Search through your chat users"
             cell.searchTF.returnKeyType = .search
             cell.searchTF.tag = 010
             cell.searchBtn.addTarget(self, action: #selector(searchBtnPressed(sender:)), for: .touchUpInside)
@@ -173,6 +187,11 @@ extension MessageListViewController: UITableViewDelegate,UITableViewDataSource {
             
             cell.nameLbl.text = user.userName.capitalized
             cell.proffLbl.text = user.userWorkTitle.capitalized
+            cell.lastMsgTimeLbl.text = fancyStyleDate(dateStr: user.lastLoginTime).toRelative(since: DateInRegion(), dateTimeStyle: .numeric, unitsStyle: .full)
+
+            if let url = URL(string: user.userProfilePicture) {
+                cell.profileIcon.sd_setImage(with: url , placeholderImage: UIImage(named: "")) { (image, error, imageCacheType, url) in }
+            }
             
             if user.isOnline {
                 cell.onlineView.isHidden = false
@@ -188,7 +207,25 @@ extension MessageListViewController: UITableViewDelegate,UITableViewDataSource {
             }
             
             if user.lastMessage.isLastMessageByMe {
-                cell.msgLbl.text = "You: " + user.lastMessage.chatMessage.capitalized
+                
+                let text = "You: " + user.lastMessage.chatMessage.capitalized
+                let textRange = NSRange(location: 0, length: 4)
+                let attributedText = NSMutableAttributedString(string: text)
+                
+                // Safely unwrap the font
+                if let mediumFont = UIFont(name: "Roboto", size: 14)?.medium {
+                    attributedText.addAttribute(NSAttributedString.Key.font, value: mediumFont, range: textRange)
+                }
+                
+                // Safely unwrap the color
+                if let textGreyColor = UIColor(named: "Text Grey") {
+                    attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: textGreyColor, range: textRange)
+                }
+                
+                // Assign to the label
+                cell.msgLbl.attributedText = attributedText
+
+                
             } else {
                 cell.msgLbl.text = user.lastMessage.chatMessage.capitalized
             }
@@ -218,6 +255,7 @@ extension MessageListViewController: UITableViewDelegate,UITableViewDataSource {
             vc.chatId = user.chatId
             vc.isOnline = user.isOnline
             vc.userName = user.userName
+            vc.workTitle = user.userWorkTitle
             vc.userProfilePic = user.userProfilePicture
             
             self.navigationController?.view.layer.add(transition, forKey: nil)

@@ -86,6 +86,9 @@
 		297B15C72B31A78000A3B8D7 /* RideMapViewTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297B15C52B31A78000A3B8D7 /* RideMapViewTVCell.xib */; };
 		297B15C92B31B83E00A3B8D7 /* style1.json in Resources */ = {isa = PBXBuildFile; fileRef = 297B15C82B31B83E00A3B8D7 /* style1.json */; };
 		297B15CB2B31BD9600A3B8D7 /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 297B15CA2B31BD9600A3B8D7 /* style.json */; };
+		29842B0C2CA6FA5C0045D852 /* ChatUsersListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29842B0B2CA6FA5C0045D852 /* ChatUsersListVC.swift */; };
+		29842B112CA701BF0045D852 /* ChatListUserTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29842B0F2CA701BF0045D852 /* ChatListUserTVCell.swift */; };
+		29842B122CA701BF0045D852 /* ChatListUserTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29842B102CA701BF0045D852 /* ChatListUserTVCell.xib */; };
 		29846D3E29A154FF00393EB3 /* ChangePassVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29846D3D29A154FF00393EB3 /* ChangePassVC.swift */; };
 		29846D4129A15B0F00393EB3 /* AccountStatusVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29846D4029A15B0F00393EB3 /* AccountStatusVC.swift */; };
 		29846D4329A1676000393EB3 /* ImportantDialogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29846D4229A1676000393EB3 /* ImportantDialogVC.swift */; };
@@ -261,6 +264,9 @@
 		297B15C52B31A78000A3B8D7 /* RideMapViewTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RideMapViewTVCell.xib; sourceTree = "<group>"; };
 		297B15C82B31B83E00A3B8D7 /* style1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = style1.json; sourceTree = "<group>"; };
 		297B15CA2B31BD9600A3B8D7 /* style.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
+		29842B0B2CA6FA5C0045D852 /* ChatUsersListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUsersListVC.swift; sourceTree = "<group>"; };
+		29842B0F2CA701BF0045D852 /* ChatListUserTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListUserTVCell.swift; sourceTree = "<group>"; };
+		29842B102CA701BF0045D852 /* ChatListUserTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatListUserTVCell.xib; sourceTree = "<group>"; };
 		29846D3D29A154FF00393EB3 /* ChangePassVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassVC.swift; sourceTree = "<group>"; };
 		29846D4029A15B0F00393EB3 /* AccountStatusVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountStatusVC.swift; sourceTree = "<group>"; };
 		29846D4229A1676000393EB3 /* ImportantDialogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportantDialogVC.swift; sourceTree = "<group>"; };
@@ -437,6 +443,7 @@
 				29353CB42C8CCAF600C45763 /* ChatView.swift */,
 				29353CB52C8CCAF600C45763 /* ChatViewController.swift */,
 				29353CB62C8CCAF600C45763 /* MessageListViewController.swift */,
+				29842B0B2CA6FA5C0045D852 /* ChatUsersListVC.swift */,
 				29353CB12C8CCAF600C45763 /* ChatTVC */,
 				29B294C12C9CC747002440B3 /* MessageUserList */,
 			);
@@ -1012,6 +1019,8 @@
 			children = (
 				29353CA92C8C7BFE00C45763 /* ChatUsersTVCell.swift */,
 				29353CAA2C8C7BFE00C45763 /* ChatUsersTVCell.xib */,
+				29842B0F2CA701BF0045D852 /* ChatListUserTVCell.swift */,
+				29842B102CA701BF0045D852 /* ChatListUserTVCell.xib */,
 			);
 			path = MessageUserList;
 			sourceTree = "<group>";
@@ -1195,6 +1204,7 @@
 				297B15C72B31A78000A3B8D7 /* RideMapViewTVCell.xib in Resources */,
 				294A79B5299AEB5100089161 /* SocialAccTVCell.xib in Resources */,
 				299FDDAA2996E85C0049741B /* ProfileTVCell.xib in Resources */,
+				29842B122CA701BF0045D852 /* ChatListUserTVCell.xib in Resources */,
 				299FDD5729967D1D0049741B /* LoadingView.xib in Resources */,
 				299FDDA62996E2B00049741B /* ProfileHeaderTVCell.xib in Resources */,
 				297B15CB2B31BD9600A3B8D7 /* style.json in Resources */,
@@ -1443,6 +1453,7 @@
 				29350A1F29D0C89C00F19BD5 /* SocialAccModel.swift in Sources */,
 				29473E5D299CBFA400859D8A /* ProfileSetupExtend.swift in Sources */,
 				29350A1A29D0C43B00F19BD5 /* UserModel.swift in Sources */,
+				29842B112CA701BF0045D852 /* ChatListUserTVCell.swift in Sources */,
 				297B15C62B31A78000A3B8D7 /* RideMapViewTVCell.swift in Sources */,
 				2938E73E2A02CD7D00C21AEA /* SocialLinks VC.swift in Sources */,
 				299FDD5E29967D1D0049741B /* AppFunctions.swift in Sources */,
@@ -1455,6 +1466,7 @@
 				29985F3729981ADE001F769B /* GeneralHeaderTVCell.swift in Sources */,
 				299FDD14299679690049741B /* Kismat_App.xcdatamodeld in Sources */,
 				29353CBF2C8CCAF700C45763 /* MessageListViewController.swift in Sources */,
+				29842B0C2CA6FA5C0045D852 /* ChatUsersListVC.swift in Sources */,
 				29BE184C29FA6E68000EAC0E /* EnlargedIV VC.swift in Sources */,
 				29353CBA2C8CCAF700C45763 /* SenderChatCell.swift in Sources */,
 				299FDD5C29967D1D0049741B /* SampleFile.swift in Sources */,

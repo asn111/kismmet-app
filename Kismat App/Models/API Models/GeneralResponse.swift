@@ -55,7 +55,7 @@ class Body : NSObject, Codable {
     var contactTypes : [ContactTypesModel]!
     var contactAccounts : [ContactsModel]!
     var userChats : [ChatUsersModel]!
-    var chatMessages : [ChatModel]!
+    var chatMessages : [ChatModelArray]!
 
     override init() {
         token = ""
@@ -74,7 +74,7 @@ class Body : NSObject, Codable {
         contactTypes = [ContactTypesModel]()
         contactAccounts = [ContactsModel]()
         userChats = [ChatUsersModel]()
-        chatMessages = [ChatModel]()
+        chatMessages = [ChatModelArray]()
     }
     
     private enum CodingKeys: String, CodingKey {
@@ -116,7 +116,7 @@ class Body : NSObject, Codable {
         contactTypes  = try values.decodeIfPresent([ContactTypesModel].self, forKey: .contactTypes)
         contactAccounts  = try values.decodeIfPresent([ContactsModel].self, forKey: .contactAccounts)
         userChats  = try values.decodeIfPresent([ChatUsersModel].self, forKey: .userChats)
-        chatMessages  = try values.decodeIfPresent([ChatModel].self, forKey: .chatMessages)
+        chatMessages  = try values.decodeIfPresent([ChatModelArray].self, forKey: .chatMessages)
         //requestUsers  = try values.decodeIfPresent([UserModel].self, forKey: .requestUsers)
 
     }

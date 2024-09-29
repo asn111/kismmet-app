@@ -2090,7 +2090,7 @@ class APIService: NSObject {
     }
     
     //MARK: Get Chats
-    func getChats(pram: Parameters) -> Observable<[ChatModel]> {
+    func getChats(pram: Parameters) -> Observable<[ChatModelArray]> {
         
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
@@ -2131,7 +2131,7 @@ class APIService: NSObject {
                         }
                     }
             } else {
-                observer.onNext([ChatModel]())
+                observer.onNext([ChatModelArray]())
                 observer.onCompleted()
                 AppFunctions.showSnackBar(str: "No Internet! Please Check your Connection.")
             }

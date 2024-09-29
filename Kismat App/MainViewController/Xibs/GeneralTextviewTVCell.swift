@@ -11,8 +11,11 @@ class GeneralTextviewTVCell: UITableViewCell {
 
     @IBOutlet weak var countLbl: fullyCustomLbl!
     
+    @IBOutlet weak var bubbleIV: UIImageView!
     @IBOutlet weak var generalTV: FormTextView!
     
+    @IBOutlet weak var leadConstTV: NSLayoutConstraint!
+    @IBOutlet weak var trailConstTV: NSLayoutConstraint!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

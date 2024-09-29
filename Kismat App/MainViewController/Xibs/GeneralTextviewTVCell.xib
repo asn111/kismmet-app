@@ -25,13 +25,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BGx-be-Ie7" customClass="RoundCornerView" customModule="Kismmet" customModuleProvider="target">
                                 <rect key="frame" x="11" y="10" width="353" height="113"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Speech_bubble" translatesAutoresizingMaskIntoConstraints="NO" id="44a-cZ-EnJ">
+                                    <imageView hidden="YES" clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Speech_bubble" translatesAutoresizingMaskIntoConstraints="NO" id="44a-cZ-EnJ">
                                         <rect key="frame" x="-21" y="0.0" width="393" height="113"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HDl-UB-qHf" customClass="FormTextView" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="17" y="8" width="317" height="75"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="7" y="8" width="337" height="75"/>
+                                        <color key="backgroundColor" name="Cell BG Base Grey"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="337" id="8Cj-kv-pxX"/>
+                                            <constraint firstAttribute="height" constant="75" id="dCM-Jm-jUC"/>
+                                        </constraints>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -48,7 +52,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textView>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Em8-mW-h9K" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="226" y="96" width="120" height="16"/>
+                                        <rect key="frame" x="219" y="96" width="120" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="120" id="OJe-VD-KIX"/>
                                             <constraint firstAttribute="height" constant="16" id="iRB-9U-W29"/>
@@ -74,17 +78,16 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="44a-cZ-EnJ" secondAttribute="bottom" id="0EG-v1-xCW"/>
-                                    <constraint firstItem="44a-cZ-EnJ" firstAttribute="leading" secondItem="BGx-be-Ie7" secondAttribute="leading" constant="-21" id="0Uo-bq-YjI"/>
-                                    <constraint firstItem="HDl-UB-qHf" firstAttribute="leading" secondItem="BGx-be-Ie7" secondAttribute="leading" constant="17" id="4J0-BE-8HE"/>
                                     <constraint firstAttribute="height" constant="113" id="81R-lN-A0g"/>
-                                    <constraint firstAttribute="bottom" secondItem="Em8-mW-h9K" secondAttribute="bottom" constant="1" id="Iho-zR-kDe"/>
-                                    <constraint firstItem="44a-cZ-EnJ" firstAttribute="top" secondItem="BGx-be-Ie7" secondAttribute="top" id="NXE-sr-RVv"/>
-                                    <constraint firstAttribute="trailing" secondItem="44a-cZ-EnJ" secondAttribute="trailing" constant="-19" id="Tuf-tB-qPg"/>
-                                    <constraint firstAttribute="trailing" secondItem="Em8-mW-h9K" secondAttribute="trailing" constant="7" id="d8Y-K0-rtu"/>
-                                    <constraint firstAttribute="trailing" secondItem="HDl-UB-qHf" secondAttribute="trailing" constant="19" id="n5s-ZV-ocd"/>
-                                    <constraint firstAttribute="bottom" secondItem="HDl-UB-qHf" secondAttribute="bottom" constant="30" id="s9Y-Qi-PMa"/>
-                                    <constraint firstItem="HDl-UB-qHf" firstAttribute="top" secondItem="BGx-be-Ie7" secondAttribute="top" constant="8" id="usu-ts-uW9"/>
+                                    <constraint firstItem="HDl-UB-qHf" firstAttribute="leading" secondItem="BGx-be-Ie7" secondAttribute="leading" constant="7" id="9dr-Cz-KxM"/>
+                                    <constraint firstAttribute="trailing" secondItem="44a-cZ-EnJ" secondAttribute="trailing" constant="-19" id="FrB-G3-QID"/>
+                                    <constraint firstAttribute="trailing" secondItem="Em8-mW-h9K" secondAttribute="trailing" constant="14" id="KTM-a4-5EX"/>
+                                    <constraint firstItem="44a-cZ-EnJ" firstAttribute="top" secondItem="BGx-be-Ie7" secondAttribute="top" id="QE3-2w-zVa"/>
+                                    <constraint firstItem="Em8-mW-h9K" firstAttribute="top" secondItem="HDl-UB-qHf" secondAttribute="bottom" constant="13" id="U7T-m7-rRH"/>
+                                    <constraint firstAttribute="trailing" secondItem="HDl-UB-qHf" secondAttribute="trailing" constant="9" id="iES-Qy-Yyi"/>
+                                    <constraint firstItem="44a-cZ-EnJ" firstAttribute="leading" secondItem="BGx-be-Ie7" secondAttribute="leading" constant="-21" id="ilO-kr-bqI"/>
+                                    <constraint firstAttribute="bottom" secondItem="44a-cZ-EnJ" secondAttribute="bottom" id="k6m-g7-aMh"/>
+                                    <constraint firstItem="HDl-UB-qHf" firstAttribute="top" secondItem="BGx-be-Ie7" secondAttribute="top" constant="8" id="t7w-tC-4nA"/>
                                     <constraint firstAttribute="width" constant="353" id="yn9-Zk-YgG"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -109,8 +112,9 @@
                         <color key="backgroundColor" name="Base White"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="135" id="2tY-bS-KER"/>
-                            <constraint firstItem="BGx-be-Ie7" firstAttribute="centerY" secondItem="nZU-CV-UOM" secondAttribute="centerY" constant="-1" id="dIp-m1-rDv"/>
-                            <constraint firstItem="BGx-be-Ie7" firstAttribute="centerX" secondItem="nZU-CV-UOM" secondAttribute="centerX" id="msS-9k-WQ7"/>
+                            <constraint firstItem="BGx-be-Ie7" firstAttribute="leading" secondItem="nZU-CV-UOM" secondAttribute="leading" constant="11" id="Far-2N-pKR"/>
+                            <constraint firstAttribute="trailing" secondItem="BGx-be-Ie7" secondAttribute="trailing" constant="11" id="ScZ-jX-G5i"/>
+                            <constraint firstItem="BGx-be-Ie7" firstAttribute="top" secondItem="nZU-CV-UOM" secondAttribute="top" constant="10" id="y5L-SP-5Mr"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -123,8 +127,11 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="bubbleIV" destination="44a-cZ-EnJ" id="jS7-av-UA0"/>
                 <outlet property="countLbl" destination="Em8-mW-h9K" id="FiA-Ft-H5G"/>
                 <outlet property="generalTV" destination="HDl-UB-qHf" id="Zbi-H9-ugD"/>
+                <outlet property="leadConstTV" destination="9dr-Cz-KxM" id="Y1S-UY-PLX"/>
+                <outlet property="trailConstTV" destination="iES-Qy-Yyi" id="kTy-wZ-xpm"/>
             </connections>
             <point key="canvasLocation" x="52.671755725190835" y="110.91549295774648"/>
         </tableViewCell>
@@ -136,6 +143,9 @@
         <image name="Speech_bubble" width="331" height="112"/>
         <namedColor name="Base White">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Cell BG Base Grey">
+            <color red="0.20784313725490197" green="0.30980392156862746" blue="0.35686274509803922" alpha="0.10499999672174454" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Danger">
             <color red="0.92156862745098034" green="0.30196078431372547" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

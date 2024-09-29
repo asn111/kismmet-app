@@ -505,7 +505,7 @@ this email.</string>
                                 <rect key="frame" x="37" y="572" width="312" height="91"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up with Google" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J7M-Vd-ctI" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="102.99999999999999" y="57" width="145.66666666666663" height="36"/>
+                                        <rect key="frame" x="103.00000000000001" y="57" width="154.33333333333337" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="GGM-Vh-lxE"/>
                                         </constraints>
@@ -870,7 +870,7 @@ and Privacy Policy</string>
                                         <rect key="frame" x="24" y="277" width="312" height="91"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in with Google" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kUb-na-hEH" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                                <rect key="frame" x="102.99999999999999" y="57" width="140.66666666666663" height="36"/>
+                                                <rect key="frame" x="103" y="57" width="148" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="36" id="Yni-YJ-l9L"/>
                                                 </constraints>
@@ -5221,7 +5221,7 @@ Thank you!</string>
                                         <rect key="frame" x="21" y="60" width="350" height="103"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rice University, Houston TX" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yr-SM-oKt" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                                <rect key="frame" x="86" y="40" width="253" height="17.666666666666671"/>
+                                                <rect key="frame" x="86" y="40" width="253" height="20.333333333333329"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="253" id="4Sv-qw-kJ1"/>
                                                 </constraints>
@@ -5239,7 +5239,7 @@ Thank you!</string>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Professor" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CkV-vC-oVY" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                                <rect key="frame" x="86" y="55.666666666666679" width="253" height="17.666666666666664"/>
+                                                <rect key="frame" x="86" y="58.333333333333321" width="253" height="20.333333333333336"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="253" id="Hqu-iE-HMP"/>
                                                 </constraints>
@@ -5729,7 +5729,7 @@ Star user for future highlights</string>
                                         <rect key="frame" x="21" y="60" width="350" height="103"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rice University, Houston TX" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Njm-dn-7ha" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                                <rect key="frame" x="86" y="40" width="253" height="17.666666666666671"/>
+                                                <rect key="frame" x="86" y="40" width="253" height="20.333333333333329"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="253" id="gCl-F2-nL2"/>
                                                 </constraints>
@@ -5747,7 +5747,7 @@ Star user for future highlights</string>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Professor" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZi-Q7-feI" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                                <rect key="frame" x="86" y="55.666666666666679" width="253" height="17.666666666666664"/>
+                                                <rect key="frame" x="86" y="58.333333333333321" width="253" height="20.333333333333336"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="253" id="hAn-7g-qR3"/>
                                                 </constraints>
@@ -6329,7 +6329,7 @@ No worries if yes, the other person will not be notified.</string>
                                         <rect key="frame" x="21" y="60" width="350" height="103"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rice University, Houston TX" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qhM-AB-el7" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                                <rect key="frame" x="86" y="40" width="253" height="17.666666666666671"/>
+                                                <rect key="frame" x="86" y="40" width="253" height="20.333333333333329"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="253" id="Kyg-7D-fTw"/>
                                                 </constraints>
@@ -6347,7 +6347,7 @@ No worries if yes, the other person will not be notified.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Professor" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YaI-Eu-r8O" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                                <rect key="frame" x="86" y="55.666666666666679" width="253" height="17.666666666666664"/>
+                                                <rect key="frame" x="86" y="58.333333333333321" width="253" height="20.333333333333336"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="253" id="aeb-4z-PEN"/>
                                                 </constraints>
@@ -6504,7 +6504,7 @@ No worries if yes, the other person will not be notified.</string>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ipi-9z-CgS"/>
-                        <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="BG Base White"/>
                         <constraints>
                             <constraint firstItem="ZW3-fn-N97" firstAttribute="trailing" secondItem="ipi-9z-CgS" secondAttribute="trailing" id="D0P-En-3y7"/>
                             <constraint firstAttribute="bottom" secondItem="ZW3-fn-N97" secondAttribute="bottom" id="G4Y-Zf-kAR"/>
@@ -6542,7 +6542,7 @@ No worries if yes, the other person will not be notified.</string>
                                 <rect key="frame" x="0.0" y="59" width="393" height="64"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zoya Grey" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBv-Ao-Plp" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="77" y="12" width="225" height="21"/>
+                                        <rect key="frame" x="100" y="12" width="225" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="225" id="aEX-CZ-3IX"/>
                                             <constraint firstAttribute="height" constant="21" id="bAS-TM-QBr"/>
@@ -6561,7 +6561,7 @@ No worries if yes, the other person will not be notified.</string>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rice University, Houston TX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcQ-cb-3Kg" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="78" y="31" width="240" height="17"/>
+                                        <rect key="frame" x="101" y="31" width="240" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="HfC-LG-Tbi"/>
                                             <constraint firstAttribute="width" constant="240" id="lTc-qj-ucw"/>
@@ -6581,7 +6581,7 @@ No worries if yes, the other person will not be notified.</string>
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="girl" translatesAutoresizingMaskIntoConstraints="NO" id="ECD-yX-dQC" customClass="RoundedImageView" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="29" y="12" width="40" height="40"/>
+                                        <rect key="frame" x="52" y="12" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Oh0-I9-gH9"/>
                                             <constraint firstAttribute="width" constant="40" id="WGS-tC-TXN"/>
@@ -6605,7 +6605,7 @@ No worries if yes, the other person will not be notified.</string>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s7s-C5-DLt" customClass="RoundCornerView" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="60" y="43" width="10" height="10"/>
+                                        <rect key="frame" x="83" y="43" width="10" height="10"/>
                                         <color key="backgroundColor" name="Success"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="10" id="J0s-07-PLF"/>
@@ -6644,6 +6644,36 @@ No worries if yes, the other person will not be notified.</string>
                                             <action selector="backButtonAction:" destination="UR7-6C-xK3" eventType="touchUpInside" id="XVl-CC-RN0"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCQ-iQ-7XC" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="17" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="4hS-0O-33h"/>
+                                            <constraint firstAttribute="width" constant="30" id="iXU-YW-zGn"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="sWo-3U-T4a"/>
+                                            <constraint firstAttribute="height" constant="30" id="ylb-kN-7om"/>
+                                        </constraints>
+                                        <color key="tintColor" name="Secondary Grey"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal">
+                                            <imageReference key="image" image="arrow.backward" catalog="system" symbolScale="medium"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="medium"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" name="Text grey"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="backBtnPressed:" destination="ewU-MZ-Hda" eventType="touchUpInside" id="NVc-Df-PyG"/>
+                                            <action selector="backBtnPressed:" destination="UR7-6C-xK3" eventType="touchUpInside" id="m9d-d0-iqa"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -6654,16 +6684,20 @@ No worries if yes, the other person will not be notified.</string>
                                     <constraint firstItem="YcQ-cb-3Kg" firstAttribute="top" secondItem="lBv-Ao-Plp" secondAttribute="bottom" constant="-2" id="JSF-g4-APH"/>
                                     <constraint firstItem="WjV-RX-W0y" firstAttribute="top" secondItem="s7s-C5-DLt" secondAttribute="bottom" constant="8" symbolic="YES" id="Jlk-aU-8Uo"/>
                                     <constraint firstAttribute="bottom" secondItem="WjV-RX-W0y" secondAttribute="bottom" constant="2" id="M7O-6N-A55"/>
-                                    <constraint firstItem="s7s-C5-DLt" firstAttribute="leading" secondItem="bjU-aH-NKD" secondAttribute="leading" constant="60" id="QJm-9g-fev"/>
+                                    <constraint firstItem="s7s-C5-DLt" firstAttribute="leading" secondItem="bjU-aH-NKD" secondAttribute="leading" constant="83" id="QJm-9g-fev"/>
                                     <constraint firstItem="WjV-RX-W0y" firstAttribute="leading" secondItem="bjU-aH-NKD" secondAttribute="leading" id="S2I-2Q-UY3"/>
                                     <constraint firstItem="WjV-RX-W0y" firstAttribute="top" secondItem="vm0-Jw-ayw" secondAttribute="bottom" constant="18" id="aY6-AC-r3t"/>
+                                    <constraint firstItem="WjV-RX-W0y" firstAttribute="top" secondItem="DCQ-iQ-7XC" secondAttribute="bottom" constant="14" id="acs-wQ-edi"/>
+                                    <constraint firstItem="DCQ-iQ-7XC" firstAttribute="top" secondItem="bjU-aH-NKD" secondAttribute="top" constant="17" id="cYb-xi-1Dv"/>
                                     <constraint firstItem="lBv-Ao-Plp" firstAttribute="top" secondItem="bjU-aH-NKD" secondAttribute="top" constant="12" id="d59-Kl-Tdf"/>
                                     <constraint firstAttribute="trailing" secondItem="WjV-RX-W0y" secondAttribute="trailing" id="hQ9-0E-dzg"/>
-                                    <constraint firstItem="ECD-yX-dQC" firstAttribute="leading" secondItem="bjU-aH-NKD" secondAttribute="leading" constant="29" id="hqP-2g-gvT"/>
+                                    <constraint firstItem="ECD-yX-dQC" firstAttribute="leading" secondItem="bjU-aH-NKD" secondAttribute="leading" constant="52" id="hqP-2g-gvT"/>
+                                    <constraint firstItem="DCQ-iQ-7XC" firstAttribute="leading" secondItem="bjU-aH-NKD" secondAttribute="leading" constant="8" id="iHZ-lg-Bhl"/>
                                     <constraint firstAttribute="height" constant="64" id="mun-2l-fk4"/>
                                     <constraint firstItem="ECD-yX-dQC" firstAttribute="top" secondItem="bjU-aH-NKD" secondAttribute="top" constant="12" id="q6T-Cq-qXD"/>
                                     <constraint firstItem="YcQ-cb-3Kg" firstAttribute="leading" secondItem="ECD-yX-dQC" secondAttribute="trailing" constant="9" id="r13-xX-jYb"/>
                                     <constraint firstItem="YcQ-cb-3Kg" firstAttribute="top" secondItem="lBv-Ao-Plp" secondAttribute="bottom" constant="-2" id="rtI-Ji-8f3"/>
+                                    <constraint firstItem="ECD-yX-dQC" firstAttribute="leading" secondItem="DCQ-iQ-7XC" secondAttribute="trailing" constant="14" id="w8Y-Iu-sgs"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
@@ -6712,7 +6746,7 @@ No worries if yes, the other person will not be notified.</string>
                                         <rect key="frame" x="10" y="5" width="342" height="53"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paG-GX-q26">
-                                                <rect key="frame" x="301" y="11" width="30" height="30"/>
+                                                <rect key="frame" x="301" y="13" width="30" height="30"/>
                                                 <color key="backgroundColor" name="Success"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="HP4-CV-Hf2"/>
@@ -6751,14 +6785,12 @@ No worries if yes, the other person will not be notified.</string>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="paG-GX-q26" secondAttribute="bottom" constant="12" id="Bzl-HX-JsS"/>
                                             <constraint firstItem="lCJ-r2-Cyd" firstAttribute="top" secondItem="8sn-rq-UqW" secondAttribute="top" constant="10" id="EIu-aV-v4n"/>
                                             <constraint firstAttribute="bottom" secondItem="lCJ-r2-Cyd" secondAttribute="bottom" constant="10" id="HLd-WE-U3h"/>
                                             <constraint firstAttribute="trailing" secondItem="lCJ-r2-Cyd" secondAttribute="trailing" constant="66" id="Hwb-QP-Lah"/>
                                             <constraint firstItem="lCJ-r2-Cyd" firstAttribute="leading" secondItem="8sn-rq-UqW" secondAttribute="leading" constant="100" id="JDR-cL-OAX"/>
                                             <constraint firstAttribute="bottom" secondItem="lCJ-r2-Cyd" secondAttribute="bottom" constant="10" id="eWb-Nx-Dc3"/>
                                             <constraint firstItem="lCJ-r2-Cyd" firstAttribute="top" secondItem="8sn-rq-UqW" secondAttribute="top" constant="10" id="lS9-K4-2AI"/>
-                                            <constraint firstItem="paG-GX-q26" firstAttribute="top" secondItem="8sn-rq-UqW" secondAttribute="top" constant="11" id="oP6-sj-Nvg"/>
                                             <constraint firstItem="lCJ-r2-Cyd" firstAttribute="leading" secondItem="8sn-rq-UqW" secondAttribute="leading" constant="100" id="ofF-M7-dXC"/>
                                             <constraint firstAttribute="trailing" secondItem="paG-GX-q26" secondAttribute="trailing" constant="11" id="p04-2J-adu"/>
                                             <constraint firstItem="lCJ-r2-Cyd" firstAttribute="leading" secondItem="8sn-rq-UqW" secondAttribute="leading" constant="8" id="xfe-9T-4GX"/>
@@ -6793,10 +6825,14 @@ No worries if yes, the other person will not be notified.</string>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="0dg-ZX-d3d"/>
+                                    <constraint firstItem="paG-GX-q26" firstAttribute="leading" secondItem="S9e-yc-Q1d" secondAttribute="leading" constant="311" id="7ob-kz-TfA"/>
+                                    <constraint firstItem="paG-GX-q26" firstAttribute="centerY" secondItem="S9e-yc-Q1d" secondAttribute="centerY" id="Hex-xj-ncX"/>
                                     <constraint firstItem="8sn-rq-UqW" firstAttribute="leading" secondItem="S9e-yc-Q1d" secondAttribute="leading" constant="10" id="IOj-bl-yWi"/>
                                     <constraint firstAttribute="bottom" secondItem="8sn-rq-UqW" secondAttribute="bottom" constant="8" id="Jpm-bt-Xg8"/>
                                     <constraint firstAttribute="trailing" secondItem="8sn-rq-UqW" secondAttribute="trailing" constant="6" id="gZt-RT-E1x"/>
                                     <constraint firstItem="8sn-rq-UqW" firstAttribute="top" secondItem="S9e-yc-Q1d" secondAttribute="top" constant="5" id="ihN-2R-VNc"/>
+                                    <constraint firstItem="paG-GX-q26" firstAttribute="leading" secondItem="S9e-yc-Q1d" secondAttribute="leading" constant="311" id="rla-3V-bQE"/>
+                                    <constraint firstItem="paG-GX-q26" firstAttribute="leading" secondItem="S9e-yc-Q1d" secondAttribute="leading" constant="311" id="y8b-7y-1xf"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -6832,116 +6868,283 @@ No worries if yes, the other person will not be notified.</string>
                         <outlet property="userImageView" destination="ECD-yX-dQC" id="Smd-7j-OJR"/>
                         <outlet property="userNameLabel" destination="lBv-Ao-Plp" id="Xi1-3I-R0i"/>
                         <outlet property="viewBottomConstraint" destination="wfV-gm-ywR" id="pUB-gm-Uz8"/>
+                        <outlet property="workLbl" destination="YcQ-cb-3Kg" id="9d4-gC-52U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0t2-gw-Ggi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3063.3587786259541" y="-1394.3661971830986"/>
         </scene>
+        <!--Chat Users ListVC-->
+        <scene sceneID="hEm-0G-YUl">
+            <objects>
+                <viewController storyboardIdentifier="ChatUsersListVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="feX-Uk-OVs" customClass="ChatUsersListVC" customModule="Kismmet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qkp-Xf-jvO">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uk9-NB-aAV" customClass="RoundCornerView" customModule="Kismmet" customModuleProvider="target">
+                                <rect key="frame" x="16" y="90" width="361" height="673"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eq7-F0-Ldo" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
+                                        <rect key="frame" x="317" y="20" width="26" height="26"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="26" id="PjD-4e-MlR"/>
+                                            <constraint firstAttribute="width" constant="26" id="dPs-4T-e3s"/>
+                                        </constraints>
+                                        <color key="tintColor" name="Text grey"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="crossBtn"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                <color key="value" name="Base White"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="closeBtnPressed:" destination="feX-Uk-OVs" eventType="touchUpInside" id="t36-BF-Jqf"/>
+                                        </connections>
+                                    </button>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="h88-1o-GT7">
+                                        <rect key="frame" x="8" y="128" width="345" height="521"/>
+                                        <color key="backgroundColor" name="Base White"/>
+                                    </tableView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RmJ-Wi-QBj" customClass="RoundCornerView" customModule="Kismmet" customModuleProvider="target">
+                                        <rect key="frame" x="23" y="62" width="315" height="42"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKp-5g-x8v">
+                                                <rect key="frame" x="288" y="11" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="8J7-T5-xy3"/>
+                                                    <constraint firstAttribute="height" constant="20" id="m3A-lt-pzS"/>
+                                                </constraints>
+                                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="medium"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="searchBtnPressed:" destination="feX-Uk-OVs" eventType="touchUpInside" id="TnB-AT-qlv"/>
+                                                </connections>
+                                            </button>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search through your contacts to chat" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r7T-Sn-X89">
+                                                <rect key="frame" x="8" y="4" width="272" height="34"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="272" id="K7L-ZA-yXF"/>
+                                                    <constraint firstAttribute="height" constant="34" id="smZ-ti-Jfj"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.69411764710000001" green="0.62745098040000002" blue="1" alpha="0.1483598924" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="r7T-Sn-X89" secondAttribute="bottom" constant="4" id="RoK-7g-CXD"/>
+                                            <constraint firstItem="r7T-Sn-X89" firstAttribute="top" secondItem="RmJ-Wi-QBj" secondAttribute="top" constant="4" id="UFp-eT-aIL"/>
+                                            <constraint firstItem="uKp-5g-x8v" firstAttribute="leading" secondItem="r7T-Sn-X89" secondAttribute="trailing" constant="8" symbolic="YES" id="VaO-mt-442"/>
+                                            <constraint firstItem="uKp-5g-x8v" firstAttribute="top" secondItem="RmJ-Wi-QBj" secondAttribute="top" constant="11" id="Wre-n0-qBD"/>
+                                            <constraint firstAttribute="bottom" secondItem="uKp-5g-x8v" secondAttribute="bottom" constant="11" id="fC5-sz-L8e"/>
+                                            <constraint firstAttribute="width" constant="315" id="gtC-k5-esF"/>
+                                            <constraint firstAttribute="trailing" secondItem="uKp-5g-x8v" secondAttribute="trailing" constant="7" id="irg-E2-Fyi"/>
+                                            <constraint firstAttribute="height" constant="42" id="sNd-e4-P3H"/>
+                                            <constraint firstItem="r7T-Sn-X89" firstAttribute="leading" secondItem="RmJ-Wi-QBj" secondAttribute="leading" constant="8" id="v9F-7B-kwc"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                <real key="value" value="1.3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="1.3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                <size key="value" width="0.29999999999999999" height="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                <color key="value" red="0.69411764710000001" green="0.62745098040000002" blue="1" alpha="0.096569743380000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" name="Base White"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="673" id="21s-k4-G8c"/>
+                                    <constraint firstItem="h88-1o-GT7" firstAttribute="top" secondItem="RmJ-Wi-QBj" secondAttribute="bottom" constant="24" id="2KF-2c-D3H"/>
+                                    <constraint firstItem="h88-1o-GT7" firstAttribute="top" secondItem="Uk9-NB-aAV" secondAttribute="top" constant="128" id="IBZ-WX-QGE"/>
+                                    <constraint firstItem="Eq7-F0-Ldo" firstAttribute="top" secondItem="Uk9-NB-aAV" secondAttribute="top" constant="20" symbolic="YES" id="LGV-8C-Cw7"/>
+                                    <constraint firstItem="h88-1o-GT7" firstAttribute="leading" secondItem="Uk9-NB-aAV" secondAttribute="leading" constant="8" id="c74-mT-Zww"/>
+                                    <constraint firstItem="RmJ-Wi-QBj" firstAttribute="leading" secondItem="Uk9-NB-aAV" secondAttribute="leading" constant="23" id="hbh-MZ-luU"/>
+                                    <constraint firstAttribute="trailing" secondItem="Eq7-F0-Ldo" secondAttribute="trailing" constant="18" id="nwG-1g-K8c"/>
+                                    <constraint firstAttribute="trailing" secondItem="h88-1o-GT7" secondAttribute="trailing" constant="8" id="oRc-Ec-Kzg"/>
+                                    <constraint firstAttribute="trailing" secondItem="RmJ-Wi-QBj" secondAttribute="trailing" constant="23" id="pAj-jC-oHL"/>
+                                    <constraint firstAttribute="bottom" secondItem="h88-1o-GT7" secondAttribute="bottom" constant="24" id="rwH-ka-wwX"/>
+                                    <constraint firstItem="RmJ-Wi-QBj" firstAttribute="top" secondItem="Uk9-NB-aAV" secondAttribute="top" constant="62" id="z86-Fg-oTc"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select users to chat with" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8SE-Tt-Jr5" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                                <rect key="frame" x="31" y="113" width="292" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="APB-Zb-lsV"/>
+                                    <constraint firstAttribute="width" constant="292" id="jhh-u7-HIb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
+                                        <color key="value" name="Secondary Grey"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="m"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
+                                        <real key="value" value="14"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="y2S-bn-LsQ"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40154180463576161" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="8SE-Tt-Jr5" firstAttribute="top" secondItem="y2S-bn-LsQ" secondAttribute="top" constant="54" id="PFh-IQ-bwR"/>
+                            <constraint firstItem="Uk9-NB-aAV" firstAttribute="trailing" secondItem="y2S-bn-LsQ" secondAttribute="trailing" constant="-16" id="RU2-kV-nlU"/>
+                            <constraint firstAttribute="bottom" secondItem="Uk9-NB-aAV" secondAttribute="bottom" constant="89" id="aw5-fi-Xde"/>
+                            <constraint firstItem="Uk9-NB-aAV" firstAttribute="leading" secondItem="y2S-bn-LsQ" secondAttribute="leading" constant="16" id="b5e-UJ-QZ4"/>
+                            <constraint firstItem="8SE-Tt-Jr5" firstAttribute="leading" secondItem="y2S-bn-LsQ" secondAttribute="leading" constant="31" id="ko9-nv-Qe1"/>
+                            <constraint firstItem="y2S-bn-LsQ" firstAttribute="trailing" secondItem="8SE-Tt-Jr5" secondAttribute="trailing" constant="70" id="rXK-m6-1nb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchTF" destination="r7T-Sn-X89" id="UC8-f7-CsD"/>
+                        <outlet property="usersTV" destination="h88-1o-GT7" id="m7b-bB-Xyy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jef-bU-POI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="875.57251908396938" y="716.90140845070425"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="0ZP-IY-8wV">
-            <size key="intrinsicContentSize" width="134" height="19"/>
+            <size key="intrinsicContentSize" width="70.333333333333329" height="12"/>
         </designable>
         <designable name="0cv-9P-qTb">
-            <size key="intrinsicContentSize" width="15.666666666666666" height="19"/>
+            <size key="intrinsicContentSize" width="15.666666666666666" height="22"/>
         </designable>
         <designable name="0t0-UR-Tat">
-            <size key="intrinsicContentSize" width="133.33333333333334" height="35.333333333333336"/>
+            <size key="intrinsicContentSize" width="61.333333333333336" height="20"/>
         </designable>
         <designable name="2WZ-mT-JiU">
-            <size key="intrinsicContentSize" width="466.33333333333331" height="33"/>
+            <size key="intrinsicContentSize" width="567.66666666666663" height="40.666666666666664"/>
         </designable>
         <designable name="3gP-Q6-AXE">
-            <size key="intrinsicContentSize" width="127" height="19"/>
+            <size key="intrinsicContentSize" width="66" height="12"/>
         </designable>
         <designable name="3gV-oF-dTG">
             <size key="intrinsicContentSize" width="30" height="28.333333333333332"/>
         </designable>
         <designable name="40E-jP-4sd">
-            <size key="intrinsicContentSize" width="20" height="20"/>
+            <size key="intrinsicContentSize" width="20" height="22"/>
         </designable>
         <designable name="43Y-pb-wtz">
-            <size key="intrinsicContentSize" width="114.66666666666667" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="146.66666666666666" height="20.333333333333332"/>
         </designable>
         <designable name="4Sp-6M-OBh">
-            <size key="intrinsicContentSize" width="69.666666666666671" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="98.666666666666671" height="20.333333333333332"/>
         </designable>
         <designable name="4gy-a5-7Sa">
-            <size key="intrinsicContentSize" width="166" height="31.666666666666668"/>
+            <size key="intrinsicContentSize" width="110" height="20.333333333333332"/>
         </designable>
         <designable name="5cm-ur-5Wc">
             <size key="intrinsicContentSize" width="407" height="612"/>
         </designable>
         <designable name="5w6-ZN-cHD">
-            <size key="intrinsicContentSize" width="168" height="15.333333333333334"/>
+            <size key="intrinsicContentSize" width="218.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="6FT-Lh-kng">
-            <size key="intrinsicContentSize" width="20" height="20"/>
+            <size key="intrinsicContentSize" width="20" height="22"/>
         </designable>
         <designable name="7Bc-kx-gWY">
-            <size key="intrinsicContentSize" width="35" height="29"/>
+            <size key="intrinsicContentSize" width="13" height="33.333333333333336"/>
         </designable>
         <designable name="7Hm-hD-Ke7">
-            <size key="intrinsicContentSize" width="28" height="20.333333333333332"/>
+            <size key="intrinsicContentSize" width="28" height="22"/>
         </designable>
         <designable name="7Li-fL-a4f">
-            <size key="intrinsicContentSize" width="77.666666666666671" height="21.333333333333332"/>
+            <size key="intrinsicContentSize" width="68.666666666666671" height="20.333333333333332"/>
         </designable>
         <designable name="7es-w6-l3U">
-            <size key="intrinsicContentSize" width="20" height="19"/>
+            <size key="intrinsicContentSize" width="20" height="22"/>
         </designable>
         <designable name="7oT-HV-MaA">
-            <size key="intrinsicContentSize" width="160.33333333333334" height="19"/>
+            <size key="intrinsicContentSize" width="147.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="8Ia-Ba-2Di"/>
+        <designable name="8SE-Tt-Jr5">
+            <size key="intrinsicContentSize" width="187.33333333333334" height="20.333333333333332"/>
+        </designable>
         <designable name="8b6-LU-FPq">
-            <size key="intrinsicContentSize" width="63.666666666666664" height="20.666666666666668"/>
+            <size key="intrinsicContentSize" width="26" height="13.666666666666666"/>
         </designable>
         <designable name="8kg-pJ-3sY">
-            <size key="intrinsicContentSize" width="81.666666666666671" height="20.666666666666668"/>
+            <size key="intrinsicContentSize" width="37.333333333333336" height="13.666666666666666"/>
         </designable>
         <designable name="99t-PE-CtL">
-            <size key="intrinsicContentSize" width="331.66666666666669" height="76.333333333333329"/>
+            <size key="intrinsicContentSize" width="431" height="101.66666666666667"/>
         </designable>
         <designable name="9FA-dp-o1x">
-            <size key="intrinsicContentSize" width="304" height="30.666666666666668"/>
+            <size key="intrinsicContentSize" width="397.66666666666669" height="40.666666666666664"/>
         </designable>
         <designable name="9Lg-cq-Nv0">
-            <size key="intrinsicContentSize" width="142" height="19"/>
+            <size key="intrinsicContentSize" width="148.66666666666666" height="20.333333333333332"/>
         </designable>
         <designable name="9lW-sQ-WVN">
-            <size key="intrinsicContentSize" width="45.666666666666664" height="23.666666666666668"/>
+            <size key="intrinsicContentSize" width="39.333333333333336" height="20.333333333333332"/>
         </designable>
         <designable name="9yr-SM-oKt">
-            <size key="intrinsicContentSize" width="203.33333333333334" height="17.666666666666668"/>
+            <size key="intrinsicContentSize" width="211" height="20.333333333333332"/>
         </designable>
         <designable name="CDc-j6-oyF">
-            <size key="intrinsicContentSize" width="50" height="31"/>
+            <size key="intrinsicContentSize" width="49" height="30"/>
         </designable>
         <designable name="CcO-Ru-ZFl">
-            <size key="intrinsicContentSize" width="71" height="31"/>
+            <size key="intrinsicContentSize" width="62" height="30"/>
         </designable>
         <designable name="Ceb-Ch-RWm">
-            <size key="intrinsicContentSize" width="173" height="21.333333333333332"/>
+            <size key="intrinsicContentSize" width="151.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="CkV-vC-oVY">
-            <size key="intrinsicContentSize" width="70.333333333333329" height="17.666666666666668"/>
+            <size key="intrinsicContentSize" width="73" height="20.333333333333332"/>
         </designable>
         <designable name="CnT-70-TSq">
-            <size key="intrinsicContentSize" width="20.333333333333332" height="19.666666666666668"/>
+            <size key="intrinsicContentSize" width="20.333333333333332" height="22"/>
         </designable>
         <designable name="CvK-p4-XF2">
-            <size key="intrinsicContentSize" width="35" height="31"/>
+            <size key="intrinsicContentSize" width="34" height="30"/>
         </designable>
         <designable name="D0O-Hf-zFJ">
-            <size key="intrinsicContentSize" width="94.333333333333329" height="19"/>
+            <size key="intrinsicContentSize" width="46.333333333333336" height="12"/>
+        </designable>
+        <designable name="DCQ-iQ-7XC">
+            <size key="intrinsicContentSize" width="20" height="22"/>
         </designable>
         <designable name="DhG-93-gLb">
-            <size key="intrinsicContentSize" width="20" height="20"/>
+            <size key="intrinsicContentSize" width="20" height="22"/>
         </designable>
         <designable name="DwX-B0-KIi">
-            <size key="intrinsicContentSize" width="54" height="31"/>
+            <size key="intrinsicContentSize" width="56" height="34"/>
         </designable>
         <designable name="ECD-yX-dQC">
             <size key="intrinsicContentSize" width="407" height="612"/>
@@ -6950,276 +7153,279 @@ No worries if yes, the other person will not be notified.</string>
             <size key="intrinsicContentSize" width="27" height="27"/>
         </designable>
         <designable name="EYa-F4-atl">
-            <size key="intrinsicContentSize" width="338.33333333333331" height="49.333333333333336"/>
+            <size key="intrinsicContentSize" width="409.33333333333331" height="61"/>
+        </designable>
+        <designable name="Eq7-F0-Ldo">
+            <size key="intrinsicContentSize" width="20" height="22"/>
         </designable>
         <designable name="F2n-sC-hqt">
-            <size key="intrinsicContentSize" width="171" height="19"/>
+            <size key="intrinsicContentSize" width="177" height="23.333333333333332"/>
         </designable>
         <designable name="FHk-a9-YUN">
             <size key="intrinsicContentSize" width="48" height="48"/>
         </designable>
         <designable name="FTe-YK-yJw">
-            <size key="intrinsicContentSize" width="20" height="19"/>
+            <size key="intrinsicContentSize" width="20" height="22"/>
         </designable>
         <designable name="FdF-zO-SsO">
-            <size key="intrinsicContentSize" width="129" height="31"/>
+            <size key="intrinsicContentSize" width="123" height="30"/>
         </designable>
         <designable name="Fde-X5-2WN">
-            <size key="intrinsicContentSize" width="203" height="19"/>
+            <size key="intrinsicContentSize" width="209.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="Fkw-EZ-gfF">
-            <size key="intrinsicContentSize" width="69" height="20.666666666666668"/>
+            <size key="intrinsicContentSize" width="29.333333333333332" height="13.666666666666666"/>
         </designable>
         <designable name="Hvi-f8-508">
-            <size key="intrinsicContentSize" width="47.333333333333336" height="21.333333333333332"/>
+            <size key="intrinsicContentSize" width="45" height="20.333333333333332"/>
         </designable>
         <designable name="I6S-jA-cbg">
-            <size key="intrinsicContentSize" width="35" height="29"/>
+            <size key="intrinsicContentSize" width="13" height="33.333333333333336"/>
         </designable>
         <designable name="IdU-6F-ZgX">
-            <size key="intrinsicContentSize" width="90" height="23.666666666666668"/>
+            <size key="intrinsicContentSize" width="74.333333333333329" height="20.333333333333332"/>
         </designable>
         <designable name="Il5-8r-mJd">
-            <size key="intrinsicContentSize" width="192.33333333333334" height="33"/>
+            <size key="intrinsicContentSize" width="230" height="40.666666666666664"/>
         </designable>
         <designable name="It5-3m-GYL">
-            <size key="intrinsicContentSize" width="96" height="31"/>
+            <size key="intrinsicContentSize" width="93" height="30"/>
         </designable>
         <designable name="J7M-Vd-ctI">
-            <size key="intrinsicContentSize" width="145.66666666666666" height="19"/>
+            <size key="intrinsicContentSize" width="154.33333333333334" height="20"/>
         </designable>
         <designable name="JBx-SY-DoZ">
-            <size key="intrinsicContentSize" width="63.666666666666664" height="20.666666666666668"/>
+            <size key="intrinsicContentSize" width="26" height="13.666666666666666"/>
         </designable>
         <designable name="JVc-ug-2Zi"/>
         <designable name="JfT-4v-tqB">
-            <size key="intrinsicContentSize" width="36" height="31"/>
+            <size key="intrinsicContentSize" width="35" height="30"/>
         </designable>
         <designable name="JtN-qf-DUp">
-            <size key="intrinsicContentSize" width="36" height="31"/>
+            <size key="intrinsicContentSize" width="36" height="30"/>
         </designable>
         <designable name="JxZ-YY-3L0">
-            <size key="intrinsicContentSize" width="287" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="409" height="20.333333333333332"/>
         </designable>
         <designable name="KaR-Mc-BMB">
-            <size key="intrinsicContentSize" width="35" height="31"/>
+            <size key="intrinsicContentSize" width="34" height="30"/>
         </designable>
         <designable name="Kcl-7g-LiD">
-            <size key="intrinsicContentSize" width="179.66666666666666" height="31.666666666666668"/>
+            <size key="intrinsicContentSize" width="123.33333333333333" height="20.333333333333332"/>
         </designable>
         <designable name="L62-5r-p0Y">
-            <size key="intrinsicContentSize" width="240" height="31.666666666666668"/>
+            <size key="intrinsicContentSize" width="165.66666666666666" height="20.333333333333332"/>
         </designable>
         <designable name="LHQ-gX-34N">
-            <size key="intrinsicContentSize" width="95" height="35.333333333333336"/>
+            <size key="intrinsicContentSize" width="42.333333333333336" height="20"/>
         </designable>
         <designable name="LkJ-YD-qR6">
-            <size key="intrinsicContentSize" width="166" height="31.666666666666668"/>
+            <size key="intrinsicContentSize" width="110" height="20.333333333333332"/>
         </designable>
         <designable name="MW6-rZ-L4l">
-            <size key="intrinsicContentSize" width="20" height="19"/>
+            <size key="intrinsicContentSize" width="20" height="22"/>
         </designable>
         <designable name="NEW-Hu-HLT">
-            <size key="intrinsicContentSize" width="712.66666666666663" height="65.666666666666671"/>
+            <size key="intrinsicContentSize" width="862.33333333333337" height="81.333333333333329"/>
         </designable>
         <designable name="Njm-dn-7ha">
-            <size key="intrinsicContentSize" width="203.33333333333334" height="17.666666666666668"/>
+            <size key="intrinsicContentSize" width="211" height="20.333333333333332"/>
         </designable>
         <designable name="OZM-Ne-b6O">
-            <size key="intrinsicContentSize" width="168.33333333333334" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="239.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="Ohf-Vt-Eto">
-            <size key="intrinsicContentSize" width="207" height="21.333333333333332"/>
+            <size key="intrinsicContentSize" width="191.66666666666666" height="20.333333333333332"/>
         </designable>
         <designable name="PDK-rV-LMg">
-            <size key="intrinsicContentSize" width="96" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="115.33333333333333" height="20.333333333333332"/>
         </designable>
         <designable name="Pvv-4i-W02">
-            <size key="intrinsicContentSize" width="55" height="31"/>
+            <size key="intrinsicContentSize" width="54" height="30"/>
         </designable>
         <designable name="S9Q-It-9Aw">
-            <size key="intrinsicContentSize" width="173" height="21.333333333333332"/>
+            <size key="intrinsicContentSize" width="151.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="SCe-NB-PKY">
-            <size key="intrinsicContentSize" width="213.33333333333334" height="31.666666666666668"/>
+            <size key="intrinsicContentSize" width="147.66666666666666" height="20.333333333333332"/>
         </designable>
         <designable name="SX3-BL-EzL">
-            <size key="intrinsicContentSize" width="49" height="31"/>
+            <size key="intrinsicContentSize" width="48" height="30"/>
         </designable>
         <designable name="URV-RO-AMo">
-            <size key="intrinsicContentSize" width="221.66666666666666" height="31.666666666666668"/>
+            <size key="intrinsicContentSize" width="146" height="20.333333333333332"/>
         </designable>
         <designable name="VJ1-PI-ekR">
-            <size key="intrinsicContentSize" width="19" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="24.666666666666668" height="20"/>
         </designable>
         <designable name="VZW-A7-ryf">
-            <size key="intrinsicContentSize" width="458.33333333333331" height="33"/>
+            <size key="intrinsicContentSize" width="557" height="40.666666666666664"/>
         </designable>
         <designable name="WTt-vI-6R4">
-            <size key="intrinsicContentSize" width="35" height="29"/>
+            <size key="intrinsicContentSize" width="13" height="33.333333333333336"/>
         </designable>
         <designable name="X59-RV-k6Q">
-            <size key="intrinsicContentSize" width="503" height="65.666666666666671"/>
+            <size key="intrinsicContentSize" width="607.66666666666663" height="81.333333333333329"/>
         </designable>
         <designable name="Xhg-as-bqC">
-            <size key="intrinsicContentSize" width="90" height="23.666666666666668"/>
+            <size key="intrinsicContentSize" width="74.333333333333329" height="20.333333333333332"/>
         </designable>
         <designable name="Xuc-nl-UNn">
-            <size key="intrinsicContentSize" width="36" height="31"/>
+            <size key="intrinsicContentSize" width="36" height="30"/>
         </designable>
         <designable name="YaI-Eu-r8O">
-            <size key="intrinsicContentSize" width="70.333333333333329" height="17.666666666666668"/>
+            <size key="intrinsicContentSize" width="73" height="20.333333333333332"/>
         </designable>
         <designable name="YcQ-cb-3Kg">
-            <size key="intrinsicContentSize" width="134.66666666666666" height="13"/>
+            <size key="intrinsicContentSize" width="211" height="20.333333333333332"/>
         </designable>
         <designable name="ZlU-Hb-i3S">
-            <size key="intrinsicContentSize" width="248.33333333333334" height="61"/>
+            <size key="intrinsicContentSize" width="317.33333333333331" height="81.333333333333329"/>
         </designable>
         <designable name="a6e-P2-qtG">
-            <size key="intrinsicContentSize" width="55" height="31"/>
+            <size key="intrinsicContentSize" width="54" height="30"/>
         </designable>
         <designable name="aRI-Xg-5o1">
-            <size key="intrinsicContentSize" width="162.66666666666666" height="19"/>
+            <size key="intrinsicContentSize" width="87.666666666666671" height="12"/>
         </designable>
         <designable name="aUl-Ug-YIN">
-            <size key="intrinsicContentSize" width="431.66666666666669" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="521" height="20.333333333333332"/>
         </designable>
         <designable name="af5-1i-EA4">
-            <size key="intrinsicContentSize" width="20" height="19"/>
+            <size key="intrinsicContentSize" width="20" height="22"/>
         </designable>
         <designable name="b3O-xc-bXC">
-            <size key="intrinsicContentSize" width="168" height="15.333333333333334"/>
+            <size key="intrinsicContentSize" width="218.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="bAO-7l-v8h">
-            <size key="intrinsicContentSize" width="20" height="19"/>
+            <size key="intrinsicContentSize" width="20" height="22"/>
         </designable>
         <designable name="bf5-4T-Cpx">
-            <size key="intrinsicContentSize" width="76" height="31"/>
+            <size key="intrinsicContentSize" width="74" height="30"/>
         </designable>
         <designable name="bhr-vz-RbZ">
-            <size key="intrinsicContentSize" width="20" height="19"/>
+            <size key="intrinsicContentSize" width="20" height="22"/>
         </designable>
         <designable name="cEz-EQ-Cg9">
-            <size key="intrinsicContentSize" width="205" height="21.333333333333332"/>
+            <size key="intrinsicContentSize" width="189.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="cZz-9d-sWX">
             <size key="intrinsicContentSize" width="50" height="50"/>
         </designable>
         <designable name="e1r-8r-A1G">
-            <size key="intrinsicContentSize" width="91.333333333333329" height="19"/>
+            <size key="intrinsicContentSize" width="95" height="20.333333333333332"/>
         </designable>
         <designable name="eKV-UR-Sxu">
-            <size key="intrinsicContentSize" width="35" height="29"/>
+            <size key="intrinsicContentSize" width="13.666666666666666" height="33.333333333333336"/>
         </designable>
         <designable name="eku-i5-B1A">
-            <size key="intrinsicContentSize" width="294" height="33"/>
+            <size key="intrinsicContentSize" width="350.66666666666669" height="40.666666666666664"/>
         </designable>
         <designable name="f47-es-wTH"/>
         <designable name="fHp-u4-Vaf">
-            <size key="intrinsicContentSize" width="49" height="31"/>
+            <size key="intrinsicContentSize" width="48" height="30"/>
         </designable>
         <designable name="fcU-6o-oGH">
-            <size key="intrinsicContentSize" width="40" height="31"/>
+            <size key="intrinsicContentSize" width="38" height="30"/>
         </designable>
         <designable name="fgq-iC-cP8">
-            <size key="intrinsicContentSize" width="20" height="19"/>
+            <size key="intrinsicContentSize" width="20" height="22"/>
         </designable>
         <designable name="fk1-mJ-G7X">
             <size key="intrinsicContentSize" width="99" height="30.666666666666668"/>
         </designable>
         <designable name="g1M-LC-Jgo">
-            <size key="intrinsicContentSize" width="151.33333333333334" height="23.666666666666668"/>
+            <size key="intrinsicContentSize" width="125.66666666666667" height="20.333333333333332"/>
         </designable>
         <designable name="gjC-1w-gi1">
-            <size key="intrinsicContentSize" width="272.33333333333331" height="197"/>
+            <size key="intrinsicContentSize" width="329.66666666666669" height="243.66666666666666"/>
         </designable>
         <designable name="gu3-Xb-UMo">
-            <size key="intrinsicContentSize" width="34" height="31"/>
+            <size key="intrinsicContentSize" width="32" height="30"/>
         </designable>
         <designable name="hpB-hp-zzh">
             <size key="intrinsicContentSize" width="407" height="612"/>
         </designable>
         <designable name="hzv-hu-A8p">
-            <size key="intrinsicContentSize" width="49" height="31"/>
+            <size key="intrinsicContentSize" width="48" height="30"/>
         </designable>
         <designable name="iNY-NF-s6k">
-            <size key="intrinsicContentSize" width="96" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="115.33333333333333" height="20.333333333333332"/>
         </designable>
         <designable name="iWN-4Z-XWq">
-            <size key="intrinsicContentSize" width="90.333333333333329" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="104.66666666666667" height="20.333333333333332"/>
         </designable>
         <designable name="icL-Ol-Qai">
-            <size key="intrinsicContentSize" width="48" height="31"/>
+            <size key="intrinsicContentSize" width="47" height="30"/>
         </designable>
         <designable name="ioz-Qe-yuJ">
-            <size key="intrinsicContentSize" width="90" height="31"/>
+            <size key="intrinsicContentSize" width="128" height="45"/>
         </designable>
         <designable name="ixr-0u-dTD">
-            <size key="intrinsicContentSize" width="40" height="31"/>
+            <size key="intrinsicContentSize" width="38" height="30"/>
         </designable>
         <designable name="jwM-Un-vJo">
-            <size key="intrinsicContentSize" width="20" height="19"/>
+            <size key="intrinsicContentSize" width="20" height="22"/>
         </designable>
         <designable name="kUb-na-hEH">
-            <size key="intrinsicContentSize" width="140.66666666666666" height="19"/>
+            <size key="intrinsicContentSize" width="148" height="20"/>
         </designable>
         <designable name="lBv-Ao-Plp">
-            <size key="intrinsicContentSize" width="63" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="77.666666666666671" height="20.333333333333332"/>
         </designable>
         <designable name="lX6-5H-JX8">
-            <size key="intrinsicContentSize" width="47" height="21.333333333333332"/>
+            <size key="intrinsicContentSize" width="40" height="20.333333333333332"/>
         </designable>
         <designable name="lZi-Q7-feI">
-            <size key="intrinsicContentSize" width="70.333333333333329" height="17.666666666666668"/>
+            <size key="intrinsicContentSize" width="73" height="20.333333333333332"/>
         </designable>
         <designable name="lhD-Tf-j08">
-            <size key="intrinsicContentSize" width="146" height="15.333333333333334"/>
+            <size key="intrinsicContentSize" width="194" height="20.333333333333332"/>
         </designable>
         <designable name="mSU-jE-98L">
-            <size key="intrinsicContentSize" width="35" height="29"/>
+            <size key="intrinsicContentSize" width="13" height="33.333333333333336"/>
         </designable>
         <designable name="mXR-LI-eao">
-            <size key="intrinsicContentSize" width="69.666666666666671" height="23"/>
+            <size key="intrinsicContentSize" width="34.666666666666664" height="18.666666666666668"/>
         </designable>
         <designable name="mwT-CJ-SgC">
             <size key="intrinsicContentSize" width="128" height="30.666666666666668"/>
         </designable>
         <designable name="nIQ-VS-jss">
-            <size key="intrinsicContentSize" width="68.666666666666671" height="19"/>
+            <size key="intrinsicContentSize" width="71" height="20.333333333333332"/>
         </designable>
         <designable name="oPS-Qn-7oF">
             <size key="intrinsicContentSize" width="407" height="612"/>
         </designable>
         <designable name="pRZ-i9-kuF">
-            <size key="intrinsicContentSize" width="192.33333333333334" height="36.666666666666664"/>
+            <size key="intrinsicContentSize" width="107" height="20.333333333333332"/>
         </designable>
         <designable name="qDb-ZT-Mqp">
-            <size key="intrinsicContentSize" width="294" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="350.66666666666669" height="20.333333333333332"/>
         </designable>
         <designable name="qhM-AB-el7">
-            <size key="intrinsicContentSize" width="203.33333333333334" height="17.666666666666668"/>
+            <size key="intrinsicContentSize" width="211" height="20.333333333333332"/>
         </designable>
         <designable name="rew-q5-giK">
-            <size key="intrinsicContentSize" width="173" height="21.333333333333332"/>
+            <size key="intrinsicContentSize" width="151.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="sDr-88-Fbj">
-            <size key="intrinsicContentSize" width="162.66666666666666" height="19"/>
+            <size key="intrinsicContentSize" width="87.666666666666671" height="12"/>
         </designable>
         <designable name="sX1-rv-q59">
-            <size key="intrinsicContentSize" width="367" height="16.666666666666668"/>
+            <size key="intrinsicContentSize" width="445.66666666666669" height="20.333333333333332"/>
         </designable>
         <designable name="t0O-Wz-4ZT">
-            <size key="intrinsicContentSize" width="173" height="21.333333333333332"/>
+            <size key="intrinsicContentSize" width="151.33333333333334" height="20.333333333333332"/>
         </designable>
         <designable name="uDS-gQ-Hen">
             <size key="intrinsicContentSize" width="50" height="50"/>
         </designable>
         <designable name="uF1-P3-XVr">
-            <size key="intrinsicContentSize" width="46.333333333333336" height="14.333333333333334"/>
+            <size key="intrinsicContentSize" width="62.333333333333336" height="20.333333333333332"/>
         </designable>
         <designable name="uT1-zU-85a">
-            <size key="intrinsicContentSize" width="20" height="20"/>
+            <size key="intrinsicContentSize" width="20" height="22"/>
         </designable>
         <designable name="vAM-Zs-drD">
             <size key="intrinsicContentSize" width="48" height="48"/>
@@ -7228,28 +7434,28 @@ No worries if yes, the other person will not be notified.</string>
             <size key="intrinsicContentSize" width="407" height="612"/>
         </designable>
         <designable name="vdO-D0-c2r">
-            <size key="intrinsicContentSize" width="304" height="30.666666666666668"/>
+            <size key="intrinsicContentSize" width="397.66666666666669" height="40.666666666666664"/>
         </designable>
         <designable name="w12-80-ph3">
-            <size key="intrinsicContentSize" width="111.33333333333333" height="19"/>
+            <size key="intrinsicContentSize" width="116.66666666666667" height="20.333333333333332"/>
         </designable>
         <designable name="wcf-nM-exb">
-            <size key="intrinsicContentSize" width="35" height="29"/>
+            <size key="intrinsicContentSize" width="13" height="33.333333333333336"/>
         </designable>
         <designable name="whs-bR-EUC">
-            <size key="intrinsicContentSize" width="15.666666666666666" height="19"/>
+            <size key="intrinsicContentSize" width="15.666666666666666" height="22"/>
         </designable>
         <designable name="xbv-4R-o9Y">
             <size key="intrinsicContentSize" width="25.666666666666668" height="25.666666666666668"/>
         </designable>
         <designable name="xnB-yp-Wkb">
-            <size key="intrinsicContentSize" width="94.333333333333329" height="19"/>
+            <size key="intrinsicContentSize" width="46.333333333333336" height="12"/>
         </designable>
         <designable name="y1c-ai-HyS">
-            <size key="intrinsicContentSize" width="30" height="31"/>
+            <size key="intrinsicContentSize" width="30" height="30"/>
         </designable>
         <designable name="zZc-AX-CY6">
-            <size key="intrinsicContentSize" width="20" height="20"/>
+            <size key="intrinsicContentSize" width="20" height="22"/>
         </designable>
     </designables>
     <resources>
@@ -7269,6 +7475,7 @@ No worries if yes, the other person will not be notified.</string>
         <image name="icn_notification_selected" width="15" height="17"/>
         <image name="icn_notification_unselected" width="15" height="17"/>
         <image name="logo name" width="3289" height="512"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="mail.and.text.magnifyingglass.rtl" catalog="system" width="128" height="90"/>
         <image name="paperplane.fill" catalog="system" width="128" height="119"/>
         <image name="person.circle.fill" catalog="system" width="128" height="123"/>
@@ -7294,7 +7501,7 @@ No worries if yes, the other person will not be notified.</string>
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Cell BG Base Grey">
-            <color red="0.20800000429153442" green="0.31000000238418579" blue="0.35699999332427979" alpha="0.10499999672174454" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20784313725490197" green="0.30980392156862746" blue="0.35686274509803922" alpha="0.10499999672174454" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Danger">
             <color red="0.92156862745098034" green="0.30196078431372547" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

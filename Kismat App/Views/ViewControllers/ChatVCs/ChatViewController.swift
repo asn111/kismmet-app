@@ -9,26 +9,39 @@
 import UIKit
 import IQKeyboardManagerSwift
 import SDWebImage
-
+import DropDown
 
 class ChatViewController: MainViewController {
     @IBOutlet weak var userNameLabel: fullyCustomLbl!
 
     @IBOutlet weak var userImageView: RoundedImageView!
+    @IBOutlet weak var workLbl: fullyCustomLbl!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var chatTextView: UITextView!
     @IBOutlet weak var viewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var onlineView: RoundCornerView!
     
+    @IBAction func backBtnPressed(_ sender: Any) {
+        
+        if isPresented {
+            self.dismiss(animated: true)
+        }   else {
+            navigationController?.popViewController(animated: true)
+        }
+    }
     //var user = User()
     //var file: AttachmentInfo?
-    var chats = [ChatModel]()
+    var chats = [ChatModelArray]()
     
+    let dropDown = DropDown()
+    var ddOptions = ["View Profile","Clear Chat","Delete Chat"]
+
     //var chatModel = ChatModel()
     
     var userId = ""
     var userName = ""
+    var workTitle = ""
     var userProfilePic = ""
     var isOnline = false
     var chatId =  0
@@ -46,7 +59,7 @@ class ChatViewController: MainViewController {
         
         _ = generalPublisherChat.subscribe(onNext: {[weak self] val in
             
-            self?.chats.append(val)
+            self?.chats.last?.messages.append(val)
             self?.tableView.reloadData()
             self?.scrollToBottom()
         }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
@@ -101,11 +114,46 @@ class ChatViewController: MainViewController {
     func customSetup(){
         
         userNameLabel.text = userName.capitalized
+        workLbl.text = workTitle.capitalized
         
         onlineView.isHidden = !isOnline
         
         if let url = URL(string: userProfilePic) {
             userImageView.sd_setImage(with: url , placeholderImage: UIImage(named: "")) { (image, error, imageCacheType, url) in }
+        }
+    }
+    
+    func moreBtnPressed(sender: UIButton) {
+        dropDown.show()
+        dropDown.anchorView = sender // UIView or UIBarButtonItem
+        dropDown.dataSource = ddOptions
+        dropDown.direction = .any
+        
+        let appearance = DropDown.appearance()
+        
+        appearance.cellHeight = 30
+        appearance.backgroundColor = UIColor.white
+        appearance.selectionBackgroundColor = UIColor(red: 0.6494, green: 0.8155, blue: 1.0, alpha: 0.2)
+        appearance.separatorColor = UIColor(white: 0.7, alpha: 0.8)
+        appearance.cornerRadius = 4
+        //appearance.shadowColor = UIColor(white: 0.6, alpha: 1)
+        //appearance.shadowOpacity = 0.9
+        appearance.shadowRadius = 15
+        appearance.animationduration = 0.25
+        appearance.textColor = UIColor(named: "Text grey") ?? .darkGray
+        appearance.textFont = UIFont(name: "Roboto", size: 12)!
+        appearance.setupMaskedCorners([.layerMaxXMaxYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner, .layerMaxXMinYCorner])
+        
+        // Action triggered on selection
+        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            print("Selected item: \(item) at index: \(index)")
+            
+            if index == 0 {
+                self.pushVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
+                    vc.userId = self.userId
+                    //vc.markView = true
+                }
+            }
         }
     }
     
@@ -151,22 +199,33 @@ class ChatViewController: MainViewController {
     
     //MARK: Target Method
     @objc func scrollToBottom() {
-        if self.chats.count > 0 {
-            self.tableView.scrollToRow(at: IndexPath.init(row: self.chats.count - 1 , section: 0), at:.bottom, animated: false)
+        
+        if let lastChat = self.chats.last, lastChat.messages.count > 0 {
+            let lastRowIndex = lastChat.messages.count - 1
+            let lastSectionIndex = self.tableView.numberOfSections - 1
+            
+            // Ensure the section and row are within bounds
+            if lastSectionIndex >= 0, lastRowIndex < self.tableView.numberOfRows(inSection: lastSectionIndex) {
+                let lastIndexPath = IndexPath(row: lastRowIndex, section: lastSectionIndex)
+                self.tableView.scrollToRow(at: lastIndexPath, at: .bottom, animated: false)
+            }
         }
+
+        
+        /*if (self.chats.last?.messages.count)! > 0 {
+            self.tableView.scrollToRow(at: IndexPath.init(row: (self.chats.last?.messages.count)! - 1 , section: 0), at:.bottom, animated: false)
+        }*/
     }
     
     //MARK: UIButton Action Method
     @IBAction func backButtonAction(_ sender: UIButton){
-        if isPresented {
-            self.dismiss(animated: true)
-        }   else {
-            navigationController?.popViewController(animated: true)
-        }
+        
+        moreBtnPressed(sender: sender)
+       
     }
     
     @IBAction func sendButtonAction(_ sender: UIButton){
-        self.view.endEditing(true)
+        //self.view.endEditing(true)
         if chatTextView.text.isEmpty {
             AppFunctions.showSnackBar(str: "Please enter message.")
         }else {
@@ -179,6 +238,36 @@ class ChatViewController: MainViewController {
         
         
     }
+    
+    
+    func convertStringToFormattedString(_ dateString: String) -> String? {
+        let dateFormatter = DateFormatter()
+        
+        // Input format (should match the input date string)
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        dateFormatter.locale = Locale(identifier: "en_US") // Ensure locale is set to English
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0) // Treat the input as GMT/UTC
+        
+        // Attempt to parse the date string
+        guard let date = dateFormatter.date(from: dateString) else {
+            print("Failed to parse date: \(dateString)")
+            return nil
+        }
+        
+        // Check if the date is today, yesterday, or earlier
+        let calendar = Calendar.current
+        if calendar.isDateInToday(date) {
+            return "Today"
+        } else if calendar.isDateInYesterday(date) {
+            return "Yesterday"
+        } else {
+            // Output format (desired output for dates older than yesterday)
+            dateFormatter.dateFormat = "EEEE, dd MMM"
+            dateFormatter.timeZone = TimeZone.current // Convert to the current timezone
+            return dateFormatter.string(from: date)
+        }
+    }
+
     
     //MARK: SignalR method
 
@@ -198,22 +287,78 @@ class ChatViewController: MainViewController {
                 return
             }
             self.chatTextView.text = ""
-            self.view.endEditing(true)
             self.scrollToBottom()
         }
+    }
+    
+    func markMsgRead() {
+        
+        if let lastChat = self.chats.last, lastChat.messages.count > 0 {
+            
+            let pram = ["messageId": "\(lastChat.messages.last?.messageId ?? 0)"]
+            
+            Logs.show(message: "PRAM: \(pram)")
+            
+            SignalRService.connection.invoke(method: "UpdateMessageStatusToRead", pram) {  error in
+                if let e = error {
+                    Logs.show(message: "Error: \(e)")
+                    AppFunctions.showSnackBar(str: "Error in sending message")
+                    return
+                }
+                self.chatTextView.text = ""
+                self.view.endEditing(true)
+                self.scrollToBottom()
+            }
+        }
+        
     }
     
 }
 
 extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
     //MARK: - UITableViewDelegateDataSource Methods
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return chats.count
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return chats[section].messages.count
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        
+        let headerLabel = fullyCustomLbl()
+        headerLabel.font = UIFont(name: "Roboto", size: 12)?.light
+        headerLabel.textColor = UIColor(named: "Text grey")
+        headerLabel.text = (convertStringToFormattedString(chats[section].dayHeader) ?? "")
+        headerLabel.textAlignment = .center
+        
+        // Add label to the header view
+        headerView.addSubview(headerLabel)
+        
+        // Set the constraints for centering the label
+        headerLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            // Center horizontally in the header view
+            headerLabel.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            // Center vertically in the header view
+            headerLabel.centerYAnchor.constraint(equalTo: headerView.centerYAnchor)
+        ])
+        
+        return headerView
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let obj = chats[indexPath.row]
-        Logs.show(message:  "UserID: " + AppFunctions.getUserId())
+        
+        // Get the array of messages for the current section
+        let messages = chats[indexPath.section].messages
+        
+        // Get the message object for the current row
+        let obj = messages![indexPath.row]
+        
         if obj.senderId == AppFunctions.getUserId() {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SenderChatCell", for: indexPath) as! SenderChatCell
             cell.populateCell(obj: obj)
@@ -228,6 +373,10 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
             return cell
         }
         
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -317,6 +466,7 @@ extension ChatViewController {
                             self.tableView.reloadData()
                             self.scrollToBottom()
                             self.hidePKHUD()
+                            self.markMsgRead()
                         } else {
                             self.hidePKHUD()
                             self.chats.removeAll()

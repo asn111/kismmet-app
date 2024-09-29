@@ -7,6 +7,10 @@
 
 import Foundation
 
+class ChatModelArray: NSObject, Codable {
+    var dayHeader : String!
+    var messages : [ChatModel]!
+}
 class ChatModel: NSObject, Codable {
     
     var messageId : Int!

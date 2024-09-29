@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftDate
 
 class ReqConVC: MainViewController {
 
@@ -18,7 +19,6 @@ class ReqConVC: MainViewController {
     private let refresher = UIRefreshControl()
     
     var localStarredStatus: [String: Bool] = [:] // Key: userId, Value: isStarred
-
     
     var selectedUsertype = "req"
     var searchString = ""
@@ -30,13 +30,26 @@ class ReqConVC: MainViewController {
         getReqUsers(load: false)
         registerCells()
         
+        fabTapAction = { [weak self] in
+            if !(self?.chatsUsers.isEmpty ?? false) {
+                self?.presentVC(id: "ChatUsersListVC", presentFullType: "over" ) { (vc:ChatUsersListVC) in }
+            }
+        }
+        
         _ = generalPublisher.subscribe(onNext: {[weak self] val in
             
             if val == "roloadList" {
                 if self?.selectedUsertype == "con" {
                     self?.getContUsers(load: false)
+                    self?.showHideFabBtn(shouldShow: false)
+                } else if self?.selectedUsertype == "chat" {
+                    self?.getChatUsers()
+                    self?.showHideFabBtn(shouldShow: true)
+
                 } else {
                     self?.getReqUsers(load: false)
+                    self?.showHideFabBtn(shouldShow: false)
+
                 }
             }
             
@@ -48,8 +61,13 @@ class ReqConVC: MainViewController {
         super.viewWillAppear(true)
         if self.selectedUsertype == "con" {
             self.getContUsers(load: false)
+            self.showHideFabBtn(shouldShow: false)
+        } else if self.selectedUsertype == "chat" {
+            self.getChatUsers()
+            self.showHideFabBtn(shouldShow: true)
         } else {
             self.getReqUsers(load: false)
+            self.showHideFabBtn(shouldShow: false)
         }
     }
     
@@ -57,6 +75,7 @@ class ReqConVC: MainViewController {
         super.viewWillDisappear(animated)
         searchString = ""
     }
+    
     
     func registerCells() {
         
@@ -92,6 +111,8 @@ class ReqConVC: MainViewController {
             searchString = ""
             if selectedUsertype == "con" {
                 getContUsers(load: true)
+            } else if self.selectedUsertype == "chat" {
+                self.getChatUsers()
             } else {
                 getReqUsers(load: true)
             }
@@ -99,6 +120,8 @@ class ReqConVC: MainViewController {
         }
         if selectedUsertype == "con" {
             getContUsers(load: true)
+        } else if self.selectedUsertype == "chat" {
+            self.getChatUsers()
         } else {
             getReqUsers(load: true)
         }
@@ -117,6 +140,8 @@ class ReqConVC: MainViewController {
         textField.resignFirstResponder()
         if selectedUsertype == "con" {
             getContUsers(load: false)
+        } else if self.selectedUsertype == "chat" {
+            self.getChatUsers()
         } else {
             getReqUsers(load: false)
         }
@@ -159,46 +184,6 @@ class ReqConVC: MainViewController {
     }
 
     
-    /*@objc
-    func starTapFunction(sender:UIButton) {
-        
-        markUserStar(userId: users[sender.tag - 1].userId)
-        let generator = UIImpactFeedbackGenerator(style: .heavy)
-        generator.impactOccurred()
-        
-        /*if let image = sender.view {
-            if let cell = image.superview?.superview?.superview?.superview  as? FeedItem2TVCell {
-                guard let indexPath = self.reqTV.indexPath(for: cell) else {return}
-                print("index path = \(indexPath)")
-                if cell.starLbl.image?.isEqual(UIImage(systemName: "star.fill")) == true {
-                    cell.starLbl.image = UIImage(systemName: "star")
-                    markUserStar(userId: users[indexPath.row - 1].userId)
-                    let generator = UIImpactFeedbackGenerator(style: .heavy)
-                    generator.impactOccurred()
-                } else {
-                    cell.starLbl.image = UIImage(systemName: "star.fill")
-                    markUserStar(userId: users[indexPath.row - 1].userId)
-                    let generator = UIImpactFeedbackGenerator(style: .heavy)
-                    generator.impactOccurred()
-                }
-            } else if let cell = image.superview?.superview?.superview?.superview  as? FeedItemsTVCell {
-                guard let indexPath = self.reqTV.indexPath(for: cell) else {return}
-                print("index path Else = \(indexPath)")
-                if cell.starLbl.image == UIImage(systemName: "star.fill") {
-                    cell.starLbl.image = UIImage(systemName: "star")
-                    markUserStar(userId: users[indexPath.row - 1].userId)
-                    let generator = UIImpactFeedbackGenerator(style: .heavy)
-                    generator.impactOccurred()
-                } else {
-                    cell.starLbl.image = UIImage(systemName: "star.fill")
-                    markUserStar(userId: users[indexPath.row - 1].userId)
-                    let generator = UIImpactFeedbackGenerator(style: .heavy)
-                    generator.impactOccurred()
-                }
-            }
-        }*/
-    }*/
-    
     func markUserStar(userId: String) {
         TimeTracker.shared.startTracking(for: "markUserStar")
         
@@ -221,6 +206,8 @@ class ReqConVC: MainViewController {
         reqTV.refreshControl?.beginRefreshing()
         if selectedUsertype == "con" {
             getContUsers(load: false)
+        } else if self.selectedUsertype == "chat" {
+            self.getChatUsers()
         } else {
             getReqUsers(load: false)
         }
@@ -228,6 +215,19 @@ class ReqConVC: MainViewController {
     func stopRefresher() {
         self.hidePKHUD()
         reqTV.refreshControl?.endRefreshing()
+    }
+    
+    func fancyStyleDate(dateStr: String) -> DateInRegion {
+        
+        let currentRegion = Region.current
+        
+        let locale = currentRegion.locale
+        let timeZone = currentRegion.timeZone
+        
+        let region = Region(calendar: Calendars.gregorian, zone: timeZone, locale: locale)
+        let date = DateInRegion(dateStr, format: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", region: region)!
+        
+        return date
     }
     
     //MARK: API METHODS
@@ -334,20 +334,28 @@ class ReqConVC: MainViewController {
                             self.chatsUsers = val
                             self.reqTV.reloadData()
                             self.hidePKHUD()
+                            self.stopRefresher()
+
                         } else {
                             self.hidePKHUD()
                             self.chatsUsers.removeAll()
                             self.reqTV.reloadData()
+                            self.stopRefresher()
+
                         }
                     case .error(let error):
                         print(error)
                         self.hidePKHUD()
                         self.chatsUsers.removeAll()
                         self.reqTV.reloadData()
+                        self.stopRefresher()
+
                     case .completed:
                         print("completed")
                         self.hidePKHUD()
                         self.reqTV.reloadData()
+                        self.stopRefresher()
+
                 }
             })
             .disposed(by: dispose_Bag)
@@ -388,6 +396,7 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                 self.getReqUsers(load: false)
                 cell.headerLbl.text = "RESPOND"
                 self.selectedUsertype = "req"
+                self.showHideFabBtn(shouldShow: false)
                 UIView.transition(with: cell.btnsImg,
                                   duration: 0.1, // Adjust the duration as needed
                                   options:.transitionCrossDissolve,
@@ -399,6 +408,7 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                 self.getContUsers(load: false)
                 cell.headerLbl.text = "FRIENDS"
                 self.selectedUsertype = "con"
+                self.showHideFabBtn(shouldShow: false)
                 UIView.transition(with: cell.btnsImg,
                                   duration: 0.1, // Adjust the duration as needed
                                   options:.transitionCrossDissolve,
@@ -410,6 +420,7 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                 self.getChatUsers()
                 cell.headerLbl.text = "CHATS"
                 self.selectedUsertype = "chat"
+                self.showHideFabBtn(shouldShow: true)
                 UIView.transition(with: cell.btnsImg,
                                   duration: 0.1, // Adjust the duration as needed
                                   options:.transitionCrossDissolve,
@@ -429,7 +440,11 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
             cell.chatBtn.addTarget(self, action: #selector(chatBtnPressed(sender:)), for: .touchUpInside)
 
             cell.searchTF.delegate = self
-            cell.searchTF.placeholder = selectedUsertype == "con" ? "Search through your contacts" : "Search through your requests"
+            //cell.searchTF.placeholder = selectedUsertype == "con" ? "Search through your contacts" : "Search through your requests"
+            cell.searchTF.placeholder = selectedUsertype == "con" ? "Search through your contacts" :
+            selectedUsertype == "req" ? "Search through your requests" :
+            "Search through your chat users"
+
             cell.searchTF.returnKeyType = .search
             cell.searchTF.tag = 010
             if searchString != "" {
@@ -454,6 +469,11 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                 if let chatUserCell = cell as? ChatUsersTVCell {
                     chatUserCell.nameLbl.text = user.userName.capitalized
                     chatUserCell.proffLbl.text = user.userWorkTitle.capitalized
+                    chatUserCell.lastMsgTimeLbl.text = fancyStyleDate(dateStr: user.lastLoginTime).toRelative(since: DateInRegion(), dateTimeStyle: .numeric, unitsStyle: .full) 
+
+                    if let url = URL(string: user.userProfilePicture) {
+                        chatUserCell.profileIcon.sd_setImage(with: url , placeholderImage: UIImage(named: "")) { (image, error, imageCacheType, url) in }
+                    }
                     
                     if user.isOnline {
                         chatUserCell.onlineView.isHidden = false
@@ -469,7 +489,24 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                     }
                     
                     if user.lastMessage.isLastMessageByMe {
-                        chatUserCell.msgLbl.text = "You: " + user.lastMessage.chatMessage.capitalized
+                        
+                        let text = "You: " + user.lastMessage.chatMessage.capitalized
+                        let textRange = NSRange(location: 0, length: 4)
+                        let attributedText = NSMutableAttributedString(string: text)
+                        
+                        // Safely unwrap the font
+                        if let mediumFont = UIFont(name: "Roboto", size: 14)?.medium {
+                            attributedText.addAttribute(NSAttributedString.Key.font, value: mediumFont, range: textRange)
+                        }
+                        
+                        // Safely unwrap the color
+                        if let textGreyColor = UIColor(named: "Text Grey") {
+                            attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: textGreyColor, range: textRange)
+                        }
+                        
+                        // Assign to the label
+                        chatUserCell.msgLbl.attributedText = attributedText
+                        
                     } else {
                         chatUserCell.msgLbl.text = user.lastMessage.chatMessage.capitalized
                     }
@@ -576,10 +613,40 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row > 0 {
-            if !users.isEmpty {
+            
+            if selectedUsertype == "chat" {
+                //self.pushVC(id: "MessageListViewController") { (vc:MessageListViewController) in }
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                
+                let user = chatsUsers[indexPath.row - 1]
+                
+                if let vc = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
+                    //vc.chatModel = chatsUsers[indexPath.row]
+                    let transition = CATransition()
+                    transition.duration = 0.5
+                    transition.subtype = CATransitionSubtype.fromRight
+                    transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.default)
+                    transition.type = CATransitionType.fade
+                    
+                    vc.userId = user.userId
+                    vc.chatId = user.chatId
+                    vc.isOnline = user.isOnline
+                    vc.userName = user.userName
+                    vc.workTitle = user.userWorkTitle
+                    vc.userProfilePic = user.userProfilePicture
+                    
+                    self.navigationController?.view.layer.add(transition, forKey: nil)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+                
+                /*self.pushVC(id: "ConnectedUserProfile") { (vc:ConnectedUserProfile) in
+                 vc.userModel = users[indexPath.row - 1]
+                 vc.userId = users[indexPath.row - 1].userId
+                 }*/
+            } else if !users.isEmpty {
                 if selectedUsertype == "con" {
-                    //self.pushVC(id: "MessageListViewController") { (vc:MessageListViewController) in }
-
+                    
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     if let vc = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
                         let user = users[indexPath.row - 1]
@@ -587,6 +654,7 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                         vc.userId = user.userId
                         //vc.chatId = user.chatId
                         //vc.isOnline = user.isOnline
+                        vc.workTitle = user.workTitle
                         vc.userName = user.userName
                         vc.userProfilePic = user.profilePicture
                         
@@ -595,34 +663,6 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                         transition.subtype = CATransitionSubtype.fromRight
                         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.default)
                         transition.type = CATransitionType.fade
-                        self.navigationController?.view.layer.add(transition, forKey: nil)
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                    
-                    /*self.pushVC(id: "ConnectedUserProfile") { (vc:ConnectedUserProfile) in
-                        vc.userModel = users[indexPath.row - 1]
-                        vc.userId = users[indexPath.row - 1].userId
-                    }*/
-                } else if selectedUsertype == "con" {
-                    
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    
-                    let user = chatsUsers[indexPath.row - 1]
-                    
-                    if let vc = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
-                        //vc.chatModel = chatsUsers[indexPath.row]
-                        let transition = CATransition()
-                        transition.duration = 0.5
-                        transition.subtype = CATransitionSubtype.fromRight
-                        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.default)
-                        transition.type = CATransitionType.fade
-                        
-                        vc.userId = user.userId
-                        vc.chatId = user.chatId
-                        vc.isOnline = user.isOnline
-                        vc.userName = user.userName
-                        vc.userProfilePic = user.userProfilePicture
-                        
                         self.navigationController?.view.layer.add(transition, forKey: nil)
                         self.navigationController?.pushViewController(vc, animated: true)
                     }

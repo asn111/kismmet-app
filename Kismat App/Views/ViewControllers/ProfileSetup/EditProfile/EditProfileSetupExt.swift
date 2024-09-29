@@ -32,6 +32,8 @@ class EditProfileSetupExt: MainViewController {
     var name = ""
     var status = ""
 
+    weak var activeTextView: UITextView?
+
     var overlayView: UIView?
 
     var circle : GMSCircle?
@@ -62,6 +64,9 @@ class EditProfileSetupExt: MainViewController {
         phoneNum = userdbModel.phone
         
         registerCells()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func registerCells() {
@@ -97,6 +102,35 @@ class EditProfileSetupExt: MainViewController {
 
         }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
         
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size else {
+            return
+        }
+        
+        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+        profileExtTV.contentInset = contentInsets
+        profileExtTV.scrollIndicatorInsets = contentInsets
+        
+        var activeView: UIView?
+        if let activeTextView = activeTextView {
+            activeView = activeTextView
+        }
+        
+        if let activeView = activeView {
+            let rect = profileExtTV.convert(activeView.bounds, from: activeView)
+            let offsetY = rect.maxY - (profileExtTV.bounds.height - keyboardSize.height)
+            if offsetY > 0 {
+                profileExtTV.setContentOffset(CGPoint(x: 0, y: offsetY), animated: true)
+            }
+        }
+    }
+    
+    
+    
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        profileExtTV.contentInset = .zero
     }
     
     
@@ -154,6 +188,7 @@ class EditProfileSetupExt: MainViewController {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
 
+        activeTextView = textView
         if textView.text == "" {
             // Clear the text view
             textView.text = ""
@@ -163,6 +198,7 @@ class EditProfileSetupExt: MainViewController {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         status = !textView.text!.isTFBlank ? textView.text! : ""
+        activeTextView = nil
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -172,7 +208,7 @@ class EditProfileSetupExt: MainViewController {
     }
 
     func textViewDidChange(_ textView: UITextView) {
-        let cell = profileExtTV.cellForRow(at: IndexPath(row: 4, section: 0)) as! GeneralTextviewTVCell
+        let cell = profileExtTV.cellForRow(at: IndexPath(row: 6, section: 0)) as! GeneralTextviewTVCell
         
         if textView.text.count == 0 {
             cell.countLbl.text = "100 / 100 remaining"
@@ -180,6 +216,9 @@ class EditProfileSetupExt: MainViewController {
             // Show the placeholder label when the text is empty
             if let placeholderLabel = textView.viewWithTag(100) as? UILabel {
                 placeholderLabel.isHidden = false
+                if let iconIV = textView.viewWithTag(101) as? UIImageView {
+                    iconIV.isHidden = false
+                }
             }
         } else {
             cell.countLbl.text = "\(100 - textView.text.count) / 100 remaining"
@@ -187,6 +226,9 @@ class EditProfileSetupExt: MainViewController {
             // Hide the placeholder label when the text is not empty
             if let placeholderLabel = textView.viewWithTag(100) as? UILabel {
                 placeholderLabel.isHidden = true
+                if let iconIV = textView.viewWithTag(101) as? UIImageView {
+                    iconIV.isHidden = true
+                }
             }
         }
     }
@@ -541,11 +583,16 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 
                 cell.generalTV.isEditable = AppFunctions.isPremiumUser()
 
+                cell.leadConstTV.constant = 16
+                cell.trailConstTV.constant = 14
+                
+                cell.bubbleIV.isHidden = false
+                cell.generalTV.backgroundColor = .clear
                 cell.generalTV.text = status//.isEmpty ? "" : status
                 if !status.isEmpty {
                     cell.countLbl.text = "\(100 - status.count) / 100 remaining"
                 } else {
-                    cell.generalTV.addPlaceholder("Broadcast a status", size: 14, iconImage: UIImage(systemName: "megaphone.fill"))
+                    cell.generalTV.addPlaceholder("Add status here...", size: 14, iconImage: UIImage(systemName: "megaphone.fill"))
 
                     cell.countLbl.text = "100 / 100 remaining"
                 }
@@ -647,7 +694,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 4 && !AppFunctions.isPremiumUser() {
+        if indexPath.row == 6 && !AppFunctions.isPremiumUser() {
             AppFunctions.showSnackBar(str: "Upgrade to premium to broadcast a status.")
         }
     }

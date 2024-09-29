@@ -76,7 +76,7 @@ class SenderChatCell: UITableViewCell {
         }
         
         // Output format (desired output)
-        dateFormatter.dateFormat = "dd MMM, hh:mm a"
+        dateFormatter.dateFormat = "hh:mm a"
         dateFormatter.amSymbol = "AM"
         dateFormatter.pmSymbol = "PM"
         dateFormatter.timeZone = TimeZone.current // Convert to the current timezone
