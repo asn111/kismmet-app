@@ -36,7 +36,7 @@ class ReqSentVC: MainViewController {
         
         let pram = ["userId": "\(userId)"]
         Logs.show(message: "PRAM: \(pram)")
-        SignalRService.connection.invoke(method: "StarUser", pram) {  error in
+        SignalRManager.singelton.connection.invoke(method: "StarUser", pram) {  error in
             Logs.show(message: "\(pram)")
             if let e = error {
                 Logs.show(message: "Error: \(e)")

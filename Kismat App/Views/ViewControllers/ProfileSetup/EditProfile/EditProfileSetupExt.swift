@@ -176,7 +176,7 @@ class EditProfileSetupExt: MainViewController {
             })
             .disposed(by: dispose_Bag)
         
-        /*SignalRService.connection.invoke(method: "UpdateUserConfigurations", pram) {  error in            Logs.show(message: "\(pram)")
+        /*SignalRManager.singelton.connection.invoke(method: "UpdateUserConfigurations", pram) {  error in            Logs.show(message: "\(pram)")
             if let e = error {
                 Logs.show(message: "Error: \(e)")
                 AppFunctions.showSnackBar(str: "Error in updating values")

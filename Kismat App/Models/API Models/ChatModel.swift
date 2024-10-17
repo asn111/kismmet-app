@@ -9,11 +9,12 @@ import Foundation
 
 class ChatModelArray: NSObject, Codable {
     var dayHeader : String!
-    var messages : [ChatModel]!
+    var messages : [ChatModel] = [ChatModel]()
 }
 class ChatModel: NSObject, Codable {
     
     var messageId : Int!
+    var chatId : Int!
     var message : String!
     var createdAt : String!
     var senderId : String!
@@ -28,6 +29,7 @@ class ChatModel: NSObject, Codable {
     override init() {
         
         messageId = 0
+        chatId = 0
         message = ""
         createdAt = ""
         senderId = ""
@@ -42,6 +44,7 @@ class ChatModel: NSObject, Codable {
     private enum CodingKeys: String, CodingKey {
         
         case messageId = "messageId"
+        case chatId = "chatId"
         case message = "chatMessage"
         case createdAt = "createdAt"
         case senderId = "senderId"
@@ -57,6 +60,7 @@ class ChatModel: NSObject, Codable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         messageId  = try values.decodeIfPresent(Int.self, forKey: .messageId)
+        chatId  = try values.decodeIfPresent(Int.self, forKey: .chatId)
         message  = try values.decodeIfPresent(String.self, forKey: .message)
         createdAt  = try values.decodeIfPresent(String.self, forKey: .createdAt)
         senderId  = try values.decodeIfPresent(String.self, forKey: .senderId)

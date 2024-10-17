@@ -64,6 +64,7 @@ class ProfileVC: MainViewController {
         profileTV.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tabBarHeight + bottomSpace, right: 0)
         
         profileTV.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
+        profileTV.register(UINib(nibName: "ProfileHeaderPNewTVCell", bundle: nil), forCellReuseIdentifier: "ProfileHeaderPNewTVCell")
         profileTV.register(UINib(nibName: "AboutTVCell", bundle: nil), forCellReuseIdentifier: "AboutTVCell")
         profileTV.register(UINib(nibName: "ProfileTVCell", bundle: nil), forCellReuseIdentifier: "ProfileTVCell")
         profileTV.register(UINib(nibName: "StatusTVCell", bundle: nil), forCellReuseIdentifier: "StatusTVCell")
@@ -107,6 +108,10 @@ class ProfileVC: MainViewController {
     
     @objc func notifBtnPressed(sender: UIButton) {
         self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
+    }
+    
+    @objc func chatBtnPressed(sender: UIButton) {
+        self.pushVC(id: "MessageListViewController") { (vc:MessageListViewController) in }
     }
     
     func setupLbl(textLbl: UITextField, completeText: String, textToHighlight: String) {
@@ -233,16 +238,56 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tempSocialAccImgArray.isEmpty {
-            return 5
+            return 4
         }
-        return tempSocialAccImgArray.count + 7
+        return tempSocialAccImgArray.count + 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.row {
             case 0:
-                let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
+                
+                let cell : ProfileHeaderPNewTVCell = tableView.dequeueReusableCell(withIdentifier: "ProfileHeaderPNewTVCell", for: indexPath) as! ProfileHeaderPNewTVCell
+                
+                cell.backBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
+                //cell.starBtn.addTarget(self, action: #selector(starTapFunction(sender:)), for: .touchUpInside)
+                
+                if let userDb = userdbModel {
+                    if let user = userDb.first {
+                        cell.nameLbl.text = user.userName
+                        cell.proffLbl.text = user.workTitle
+                        cell.workLbl.text = user.workAddress
+                        
+                        if user.profilePicture != "" {
+                            let imageUrl = URL(string: user.profilePicture)
+                            cell.profilePicBtn?.sd_setImage(with: imageUrl, for: .normal , placeholderImage: img) { (image, error, imageCacheType, url) in }
+                        } else {
+                            cell.profilePicBtn.setImage(img, for: .normal)
+                        }
+                        
+                    }
+                }
+                if let userDb = userdbModel {
+                    if let user = userDb.first {
+                        cell.statusLbl.text = user.status.isEmpty ? "currently no active status..." : user.status
+                        cell.clockIV.isHidden = !user.disappearingStatus
+                    }
+                }
+                
+                if AppFunctions.isNotifNotCheck() {
+                    cell.notifbtn.tintColor = UIColor(named:"Danger")
+                } else if AppFunctions.isShadowModeOn() {
+                    cell.notifbtn.tintColor = UIColor(named: "Primary Yellow")
+                } else {
+                    cell.notifbtn.tintColor = UIColor(named: "Text grey")
+                }
+                
+                cell.chatBtn.addTarget(self, action: #selector(chatBtnPressed(sender:)), for: .touchUpInside)
+                
+                cell.notifbtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
+
+                /*let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
                 cell.headerLogo.isHidden = true
                 cell.toolTipBtn.isHidden = true
                 cell.rattingBtn.isHidden = true
@@ -297,7 +342,7 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                              }
                         }
                     }
-                }
+                }*/
                 
                 return cell
             case 1:
@@ -314,7 +359,7 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 }
                 
                 return cell
-            case 2:
+            /*case 2:
                 let cell : StatusTVCell = tableView.dequeueReusableCell(withIdentifier: "StatusTVCell", for: indexPath) as! StatusTVCell
                 
                 if isOtherProfile {
@@ -329,8 +374,8 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 }
 
                                 
-                return cell
-            case 3:
+                return cell*/
+            case 2:
                 let cell : ProfileTVCell = tableView.dequeueReusableCell(withIdentifier: "ProfileTVCell", for: indexPath) as! ProfileTVCell
                 
                 cell.numberView.isHidden = true
@@ -348,12 +393,12 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 cell.generalTF.isUserInteractionEnabled = false
                 
                 return cell
-            case 4:
+            case 3:
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
                 cell.headerLbl.text = "Tags"
                 return cell
-            case 5:
+            case 4:
                 let cell : TagsTVCell = tableView.dequeueReusableCell(withIdentifier: "TagsTVCell", for: indexPath) as! TagsTVCell
                 
                 if isOtherProfile {
@@ -424,7 +469,7 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 
                 
                 return cell
-            case 6:
+            case 5:
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
                 cell.headerLbl.text = "Social accounts"
@@ -433,16 +478,16 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
             default:
                 let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
 
-                if socialAccounts[indexPath.row - 7].linkImage != "" {
-                 let imageUrl = URL(string: socialAccounts[indexPath.row - 7].linkImage)
+                if socialAccounts[indexPath.row - 6].linkImage != "" {
+                 let imageUrl = URL(string: socialAccounts[indexPath.row - 6].linkImage)
                  cell.socialImgView.sd_setImage(with: imageUrl , placeholderImage: UIImage()) { (image, error, imageCacheType, url) in }
                  }
                 
                 
                 
-                cell.socialLbl.text = socialAccounts[indexPath.row - 7].linkType.capitalized
+                cell.socialLbl.text = socialAccounts[indexPath.row - 6].linkType.capitalized
                 
-                if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 7].linkType }).count > 0 {
+                if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 6].linkType }).count > 0 {
                     cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.medium
                 } else {
                     cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.regular
@@ -510,10 +555,10 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 self.overlayView?.alpha = 1
             }
             
-        } else  if indexPath.row == 2 && !AppFunctions.isPremiumUser() {
+        } /*else  if indexPath.row == 2 && !AppFunctions.isPremiumUser() {
             AppFunctions.showSnackBar(str: "Upgrade to premium to broadcast a status.")
             
-        } else if indexPath.row == 5 {
+        }*/ else if indexPath.row == 4 {
             
             var tagList = [String]()
             if isOtherProfile {
@@ -544,12 +589,12 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
             self.presentVC(id: "TagsView_VC",presentFullType: "not") { (vc:TagsView_VC) in
                 vc.tagList = tagList
             }
-        } else if indexPath.row > 6 {
+        } else if indexPath.row > 5 {
             
-            if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 7].linkType }).count > 0 {
+            if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 6].linkType }).count > 0 {
                 self.presentVC(id: "SocialLinks_VC",presentFullType: "not") { (vc:SocialLinks_VC) in
-                    vc.socialAccModel = socialAccModel.filter {$0.linkType == socialAccounts[indexPath.row - 7].linkType }
-                    vc.linkType = socialAccounts[indexPath.row - 7].linkType
+                    vc.socialAccModel = socialAccModel.filter {$0.linkType == socialAccounts[indexPath.row - 6].linkType }
+                    vc.linkType = socialAccounts[indexPath.row - 6].linkType
                 }
             } else {
                 AppFunctions.showSnackBar(str: "No social account found")

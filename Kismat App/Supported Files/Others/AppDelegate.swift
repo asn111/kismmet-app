@@ -93,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let pram = ["lat": "",
                     "long":""
         ]
-        SignalRService.connection.invoke(method: "UpdateUserLocation", pram) {  error in
+        SignalRManager.singelton.connection.invoke(method: "UpdateUserLocation", pram) {  error in
             Logs.show(message: "\(pram)")
             AppFunctions.showSnackBar(str: "loc killed")
             if let e = error {

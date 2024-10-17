@@ -55,6 +55,11 @@ class ReqConVC: MainViewController {
             
         }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
         
+        _ = generalPublisherChat.subscribe(onNext: {[weak self] val in
+            
+            self?.getChatUsers()
+        }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -189,7 +194,7 @@ class ReqConVC: MainViewController {
         
         let pram = ["userId": "\(userId)"]
         Logs.show(message: "PRAM: \(pram)")
-        SignalRService.connection.invoke(method: "StarUser", pram) {  error in
+        SignalRManager.singelton.connection.invoke(method: "StarUser", pram) {  error in
             Logs.show(message: "\(pram)")
             if let e = error {
                 Logs.show(message: "Error: \(e)")
@@ -369,7 +374,7 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if selectedUsertype == "chat" {
             if chatsUsers.isEmpty {
-                return 2
+                return 1
             }
             return chatsUsers.count + 1
 
@@ -439,6 +444,7 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
             cell.searchBtn.addTarget(self, action: #selector(searchBtnPressed(sender:)), for: .touchUpInside)
             cell.chatBtn.addTarget(self, action: #selector(chatBtnPressed(sender:)), for: .touchUpInside)
 
+            cell.chatBtn.isHidden = true
             cell.searchTF.delegate = self
             //cell.searchTF.placeholder = selectedUsertype == "con" ? "Search through your contacts" : "Search through your requests"
             cell.searchTF.placeholder = selectedUsertype == "con" ? "Search through your contacts" :
@@ -452,6 +458,14 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
             } else {
                 cell.searchBtn.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
                 cell.searchTF.text = ""
+            }
+            
+            if AppFunctions.isNotifNotCheck() {
+                cell.notifbtn.tintColor = UIColor(named:"Danger")
+            } else if AppFunctions.isShadowModeOn() {
+                cell.notifbtn.tintColor = UIColor(named: "Primary Yellow")
+            } else {
+                cell.notifbtn.tintColor = UIColor(named: "Text grey")
             }
             
             return cell
@@ -508,7 +522,28 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                         chatUserCell.msgLbl.attributedText = attributedText
                         
                     } else {
-                        chatUserCell.msgLbl.text = user.lastMessage.chatMessage.capitalized
+                        if user.unReadCount > 0 {
+                            
+                            let text = user.lastMessage.chatMessage ?? "--"
+                            let textRange = NSRange(location: 0, length: user.lastMessage.chatMessage.count)
+                            let attributedText = NSMutableAttributedString(string: text)
+                            
+                            // Safely unwrap the font
+                            if let mediumFont = UIFont(name: "Roboto", size: 14)?.semibold {
+                                attributedText.addAttribute(NSAttributedString.Key.font, value: mediumFont, range: textRange)
+                            }
+                            
+                            // Safely unwrap the color
+                            if let textGreyColor = UIColor(named: "Text Grey") {
+                                attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: textGreyColor, range: textRange)
+                            }
+                            
+                            // Assign to the label
+                            chatUserCell.msgLbl.attributedText = attributedText
+                            
+                        } else {
+                            chatUserCell.msgLbl.text = user.lastMessage.chatMessage.capitalized
+                        }
                     }
                 }
                 

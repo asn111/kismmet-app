@@ -22,6 +22,11 @@ class MessageListViewController: MainViewController {
         super.viewDidLoad()
         
         registerCells()
+        
+        _ = generalPublisherChat.subscribe(onNext: {[weak self] val in
+            
+            self?.getChatUsers()
+        }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -227,7 +232,28 @@ extension MessageListViewController: UITableViewDelegate,UITableViewDataSource {
 
                 
             } else {
-                cell.msgLbl.text = user.lastMessage.chatMessage.capitalized
+                if user.unReadCount > 0 {
+                    
+                    let text = user.lastMessage.chatMessage ?? "--"
+                    let textRange = NSRange(location: 0, length: user.lastMessage.chatMessage.count)
+                    let attributedText = NSMutableAttributedString(string: text)
+                    
+                    // Safely unwrap the font
+                    if let mediumFont = UIFont(name: "Roboto", size: 14)?.semibold {
+                        attributedText.addAttribute(NSAttributedString.Key.font, value: mediumFont, range: textRange)
+                    }
+                    
+                    // Safely unwrap the color
+                    if let textGreyColor = UIColor(named: "Text Grey") {
+                        attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: textGreyColor, range: textRange)
+                    }
+                    
+                    // Assign to the label
+                    cell.msgLbl.attributedText = attributedText
+                    
+                } else {
+                    cell.msgLbl.text = user.lastMessage.chatMessage
+                }
             }
             
             return cell

@@ -28,6 +28,7 @@ class OtherUserProfile: MainViewController {
     var socialAccounts = [SocialAccDBModel()]
 
     var isFromBlock = false
+    var isFromMessage = false
     
     var canCancelReq = ""
     var contactId = 0
@@ -91,7 +92,8 @@ class OtherUserProfile: MainViewController {
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(sender:)))
         otherProfileTV.addGestureRecognizer(longPressRecognizer)
         
-        otherProfileTV.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
+        //otherProfileTV.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
+        otherProfileTV.register(UINib(nibName: "ProfileHeaderNewTVCell", bundle: nil), forCellReuseIdentifier: "ProfileHeaderNewTVCell")
         otherProfileTV.register(UINib(nibName: "AboutTVCell", bundle: nil), forCellReuseIdentifier: "AboutTVCell")
         otherProfileTV.register(UINib(nibName: "MixHeaderTVCell", bundle: nil), forCellReuseIdentifier: "MixHeaderTVCell")
         otherProfileTV.register(UINib(nibName: "ProfileTVCell", bundle: nil), forCellReuseIdentifier: "ProfileTVCell")
@@ -214,6 +216,34 @@ class OtherUserProfile: MainViewController {
         }
     }
     
+    @objc func sendMessagePressed(sender: UIButton) {
+        
+        if isFromMessage {
+            self.navigationController?.popViewController(animated: true)
+            return
+        }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
+            let user = userModel
+            
+            vc.userId = user.userId
+            //vc.chatId = user.chatId
+            //vc.isOnline = user.isOnline
+            vc.workTitle = user.workTitle
+            vc.userName = user.userName
+            vc.userProfilePic = user.profilePicture
+            
+            let transition = CATransition()
+            transition.duration = 0.5
+            transition.subtype = CATransitionSubtype.fromRight
+            transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.default)
+            transition.type = CATransitionType.fade
+            self.navigationController?.view.layer.add(transition, forKey: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+    }
+    
     @objc func sendContactRocket(sender: UIButton) {
         
         switch canCancelReq {
@@ -266,12 +296,13 @@ class OtherUserProfile: MainViewController {
         
         let pram = ["userId": "\(userId)"]
         Logs.show(message: "PRAM: \(pram)")
-        SignalRService.connection.invoke(method: "StarUser", pram) {  error in
+        SignalRManager.singelton.connection.invoke(method: "StarUser", pram) {  error in
             Logs.show(message: "\(pram)")
             if let e = error {
                 Logs.show(message: "Error: \(e)")
                 return
             }
+            self.userProfile(id: userId)
         }
     }
     
@@ -465,15 +496,130 @@ class OtherUserProfile: MainViewController {
 extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return socialAccounts.count + 9
+        return socialAccounts.count + 8
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.row {
             case 0:
-                let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
-                cell.toolTipBtn.isHidden = true
+                let cell : ProfileHeaderNewTVCell = tableView.dequeueReusableCell(withIdentifier: "ProfileHeaderNewTVCell", for: indexPath) as! ProfileHeaderNewTVCell
+                
+                cell.backBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
+                cell.starBtn.addTarget(self, action: #selector(starTapFunction(sender:)), for: .touchUpInside)
+                cell.starBtn.tag = indexPath.row
+                
+                if userModel.isStarred != nil {
+                    if userModel.isStarred {
+                        cell.starBtn.setImage(UIImage(systemName: "star.fill"), for: .normal)
+                    } else {
+                        cell.starBtn.setImage(UIImage(systemName: "star"), for: .normal)
+                    }
+                }
+                
+                cell.nameLbl.text = userModel.userName
+                cell.proffLbl.text = userModel.workTitle
+                cell.workLbl.text = userModel.workAddress
+                
+                if userModel.profilePicture != "" && userModel.profilePicture != nil {
+                    let imageUrl = URL(string: userModel.profilePicture)
+                    cell.profilePicBtn?.sd_setImage(with: imageUrl, for: .normal , placeholderImage: img) { (image, error, imageCacheType, url) in }
+                } else {
+                    cell.profilePicBtn.setImage(img, for: .normal)
+                }
+                
+                if userModel.status != nil {
+                    cell.statusLbl.text = userModel.status.isEmpty ? "currently no active status..." : userModel.status
+                    cell.clockIV.isHidden = !userModel.disappearingStatus
+                } else {
+                    cell.statusLbl.text = "currently no active status..."
+                    cell.clockIV.isHidden = true
+                }
+                
+                if userModel.userContacts == nil {
+                    cell.requestBtn.setTitle("Request ", for: .normal)
+                    cell.requestBtn2.setTitle("Request ", for: .normal)
+                    cell.requestBtn.setTitleColor(UIColor.white, for: .normal)
+                    cell.requestBtn2.setTitleColor(UIColor.white, for: .normal)
+                    cell.requestBtn.backgroundColor = UIColor(named: "Secondary Grey")
+                    cell.requestBtn2.backgroundColor = UIColor(named: "Secondary Grey")
+                    cell.requestBtn.layer.borderColor = UIColor.lightGray.cgColor
+                    cell.requestBtn2.layer.borderColor = UIColor.lightGray.cgColor
+                    cell.requestBtn.layer.borderWidth = 0
+                    cell.requestBtn2.layer.borderWidth = 0
+                    
+                    cell.btnsView.isHidden = true
+                    
+                    
+                    //cell.requestBtn.addTarget(self, action: #selector(sendContactRocket(sender:)), for: .touchUpInside)
+                } else {
+                    if userModel.userContacts.contactStatus == "Pending" {
+                        if let userContact = userModel.userContacts {
+                            if userContact.isSentByCurrentUsers {
+                                canCancelReq = "cancel"
+                                contactId = userContact.id
+                                cell.requestBtn.setTitle("Pending ", for: .normal)
+                                cell.requestBtn2.setTitle("Pending ", for: .normal)
+
+                            } else {
+                                cell.requestBtn.setTitle("Accept/Decline ", for: .normal)
+                                cell.requestBtn2.setTitle("Accept/Decline ", for: .normal)
+                                
+                                if isFromReq {
+                                    canCancelReq = "already"
+                                } else {
+                                    canCancelReq = "a/d"
+                                }
+                            }
+                        }
+                        cell.requestBtn.layer.borderColor = UIColor.lightGray.cgColor
+                        cell.requestBtn2.layer.borderColor = UIColor.lightGray.cgColor
+                        cell.requestBtn.layer.borderWidth = 0
+                        cell.requestBtn2.layer.borderWidth = 0
+                        cell.requestBtn.backgroundColor = UIColor(named: "warning")
+                        cell.requestBtn2.backgroundColor = UIColor(named: "warning")
+                        cell.requestBtn.setTitleColor(UIColor(named: "Text Grey"), for: .normal)
+                        cell.requestBtn2.setTitleColor(UIColor(named: "Text Grey"), for: .normal)
+
+                        cell.btnsView.isHidden = true
+
+                    } else if userModel.userContacts.contactStatus == "Accepted" {
+                        cell.requestBtn.setTitle("Connected ", for: .normal)
+                        cell.requestBtn2.setTitle("Connected ", for: .normal)
+                        cell.requestBtn.backgroundColor = UIColor(named: "Success")
+                        cell.requestBtn.layer.borderColor = UIColor.lightGray.cgColor
+                        cell.requestBtn2.layer.borderColor = UIColor.lightGray.cgColor
+                        cell.requestBtn.setTitleColor(UIColor(named: "Text Grey"), for: .normal)
+                        cell.requestBtn2.setTitleColor(UIColor(named: "Text Grey"), for: .normal)
+                        cell.requestBtn.layer.borderWidth = 0
+                        cell.requestBtn2.layer.borderWidth = 0
+                        canCancelReq = "discon"
+                        if let userContact = userModel.userContacts {
+                            contactId = userContact.id
+                        }
+                        cell.btnsView.isHidden = false
+
+                    } else {
+                        cell.requestBtn.setTitle("Request ", for: .normal)
+                        cell.requestBtn2.setTitle("Request ", for: .normal)
+                        cell.requestBtn.setTitleColor(UIColor.white, for: .normal)
+                        cell.requestBtn2.setTitleColor(UIColor.white, for: .normal)
+                        cell.requestBtn.backgroundColor = UIColor(named: "Secondary Grey")
+                        cell.requestBtn.layer.borderColor = UIColor.lightGray.cgColor
+                        cell.requestBtn2.layer.borderColor = UIColor.lightGray.cgColor
+                        cell.requestBtn.layer.borderWidth = 0
+                        cell.requestBtn2.layer.borderWidth = 0
+                        cell.btnsView.isHidden = true
+                    }
+                }
+                
+                cell.requestBtn.addTarget(self, action: #selector(sendContactRocket(sender:)), for: .touchUpInside)
+                cell.requestBtn2.addTarget(self, action: #selector(sendContactRocket(sender:)), for: .touchUpInside)
+                cell.messageBtn.addTarget(self, action: #selector(sendMessagePressed(sender:)), for: .touchUpInside)
+
+                return cell
+
+                /*cell.toolTipBtn.isHidden = true
                 cell.searchTFView.isHidden = true
                 cell.profileView.isHidden = false
                 cell.headerLogo.isHidden = false
@@ -562,17 +708,15 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                         cell.rocketBtn.addTarget(self, action: #selector(sendContactRocket(sender:)), for: .touchUpInside)
                     }
                 }
-                
-                
+                */
                     
-                return cell
             case 1:
                 let cell : AboutTVCell = tableView.dequeueReusableCell(withIdentifier: "AboutTVCell", for: indexPath) as! AboutTVCell
                     cell.aboutTxtView.text = userModel.about
                 
 
                 return cell
-            case 2:
+            /*case 2:
                 let cell : StatusTVCell = tableView.dequeueReusableCell(withIdentifier: "StatusTVCell", for: indexPath) as! StatusTVCell
                 
                 if userModel.status != nil {
@@ -583,9 +727,9 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                     cell.clockIV.isHidden = true
                 }
                 
-                return cell
+                return cell*/
                 
-            case 3:
+            case 2:
                 let cell : ProfileTVCell = tableView.dequeueReusableCell(withIdentifier: "ProfileTVCell", for: indexPath) as! ProfileTVCell
                 
                 cell.numberView.isHidden = true
@@ -594,12 +738,12 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 cell.generalTF.isUserInteractionEnabled = false
                 
                 return cell
-            case 4:
+            case 3:
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
                 cell.headerLbl.text = "Tags"
                 return cell
-            case 5:
+            case 4:
                 let cell : TagsTVCell = tableView.dequeueReusableCell(withIdentifier: "TagsTVCell", for: indexPath) as! TagsTVCell
 
                     if userModel.tags != "" {
@@ -632,7 +776,7 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                     }
                 }
                 return cell
-            case 6: // social heading
+            case 5: // social heading
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 if !socialAccounts.isEmpty {
                     cell.headerLblView.isHidden = false
@@ -643,13 +787,13 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 
                 return cell
                 
-            case socialAccounts.count + 7: // EmptyView
+            case socialAccounts.count + 6: // EmptyView
                 
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = true
                 return cell
                 
-            case socialAccounts.count + 8: // button
+            case socialAccounts.count + 7: // button
                 let cell : BlockBtnTVCell = tableView.dequeueReusableCell(withIdentifier: "BlockBtnTVCell", for: indexPath) as! BlockBtnTVCell
                 if isFromBlock {
                     cell.blockBtn.isHidden = true
@@ -660,19 +804,19 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 
             default:
                 let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
-                if socialAccounts[indexPath.row - 7].linkImage != "" {
-                    let imageUrl = URL(string: socialAccounts[indexPath.row - 7].linkImage)
+                if socialAccounts[indexPath.row - 6].linkImage != "" {
+                    let imageUrl = URL(string: socialAccounts[indexPath.row - 6].linkImage)
                     cell.socialImgView.sd_setImage(with: imageUrl , placeholderImage: UIImage()) { (image, error, imageCacheType, url) in }
                 } else {
                     //cell.profilePicBtn.setImage(img, for: .normal)
                 }
-                if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 7].linkType }).count > 0 {
+                if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 6].linkType }).count > 0 {
                     cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.medium
                 } else {
                     cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.regular
                 }
                 
-                cell.socialLbl.text = socialAccounts[indexPath.row - 7].linkType.capitalized
+                cell.socialLbl.text = socialAccounts[indexPath.row - 6].linkType.capitalized
                 cell.socialLbl.isUserInteractionEnabled = false
                 return cell
         }
@@ -750,13 +894,13 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 vc.userId = userModel.userId
                 vc.tagList = tagList
             }
-        } else if indexPath.row > 6 && indexPath.row < socialAccounts.count + 7 {
-            if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 7].linkType }).count > 0 {
+        } else if indexPath.row > 5 && indexPath.row < socialAccounts.count + 6 {
+            if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 6].linkType }).count > 0 {
                 self.presentVC(id: "SocialLinks_VC",presentFullType: "not") { (vc:SocialLinks_VC) in
                     vc.isFromOther = true
                     vc.userId = userModel.userId
-                    vc.socialAccModel = socialAccModel.filter {$0.linkType == socialAccounts[indexPath.row - 7].linkType }
-                    vc.linkType = socialAccounts[indexPath.row - 7].linkType
+                    vc.socialAccModel = socialAccModel.filter {$0.linkType == socialAccounts[indexPath.row - 6].linkType }
+                    vc.linkType = socialAccounts[indexPath.row - 6].linkType
                 }
             } else {
                 AppFunctions.showSnackBar(str: "No social account found")

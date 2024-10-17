@@ -196,7 +196,7 @@ class ProfileSetupExtend: MainViewController {
         let pram = ["lat": "\(lat)",
                     "long":"\(long)"
         ]
-        SignalRService.connection.invoke(method: "UpdateUserLocation", pram) {  error in
+        SignalRManager.singelton.connection.invoke(method: "UpdateUserLocation", pram) {  error in
             Logs.show(message: "\(pram)")
             if let e = error {
                 Logs.show(message: "Error: \(e)")
@@ -220,8 +220,8 @@ class ProfileSetupExtend: MainViewController {
                         Logs.show(message: "MARKED: 👉🏻 \(val)")
                         if val {
                             
-                            SignalRService.chatHubConnectionDelegate = self
-                            SignalRService.initializeSignalR()
+                            SignalRManager.singelton.chatHubConnectionDelegate = self
+                            SignalRManager.singelton.initializeSignalR()
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                                 self.sendLocationOnLogin()

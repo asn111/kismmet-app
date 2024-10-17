@@ -143,7 +143,7 @@ class FeedVC: MainViewController {
         
         Logs.show(message: "PRAM: \(pram)")
         
-        SignalRService.connection.invoke(method: "UpdateUserConfigurations", pram) {  error in            Logs.show(message: "\(pram)")
+        SignalRManager.singelton.connection.invoke(method: "UpdateUserConfigurations", pram) {  error in            Logs.show(message: "\(pram)")
             AppFunctions.setIsProfileVisble(value: self.isProfileVisible)
             self.getProxUsers(load: true)
             if let e = error {
@@ -189,6 +189,7 @@ class FeedVC: MainViewController {
             isProfileVisible = cell.toggleBtn.isOn
         }
     }
+    
     
     /*@objc
     func starTapFunction(sender:UITapGestureRecognizer) {
@@ -253,7 +254,7 @@ class FeedVC: MainViewController {
 
         let pram = ["userId": "\(userId)"]
         Logs.show(message: "PRAM: \(pram)")
-        SignalRService.connection.invoke(method: "StarUser", pram) {  error in
+        SignalRManager.singelton.connection.invoke(method: "StarUser", pram) {  error in
             Logs.show(message: "\(pram)")
             if let e = error {
                 Logs.show(message: "Error: \(e)")
@@ -412,7 +413,6 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                 cell.toolTipBtn.addTarget(self, action: #selector(toolBtnPressed(sender:)), for: .touchUpInside)
                 cell.viewedToolTipBtn.addTarget(self, action: #selector(toolBtnPressed(sender:)), for: .touchUpInside)
                 
-                cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
                 
                 if profilePic != "" {
                     let imageUrl = URL(string: profilePic)
@@ -425,7 +425,8 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                 
                 cell.chatBtn.addTarget(self, action: #selector(chatBtnPressed(sender:)), for: .touchUpInside)
 
-                
+                cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
+
                 
                 if AppFunctions.isPremiumUser() {
                     cell.viewCountsLbl.isHidden = true

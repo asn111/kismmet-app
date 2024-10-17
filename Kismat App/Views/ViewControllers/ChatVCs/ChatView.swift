@@ -48,8 +48,10 @@ class ChatView: UIView {
             
             bezierPath.addQuadCurve(to: CGPoint(x: 0, y: cornerRadius), controlPoint: CGPoint(x: 0, y: 0))
             bezierPath.addLine(to: CGPoint(x: 0, y: height - cornerRadius))
+            
             bezierPath.addQuadCurve(to: CGPoint(x: cornerRadius, y: height), controlPoint: CGPoint(x: 0, y: height))
             bezierPath.addLine(to: CGPoint(x: width - cornerRadius, y: height))
+            
             bezierPath.addQuadCurve(to: CGPoint(x: width, y: height - cornerRadius), controlPoint: CGPoint(x: width, y: height))
             bezierPath.addLine(to: CGPoint(x: width, y: cornerRadius))
             bezierPath.addQuadCurve(to: CGPoint(x: width - cornerRadius, y: 0), controlPoint: CGPoint(x: width, y: 0))
@@ -62,16 +64,18 @@ class ChatView: UIView {
             // Sent bubble: Rounded corners + sharp tail on the top-right
             bezierPath.move(to: CGPoint(x: cornerRadius, y: height))
             bezierPath.addLine(to: CGPoint(x: width - cornerRadius, y: height))
-            bezierPath.addQuadCurve(to: CGPoint(x: width, y: height - cornerRadius), controlPoint: CGPoint(x: width, y: height))
-            bezierPath.addLine(to: CGPoint(x: width, y: tailHeight))  // Top-right curve, before tail
+            
+            //bezierPath.addQuadCurve(to: CGPoint(x: width, y: height - cornerRadius), controlPoint: CGPoint(x: width, y: height))
+            bezierPath.addLine(to: CGPoint(x: width, y: height))  // Top-right curve, before tail
             
             // Sharp tail on top-right
-            bezierPath.addLine(to: CGPoint(x: width + tailHeight, y: 0))  // Sharp tip
+            bezierPath.addLine(to: CGPoint(x: width, y: 0))  // Sharp tip
             bezierPath.addLine(to: CGPoint(x: width - cornerRadius, y: 0))
             
             // Continue to round top-left corner and other sides
-            bezierPath.addLine(to: CGPoint(x: cornerRadius, y: 0))
+            bezierPath.addLine(to: CGPoint(x: 0, y: 0))
             bezierPath.addQuadCurve(to: CGPoint(x: 0, y: cornerRadius), controlPoint: CGPoint(x: 0, y: 0))
+            
             bezierPath.addLine(to: CGPoint(x: 0, y: height - cornerRadius))
             bezierPath.addQuadCurve(to: CGPoint(x: cornerRadius, y: height), controlPoint: CGPoint(x: 0, y: height))
         }

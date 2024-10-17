@@ -151,7 +151,7 @@ class ReqAcceptVC: MainViewController {
                     "isRead":"\(true)"
         ]
         
-        SignalRService.connection.invoke(method: "ReadContactRequest", pram) {  error in
+        SignalRManager.singelton.connection.invoke(method: "ReadContactRequest", pram) {  error in
             if let e = error {
                 Logs.show(message: "Error: \(e)")
                 AppFunctions.showSnackBar(str: "Error in updating values")

@@ -15,13 +15,13 @@ class SignalRManager: NSObject {
     
     //MARK: Properties
     var connection : HubConnection!
-    var headers = ["accessToken": "Bearer " + AppFunctions.getToken()]
     var chatHubConnectionDelegate: HubConnectionDelegate?
 
     
     //MARK: Initialization
     
     func initializeSignalR() {
+        var headers = ["accessToken": "Bearer " + AppFunctions.getToken()]
 
         connection = HubConnectionBuilder(url: URL(string: baseUrl + "/kismmetHub")!)
             .withLogging(minLogLevel: .error)
@@ -61,6 +61,20 @@ class SignalRManager: NSObject {
             Logs.show(message: ">>> UserLocationUpdated : \(value) |...|")
         })
         
+        connection.on(method: "MessageDelivered", callback: { argumentExtractor in
+            
+            let value = try argumentExtractor.getArgument(type: String.self)
+            //self.markMsgDelivered(msgId: value)
+            Logs.show(message: ">>> MessageDelivered : \(value) |...|")
+        })
+        
+        connection.on(method: "MessageRead", callback: { argumentExtractor in
+            
+            let value = try argumentExtractor.getArgument(type: String.self)
+            //self.markMsgDelivered(msgId: value)
+            Logs.show(message: ">>> MessageRead : \(value) |...|")
+        })
+        
         connection.on(method: "NewMessageReceived", callback: { argumentExtractor in
             
             let value = try argumentExtractor.getArgument(type: ChatModel.self)
@@ -76,6 +90,24 @@ class SignalRManager: NSObject {
         })
     }
     
+    func markMsgDelivered(msgId: String) {
+        
+            
+            let pram = ["messageId": msgId]
+            
+            Logs.show(message: "PRAM: \(pram)")
+            
+            SignalRManager.singelton.connection.invoke(method: "MessageRecieved", pram) {  error in
+                if let e = error {
+                    Logs.show(message: "Error: \(e)")
+                    AppFunctions.showSnackBar(str: "Error in sending message")
+                    return
+                }
+                
+            
+        }
+        
+    }
     func stopConnection() {
         connection.stop()
         connectionStarted = false

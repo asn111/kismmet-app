@@ -45,7 +45,7 @@ var selectedEndDate = ""
 
 let ApiService = APIService.singelton
 let DBService = Database.singleton
-let SignalRService = SignalRManager.singelton
+//let SignalRManager.singelton = SignalRManager.singelton.singelton
 
 var isFromProfile = false
 

@@ -109,7 +109,7 @@ class NotificationVC: MainViewController {
             .disposed(by: dispose_Bag)
         
         /*
-        SignalRService.connection.invoke(method: "UpdateUserNotificationStatus", pram) {  error in            Logs.show(message: "\(pram)")
+        SignalRManager.singelton.connection.invoke(method: "UpdateUserNotificationStatus", pram) {  error in            Logs.show(message: "\(pram)")
             if let e = error {
                 Logs.show(message: "Error: \(e)")
                 return
@@ -266,6 +266,13 @@ extension NotificationVC : UITableViewDelegate, UITableViewDataSource {
                         
                         cell.nameLbl.text = String(firstPart)
                         cell.notifLbl.text = String(secondPart)
+                    } else if let text = notif.notificationMessage,
+                              let keywordRange = text.range(of: "sent", options: .caseInsensitive) {
+                        let firstPart = text[text.startIndex..<keywordRange.lowerBound]
+                        let secondPart = text[keywordRange.lowerBound..<text.endIndex]
+                        
+                        cell.nameLbl.text = String(firstPart)
+                        cell.notifLbl.text = String(secondPart)
                     }
 
                     cell.timeLbl.text = notif.createdAt != nil ? convertDateFormat(inputDateString: notif.createdAt) : "---"
@@ -301,6 +308,13 @@ extension NotificationVC : UITableViewDelegate, UITableViewDataSource {
                     
                     if let text = notif.notificationMessage,
                        let keywordRange = text.range(of: "recently", options: .caseInsensitive) {
+                        let firstPart = text[text.startIndex..<keywordRange.lowerBound]
+                        let secondPart = text[keywordRange.lowerBound..<text.endIndex]
+                        
+                        cell.nameLbl.text = String(firstPart)
+                        cell.notifLbl.text = String(secondPart)
+                    } else if let text = notif.notificationMessage,
+                              let keywordRange = text.range(of: "sent", options: .caseInsensitive) {
                         let firstPart = text[text.startIndex..<keywordRange.lowerBound]
                         let secondPart = text[keywordRange.lowerBound..<text.endIndex]
                         

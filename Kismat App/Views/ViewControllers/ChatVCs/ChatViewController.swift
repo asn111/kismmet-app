@@ -16,11 +16,22 @@ class ChatViewController: MainViewController {
 
     @IBOutlet weak var userImageView: RoundedImageView!
     @IBOutlet weak var workLbl: fullyCustomLbl!
+    
+    @IBOutlet weak var userNameLabelM: fullyCustomLbl!
+    
+    @IBOutlet weak var userImageViewM: RoundedImageView!
+    @IBOutlet weak var workLblM: fullyCustomLbl!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var chatTextView: UITextView!
     @IBOutlet weak var viewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var onlineView: RoundCornerView!
+    
+    @IBOutlet var moreView: UIView!
+    @IBOutlet weak var profileView: RoundCornerView!
+    @IBOutlet weak var profileViewS: UIView!
+    @IBOutlet weak var clearChatView: UIView!
+    @IBOutlet weak var deleteView: UIView!
     
     @IBAction func backBtnPressed(_ sender: Any) {
         
@@ -58,10 +69,28 @@ class ChatViewController: MainViewController {
         // Do any additional setup after loading the view.
         
         _ = generalPublisherChat.subscribe(onNext: {[weak self] val in
+            if self?.chats.count == 0 {
+                let chat = ChatModelArray()
+                
+                let date = Date()
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+                dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+                let dateString = dateFormatter.string(from: date)
+                
+                chat.dayHeader = dateString
+                chat.messages.append(val)
+                self?.chats.append(chat)
+                self?.tableView.reloadData()
+                self?.scrollToBottom()
+                self?.markMsgRead()
+            } else {
+                self?.chats.last?.messages.append(val)
+                self?.tableView.reloadData()
+                self?.scrollToBottom()
+                self?.markMsgRead()
+            }
             
-            self?.chats.last?.messages.append(val)
-            self?.tableView.reloadData()
-            self?.scrollToBottom()
         }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
         
     }
@@ -99,27 +128,41 @@ class ChatViewController: MainViewController {
         
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.enable = false
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        //userImageView.layer.cornerRadius = userImageView.frame.height / 2
-        //userImageView.clipsToBounds = true
-        //userImageView.layer.borderWidth = 1.0
-        //userImageView.layer.masksToBounds = true
-        //userImageView.layer.borderColor = UIColor.darkGray.cgColor
+        
         let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(openProfileScreen))
-        self.userImageView.addGestureRecognizer(tapGesture)
+        self.profileView.addGestureRecognizer(tapGesture)
+        
+        let tapGestureProfile = UITapGestureRecognizer.init(target: self, action: #selector(openProfileScreen))
+        self.profileViewS.addGestureRecognizer(tapGestureProfile)
+        
+        let tapGestureDelChat = UITapGestureRecognizer.init(target: self, action: #selector(openDialogVC))
+        self.deleteView.addGestureRecognizer(tapGestureDelChat)
+        
+        let tapGestureMore = UITapGestureRecognizer.init(target: self, action: #selector(dismissMoreView))
+        self.tableView.addGestureRecognizer(tapGestureMore)
+        
         customSetup()
     }
     
     func customSetup(){
         
         userNameLabel.text = userName.capitalized
+        userNameLabelM.text = userName.capitalized
         workLbl.text = workTitle.capitalized
+        workLblM.text = workTitle.capitalized
         
         onlineView.isHidden = !isOnline
         
+        moreView.layer.cornerRadius = 16
+        moreView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        
         if let url = URL(string: userProfilePic) {
             userImageView.sd_setImage(with: url , placeholderImage: UIImage(named: "")) { (image, error, imageCacheType, url) in }
+            
+            userImageViewM.sd_setImage(with: url , placeholderImage: UIImage(named: "")) { (image, error, imageCacheType, url) in }
         }
     }
     
@@ -171,7 +214,43 @@ class ChatViewController: MainViewController {
     }
 
     @objc func openProfileScreen(){
+        let generator = UIImpactFeedbackGenerator(style: .rigid)
+        generator.impactOccurred()
         
+        UIView.animate(withDuration: 0.3) {
+            self.moreView.alpha = self.moreView.isHidden ? 1 : 0
+            self.moreView.isHidden.toggle()
+        }
+        
+        self.pushVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
+            vc.userId = userId
+            vc.isFromMessage = true
+        }
+    }
+    
+    @objc func dismissMoreView(){
+        let generator = UIImpactFeedbackGenerator(style: .rigid)
+        generator.impactOccurred()
+        
+        UIView.animate(withDuration: 0.3) {
+            self.moreView.alpha = self.moreView.isHidden ? 1 : 0
+            self.moreView.isHidden.toggle()
+        }
+    }
+    
+    @objc func openDialogVC(){
+        
+        let generator = UIImpactFeedbackGenerator(style: .rigid)
+        generator.impactOccurred()
+        
+        UIView.animate(withDuration: 0.3) {
+            self.moreView.alpha = self.moreView.isHidden ? 1 : 0
+            self.moreView.isHidden.toggle()
+        }
+        self.presentVC(id: "ImportantDialogVC", presentFullType: "over" ) { (vc:ImportantDialogVC) in
+            vc.dialogType = "DeleteChat"
+            vc.chatId = chatId
+        }
     }
     
     
@@ -220,7 +299,14 @@ class ChatViewController: MainViewController {
     //MARK: UIButton Action Method
     @IBAction func backButtonAction(_ sender: UIButton){
         
-        moreBtnPressed(sender: sender)
+        //moreBtnPressed(sender: sender)
+        let generator = UIImpactFeedbackGenerator(style: .rigid)
+        generator.impactOccurred()
+        
+        UIView.animate(withDuration: 0.3) {
+            self.moreView.alpha = self.moreView.isHidden ? 1 : 0
+            self.moreView.isHidden.toggle()
+        }
        
     }
     
@@ -280,9 +366,9 @@ class ChatViewController: MainViewController {
         
         Logs.show(message: "PRAM: \(pram)")
         
-        SignalRService.connection.invoke(method: "SendMessage", pram) {  error in
+        SignalRManager.singelton.connection.invoke(method: "SendMessage", pram) {  error in
             if let e = error {
-                Logs.show(message: "Error: \(e)")
+                Logs.show(message: "Error in sending message: \(e)")
                 AppFunctions.showSnackBar(str: "Error in sending message")
                 return
             }
@@ -299,15 +385,12 @@ class ChatViewController: MainViewController {
             
             Logs.show(message: "PRAM: \(pram)")
             
-            SignalRService.connection.invoke(method: "UpdateMessageStatusToRead", pram) {  error in
+            SignalRManager.singelton.connection.invoke(method: "UpdateMessageStatusToRead", pram) {  error in
                 if let e = error {
-                    Logs.show(message: "Error: \(e)")
-                    AppFunctions.showSnackBar(str: "Error in sending message")
+                    Logs.show(message: "Error in mark message read: \(e)")
+                    //AppFunctions.showSnackBar(str: "Error in mark message read")
                     return
                 }
-                self.chatTextView.text = ""
-                self.view.endEditing(true)
-                self.scrollToBottom()
             }
         }
         
@@ -357,7 +440,7 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
         let messages = chats[indexPath.section].messages
         
         // Get the message object for the current row
-        let obj = messages![indexPath.row]
+        let obj = messages[indexPath.row]
         
         if obj.senderId == AppFunctions.getUserId() {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SenderChatCell", for: indexPath) as! SenderChatCell
@@ -448,7 +531,7 @@ extension ChatViewController {
     
     func getChats() {
         
-        self.showPKHUD(WithMessage: "Fetching...")
+        //self.showPKHUD(WithMessage: "Fetching...")
         
         let pram : [String : Any] = ["userId": userId]
         Logs.show(message: "SKILLS PRAM: \(pram)")
@@ -467,6 +550,11 @@ extension ChatViewController {
                             self.scrollToBottom()
                             self.hidePKHUD()
                             self.markMsgRead()
+                            if let allMsg = val.first?.messages {
+                                if let id = allMsg.first?.chatId {
+                                    self.chatId = id
+                                }
+                            }
                         } else {
                             self.hidePKHUD()
                             self.chats.removeAll()
