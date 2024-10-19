@@ -286,7 +286,7 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 cell.chatBtn.addTarget(self, action: #selector(chatBtnPressed(sender:)), for: .touchUpInside)
                 
                 cell.notifbtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
-
+                cell.profilePicBtn.addTarget(self, action: #selector(profilePicBtnPressed(sender:)), for: .touchUpInside)
                 /*let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
                 cell.headerLogo.isHidden = true
                 cell.toolTipBtn.isHidden = true

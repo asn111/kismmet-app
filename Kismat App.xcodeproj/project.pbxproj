@@ -64,6 +64,8 @@
 		2965E2A52A24ADF7002962C3 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2965E2A42A24ADF7002962C3 /* NotificationModel.swift */; };
 		296D76912A1CF0A0005A3A99 /* hashTagsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D768F2A1CF0A0005A3A99 /* hashTagsTVCell.swift */; };
 		296D76922A1CF0A0005A3A99 /* hashTagsTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 296D76902A1CF0A0005A3A99 /* hashTagsTVCell.xib */; };
+		2973E0B12CC1596B0008FD58 /* EmptyChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2973E0B02CC1596B0008FD58 /* EmptyChatView.xib */; };
+		2973E0B22CC1596B0008FD58 /* EmptyChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2973E0AF2CC1596B0008FD58 /* EmptyChatView.swift */; };
 		29748F412C32F9D500DB89E9 /* rocketLaunch.gif in Resources */ = {isa = PBXBuildFile; fileRef = 29748F402C32F9D500DB89E9 /* rocketLaunch.gif */; };
 		29748F432C33CFD300DB89E9 /* ConnectedUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29748F422C33CFD200DB89E9 /* ConnectedUserProfile.swift */; };
 		29748F452C33F42600DB89E9 /* ReqAcceptVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29748F442C33F42600DB89E9 /* ReqAcceptVC.swift */; };
@@ -247,6 +249,8 @@
 		2965E2A62A24B5C5002962C3 /* Kismat App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Kismat App.entitlements"; sourceTree = "<group>"; };
 		296D768F2A1CF0A0005A3A99 /* hashTagsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hashTagsTVCell.swift; sourceTree = "<group>"; };
 		296D76902A1CF0A0005A3A99 /* hashTagsTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = hashTagsTVCell.xib; sourceTree = "<group>"; };
+		2973E0AF2CC1596B0008FD58 /* EmptyChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyChatView.swift; sourceTree = "<group>"; };
+		2973E0B02CC1596B0008FD58 /* EmptyChatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyChatView.xib; sourceTree = "<group>"; };
 		29748F402C32F9D500DB89E9 /* rocketLaunch.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = rocketLaunch.gif; sourceTree = "<group>"; };
 		29748F422C33CFD200DB89E9 /* ConnectedUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedUserProfile.swift; sourceTree = "<group>"; };
 		29748F442C33F42600DB89E9 /* ReqAcceptVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReqAcceptVC.swift; sourceTree = "<group>"; };
@@ -1036,6 +1040,8 @@
 				29353CAA2C8C7BFE00C45763 /* ChatUsersTVCell.xib */,
 				29842B0F2CA701BF0045D852 /* ChatListUserTVCell.swift */,
 				29842B102CA701BF0045D852 /* ChatListUserTVCell.xib */,
+				2973E0AF2CC1596B0008FD58 /* EmptyChatView.swift */,
+				2973E0B02CC1596B0008FD58 /* EmptyChatView.xib */,
 			);
 			path = MessageUserList;
 			sourceTree = "<group>";
@@ -1212,6 +1218,7 @@
 				29EE7DC32C39249800A1E877 /* ContactTextViewTVcell.xib in Resources */,
 				299FDD972996C8ED0049741B /* Roboto-Regular.ttf in Resources */,
 				29BE185029FA8573000EAC0E /* BlockBtnTVCell.xib in Resources */,
+				2973E0B12CC1596B0008FD58 /* EmptyChatView.xib in Resources */,
 				296D76922A1CF0A0005A3A99 /* hashTagsTVCell.xib in Resources */,
 				299FDD9A2996C8ED0049741B /* Roboto-Bold.ttf in Resources */,
 				294A79B1299AEB2E00089161 /* AboutTVCell.xib in Resources */,
@@ -1482,6 +1489,7 @@
 				29350A2129D0CC4100F19BD5 /* UserDBModel.swift in Sources */,
 				294A79A8299ADD4200089161 /* SettingTVCell.swift in Sources */,
 				297E59BE2CBFB80A00AEF0E1 /* ProfileHeaderPNewTVCell.swift in Sources */,
+				2973E0B22CC1596B0008FD58 /* EmptyChatView.swift in Sources */,
 				29985F3729981ADE001F769B /* GeneralHeaderTVCell.swift in Sources */,
 				299FDD14299679690049741B /* Kismat_App.xcdatamodeld in Sources */,
 				29353CBF2C8CCAF700C45763 /* MessageListViewController.swift in Sources */,
@@ -1700,7 +1708,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1740,7 +1748,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;

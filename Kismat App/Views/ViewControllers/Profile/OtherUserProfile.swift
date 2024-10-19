@@ -616,7 +616,7 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 cell.requestBtn.addTarget(self, action: #selector(sendContactRocket(sender:)), for: .touchUpInside)
                 cell.requestBtn2.addTarget(self, action: #selector(sendContactRocket(sender:)), for: .touchUpInside)
                 cell.messageBtn.addTarget(self, action: #selector(sendMessagePressed(sender:)), for: .touchUpInside)
-
+                cell.profilePicBtn.addTarget(self, action: #selector(profilePicBtnPressed(sender:)), for: .touchUpInside)
                 return cell
 
                 /*cell.toolTipBtn.isHidden = true

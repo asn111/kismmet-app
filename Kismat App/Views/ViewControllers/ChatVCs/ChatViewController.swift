@@ -115,6 +115,7 @@ class ChatViewController: MainViewController {
     //MARK: Helper Method
     func initialMethod() {
         pullToRefersh()
+        tableView.register(UINib(nibName: "EmptyChatView", bundle: nil), forCellReuseIdentifier: "EmptyChatView")
         tableView.register(UINib(nibName: "SenderChatCell", bundle: nil), forCellReuseIdentifier: "SenderChatCell")
         tableView.register(UINib(nibName: "ReceiverChatCell", bundle: nil), forCellReuseIdentifier: "ReceiverChatCell")
         
@@ -401,14 +402,20 @@ class ChatViewController: MainViewController {
 extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
     //MARK: - UITableViewDelegateDataSource Methods
     func numberOfSections(in tableView: UITableView) -> Int {
-        return chats.count
+        return chats.count > 0 ? chats.count : 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chats[section].messages.count
+        return chats.count > 0 ? chats[section].messages.count : 1
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
+        if chats.isEmpty {
+            
+            let headerView = UIView()
+            headerView.backgroundColor = .clear
+            return headerView
+        }
         let headerView = UIView()
         headerView.backgroundColor = UIColor.clear
         
@@ -436,24 +443,33 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        // Get the array of messages for the current section
-        let messages = chats[indexPath.section].messages
-        
-        // Get the message object for the current row
-        let obj = messages[indexPath.row]
-        
-        if obj.senderId == AppFunctions.getUserId() {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SenderChatCell", for: indexPath) as! SenderChatCell
-            cell.populateCell(obj: obj)
-            cell.vc = self
-            cell.shapeView.setNeedsDisplay()
+        if chats.isEmpty {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyChatView", for: indexPath) as! EmptyChatView
+            
+            cell.emptyLbl.text = "No messages yet. Start the conversation now and keep the discussion respectful and courteous."
+            cell.emptyViewBtn.isHidden = true
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiverChatCell", for: indexPath) as! ReceiverChatCell
-            cell.populateCell(obj: obj)
-            cell.vc = self
-            cell.shapeView.setNeedsDisplay()
-            return cell
+            // Get the array of messages for the current section
+            let messages = chats[indexPath.section].messages
+            
+            // Get the message object for the current row
+            let obj = messages[indexPath.row]
+            
+            if obj.senderId == AppFunctions.getUserId() {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SenderChatCell", for: indexPath) as! SenderChatCell
+                cell.populateCell(obj: obj)
+                cell.vc = self
+                cell.shapeView.setNeedsDisplay()
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiverChatCell", for: indexPath) as! ReceiverChatCell
+                cell.populateCell(obj: obj)
+                cell.vc = self
+                cell.shapeView.setNeedsDisplay()
+                return cell
+            }
         }
         
     }

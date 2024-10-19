@@ -69,7 +69,6 @@ class ReqConVC: MainViewController {
             self.showHideFabBtn(shouldShow: false)
         } else if self.selectedUsertype == "chat" {
             self.getChatUsers()
-            self.showHideFabBtn(shouldShow: true)
         } else {
             self.getReqUsers(load: false)
             self.showHideFabBtn(shouldShow: false)
@@ -103,12 +102,17 @@ class ReqConVC: MainViewController {
         reqTV.register(UINib(nibName: "FeedItemsTVCell", bundle: nil), forCellReuseIdentifier: "FeedItemsTVCell")
         reqTV.register(UINib(nibName: "FeedItem2TVCell", bundle: nil), forCellReuseIdentifier: "FeedItem2TVCell")
         reqTV.register(UINib(nibName: "ChatUsersTVCell", bundle: nil), forCellReuseIdentifier: "ChatUsersTVCell")
+        reqTV.register(UINib(nibName: "EmptyChatView", bundle: nil), forCellReuseIdentifier: "EmptyChatView")
         reqTV.register(UINib(nibName: "VisibilityOffTVCell", bundle: nil), forCellReuseIdentifier: "VisibilityOffTVCell")
 
     }
     
     @objc func chatBtnPressed(sender: UIButton) {
         self.pushVC(id: "MessageListViewController") { (vc:MessageListViewController) in }
+    }
+    
+    @objc func emptyChatBtnPressed(sender: UIButton) {
+        self.presentVC(id: "ChatUsersListVC", presentFullType: "over" ) { (vc:ChatUsersListVC) in }
     }
     
     @objc func searchBtnPressed(sender: UIButton) {
@@ -340,12 +344,14 @@ class ReqConVC: MainViewController {
                             self.reqTV.reloadData()
                             self.hidePKHUD()
                             self.stopRefresher()
+                            self.showHideFabBtn(shouldShow: true)
 
                         } else {
                             self.hidePKHUD()
                             self.chatsUsers.removeAll()
                             self.reqTV.reloadData()
                             self.stopRefresher()
+                            self.showHideFabBtn(shouldShow: false)
 
                         }
                     case .error(let error):
@@ -374,7 +380,7 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if selectedUsertype == "chat" {
             if chatsUsers.isEmpty {
-                return 1
+                return 2
             }
             return chatsUsers.count + 1
 
@@ -399,7 +405,7 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
             cell.onReqBtnTap = {
                 
                 self.getReqUsers(load: false)
-                cell.headerLbl.text = "RESPOND"
+                cell.headerLbl.text = "FRIENDS"
                 self.selectedUsertype = "req"
                 self.showHideFabBtn(shouldShow: false)
                 UIView.transition(with: cell.btnsImg,
@@ -423,7 +429,7 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
             
             cell.onChatBtnTap = {
                 self.getChatUsers()
-                cell.headerLbl.text = "CHATS"
+                cell.headerLbl.text = "FRIENDS"
                 self.selectedUsertype = "chat"
                 self.showHideFabBtn(shouldShow: true)
                 UIView.transition(with: cell.btnsImg,
@@ -476,60 +482,49 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
             
             if selectedUsertype == "chat" {
                 
-                cell = tableView.dequeueReusableCell(withIdentifier: "ChatUsersTVCell", for: indexPath) as! ChatUsersTVCell
-
-                let user = chatsUsers[indexPath.row - 1]
-
-                if let chatUserCell = cell as? ChatUsersTVCell {
-                    chatUserCell.nameLbl.text = user.userName.capitalized
-                    chatUserCell.proffLbl.text = user.userWorkTitle.capitalized
-                    chatUserCell.lastMsgTimeLbl.text = fancyStyleDate(dateStr: user.lastLoginTime).toRelative(since: DateInRegion(), dateTimeStyle: .numeric, unitsStyle: .full) 
-
-                    if let url = URL(string: user.userProfilePicture) {
-                        chatUserCell.profileIcon.sd_setImage(with: url , placeholderImage: UIImage(named: "")) { (image, error, imageCacheType, url) in }
-                    }
+                if chatsUsers.isEmpty {
                     
-                    if user.isOnline {
-                        chatUserCell.onlineView.isHidden = false
-                    } else {
-                        chatUserCell.onlineView.isHidden = true
-                    }
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyChatView", for: indexPath) as! EmptyChatView
                     
-                    if user.unReadCount > 0 {
-                        chatUserCell.countLbl.text = "\(user.unReadCount ?? 0)"
-                        chatUserCell.countView.isHidden = false
-                    } else {
-                        chatUserCell.countView.isHidden = true
-                    }
+                    cell.emptyViewBtn.addTarget(self, action: #selector(emptyChatBtnPressed(sender:)), for: .touchUpInside)
+
+                    return cell
+                } else {
                     
-                    if user.lastMessage.isLastMessageByMe {
+                    cell = tableView.dequeueReusableCell(withIdentifier: "ChatUsersTVCell", for: indexPath) as! ChatUsersTVCell
+                    
+                    let user = chatsUsers[indexPath.row - 1]
+                    
+                    if let chatUserCell = cell as? ChatUsersTVCell {
+                        chatUserCell.nameLbl.text = user.userName.capitalized
+                        chatUserCell.proffLbl.text = user.userWorkTitle.capitalized
+                        chatUserCell.lastMsgTimeLbl.text = fancyStyleDate(dateStr: user.lastLoginTime).toRelative(since: DateInRegion(), dateTimeStyle: .numeric, unitsStyle: .full)
                         
-                        let text = "You: " + user.lastMessage.chatMessage.capitalized
-                        let textRange = NSRange(location: 0, length: 4)
-                        let attributedText = NSMutableAttributedString(string: text)
-                        
-                        // Safely unwrap the font
-                        if let mediumFont = UIFont(name: "Roboto", size: 14)?.medium {
-                            attributedText.addAttribute(NSAttributedString.Key.font, value: mediumFont, range: textRange)
+                        if let url = URL(string: user.userProfilePicture) {
+                            chatUserCell.profileIcon.sd_setImage(with: url , placeholderImage: UIImage(named: "")) { (image, error, imageCacheType, url) in }
                         }
                         
-                        // Safely unwrap the color
-                        if let textGreyColor = UIColor(named: "Text Grey") {
-                            attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: textGreyColor, range: textRange)
+                        if user.isOnline {
+                            chatUserCell.onlineView.isHidden = false
+                        } else {
+                            chatUserCell.onlineView.isHidden = true
                         }
                         
-                        // Assign to the label
-                        chatUserCell.msgLbl.attributedText = attributedText
-                        
-                    } else {
                         if user.unReadCount > 0 {
+                            chatUserCell.countLbl.text = "\(user.unReadCount ?? 0)"
+                            chatUserCell.countView.isHidden = false
+                        } else {
+                            chatUserCell.countView.isHidden = true
+                        }
+                        
+                        if user.lastMessage.isLastMessageByMe {
                             
-                            let text = user.lastMessage.chatMessage ?? "--"
-                            let textRange = NSRange(location: 0, length: user.lastMessage.chatMessage.count)
+                            let text = "You: " + user.lastMessage.chatMessage.capitalized
+                            let textRange = NSRange(location: 0, length: 4)
                             let attributedText = NSMutableAttributedString(string: text)
                             
                             // Safely unwrap the font
-                            if let mediumFont = UIFont(name: "Roboto", size: 14)?.semibold {
+                            if let mediumFont = UIFont(name: "Roboto", size: 14)?.medium {
                                 attributedText.addAttribute(NSAttributedString.Key.font, value: mediumFont, range: textRange)
                             }
                             
@@ -542,13 +537,34 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                             chatUserCell.msgLbl.attributedText = attributedText
                             
                         } else {
-                            chatUserCell.msgLbl.text = user.lastMessage.chatMessage.capitalized
+                            if user.unReadCount > 0 {
+                                
+                                let text = user.lastMessage.chatMessage ?? "--"
+                                let textRange = NSRange(location: 0, length: user.lastMessage.chatMessage.count)
+                                let attributedText = NSMutableAttributedString(string: text)
+                                
+                                // Safely unwrap the font
+                                if let mediumFont = UIFont(name: "Roboto", size: 14)?.semibold {
+                                    attributedText.addAttribute(NSAttributedString.Key.font, value: mediumFont, range: textRange)
+                                }
+                                
+                                // Safely unwrap the color
+                                if let textGreyColor = UIColor(named: "Text Grey") {
+                                    attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: textGreyColor, range: textRange)
+                                }
+                                
+                                // Assign to the label
+                                chatUserCell.msgLbl.attributedText = attributedText
+                                
+                            } else {
+                                chatUserCell.msgLbl.text = user.lastMessage.chatMessage.capitalized
+                            }
                         }
                     }
+                    
+                    
+                    return cell
                 }
-                
-                
-                return cell
                 
             } else {
                 

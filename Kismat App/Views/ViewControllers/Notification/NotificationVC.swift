@@ -74,6 +74,11 @@ class NotificationVC: MainViewController {
         notifTV.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
     }
     
+    @objc func chatBtnPressed(sender: UIButton) {
+        self.pushVC(id: "MessageListViewController") { (vc:MessageListViewController) in }
+    }
+    
+    
 //MARK: API METHODS
     
     func updateNotif(id: Int) {
@@ -239,7 +244,8 @@ extension NotificationVC : UITableViewDelegate, UITableViewDataSource {
                 cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
                 cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
-                
+                cell.chatBtn.addTarget(self, action: #selector(chatBtnPressed(sender:)), for: .touchUpInside)
+
                 return cell
             case 1: // Unread notifications
                 if indexPath.row == 0 { // Subheader

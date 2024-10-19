@@ -23,6 +23,12 @@ class MessageListViewController: MainViewController {
         
         registerCells()
         
+        fabTapAction = { [weak self] in
+            if !(self?.chatsUsers.isEmpty ?? false) {
+                self?.presentVC(id: "ChatUsersListVC", presentFullType: "over" ) { (vc:ChatUsersListVC) in }
+            }
+        }
+        
         _ = generalPublisherChat.subscribe(onNext: {[weak self] val in
             
             self?.getChatUsers()
@@ -46,6 +52,7 @@ class MessageListViewController: MainViewController {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: tabBarHeight + bottomSpace, right: 0)
         
         tableView.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
+        tableView.register(UINib(nibName: "EmptyChatView", bundle: nil), forCellReuseIdentifier: "EmptyChatView")
         tableView.register(UINib(nibName: "ChatUsersTVCell", bundle: nil), forCellReuseIdentifier: "ChatUsersTVCell")
         
     }
@@ -67,6 +74,10 @@ class MessageListViewController: MainViewController {
     
     @objc func toolBtnPressed(sender: UIButton) {
         AppFunctions.showToolTip(str: "Browse your blocked users.", btn: sender)
+    }
+    
+    @objc func emptyChatBtnPressed(sender: UIButton) {
+        self.presentVC(id: "ChatUsersListVC", presentFullType: "over" ) { (vc:ChatUsersListVC) in }
     }
     
     @objc func searchBtnPressed(sender: UIButton) {
@@ -120,10 +131,14 @@ class MessageListViewController: MainViewController {
                             self.chatsUsers = val
                             self.tableView.reloadData()
                             self.hidePKHUD()
+                            self.showHideFabBtn(shouldShow: true)
+
                         } else {
                             self.hidePKHUD()
                             self.chatsUsers.removeAll()
                             self.tableView.reloadData()
+                            self.showHideFabBtn(shouldShow: false)
+
                         }
                     case .error(let error):
                         print(error)
@@ -142,7 +157,7 @@ class MessageListViewController: MainViewController {
 
 extension MessageListViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chatsUsers.count + 1
+        return chatsUsers.count > 0 ? chatsUsers.count + 1 : 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -185,61 +200,47 @@ extension MessageListViewController: UITableViewDelegate,UITableViewDataSource {
             
             
         } else {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ChatUsersTVCell", for: indexPath) as! ChatUsersTVCell
-            
-            let user = chatsUsers[indexPath.row - 1]
-            
-            cell.nameLbl.text = user.userName.capitalized
-            cell.proffLbl.text = user.userWorkTitle.capitalized
-            cell.lastMsgTimeLbl.text = fancyStyleDate(dateStr: user.lastLoginTime).toRelative(since: DateInRegion(), dateTimeStyle: .numeric, unitsStyle: .full)
-
-            if let url = URL(string: user.userProfilePicture) {
-                cell.profileIcon.sd_setImage(with: url , placeholderImage: UIImage(named: "")) { (image, error, imageCacheType, url) in }
-            }
-            
-            if user.isOnline {
-                cell.onlineView.isHidden = false
-            } else {
-                cell.onlineView.isHidden = true
-            }
-            
-            if user.unReadCount > 0 {
-                cell.countLbl.text = "\(user.unReadCount ?? 0)"
-                cell.countView.isHidden = false
-            } else {
-                cell.countView.isHidden = true
-            }
-            
-            if user.lastMessage.isLastMessageByMe {
+            if chatsUsers.isEmpty {
                 
-                let text = "You: " + user.lastMessage.chatMessage.capitalized
-                let textRange = NSRange(location: 0, length: 4)
-                let attributedText = NSMutableAttributedString(string: text)
+                let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyChatView", for: indexPath) as! EmptyChatView
                 
-                // Safely unwrap the font
-                if let mediumFont = UIFont(name: "Roboto", size: 14)?.medium {
-                    attributedText.addAttribute(NSAttributedString.Key.font, value: mediumFont, range: textRange)
+                cell.emptyViewBtn.addTarget(self, action: #selector(emptyChatBtnPressed(sender:)), for: .touchUpInside)
+                
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ChatUsersTVCell", for: indexPath) as! ChatUsersTVCell
+                
+                let user = chatsUsers[indexPath.row - 1]
+                
+                cell.nameLbl.text = user.userName.capitalized
+                cell.proffLbl.text = user.userWorkTitle.capitalized
+                cell.lastMsgTimeLbl.text = fancyStyleDate(dateStr: user.lastLoginTime).toRelative(since: DateInRegion(), dateTimeStyle: .numeric, unitsStyle: .full)
+                
+                if let url = URL(string: user.userProfilePicture) {
+                    cell.profileIcon.sd_setImage(with: url , placeholderImage: UIImage(named: "")) { (image, error, imageCacheType, url) in }
                 }
                 
-                // Safely unwrap the color
-                if let textGreyColor = UIColor(named: "Text Grey") {
-                    attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: textGreyColor, range: textRange)
+                if user.isOnline {
+                    cell.onlineView.isHidden = false
+                } else {
+                    cell.onlineView.isHidden = true
                 }
                 
-                // Assign to the label
-                cell.msgLbl.attributedText = attributedText
-
-                
-            } else {
                 if user.unReadCount > 0 {
+                    cell.countLbl.text = "\(user.unReadCount ?? 0)"
+                    cell.countView.isHidden = false
+                } else {
+                    cell.countView.isHidden = true
+                }
+                
+                if user.lastMessage.isLastMessageByMe {
                     
-                    let text = user.lastMessage.chatMessage ?? "--"
-                    let textRange = NSRange(location: 0, length: user.lastMessage.chatMessage.count)
+                    let text = "You: " + user.lastMessage.chatMessage.capitalized
+                    let textRange = NSRange(location: 0, length: 4)
                     let attributedText = NSMutableAttributedString(string: text)
                     
                     // Safely unwrap the font
-                    if let mediumFont = UIFont(name: "Roboto", size: 14)?.semibold {
+                    if let mediumFont = UIFont(name: "Roboto", size: 14)?.medium {
                         attributedText.addAttribute(NSAttributedString.Key.font, value: mediumFont, range: textRange)
                     }
                     
@@ -251,13 +252,37 @@ extension MessageListViewController: UITableViewDelegate,UITableViewDataSource {
                     // Assign to the label
                     cell.msgLbl.attributedText = attributedText
                     
+                    
                 } else {
-                    cell.msgLbl.text = user.lastMessage.chatMessage
+                    if user.unReadCount > 0 {
+                        
+                        let text = user.lastMessage.chatMessage ?? "--"
+                        let textRange = NSRange(location: 0, length: user.lastMessage.chatMessage.count)
+                        let attributedText = NSMutableAttributedString(string: text)
+                        
+                        // Safely unwrap the font
+                        if let mediumFont = UIFont(name: "Roboto", size: 14)?.semibold {
+                            attributedText.addAttribute(NSAttributedString.Key.font, value: mediumFont, range: textRange)
+                        }
+                        
+                        // Safely unwrap the color
+                        if let textGreyColor = UIColor(named: "Text Grey") {
+                            attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: textGreyColor, range: textRange)
+                        }
+                        
+                        // Assign to the label
+                        cell.msgLbl.attributedText = attributedText
+                        
+                    } else {
+                        cell.msgLbl.text = user.lastMessage.chatMessage
+                    }
                 }
+                
+                return cell
             }
-            
-            return cell
+        
         }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -265,6 +290,7 @@ extension MessageListViewController: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if chatsUsers.isEmpty { return }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let user = chatsUsers[indexPath.row - 1]
@@ -293,11 +319,18 @@ extension MessageListViewController: UITableViewDelegate,UITableViewDataSource {
     -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { (_, _, completionHandler) in
             // delete the item here
-            // completionHandler(true)
-            //self.deleteMessage(obj: self.chats[indexPath.row])
+             completionHandler(true)
+            ApiService.deleteChatUsers(chatID: self.chatsUsers[indexPath.row - 1].chatId)
+            self.chatsUsers.remove(at: indexPath.row - 1)
+            if self.chatsUsers.count == 0 {
+                self.showHideFabBtn(shouldShow: false)
+            }
+            tableView.reloadData()
+            
         }
         deleteAction.image = UIImage(systemName: "x.circle")
         deleteAction.image?.withTintColor(UIColor.white)
+        
         //deleteAction.backgroundColor = UIColor(named: "Text Grey")
         let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
         return configuration

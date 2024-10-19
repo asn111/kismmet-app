@@ -245,7 +245,7 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
                 }
 
                 cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
-                cell.notifBtn.setImage(UIImage(named: "wifi man grey"), for: .normal)
+                cell.notifBtn.setImage(UIImage(named: "wifi man grey 2"), for: .normal)
                 
                 cell.toolTipBtn.addTarget(self, action: #selector(toolBtnPressed(sender:)), for: .touchUpInside)
                 cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
