@@ -534,6 +534,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 cell.swipeTxtLbl.isHidden = true
                 cell.headerView.isHidden = false
                 cell.notifBtn.isHidden = true
+                cell.chatBtn.isHidden = true
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
                 cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
 

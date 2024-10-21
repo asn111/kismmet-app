@@ -66,7 +66,7 @@ class ReqConVC: MainViewController {
         super.viewWillAppear(true)
         if self.selectedUsertype == "con" {
             self.getContUsers(load: false)
-            self.showHideFabBtn(shouldShow: false)
+            //self.showHideFabBtn(shouldShow: false)
         } else if self.selectedUsertype == "chat" {
             self.getChatUsers()
         } else {
@@ -431,7 +431,7 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                 self.getChatUsers()
                 cell.headerLbl.text = "FRIENDS"
                 self.selectedUsertype = "chat"
-                self.showHideFabBtn(shouldShow: true)
+                //self.showHideFabBtn(shouldShow: true)
                 UIView.transition(with: cell.btnsImg,
                                   duration: 0.1, // Adjust the duration as needed
                                   options:.transitionCrossDissolve,
@@ -667,7 +667,7 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
             
             if selectedUsertype == "chat" {
                 //self.pushVC(id: "MessageListViewController") { (vc:MessageListViewController) in }
-                
+                if chatsUsers.isEmpty { return }
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 
                 let user = chatsUsers[indexPath.row - 1]

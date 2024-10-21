@@ -1771,7 +1771,7 @@ and Privacy Policy</string>
                                                 </constraints>
                                                 <color key="tintColor" name="Secondary Grey"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="wifi man grey">
+                                                <state key="normal" image="wifi man grey 2">
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
                                                 </state>
                                                 <connections>
@@ -2254,7 +2254,7 @@ and Privacy Policy</string>
                                                 </constraints>
                                                 <color key="tintColor" name="Secondary Grey"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="wifi man grey">
+                                                <state key="normal" image="wifi man grey 2">
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
                                                 </state>
                                                 <connections>
@@ -2589,7 +2589,7 @@ and Privacy Policy</string>
                                                 </constraints>
                                                 <color key="tintColor" name="Secondary Grey"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="wifi man grey">
+                                                <state key="normal" image="wifi man grey 2">
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
                                                 </state>
                                                 <connections>
@@ -4443,7 +4443,7 @@ Thank you!</string>
                                                 </constraints>
                                                 <color key="tintColor" name="Secondary Grey"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="wifi man grey">
+                                                <state key="normal" image="wifi man grey 2">
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
                                                 </state>
                                                 <connections>
@@ -4569,7 +4569,7 @@ Thank you!</string>
                                                 </constraints>
                                                 <color key="tintColor" name="Secondary Grey"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="wifi man grey">
+                                                <state key="normal" image="wifi man grey 2">
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
                                                 </state>
                                                 <connections>
@@ -4876,7 +4876,7 @@ Thank you!</string>
                                         </constraints>
                                         <color key="tintColor" name="Secondary Grey"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="wifi man grey">
+                                        <state key="normal" image="wifi man grey 2">
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
                                         </state>
                                         <connections>
@@ -4989,7 +4989,7 @@ Thank you!</string>
                                         </constraints>
                                         <color key="tintColor" name="Secondary Grey"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="wifi man grey">
+                                        <state key="normal" image="wifi man grey 2">
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
                                         </state>
                                     </button>
@@ -7813,6 +7813,7 @@ No worries if yes, the other person will not be notified.</string>
         <image name="tooltip_icon" width="48" height="48"/>
         <image name="wifi man" width="826" height="1024"/>
         <image name="wifi man grey" width="273" height="338"/>
+        <image name="wifi man grey 2" width="162" height="152"/>
         <image name="wifi_man" width="25" height="46"/>
         <image name="xmark.circle" catalog="system" width="128" height="123"/>
         <namedColor name="BG Base White">

@@ -219,7 +219,14 @@ class OtherUserProfile: MainViewController {
     @objc func sendMessagePressed(sender: UIButton) {
         
         if isFromMessage {
-            self.navigationController?.popViewController(animated: true)
+            if let navigationController = self.navigationController {
+                // If the view is part of a navigation stack, pop it
+                self.navigationController?.popViewController(animated: true)
+            } else if self.presentingViewController != nil {
+                // If the view is presented modally, dismiss it
+                self.dismiss(animated: true, completion: nil)
+            }
+
             return
         }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

@@ -106,6 +106,10 @@ class StarredVC: MainViewController {
         getStarUsers(load: true)
     }
     
+    @objc func chatBtnPressed(sender: UIButton) {
+        self.pushVC(id: "MessageListViewController") { (vc:MessageListViewController) in }
+    }
+    
     @objc
     func starTapFunction(sender: UIButton) {
         let index = sender.tag
@@ -250,6 +254,7 @@ extension StarredVC : UITableViewDelegate, UITableViewDataSource {
                 cell.toolTipBtn.addTarget(self, action: #selector(toolBtnPressed(sender:)), for: .touchUpInside)
                 cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
+                cell.chatBtn.addTarget(self, action: #selector(chatBtnPressed(sender:)), for: .touchUpInside)
 
                 cell.picBtn.borderWidth = 0
 

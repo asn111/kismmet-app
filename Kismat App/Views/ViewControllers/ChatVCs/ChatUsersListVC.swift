@@ -145,6 +145,7 @@ extension ChatUsersListVC : UITableViewDelegate, UITableViewDataSource {
             let user = users[indexPath.row]
 
             vc.userId = user.userId
+            vc.isPresented = true
             //vc.chatId = user.chatId
             //vc.isOnline = user.isOnline
             vc.userName = user.userName

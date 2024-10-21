@@ -223,9 +223,17 @@ class ChatViewController: MainViewController {
             self.moreView.isHidden.toggle()
         }
         
-        self.pushVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
-            vc.userId = userId
-            vc.isFromMessage = true
+        if isPresented {
+            self.presentVC(id: "OtherUserProfile", presentFullType: "over" ) { (vc:OtherUserProfile) in
+                vc.userId = userId
+                vc.isFromMessage = true
+            }
+        } else {
+            
+            self.pushVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
+                vc.userId = userId
+                vc.isFromMessage = true
+            }
         }
     }
     
@@ -248,6 +256,7 @@ class ChatViewController: MainViewController {
             self.moreView.alpha = self.moreView.isHidden ? 1 : 0
             self.moreView.isHidden.toggle()
         }
+        if chatId == 0 { return }
         self.presentVC(id: "ImportantDialogVC", presentFullType: "over" ) { (vc:ImportantDialogVC) in
             vc.dialogType = "DeleteChat"
             vc.chatId = chatId
