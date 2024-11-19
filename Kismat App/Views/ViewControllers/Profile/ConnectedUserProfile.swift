@@ -37,6 +37,7 @@ class ConnectedUserProfile: MainViewController {
     var markView = false
     var userModel = UserModel()
     var userId = ""
+    var contactId = 0
     var socialAccModel = [ContactInformations]()
     
     var reasonsList = [ReportReasonsModel]()
@@ -48,7 +49,8 @@ class ConnectedUserProfile: MainViewController {
         
         getReasons()
         
-        
+        //userProfile(id: userId)
+
         Logs.show(message: "User ID: \(String(describing: userModel.userId))")
         Logs.show(message: "User: \(userModel)")
         
@@ -60,7 +62,6 @@ class ConnectedUserProfile: MainViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        userProfile(id: userId)
         
     }
     
@@ -78,12 +79,7 @@ class ConnectedUserProfile: MainViewController {
         otherProfileTV.addGestureRecognizer(longPressRecognizer)
         
         otherProfileTV.register(UINib(nibName: "GeneralHeaderTVCell", bundle: nil), forCellReuseIdentifier: "GeneralHeaderTVCell")
-        otherProfileTV.register(UINib(nibName: "AboutTVCell", bundle: nil), forCellReuseIdentifier: "AboutTVCell")
-        otherProfileTV.register(UINib(nibName: "MixHeaderTVCell", bundle: nil), forCellReuseIdentifier: "MixHeaderTVCell")
-        otherProfileTV.register(UINib(nibName: "ProfileTVCell", bundle: nil), forCellReuseIdentifier: "ProfileTVCell")
-        otherProfileTV.register(UINib(nibName: "SocialAccTVCell", bundle: nil), forCellReuseIdentifier: "SocialAccTVCell")
-        otherProfileTV.register(UINib(nibName: "GeneralButtonTVCell", bundle: nil), forCellReuseIdentifier: "GeneralButtonTVCell")
-        otherProfileTV.register(UINib(nibName: "BlockBtnTVCell", bundle: nil), forCellReuseIdentifier: "BlockBtnTVCell")
+        otherProfileTV.register(UINib(nibName: "ConnectedBtnsTVCell", bundle: nil), forCellReuseIdentifier: "ConnectedBtnsTVCell")
     }
     
     @objc func handleLongPress(sender: UILongPressGestureRecognizer) {
@@ -132,6 +128,35 @@ class ConnectedUserProfile: MainViewController {
         alert.canHideWhenTapBack = true
         alert.add(action: action)
         alert.add(action: action2)
+        alert.hideAnimations = { (center, transform, alpha) in
+            transform = .identity
+            alpha = 0
+        }
+        alert.show() { (alert) in
+            print("completed")
+        }
+    }
+    
+    func showAlertCancel(){
+        var message = ""
+        
+        message = "Are you sure you want to delete this contact?"
+        
+        
+        let alert = CDAlertView(title: "Alert!", message: message, type: .error)
+        let action = CDAlertViewAction(title: "Delete",
+                                       handler: {[weak self] action in
+            self?.deleteContact()
+            return true
+        })
+        let cancel = CDAlertViewAction(title: "Cancel",
+                                       handler: { action in
+            print("CANCEL PRESSED")
+            return true
+        })
+        alert.isTextFieldHidden = true
+        alert.add(action: action)
+        alert.add(action: cancel)
         alert.hideAnimations = { (center, transform, alpha) in
             transform = .identity
             alpha = 0
@@ -230,6 +255,30 @@ class ConnectedUserProfile: MainViewController {
     
     @objc func notifBtnPressed(sender: UIButton) {
         showAlert()
+    }
+    
+    @objc func deleteBtnPressed(sender: UIButton) {
+        showAlertCancel()
+    }
+    
+    @objc func msgBtnPressed(sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
+            let user = userModel
+            
+            vc.userId = user.userId
+            vc.workTitle = user.workTitle
+            vc.userName = user.userName
+            vc.userProfilePic = user.profilePicture
+            
+            let transition = CATransition()
+            transition.duration = 0.5
+            transition.subtype = CATransitionSubtype.fromRight
+            transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.default)
+            transition.type = CATransitionType.fade
+            self.navigationController?.view.layer.add(transition, forKey: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @objc func genBtnPressedForProfile(sender:UIButton) {
@@ -347,12 +396,46 @@ class ConnectedUserProfile: MainViewController {
             .disposed(by: dispose_Bag)
     }
     
+    func deleteContact() {
+        self.showPKHUD(WithMessage: "")
+        
+        let pram : [String : Any] = [ "contactId": userModel.contactId ?? 0 ]
+        
+        Logs.show(message: "SKILLS PRAM: \(pram)")
+        
+        APIService
+            .singelton
+            .deleteContactReq(pram: pram)
+            .subscribe({[weak self] model in
+                guard let self = self else {return}
+                switch model {
+                    case .next(let val):
+                        Logs.show(message: "MARKED: 👉🏻 \(val)")
+                        if val {
+                            AppFunctions.showSnackBar(str: "Contact deleted successfully")
+                            self.hidePKHUD()
+                            self.navigationController?.popViewController(animated: true)
+                            
+                        } else {
+                            self.hidePKHUD()
+                        }
+                    case .error(let error):
+                        print(error)
+                        self.hidePKHUD()
+                    case .completed:
+                        print("completed")
+                        self.hidePKHUD()
+                }
+            })
+            .disposed(by: dispose_Bag)
+    }
+    
 }
 //MARK: TableView Extention
 extension ConnectedUserProfile : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return socialAccModel.count + 6
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -362,10 +445,19 @@ extension ConnectedUserProfile : UITableViewDelegate, UITableViewDataSource {
                 let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
                 cell.toolTipBtn.isHidden = true
                 cell.searchTFView.isHidden = true
+                cell.headerLogo.isHidden = true
+                cell.headerLbl.text = "Contacts".uppercased()
+                
+                cell.headerLbl.isHidden = false
                 cell.profileView.isHidden = false
-                cell.headerLogo.isHidden = false
                 cell.headerView.isHidden = false
                 cell.rattingBtn.isHidden = false
+                
+            
+                
+                cell.notifBtn.isHidden = true
+                cell.chatBtn.isHidden = true
+                cell.rocketBtn.isHidden = true
                 
                 cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
                 
@@ -387,13 +479,6 @@ extension ConnectedUserProfile : UITableViewDelegate, UITableViewDataSource {
                 cell.professionLbl.text = userModel.workTitle
                 cell.educationLbl.text = userModel.workAddress
                 
-                if AppFunctions.isNotifNotCheck() {
-                    cell.notifBtn.tintColor = UIColor(named:"Danger")
-                } else if AppFunctions.isShadowModeOn() {
-                    cell.notifBtn.tintColor = UIColor(named: "Primary Yellow")
-                } else {
-                    cell.notifBtn.tintColor = UIColor(named: "Text grey")
-                }
                 
                 if userModel.profilePicture != "" && userModel.profilePicture != nil {
                     let imageUrl = URL(string: userModel.profilePicture)
@@ -402,167 +487,44 @@ extension ConnectedUserProfile : UITableViewDelegate, UITableViewDataSource {
                     cell.profilePicBtn.setImage(img, for: .normal)
                 }
                 
-                cell.notifBtn.isHidden = true
-                
-                cell.rocketBtn.isHidden = true
-                cell.rocketBtn.tintColor = UIColor(named: "Success")
+              
 
                 
                 return cell
-            case 1:
-                let cell : GeneralButtonTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralButtonTVCell", for: indexPath) as! GeneralButtonTVCell
-                
-                cell.genBtnView.isHidden = true
-                cell.newBtnView.isHidden = false
-                cell.newBtn.tag = indexPath.row
-                cell.newBtn.addTarget(self, action: #selector(genBtnPressedForProfile(sender:)), for: .touchUpInside)
-                
-                cell.newBtn.titleLabel?.font = UIFont(name: "Work Sans", size: 14)?.regular
-                cell.newBtn.setTitle("View full profile", for: .normal)
-                cell.newBtn.backgroundColor = UIColor.clear
-                cell.newBtn.tintColor = UIColor(named: "Secondary Grey")
-                cell.newBtn.underline()
-                cell.newBtn.isWork = true
-                
-                return cell
-                
-            case 2:
-                let cell : ProfileTVCell = tableView.dequeueReusableCell(withIdentifier: "ProfileTVCell", for: indexPath) as! ProfileTVCell
-                
-                cell.numberView.isHidden = true
-                cell.generalTFView.isHidden = false
-                cell.generalTF.text = userModel.publicEmail
-                cell.generalTF.isUserInteractionEnabled = false
-                
-                return cell
-            case 3: // social heading
-                let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
-                if !socialAccModel.isEmpty {
-                    cell.headerLblView.isHidden = false
-                    cell.headerLbl.text = "Contact info shared"
-                } else {
-                    cell.headerLblView.isHidden = true
-                }
-                return cell
-                
-            case socialAccModel.count + 4: // EmptyView
-                
-                let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
-                cell.headerLblView.isHidden = true
-                return cell
-                
-            /*case socialAccModel.count + 4: // button
-                let cell : GeneralButtonTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralButtonTVCell", for: indexPath) as! GeneralButtonTVCell
-                
-                cell.genBtnView.isHidden = true
-                cell.newBtnView.isHidden = false
-                cell.newBtn.tag = indexPath.row
-                cell.newBtn.addTarget(self, action: #selector(genBtnPressedForProfile(sender:)), for: .touchUpInside)
-                
-                cell.newBtn.titleLabel?.font = UIFont(name: "Work Sans", size: 14)?.regular
-                cell.newBtn.setTitle("View full profile", for: .normal)
-                cell.newBtn.backgroundColor = UIColor.clear
-                cell.newBtn.tintColor = UIColor(named: "Secondary Grey")
-                cell.newBtn.underline()
-                cell.newBtn.isWork = true
-                
-                return cell*/
-                
-            case socialAccModel.count + 5: // button
-                let cell : BlockBtnTVCell = tableView.dequeueReusableCell(withIdentifier: "BlockBtnTVCell", for: indexPath) as! BlockBtnTVCell
-                if isFromBlock {
-                    cell.blockBtn.isHidden = true
-                }
-                cell.blockBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
-                
-                return cell
+//            case 1:
+//                let cell : GeneralButtonTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralButtonTVCell", for: indexPath) as! GeneralButtonTVCell
+//                
+//                cell.genBtnView.isHidden = true
+//                cell.newBtnView.isHidden = false
+//                cell.newBtn.tag = indexPath.row
+//                cell.newBtn.addTarget(self, action: #selector(genBtnPressedForProfile(sender:)), for: .touchUpInside)
+//                
+//                cell.newBtn.titleLabel?.font = UIFont(name: "Work Sans", size: 14)?.regular
+//                cell.newBtn.setTitle("View full profile", for: .normal)
+//                cell.newBtn.backgroundColor = UIColor.clear
+//                cell.newBtn.tintColor = UIColor(named: "Secondary Grey")
+//                cell.newBtn.underline()
+//                cell.newBtn.isWork = true
+//                
+//                return cell
+               
                 
             default:
+                let cell : ConnectedBtnsTVCell = tableView.dequeueReusableCell(withIdentifier: "ConnectedBtnsTVCell", for: indexPath) as! ConnectedBtnsTVCell
                 
-                if socialAccModel[indexPath.row - 4].contactTypeId == 6 {
-                    
-                    if socialAccModel[indexPath.row - 4].value.isEmpty {
-                        
-                        let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
-                        cell.headerLblView.isHidden = true
-                        return cell
-                        
-                    } else {
-                        
-                        let cell : AboutTVCell = tableView.dequeueReusableCell(withIdentifier: "AboutTVCell", for: indexPath) as! AboutTVCell
-                        cell.bioLbl.isHidden = true
-                        cell.aboutTxtView.text = socialAccModel[indexPath.row - 4].value.capitalized //"User notes will show here..."//userModel.about
-                        return cell
-                        
-                    }
-                    
-                } else {
-                    let cell : SocialAccTVCell = tableView.dequeueReusableCell(withIdentifier: "SocialAccTVCell", for: indexPath) as! SocialAccTVCell
-                    
-                    switch socialAccModel[indexPath.row - 4].contactTypeId {
-                        case 1:
-                            cell.socialImgView.image = UIImage(named: "LinkedIn")
-                        case 4:
-                            cell.socialImgView.image = UIImage(named: "whatsapp")
-                        case 3:
-                            cell.socialImgView.image = UIImage(named: "WeChat")
-                        case 5:
-                            cell.socialImgView.image = UIImage(named: "phone")
-                        case 2:
-                            cell.socialImgView.image = UIImage(named: "Instagram")
-                        //case 6:
-                            //cell.socialImgView.image = UIImage(named: "message")
-                        default:
-                            print("default")
-                    }
-                    
-                    cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.medium
-                    
-                    /*if socialAccModel.filter({$0.contactType == socialAccounts[indexPath.row - 6].contactType }).count > 0 {
-                     cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.medium
-                     } else {
-                     cell.socialLbl.font = UIFont(name: "Work Sans", size: 16)!.regular
-                     }*/
-                    
-                    cell.socialLbl.text = socialAccModel[indexPath.row - 4].contactType.capitalized
-                    cell.socialLbl.isUserInteractionEnabled = false
-                    return cell
-                }
+                cell.viewProfileBtn.addTarget(self, action: #selector(genBtnPressedForProfile(sender:)), for: .touchUpInside)
+                cell.msgBtn.addTarget(self, action: #selector(msgBtnPressed(sender:)), for: .touchUpInside)
+                
+                cell.blockBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
+                
+                cell.deleteContactBtn.addTarget(self, action: #selector(deleteBtnPressed(sender:)), for: .touchUpInside)
+
+                
+                return cell
+                
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row > 3 && indexPath.row < socialAccModel.count + 4 {
-            //if socialAccModel.filter({$0.contactType == socialAccounts[indexPath.row - 6].contactType }).count > 0 {
-                let link = socialAccModel[indexPath.row - 4]
-            switch socialAccModel[indexPath.row - 4].contactTypeId {
-                case 1:
-                    AppFunctions.openLinkedIn(userName: link.value)
-                case 4:
-                    AppFunctions.openWhatsApp(phoneNumber: link.value)
-                case 3:
-                    AppFunctions.openWeChat(userName: link.value)
-                case 5:
-                    AppFunctions.initiateCall(phoneNumber: link.value)
-                case 2:
-                    AppFunctions.openInstagram(userName: link.value)
-                    //case 6:
-                    //cell.socialImgView.image = UIImage(named: "message")
-                default:
-                    print("default")
-            }
-            
-                /*self.presentVC(id: "SocialLinks_VC",presentFullType: "not") { (vc:SocialLinks_VC) in
-                    vc.isFromOther = true
-                    vc.userId = userModel.userId
-                    vc.socialAccModel = socialAccModel.filter {$0.linkType == socialAccounts[indexPath.row - 7].linkType }
-                    vc.linkType = socialAccounts[indexPath.row - 7].linkType
-                }*/
-            //} else {
-            //    AppFunctions.showSnackBar(str: "No social account found")
-            //}
-        }
-    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension

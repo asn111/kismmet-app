@@ -25,19 +25,55 @@ class IAPManager: NSObject {
         let productIDs = Set([monthlySubID])
         let request = SKProductsRequest(productIdentifiers: productIDs)
         request.delegate = self
+        Logs.show(message: "Fetching products for IDs: \(productIDs)")
         request.start()
     }
     
     func purchase(productID: String) {
+        Logs.show(message: "Attempting to purchase product with ID: \(productID)")
+        
         guard let product = products[productID] else {
-            Logs.show(message: "Product not found: \(productID)")
+            Logs.show(message: "Product not found in the products dictionary: \(productID)")
             return
         }
-        let payment = SKPayment(product: product)
-        SKPaymentQueue.default().add(payment)
+        
+        Logs.show(message: "Product found, initiating purchase for: \(product.productIdentifier)")
+        
+        
+        SwiftyStoreKit.fetchReceipt(forceRefresh: true) { result in
+            switch result {
+                case .success(let receiptData):
+                    let appleValidator = AppleReceiptValidator(service: .production, sharedSecret: self.app_Specific_Shared_Secret)
+                    SwiftyStoreKit.verifyReceipt(using: appleValidator) { verifyResult in
+                        switch verifyResult {
+                            case .success(let receipt):
+                                let subscriptionResult = SwiftyStoreKit.verifySubscription(
+                                    ofType: .autoRenewable,
+                                    productId: productID,
+                                    inReceipt: receipt
+                                )
+                                switch subscriptionResult {
+                                    case .purchased(let expiryDate, _):
+                                        Logs.show(message: "Subscription is still valid until \(expiryDate). No need to repurchase.")
+                                        self.showUserAlert(title: "Already Subscribed", message: "Your subscription is valid until \(expiryDate).")
+                                    case .expired, .notPurchased:
+                                        let payment = SKPayment(product: product)
+                                        SKPaymentQueue.default().add(payment)
+                                }
+                            case .error(let error):
+                                Logs.show(message: "Receipt verification failed: \(error.localizedDescription)")
+                                self.showUserAlert(title: "Error", message: "Could not verify receipt. Please try again.")
+                        }
+                    }
+                case .error(let error):
+                    Logs.show(message: "Receipt fetch failed: \(error.localizedDescription)")
+                    self.showUserAlert(title: "Error", message: "Could not fetch receipt. Please try again.")
+            }
+        }
     }
     
     func restorePurchases() {
+        Logs.show(message: "Restoring purchases...")
         SKPaymentQueue.default().restoreCompletedTransactions()
     }
     
@@ -63,7 +99,6 @@ class IAPManager: NSObject {
                     }
                 case .error(let error):
                     Logs.show(message: "Receipt refresh failed: \(error.localizedDescription)")
-                    // Consider showing user-friendly error message
             }
         }
     }
@@ -79,7 +114,6 @@ class IAPManager: NSObject {
                 self.handleSubscriptionVerification(result: purchaseResult)
             case .error(let error):
                 Logs.show(message: "Receipt verification failed: \(error.localizedDescription)")
-                // Consider showing user-friendly error message
         }
     }
     
@@ -87,23 +121,20 @@ class IAPManager: NSObject {
         switch result {
             case .purchased(let expiryDate, _):
                 Logs.show(message: "Subscription is valid until \(expiryDate)")
-                // Update the app state to reflect that the user is subscribed
+                AppFunctions.setIsPremiumUser(value: true)
             case .expired(let expiryDate):
                 Logs.show(message: "Subscription expired on \(expiryDate)")
                 if AppFunctions.isLoggedIn() {
                     ApiService.updateSubscription(val: freeSubscriptionId)
-                    AppFunctions.setIsPremiumUser(value: false)
                 }
-                // Update the app state to reflect that the user is not subscribed
+                AppFunctions.setIsPremiumUser(value: false)
             case .notPurchased:
                 Logs.show(message: "The user has never purchased this subscription")
-                // Update the app state to reflect that the user is not subscribed
                 AppFunctions.setIsPremiumUser(value: false)
         }
     }
     
     private func showUserAlert(title: String, message: String) {
-        // Utility function to show user alerts
         DispatchQueue.main.async {
             if let topVC = UIApplication.shared.keyWindow?.rootViewController {
                 let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -126,39 +157,44 @@ extension IAPManager: SKProductsRequestDelegate, SKPaymentTransactionObserver {
             products[product.productIdentifier] = product
         }
         
-        // Notify observers or UI components if necessary
+        if let productID = products.keys.first {
+            Logs.show(message: "Attempting to purchase the first valid product: \(productID)")
+            purchase(productID: productID)
+        } else {
+            Logs.show(message: "No valid products found to purchase.")
+        }
     }
+
     
     func request(_ request: SKRequest, didFailWithError error: Error) {
         Logs.show(message: "Failed to fetch products: \(error.localizedDescription)")
-        // Consider showing user-friendly error message
-    }
-    
-    func requestDidFinish(_ request: SKRequest) {
-        // Optional: Add any custom logic you want to apply when a product request is finished
     }
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        Logs.show(message: "Payment queue updated with transactions: \(transactions)")
         transactions.forEach { transaction in
+            Logs.show(message: "Transaction state: \(transaction.transactionState.rawValue)")
             switch transaction.transactionState {
                 case .purchased:
                     Logs.show(message: "Purchase successful: \(transaction)")
                     handleSuccessfulPurchase(transaction)
-                case .restored:
-                    Logs.show(message: "Purchase restored: \(transaction)")
-                    handleSuccessfulRestore(transaction)
                 case .failed:
+                    Logs.show(message: "Purchase failed: \(transaction)")
                     if let error = transaction.error as? SKError {
                         handlePurchaseError(error)
                     }
                     SKPaymentQueue.default().finishTransaction(transaction)
+                case .restored:
+                    Logs.show(message: "Purchase restored: \(transaction)")
+                    handleSuccessfulRestore(transaction)
                 case .deferred, .purchasing:
-                    break
+                    Logs.show(message: "Transaction deferred or purchasing: \(transaction)")
                 @unknown default:
-                    break
+                    Logs.show(message: "Unknown transaction state: \(transaction.transactionState.rawValue)")
             }
         }
     }
+
     
     func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
         Logs.show(message: "Restored completed transactions: \(queue.transactions)")
@@ -171,28 +207,18 @@ extension IAPManager: SKProductsRequestDelegate, SKPaymentTransactionObserver {
     }
     
     private func handleSuccessfulPurchase(_ transaction: SKPaymentTransaction) {
-        guard let url = Bundle.main.appStoreReceiptURL else {
-            Logs.show(message: "Failed to get receipt URL")
-            return
-        }
-        do {
-            let data = try Data(contentsOf: url)
-            let receiptBase64 = data.base64EncodedString()
-            Logs.show(message: "App Store receipt URL: \(url)")
-            generalPublisher.onNext("purchased")
-            if AppFunctions.isLoggedIn() {
-                ApiService.updateSubscription(val: premiumSubscriptionId)
-                AppFunctions.setIsPremiumUser(value: true)
-            }
-        } catch {
-            Logs.show(message: "Failed to read receipt data: \(error.localizedDescription)")
-        }
         Logs.show(message: "Transaction successful: \(transaction)")
+        AppFunctions.setIsPremiumUser(value: true)
+        generalPublisher.onNext("purchased")
+        ApiService.updateSubscription(val: premiumSubscriptionId)
         SKPaymentQueue.default().finishTransaction(transaction)
     }
     
     private func handleSuccessfulRestore(_ transaction: SKPaymentTransaction) {
         Logs.show(message: "Transaction restored: \(transaction)")
+        AppFunctions.setIsPremiumUser(value: true)
+        generalPublisher.onNext("purchased")
+        ApiService.updateSubscription(val: premiumSubscriptionId)
         SKPaymentQueue.default().finishTransaction(transaction)
     }
     
@@ -200,10 +226,8 @@ extension IAPManager: SKProductsRequestDelegate, SKPaymentTransactionObserver {
         switch error.code {
             case .paymentCancelled:
                 Logs.show(message: "Payment cancelled: \(error.localizedDescription)")
-                // Consider showing user-friendly message
             default:
                 Logs.show(message: "Payment error: \(error.localizedDescription)")
-                // Consider showing user-friendly error message
         }
     }
 }

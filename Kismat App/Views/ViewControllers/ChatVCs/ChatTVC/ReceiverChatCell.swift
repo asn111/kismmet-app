@@ -1,10 +1,4 @@
-//
-//  ReceiverChatCell.swift
-//  HP
-//
-//  Created by apple on 05/11/19.
-//  Copyright © 2019 Quytech. All rights reserved.
-//
+
 
 import UIKit
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -44,10 +44,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20min ago" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHU-9t-wDC" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="319" y="12" width="70" height="21"/>
+                                        <rect key="frame" x="302" y="12" width="100" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="b52-i8-Rhu"/>
-                                            <constraint firstAttribute="width" constant="70" id="qxh-G2-WFO"/>
+                                            <constraint firstAttribute="width" constant="100" id="qxh-G2-WFO"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -175,7 +175,7 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                <real key="value" value="12"/>
+                                                <real key="value" value="14"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="txtSpacing">
                                                 <real key="value" value="0.40000000000000002"/>
@@ -204,7 +204,7 @@
                                     <constraint firstItem="cxM-wu-Nil" firstAttribute="top" secondItem="IEx-UV-Aa1" secondAttribute="top" constant="12" id="DqZ-k8-YkW"/>
                                     <constraint firstItem="5J1-oU-sDy" firstAttribute="leading" secondItem="rvh-hC-sT0" secondAttribute="trailing" constant="7" id="Fue-ux-kt8"/>
                                     <constraint firstItem="rvh-hC-sT0" firstAttribute="leading" secondItem="IEx-UV-Aa1" secondAttribute="leading" constant="81" id="Gxh-Vf-CW4"/>
-                                    <constraint firstAttribute="trailing" secondItem="LHU-9t-wDC" secondAttribute="trailing" constant="31" id="Mcw-Bd-1dh"/>
+                                    <constraint firstAttribute="trailing" secondItem="LHU-9t-wDC" secondAttribute="trailing" constant="18" id="Mcw-Bd-1dh"/>
                                     <constraint firstAttribute="trailing" secondItem="dHs-Tz-bSM" secondAttribute="trailing" constant="31" id="NLg-F1-Kte"/>
                                     <constraint firstItem="3Lk-bY-RTK" firstAttribute="leading" secondItem="IEx-UV-Aa1" secondAttribute="leading" constant="-44" id="O4n-Jh-KB0"/>
                                     <constraint firstAttribute="bottom" secondItem="URB-SM-E9s" secondAttribute="bottom" constant="67" id="RUp-af-AEP"/>
@@ -266,26 +266,6 @@
             <point key="canvasLocation" x="215.26717557251908" y="44.718309859154935"/>
         </tableViewCell>
     </objects>
-    <designables>
-        <designable name="5J1-oU-sDy">
-            <size key="intrinsicContentSize" width="211" height="20.333333333333332"/>
-        </designable>
-        <designable name="7O2-Lk-CK8">
-            <size key="intrinsicContentSize" width="339.33333333333331" height="40.666666666666664"/>
-        </designable>
-        <designable name="J5D-0t-bdJ">
-            <size key="intrinsicContentSize" width="17.333333333333332" height="20.333333333333332"/>
-        </designable>
-        <designable name="LHU-9t-wDC">
-            <size key="intrinsicContentSize" width="80.666666666666671" height="20.333333333333332"/>
-        </designable>
-        <designable name="URB-SM-E9s">
-            <size key="intrinsicContentSize" width="407" height="612"/>
-        </designable>
-        <designable name="cxM-wu-Nil">
-            <size key="intrinsicContentSize" width="77.666666666666671" height="20.333333333333332"/>
-        </designable>
-    </designables>
     <resources>
         <image name="girl" width="407" height="612"/>
         <namedColor name="Secondary Grey">

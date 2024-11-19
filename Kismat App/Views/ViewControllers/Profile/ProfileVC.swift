@@ -275,74 +275,39 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                     }
                 }
                 
-                if AppFunctions.isNotifNotCheck() {
-                    cell.notifbtn.tintColor = UIColor(named:"Danger")
-                } else if AppFunctions.isShadowModeOn() {
-                    cell.notifbtn.tintColor = UIColor(named: "Primary Yellow")
+                if AppFunctions.isShadowModeOn() {
+                    if AppFunctions.isNotifEnable() {
+                        if AppFunctions.isNotifNotCheck() {
+                            cell.notifbtn.setImage(UIImage(named: "shadowWN"), for: .normal)
+                            cell.notifbtn.tintColor = UIColor(named: "Text grey")
+                        } else {
+                            cell.notifbtn.setImage(UIImage(named: "shadowWON"), for: .normal)
+                            cell.notifbtn.tintColor = UIColor(named: "Text grey")
+                        }
+                    } else {
+                        cell.notifbtn.setImage(UIImage(systemName: "bell.slash.fill"), for: .normal)
+                        cell.notifbtn.tintColor = UIColor(named: "warning")
+                    }
                 } else {
-                    cell.notifbtn.tintColor = UIColor(named: "Text grey")
+                    if AppFunctions.isNotifEnable() {
+                        if AppFunctions.isNotifNotCheck() {
+                            cell.notifbtn.setImage(UIImage(named: "regularWN"), for: .normal)
+                            cell.notifbtn.tintColor = UIColor(named: "Text grey")
+                        } else {
+                            cell.notifbtn.setImage(UIImage(named: "regular"), for: .normal)
+                            cell.notifbtn.tintColor = UIColor(named: "Text grey")
+                        }
+                    } else {
+                        cell.notifbtn.setImage(UIImage(systemName: "bell.slash.fill"), for: .normal)
+                        cell.notifbtn.tintColor = UIColor(named: "Text grey")
+                    }
                 }
                 
                 cell.chatBtn.addTarget(self, action: #selector(chatBtnPressed(sender:)), for: .touchUpInside)
                 
                 cell.notifbtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
                 cell.profilePicBtn.addTarget(self, action: #selector(profilePicBtnPressed(sender:)), for: .touchUpInside)
-                /*let cell : GeneralHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "GeneralHeaderTVCell", for: indexPath) as! GeneralHeaderTVCell
-                cell.headerLogo.isHidden = true
-                cell.toolTipBtn.isHidden = true
-                cell.rattingBtn.isHidden = true
-                cell.searchTFView.isHidden = true
-                cell.profileView.isHidden = false
-                cell.headerView.isHidden = false
-                cell.headerLbl.isHidden = false
-                cell.headerLbl.text = "MY PROFILE"
-                
-                if isOtherProfile {
-                    cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
-                    cell.notifBtn.isHidden = true
-                } else {
-                    cell.picBtn.borderWidth = 0
-                }
-                
-                cell.profilePicBtn.addTarget(self, action: #selector(profilePicBtnPressed(sender:)), for: .touchUpInside)
-                
-                cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
-                cell.notifBtn.addTarget(self, action: #selector(notifBtnPressed(sender:)), for: .touchUpInside)
-                
-                if AppFunctions.isNotifNotCheck() {
-                    cell.notifBtn.tintColor = UIColor(named:"Danger")
-                } else if AppFunctions.isShadowModeOn() {
-                    cell.notifBtn.tintColor = UIColor(named: "Primary Yellow")
-                } else {
-                    cell.notifBtn.tintColor = UIColor(named: "Text grey")
-                }
-                
-                if isOtherProfile {
-                    if userModel.profilePicture != "" {
-                        let imageUrl = URL(string: userModel.profilePicture)
-                        cell.profilePicBtn?.sd_setImage(with: imageUrl, for: .normal , placeholderImage: img) { (image, error, imageCacheType, url) in }
-                    } else {
-                        cell.profilePicBtn.setImage(img, for: .normal)
-                    }
-                    cell.nameLbl.text = userModel.userName
-                    cell.professionLbl.text = userModel.workTitle
-                    cell.educationLbl.text = userModel.workAddress
-                } else {
-                    if let userDb = userdbModel {
-                        if let user = userDb.first {
-                            cell.nameLbl.text = user.userName
-                            cell.professionLbl.text = user.workTitle
-                            cell.educationLbl.text = user.workAddress
-                            
-                            if user.profilePicture != "" {
-                                let imageUrl = URL(string: user.profilePicture)
-                                cell.profilePicBtn?.sd_setImage(with: imageUrl, for: .normal , placeholderImage: img) { (image, error, imageCacheType, url) in }
-                             } else {
-                                 cell.profilePicBtn.setImage(img, for: .normal)
-                             }
-                        }
-                    }
-                }*/
+
                 
                 return cell
             case 1:
@@ -354,27 +319,17 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                     if let userDb = userdbModel {
                         if let user = userDb.first {
                             cell.aboutTxtView.text = user.about
+                            let lines = cell.aboutTxtView.numberOfLines()
+                            Logs.show(message: "Number of lines: \(lines)")
+                            if cell.aboutTxtView.numberOfLines() > 3 {
+                                cell.seemoreBtn.isHidden = false
+                            }
                         }
                     }
                 }
                 
                 return cell
-            /*case 2:
-                let cell : StatusTVCell = tableView.dequeueReusableCell(withIdentifier: "StatusTVCell", for: indexPath) as! StatusTVCell
-                
-                if isOtherProfile {
-                    cell.statusLbl.text = userModel.status.isEmpty ? "currently no active status..." : userModel.status
-                } else {
-                    if let userDb = userdbModel {
-                        if let user = userDb.first {
-                            cell.statusLbl.text = user.status.isEmpty ? "currently no active status..." : user.status
-                            cell.clockIV.isHidden = !user.disappearingStatus
-                        }
-                    }
-                }
 
-                                
-                return cell*/
             case 2:
                 let cell : ProfileTVCell = tableView.dequeueReusableCell(withIdentifier: "ProfileTVCell", for: indexPath) as! ProfileTVCell
                 
@@ -513,7 +468,8 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
             clonedTextView.backgroundColor = UIColor.systemGray4
             clonedTextView.clipsToBounds = true
             clonedTextView.layer.cornerRadius = 6
-            clonedTextView.isUserInteractionEnabled = false
+            clonedTextView.isUserInteractionEnabled = true
+            clonedTextView.isScrollEnabled = true
             clonedTextView.isEditable = false
             
             // Create an overlay view that covers the entire screen
@@ -526,7 +482,9 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
             newView.backgroundColor = UIColor.systemGray4
             newView.clipsToBounds = true
             newView.layer.cornerRadius = 5
-            newView.isUserInteractionEnabled = false
+            newView.isUserInteractionEnabled = true
+            
+            overlayView?.addSubview(newView)
             
             overlayView?.addSubview(newView)
             

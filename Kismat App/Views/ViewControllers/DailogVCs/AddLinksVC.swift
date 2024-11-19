@@ -157,8 +157,9 @@ class AddLinksVC: MainViewController {
         
         label.text = socialLink.linkType
         linkId = socialLink.linkTypeId
-        
-        configureConstraints()
+        if accountType != "tags" {
+            configureConstraints()
+        }
 
         
         if socialLink.linkType == "Website" {
@@ -345,17 +346,38 @@ class AddLinksVC: MainViewController {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if !isKeyBoardShown {
-                isKeyBoardShown = true
-                self.view.frame.origin.y -= keyboardSize.height - 50
+        guard let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        let keyboardHeight = keyboardFrame.height
+        
+        // Check the overlap between the keyboard and the active text field
+        if let activeField = findActiveTextField(in: self.view) {
+            let fieldFrame = activeField.convert(activeField.bounds, to: self.view)
+            let bottomSpace = self.view.frame.height - fieldFrame.maxY
+            
+            if bottomSpace < keyboardHeight {
+                // Adjust view by the amount needed to avoid overlap
+                let offset = keyboardHeight - bottomSpace + 16 // Add padding for better spacing
+                self.view.frame.origin.y = -offset
             }
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        isKeyBoardShown = false
+        // Reset the view's position
         self.view.frame.origin.y = 0
+    }
+    
+    private func findActiveTextField(in view: UIView) -> UITextField? {
+        // Recursively search for the first responder (active text field)
+        for subview in view.subviews {
+            if let textField = subview as? UITextField, textField.isFirstResponder {
+                return textField
+            }
+            if let activeField = findActiveTextField(in: subview) {
+                return activeField
+            }
+        }
+        return nil
     }
     
     func userSocialAdd() {

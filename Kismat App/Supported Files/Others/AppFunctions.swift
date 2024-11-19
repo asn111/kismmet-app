@@ -256,7 +256,7 @@ class AppFunctions {
         preferences.synchronize()
     }
     open class func isNotifEnable() -> Bool{
-        var value = false
+        var value = true
         if preferences.object(forKey: notifEnable) == nil {
             Logs.show(message: "NIL isNotifEnable")
         } else {

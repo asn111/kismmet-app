@@ -139,8 +139,8 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
     func setupFloatingActionButton() {
         floatingActionButton = UIButton()
         
-        let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 22, weight: .heavy, scale: .medium)
-        let systemImage = UIImage(systemName: "plus.message", withConfiguration: imageConfiguration)
+        //let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 22, weight: .heavy, scale: .medium)
+        let systemImage = UIImage(named: "Subtract")
         
         floatingActionButton?.setImage(systemImage, for: .normal)
         floatingActionButton?.backgroundColor = UIColor(named: "Success")
@@ -161,6 +161,8 @@ class MainViewController: UIViewController, UIViewControllerTransitioningDelegat
             ])
         }
     }
+    
+    
     
     func shouldShowFloatingActionButton() -> Bool {
         return false

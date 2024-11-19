@@ -9,6 +9,7 @@ import UIKit
 
 class AboutTVCell: UITableViewCell {
 
+    @IBOutlet weak var seemoreBtn: UIButton!
     @IBOutlet weak var aboutTxtView: FormTextView!
     
     @IBOutlet weak var bioLbl: fullyCustomLbl!

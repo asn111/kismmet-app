@@ -805,10 +805,10 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if indexPath.row == (placeholderArray.count) {//+ socialAccounts.count + 1) - 1 {
-            return 20.0 // empty view
+        if indexPath.row == placeholderArray.count - 1 {//+ socialAccounts.count + 1) - 1 {
+            return 5.0 // empty view below about
         } else if indexPath.row == placeholderArray.count + 2 {//+ socialAccounts.count + 3 {
-            return 30.0 // empty view
+            return 30.0 // empty view below tags
         } else if indexPath.row == placeholderArray.count + 3 {//socialAccounts.count + 4 {
             return 30.0 // profile btn
         } else {

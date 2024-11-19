@@ -311,7 +311,8 @@ class SignInVC: MainViewController {
                             
                             SignalRManager.singelton.chatHubConnectionDelegate = self
                             SignalRManager.singelton.initializeSignalR()
-                            
+                            APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
+
                             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                                 self.sendLocationOnLogin()
                                 self.startUpCall()
@@ -357,7 +358,8 @@ class SignInVC: MainViewController {
                                 
                                 SignalRManager.singelton.chatHubConnectionDelegate = self
                                 SignalRManager.singelton.initializeSignalR()
-                                
+                                APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
+
                                 sendLocationOnLogin()
                                 
                                 self.startUpCall()

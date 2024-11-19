@@ -79,7 +79,8 @@ class MembershipVC: MainViewController {
     
     func premiumPlan() {
         let duration = 0.3
-        let newHeight: CGFloat = 300
+        let newHeight: CGFloat = 250
+        
         
         // Update the frame of the view with the new size
         self.currentPlanHeightConst.constant = newHeight
@@ -87,7 +88,7 @@ class MembershipVC: MainViewController {
         UIView.animate(withDuration: duration, animations: {
             
             let shadowModeText = "Discover Shadow Mode :\nGo to Settings > Preferences > Shadow Mode"
-            let statusText = "Broadcast a status :\nKismmet members can see 50 characters on your profile card in the main feed and 100 characters in your full profile.\nGo to Settings > Preferences > Type up a status where it says “Add status here…”\nSet your status to disappear after 24hrs :\nUse this feature for urgent or timed statuses!\nGo to Settings > Preferences > Disappearing Status"
+            let statusText = "Broadcast a status :\nGo to Settings > Preferences > Type up a status where it says “Add status here…”\nSet your status to disappear after 24hrs :\nUse this feature for urgent or timed statuses!\nGo to Settings > Preferences > Disappearing Status"
             
             // Create a NSMutableAttributedString for semi-bold and underline
             let shadowModeAttributedString = NSMutableAttributedString(string: shadowModeText)

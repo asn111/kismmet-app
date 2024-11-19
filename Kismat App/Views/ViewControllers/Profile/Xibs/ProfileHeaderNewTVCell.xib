@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -24,10 +24,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="310"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ss-PG-GQQ" customClass="RoundCornerView" customModule="Kismmet" customModuleProvider="target">
-                                <rect key="frame" x="16" y="236" width="368" height="50"/>
+                                <rect key="frame" x="16" y="236" width="368" height="54"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="KUH-jc-O8i">
-                                        <rect key="frame" x="5" y="27.999999999999979" width="12" height="12"/>
+                                        <rect key="frame" x="5" y="27.666666666666643" width="12" height="12"/>
                                         <color key="tintColor" name="warning"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="14.67" id="SUZ-2e-KD7"/>
@@ -58,7 +58,7 @@
                                                 <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                <real key="value" value="12"/>
+                                                <real key="value" value="14"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="l"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
@@ -70,14 +70,14 @@
                                 </subviews>
                                 <color key="backgroundColor" name="Text grey"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="4mx-R2-3wR"/>
+                                    <constraint firstAttribute="height" constant="54" id="4mx-R2-3wR"/>
                                     <constraint firstItem="mYr-kp-IKS" firstAttribute="leading" secondItem="3Ss-PG-GQQ" secondAttribute="leading" constant="20" id="Bbz-5b-tu4"/>
-                                    <constraint firstAttribute="bottom" secondItem="c8x-n7-lYd" secondAttribute="bottom" constant="10" id="GpO-ur-G3g"/>
+                                    <constraint firstAttribute="bottom" secondItem="c8x-n7-lYd" secondAttribute="bottom" constant="14" id="GpO-ur-G3g"/>
                                     <constraint firstItem="KUH-jc-O8i" firstAttribute="leading" secondItem="3Ss-PG-GQQ" secondAttribute="leading" constant="5" id="ToK-H0-q9V"/>
                                     <constraint firstAttribute="trailing" secondItem="mYr-kp-IKS" secondAttribute="trailing" constant="20" id="cbG-Fr-d17"/>
-                                    <constraint firstAttribute="bottom" secondItem="mYr-kp-IKS" secondAttribute="bottom" constant="-2" id="hoP-3G-SWg"/>
+                                    <constraint firstAttribute="bottom" secondItem="mYr-kp-IKS" secondAttribute="bottom" constant="2" id="hoP-3G-SWg"/>
                                     <constraint firstAttribute="trailing" secondItem="c8x-n7-lYd" secondAttribute="trailing" constant="8" id="nw3-PU-Up1"/>
-                                    <constraint firstAttribute="bottom" secondItem="KUH-jc-O8i" secondAttribute="bottom" constant="9" id="x9I-6g-hDe"/>
+                                    <constraint firstAttribute="bottom" secondItem="KUH-jc-O8i" secondAttribute="bottom" constant="13.000000000000014" id="x9I-6g-hDe"/>
                                     <constraint firstItem="mYr-kp-IKS" firstAttribute="leading" secondItem="KUH-jc-O8i" secondAttribute="trailing" constant="3" id="y1q-wt-WVe"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -386,7 +386,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="3Ss-PG-GQQ" secondAttribute="trailing" constant="16" id="0Ib-qv-oBC"/>
-                            <constraint firstAttribute="bottom" secondItem="3Ss-PG-GQQ" secondAttribute="bottom" constant="24" id="2TD-XD-VFr"/>
+                            <constraint firstAttribute="bottom" secondItem="3Ss-PG-GQQ" secondAttribute="bottom" constant="20" id="2TD-XD-VFr"/>
                             <constraint firstAttribute="trailing" secondItem="VXC-B9-szH" secondAttribute="trailing" constant="8" id="5ju-7N-HtN"/>
                             <constraint firstItem="3Ss-PG-GQQ" firstAttribute="leading" secondItem="dqj-zD-MAe" secondAttribute="leading" constant="16" id="afU-zh-Xm2"/>
                             <constraint firstAttribute="bottom" secondItem="VXC-B9-szH" secondAttribute="bottom" id="aoR-LW-EPf"/>
@@ -423,26 +423,6 @@
             <point key="canvasLocation" x="190.83969465648855" y="82.394366197183103"/>
         </tableViewCell>
     </objects>
-    <designables>
-        <designable name="OfV-F5-W1r">
-            <size key="intrinsicContentSize" width="407" height="612"/>
-        </designable>
-        <designable name="dn1-Rr-LNj">
-            <size key="intrinsicContentSize" width="173" height="21.333333333333332"/>
-        </designable>
-        <designable name="i6Q-a5-WKM">
-            <size key="intrinsicContentSize" width="163.33333333333334" height="14.333333333333334"/>
-        </designable>
-        <designable name="mYr-kp-IKS">
-            <size key="intrinsicContentSize" width="305" height="14.333333333333334"/>
-        </designable>
-        <designable name="n0E-ri-gZz">
-            <size key="intrinsicContentSize" width="56.333333333333336" height="14.333333333333334"/>
-        </designable>
-        <designable name="ub5-Vd-gBy">
-            <size key="intrinsicContentSize" width="19.666666666666668" height="19"/>
-        </designable>
-    </designables>
     <resources>
         <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="clock.fill" catalog="system" width="128" height="123"/>

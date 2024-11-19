@@ -43,6 +43,7 @@ class ReqAcceptVC: MainViewController {
         
         self.presentVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
             vc.userId = userModel.userId
+            vc.isFromAccepDialog = true
             vc.isFromReq = true
         }
     }
@@ -177,7 +178,7 @@ class ReqAcceptVC: MainViewController {
                     case .next(let val):
                         if val {
                             self.hidePKHUD()
-                            AppFunctions.showSnackBar(str: "Request accepted")
+                            AppFunctions.showSnackBar(str: "\(userModel.userName ?? "User") has been moved to your contacts! 🎉🎉🎉")
                             self.dismiss(animated: true, completion: nil)
                             
                         } else {

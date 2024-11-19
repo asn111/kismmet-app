@@ -314,6 +314,7 @@ class SignupVC: MainViewController {
                         Logs.show(message: "MARKED: 👉🏻 \(val)")
                         if val {
                             AppFunctions.saveEmail(name: self.email)
+                            
                             self.presentVC(id: "CodeVerification_VC") { (vc:CodeVerification_VC) in
                                 vc.email = self.email
                                 vc.fromSignup = true
@@ -351,6 +352,7 @@ class SignupVC: MainViewController {
                     case .next(let val):
                         Logs.show(message: "MARKED: 👉🏻 \(val)")
                         if val {
+                            APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
                             if AppFunctions.IsProfileUpdated() {
                                 self.startUpCall()
                                 self.userProfile()

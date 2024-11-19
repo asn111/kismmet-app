@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,7 +27,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="374" height="98"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thursday 12:25am" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWO-Ra-umB">
-                                <rect key="frame" x="87" y="68" width="92" height="13"/>
+                                <rect key="frame" x="87" y="63" width="92" height="13"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="13" id="bsk-O1-94s"/>
                                     <constraint firstAttribute="width" constant="92" id="iWg-Bl-dQJ"/>
@@ -37,7 +37,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6lh-Bm-jX8" customClass="ChatView" customModule="Kismmet" customModuleProvider="target">
-                                <rect key="frame" x="65" y="26" width="115" height="41"/>
+                                <rect key="frame" x="65" y="21" width="115" height="41"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" ambiguous="YES" text="How are you?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdC-ys-xJk" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
                                         <rect key="frame" x="11" y="12" width="87" height="15.5"/>
@@ -60,7 +60,7 @@
                                     <constraint firstItem="rdC-ys-xJk" firstAttribute="leading" secondItem="6lh-Bm-jX8" secondAttribute="leading" constant="11" id="qN3-Hq-nTY"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Zoya Grey" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ttD-pl-JDG" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Zoya Grey" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ttD-pl-JDG" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
                                 <rect key="frame" x="64" y="11" width="78" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -102,18 +102,18 @@
                         </subviews>
                         <color key="backgroundColor" name="Base Grey"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="6lh-Bm-jX8" secondAttribute="bottom" constant="31" id="04c-jJ-XTe"/>
+                            <constraint firstAttribute="bottom" secondItem="6lh-Bm-jX8" secondAttribute="bottom" constant="36" id="04c-jJ-XTe"/>
                             <constraint firstItem="B0R-o0-u2E" firstAttribute="top" secondItem="7ps-h8-jCq" secondAttribute="top" constant="8" id="4n2-jY-zKc"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6lh-Bm-jX8" secondAttribute="trailing" constant="80" id="9Q6-He-yGn"/>
                             <constraint firstAttribute="bottom" secondItem="6lh-Bm-jX8" secondAttribute="bottom" constant="25" id="HdS-Pe-i2y"/>
-                            <constraint firstAttribute="bottom" secondItem="kWO-Ra-umB" secondAttribute="bottom" constant="17" id="M1n-5i-TzJ"/>
+                            <constraint firstAttribute="bottom" secondItem="kWO-Ra-umB" secondAttribute="bottom" constant="22" id="M1n-5i-TzJ"/>
                             <constraint firstItem="B0R-o0-u2E" firstAttribute="leading" secondItem="7ps-h8-jCq" secondAttribute="leading" constant="23" id="cwy-7G-jpu"/>
                             <constraint firstItem="kWO-Ra-umB" firstAttribute="trailing" secondItem="6lh-Bm-jX8" secondAttribute="trailing" constant="-1" id="fuc-AF-NnD"/>
                             <constraint firstItem="6lh-Bm-jX8" firstAttribute="leading" secondItem="7ps-h8-jCq" secondAttribute="leading" constant="65" id="hxy-uK-cSi"/>
                             <constraint firstItem="ttD-pl-JDG" firstAttribute="leading" secondItem="B0R-o0-u2E" secondAttribute="trailing" constant="8" symbolic="YES" id="jdy-z3-Xvl"/>
                             <constraint firstItem="ttD-pl-JDG" firstAttribute="top" secondItem="7ps-h8-jCq" secondAttribute="top" constant="11" id="nNR-fK-aim"/>
                             <constraint firstItem="6lh-Bm-jX8" firstAttribute="leading" secondItem="B0R-o0-u2E" secondAttribute="trailing" constant="9" id="oSf-Fz-IXf"/>
-                            <constraint firstItem="6lh-Bm-jX8" firstAttribute="top" secondItem="ttD-pl-JDG" secondAttribute="bottom" constant="3" id="vRw-SI-VZt"/>
+                            <constraint firstItem="6lh-Bm-jX8" firstAttribute="top" secondItem="ttD-pl-JDG" secondAttribute="bottom" constant="-2" id="vRw-SI-VZt"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -140,17 +140,6 @@
             <point key="canvasLocation" x="-31.884057971014496" y="-209.59821428571428"/>
         </tableViewCell>
     </objects>
-    <designables>
-        <designable name="B0R-o0-u2E">
-            <size key="intrinsicContentSize" width="407" height="612"/>
-        </designable>
-        <designable name="rdC-ys-xJk">
-            <size key="intrinsicContentSize" width="87" height="16.5"/>
-        </designable>
-        <designable name="ttD-pl-JDG">
-            <size key="intrinsicContentSize" width="78" height="20.5"/>
-        </designable>
-    </designables>
     <resources>
         <image name="girl" width="407" height="612"/>
         <namedColor name="Base Grey">

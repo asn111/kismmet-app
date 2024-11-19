@@ -29,6 +29,8 @@ class OtherUserProfile: MainViewController {
 
     var isFromBlock = false
     var isFromMessage = false
+    var isFromAccepDialog = false
+    var isPresented = false
     
     var canCancelReq = ""
     var contactId = 0
@@ -61,7 +63,9 @@ class OtherUserProfile: MainViewController {
         Logs.show(message: "User ID: \(userId)")
         
         //if markView {
+        if AppFunctions.getRole() != "Admin" {
             ApiService.markViewedUser(val: userId)
+        }
         //}
         
         
@@ -209,7 +213,7 @@ class OtherUserProfile: MainViewController {
     
     @objc func picBtnPressed(sender: UIButton) {
         
-        if isFromReq {
+        if isFromReq || isPresented {
             self.dismiss(animated: true)
         } else {
             self.navigationController?.popViewController(animated: true)
@@ -620,6 +624,11 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                     }
                 }
                 
+                if isFromAccepDialog {
+                    cell.requestBtn.isHidden = true
+                    cell.requestBtn2.isHidden = true
+                }
+                
                 cell.requestBtn.addTarget(self, action: #selector(sendContactRocket(sender:)), for: .touchUpInside)
                 cell.requestBtn2.addTarget(self, action: #selector(sendContactRocket(sender:)), for: .touchUpInside)
                 cell.messageBtn.addTarget(self, action: #selector(sendMessagePressed(sender:)), for: .touchUpInside)
@@ -720,6 +729,12 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
             case 1:
                 let cell : AboutTVCell = tableView.dequeueReusableCell(withIdentifier: "AboutTVCell", for: indexPath) as! AboutTVCell
                     cell.aboutTxtView.text = userModel.about
+
+                let lines = cell.aboutTxtView.numberOfLines()
+                Logs.show(message: "Number of lines: \(lines)")
+                if cell.aboutTxtView.numberOfLines() > 3 {
+                    cell.seemoreBtn.isHidden = false
+                }
                 
 
                 return cell
@@ -842,7 +857,8 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
             clonedTextView.backgroundColor = UIColor.systemGray4
             clonedTextView.clipsToBounds = true
             clonedTextView.layer.cornerRadius = 6
-            clonedTextView.isUserInteractionEnabled = false
+            clonedTextView.isUserInteractionEnabled = true
+            clonedTextView.isScrollEnabled = true
             clonedTextView.isEditable = false
             
             // Create an overlay view that covers the entire screen
@@ -855,7 +871,7 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
             newView.backgroundColor = UIColor.systemGray4
             newView.clipsToBounds = true
             newView.layer.cornerRadius = 5
-            newView.isUserInteractionEnabled = false
+            newView.isUserInteractionEnabled = true
             
             overlayView?.addSubview(newView)
             
@@ -884,7 +900,7 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 self.overlayView?.alpha = 1
             }
             
-        } else  if indexPath.row == 5 {
+        } else  if indexPath.row == 4 {
             
             var tagList = [String]()
                 if userModel.tags != "" {
@@ -901,7 +917,7 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                 vc.userId = userModel.userId
                 vc.tagList = tagList
             }
-        } else if indexPath.row > 5 && indexPath.row < socialAccounts.count + 6 {
+        } else if indexPath.row > 4 && indexPath.row < socialAccounts.count + 6 {
             if socialAccModel.filter({$0.linkType == socialAccounts[indexPath.row - 6].linkType }).count > 0 {
                 self.presentVC(id: "SocialLinks_VC",presentFullType: "not") { (vc:SocialLinks_VC) in
                     vc.isFromOther = true

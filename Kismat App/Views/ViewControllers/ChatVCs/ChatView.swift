@@ -1,11 +1,3 @@
-//
-//  ChatView.swift
-//  AthleteApp
-//
-//  Created by Abhishek Tyagi on 14/11/18.
-//  Copyright © 2018 Uninterrupted. All rights reserved.
-//
-
 
 import Foundation
 import UIKit
@@ -61,23 +53,32 @@ class ChatView: UIView {
             bezierPath.addLine(to: CGPoint(x: 0, y: tailHeight))  // Sharp tip
             
         } else {
-            // Sent bubble: Rounded corners + sharp tail on the top-right
+            // Start at the bottom-left corner with a slight inward curve
             bezierPath.move(to: CGPoint(x: cornerRadius, y: height))
             bezierPath.addLine(to: CGPoint(x: width - cornerRadius, y: height))
             
-            //bezierPath.addQuadCurve(to: CGPoint(x: width, y: height - cornerRadius), controlPoint: CGPoint(x: width, y: height))
-            bezierPath.addLine(to: CGPoint(x: width, y: height))  // Top-right curve, before tail
+            // Create the sharp tail at the bottom right
+            bezierPath.addLine(to: CGPoint(x: width - 15, y: height)) // Move to the start of the tail
+            bezierPath.addLine(to: CGPoint(x: width, y: height + 15)) // Point of the tail
+            bezierPath.addLine(to: CGPoint(x: width, y: height - cornerRadius)) // End of the tail
             
-            // Sharp tail on top-right
-            bezierPath.addLine(to: CGPoint(x: width, y: 0))  // Sharp tip
-            bezierPath.addLine(to: CGPoint(x: width - cornerRadius, y: 0))
+            // Right edge with top-right rounded corner
+            bezierPath.addLine(to: CGPoint(x: width, y: cornerRadius))
+            bezierPath.addQuadCurve(to: CGPoint(x: width - cornerRadius, y: 0), controlPoint: CGPoint(x: width, y: 0))
             
-            // Continue to round top-left corner and other sides
-            bezierPath.addLine(to: CGPoint(x: 0, y: 0))
+            // Top edge
+            bezierPath.addLine(to: CGPoint(x: cornerRadius, y: 0))
+            
+            // Top-left rounded corner
             bezierPath.addQuadCurve(to: CGPoint(x: 0, y: cornerRadius), controlPoint: CGPoint(x: 0, y: 0))
             
+            // Left edge
             bezierPath.addLine(to: CGPoint(x: 0, y: height - cornerRadius))
+            
+            // Bottom-left rounded corner to close the path
             bezierPath.addQuadCurve(to: CGPoint(x: cornerRadius, y: height), controlPoint: CGPoint(x: 0, y: height))
+            
+
         }
         
         bezierPath.close()

@@ -239,6 +239,47 @@ class ReqConVC: MainViewController {
         return date
     }
     
+    func timeElapsed(from dateString: String) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0) // Parse as GMT/UTC
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        guard let date = dateFormatter.date(from: dateString) else {
+            print("Error: Could not parse the date string.")
+            return nil
+        }
+        
+        let now = Date()
+        let timeInterval = now.timeIntervalSince(date)
+        
+        // Debugging output
+        print("Parsed date:", date)
+        print("Current date:", now)
+        print("Time interval in seconds:", timeInterval)
+        
+        if timeInterval < 60 {
+            // Less than a minute
+            return "few sec ago"
+        } else if timeInterval < 3600 {
+            // Less than an hour
+            let minutes = Int(timeInterval / 60)
+            return "\(minutes) minute\(minutes == 1 ? "" : "s") ago"
+        } else if timeInterval < 86400 {
+            // Less than a day
+            let hours = Int(timeInterval / 3600)
+            return "\(hours) hour\(hours == 1 ? "" : "s") ago"
+        } else if timeInterval < 2592000 {
+            // Less than 30 days (about 1 month)
+            let days = Int(timeInterval / 86400)
+            return "\(days) day\(days == 1 ? "" : "s") ago"
+        } else {
+            // More than 30 days (count as months)
+            let months = Int(timeInterval / 2592000)
+            return "\(months) month\(months == 1 ? "" : "s") ago"
+        }
+    }
+    
     //MARK: API METHODS
     
     func getReqUsers(load: Bool) {
@@ -466,12 +507,32 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                 cell.searchTF.text = ""
             }
             
-            if AppFunctions.isNotifNotCheck() {
-                cell.notifbtn.tintColor = UIColor(named:"Danger")
-            } else if AppFunctions.isShadowModeOn() {
-                cell.notifbtn.tintColor = UIColor(named: "Primary Yellow")
+            if AppFunctions.isShadowModeOn() {
+                if AppFunctions.isNotifEnable() {
+                    if AppFunctions.isNotifNotCheck() {
+                        cell.notifbtn.setImage(UIImage(named: "shadowWN"), for: .normal)
+                        cell.notifbtn.tintColor = UIColor(named: "Text grey")
+                    } else {
+                        cell.notifbtn.setImage(UIImage(named: "shadowWON"), for: .normal)
+                        cell.notifbtn.tintColor = UIColor(named: "Text grey")
+                    }
+                } else {
+                    cell.notifbtn.setImage(UIImage(systemName: "bell.slash.fill"), for: .normal)
+                    cell.notifbtn.tintColor = UIColor(named: "warning")
+                }
             } else {
-                cell.notifbtn.tintColor = UIColor(named: "Text grey")
+                if AppFunctions.isNotifEnable() {
+                    if AppFunctions.isNotifNotCheck() {
+                        cell.notifbtn.setImage(UIImage(named: "regularWN"), for: .normal)
+                        cell.notifbtn.tintColor = UIColor(named: "Text grey")
+                    } else {
+                        cell.notifbtn.setImage(UIImage(named: "regular"), for: .normal)
+                        cell.notifbtn.tintColor = UIColor(named: "Text grey")
+                    }
+                } else {
+                    cell.notifbtn.setImage(UIImage(systemName: "bell.slash.fill"), for: .normal)
+                    cell.notifbtn.tintColor = UIColor(named: "Text grey")
+                }
             }
             
             return cell
@@ -496,9 +557,9 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                     let user = chatsUsers[indexPath.row - 1]
                     
                     if let chatUserCell = cell as? ChatUsersTVCell {
-                        chatUserCell.nameLbl.text = user.userName.capitalized
-                        chatUserCell.proffLbl.text = user.userWorkTitle.capitalized
-                        chatUserCell.lastMsgTimeLbl.text = fancyStyleDate(dateStr: user.lastLoginTime).toRelative(since: DateInRegion(), dateTimeStyle: .numeric, unitsStyle: .full)
+                        chatUserCell.nameLbl.text = user.userName
+                        chatUserCell.proffLbl.text = user.userWorkTitle
+                        chatUserCell.lastMsgTimeLbl.text = timeElapsed(from: user.lastMessage.createdAt)
                         
                         if let url = URL(string: user.userProfilePicture) {
                             chatUserCell.profileIcon.sd_setImage(with: url , placeholderImage: UIImage(named: "")) { (image, error, imageCacheType, url) in }
@@ -557,6 +618,8 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                                 chatUserCell.msgLbl.attributedText = attributedText
                                 
                             } else {
+                                // Reset attributedText before setting plain text
+                                chatUserCell.msgLbl.attributedText = nil
                                 chatUserCell.msgLbl.text = user.lastMessage.chatMessage.capitalized
                             }
                         }
@@ -698,25 +761,10 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
             } else if !users.isEmpty {
                 if selectedUsertype == "con" {
                     
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    if let vc = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController {
-                        let user = users[indexPath.row - 1]
-                        
-                        vc.userId = user.userId
-                        //vc.chatId = user.chatId
-                        //vc.isOnline = user.isOnline
-                        vc.workTitle = user.workTitle
-                        vc.userName = user.userName
-                        vc.userProfilePic = user.profilePicture
-                        
-                        let transition = CATransition()
-                        transition.duration = 0.5
-                        transition.subtype = CATransitionSubtype.fromRight
-                        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.default)
-                        transition.type = CATransitionType.fade
-                        self.navigationController?.view.layer.add(transition, forKey: nil)
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
+                    self.pushVC(id: "ConnectedUserProfile") { (vc:ConnectedUserProfile) in
+                        vc.userModel = users[indexPath.row - 1]
+                        vc.userId = users[indexPath.row - 1].userId
+                     }
                     
                 } else {
                     if users[indexPath.row - 1].contactStatus == "Pending" {

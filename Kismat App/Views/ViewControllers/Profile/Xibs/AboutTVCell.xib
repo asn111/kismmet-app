@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -46,15 +51,15 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="F68-w9-xdi" customClass="FormTextView" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="28" width="333" height="72"/>
+                                        <rect key="frame" x="8" y="28" width="333" height="63"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="72" id="CSJ-iX-D1B"/>
+                                            <constraint firstAttribute="height" constant="63" id="CSJ-iX-D1B"/>
                                             <constraint firstAttribute="width" constant="333" id="n5q-Sh-bef"/>
                                         </constraints>
                                         <string key="text">Chemistry professor, having a decade of experience in teaching chemistry. Completed PHD from Rich University, Houston TX. Nobel prize winner in “biorthogonal chemistry”</string>
                                         <color key="textColor" name="Secondary Grey"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="txtColor">
@@ -68,13 +73,28 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textView>
+                                    <button hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLa-Bg-pdC">
+                                        <rect key="frame" x="283" y="77" width="63" height="16"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="16" id="iSh-cf-app"/>
+                                            <constraint firstAttribute="width" constant="63" id="s05-7Z-rhi"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="...see more">
+                                            <color key="titleColor" name="Secondary Grey"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="349" id="2rz-xS-xtq"/>
                                     <constraint firstAttribute="trailing" secondItem="F68-w9-xdi" secondAttribute="trailing" constant="8" id="3JB-yE-o7u"/>
-                                    <constraint firstAttribute="bottom" secondItem="F68-w9-xdi" secondAttribute="bottom" id="7L8-gW-3YF"/>
+                                    <constraint firstAttribute="bottom" secondItem="F68-w9-xdi" secondAttribute="bottom" constant="9" id="7L8-gW-3YF"/>
                                     <constraint firstAttribute="height" constant="100" id="Qbe-nW-Tq3"/>
+                                    <constraint firstAttribute="trailing" secondItem="TLa-Bg-pdC" secondAttribute="trailing" constant="3" id="Wp1-2e-Njw"/>
+                                    <constraint firstAttribute="bottom" secondItem="TLa-Bg-pdC" secondAttribute="bottom" constant="7" id="cX3-Ng-8gY"/>
                                     <constraint firstItem="gEd-wu-Vd8" firstAttribute="top" secondItem="gP4-G8-zrb" secondAttribute="top" constant="8" id="dHX-ab-IgD"/>
                                     <constraint firstItem="gEd-wu-Vd8" firstAttribute="leading" secondItem="gP4-G8-zrb" secondAttribute="leading" id="giL-Tk-99f"/>
                                     <constraint firstItem="F68-w9-xdi" firstAttribute="top" secondItem="gEd-wu-Vd8" secondAttribute="bottom" id="wBZ-2C-1wg"/>
@@ -118,15 +138,11 @@
             <connections>
                 <outlet property="aboutTxtView" destination="F68-w9-xdi" id="qvt-M1-QB9"/>
                 <outlet property="bioLbl" destination="gEd-wu-Vd8" id="ZSw-KF-4HQ"/>
+                <outlet property="seemoreBtn" destination="TLa-Bg-pdC" id="aRa-rx-PAv"/>
             </connections>
             <point key="canvasLocation" x="52.671755725190835" y="46.478873239436624"/>
         </tableViewCell>
     </objects>
-    <designables>
-        <designable name="gEd-wu-Vd8">
-            <size key="intrinsicContentSize" width="33.333333333333336" height="20.333333333333332"/>
-        </designable>
-    </designables>
     <resources>
         <namedColor name="Secondary Grey">
             <color red="0.3059999942779541" green="0.4309999942779541" blue="0.50599998235702515" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_72" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -67,16 +67,16 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D2h-CL-I8s">
-                                        <rect key="frame" x="363" y="10" width="30" height="30"/>
+                                        <rect key="frame" x="363" y="15" width="20" height="20"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="fYU-8w-uZi"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="pPb-KY-OTV"/>
-                                            <constraint firstAttribute="height" constant="30" id="y9W-XD-SIn"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="zVl-7X-LBQ"/>
+                                            <constraint firstAttribute="width" constant="20" id="fYU-8w-uZi"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="pPb-KY-OTV"/>
+                                            <constraint firstAttribute="height" constant="20" id="y9W-XD-SIn"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="zVl-7X-LBQ"/>
                                         </constraints>
                                         <color key="tintColor" name="Secondary Grey"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="bell.badge.fill" catalog="system">
+                                        <state key="normal" image="regular">
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="semibold"/>
                                         </state>
                                     </button>
@@ -120,10 +120,10 @@
                                     <constraint firstAttribute="height" constant="66" id="J2L-vB-fDd"/>
                                     <constraint firstAttribute="bottom" secondItem="amq-6n-jaK" secondAttribute="bottom" constant="26" id="Kag-f6-aDD"/>
                                     <constraint firstItem="4IN-oq-2Gx" firstAttribute="centerY" secondItem="Eaf-aD-Gjo" secondAttribute="centerY" constant="-8" id="NNe-bx-umy"/>
-                                    <constraint firstItem="D2h-CL-I8s" firstAttribute="top" secondItem="Eaf-aD-Gjo" secondAttribute="top" constant="10" id="OLa-MC-weL"/>
-                                    <constraint firstAttribute="trailing" secondItem="D2h-CL-I8s" secondAttribute="trailing" constant="8" id="V1c-kS-D68"/>
+                                    <constraint firstItem="D2h-CL-I8s" firstAttribute="top" secondItem="Eaf-aD-Gjo" secondAttribute="top" constant="15" id="OLa-MC-weL"/>
+                                    <constraint firstAttribute="trailing" secondItem="D2h-CL-I8s" secondAttribute="trailing" constant="18" id="V1c-kS-D68"/>
                                     <constraint firstItem="nXB-LI-QkM" firstAttribute="centerX" secondItem="Eaf-aD-Gjo" secondAttribute="centerX" id="VWg-xK-Fv1"/>
-                                    <constraint firstAttribute="bottom" secondItem="D2h-CL-I8s" secondAttribute="bottom" constant="26" id="aZn-X9-l2U"/>
+                                    <constraint firstAttribute="bottom" secondItem="D2h-CL-I8s" secondAttribute="bottom" constant="31" id="aZn-X9-l2U"/>
                                     <constraint firstItem="amq-6n-jaK" firstAttribute="leading" secondItem="Eaf-aD-Gjo" secondAttribute="leading" constant="8" id="hW9-08-uKh"/>
                                     <constraint firstItem="D2h-CL-I8s" firstAttribute="leading" secondItem="Yuc-ta-9cO" secondAttribute="trailing" id="jkH-pR-osY"/>
                                     <constraint firstAttribute="bottom" secondItem="Yuc-ta-9cO" secondAttribute="bottom" constant="26" id="pjI-cp-CwJ"/>
@@ -322,22 +322,11 @@
             <point key="canvasLocation" x="-27.209302325581394" y="44.742489270386272"/>
         </tableViewCell>
     </objects>
-    <designables>
-        <designable name="4IN-oq-2Gx">
-            <size key="intrinsicContentSize" width="88.333333333333329" height="20.333333333333332"/>
-        </designable>
-        <designable name="amq-6n-jaK">
-            <size key="intrinsicContentSize" width="162" height="152"/>
-        </designable>
-        <designable name="gjT-fS-ZUo">
-            <size key="intrinsicContentSize" width="52" height="16.666666666666668"/>
-        </designable>
-    </designables>
     <resources>
-        <image name="bell.badge.fill" catalog="system" width="117" height="128"/>
         <image name="ellipsis.message.fill" catalog="system" width="128" height="114"/>
         <image name="logo name" width="3289" height="512"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <image name="regular" width="23" height="24"/>
         <image name="reqSelected" width="392" height="37"/>
         <image name="wifi man grey 2" width="162" height="152"/>
         <namedColor name="Secondary Grey">

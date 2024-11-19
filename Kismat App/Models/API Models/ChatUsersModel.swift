@@ -66,6 +66,7 @@ class LastMessageModel: NSObject, Codable {
     
     var messageld : Int!
     var chatMessage : String!
+    var createdAt : String!
     var isLastMessageByMe : Bool!
     
     

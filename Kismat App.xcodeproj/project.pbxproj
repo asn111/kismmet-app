@@ -151,6 +151,8 @@
 		299FDDAA2996E85C0049741B /* ProfileTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299FDDA82996E85C0049741B /* ProfileTVCell.xib */; };
 		299FDDAE2996EB7E0049741B /* GeneralButtonTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299FDDAC2996EB7E0049741B /* GeneralButtonTVCell.swift */; };
 		299FDDAF2996EB7E0049741B /* GeneralButtonTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299FDDAD2996EB7E0049741B /* GeneralButtonTVCell.xib */; };
+		29A8DDEE2CDB6EC500C74896 /* ConnectedBtnsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A8DDEC2CDB6EC500C74896 /* ConnectedBtnsTVCell.swift */; };
+		29A8DDEF2CDB6EC500C74896 /* ConnectedBtnsTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29A8DDED2CDB6EC500C74896 /* ConnectedBtnsTVCell.xib */; };
 		29B92D892CB2BAA900EAEC40 /* ProfileHeaderNewTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29B92D882CB2BAA900EAEC40 /* ProfileHeaderNewTVCell.xib */; };
 		29B92D8A2CB2BAA900EAEC40 /* ProfileHeaderNewTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B92D872CB2BAA900EAEC40 /* ProfileHeaderNewTVCell.swift */; };
 		29BAD3BC29F1B18B00F16C2B /* StartupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BAD3BB29F1B18B00F16C2B /* StartupModel.swift */; };
@@ -340,6 +342,8 @@
 		299FDDA82996E85C0049741B /* ProfileTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTVCell.xib; sourceTree = "<group>"; };
 		299FDDAC2996EB7E0049741B /* GeneralButtonTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralButtonTVCell.swift; sourceTree = "<group>"; };
 		299FDDAD2996EB7E0049741B /* GeneralButtonTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralButtonTVCell.xib; sourceTree = "<group>"; };
+		29A8DDEC2CDB6EC500C74896 /* ConnectedBtnsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedBtnsTVCell.swift; sourceTree = "<group>"; };
+		29A8DDED2CDB6EC500C74896 /* ConnectedBtnsTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConnectedBtnsTVCell.xib; sourceTree = "<group>"; };
 		29B92D872CB2BAA900EAEC40 /* ProfileHeaderNewTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderNewTVCell.swift; sourceTree = "<group>"; };
 		29B92D882CB2BAA900EAEC40 /* ProfileHeaderNewTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeaderNewTVCell.xib; sourceTree = "<group>"; };
 		29BAD3BB29F1B18B00F16C2B /* StartupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupModel.swift; sourceTree = "<group>"; };
@@ -529,6 +533,8 @@
 				29B92D882CB2BAA900EAEC40 /* ProfileHeaderNewTVCell.xib */,
 				297E59BC2CBFB80A00AEF0E1 /* ProfileHeaderPNewTVCell.swift */,
 				297E59BD2CBFB80A00AEF0E1 /* ProfileHeaderPNewTVCell.xib */,
+				29A8DDEC2CDB6EC500C74896 /* ConnectedBtnsTVCell.swift */,
+				29A8DDED2CDB6EC500C74896 /* ConnectedBtnsTVCell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -1241,6 +1247,7 @@
 				299FDD982996C8ED0049741B /* Roboto-Black.ttf in Resources */,
 				29748F412C32F9D500DB89E9 /* rocketLaunch.gif in Resources */,
 				299FDD162996796A0049741B /* Assets.xcassets in Resources */,
+				29A8DDEF2CDB6EC500C74896 /* ConnectedBtnsTVCell.xib in Resources */,
 				293564852C5100E700568D73 /* oval_Sketch.gif in Resources */,
 				293564872C5105E900568D73 /* circle_Sketch.gif in Resources */,
 				29353CAC2C8C7BFE00C45763 /* ChatUsersTVCell.xib in Resources */,
@@ -1480,6 +1487,7 @@
 				29350A1A29D0C43B00F19BD5 /* UserModel.swift in Sources */,
 				29842B112CA701BF0045D852 /* ChatListUserTVCell.swift in Sources */,
 				297B15C62B31A78000A3B8D7 /* RideMapViewTVCell.swift in Sources */,
+				29A8DDEE2CDB6EC500C74896 /* ConnectedBtnsTVCell.swift in Sources */,
 				2938E73E2A02CD7D00C21AEA /* SocialLinks VC.swift in Sources */,
 				299FDD5E29967D1D0049741B /* AppFunctions.swift in Sources */,
 				29FD316629A5FD9400BDBD9C /* EditProfileSetup.swift in Sources */,
@@ -1708,7 +1716,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1748,7 +1756,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Kismat App/Kismat App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = N3Y688B2K5;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;

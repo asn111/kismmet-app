@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -23,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="242"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zns-Bm-uHC" customClass="RoundCornerView" customModule="Kismmet" customModuleProvider="target">
-                                <rect key="frame" x="16" y="179" width="368" height="50"/>
+                                <rect key="frame" x="16" y="179" width="368" height="54"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="on8-ak-lhm">
                                         <rect key="frame" x="5" y="28.666666666666675" width="12" height="10.333333333333346"/>
@@ -56,7 +56,7 @@
                                                 <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="txtSize">
-                                                <real key="value" value="12"/>
+                                                <real key="value" value="14"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="string" keyPath="txtStroke" value="l"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
@@ -69,13 +69,13 @@
                                 <color key="backgroundColor" name="Text grey"/>
                                 <constraints>
                                     <constraint firstItem="7v4-PC-B7E" firstAttribute="leading" secondItem="Uq4-vH-8Nw" secondAttribute="trailing" id="3xX-v6-rKb"/>
-                                    <constraint firstAttribute="bottom" secondItem="on8-ak-lhm" secondAttribute="bottom" constant="9" id="CZC-KW-wMy"/>
-                                    <constraint firstAttribute="bottom" secondItem="7v4-PC-B7E" secondAttribute="bottom" constant="10" id="Fxj-xB-Ior"/>
+                                    <constraint firstAttribute="bottom" secondItem="on8-ak-lhm" secondAttribute="bottom" constant="12.999999999999979" id="CZC-KW-wMy"/>
+                                    <constraint firstAttribute="bottom" secondItem="7v4-PC-B7E" secondAttribute="bottom" constant="14" id="Fxj-xB-Ior"/>
                                     <constraint firstAttribute="trailing" secondItem="7v4-PC-B7E" secondAttribute="trailing" constant="8" id="GL8-bG-EKH"/>
-                                    <constraint firstAttribute="height" constant="50" id="UOQ-OQ-2VT"/>
+                                    <constraint firstAttribute="height" constant="54" id="UOQ-OQ-2VT"/>
                                     <constraint firstItem="on8-ak-lhm" firstAttribute="leading" secondItem="zns-Bm-uHC" secondAttribute="leading" constant="5" id="Wyd-9w-zoR"/>
                                     <constraint firstAttribute="trailing" secondItem="Uq4-vH-8Nw" secondAttribute="trailing" constant="20" id="e65-eH-ryO"/>
-                                    <constraint firstAttribute="bottom" secondItem="Uq4-vH-8Nw" secondAttribute="bottom" constant="-2" id="h1R-dm-m5a"/>
+                                    <constraint firstAttribute="bottom" secondItem="Uq4-vH-8Nw" secondAttribute="bottom" constant="2" id="h1R-dm-m5a"/>
                                     <constraint firstItem="Uq4-vH-8Nw" firstAttribute="leading" secondItem="zns-Bm-uHC" secondAttribute="leading" constant="20" id="utC-Px-PkK"/>
                                     <constraint firstItem="Uq4-vH-8Nw" firstAttribute="leading" secondItem="on8-ak-lhm" secondAttribute="trailing" constant="3" id="yOB-pU-zX2"/>
                                 </constraints>
@@ -131,16 +131,16 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LgJ-GR-smZ">
-                                                <rect key="frame" x="344" y="10" width="30" height="30"/>
+                                                <rect key="frame" x="344" y="15" width="20" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="Fj1-ZW-vbZ"/>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="QgC-ZR-ug1"/>
-                                                    <constraint firstAttribute="height" constant="30" id="mVi-HU-XLA"/>
-                                                    <constraint firstAttribute="width" constant="30" id="vgS-k9-Qdi"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="Fj1-ZW-vbZ"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="QgC-ZR-ug1"/>
+                                                    <constraint firstAttribute="height" constant="20" id="mVi-HU-XLA"/>
+                                                    <constraint firstAttribute="width" constant="20" id="vgS-k9-Qdi"/>
                                                 </constraints>
                                                 <color key="tintColor" name="Secondary Grey"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" image="bell.badge.fill" catalog="system">
+                                                <state key="normal" image="regular">
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="semibold"/>
                                                 </state>
                                             </button>
@@ -160,10 +160,10 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="0lp-It-kBv" secondAttribute="bottom" constant="26" id="0l0-mu-sgM"/>
-                                            <constraint firstAttribute="trailing" secondItem="LgJ-GR-smZ" secondAttribute="trailing" id="2Xe-VD-Cps"/>
+                                            <constraint firstAttribute="trailing" secondItem="LgJ-GR-smZ" secondAttribute="trailing" constant="10" id="2Xe-VD-Cps"/>
                                             <constraint firstAttribute="height" constant="66" id="8aw-U9-Nl1"/>
-                                            <constraint firstItem="LgJ-GR-smZ" firstAttribute="top" secondItem="Bhg-TB-LlU" secondAttribute="top" constant="10" id="KmE-Dc-c18"/>
-                                            <constraint firstAttribute="bottom" secondItem="LgJ-GR-smZ" secondAttribute="bottom" constant="26" id="OVx-Jo-Sg0"/>
+                                            <constraint firstItem="LgJ-GR-smZ" firstAttribute="top" secondItem="Bhg-TB-LlU" secondAttribute="top" constant="15" id="KmE-Dc-c18"/>
+                                            <constraint firstAttribute="bottom" secondItem="LgJ-GR-smZ" secondAttribute="bottom" constant="31" id="OVx-Jo-Sg0"/>
                                             <constraint firstAttribute="width" constant="374" id="RGm-xI-mSs"/>
                                             <constraint firstItem="0lp-It-kBv" firstAttribute="leading" secondItem="Bhg-TB-LlU" secondAttribute="leading" constant="2" id="SoL-mH-JRb"/>
                                             <constraint firstItem="LgJ-GR-smZ" firstAttribute="leading" secondItem="Ppn-F4-Mtd" secondAttribute="trailing" constant="7" id="gNn-eU-jqT"/>
@@ -315,7 +315,7 @@
                             <constraint firstAttribute="height" constant="242" id="R28-18-Eua"/>
                             <constraint firstItem="IPh-RW-2Hn" firstAttribute="top" secondItem="vdi-BF-NaR" secondAttribute="top" constant="10" id="RWN-kc-a0j"/>
                             <constraint firstAttribute="trailing" secondItem="IPh-RW-2Hn" secondAttribute="trailing" constant="8" id="j0t-AZ-GkH"/>
-                            <constraint firstAttribute="bottom" secondItem="zns-Bm-uHC" secondAttribute="bottom" constant="13" id="n30-et-dAE"/>
+                            <constraint firstAttribute="bottom" secondItem="zns-Bm-uHC" secondAttribute="bottom" constant="9" id="n30-et-dAE"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -346,29 +346,8 @@
             <point key="canvasLocation" x="-9.1603053435114496" y="57.04225352112676"/>
         </tableViewCell>
     </objects>
-    <designables>
-        <designable name="0lp-It-kBv">
-            <size key="intrinsicContentSize" width="19.666666666666668" height="22"/>
-        </designable>
-        <designable name="D96-EJ-0RV">
-            <size key="intrinsicContentSize" width="73" height="20.333333333333332"/>
-        </designable>
-        <designable name="EOP-78-ZqW">
-            <size key="intrinsicContentSize" width="407" height="612"/>
-        </designable>
-        <designable name="Uq4-vH-8Nw">
-            <size key="intrinsicContentSize" width="424" height="20.333333333333332"/>
-        </designable>
-        <designable name="o3B-c6-HKx">
-            <size key="intrinsicContentSize" width="151.33333333333334" height="20.333333333333332"/>
-        </designable>
-        <designable name="wBh-yd-E5r">
-            <size key="intrinsicContentSize" width="211" height="20.333333333333332"/>
-        </designable>
-    </designables>
     <resources>
         <image name="arrow.left" catalog="system" width="128" height="95"/>
-        <image name="bell.badge.fill" catalog="system" width="117" height="128"/>
         <image name="ellipsis.message.fill" catalog="system" width="128" height="114"/>
         <image name="girl" width="407" height="612"/>
         <image name="imageView:7v4-PC-B7E:image" width="128" height="123">
@@ -17319,6 +17298,7 @@ gVQAD4FZAA+BZgAPgWkAD4F2AA+BewAPgYMAD4GGAA+BiwAPgZMAAAAAAAAEAQAAAAAAAABWAAAAAAAA
 AAAAAAAAAA+Blg
 </mutableData>
         </image>
+        <image name="regular" width="23" height="24"/>
         <image name="wifi" catalog="system" width="128" height="90"/>
         <namedColor name="Secondary Grey">
             <color red="0.3059999942779541" green="0.4309999942779541" blue="0.50599998235702515" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

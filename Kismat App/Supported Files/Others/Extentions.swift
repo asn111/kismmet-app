@@ -381,7 +381,7 @@ extension UITextView : UITextViewDelegate
         iconImageView.isHidden = placeholderLabel.isHidden
         
         // Configure the placeholder label frame
-        placeholderLabel.frame = CGRect(x: 5, y: 0, width: self.frame.size.width - 10, height: self.frame.size.height - 16)
+        placeholderLabel.frame = CGRect(x: 0, y: 0, width: self.frame.size.width - 5, height: self.frame.size.height - 16)
         
         // Add both label and image view to the text view
         self.addSubview(placeholderLabel)
@@ -404,7 +404,7 @@ extension UITextView : UITextViewDelegate
             placeholderLabel.frame = CGRect(x: labelX, y: labelY, width: labelWidth, height: labelHeight)
             
             // Set the icon position right after the label
-            iconImageView.frame = CGRect(x: labelX + labelWidth + 5, y: labelY, width: 17, height: 17)
+            iconImageView.frame = CGRect(x: labelX + labelWidth, y: labelY, width: 17, height: 17)
             
             // Sync the visibility of the icon with the placeholder label
             let isHidden = !self.text.isEmpty
@@ -445,6 +445,74 @@ extension UITextView : UITextViewDelegate
             let labelHeight = placeholderLabel.sizeThatFits(CGSize(width: labelWidth, height: CGFloat.greatestFiniteMagnitude)).height
             
             placeholderLabel.frame = CGRect(x: labelX, y: labelY, width: labelWidth, height: labelHeight)
+        }
+    }
+    
+    func numberOfLines() -> Int {
+        guard let font = self.font else { return 0 }
+        
+        // Ensure the text is not nil or empty
+        guard let text = self.text, !text.isEmpty else { return 0 }
+        
+        let textContainer = self.textContainer
+        let layoutManager = self.layoutManager
+        
+        // Calculate the range of the visible glyphs
+        let glyphRange = layoutManager.glyphRange(for: textContainer)
+        
+        var lineCount = 0
+        var index = glyphRange.location
+        
+        // Iterate through the glyphs to count lines
+        while index < NSMaxRange(glyphRange) {
+            var lineRange = NSRange()
+            layoutManager.lineFragmentRect(forGlyphAt: index, effectiveRange: &lineRange)
+            lineCount += 1
+            index = NSMaxRange(lineRange)
+        }
+        
+        return lineCount
+    }
+    
+    func trimToThreeLines() {
+        guard let font = self.font, let text = self.text, !text.isEmpty else { return }
+        
+        let textContainer = self.textContainer
+        let layoutManager = self.layoutManager
+        
+        // Calculate the range of the visible glyphs
+        let glyphRange = layoutManager.glyphRange(for: textContainer)
+        
+        var lineCount = 0
+        var index = glyphRange.location
+        var lineEndIndex: Int = 0
+        
+        // Iterate to find the end of the third line
+        while index < NSMaxRange(glyphRange) {
+            var lineRange = NSRange()
+            layoutManager.lineFragmentRect(forGlyphAt: index, effectiveRange: &lineRange)
+            lineCount += 1
+            
+            if lineCount == 3 {
+                lineEndIndex = NSMaxRange(lineRange)
+                break
+            }
+            
+            index = NSMaxRange(lineRange)
+        }
+        
+        // If more than 3 lines, trim the text
+        if lineCount > 3 {
+            let visibleText = (text as NSString).substring(to: lineEndIndex)
+            var words = visibleText.split(separator: " ")
+            
+            // Ensure there are enough words to trim
+            if words.count > 3 {
+                words.removeLast(3) // Remove last 3 words
+            }
+            
+            // Update the text with ellipsis
+            self.text = words.joined(separator: " ") + "..."
         }
     }
 

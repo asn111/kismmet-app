@@ -1,15 +1,10 @@
-//
-//  ChatViewController.swift
-//  GreenEntertainment
-//
-//  Created by Prateek Keshari on 13/06/20.
-//  Copyright © 2020 Quytech. All rights reserved.
-//
+
 
 import UIKit
 import IQKeyboardManagerSwift
 import SDWebImage
 import DropDown
+import RxSwift
 
 class ChatViewController: MainViewController {
     @IBOutlet weak var userNameLabel: fullyCustomLbl!
@@ -63,13 +58,27 @@ class ChatViewController: MainViewController {
     var isPresented = false
     var refreshControl: UIRefreshControl!
     
+    private var disposeBag = DisposeBag() // DisposeBag specific to this view
+
+    
     //MARK: UIViewController LifeCycle Method
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        _ = generalPublisherChat.subscribe(onNext: {[weak self] val in
-            if self?.chats.count == 0 {
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Reset the disposeBag to ensure a new subscription setup each time the view appears
+        disposeBag = DisposeBag()
+        
+        // Subscribe to the publisher when the view is visible
+        generalPublisherChat.subscribe(onNext: {[weak self] val in
+            guard let self = self else { return }
+            
+            if self.chats.isEmpty {
                 let chat = ChatModelArray()
                 
                 let date = Date()
@@ -80,19 +89,28 @@ class ChatViewController: MainViewController {
                 
                 chat.dayHeader = dateString
                 chat.messages.append(val)
-                self?.chats.append(chat)
-                self?.tableView.reloadData()
-                self?.scrollToBottom()
-                self?.markMsgRead()
+                self.chats.append(chat)
+                self.tableView.reloadData()
+                self.scrollToBottom()
+                self.markMsgRead()
             } else {
-                self?.chats.last?.messages.append(val)
-                self?.tableView.reloadData()
-                self?.scrollToBottom()
-                self?.markMsgRead()
+                self.chats.last?.messages.append(val)
+                self.tableView.reloadData()
+                self.scrollToBottom()
+                self.markMsgRead()
             }
             
-        }, onError: {print($0.localizedDescription)}, onCompleted: {print("Completed")}, onDisposed: {print("disposed")})
+        }, onError: { print($0.localizedDescription) }, onCompleted: { print("Completed") }, onDisposed: { print("disposed") })
+        .disposed(by: disposeBag)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
+        // Dispose of the current subscription when the view goes off-screen
+        disposeBag = DisposeBag() // This will cancel the current subscription
+        IQKeyboardManager.shared.enableAutoToolbar = true
+        IQKeyboardManager.shared.enable = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,13 +121,7 @@ class ChatViewController: MainViewController {
         //getMessageHistory()
         //messagesListner()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        IQKeyboardManager.shared.enableAutoToolbar = true
-        IQKeyboardManager.shared.enable = true
-    }
-    
+
     
     
     //MARK: Helper Method
@@ -150,10 +162,10 @@ class ChatViewController: MainViewController {
     
     func customSetup(){
         
-        userNameLabel.text = userName.capitalized
-        userNameLabelM.text = userName.capitalized
-        workLbl.text = workTitle.capitalized
-        workLblM.text = workTitle.capitalized
+        userNameLabel.text = userName
+        userNameLabelM.text = userName
+        workLbl.text = workTitle
+        workLblM.text = workTitle
         
         onlineView.isHidden = !isOnline
         
@@ -227,6 +239,7 @@ class ChatViewController: MainViewController {
             self.presentVC(id: "OtherUserProfile", presentFullType: "over" ) { (vc:OtherUserProfile) in
                 vc.userId = userId
                 vc.isFromMessage = true
+                vc.isPresented = true
             }
         } else {
             
@@ -288,23 +301,37 @@ class ChatViewController: MainViewController {
     
     //MARK: Target Method
     @objc func scrollToBottom() {
-        
         if let lastChat = self.chats.last, lastChat.messages.count > 0 {
             let lastRowIndex = lastChat.messages.count - 1
             let lastSectionIndex = self.tableView.numberOfSections - 1
             
+            // Add extra bottom inset if the last cell is being cut off
+            let bottomInset: CGFloat = 5 // Adjust as needed
+            self.tableView.contentInset.bottom = bottomInset
+            
             // Ensure the section and row are within bounds
             if lastSectionIndex >= 0, lastRowIndex < self.tableView.numberOfRows(inSection: lastSectionIndex) {
                 let lastIndexPath = IndexPath(row: lastRowIndex, section: lastSectionIndex)
+                
+                // Step 1: Scroll to the last message
                 self.tableView.scrollToRow(at: lastIndexPath, at: .bottom, animated: false)
+                
+                // Step 2: Scroll further to account for the bottom inset
+                DispatchQueue.main.async {
+                    // Calculate the content offset to scroll to the bottom inset
+                    let contentHeight = self.tableView.contentSize.height
+                    let tableViewHeight = self.tableView.bounds.height
+                    let offset = CGPoint(x: 0, y: contentHeight - tableViewHeight + self.tableView.contentInset.bottom)
+                    
+                    // Ensure we don't scroll past the content height
+                    if contentHeight > tableViewHeight {
+                        self.tableView.setContentOffset(offset, animated: true)
+                    }
+                }
             }
         }
-
-        
-        /*if (self.chats.last?.messages.count)! > 0 {
-            self.tableView.scrollToRow(at: IndexPath.init(row: (self.chats.last?.messages.count)! - 1 , section: 0), at:.bottom, animated: false)
-        }*/
     }
+
     
     //MARK: UIButton Action Method
     @IBAction func backButtonAction(_ sender: UIButton){

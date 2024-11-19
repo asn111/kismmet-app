@@ -575,7 +575,7 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
                 cell.addBtn.isHidden = true
-                cell.headerLbl.text = "What's on your mind? Broadcast a status"
+                cell.headerLbl.text = "What's on your mind? Broadcast a status:"
                 
                 return cell
             case 6 : // Status
@@ -584,8 +584,8 @@ extension EditProfileSetupExt : UITableViewDelegate, UITableViewDataSource {
                 
                 cell.generalTV.isEditable = AppFunctions.isPremiumUser()
 
-                cell.leadConstTV.constant = 16
-                cell.trailConstTV.constant = 14
+                cell.leadConstTV.constant = 40
+                cell.trailConstTV.constant = 50
                 
                 cell.bubbleIV.isHidden = false
                 cell.generalTV.backgroundColor = .clear

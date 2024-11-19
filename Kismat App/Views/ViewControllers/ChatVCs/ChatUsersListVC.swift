@@ -135,6 +135,7 @@ extension ChatUsersListVC : UITableViewDelegate, UITableViewDataSource {
             cell.profileIcon.image = UIImage(named: "placeholder")
         }
         
+        
         return cell
     }
     

@@ -30,9 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ = SignalRManager.init()
         application.applicationIconBadgeNumber = 0
         if AppFunctions.isLoggedIn() {
-            if AppFunctions.getplatForm() == "iOS" && !UIDevice.modelName.lowercased().contains("arm64".lowercased()) {                IAPManager.shared.checkSubscriptionStatus()
+            if AppFunctions.getplatForm() == "iOS" && !UIDevice.modelName.lowercased().contains("arm64".lowercased()) {
+                IAPManager.shared.checkSubscriptionStatus()
             }
-            //APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
+            APIService.singelton.registerDeviceToken(token: AppFunctions.getDevToken())
         }
     }
     
@@ -254,7 +255,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         AppFunctions.setDevToken(value: tokenString)
         
         if AppFunctions.isLoggedIn() {
-            APIService.singelton.registerDeviceToken(token: tokenString)
+            APIService.singelton.`registerDeviceToken`(token: tokenString)
         }
     }
     

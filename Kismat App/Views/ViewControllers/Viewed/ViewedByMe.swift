@@ -208,12 +208,32 @@ extension ViewedByMeVC : UITableViewDelegate, UITableViewDataSource {
                 
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
                 
-                if AppFunctions.isNotifNotCheck() {
-                    cell.notifBtn.tintColor = UIColor(named:"Danger")
-                } else if AppFunctions.isShadowModeOn() {
-                    cell.notifBtn.tintColor = UIColor(named: "Primary Yellow")
+                if AppFunctions.isShadowModeOn() {
+                    if AppFunctions.isNotifEnable() {
+                        if AppFunctions.isNotifNotCheck() {
+                            cell.notifBtn.setImage(UIImage(named: "shadowWN"), for: .normal)
+                            cell.notifBtn.tintColor = UIColor(named: "Text grey")
+                        } else {
+                            cell.notifBtn.setImage(UIImage(named: "shadowWON"), for: .normal)
+                            cell.notifBtn.tintColor = UIColor(named: "Text grey")
+                        }
+                    } else {
+                        cell.notifBtn.setImage(UIImage(systemName: "bell.slash.fill"), for: .normal)
+                        cell.notifBtn.tintColor = UIColor(named: "warning")
+                    }
                 } else {
-                    cell.notifBtn.tintColor = UIColor(named: "Text grey")
+                    if AppFunctions.isNotifEnable() {
+                        if AppFunctions.isNotifNotCheck() {
+                            cell.notifBtn.setImage(UIImage(named: "regularWN"), for: .normal)
+                            cell.notifBtn.tintColor = UIColor(named: "Text grey")
+                        } else {
+                            cell.notifBtn.setImage(UIImage(named: "regular"), for: .normal)
+                            cell.notifBtn.tintColor = UIColor(named: "Text grey")
+                        }
+                    } else {
+                        cell.notifBtn.setImage(UIImage(systemName: "bell.slash.fill"), for: .normal)
+                        cell.notifBtn.tintColor = UIColor(named: "Text grey")
+                    }
                 }
                 
                 return cell

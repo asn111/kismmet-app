@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -58,21 +58,21 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RN4-MZ-r6J">
-                                        <rect key="frame" x="321" y="10" width="30" height="30"/>
+                                        <rect key="frame" x="325" y="15" width="20" height="20"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="0uM-J4-b2N"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="Bf0-Ru-71e"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="I1l-EP-RFR"/>
-                                            <constraint firstAttribute="width" constant="30" id="yAq-SX-01S"/>
+                                            <constraint firstAttribute="height" constant="20" id="0uM-J4-b2N"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="10" id="Bf0-Ru-71e"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="I1l-EP-RFR"/>
+                                            <constraint firstAttribute="width" constant="20" id="yAq-SX-01S"/>
                                         </constraints>
-                                        <color key="tintColor" name="Secondary Grey"/>
+                                        <color key="tintColor" name="Text grey"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="bell.badge.fill" catalog="system">
+                                        <state key="normal" image="regular">
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="semibold"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RTS-hv-L0Q">
-                                        <rect key="frame" x="286" y="10" width="30" height="30"/>
+                                        <rect key="frame" x="289" y="10" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="DSZ-fp-WR4"/>
                                             <constraint firstAttribute="width" constant="30" id="h0Q-pA-S3n"/>
@@ -84,11 +84,10 @@
                                         </state>
                                     </button>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STARRED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6BT-Eq-hcD" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="46" y="9" width="267" height="32"/>
+                                        <rect key="frame" x="63.666666666666686" y="9" width="232" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="Lyr-Hf-BhX"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="267" id="NeF-aB-5To"/>
-                                            <constraint firstAttribute="width" constant="267" id="UC8-ru-FIU"/>
+                                            <constraint firstAttribute="width" constant="232" id="UC8-ru-FIU"/>
                                             <constraint firstAttribute="height" constant="32" id="xmz-ZR-JPi"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -181,15 +180,15 @@
                                     <constraint firstAttribute="trailing" secondItem="05M-7P-ld3" secondAttribute="trailing" constant="8" id="F90-9B-gID"/>
                                     <constraint firstItem="v2n-8t-cBj" firstAttribute="centerX" secondItem="gT6-92-Go5" secondAttribute="centerX" id="Ffm-5O-FnH"/>
                                     <constraint firstItem="j4f-gS-nOe" firstAttribute="leading" secondItem="gT6-92-Go5" secondAttribute="leading" constant="8" id="Gaj-1s-zSc"/>
-                                    <constraint firstAttribute="bottom" secondItem="RN4-MZ-r6J" secondAttribute="bottom" constant="26" id="If6-t7-aPr"/>
+                                    <constraint firstAttribute="bottom" secondItem="RN4-MZ-r6J" secondAttribute="bottom" constant="31" id="If6-t7-aPr"/>
                                     <constraint firstItem="v2n-8t-cBj" firstAttribute="centerY" secondItem="gT6-92-Go5" secondAttribute="centerY" constant="-8" id="M1t-BG-i4Q"/>
                                     <constraint firstItem="j4f-gS-nOe" firstAttribute="top" secondItem="RTS-hv-L0Q" secondAttribute="bottom" constant="6" id="Pxm-Jm-rRs"/>
                                     <constraint firstItem="ooM-Y7-C6j" firstAttribute="centerY" secondItem="gT6-92-Go5" secondAttribute="centerY" constant="-8" id="Qv8-S1-Vjd"/>
-                                    <constraint firstItem="RN4-MZ-r6J" firstAttribute="top" secondItem="gT6-92-Go5" secondAttribute="top" constant="10" id="Yvg-yi-xet"/>
+                                    <constraint firstItem="RN4-MZ-r6J" firstAttribute="top" secondItem="gT6-92-Go5" secondAttribute="top" constant="15" id="Yvg-yi-xet"/>
                                     <constraint firstAttribute="height" constant="66" id="e3g-tr-5EW"/>
-                                    <constraint firstItem="RN4-MZ-r6J" firstAttribute="leading" secondItem="RTS-hv-L0Q" secondAttribute="trailing" constant="5" id="lA0-Zk-Ra2"/>
+                                    <constraint firstItem="RN4-MZ-r6J" firstAttribute="leading" secondItem="RTS-hv-L0Q" secondAttribute="trailing" constant="6" id="lA0-Zk-Ra2"/>
                                     <constraint firstItem="j4f-gS-nOe" firstAttribute="top" secondItem="05M-7P-ld3" secondAttribute="bottom" constant="11" id="mGo-4X-BxC"/>
-                                    <constraint firstAttribute="trailing" secondItem="RN4-MZ-r6J" secondAttribute="trailing" constant="8" id="mXb-4x-ojj"/>
+                                    <constraint firstAttribute="trailing" secondItem="RN4-MZ-r6J" secondAttribute="trailing" constant="14" id="mXb-4x-ojj"/>
                                     <constraint firstItem="j4f-gS-nOe" firstAttribute="top" secondItem="6BT-Eq-hcD" secondAttribute="bottom" constant="5" id="qyU-WZ-RNo"/>
                                     <constraint firstItem="6BT-Eq-hcD" firstAttribute="centerY" secondItem="gT6-92-Go5" secondAttribute="centerY" constant="-8" id="rZO-Fu-qxj"/>
                                     <constraint firstItem="05M-7P-ld3" firstAttribute="top" secondItem="gT6-92-Go5" secondAttribute="top" constant="15" id="u4a-jn-Qi2"/>
@@ -656,60 +655,13 @@
             <point key="canvasLocation" x="52.671755725190835" y="69.718309859154928"/>
         </tableViewCell>
     </objects>
-    <designables>
-        <designable name="6BT-Eq-hcD">
-            <size key="intrinsicContentSize" width="73.333333333333329" height="20.333333333333332"/>
-        </designable>
-        <designable name="A8B-bt-df2">
-            <size key="intrinsicContentSize" width="337.33333333333331" height="20.333333333333332"/>
-        </designable>
-        <designable name="Baj-Qv-s2c">
-            <size key="intrinsicContentSize" width="162" height="152"/>
-        </designable>
-        <designable name="Cf5-Cq-dE3">
-            <size key="intrinsicContentSize" width="81" height="20.333333333333332"/>
-        </designable>
-        <designable name="HOG-bk-97u">
-            <size key="intrinsicContentSize" width="73" height="20.333333333333332"/>
-        </designable>
-        <designable name="bc3-O3-AQ1">
-            <size key="intrinsicContentSize" width="407" height="612"/>
-        </designable>
-        <designable name="cjy-qw-b2P">
-            <size key="intrinsicContentSize" width="19.666666666666668" height="22"/>
-        </designable>
-        <designable name="dX8-SZ-fyC">
-            <size key="intrinsicContentSize" width="48" height="48"/>
-        </designable>
-        <designable name="dfJ-js-cBW">
-            <size key="intrinsicContentSize" width="54" height="54"/>
-        </designable>
-        <designable name="dpP-cf-H6r">
-            <size key="intrinsicContentSize" width="151.33333333333334" height="20.333333333333332"/>
-        </designable>
-        <designable name="j4f-gS-nOe">
-            <size key="intrinsicContentSize" width="362.33333333333331" height="20.333333333333332"/>
-        </designable>
-        <designable name="nax-I1-dp4">
-            <size key="intrinsicContentSize" width="162" height="152"/>
-        </designable>
-        <designable name="nzF-aI-iJF">
-            <size key="intrinsicContentSize" width="211" height="20.333333333333332"/>
-        </designable>
-        <designable name="pXu-df-J1k">
-            <size key="intrinsicContentSize" width="207.66666666666666" height="20.333333333333332"/>
-        </designable>
-        <designable name="v2n-8t-cBj">
-            <size key="intrinsicContentSize" width="207.66666666666666" height="20.333333333333332"/>
-        </designable>
-    </designables>
     <resources>
-        <image name="bell.badge.fill" catalog="system" width="117" height="128"/>
         <image name="ellipsis.message.fill" catalog="system" width="128" height="114"/>
         <image name="girl" width="407" height="612"/>
         <image name="logo name" width="3289" height="512"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="power.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="regular" width="23" height="24"/>
         <image name="rocket_3" width="20" height="20"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="tooltip_icon" width="48" height="48"/>

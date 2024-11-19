@@ -1,10 +1,3 @@
-//
-//  MessageListViewController.swift
-//  GreenEntertainment
-//
-//  Created by Prateek Keshari on 13/06/20.
-//  Copyright © 2020 Quytech. All rights reserved.
-//
 
 import UIKit
 import SwiftDate
@@ -67,9 +60,7 @@ class MessageListViewController: MainViewController {
     }
     
     @objc func notifBtnPressed(sender: UIButton) {
-        self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
-            vc.selectedIndex = 2
-        }
+        self.pushVC(id: "NotificationVC") { (vc:NotificationVC) in }
     }
     
     @objc func toolBtnPressed(sender: UIButton) {
@@ -116,6 +107,48 @@ class MessageListViewController: MainViewController {
         
         return date
     }
+    
+    func timeElapsed(from dateString: String) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0) // Parse as GMT/UTC
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        guard let date = dateFormatter.date(from: dateString) else {
+            print("Error: Could not parse the date string.")
+            return nil
+        }
+        
+        let now = Date()
+        let timeInterval = now.timeIntervalSince(date)
+        
+        // Debugging output
+        print("Parsed date:", date)
+        print("Current date:", now)
+        print("Time interval in seconds:", timeInterval)
+        
+        if timeInterval < 60 {
+            // Less than a minute
+            return "few sec ago"
+        } else if timeInterval < 3600 {
+            // Less than an hour
+            let minutes = Int(timeInterval / 60)
+            return "\(minutes) minute\(minutes == 1 ? "" : "s") ago"
+        } else if timeInterval < 86400 {
+            // Less than a day
+            let hours = Int(timeInterval / 3600)
+            return "\(hours) hour\(hours == 1 ? "" : "s") ago"
+        } else if timeInterval < 2592000 {
+            // Less than 30 days (about 1 month)
+            let days = Int(timeInterval / 86400)
+            return "\(days) day\(days == 1 ? "" : "s") ago"
+        } else {
+            // More than 30 days (count as months)
+            let months = Int(timeInterval / 2592000)
+            return "\(months) month\(months == 1 ? "" : "s") ago"
+        }
+    }
+
     
     func getChatUsers() {
         
@@ -196,6 +229,34 @@ extension MessageListViewController: UITableViewDelegate,UITableViewDataSource {
             cell.chatBtn.isHidden = true
             
             
+            if AppFunctions.isShadowModeOn() {
+                if AppFunctions.isNotifEnable() {
+                    if AppFunctions.isNotifNotCheck() {
+                        cell.notifBtn.setImage(UIImage(named: "shadowWN"), for: .normal)
+                        cell.notifBtn.tintColor = UIColor(named: "Text grey")
+                    } else {
+                        cell.notifBtn.setImage(UIImage(named: "shadowWON"), for: .normal)
+                        cell.notifBtn.tintColor = UIColor(named: "Text grey")
+                    }
+                } else {
+                    cell.notifBtn.setImage(UIImage(systemName: "bell.slash.fill"), for: .normal)
+                    cell.notifBtn.tintColor = UIColor(named: "warning")
+                }
+            } else {
+                if AppFunctions.isNotifEnable() {
+                    if AppFunctions.isNotifNotCheck() {
+                        cell.notifBtn.setImage(UIImage(named: "regularWN"), for: .normal)
+                        cell.notifBtn.tintColor = UIColor(named: "Text grey")
+                    } else {
+                        cell.notifBtn.setImage(UIImage(named: "regular"), for: .normal)
+                        cell.notifBtn.tintColor = UIColor(named: "Text grey")
+                    }
+                } else {
+                    cell.notifBtn.setImage(UIImage(systemName: "bell.slash.fill"), for: .normal)
+                    cell.notifBtn.tintColor = UIColor(named: "Text grey")
+                }
+            }
+            
             return cell
             
             
@@ -212,9 +273,9 @@ extension MessageListViewController: UITableViewDelegate,UITableViewDataSource {
                 
                 let user = chatsUsers[indexPath.row - 1]
                 
-                cell.nameLbl.text = user.userName.capitalized
-                cell.proffLbl.text = user.userWorkTitle.capitalized
-                cell.lastMsgTimeLbl.text = fancyStyleDate(dateStr: user.lastLoginTime).toRelative(since: DateInRegion(), dateTimeStyle: .numeric, unitsStyle: .full)
+                cell.nameLbl.text = user.userName
+                cell.proffLbl.text = user.userWorkTitle
+                cell.lastMsgTimeLbl.text = timeElapsed(from: user.lastMessage.createdAt) //fancyStyleDate(dateStr: user.lastLoginTime).toRelative(since: DateInRegion(), dateTimeStyle: .numeric, unitsStyle: .full)
                 
                 if let url = URL(string: user.userProfilePicture) {
                     cell.profileIcon.sd_setImage(with: url , placeholderImage: UIImage(named: "")) { (image, error, imageCacheType, url) in }
@@ -271,9 +332,11 @@ extension MessageListViewController: UITableViewDelegate,UITableViewDataSource {
                         }
                         
                         // Assign to the label
+                        cell.msgLbl.text = nil
                         cell.msgLbl.attributedText = attributedText
                         
                     } else {
+                        cell.msgLbl.attributedText = nil
                         cell.msgLbl.text = user.lastMessage.chatMessage
                     }
                 }
@@ -290,6 +353,7 @@ extension MessageListViewController: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 { return }
         if chatsUsers.isEmpty { return }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         

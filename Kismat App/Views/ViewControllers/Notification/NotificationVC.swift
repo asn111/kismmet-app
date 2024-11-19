@@ -175,6 +175,7 @@ class NotificationVC: MainViewController {
                                 //} else {
                                     self.pushVC(id: "OtherUserProfile") { (vc:OtherUserProfile) in
                                         vc.userModel = val
+                                        vc.userId = id
                                     }
                                 //}
                                 self.hidePKHUD()
@@ -227,6 +228,8 @@ extension NotificationVC : UITableViewDelegate, UITableViewDataSource {
                 cell.toolTipBtn.isHidden = true
                 cell.searchTFView.isHidden = true
                 cell.headerView.isHidden = false
+                
+                cell.chatBtn.isHidden = true
                 /*if (AppFunctions.isShadowModeOn()){ // not usable anymore
                     cell.shadowLbl.isHidden = false
                     cell.notifBtn.isHidden = true
@@ -235,11 +238,35 @@ extension NotificationVC : UITableViewDelegate, UITableViewDataSource {
                     cell.notifBtn.isHidden = false
                 }*/
                 
-                if AppFunctions.isNotifEnable() {
-                    cell.notifBtn.setImage(UIImage(systemName: "bell.badge.fill"), for: .normal)
+                
+                if AppFunctions.isShadowModeOn() {
+                    if AppFunctions.isNotifEnable() {
+                        if AppFunctions.isNotifNotCheck() {
+                            cell.notifBtn.setImage(UIImage(named: "shadowWN"), for: .normal)
+                            cell.notifBtn.tintColor = UIColor(named: "Text grey")
+                        } else {
+                            cell.notifBtn.setImage(UIImage(named: "shadowWON"), for: .normal)
+                            cell.notifBtn.tintColor = UIColor(named: "Text grey")
+                        }
+                    } else {
+                        cell.notifBtn.setImage(UIImage(systemName: "bell.slash.fill"), for: .normal)
+                        cell.notifBtn.tintColor = UIColor(named: "warning")
+                    }
                 } else {
-                    cell.notifBtn.setImage(UIImage(systemName: "bell.slash.fill"), for: .normal)
+                    if AppFunctions.isNotifEnable() {
+                        if AppFunctions.isNotifNotCheck() {
+                            cell.notifBtn.setImage(UIImage(named: "regularWN"), for: .normal)
+                            cell.notifBtn.tintColor = UIColor(named: "Text grey")
+                        } else {
+                            cell.notifBtn.setImage(UIImage(named: "regular"), for: .normal)
+                            cell.notifBtn.tintColor = UIColor(named: "Text grey")
+                        }
+                    } else {
+                        cell.notifBtn.setImage(UIImage(systemName: "bell.slash.fill"), for: .normal)
+                        cell.notifBtn.tintColor = UIColor(named: "Text grey")
+                    }
                 }
+
                 
                 cell.picBtn.setImage(UIImage(systemName: "arrow.left"), for: .normal)
                 cell.picBtn.addTarget(self, action: #selector(picBtnPressed(sender:)), for: .touchUpInside)
