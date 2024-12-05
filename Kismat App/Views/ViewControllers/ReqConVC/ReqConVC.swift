@@ -580,7 +580,7 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                         
                         if user.lastMessage.isLastMessageByMe {
                             
-                            let text = "You: " + user.lastMessage.chatMessage.capitalized
+                            let text = "You: " + user.lastMessage.chatMessage
                             let textRange = NSRange(location: 0, length: 4)
                             let attributedText = NSMutableAttributedString(string: text)
                             
@@ -620,7 +620,7 @@ extension ReqConVC : UITableViewDelegate, UITableViewDataSource {
                             } else {
                                 // Reset attributedText before setting plain text
                                 chatUserCell.msgLbl.attributedText = nil
-                                chatUserCell.msgLbl.text = user.lastMessage.chatMessage.capitalized
+                                chatUserCell.msgLbl.text = user.lastMessage.chatMessage
                             }
                         }
                     }

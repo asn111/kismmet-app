@@ -52,8 +52,8 @@ var isFromProfile = false
 //GOOGLE CLIENT ID 464505001033-pk77rgck0i7702u259nmv6n18sp8l331.apps.googleusercontent.com
 let googleMapAPIKey = "AIzaSyDoOfDrlLrIeWHeM2hBJEETh9ErGgKnoTQ"
 
-//let baseUrl = "https://api.kismmet.com"
-let baseUrl = "http://54.226.245.172"
+let baseUrl = "https://api.kismmet.com"
+//let baseUrl = "http://54.226.245.172"
 
 func RGBA(_ r:CGFloat, g:CGFloat, b:CGFloat, a:CGFloat) -> UIColor {
     return UIColor(red: (r/255.0), green: (g/255.0), blue: (b/255.0), alpha: a)

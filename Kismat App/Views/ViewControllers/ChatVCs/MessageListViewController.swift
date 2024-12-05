@@ -296,7 +296,7 @@ extension MessageListViewController: UITableViewDelegate,UITableViewDataSource {
                 
                 if user.lastMessage.isLastMessageByMe {
                     
-                    let text = "You: " + user.lastMessage.chatMessage.capitalized
+                    let text = "You: " + user.lastMessage.chatMessage
                     let textRange = NSRange(location: 0, length: 4)
                     let attributedText = NSMutableAttributedString(string: text)
                     
