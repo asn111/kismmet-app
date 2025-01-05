@@ -16,7 +16,7 @@ class APIService: NSObject {
     
     // MARK: - Properties
     var reachabilityManager = NetworkReachabilityManager()
-    //var baseUrl: String = ""
+    var baseUrl: String = AppFunctions.baseUrl()
 
     // Singleton Instance
     static let singelton = APIService()
@@ -24,9 +24,7 @@ class APIService: NSObject {
     // MARK: Initiate
     private override init() {
         super.init()
-        
-        //baseUrl = "https://api.kismmet.com"
-        //baseUrl = "http://devapi.kismmet.com"
+ 
         Logs.show(message: "SERVER: \(baseUrl)")
         
         self.startMonitoring()
@@ -158,7 +156,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Users/StartUp", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/StartUp", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -214,7 +212,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Configuration/GetGenders", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Configuration/GetGenders", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -272,7 +270,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Token", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: nil)
+                AF.request("\(self?.baseUrl ?? "")/api/Token", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: nil)
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -343,7 +341,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Token/SocialLogin", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: nil)
+                AF.request("\(self?.baseUrl ?? "")/api/Token/SocialLogin", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: nil)
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -419,7 +417,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Users/CreateUser", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: nil)
+                AF.request("\(self?.baseUrl ?? "")/api/Users/CreateUser", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: nil)
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -486,7 +484,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Users/UpdateUserProfile", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/UpdateUserProfile", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -538,7 +536,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Users/ChangePassword", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/ChangePassword", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -590,7 +588,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Users/AddUserSocialAccount", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/AddUserSocialAccount", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -642,7 +640,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Users/ReportUser", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/ReportUser", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -694,7 +692,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/UserContacts/DeleteContact", method:.delete, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/UserContacts/DeleteContact", method:.delete, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -747,7 +745,7 @@ class APIService: NSObject {
             let pram: Parameters = ["subscriptionId": val,
                                     "subscriptionPlatform": "iOS"]
             
-            AF.request("\(baseUrl)/api/Users/UpdateUserSubscription", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
+            AF.request("\(self.baseUrl)/api/Users/UpdateUserSubscription", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
                 .validate()
                 .responseData{ response in
                     Logs.show(message: "URL: \(response.debugDescription)")
@@ -788,7 +786,7 @@ class APIService: NSObject {
         if (self.isCheckReachable()) {
             let pram: Parameters = ["userId" : userId,"statusId": val]
             
-            AF.request("\(baseUrl)/api/Users/UpdateUserAccountStatus", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
+            AF.request("\(self.baseUrl)/api/Users/UpdateUserAccountStatus", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
                 .validate()
                 .responseData{ response in
                     Logs.show(message: "URL: \(response.debugDescription)")
@@ -828,7 +826,7 @@ class APIService: NSObject {
         if (self.isCheckReachable()) {
             let pram: Parameters = ["linkId": val]
             
-            AF.request("\(baseUrl)/api/Users/RemoveUserSocialAccount", method:.delete, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
+            AF.request("\(self.baseUrl)/api/Users/RemoveUserSocialAccount", method:.delete, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
                 .validate()
                 .responseData{ response in
                     Logs.show(message: "URL: \(response.debugDescription)")
@@ -868,7 +866,7 @@ class APIService: NSObject {
         
         if (self.isCheckReachable()) {
 
-            AF.request("\(baseUrl)/api/Users/DeactivateUser", method:.post, parameters: param, encoding: JSONEncoding.default, headers: self.getRequestHeader())
+            AF.request("\(self.baseUrl)/api/Users/DeactivateUser", method:.post, parameters: param, encoding: JSONEncoding.default, headers: self.getRequestHeader())
                 .validate()
                 .responseData{ response in
                     Logs.show(message: "URL: \(response.debugDescription)")
@@ -910,7 +908,7 @@ class APIService: NSObject {
         if (self.isCheckReachable()) {
             let pram: Parameters = ["userId": val]
             
-            AF.request("\(baseUrl)/api/Users/StarUser", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
+            AF.request("\(self.baseUrl)/api/Users/StarUser", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
                 .validate()
                 .responseData{ response in
                     Logs.show(message: "URL: \(response.debugDescription)")
@@ -952,7 +950,7 @@ class APIService: NSObject {
         if (self.isCheckReachable()) {
             let pram: Parameters = ["userId": val]
 
-            AF.request("\(baseUrl)/api/Users/UserProfileViewed", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
+            AF.request("\(self.baseUrl)/api/Users/UserProfileViewed", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
                 .validate()
                 .responseData{ response in
                     Logs.show(message: "URL: \(response.debugDescription)")
@@ -992,7 +990,7 @@ class APIService: NSObject {
         if (self.isCheckReachable()) {
             let pram: Parameters = ["userId": val]
 
-            AF.request("\(baseUrl)/api/Users/BlockUser", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
+            AF.request("\(self.baseUrl)/api/Users/BlockUser", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
                 .validate()
                 .responseData{ response in
                     Logs.show(message: "URL: \(response.debugDescription)")
@@ -1033,7 +1031,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Users/UpdateUserConfigurations", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/UpdateUserConfigurations", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1085,7 +1083,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Users/UpdateUserNotificationStatus", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/UpdateUserNotificationStatus", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1141,7 +1139,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Users/GetProximityUsers", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/GetProximityUsers", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1191,7 +1189,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Users/GetStarredUsers", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/GetStarredUsers", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1241,7 +1239,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Users/GetBlockedUsers", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/GetBlockedUsers", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1291,7 +1289,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Users/WhoViewedMyProfile", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/WhoViewedMyProfile", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1342,7 +1340,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Users/GetDeactivatedUsers", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/GetDeactivatedUsers", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1393,7 +1391,7 @@ class APIService: NSObject {
         
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
-                AF.request("\(baseUrl)/api/Users/GetUserProfile?userId=\(userId)", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/GetUserProfile?userId=\(userId)", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1444,7 +1442,7 @@ class APIService: NSObject {
     func getUserProfile() {
         
             if (self.isCheckReachable()) {
-                AF.request("\(baseUrl)/api/Users/GetUserProfile", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self.getRequestHeader())
+                AF.request("\(self.baseUrl)/api/Users/GetUserProfile", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1487,7 +1485,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Users/GetUserSocialAccounts", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/GetUserSocialAccounts", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1539,7 +1537,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Configuration/GetSocialLinkTypes", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Configuration/GetSocialLinkTypes", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1591,7 +1589,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/UserContacts/GetContactTypes", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/UserContacts/GetContactTypes", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1641,7 +1639,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/UserContacts/GetUserContactInformations", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/UserContacts/GetUserContactInformations", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1692,7 +1690,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Configuration/GetReportReasons", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Configuration/GetReportReasons", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1743,7 +1741,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Notifications/GetUserNotifications", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Notifications/GetUserNotifications", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1795,7 +1793,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/UserContacts/SendContactRequest", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/UserContacts/SendContactRequest", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1845,7 +1843,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/UserContacts/GetUserContacts", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/UserContacts/GetUserContacts", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1895,7 +1893,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/UserContacts/GetUserRequests", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/UserContacts/GetUserRequests", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1945,7 +1943,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/UserContacts/AddUserContactInformations", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/UserContacts/AddUserContactInformations", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -1995,7 +1993,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/UserContacts/UpdateContactStatus", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/UserContacts/UpdateContactStatus", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -2045,7 +2043,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Chat/GetChats", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Chat/GetChats", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -2095,7 +2093,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/Chat/GetChatMessages", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Chat/GetChatMessages", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -2145,7 +2143,7 @@ class APIService: NSObject {
         if (self.isCheckReachable()) {
             let pram: Parameters = ["chatId" : chatID]
             
-            AF.request("\(baseUrl)/api/Chat/DeleteChat", method:.delete, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
+            AF.request("\(self.baseUrl)/api/Chat/DeleteChat", method:.delete, parameters: pram, encoding: JSONEncoding.default, headers: self.getRequestHeader())
                 .validate()
                 .responseData{ response in
                     Logs.show(message: "URL: \(response.debugDescription)")
@@ -2238,7 +2236,7 @@ class APIService: NSObject {
         
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
-                AF.request("\(baseUrl)/api/Users/ForgotPassword", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/ForgotPassword", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -2286,7 +2284,7 @@ class APIService: NSObject {
         
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
-                AF.request("\(baseUrl)/api/Users/ValidateCode", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/Users/ValidateCode", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -2348,7 +2346,7 @@ class APIService: NSObject {
     func addCard(param: Parameters) -> Observable<Bool> {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
-                AF.request("\(baseUrl)/api/stripe/AddCard", method:.post, parameters: param, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/stripe/AddCard", method:.post, parameters: param, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -2393,7 +2391,7 @@ class APIService: NSObject {
     func sendPayment(param: Parameters) -> Observable<Bool>  {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
-                AF.request("\(baseUrl)/api/stripe/ProcessStripePayment", method:.post, parameters: param, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/stripe/ProcessStripePayment", method:.post, parameters: param, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
@@ -2443,7 +2441,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(baseUrl)/api/stripe/GetPaymentCards", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
+                AF.request("\(self?.baseUrl ?? "")/api/stripe/GetPaymentCards", method:.get, parameters: nil, encoding: JSONEncoding.default, headers: self?.getRequestHeader())
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")

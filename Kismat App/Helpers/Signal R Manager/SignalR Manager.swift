@@ -23,7 +23,7 @@ class SignalRManager: NSObject {
     func initializeSignalR() {
         var headers = ["accessToken": "Bearer " + AppFunctions.getToken()]
 
-        connection = HubConnectionBuilder(url: URL(string: baseUrl + "/kismmetHub")!)
+        connection = HubConnectionBuilder(url: URL(string: AppFunctions.baseUrl() + "/kismmetHub")!)
             .withLogging(minLogLevel: .error)
             .withAutoReconnect()
             .withHubConnectionDelegate(delegate: chatHubConnectionDelegate!)

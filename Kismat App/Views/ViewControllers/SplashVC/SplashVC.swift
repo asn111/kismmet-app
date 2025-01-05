@@ -139,11 +139,34 @@ class SplashVC: MainViewController {
                                     self.btnView.isHidden = false
                                     AppFunctions.showSnackBar(str: "Your Account is deleted, please create a new using different email to login back.")
                                 } else if accStatus == activeAccountStatusId {
+                                    
+                                    if let iosVersion = val.iosVersion {
+                                        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+                                            if iosVersion != version {
+                                                Logs.show(message: "App Version not matched \(version) -- \(iosVersion)")
+                                                self.presentVC(id: "PopupVC", presentFullType: "over" ) { (vc:PopupVC) in
+                                                    vc.isVersionUpdateDialog = true
+                                                    if let iosVersionMandatory = val.isIOSVersionMandatory {
+                                                        vc.isVersionMandatoryDialog = iosVersionMandatory
+                                                    }
+                                                }
+                                                return
+                                            }
+                                        }
+                                    }
+                                    
+                                    if let profilePictureUpdated = val.isProfilePictureUpdated {
+                                        Logs.show(message: "profilePictureUpdated: \(profilePictureUpdated) \nShow profile dialog")
+                                        if !profilePictureUpdated {
+                                            self.userProfile(picNotUpdateCallOnly: true)
+                                            Logs.show(message: "Show profile dialog")
+                                            return
+                                        }
+                                    }
+                                                                        
                                     self.userProfile()
                                 }
-                                
                             }
-                            
                             
                             self.hidePKHUD()
                         } else {
@@ -160,7 +183,7 @@ class SplashVC: MainViewController {
             .disposed(by: dispose_Bag)
     }
     
-    func userProfile() {
+    func userProfile(picNotUpdateCallOnly: Bool = false) {
         
         APIService
             .singelton
@@ -169,6 +192,12 @@ class SplashVC: MainViewController {
                 guard let self = self else {return}
                 switch model {
                     case .next(let val):
+                        if picNotUpdateCallOnly {
+                            self.presentVC(id: "PopupVC", presentFullType: "over" ) { (vc:PopupVC) in
+                                vc.isProfilePicDialog = true
+                            }
+                            return
+                        }
                         if val.userId != "" {
                             if !AppFunctions.isEmailVerified(){
                                 self.presentVC(id: "CodeVerification_VC") { (vc:CodeVerification_VC) in

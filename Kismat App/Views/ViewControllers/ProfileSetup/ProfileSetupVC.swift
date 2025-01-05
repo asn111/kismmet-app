@@ -134,6 +134,9 @@ class ProfileSetupVC: MainViewController  { //Birthday
             
             if updatedImagePicked != nil {
                 profilePic = AppFunctions.convertImageToBase64(image: updatedImagePicked)
+            } else {
+                AppFunctions.showSnackBar(str: "Profile Picture is mandatory, please add one")
+                return
             }
             
             profileDict["fullName"] = fullName

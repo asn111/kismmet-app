@@ -52,8 +52,8 @@ var isFromProfile = false
 //GOOGLE CLIENT ID 464505001033-pk77rgck0i7702u259nmv6n18sp8l331.apps.googleusercontent.com
 let googleMapAPIKey = "AIzaSyDoOfDrlLrIeWHeM2hBJEETh9ErGgKnoTQ"
 
-let baseUrl = "https://api.kismmet.com"
-//let baseUrl = "http://54.226.245.172"
+
+//let baseUrl = ""
 
 func RGBA(_ r:CGFloat, g:CGFloat, b:CGFloat, a:CGFloat) -> UIColor {
     return UIColor(red: (r/255.0), green: (g/255.0), blue: (b/255.0), alpha: a)
@@ -72,6 +72,7 @@ let productPublisher: PublishSubject<[String: SKProduct]> = PublishSubject()
 ///stripeTestKeys
 var testPublishKey = ""
 var testSecretKey = ""
+
 
 //MARK: Pref Strings
 
@@ -120,6 +121,7 @@ class Logs {
 class AppFunctions {
     
     static let preferences = UserDefaults.standard
+
     
     //MARK: PREFS
     
@@ -950,9 +952,21 @@ class AppFunctions {
     
     //MARK: Others
     
+    open class func baseUrl() -> String {
+        if AppFunctions.getCurrentTarget().contains("Dev") {
+            return "http://54.226.245.172"
+        } else {
+            return "https://api.kismmet.com"
+        }
+    }
+    
     open class func colorPlaceholder(tf: UITextField, s: String) {
         tf.attributedPlaceholder =
         NSAttributedString(string: s, attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Text grey") as Any, .font: UIFont(name: "Roboto", size: 14)?.regular as Any])
+    }
+
+    open class func getCurrentTarget() -> String {
+        return ProcessInfo.processInfo.processName
     }
 
     

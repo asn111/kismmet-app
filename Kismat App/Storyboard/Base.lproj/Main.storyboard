@@ -4163,13 +4163,13 @@ You will not be able to use this account in the future.
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2SB-Aj-DvM" customClass="RoundCornerView" customModule="Kismmet" customModuleProvider="target">
-                                <rect key="frame" x="14" y="282.66666666666669" width="365" height="287.00000000000006"/>
+                                <rect key="frame" x="14" y="283" width="365" height="330"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZW-A7-ryf" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="27" y="71" width="306" height="130"/>
+                                        <rect key="frame" x="18" y="61" width="325" height="187"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="130" id="mUT-6z-xkJ"/>
-                                            <constraint firstAttribute="width" constant="306" id="od8-DE-rld"/>
+                                            <constraint firstAttribute="height" constant="187" id="mUT-6z-xkJ"/>
+                                            <constraint firstAttribute="width" constant="325" id="od8-DE-rld"/>
                                         </constraints>
                                         <string key="text">• Refresh your feed for accurate nearby profiles.
 • Ensure the app is running in the background to be visible to other users.</string>
@@ -4187,12 +4187,12 @@ You will not be able to use this account in the future.
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JfT-4v-tqB" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="98" y="216" width="170" height="56"/>
+                                        <rect key="frame" x="97" y="256" width="170" height="56"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="170" id="PvW-tw-rm1"/>
                                             <constraint firstAttribute="height" constant="56" id="UOe-29-BIn"/>
                                         </constraints>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Okay"/>
                                         <userDefinedRuntimeAttributes>
@@ -4209,10 +4209,10 @@ You will not be able to use this account in the future.
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Important notice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1M-LC-Jgo" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
-                                        <rect key="frame" x="67" y="22" width="227" height="34"/>
+                                        <rect key="frame" x="67" y="22" width="276" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="EBj-0I-gUq"/>
-                                            <constraint firstAttribute="width" constant="227" id="dxh-bx-hMI"/>
+                                            <constraint firstAttribute="width" constant="276" id="dxh-bx-hMI"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -4236,22 +4236,85 @@ You will not be able to use this account in the future.
                                             <constraint firstAttribute="height" constant="30" id="iL1-Qe-aeN"/>
                                         </constraints>
                                     </imageView>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kMP-fo-Dzi">
+                                        <rect key="frame" x="8" y="256" width="349" height="56"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o5r-GL-J8E" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
+                                                <rect key="frame" x="12" y="0.0" width="140" height="56"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="56" id="JQZ-nN-WiI"/>
+                                                    <constraint firstAttribute="width" constant="140" id="XPs-Pm-aY4"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Cancel"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                        <color key="value" name="Danger"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="cancelBtnPressed:" destination="i2M-PQ-YHP" eventType="touchUpInside" id="6aT-fM-uwB"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3aT-EN-mCA" customClass="RoundCornerButton" customModule="Kismmet" customModuleProvider="target">
+                                                <rect key="frame" x="197" y="0.0" width="140" height="56"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="56" id="9Eo-t7-7XF"/>
+                                                    <constraint firstAttribute="width" constant="140" id="Xk1-Hd-X1C"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Yes"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                        <color key="value" name="Success"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isFontWork" value="NO"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="doneBtnPressed:" destination="i2M-PQ-YHP" eventType="touchUpInside" id="hdr-cH-sqR"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="3aT-EN-mCA" firstAttribute="top" secondItem="kMP-fo-Dzi" secondAttribute="top" id="9x7-dv-6wt"/>
+                                            <constraint firstAttribute="bottom" secondItem="3aT-EN-mCA" secondAttribute="bottom" id="GEp-Oj-Jp1"/>
+                                            <constraint firstAttribute="bottom" secondItem="o5r-GL-J8E" secondAttribute="bottom" id="IoR-bb-YaA"/>
+                                            <constraint firstAttribute="height" constant="56" id="bTk-Ae-Mqu"/>
+                                            <constraint firstItem="o5r-GL-J8E" firstAttribute="leading" secondItem="kMP-fo-Dzi" secondAttribute="leading" constant="12" id="jKO-Gi-qpR"/>
+                                            <constraint firstAttribute="trailing" secondItem="3aT-EN-mCA" secondAttribute="trailing" constant="12" id="rgj-7J-9eN"/>
+                                            <constraint firstItem="o5r-GL-J8E" firstAttribute="top" secondItem="kMP-fo-Dzi" secondAttribute="top" id="tPc-dj-qWh"/>
+                                            <constraint firstAttribute="width" constant="349" id="yBn-Cm-OGP"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="365" id="0jB-0c-85L"/>
-                                    <constraint firstItem="JfT-4v-tqB" firstAttribute="top" secondItem="VZW-A7-ryf" secondAttribute="bottom" constant="15.000000000000909" id="27y-eg-GJx"/>
+                                    <constraint firstAttribute="bottom" secondItem="kMP-fo-Dzi" secondAttribute="bottom" constant="18" id="1Kb-FS-pJt"/>
+                                    <constraint firstItem="JfT-4v-tqB" firstAttribute="top" secondItem="VZW-A7-ryf" secondAttribute="bottom" constant="8" id="27y-eg-GJx"/>
+                                    <constraint firstAttribute="trailing" secondItem="kMP-fo-Dzi" secondAttribute="trailing" constant="8" id="3Lx-fu-n0I"/>
                                     <constraint firstItem="g1M-LC-Jgo" firstAttribute="leading" secondItem="Cap-ed-hkR" secondAttribute="trailing" constant="8" symbolic="YES" id="7Kr-lG-gsZ"/>
-                                    <constraint firstItem="JfT-4v-tqB" firstAttribute="leading" secondItem="2SB-Aj-DvM" secondAttribute="leading" constant="98" id="GGA-LA-ahX"/>
-                                    <constraint firstItem="VZW-A7-ryf" firstAttribute="leading" secondItem="2SB-Aj-DvM" secondAttribute="leading" constant="27" id="JXs-bQ-lGA"/>
-                                    <constraint firstAttribute="trailing" secondItem="JfT-4v-tqB" secondAttribute="trailing" constant="97" id="Kcr-v1-V5x"/>
+                                    <constraint firstItem="JfT-4v-tqB" firstAttribute="leading" secondItem="2SB-Aj-DvM" secondAttribute="leading" constant="97" id="GGA-LA-ahX"/>
+                                    <constraint firstItem="VZW-A7-ryf" firstAttribute="leading" secondItem="2SB-Aj-DvM" secondAttribute="leading" constant="18" id="JXs-bQ-lGA"/>
+                                    <constraint firstAttribute="trailing" secondItem="JfT-4v-tqB" secondAttribute="trailing" constant="98" id="Kcr-v1-V5x"/>
                                     <constraint firstItem="Cap-ed-hkR" firstAttribute="leading" secondItem="2SB-Aj-DvM" secondAttribute="leading" constant="29" id="M63-iE-Ltg"/>
-                                    <constraint firstItem="VZW-A7-ryf" firstAttribute="top" secondItem="Cap-ed-hkR" secondAttribute="bottom" constant="15.999999999999062" id="Ql9-Pa-jGj"/>
-                                    <constraint firstAttribute="trailing" secondItem="VZW-A7-ryf" secondAttribute="trailing" constant="32" id="cLV-Fb-HFu"/>
-                                    <constraint firstItem="VZW-A7-ryf" firstAttribute="top" secondItem="Cap-ed-hkR" secondAttribute="bottom" constant="15.999999999999062" id="e1r-hy-EwD"/>
-                                    <constraint firstAttribute="height" constant="287" id="k75-Mg-DuD"/>
+                                    <constraint firstItem="VZW-A7-ryf" firstAttribute="top" secondItem="Cap-ed-hkR" secondAttribute="bottom" constant="5.9999999999999716" id="Ql9-Pa-jGj"/>
+                                    <constraint firstAttribute="trailing" secondItem="VZW-A7-ryf" secondAttribute="trailing" constant="22" id="cLV-Fb-HFu"/>
+                                    <constraint firstItem="VZW-A7-ryf" firstAttribute="top" secondItem="Cap-ed-hkR" secondAttribute="bottom" constant="5.9999999999999716" id="e1r-hy-EwD"/>
+                                    <constraint firstItem="kMP-fo-Dzi" firstAttribute="leading" secondItem="2SB-Aj-DvM" secondAttribute="leading" constant="8" id="eHM-8I-soe"/>
+                                    <constraint firstAttribute="height" constant="330" id="k75-Mg-DuD"/>
                                     <constraint firstItem="Cap-ed-hkR" firstAttribute="top" secondItem="2SB-Aj-DvM" secondAttribute="top" constant="25" id="mDL-vn-ZXp"/>
-                                    <constraint firstItem="VZW-A7-ryf" firstAttribute="top" secondItem="g1M-LC-Jgo" secondAttribute="bottom" constant="14.999999999999091" id="osu-kz-2Ah"/>
+                                    <constraint firstItem="VZW-A7-ryf" firstAttribute="top" secondItem="g1M-LC-Jgo" secondAttribute="bottom" constant="5" id="osu-kz-2Ah"/>
                                     <constraint firstItem="g1M-LC-Jgo" firstAttribute="leading" secondItem="Cap-ed-hkR" secondAttribute="trailing" constant="8" symbolic="YES" id="pDh-NH-MdK"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -4265,17 +4328,21 @@ You will not be able to use this account in the future.
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.39830815400000003" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="2SB-Aj-DvM" firstAttribute="centerX" secondItem="Vxo-hz-TbB" secondAttribute="centerX" id="7MM-dx-Bnt"/>
-                            <constraint firstItem="2SB-Aj-DvM" firstAttribute="centerY" secondItem="Vxo-hz-TbB" secondAttribute="centerY" id="x96-PX-LTT"/>
+                            <constraint firstItem="2SB-Aj-DvM" firstAttribute="centerY" secondItem="Vxo-hz-TbB" secondAttribute="centerY" constant="22" id="x96-PX-LTT"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnView" destination="kMP-fo-Dzi" id="GEg-6Q-1Ng"/>
+                        <outlet property="cancelBtn" destination="o5r-GL-J8E" id="EDu-ja-Rva"/>
+                        <outlet property="doneBtn" destination="3aT-EN-mCA" id="gKu-6J-rHJ"/>
                         <outlet property="importantLbl" destination="g1M-LC-Jgo" id="FmU-Tt-65C"/>
+                        <outlet property="okayBtn" destination="JfT-4v-tqB" id="sve-cB-B4x"/>
                         <outlet property="textLbl" destination="VZW-A7-ryf" id="t4e-mI-gjM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fHR-Ym-faN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2355" y="2056"/>
+            <point key="canvasLocation" x="2354.9618320610684" y="2055.6338028169016"/>
         </scene>
         <!--Support PageVC-->
         <scene sceneID="Fby-Pw-2QL">

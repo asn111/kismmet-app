@@ -19,6 +19,8 @@ class EditProfileSetup: MainViewController { //Birthday
     var dataArray = [String]()
     var fullName = "", publicEmail = "", placeOfWork = "", workTitle = "" , dateOfBirth = "" , about = "", status = "", countryCode = "", phoneNum = "", countryName = "", profilePic = ""
     
+    var isPicUpdateOnly = false
+
     var proximity = 0
     var isProfileVisible = false
     var disappearingStatus = false
@@ -517,9 +519,13 @@ class EditProfileSetup: MainViewController { //Birthday
     func userProfileUpdate() {
         self.showPKHUD(WithMessage: "Signing up")
         
-        if updatedImagePicked != nil {
-            profilePic = AppFunctions.convertImageToBase64(image: updatedImagePicked)
+        if let image = updatedImagePicked {
+            profilePic = AppFunctions.convertImageToBase64(image: image)
+        } else if profilePic.isEmpty {
+            AppFunctions.showSnackBar(str: "Profile Picture is mandatory, please add one")
+            return
         }
+
         if limitExceed {
             AppFunctions.showSnackBar(str: "Maximum character limit exceeded for your bio!\nPlease keep it under 4000")
             return
@@ -550,6 +556,11 @@ class EditProfileSetup: MainViewController { //Birthday
                     case .next(let val):
                         Logs.show(message: "MARKED: 👉🏻 \(val)")
                         if val {
+                            if isPicUpdateOnly {
+                                self.navigateVC(id: "RoundedTabBarController") { (vc:RoundedTabBarController) in
+                                    vc.selectedIndex = 2
+                                }
+                            }
                             self.hidePKHUD()
                             self.navigationController?.popViewController(animated: true)
                         } else {
@@ -579,7 +590,11 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
             case 0:
                 let cell : ProfileHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "ProfileHeaderTVCell", for: indexPath) as! ProfileHeaderTVCell
-                cell.backBtn.isHidden = false
+                if isPicUpdateOnly {
+                    cell.backBtn.isHidden = true
+                } else {
+                    cell.backBtn.isHidden = false
+                }
                 cell.backBtn.addTarget(self, action: #selector(backBtnPressed(sender:)), for: .touchUpInside)
                 
                 if updatedImagePicked != nil {
@@ -715,6 +730,10 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 cell.newBtn.underline()
                 cell.newBtn.isWork = true
                 
+                if isPicUpdateOnly {
+                    cell.newBtn.isHidden = true
+                }
+                
                 return cell
                 
                 
@@ -727,7 +746,7 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
                 cell.genBtn.tag = indexPath.row
                 cell.genBtn.addTarget(self, action: #selector(genBtnPressedForDone(sender:)), for: .touchUpInside)
                 
-                cell.genBtn.setTitle("Done", for: .normal)
+                cell.genBtn.setTitle("Update", for: .normal)
                 
                 cell.arrowView.isHidden = true
                 
