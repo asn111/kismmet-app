@@ -14,10 +14,10 @@ class EditProfileSetup: MainViewController { //Birthday
     
     @IBOutlet weak var profileTV: UITableView!
     
-    var placeholderArray = ["","Full Name","Birthday"
+    var placeholderArray = ["","First Name","Last Name","Birthday"
                             ,"Public Email","Where do you work / study?","Title","Bio..",""]
     var dataArray = [String]()
-    var fullName = "", publicEmail = "", placeOfWork = "", workTitle = "" , dateOfBirth = "" , about = "", status = "", countryCode = "", phoneNum = "", countryName = "", profilePic = ""
+    var firstName = "", lastName = "", publicEmail = "", placeOfWork = "", workTitle = "" , dateOfBirth = "" , about = "", status = "", countryCode = "", phoneNum = "", countryName = "", profilePic = ""
     
     var isPicUpdateOnly = false
 
@@ -265,7 +265,8 @@ class EditProfileSetup: MainViewController { //Birthday
         
             self.pushVC(id: "ProfileVC") { (vc:ProfileVC) in
                 
-                profileDict["fullName"] = fullName
+                profileDict["firstName"] = firstName
+                profileDict["lastName"] = lastName
                 profileDict["publicEmail"] = publicEmail
                 profileDict["profilePicture"] = profilePic
                 profileDict["workAdress"] = placeOfWork
@@ -326,17 +327,20 @@ class EditProfileSetup: MainViewController { //Birthday
         activeTextField = textField
 
         if textField.tag == 1 {
-            fullName = !textField.text!.isTFBlank ? textField.text! : ""
-            dataArray[1] = fullName
-        } else if textField.tag == 3 {
-            publicEmail = !textField.text!.isTFBlank ? textField.text! : ""
-            dataArray[3] = publicEmail
+            firstName = !textField.text!.isTFBlank ? textField.text! : ""
+            dataArray[1] = firstName
+        } else if textField.tag == 2 {
+            lastName = !textField.text!.isTFBlank ? textField.text! : ""
+            dataArray[2] = lastName
         } else if textField.tag == 4 {
-            placeOfWork = !textField.text!.isTFBlank ? textField.text! : ""
-            dataArray[4] = placeOfWork
+            publicEmail = !textField.text!.isTFBlank ? textField.text! : ""
+            dataArray[4] = publicEmail
         } else if textField.tag == 5 {
+            placeOfWork = !textField.text!.isTFBlank ? textField.text! : ""
+            dataArray[5] = placeOfWork
+        } else if textField.tag == 6 {
             workTitle = !textField.text!.isTFBlank ? textField.text! : ""
-            dataArray[5] = workTitle
+            dataArray[6] = workTitle
         }
         
     }
@@ -349,12 +353,12 @@ class EditProfileSetup: MainViewController { //Birthday
     //MARK: UIPickerView Methods
 
     @objc func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField.tag == 5 {
+        if textField.tag == 6 {
             textField.returnKeyType = .done
         } else {
             textField.returnKeyType = .next
         }
-        if textField.tag == 2 {
+        if textField.tag == 3 {
             
             let indexPath = IndexPath(row: textField.tag, section: 0)
             let cell = self.profileTV.cellForRow(at: indexPath) as! ProfileTVCell
@@ -418,7 +422,7 @@ class EditProfileSetup: MainViewController { //Birthday
     }
     
     @objc func tapDone(sender: Any, datePicker1: UIDatePicker) {
-        let indexPath = IndexPath(row: 2, section: 0)
+        let indexPath = IndexPath(row: 3, section: 0)
         let cell = self.profileTV.cellForRow(at: indexPath) as! ProfileTVCell
         print(datePicker1)
         if let datePicker = cell.generalTF.inputView as? UIDatePicker { // 2.1
@@ -426,7 +430,7 @@ class EditProfileSetup: MainViewController { //Birthday
             dateformatter.dateStyle = .long // 2.3
             dateformatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
             !cell.generalTF.text!.isTFBlank ? dateOfBirth = dateformatter.string(from: datePicker.date) : print("Empty Date")
-            dataArray[2] = formatDateForDisplay(date: datePicker.date)
+            dataArray[3] = formatDateForDisplay(date: datePicker.date)
             //profileTV.reloadRows(at: [IndexPath(row: 2, section: 0)], with: .none)
 
         }
@@ -452,13 +456,15 @@ class EditProfileSetup: MainViewController { //Birthday
                                 self.userdbModel = DBService.fetchloggedInUser()
                                 let user = self.userdbModel.first
                                 self.dataArray = ["",
-                                                   user!.userName.isEmpty ? "Full Name" : user!.userName,
+                                                  user!.firstName.isEmpty ? "" : user!.firstName,
+                                                  user!.lastName.isEmpty ? "" : user!.lastName,
                                                    self.formatDateForDisplay(date: self.convertToDate(dateStr: user?.dob ?? "Birthday")),
                                                   user!.publicEmail.isEmpty ? "Public Email" : user!.publicEmail,
                                                   user!.workAddress.isEmpty ? "Where do you work / study?" : user!.workAddress,
                                                   user!.workTitle.isEmpty ? "Title" : user!.workTitle,
                                                    ""]
-                                self.fullName = user!.userName.isEmpty ? "" : user!.userName
+                                self.firstName = user!.firstName.isEmpty ? "" : user!.firstName
+                                self.lastName = user!.lastName.isEmpty ? "" : user!.lastName
                                 self.profilePic = user!.profilePicture
                                 self.dateOfBirth = user!.dob
                                 self.publicEmail = user!.publicEmail
@@ -531,7 +537,8 @@ class EditProfileSetup: MainViewController { //Birthday
             return
         }
         // somewhere here add check for limit for bio
-        profileDict["fullName"] = fullName
+        profileDict["firstName"] = firstName
+        profileDict["lastName"] = lastName
         profileDict["profilePicture"] = profilePic
         profileDict["publicEmail"] = publicEmail
         profileDict["countryCode"] = countryCode

@@ -44,8 +44,8 @@ class ProfileSetupExtend: MainViewController {
         
         Logs.show(message: "Profile: \(profileDict)")
         
-        if profileDict["fullName"] as! String != "" {
-            let nameStr = profileDict["fullName"] as! String
+        if profileDict["firstName"] as! String != "" {
+            let nameStr = profileDict["firstName"] as! String
             let nameStrArr = nameStr.components(separatedBy: " ")
             name = nameStrArr.first ?? ""
         }

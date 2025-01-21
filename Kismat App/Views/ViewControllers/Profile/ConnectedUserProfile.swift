@@ -268,7 +268,7 @@ class ConnectedUserProfile: MainViewController {
             
             vc.userId = user.userId
             vc.workTitle = user.workTitle
-            vc.userName = user.userName
+            vc.userName = user.firstName + " " + (user.lastName ?? "")
             vc.userProfilePic = user.profilePicture
             
             let transition = CATransition()
@@ -475,7 +475,7 @@ extension ConnectedUserProfile : UITableViewDelegate, UITableViewDataSource {
                 }
                 
                 
-                cell.nameLbl.text = userModel.userName
+                cell.nameLbl.text = userModel.firstName + " " + (userModel.lastName ?? "")
                 cell.professionLbl.text = userModel.workTitle
                 cell.educationLbl.text = userModel.workAddress
                 

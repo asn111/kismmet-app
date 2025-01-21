@@ -241,7 +241,7 @@ class OtherUserProfile: MainViewController {
             //vc.chatId = user.chatId
             //vc.isOnline = user.isOnline
             vc.workTitle = user.workTitle
-            vc.userName = user.userName
+            vc.userName = user.firstName + " " + (user.lastName ?? "")
             vc.userProfilePic = user.profilePicture
             
             let transition = CATransition()
@@ -528,7 +528,7 @@ extension OtherUserProfile : UITableViewDelegate, UITableViewDataSource {
                     }
                 }
                 
-                cell.nameLbl.text = userModel.userName
+                cell.nameLbl.text = userModel.firstName + " " + (userModel.lastName ?? "")
                 cell.proffLbl.text = userModel.workTitle
                 cell.workLbl.text = userModel.workAddress
                 

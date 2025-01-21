@@ -244,7 +244,7 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
             cell.picBtn.borderWidth = 0
             if let userDb = userdbModel {
                 if let user = userDb.first {
-                    cell.nameLbl.text = user.userName
+                    cell.nameLbl.text = user.firstName + " " + (user.lastName ?? "")
                     cell.educationLbl.text = user.email
                     cell.professionLbl.text = "\(user.countryCode)\(user.phone)"
                     

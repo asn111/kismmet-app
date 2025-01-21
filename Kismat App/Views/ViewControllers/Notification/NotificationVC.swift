@@ -63,15 +63,14 @@ class NotificationVC: MainViewController {
         
         if AppFunctions.isNotifEnable() {
             UIApplication.shared.unregisterForRemoteNotifications()
-            AppFunctions.setNotifEnable(value: false)
+            enableDisableNotif(value: false)
             AppFunctions.showSnackBar(str: "Notifications are paused")
         } else {
             UIApplication.shared.registerForRemoteNotifications()
-            AppFunctions.setNotifEnable(value: true)
+            enableDisableNotif(value: true)
             AppFunctions.showSnackBar(str: "Notifications are enabled")
         }
         
-        notifTV.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
     }
     
     @objc func chatBtnPressed(sender: UIButton) {
@@ -80,6 +79,21 @@ class NotificationVC: MainViewController {
     
     
 //MARK: API METHODS
+    
+    func enableDisableNotif(value: Bool) {
+        
+        let pram = ["isNotificationsEnabled": "\(value)"]
+        
+        SignalRManager.singelton.connection.invoke(method: "EnableUserNotifications", pram) {  error in            Logs.show(message: "\(pram)")
+            if let e = error {
+                Logs.show(message: "Error: \(e)")
+                return
+            }
+            AppFunctions.setNotifEnable(value: value)
+            self.notifTV.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+
+        }
+    }
     
     func updateNotif(id: Int) {
         self.showPKHUD(WithMessage: "Signing up")

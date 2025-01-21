@@ -47,7 +47,7 @@ class SendReqVC: MainViewController {
 
         // Do any additional setup after loading the view.
         
-        nameLbl.text = userModel.userName
+        nameLbl.text = userModel.firstName + " " + (userModel.lastName ?? "")
         proffLbl.text = userModel.workTitle
         workLocLbl.text = userModel.workAddress
         

@@ -841,7 +841,7 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                     cell.picBtn.borderWidth = 0
                     if let userDb = userdbModel {
                         if let user = userDb.first {
-                            cell.nameLbl.text = user.userName
+                            cell.nameLbl.text = user.firstName + " " + (user.lastName ?? "")
                             cell.educationLbl.text = user.email
                             cell.professionLbl.text = "\(user.countryCode)\(user.phone)"
                             
@@ -909,7 +909,7 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
 
                                 
                             } else {
-                                let text = "Please choose one or more ways for \(user.userName.trimmingCharacters(in: CharacterSet.whitespaces)) to reach out!"
+                                let text = "Please choose one or more ways for \(user.firstName.trimmingCharacters(in: CharacterSet.whitespaces)) to reach out!"
                                 let attributedText = NSMutableAttributedString(string: text)
                                 
                                 // Apply global styling
@@ -918,7 +918,7 @@ extension ContactInformainVC : UITableViewDelegate, UITableViewDataSource {
                                 attributedText.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedText.length))
                                 
                                 // Styling for the user's name
-                                let userNameRange = (text as NSString).range(of: "\(user.userName.trimmingCharacters(in: CharacterSet.whitespaces))")
+                                let userNameRange = (text as NSString).range(of: "\(user.firstName.trimmingCharacters(in: CharacterSet.whitespaces))")
                                 attributedText.addAttribute(NSAttributedString.Key.font, value: UIFont(name: "Roboto", size: 14)!.bold, range: userNameRange)
                                 attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(hexFromString: "4E6E81"), range: userNameRange)
                                 

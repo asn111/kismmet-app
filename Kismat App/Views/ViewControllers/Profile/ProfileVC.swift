@@ -255,7 +255,7 @@ extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
                 
                 if let userDb = userdbModel {
                     if let user = userDb.first {
-                        cell.nameLbl.text = user.userName
+                        cell.nameLbl.text = user.firstName + " " + (user.lastName ?? "")
                         cell.proffLbl.text = user.workTitle
                         cell.workLbl.text = user.workAddress
                         

@@ -37,7 +37,7 @@ class ContactListVC: MainViewController {
             profilePicIV.setImage(img, for: .normal)
         }
         
-        nameLbl.text = userModel.userName
+        nameLbl.text = userModel.firstName + " " + (userModel.lastName ?? "")
         proffLbl.text = userModel.workTitle
         workLbl.text = userModel.workAddress
         

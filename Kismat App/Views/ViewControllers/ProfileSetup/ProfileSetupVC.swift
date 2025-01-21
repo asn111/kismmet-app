@@ -12,7 +12,7 @@ class ProfileSetupVC: MainViewController  { //Birthday
 
     @IBOutlet weak var profileTV: UITableView!
         
-    var placeholderArray = ["","Full Name","Public Email","Phone","Birthday","Where do you work / study?","Work Title","Bio..",""]
+    var placeholderArray = ["","First Name","Last Name","Public Email","Phone","Birthday","Where do you work / study?","Work Title","Bio..",""]
     
     weak var activeTextField: UITextField?
     weak var activeTextView: UITextView?
@@ -21,7 +21,7 @@ class ProfileSetupVC: MainViewController  { //Birthday
     
     var updatedImagePicked : UIImage!
     var profileDict = [String: Any]()
-    var fullName = "", publicEmail = "", placeOfWork = "", workTitle = "" , dateOfBirth = "", countryCode = "", countryName = "", phoneNum = "" , about = "", profilePic = ""
+    var firstName = "", lastName = "", publicEmail = "", placeOfWork = "", workTitle = "" , dateOfBirth = "", countryCode = "", countryName = "", phoneNum = "" , about = "", profilePic = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,8 +129,8 @@ class ProfileSetupVC: MainViewController  { //Birthday
             AppFunctions.showSnackBar(str: "Maximum character limit exceeded for your bio!\nPlease keep it under 4000")
             return
         }
-        Logs.show(message: "\(fullName), \(publicEmail), \(countryCode), \(dateOfBirth), \(phoneNum), \(placeOfWork), \(workTitle), \(about)")
-        if fullName != "" && publicEmail != "" && countryCode != "" && phoneNum != "" && dateOfBirth != "" && placeOfWork != "" && workTitle != "" {
+        Logs.show(message: "\(firstName), \(lastName), \(publicEmail), \(countryCode), \(dateOfBirth), \(phoneNum), \(placeOfWork), \(workTitle), \(about)")
+        if firstName != "" && lastName != "" && publicEmail != "" && countryCode != "" && phoneNum != "" && dateOfBirth != "" && placeOfWork != "" && workTitle != "" {
             
             if updatedImagePicked != nil {
                 profilePic = AppFunctions.convertImageToBase64(image: updatedImagePicked)
@@ -139,7 +139,8 @@ class ProfileSetupVC: MainViewController  { //Birthday
                 return
             }
             
-            profileDict["fullName"] = fullName
+            profileDict["firstName"] = firstName
+            profileDict["lastName"] = lastName
             profileDict["profilePicture"] = profilePic
             profileDict["publicEmail"] = publicEmail
             profileDict["countryCode"] = countryCode
@@ -205,14 +206,16 @@ class ProfileSetupVC: MainViewController  { //Birthday
         activeTextField = textField
         
         if textField.tag == 1 {
-            fullName = !textField.text!.isTFBlank ? textField.text! : ""
+            firstName = !textField.text!.isTFBlank ? textField.text! : ""
         } else if textField.tag == 2 {
-            publicEmail = !textField.text!.isTFBlank ? textField.text! : ""
+            lastName = !textField.text!.isTFBlank ? textField.text! : ""
         } else if textField.tag == 3 {
+            publicEmail = !textField.text!.isTFBlank ? textField.text! : ""
+        } else if textField.tag == 4 {
             phoneNum = textField.text!.isValidPhoneNumber ? textField.text! : ""
-        } else if textField.tag == 5 {
-            placeOfWork = !textField.text!.isTFBlank ? textField.text! : ""
         } else if textField.tag == 6 {
+            placeOfWork = !textField.text!.isTFBlank ? textField.text! : ""
+        } else if textField.tag == 7 {
             workTitle = !textField.text!.isTFBlank ? textField.text! : ""
         }
         
@@ -261,11 +264,11 @@ class ProfileSetupVC: MainViewController  { //Birthday
     }
     
     @objc func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField.tag == 6 {
+        if textField.tag == 7 {
             textField.returnKeyType = .done
         } else {
         }
-        if textField.tag == 4 {
+        if textField.tag == 5 {
             
             let indexPath = IndexPath(row: textField.tag, section: 0)
             let cell = self.profileTV.cellForRow(at: indexPath) as! ProfileTVCell
@@ -322,7 +325,7 @@ class ProfileSetupVC: MainViewController  { //Birthday
     }
     
     @objc func tapDone(sender: Any, datePicker1: UIDatePicker) {
-        let indexPath = IndexPath(row: 4, section: 0)
+        let indexPath = IndexPath(row:54, section: 0)
         let cell = self.profileTV.cellForRow(at: indexPath) as! ProfileTVCell
         print(datePicker1)
         if let datePicker = cell.generalTF.inputView as? UIDatePicker { // 2.1

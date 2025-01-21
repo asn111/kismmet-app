@@ -92,7 +92,7 @@ class ReqAcceptVC: MainViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        nameLbl.text = userModel.userName
+        nameLbl.text = userModel.firstName + " " + (userModel.lastName ?? "")
         proffLbl.text = userModel.workTitle
         workLocLbl.text = userModel.workAddress
         
@@ -178,7 +178,7 @@ class ReqAcceptVC: MainViewController {
                     case .next(let val):
                         if val {
                             self.hidePKHUD()
-                            AppFunctions.showSnackBar(str: "\(userModel.userName ?? "User") has been moved to your contacts! 🎉🎉🎉")
+                            AppFunctions.showSnackBar(str: "\(userModel.firstName ?? "User") has been moved to your contacts! 🎉🎉🎉")
                             self.dismiss(animated: true, completion: nil)
                             
                         } else {

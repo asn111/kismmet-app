@@ -38,7 +38,8 @@ class UserModel: NSObject, Codable {
     
     var contactId : Int!
     var userId : String!
-    var userName : String!
+    var firstName : String!
+    var lastName : String!
     var profilePicture : String!
     var email : String!
     var publicEmail : String!
@@ -74,7 +75,8 @@ class UserModel: NSObject, Codable {
         
         contactId = 0
         userId = ""
-        userName = ""
+        firstName = ""
+        lastName = ""
         profilePicture = ""
         email = ""
         publicEmail = ""
@@ -108,7 +110,8 @@ class UserModel: NSObject, Codable {
     }
     
     init(fromDictionary dictionary: [String: Any]) {
-        userName = dictionary["fullName"] as? String
+        firstName = dictionary["firstName"] as? String
+        lastName = dictionary["lastName"] as? String
         profilePicture = dictionary["profilePicture"] as? String
         publicEmail = dictionary["publicEmail"] as? String
         workAddress = dictionary["workAdress"] as? String
@@ -124,7 +127,8 @@ class UserModel: NSObject, Codable {
         
         case contactId = "contactId"
         case userId = "userId"
-        case userName = "userName"
+        case firstName = "firstName"
+        case lastName = "lastName"
         case profilePicture = "profilePicture"
         case email = "email"
         case publicEmail = "publicEmail"
@@ -160,7 +164,8 @@ class UserModel: NSObject, Codable {
 
         contactId  = try values.decodeIfPresent(Int.self, forKey: .contactId)
         userId  = try values.decodeIfPresent(String.self, forKey: .userId)
-        userName  = try values.decodeIfPresent(String.self, forKey: .userName)
+        firstName  = try values.decodeIfPresent(String.self, forKey: .firstName)
+        lastName  = try values.decodeIfPresent(String.self, forKey: .lastName)
         profilePicture  = try values.decodeIfPresent(String.self, forKey: .profilePicture)
         email  = try values.decodeIfPresent(String.self, forKey: .email)
         publicEmail  = try values.decodeIfPresent(String.self, forKey: .publicEmail)

@@ -50,7 +50,7 @@ class AccountStatusVC: MainViewController {
             self.userModel = DBService.fetchloggedInUser().first!
         }
         
-        nameLbl.text = userModel.userName
+        nameLbl.text = userModel.firstName + " " + (userModel.lastName ?? "")
         professionLbl.text = userModel.workTitle
         educationLbl.text = userModel.workAddress
         

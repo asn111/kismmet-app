@@ -239,7 +239,7 @@ extension BlockedVC : UITableViewDelegate, UITableViewDataSource {
                 } else if let feedCell = cell as? FeedItem2TVCell {
                     
                     let user = users[indexPath.row - 1]
-                    feedCell.nameLbl.text = user.userName
+                    feedCell.nameLbl.text = user.firstName + " " + (user.lastName ?? "")
                     feedCell.professionLbl.text = user.workTitle
                     feedCell.educationLbl.text = user.workAddress
                     feedCell.starLbl.image = user.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")

@@ -125,7 +125,7 @@ extension ChatUsersListVC : UITableViewDelegate, UITableViewDataSource {
         let cell : ChatListUserTVCell = tableView.dequeueReusableCell(withIdentifier: "ChatListUserTVCell", for: indexPath) as! ChatListUserTVCell
         
         
-        cell.nameLbl.text = users[indexPath.row].userName
+        cell.nameLbl.text =  users[indexPath.row].firstName + " " + (users[indexPath.row].lastName ?? "")
         cell.proffLbl.text = users[indexPath.row].workTitle
         
         if users[indexPath.row].profilePicture != "" && users[indexPath.row].profilePicture != nil {
@@ -149,7 +149,7 @@ extension ChatUsersListVC : UITableViewDelegate, UITableViewDataSource {
             vc.isPresented = true
             //vc.chatId = user.chatId
             //vc.isOnline = user.isOnline
-            vc.userName = user.userName
+            vc.userName = user.firstName + " " + (user.lastName ?? "")
             vc.workTitle = user.workTitle
             vc.userProfilePic = user.profilePicture
             vc.isPresented = true

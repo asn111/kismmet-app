@@ -127,6 +127,11 @@ class SplashVC: MainViewController {
                                 AppFunctions.savePlatForm(name: sPlatForm)
                             }
                             
+//                            if let sPlatForm = val.subscriptionPlatform {
+//                                AppFunctions.setNotifEnable(value: false)
+//                            }
+                            
+                            
                             if let accStatus = val.accountStatusId {
                                 if accStatus == deactivedAccountStatusId {
                                     AppFunctions.resetDefaults2()

@@ -258,7 +258,7 @@ extension ViewedByMeVC : UITableViewDelegate, UITableViewDataSource {
                     
                     let user = users[indexPath.row - 1]
                     
-                    feedCell.nameLbl.text = user.userName
+                    feedCell.nameLbl.text = user.firstName + " " + (user.lastName ?? "")
                     feedCell.professionLbl.text = user.workTitle
                     feedCell.educationLbl.text = user.workAddress
                     

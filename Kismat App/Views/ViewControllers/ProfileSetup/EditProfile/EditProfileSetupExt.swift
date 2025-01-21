@@ -47,11 +47,8 @@ class EditProfileSetupExt: MainViewController {
         if DBService.fetchloggedInUser().count > 0 {
             self.userdbModel = DBService.fetchloggedInUser().first!
         }
+        name = userdbModel.firstName + " " + userdbModel.lastName
         
-        if userdbModel.userName != "" {
-            let nameStr = userdbModel.userName.components(separatedBy: " ")
-            name = nameStr.first ?? ""
-        }
         
         proximity = userdbModel.proximity
         isProfileVisible = userdbModel.isProfileVisible

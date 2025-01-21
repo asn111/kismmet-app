@@ -11,7 +11,8 @@ import RealmSwift
 class UserDBModel: Object {
     
     @objc dynamic var userId : String = ""
-    @objc dynamic var userName : String = ""
+    @objc dynamic var firstName : String = ""
+    @objc dynamic var lastName : String = ""
     @objc dynamic var profilePicture : String = ""
     @objc dynamic var email : String = ""
     @objc dynamic var publicEmail : String = ""

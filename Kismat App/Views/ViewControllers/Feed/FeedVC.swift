@@ -528,7 +528,7 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                     
                 } else if let feedCell = cell as? FeedItemsTVCell {
                     
-                    feedCell.nameLbl.text = user.userName
+                    feedCell.nameLbl.text = user.firstName + " " + (user.lastName ?? "")
                     feedCell.professionLbl.text = user.workTitle
                     feedCell.educationLbl.text = user.workAddress
                     
@@ -577,7 +577,7 @@ extension FeedVC : UITableViewDelegate, UITableViewDataSource {
                     
                 } else if let feedCell2 = cell as? FeedItem2TVCell {
                                         
-                    feedCell2.nameLbl.text = user.userName
+                    feedCell2.nameLbl.text = user.firstName + " " + (user.lastName ?? "")
                     feedCell2.professionLbl.text = user.workTitle
                     feedCell2.educationLbl.text = user.workAddress
                     
