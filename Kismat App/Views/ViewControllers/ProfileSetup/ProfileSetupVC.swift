@@ -12,7 +12,7 @@ class ProfileSetupVC: MainViewController  { //Birthday
 
     @IBOutlet weak var profileTV: UITableView!
         
-    var placeholderArray = ["","First Name","Last Name","Public Email","Phone","Birthday","Where do you work / study?","Work Title","Bio..",""]
+    var placeholderArray = ["","First Name *","Last Name *","Public Email *","Phone *","Birthday *","Where do you work / study? *","Work Title *","Bio.. *",""]
     
     weak var activeTextField: UITextField?
     weak var activeTextView: UITextView?
@@ -129,13 +129,13 @@ class ProfileSetupVC: MainViewController  { //Birthday
             AppFunctions.showSnackBar(str: "Maximum character limit exceeded for your bio!\nPlease keep it under 4000")
             return
         }
-        Logs.show(message: "\(firstName), \(lastName), \(publicEmail), \(countryCode), \(dateOfBirth), \(phoneNum), \(placeOfWork), \(workTitle), \(about)")
+        Logs.show(message: "\(firstName), \(lastName), \(publicEmail), \(countryCode), \(phoneNum), \(dateOfBirth), \(placeOfWork), \(workTitle), \(about)")
         if firstName != "" && lastName != "" && publicEmail != "" && countryCode != "" && phoneNum != "" && dateOfBirth != "" && placeOfWork != "" && workTitle != "" {
             
             if updatedImagePicked != nil {
                 profilePic = AppFunctions.convertImageToBase64(image: updatedImagePicked)
             } else {
-                AppFunctions.showSnackBar(str: "Profile Picture is mandatory, please add one")
+                AppFunctions.showSnackBar(str: "Profile Picture is mandatory")
                 return
             }
             
@@ -156,7 +156,7 @@ class ProfileSetupVC: MainViewController  { //Birthday
             }
 
         } else {
-            AppFunctions.showSnackBar(str: "Please add all fields.")
+            AppFunctions.showSnackBar(str: "Please fill out all the mandatory fields")
         }
     }
     
@@ -224,7 +224,7 @@ class ProfileSetupVC: MainViewController  { //Birthday
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         activeTextView = textView
-        if textView.text == "Bio.." {
+        if textView.text == "Bio.. *" {
             // Clear the text view
             textView.text = ""
         }
@@ -325,7 +325,7 @@ class ProfileSetupVC: MainViewController  { //Birthday
     }
     
     @objc func tapDone(sender: Any, datePicker1: UIDatePicker) {
-        let indexPath = IndexPath(row:54, section: 0)
+        let indexPath = IndexPath(row:5, section: 0)
         let cell = self.profileTV.cellForRow(at: indexPath) as! ProfileTVCell
         print(datePicker1)
         if let datePicker = cell.generalTF.inputView as? UIDatePicker { // 2.1
@@ -425,7 +425,7 @@ extension ProfileSetupVC : UITableViewDelegate, UITableViewDataSource {
                 
             default:
                 let cell : ProfileTVCell = tableView.dequeueReusableCell(withIdentifier: "ProfileTVCell", for: indexPath) as! ProfileTVCell
-                if placeholderArray[indexPath.row] == "Phone" {
+                if placeholderArray[indexPath.row] == "Phone *" {
                     cell.numberView.isHidden = false
                     cell.numberTF.tag = indexPath.row
                     cell.numberTF.delegate = self
@@ -447,13 +447,13 @@ extension ProfileSetupVC : UITableViewDelegate, UITableViewDataSource {
                     AppFunctions.colorPlaceholder(tf: cell.generalTF, s: placeholderArray[indexPath.row])
 
                 }
-                if placeholderArray[indexPath.row] == "Public Email" {
+                if placeholderArray[indexPath.row] == "Public Email *" {
                     cell.toolTipBtn.isHidden = false
                     cell.toolTipBtn.tag = 001
                     
                     cell.toolTipBtn.addTarget(self, action: #selector(toolTipBtnPressed(sender:)), for: .touchUpInside)
                     cell.generalTF.keyboardType = .emailAddress
-                } else if placeholderArray[indexPath.row] == "Birthday" {
+                } else if placeholderArray[indexPath.row] == "Birthday *" {
                     cell.toolTipBtn.isHidden = false
                     cell.toolTipBtn.tag = 003
                     

@@ -961,9 +961,28 @@ class AppFunctions {
     }
     
     open class func colorPlaceholder(tf: UITextField, s: String) {
-        tf.attributedPlaceholder =
-        NSAttributedString(string: s, attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "Text grey") as Any, .font: UIFont(name: "Roboto", size: 14)?.regular as Any])
+        let attributedString = NSMutableAttributedString(string: s)
+        
+        // Apply default attributes for the placeholder text
+        let defaultAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor(named: "Text grey") as Any,
+            .font: UIFont(name: "Roboto", size: 14)?.light as Any
+        ]
+        attributedString.addAttributes(defaultAttributes, range: NSRange(location: 0, length: s.count))
+        
+        // Find and color the asterisks in red
+        let redAsteriskAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.red
+        ]
+        for (index, character) in s.enumerated() {
+            if character == "*" {
+                attributedString.addAttributes(redAsteriskAttributes, range: NSRange(location: index, length: 1))
+            }
+        }
+        
+        tf.attributedPlaceholder = attributedString
     }
+
 
     open class func getCurrentTarget() -> String {
         return ProcessInfo.processInfo.processName

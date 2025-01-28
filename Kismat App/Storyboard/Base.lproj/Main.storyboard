@@ -42,7 +42,7 @@
                                     <constraint firstAttribute="width" constant="150" id="tVB-Br-N6A"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2024 - All rights reserved" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhD-Tf-j08" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2025 - All rights reserved" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhD-Tf-j08" userLabel="2025 - All rights reserved" customClass="fullyCustomLbl" customModule="Kismmet" customModuleProvider="target">
                                 <rect key="frame" x="36" y="778" width="320" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="XIm-v4-RUb"/>

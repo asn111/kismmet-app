@@ -98,7 +98,7 @@ class ProfileSetupExtend: MainViewController {
     }
     
     @objc func addBtnPressed(sender:UIButton) {
-        if sender.tag > 10 {
+        if sender.tag > 5 + socialAccounts.count {
             let arr = AppFunctions.getTagsArray()
             if arr.count >= 5 {
                 AppFunctions.showSnackBar(str: "Maximum tags added, remove to add new")
@@ -497,7 +497,22 @@ extension ProfileSetupExtend : UITableViewDelegate, UITableViewDataSource {
                 cell.toggleBtnView.isHidden = true
                 cell.notifHeaderLbl.isHidden = true
                 
-                cell.headerLbl.text = "Tags"
+                if let font = cell.headerLbl.font {
+                    let text = "Tags (Please enter & save one tag at a time)"
+                    let italicRange = (text as NSString).range(of: "(Please enter & save one tag at a time)")
+                    
+                    let attributedString = NSMutableAttributedString(string: text)
+                    
+                    // Apply the label's font to the entire text
+                    attributedString.addAttribute(.font, value: font, range: NSRange(location: 0, length: text.count))
+                    
+                    // Apply the system italic font to the text within parentheses
+                    let italicFont = UIFont.italicSystemFont(ofSize: font.pointSize)
+                    attributedString.addAttribute(.font, value: italicFont, range: italicRange)
+                    
+                    cell.headerLbl.attributedText = attributedString
+                }
+
                 cell.addBtn.isHidden = false
                 cell.addBtn.tag = indexPath.row
                 if tags.count == 5 {

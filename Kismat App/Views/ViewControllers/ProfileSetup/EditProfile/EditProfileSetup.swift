@@ -14,8 +14,8 @@ class EditProfileSetup: MainViewController { //Birthday
     
     @IBOutlet weak var profileTV: UITableView!
     
-    var placeholderArray = ["","First Name","Last Name","Birthday"
-                            ,"Public Email","Where do you work / study?","Title","Bio..",""]
+    var placeholderArray = ["","First Name *","Last Name *","Birthday *"
+                            ,"Public Email *","Where do you work / study? *","Title *","Bio.. *",""]
     var dataArray = [String]()
     var firstName = "", lastName = "", publicEmail = "", placeOfWork = "", workTitle = "" , dateOfBirth = "" , about = "", status = "", countryCode = "", phoneNum = "", countryName = "", profilePic = ""
     
@@ -77,7 +77,7 @@ class EditProfileSetup: MainViewController { //Birthday
                 Logs.show(message: val)
                 if AppFunctions.getTagsArray().count > 0 {
                     self?.tags = AppFunctions.getTagsArray()
-                    self?.profileTV.reloadRows(at: [IndexPath(row: 9, section: 0)], with: .fade)
+                    self?.profileTV.reloadRows(at: [IndexPath(row: (self?.placeholderArray.count)! + 1, section: 0)], with: .fade)
                 }
                 
             } else if val.contains("socialAdded") {
@@ -250,39 +250,43 @@ class EditProfileSetup: MainViewController { //Birthday
         
         //Logs.show(message: "\(fullName), \(publicEmail), \(dateOfBirth), \(placeOfWork), \(workTitle), \(about), \(tags.joined(separator: ","))")
         
-        
-        if tags.joined(separator: ",").count != 0 {
-            
-            userProfileUpdate()
+        if firstName != "" && lastName != "" && publicEmail != "" && dateOfBirth != "" && placeOfWork != "" && workTitle != "" && about != "" {
+            if tags.joined(separator: ",").count != 0 {
+                
+                userProfileUpdate()
+            } else {
+                AppFunctions.showSnackBar(str: "Tags are important part of profile, please add at least one.")
+            }
         } else {
-            AppFunctions.showSnackBar(str: "Tags are important part of profile, please add at least one.")
+            AppFunctions.showSnackBar(str: "Please fill out all the mandatory fields")
         }
+        
         
     }
     @objc func genBtnPressedForProfile(sender:UIButton) {
         
-        if tags.joined(separator: ",").count != 0 {
-        
-            self.pushVC(id: "ProfileVC") { (vc:ProfileVC) in
+            if tags.joined(separator: ",").count != 0 {
                 
-                profileDict["firstName"] = firstName
-                profileDict["lastName"] = lastName
-                profileDict["publicEmail"] = publicEmail
-                profileDict["profilePicture"] = profilePic
-                profileDict["workAdress"] = placeOfWork
-                profileDict["workTitle"] = workTitle
-                profileDict["about"] = about
-                profileDict["status"] = status
-                profileDict["disappearingStatus"] = disappearingStatus
-                profileDict["tags"] = tags.joined(separator: ",")
-                
-                let userModel = UserModel(fromDictionary: profileDict)
-                vc.userModel = userModel
-                vc.isOtherProfile = true
+                self.pushVC(id: "ProfileVC") { (vc:ProfileVC) in
+                    
+                    profileDict["firstName"] = firstName
+                    profileDict["lastName"] = lastName
+                    profileDict["publicEmail"] = publicEmail
+                    profileDict["profilePicture"] = profilePic
+                    profileDict["workAdress"] = placeOfWork
+                    profileDict["workTitle"] = workTitle
+                    profileDict["about"] = about
+                    profileDict["status"] = status
+                    profileDict["disappearingStatus"] = disappearingStatus
+                    profileDict["tags"] = tags.joined(separator: ",")
+                    
+                    let userModel = UserModel(fromDictionary: profileDict)
+                    vc.userModel = userModel
+                    vc.isOtherProfile = true
+                }
+            } else {
+                AppFunctions.showSnackBar(str: "Tags are important part of profile, please add at least one.")
             }
-        } else {
-            AppFunctions.showSnackBar(str: "Tags are important part of profile, please add at least one.")
-        }
         
     }
     @objc func backBtnPressed(sender:UIButton) {
@@ -528,7 +532,7 @@ class EditProfileSetup: MainViewController { //Birthday
         if let image = updatedImagePicked {
             profilePic = AppFunctions.convertImageToBase64(image: image)
         } else if profilePic.isEmpty {
-            AppFunctions.showSnackBar(str: "Profile Picture is mandatory, please add one")
+            AppFunctions.showSnackBar(str: "Profile Picture is mandatory")
             return
         }
 
@@ -644,7 +648,25 @@ extension EditProfileSetup : UITableViewDelegate, UITableViewDataSource {
             case placeholderArray.count : //socialAccounts.count + 1: // Tags Heading
                 let cell : MixHeaderTVCell = tableView.dequeueReusableCell(withIdentifier: "MixHeaderTVCell", for: indexPath) as! MixHeaderTVCell
                 cell.headerLblView.isHidden = false
-                cell.headerLbl.text = "Tags"
+                
+                if let font = cell.headerLbl.font {
+                    let text = "Tags (Please enter & save one tag at a time)"
+                    let italicRange = (text as NSString).range(of: "(Please enter & save one tag at a time)")
+                    
+                    let attributedString = NSMutableAttributedString(string: text)
+                    
+                    // Apply the label's font to the entire text
+                    attributedString.addAttribute(.font, value: font, range: NSRange(location: 0, length: text.count))
+                    
+                    // Apply the system italic font to the text within parentheses
+                    let italicFont = UIFont.italicSystemFont(ofSize: font.pointSize)
+                    attributedString.addAttribute(.font, value: italicFont, range: italicRange)
+                    
+                    cell.headerLbl.attributedText = attributedString
+                }
+
+
+                //cell.headerLbl.text = "Tags (Please enter & save one tag at a time)"
                 
                 cell.notifHeaderView.isHidden = true
                 cell.toggleBtnView.isHidden = true
