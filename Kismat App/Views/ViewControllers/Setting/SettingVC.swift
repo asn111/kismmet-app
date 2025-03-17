@@ -9,6 +9,7 @@ import UIKit
 import CDAlertView
 import RealmSwift
 import SafariServices
+import SwiftUI
 
 class SettingVC: MainViewController {
 
@@ -20,8 +21,8 @@ class SettingVC: MainViewController {
     var accSecTxt = ["Edit Profile","Preferences","Change Password","Membership","Account Status"]
     var accSecImg = ["person.circle.fill","slider.horizontal.3","rectangle.and.pencil.and.ellipsis","creditcard","checkmark.seal"]
     
-    var featuresSecTxt = ["Social Links","Starred Users","Blocked Users"]
-    var featuresSecImg = ["link","star.fill","minus.circle"]
+    var featuresSecTxt = ["Social Links","My Interests","Starred Users","Blocked Users"]
+    var featuresSecImg = ["link","suit.heart.fill","star.fill","minus.circle"]
     
     var notifSecTxt = ["Notifications"]
     var notifSecImg = ["bell.badge.fill"]
@@ -442,8 +443,14 @@ extension SettingVC : UITableViewDelegate, UITableViewDataSource {
                     case 0:
                         self.pushVC(id: "SocialLinkVC") { (vc:SocialLinkVC) in }
                     case 1:
-                        self.pushVC(id: "StarredVC") { (vc:StarredVC) in }
+                        self.pushVC(id: "SearchInterestVC") { (vc:SearchInterestVC) in }
+                        //let swiftUIView = MySwiftUIView()
+                        //let hostingController = UIHostingController(rootView: swiftUIView)
+                        //pushVC(vc: hostingController)
+
                     case 2:
+                        self.pushVC(id: "StarredVC") { (vc:StarredVC) in }
+                    case 3:
                         self.pushVC(id: "BlockedVC") { (vc:BlockedVC) in }
                     default:
                         print("")

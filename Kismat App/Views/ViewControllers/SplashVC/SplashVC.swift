@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class SplashVC: MainViewController {
 
     @IBAction func continueBtnPressed(_ sender: Any) {
@@ -31,9 +32,11 @@ class SplashVC: MainViewController {
     @IBOutlet weak var animateThisView: UIView!
     @IBOutlet weak var btnView: UIView!
     
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         if AppFunctions.isLoggedIn() {
             
@@ -58,6 +61,9 @@ class SplashVC: MainViewController {
             lBtn.isHidden = false
         }
     }
+
+    
+    //////////////////////
     
     func sendLocationOnLogin() {
         let lat = initalLatitude

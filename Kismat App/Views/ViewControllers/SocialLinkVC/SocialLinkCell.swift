@@ -95,4 +95,11 @@ class SocialLinkCell: UICollectionViewCell {
         }
         label.text = text
     }
+    
+    func configureForSearch(isSelected: Bool, text: String) {
+        var image = UIImage(systemName: "plus")!
+        self.imageView.image = image
+
+        label.text = text
+    }
 }

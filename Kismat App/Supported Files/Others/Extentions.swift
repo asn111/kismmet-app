@@ -724,6 +724,17 @@ extension UIViewController {
         }
     }
     
+    func pushVC(vc: UIViewController) {
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.subtype = .fromRight
+        transition.timingFunction = CAMediaTimingFunction(name: .default)
+        transition.type = .fade
+        self.navigationController?.view.layer.add(transition, forKey: nil)
+        self.navigationController?.pushViewController(vc, animated: false)
+    }
+
+    
     func presentVC<T:UIViewController> (id: String, sb: String = "Main", presentFullType: String = "full" , setup: (_ vc: T) -> ()) {
         let storyboard = UIStoryboard(name: sb, bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: id) as? T {
