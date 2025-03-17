@@ -403,7 +403,7 @@ class ChatViewController: MainViewController {
         
         Logs.show(message: "PRAM: \(pram)")
         
-        SignalRManager.singelton.connection.invoke(method: "/V2/SendMessage", pram) {  error in
+        SignalRManager.singelton.connection.invoke(method: "SendMessageV2", pram) {  error in
             if let e = error {
                 Logs.show(message: "Error in sending message: \(e)")
                 AppFunctions.showSnackBar(str: "Error in sending message")
