@@ -270,7 +270,7 @@ class APIService: NSObject {
         return Observable.create{[weak self] observer -> Disposable in
             if (self?.isCheckReachable())! {
                 
-                AF.request("\(self?.baseUrl ?? "")/api/V2/Token", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: nil)
+                AF.request("\(self?.baseUrl ?? "")/api/Token/V2", method:.post, parameters: pram, encoding: JSONEncoding.default, headers: nil)
                     .validate()
                     .responseData{ response in
                         Logs.show(message: "URL: \(response.debugDescription)")
